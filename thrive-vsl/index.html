@@ -177,6 +177,15 @@
             padding: 12px 20px;
             font-weight: 500;
             color: var(--color-primary-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-instruction:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 112, 77, 0.3);
         }
 
         .hero-instruction svg {
@@ -493,7 +502,7 @@
                     You're one step closer to finding the perfect teacher for your child.
                     Watch this short video to learn what to expect from our Private Teacher Placement service.
                 </p>
-                <div class="hero-instruction">
+                <div class="hero-instruction" id="playVideoBtn" style="cursor: pointer;">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 5v14l11-7L8 5z" />
                     </svg>
@@ -503,7 +512,7 @@
         </section>
 
         <!-- Video Section -->
-        <section class="video-section">
+        <section class="video-section" id="videoSection">
             <div class="video-container">
                 <div class="video-wrapper">
                     <iframe id="youtube-player" src="https://www.youtube.com/embed/I0LCjtBXz5s?enablejsapi=1"
@@ -689,6 +698,24 @@
             // Initialize
             function init() {
                 checkPreviousUnlock();
+
+                // Play button click handler - scroll to video and play
+                const playVideoBtn = document.getElementById('playVideoBtn');
+                const videoSection = document.getElementById('videoSection');
+
+                if (playVideoBtn && videoSection) {
+                    playVideoBtn.addEventListener('click', function () {
+                        // Scroll to video section
+                        videoSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                        // Play video after scroll animation (delay 500ms)
+                        setTimeout(function () {
+                            if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+                                ytPlayer.playVideo();
+                            }
+                        }, 500);
+                    });
+                }
 
                 // Close notification on click
                 unlockNotification.addEventListener('click', function (e) {
