@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workshop - Yamumedia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 32px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #222;
+        }
+
+        .header-left h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .header-left .subtitle {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .logo {
+            height: 32px;
+        }
+
+        /* Section Titles */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #222;
+        }
+
+        /* Agenda Items */
+        .agenda-list {
+            list-style: none;
+        }
+
+        .agenda-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .agenda-item:last-child {
+            border-bottom: none;
+        }
+
+        .agenda-number {
+            width: 28px;
+            height: 28px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #888;
+            flex-shrink: 0;
+        }
+
+        .agenda-content h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .agenda-content p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .duration {
+            font-size: 12px;
+            font-weight: 500;
+            color: #555;
+            background: #1a1a1a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+        }
+
+        /* Two Column Grid */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            font-size: 14px;
+            color: #999;
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: #444;
+            border-radius: 50%;
+        }
+
+        /* Examples Box */
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .example-card {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+        .example-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .example-card h5 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .example-card p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Setup Steps */
+        .setup-list {
+            list-style: none;
+            counter-reset: setup;
+        }
+
+        .setup-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .setup-item:last-child {
+            border-bottom: none;
+        }
+
+        .setup-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .setup-icon svg {
+            width: 16px;
+            height: 16px;
+            stroke: #888;
+        }
+
+        .setup-text {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .setup-text span {
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* Note Box */
+        .note-box {
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-left: 3px solid #333;
+            border-radius: 0 6px 6px 0;
+            padding: 16px 20px;
+            margin-top: 24px;
+        }
+
+        .note-box p {
+            font-size: 13px;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* Icons */
+        .icon {
+            width: 16px;
+            height: 16px;
+            stroke: #666;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        @media print {
+            body {
+                background: #0a0a0a;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .container {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+
+            .two-col,
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>AI Workshop</h1>
+                <div class="subtitle">Integrating AI in Everyday Work</div>
+            </div>
+            <img src="https://yamumedia.com/wp-content/uploads/2022/09/Yamu_LogoType_Color.png" alt="Yamu Media"
+                class="logo">
+        </header>
+
+        <!-- What We'll Cover -->
+        <section class="section">
+            <div class="section-title">Agenda</div>
+            <ul class="agenda-list">
+                <li class="agenda-item">
+                    <div class="agenda-number">01</div>
+                    <div class="agenda-content">
+                        <h3>Who's Using AI to Its Potential <span class="duration">5 min</span></h3>
+                        <p>Talk with 3 team members — what they do, which tools they use</p>
+                    </div>
+                </li>
+                <li class="agenda-item">
+                    <div class="agenda-number">02</div>
+                    <div class="agenda-content">
+                        <h3>What AI Can Do / What AI Cannot Do <span class="duration">5 min</span></h3>
+                        <p>Setting realistic expectations and understanding boundaries</p>
+                    </div>
+                </li>
+                <li class="agenda-item">
+                    <div class="agenda-number">03</div>
+                    <div class="agenda-content">
+                        <h3>Useful Tools by Department <span class="duration">10 min</span></h3>
+                        <p>Tools for Account Managers, Ads, CRO, and Business Management</p>
+                    </div>
+                </li>
+                <li class="agenda-item">
+                    <div class="agenda-number">04</div>
+                    <div class="agenda-content">
+                        <h3>Real Examples: Internal + External <span class="duration">10 min</span></h3>
+                        <p>See AI automation in action — audit processes, project management, and client solutions</p>
+                    </div>
+                </li>
+                <li class="agenda-item">
+                    <div class="agenda-number">05</div>
+                    <div class="agenda-content">
+                        <h3>Claude Code: Your All-in-One AI Assistant <span class="duration">20 min</span></h3>
+                        <p>Hands-on setup for everyday productivity</p>
+                    </div>
+                </li>
+                <li class="agenda-item">
+                    <div class="agenda-number">06</div>
+                    <div class="agenda-content">
+                        <h3>Wrap-up: Department Planning <span class="duration">10 min</span></h3>
+                        <p>Identify use cases and plan department-specific follow-up sessions</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- AI Can / Cannot -->
+        <section class="section">
+            <div class="section-title">Understanding AI</div>
+            <div class="two-col">
+                <div class="card">
+                    <h4>
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        What AI Can Do
+                    </h4>
+                    <ul>
+                        <li>Process and summarize large amounts of data</li>
+                        <li>Automate repetitive tasks</li>
+                        <li>Generate drafts, ideas, and variations</li>
+                        <li>Analyze patterns and provide insights</li>
+                        <li>Work 24/7 without fatigue</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M18 6L6 18M6 6l12 12" />
+                        </svg>
+                        What AI Cannot Do
+                    </h4>
+                    <ul>
+                        <li>Replace human judgment and creativity</li>
+                        <li>Understand context without guidance</li>
+                        <li>Take accountability for decisions</li>
+                        <li>Build genuine client relationships</li>
+                        <li>Guarantee 100% accuracy</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples -->
+        <section class="section">
+            <div class="section-title">Real Examples</div>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-label">Internal</div>
+                    <h5>Automated CRO Audit Process</h5>
+                    <p>AI-powered analysis that reduces audit time from days to hours</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-label">Internal</div>
+                    <h5>Project Management Automation</h5>
+                    <p>Automated task creation, status updates, and reporting</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-label">External - Bison</div>
+                    <h5>Custom Fit Measurement</h5>
+                    <p>AI-guided sizing tool for personalized product recommendations</p>
+                </div>
+                <div class="example-card">
+                    <div class="example-label">External - Thrive</div>
+                    <h5>Video Call Qualifier</h5>
+                    <p>AI pre-qualification to improve sales call efficiency</p>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p>Note: We will not generate images, landing pages, or create campaign calendars in this session. Those
+                    will be covered in department-specific workshops.</p>
+            </div>
+        </section>
+
+        <!-- Claude Setup -->
+        <section class="section">
+            <div class="section-title">Claude Code Setup</div>
+            <p style="color: #888; font-size: 14px; margin-bottom: 20px;">Your all-in-one AI assistant for everyday
+                tasks — useful for everyone, regardless of role.</p>
+
+            <ul class="setup-list">
+                <li class="setup-item">
+                    <div class="setup-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        </svg>
+                    </div>
+                    <div class="setup-text">
+                        Setup Claude Desktop<br>
+                        <span>Install and configure the desktop application</span>
+                    </div>
+                </li>
+                <li class="setup-item">
+                    <div class="setup-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M12 1v6m0 6v10M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m6 0h10M4.22 19.78l4.24-4.24m7.08-7.08l4.24-4.24" />
+                        </svg>
+                    </div>
+                    <div class="setup-text">
+                        Understanding MCP (Model Context Protocol)<br>
+                        <span>Connect Claude to external tools and data sources</span>
+                    </div>
+                </li>
+                <li class="setup-item">
+                    <div class="setup-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                    </div>
+                    <div class="setup-text">
+                        Get Familiar with Claude Code<br>
+                        <span>Navigate the interface and core features</span>
+                    </div>
+                </li>
+                <li class="setup-item">
+                    <div class="setup-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <div class="setup-text">
+                        Setup Your Shadow<br>
+                        <span>Create a personalized AI assistant that knows your workflow</span>
+                    </div>
+                </li>
+                <li class="setup-item">
+                    <div class="setup-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                        </svg>
+                    </div>
+                    <div class="setup-text">
+                        Setup Auto-Learning Mechanism<br>
+                        <span>AI that learns from your day-to-day tasks and improves over time</span>
+                    </div>
+                </li>
+                <li class="setup-item">
+                    <div class="setup-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                            <polyline points="2 17 12 22 22 17" />
+                            <polyline points="2 12 12 17 22 12" />
+                        </svg>
+                    </div>
+                    <div class="setup-text">
+                        Setup Claude Skills & Subagents<br>
+                        <span>Specialized agents for recurring tasks</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Yamumedia AI Workshop — January 2026</p>
+        </footer>
+    </div>
+</body>
+
+</html>
