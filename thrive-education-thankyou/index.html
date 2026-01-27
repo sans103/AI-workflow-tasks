@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Call is Booked! | Thrive Education Partners</title>
+    <meta name="description"
+        content="Your consultation is confirmed! Watch this short video to prepare for your call with Thrive Education Partners.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Mulish:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===== CSS Variables ===== */
+        :root {
+            --color-primary: #6A704D;
+            --color-primary-dark: #5E6C44;
+            --color-text: #414141;
+            --color-text-light: #666666;
+            --color-white: #FFFFFF;
+            --color-bg-light: #F9F9F7;
+            --color-success: #4CAF50;
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Mulish', sans-serif;
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 25px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== Reset & Base ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #6B724F;
+            box-shadow: var(--shadow-soft);
+            padding: 16px 24px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-phone {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-phone:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* ===== Main Content ===== */
+        .main {
+            padding-top: 80px;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--color-bg-light) 0%, var(--color-white) 100%);
+            padding: 60px 24px 40px;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(106, 112, 77, 0.12);
+            border: 2px solid var(--color-primary);
+            border-radius: var(--radius-lg);
+            padding: 10px 24px;
+            margin-bottom: 24px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 15px;
+        }
+
+        .hero-badge svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--color-success);
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 5vw, 42px);
+            color: var(--color-text);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--color-text-light);
+            max-width: 650px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-instruction {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-primary);
+            border-radius: var(--radius-sm);
+            padding: 14px 28px;
+            font-weight: 600;
+            color: var(--color-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .hero-instruction:hover {
+            background: var(--color-primary-dark);
+            color: var(--color-white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 112, 77, 0.4);
+        }
+
+        .hero-instruction svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* ===== Confirmation Details ===== */
+        .confirmation-details {
+            background: var(--color-white);
+            border: 2px solid rgba(106, 112, 77, 0.2);
+            border-radius: var(--radius-md);
+            padding: 24px 32px;
+            max-width: 500px;
+            margin: 0 auto 32px;
+            text-align: left;
+        }
+
+        .confirmation-details h3 {
+            font-size: 16px;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .confirmation-details h3 svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--color-success);
+        }
+
+        .confirmation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .confirmation-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .confirmation-item svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--color-primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .confirmation-item span {
+            color: var(--color-text-light);
+        }
+
+        /* ===== Video Section ===== */
+        .video-section {
+            padding: 40px 24px 60px;
+            background: var(--color-white);
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-intro {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .video-intro h2 {
+            font-size: clamp(22px, 4vw, 28px);
+            color: var(--color-text);
+            margin-bottom: 12px;
+        }
+
+        .video-intro h2 .highlight {
+            color: var(--color-primary);
+        }
+
+        .video-intro p {
+            font-size: 16px;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            background: #000;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .video-wrapper video,
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Video Progress Bar */
+        .video-progress-container {
+            margin-top: 20px;
+            background: #E8E8E8;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .video-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .video-progress-text {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--color-text-light);
+        }
+
+        .video-progress-text .percent {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        /* ===== What to Expect Section ===== */
+        .what-to-expect {
+            padding: 60px 24px;
+            background: var(--color-bg-light);
+        }
+
+        .what-to-expect-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .what-to-expect h2 {
+            text-align: center;
+            font-size: clamp(24px, 4vw, 32px);
+            color: var(--color-text);
+            margin-bottom: 40px;
+        }
+
+        .what-to-expect h2 .highlight {
+            color: var(--color-primary);
+        }
+
+        .expect-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .expect-card {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            padding: 28px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .expect-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .expect-card-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(106, 112, 77, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .expect-card-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--color-primary);
+        }
+
+        .expect-card h3 {
+            font-size: 17px;
+            color: var(--color-text);
+            margin-bottom: 10px;
+        }
+
+        .expect-card p {
+            font-size: 14px;
+            color: var(--color-text-light);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .expect-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: #6B724F;
+            color: var(--color-white);
+        }
+
+        .footer-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            max-width: 200px;
+        }
+
+        .footer-logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .footer-tagline {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--color-white);
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+            padding-left: 5px;
+        }
+
+        .footer-phone {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-white);
+        }
+
+        .footer-newsletter {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px 24px;
+        }
+
+        .footer-newsletter-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-newsletter h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            flex: 1;
+            gap: 12px;
+        }
+
+        .footer-newsletter input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+        }
+
+        .footer-newsletter button {
+            background: #54593E;
+            color: var(--color-white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .footer-newsletter button:hover {
+            background: #454936;
+        }
+
+        .footer-bottom {
+            background: #5a6145;
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .footer-bottom-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .footer-slogan {
+            font-size: 13px;
+            opacity: 0.8;
+            font-style: italic;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .footer-main {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-brand {
+                align-items: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-newsletter-inner {
+                flex-direction: column;
+            }
+
+            .footer-newsletter-form {
+                width: 100%;
+            }
+
+            .footer-bottom-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* ===== Completion Badge ===== */
+        .completion-badge {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--color-success);
+            color: var(--color-white);
+            padding: 16px 28px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-medium);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-weight: 500;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .completion-badge.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .completion-badge svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+            }
+
+            .logo-text {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 40px 16px 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .confirmation-details {
+                padding: 20px 24px;
+            }
+
+            .video-section {
+                padding: 24px 16px 40px;
+            }
+
+            .what-to-expect {
+                padding: 40px 16px;
+            }
+
+            .completion-badge {
+                left: 16px;
+                right: 16px;
+                transform: translateX(0) translateY(100px);
+                text-align: center;
+                justify-content: center;
+            }
+
+            .completion-badge.show {
+                transform: translateX(0) translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="https://thriveeducationpartners.com" class="logo">
+                <img src="https://thriveeducationpartners.com/wp-content/uploads/2025/10/tep-logo-and-applications_Logo-original-white.png"
+                    alt="Thrive Education Partners">
+            </a>
+            <a href="tel:8666460720" class="header-phone">(866) 646-0720</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-badge">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                    </svg>
+                    Your Consultation is Confirmed!
+                </div>
+                <h1>Thank You for <span class="highlight">Booking Your Call!</span></h1>
+                <p class="hero-subtitle">
+                    We're excited to speak with you! Before your consultation, please watch this short video to learn
+                    what to expect and get the most out of your call with our team.
+                </p>
+
+                <!-- Confirmation Details Box -->
+                <div class="confirmation-details">
+                    <h3>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+                        </svg>
+                        What Happens Next
+                    </h3>
+                    <div class="confirmation-item">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                        </svg>
+                        <span>Check your email for calendar confirmation and meeting details</span>
+                    </div>
+                    <div class="confirmation-item">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 16H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1z" />
+                            <path d="M10 8l6 4-6 4V8z" />
+                        </svg>
+                        <span>Watch the video below to prepare for your consultation</span>
+                    </div>
+                    <div class="confirmation-item">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z" />
+                        </svg>
+                        <span>We'll call you at your scheduled time to discuss your child's needs</span>
+                    </div>
+                </div>
+
+                <div class="hero-instruction" id="playVideoBtn" style="cursor: pointer;">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7L8 5z" />
+                    </svg>
+                    Watch the video now
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="video-section" id="videoSection">
+            <div class="video-container">
+                <div class="video-intro">
+                    <h2>Prepare for Your <span class="highlight">Consultation</span></h2>
+                    <p>This 5-minute video covers everything you need to know about our Private Teacher Placement
+                        process and how we'll find the perfect educator for your child.</p>
+                </div>
+                <div class="video-wrapper">
+                    <iframe id="youtube-player" src="https://www.youtube.com/embed/I0LCjtBXz5s?enablejsapi=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <!-- Progress Bar (for HubSpot tracking) -->
+                <div class="video-progress-container">
+                    <div class="video-progress-bar" id="progressBar"></div>
+                </div>
+                <p class="video-progress-text">
+                    Video Progress: <span class="percent" id="progressPercent">0%</span>
+                    <span id="completedMessage" style="display: none;"> — Great! You're all set for your call! ✓</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- What to Expect Section -->
+        <section class="what-to-expect">
+            <div class="what-to-expect-container">
+                <h2>What to Expect on <span class="highlight">Your Call</span></h2>
+                <div class="expect-grid">
+                    <div class="expect-card">
+                        <div class="expect-card-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0-6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 7c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z" />
+                            </svg>
+                        </div>
+                        <h3>Understanding Your Needs</h3>
+                        <p>We'll discuss your child's learning style, academic goals, and any specific requirements you
+                            have for their education.</p>
+                    </div>
+                    <div class="expect-card">
+                        <div class="expect-card-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
+                            </svg>
+                        </div>
+                        <h3>Our Matching Process</h3>
+                        <p>Learn how we carefully match your family with a vetted, experienced private educator who's
+                            the perfect fit.</p>
+                    </div>
+                    <div class="expect-card">
+                        <div class="expect-card-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                        </div>
+                        <h3>Next Steps</h3>
+                        <p>We'll outline the timeline and answer any questions you have about getting started with
+                            Thrive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Main Footer -->
+        <div class="footer-main">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="https://thriveeducationpartners.com/wp-content/uploads/2025/10/tep-logo-and-applications_Logo-original-white.png"
+                        alt="Thrive Education Partners">
+                </div>
+                <p class="footer-tagline">Private educators. Personalized learning. Fully managed.</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/thrivetutoringofficial" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/thrivetutoringllc" target="_blank" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2V9zm2-7a2 2 0 110 4 2 2 0 010-4z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/thrivetutoring/" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="#FFFFFF"
+                                stroke-width="2" />
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="#FFFFFF" stroke-width="2" />
+                            <circle cx="17.5" cy="6.5" r="1.5" fill="#FFFFFF" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="https://thriveeducationpartners.com/about-us/">About Us</a></li>
+                    <li><a href="https://thriveeducationpartners.com/teacher-placement/">Services</a></li>
+                    <li><a href="https://thriveeducationpartners.com/faq/">FAQs</a></li>
+                    <li><a href="https://thriveeducationpartners.com/blog/">Blog</a></li>
+                    <li><a href="https://thriveeducationpartners.com/how-it-works/">How It Works</a></li>
+                    <li><a href="https://thriveeducationpartners.com/join-our-team/">Join Our Team</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Column -->
+            <div class="footer-contact">
+                <h3>Primary Phone Number</h3>
+                <a href="tel:8666460720" class="footer-phone">(866) 646-0720</a>
+            </div>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div class="footer-newsletter">
+            <div class="footer-newsletter-inner">
+                <h3>Subscribe Our Newsletter</h3>
+                <form class="footer-newsletter-form" action="#" method="post">
+                    <input type="email" placeholder="Enter Email Address" required>
+                    <button type="submit">SIGN UP</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <p class="footer-copyright">© 2025 Thrive Education Partners. All rights reserved.</p>
+                <p class="footer-slogan">Redefining private education.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Completion Badge -->
+    <div class="completion-badge" id="completionBadge">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        You're prepared for your call!
+    </div>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- JavaScript for Video Progress Tracking (for HubSpot) -->
+    <script>
+        // Configuration
+        const COMPLETION_THRESHOLD = 70; // Percentage to consider video "watched"
+
+        // DOM Elements
+        const progressBar = document.getElementById('progressBar');
+        const progressPercent = document.getElementById('progressPercent');
+        const completedMessage = document.getElementById('completedMessage');
+        const completionBadge = document.getElementById('completionBadge');
+        const playVideoBtn = document.getElementById('playVideoBtn');
+
+        // State
+        let player;
+        let progressInterval;
+        let maxProgress = 0;
+        let hasCompleted = false;
+
+        // YouTube Player Ready
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player is ready
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                startProgressTracking();
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                stopProgressTracking();
+            }
+
+            if (event.data === YT.PlayerState.ENDED) {
+                updateProgress(100);
+            }
+        }
+
+        function startProgressTracking() {
+            if (progressInterval) return;
+
+            progressInterval = setInterval(() => {
+                if (player && player.getCurrentTime && player.getDuration) {
+                    const currentTime = player.getCurrentTime();
+                    const duration = player.getDuration();
+                    const progress = Math.round((currentTime / duration) * 100);
+                    updateProgress(progress);
+                }
+            }, 1000);
+        }
+
+        function stopProgressTracking() {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        }
+
+        function updateProgress(progress) {
+            // Only update if progress is higher than before
+            if (progress > maxProgress) {
+                maxProgress = progress;
+                progressBar.style.width = progress + '%';
+                progressPercent.textContent = progress + '%';
+
+                // Track progress for HubSpot (can be sent via custom events)
+                trackProgressForHubSpot(progress);
+
+                // Show completion message when threshold reached
+                if (progress >= COMPLETION_THRESHOLD && !hasCompleted) {
+                    hasCompleted = true;
+                    showCompletionMessage();
+                }
+            }
+        }
+
+        function showCompletionMessage() {
+            completedMessage.style.display = 'inline';
+            completionBadge.classList.add('show');
+
+            // Auto-hide the badge after 5 seconds
+            setTimeout(() => {
+                completionBadge.classList.remove('show');
+            }, 5000);
+        }
+
+        // HubSpot Tracking Function
+        // You can customize this to send data to HubSpot
+        function trackProgressForHubSpot(progress) {
+            // Store in localStorage for persistence
+            localStorage.setItem('thrive_video_progress', progress);
+            localStorage.setItem('thrive_video_timestamp', new Date().toISOString());
+
+            // If HubSpot tracking is available, push custom event
+            if (typeof _hsq !== 'undefined') {
+                _hsq.push(['trackCustomBehavioralEvent', {
+                    name: 'post_booking_video_progress',
+                    properties: {
+                        video_progress: progress,
+                        video_completed: progress >= COMPLETION_THRESHOLD
+                    }
+                }]);
+            }
+
+            // Console log for debugging (remove in production)
+            console.log('Video progress tracked:', progress + '%');
+        }
+
+        // Play button click handler
+        playVideoBtn.addEventListener('click', () => {
+            const videoSection = document.getElementById('videoSection');
+            videoSection.scrollIntoView({ behavior: 'smooth' });
+
+            // Auto-play video after scroll
+            setTimeout(() => {
+                if (player && player.playVideo) {
+                    player.playVideo();
+                }
+            }, 800);
+        });
+    </script>
+</body>
+
+</html>
