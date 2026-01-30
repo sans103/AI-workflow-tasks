@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wag | Dog Park Bar & Indoor Dog Park</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --wag-primary: #D9E021;
+            /* Yellow Yap */
+            --wag-background: #002E1F;
+            /* Dark Green */
+            --wag-text-light: #FFFFFF;
+            --wag-text-dark: #002E1F;
+        }
+
+        html,
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: var(--wag-background);
+            color: var(--wag-text-light);
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .text-wag-primary {
+            color: var(--wag-primary);
+        }
+
+        .bg-wag-primary {
+            background-color: var(--wag-primary);
+        }
+
+        .text-wag-bg {
+            color: var(--wag-background);
+        }
+
+        .bg-wag-bg {
+            background-color: var(--wag-background);
+        }
+
+        .btn-primary {
+            background-color: var(--wag-primary);
+            color: var(--wag-background);
+            border-radius: 9999px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.75rem 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(217, 224, 33, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--wag-primary);
+            color: var(--wag-primary);
+            border-radius: 9999px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0.75rem 2rem;
+            background: transparent;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--wag-primary);
+            color: var(--wag-background);
+            transform: translateY(-2px);
+        }
+
+        .hero-pattern {
+            background-image: url('https://static.wixstatic.com/media/a6c56a_02a3a1f1df5642d99d3d3a77839352e4~mv2.jpg/v1/fill/w_1899,h_980,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a6c56a_02a3a1f1df5642d99d3d3a77839352e4~mv2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.05);
+            /* Very subtle overlay */
+            border: 1px solid rgba(217, 224, 33, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .highlight-text {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: var(--wag-text-dark);
+            padding: 0 4px;
+        }
+
+        .highlight-text::before {
+            content: '';
+            position: absolute;
+            inset: 2px -4px 2px -4px;
+            background-color: var(--wag-primary);
+            z-index: -1;
+            transform: rotate(-1deg);
+        }
+
+        /* Responsive Membership Grid */
+        .membership-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .membership-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header -->
+    <header
+        class="fixed w-full z-50 transition-all duration-300 bg-[#002E1F]/95 backdrop-blur-md border-b border-[#ffffff10]">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="block">
+                <!-- Using logo URL from brief/extraction -->
+                <img src="https://static.wixstatic.com/media/a6c56a_a4fc08d82dc54395b9c84e522ebeb63f~mv2.png/v1/crop/x_138,y_548,w_1228,h_420/fill/w_153,h_49,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/The%20Wag%20-%20Primary%20Logo%20-%20Yellow%20Yap_on%20Dark.png"
+                    alt="The Wag" class="h-8 md:h-10">
+            </a>
+
+            <nav class="hidden md:flex gap-8 items-center font-bold font-syne text-sm uppercase tracking-wider">
+                <a href="#memberships" class="hover:text-wag-primary transition-colors">Memberships</a>
+                <a href="#services" class="hover:text-wag-primary transition-colors">Services</a>
+                <a href="#reviews" class="hover:text-wag-primary transition-colors">Reviews</a>
+                <a href="#how-it-works" class="hover:text-wag-primary transition-colors">How it Works</a>
+            </nav>
+
+            <a href="https://itsthewag.portal.gingrapp.com/#/public/new_customer"
+                class="btn-primary text-xs md:text-sm px-4 md:px-6 py-2">
+                Join Today
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden hero-pattern bg-[#002E1F]">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div
+            class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-8 md:gap-12 items-center pb-12 md:pb-0">
+
+            <div class="text-left space-y-6">
+                <!-- Highlighted pre-header style -->
+                <div class="inline-block transform -rotate-1">
+                    <span
+                        class="bg-wag-primary text-wag-bg px-3 py-1 font-bold font-syne uppercase text-sm tracking-widest">
+                        We Are Open!
+                    </span>
+                </div>
+
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-black leading-tight uppercase">
+                    Bring Your Dog.<br>
+                    <span class="text-wag-primary">Pick a Pass.</span><br>
+                    Let the Fun Loose.
+                </h1>
+
+                <p class="text-lg md:text-xl text-gray-200 max-w-lg leading-relaxed">
+                    Columbus' indoor and outdoor dog park bar, designed for safe play, easy visits, and staying longer
+                    than planned.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <a href="https://itsthewag.portal.gingrapp.com/#/public/new_customer"
+                        class="btn-primary text-center">
+                        Register Your Dog
+                    </a>
+                    <a href="#memberships" class="btn-outline text-center">
+                        View Memberships
+                    </a>
+                </div>
+
+                <div class="pt-6 flex gap-4 text-sm text-gray-400 font-syne uppercase tracking-wider">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-wag-primary"></i>
+                        Indoor Park
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-wag-primary"></i>
+                        Outdoor Park
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-wag-primary"></i>
+                        Full Bar
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Image Composition -->
+            <div class="relative block mt-8 md:mt-0">
+                <!-- Main hero image -->
+                <div
+                    class="relative z-10 rounded-2xl overflow-hidden border-4 border-wag-primary shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://static.wixstatic.com/media/a6c56a_76d6c72df19e4f528dd3e5c1dc1740e2~mv2.jpg/v1/fill/w_800,h_1100,al_c,q_85/Dog_Hero.jpg"
+                        alt="Dog playing at The Wag" class="w-full h-auto object-cover">
+                </div>
+                <!-- Decorative element behind -->
+                <div class="absolute -inset-4 bg-white/5 rounded-2xl transform -rotate-3 z-0"></div>
+            </div>
+        </div>
+
+        <!-- Scrolldown Indicator -->
+
+    </section>
+
+    <!-- For People / For Pups Section -->
+    <section class="py-20 bg-[#002E1F] relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">
+                    For <span class="text-wag-primary">People</span> & <span class="text-wag-primary">Pups</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-300">
+                    We designed a space where both you and your dog can have the best day ever.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                <!-- For People -->
+                <div
+                    class="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-wag-primary/50 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-wag-primary flex items-center justify-center text-wag-bg">
+                            <i data-lucide="glass-water" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">For People</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Three-sided indoor bar with cocktails and mocktails</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Wi-Fi everywhere for remote work or scrolling</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Lush outdoor garden and comfortable seating areas</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Big-screen TVs for game days</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- For Pups -->
+                <div
+                    class="bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-wag-primary/50 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-wag-primary flex items-center justify-center text-wag-bg">
+                            <i data-lucide="dog" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">For Pups</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Columbus’ first indoor/outdoor off-leash park</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Dedicated leashed hangout areas</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Safe, supervised play zones</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="w-5 h-5 text-wag-primary mt-1"></i>
+                            <span class="text-gray-300">Pup-friendly treatery & grooming onsite</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Review Section (Placeholder for Widget) -->
+    <section id="reviews" class="py-20 bg-black/20 text-center">
+        <div class="container mx-auto px-4">
+            <h3 class="text-wag-primary font-syne text-xl uppercase tracking-widest mb-8">What The Pack Says</h3>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                <!-- Review Card 1: Devonie Herdeman -->
+                <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-left">
+                    <div class="flex gap-1 text-wag-primary mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm leading-relaxed">"From the minute we walked in the door we were
+                        impressed! The indoor/outdoor off-leash areas are connected and very clean. Overall the staff
+                        were welcoming & happy to answer any questions."</p>
+                    <div class="font-bold text-sm text-white">- Devonie Herdeman</div>
+                </div>
+
+                <!-- Review Card 2: Tobias Banks -->
+                <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-left">
+                    <div class="flex gap-1 text-wag-primary mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm leading-relaxed">"We love bringing our pup here! The staff are
+                        all very friendly and make sure all the dogs play nicely, while also maintaining a very clean
+                        environment."</p>
+                    <div class="font-bold text-sm text-white">- Tobias Banks</div>
+                </div>
+
+                <!-- Review Card 3: Rece Jones -->
+                <div class="bg-white/5 p-6 rounded-xl border border-white/10 text-left">
+                    <div class="flex gap-1 text-wag-primary mb-4">
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                        <i data-lucide="star" class="fill-current w-4 h-4"></i>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm leading-relaxed">"This indoor dog park and bar is a really fun
+                        concept. The walk-up bar to the play area is super convenient, and the staff and bartenders were
+                        very friendly and helpful."</p>
+                    <div class="font-bold text-sm text-white">- Rece Jones</div>
+                </div>
+            </div>
+
+            <a href="https://www.google.com/maps/place/The+Wag+-+Dog+Bar+and+Park" target="_blank"
+                class="inline-flex items-center gap-2 mt-8 text-sm text-gray-400 hover:text-white transition-colors">
+                Read All Google Reviews <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Virtual Tour Placeholder -->
+    <section class="py-20 bg-[#002E1F]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center">Take a <span class="text-wag-primary">Look
+                    Around</span></h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96">
+                <div class="col-span-2 md:col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
+                    <img src="https://static.wixstatic.com/media/a6c56a_1374bfd5a9ea43018e4eb19783dcd48c~mv2.jpg/v1/crop/x_0,y_968,w_3605,h_3524/fill/w_800,h_800,al_c,q_85/Indoor_Park.jpg"
+                        alt="Indoor Play Area"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-6">
+                        <span class="text-white font-bold text-lg uppercase">Indoor Park</span>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden relative group">
+                    <img src="https://static.wixstatic.com/media/a6c56a_99d3003544ab416d981b6276e1d802ea~mv2.jpg/v1/crop/x_0,y_495,w_2976,h_1176/fill/w_600,h_600,al_c,q_85/Bar_Area.jpg"
+                        alt="The Bar"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 bg-gray-700">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-4">
+                        <span class="text-white font-bold text-sm uppercase">The Bar</span>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden relative group">
+                    <img src="https://static.wixstatic.com/media/a6c56a_4afe21a48f174c0797bf1f6beb78911d~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/Outdoor_Turf.jpg"
+                        alt="Outdoor Turf"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-4">
+                        <span class="text-white font-bold text-sm uppercase">Outdoor Turf</span>
+                    </div>
+                </div>
+                <div class="col-span-2 rounded-2xl overflow-hidden relative group">
+                    <img src="https://static.wixstatic.com/media/a6c56a_dae902c223ca4931ba9846e5a9e35827~mv2.jpg/v1/crop/x_0,y_1770,w_4587,h_1901/fill/w_1200,h_600,al_c,q_85/Lounge_Area.jpg"
+                        alt="Lounge Area"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 bg-gray-800">
+                    <div class="absolute inset-0 bg-black/30 flex items-end p-4">
+                        <span class="text-white font-bold text-sm uppercase">Lounge Area</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memberships Section -->
+    <section id="memberships" class="py-24 bg-gradient-to-b from-[#002E1F] to-black/40">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-5xl font-black mb-4 uppercase">Dog Membership Options</h2>
+                <h3 class="text-xl text-wag-primary font-bold uppercase tracking-wider mb-6">Passes can be purchased at
+                    the bar</h3>
+                <p class="max-w-xl mx-auto text-gray-400">
+                    Online registration is all your dog needs. Choose the plan that fits your lifestyle.
+                </p>
+            </div>
+
+            <div class="membership-grid max-w-6xl mx-auto">
+                <!-- Visitor Pass -->
+                <div
+                    class="bg-[#0A3D2C] rounded-3xl p-8 border border-white/10 flex flex-col hover:transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-black uppercase text-white">Visitor</h3>
+                        <div class="text-sm text-gray-400 mt-2 uppercase tracking-wide">Single Day Access</div>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold font-syne text-wag-primary">$15</span>
+                        <span class="text-gray-400">/ day</span>
+                        <div class="mt-2 text-sm text-gray-300">+$5 per additional dog</div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="check" class="w-4 h-4 text-wag-primary"></i>
+                            Full park access
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="check" class="w-4 h-4 text-wag-primary"></i>
+                            Perfect for trying it out
+                        </li>
+                    </ul>
+                    <a href="https://itsthewag.portal.gingrapp.com/#/public/new_customer"
+                        class="btn-outline w-full text-center">Register Dog</a>
+                </div>
+
+                <!-- Basic Membership -->
+                <div
+                    class="bg-white text-[#002E1F] rounded-3xl p-8 border-4 border-wag-primary flex flex-col transform md:-translate-y-4 shadow-2xl relative">
+                    <div
+                        class="absolute top-0 center-0 transform -translate-y-1/2 bg-wag-primary text-wag-background text-xs font-bold uppercase px-4 py-1 rounded-full left-1/2 -translate-x-1/2">
+                        Most Popular
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-black uppercase">Basic</h3>
+                        <div class="text-sm opacity-70 mt-2 uppercase tracking-wide">Monthly Membership</div>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold font-syne">$55</span>
+                        <span class="opacity-70">/ mo</span>
+                        <div class="mt-2 text-sm opacity-70">+$10 per additional dog</div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3 text-sm font-semibold">
+                            <i data-lucide="check" class="w-4 h-4 text-[#002E1F]"></i>
+                            Unlimited access
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-semibold">
+                            <i data-lucide="check" class="w-4 h-4 text-[#002E1F]"></i>
+                            Member-only events
+                        </li>
+                        <li class="flex items-center gap-3 text-sm font-semibold">
+                            <i data-lucide="check" class="w-4 h-4 text-[#002E1F]"></i>
+                            Faster check-in
+                        </li>
+                    </ul>
+                    <a href="https://itsthewag.portal.gingrapp.com/#/public/new_customer"
+                        class="bg-[#002E1F] text-white btn-primary w-full text-center hover:shadow-lg">Become
+                        Member</a>
+                </div>
+
+                <!-- VIP Membership -->
+                <div
+                    class="bg-[#0A3D2C] rounded-3xl p-8 border border-white/10 flex flex-col hover:transform hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-black uppercase text-wag-primary">VIP</h3>
+                        <div class="text-sm text-gray-400 mt-2 uppercase tracking-wide">Monthly + Perks</div>
+                    </div>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold font-syne text-white">$75</span>
+                        <span class="text-gray-400">/ mo</span>
+                        <div class="mt-2 text-sm text-gray-300">+$10 per additional dog</div>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="check" class="w-4 h-4 text-wag-primary"></i>
+                            Unlimited access
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="check" class="w-4 h-4 text-wag-primary"></i>
+                            1 Free bath per month
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="check" class="w-4 h-4 text-wag-primary"></i>
+                            10% Off retail & treats
+                        </li>
+                        <li class="flex items-center gap-3 text-sm">
+                            <i data-lucide="check" class="w-4 h-4 text-wag-primary"></i>
+                            Priority booking
+                        </li>
+                    </ul>
+                    <a href="https://itsthewag.portal.gingrapp.com/#/public/new_customer"
+                        class="btn-outline w-full text-center">Become VIP</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 bg-white/5 p-6 rounded-xl block mx-auto max-w-2xl border border-white/10">
+                <p class="font-bold text-lg mb-2">Here for the day? Grab a Day Pass.</p>
+                <p class="text-gray-400">If you keep coming back, we'll upgrade you to a membership. All dogs just need
+                    to be <strong>registered once</strong> before their first visit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-20 bg-[#002E1F]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center uppercase">More Than A Park</h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Treatery -->
+                <div class="group relative overflow-hidden rounded-2xl h-80 bg-gray-900">
+                    <img src="https://static.wixstatic.com/media/a6c56a_bc92f0ce771d40399f33be8d86d6e888~mv2.jpg/v1/crop/x_479,y_0,w_1989,h_2243/fill/w_600,h_600,al_c,q_85/Treatery.jpg"
+                        alt="Treatery"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-50">
+                    <div
+                        class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/90 to-transparent">
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2">Treatery</h3>
+                        <p
+                            class="text-gray-300 text-sm transform translate-y-0 opacity-100 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+                            Local snacks and drinks for humans and high-quality treats for pups.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Grooming -->
+                <div class="group relative overflow-hidden rounded-2xl h-80 bg-gray-900 border-2 border-wag-primary">
+                    <img src="https://static.wixstatic.com/media/a6c56a_4b3783a8d8a849a9a8a8e5286c0651f9~mv2.jpg/v1/fill/w_600,h_600,al_c,q_85/Grooming.jpg"
+                        alt="Grooming"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-50">
+                    <div
+                        class="absolute top-4 right-4 bg-wag-primary text-wag-background font-bold text-xs uppercase px-3 py-1 rounded-full">
+                        Book Now
+                    </div>
+                    <div
+                        class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/90 to-transparent">
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2">Grooming</h3>
+                        <p
+                            class="text-gray-300 text-sm transform translate-y-0 opacity-100 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+                            1-on-1 professional care with a walk-in shower for large breeds.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Private Events -->
+                <div class="group relative overflow-hidden rounded-2xl h-80 bg-gray-900">
+                    <img src="https://static.wixstatic.com/media/a6c56a_b53c6213da85428780b0b7c6d28b15dc~mv2.jpg/v1/crop/x_802,y_459,w_3562,h_4005/fill/w_600,h_600,al_c,q_85/Events.jpg"
+                        alt="Private Events"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-50">
+                    <div
+                        class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/90 to-transparent">
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2">Private Events</h3>
+                        <p
+                            class="text-gray-300 text-sm transform translate-y-0 opacity-100 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+                            Rent our private indoor/outdoor space for birthdays and team meetups.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checklist / Requirements -->
+    <section id="how-it-works" class="py-20 bg-white text-[#002E1F]">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-black mb-6 uppercase">Before You Visit</h2>
+                <p class="text-lg mb-8 text-gray-600">
+                    To ensure safe play for everyone, please review our requirements before stopping by.
+                </p>
+
+                <div class="space-y-4">
+                    <div class="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 bg-[#002E1F] text-white rounded-full flex items-center justify-center font-bold">
+                            1</div>
+                        <div>
+                            <h4 class="font-bold text-lg uppercase">Register Online</h4>
+                            <p class="text-sm text-gray-600">Create a profile for you and your dog on our portal.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 bg-[#002E1F] text-white rounded-full flex items-center justify-center font-bold">
+                            2</div>
+                        <div>
+                            <h4 class="font-bold text-lg uppercase">Vaccinations</h4>
+                            <p class="text-sm text-gray-600">Proof of Rabies, Bordetella, and Distemper/Parvo required.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                        <div
+                            class="flex-shrink-0 w-8 h-8 bg-[#002E1F] text-white rounded-full flex items-center justify-center font-bold">
+                            3</div>
+                        <div>
+                            <h4 class="font-bold text-lg uppercase">Social Behavior</h4>
+                            <p class="text-sm text-gray-600">Dogs must be friendly and social with other dogs and
+                                humans.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://itsthewag.portal.gingrapp.com/#/public/new_customer" class="btn-primary mt-8">Create
+                    Profile</a>
+            </div>
+            <div class="relative">
+                <div
+                    class="aspect-square bg-gray-100 rounded-full overflow-hidden border-8 border-wag-primary shadow-xl">
+                    <!-- Placeholder for 'Featured Dog' image -->
+                    <img src="https://static.wixstatic.com/media/a6c56a_e79ecfa768cc41ccbffed105c9d818c6~mv2.jpg/v1/crop/x_0,y_340,w_1365,h_1368/fill/w_600,h_600,al_c,q_85/Featured_Dog.jpg"
+                        alt="Happy Dog" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-16 border-t border-white/10 text-sm">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <img src="https://static.wixstatic.com/media/a6c56a_a4fc08d82dc54395b9c84e522ebeb63f~mv2.png/v1/crop/x_138,y_548,w_1228,h_420/fill/w_153,h_49,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/The%20Wag%20-%20Primary%20Logo%20-%20Yellow%20Yap_on%20Dark.png"
+                        alt="The Wag" class="h-12 mb-6 opacity-80">
+                    <p class="text-gray-500 max-w-xs">
+                        Columbus' first indoor/outdoor dog park bar. Built for connection, designed for dogs.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-bold text-wag-primary uppercase mb-4 tracking-wider">Visit Us</h4>
+                    <p class="text-gray-400">1330 Norton Avenue<br>Columbus, OH 43212</p>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-bold text-wag-primary uppercase mb-4 tracking-wider">Contact</h4>
+                    <p class="text-gray-400 mb-2">Phone: (614) 696-4051</p>
+                    <p class="text-gray-400 mb-2">Text: 1 (866) 854-6412</p>
+                    <p class="text-gray-400">Email: info@itsthewag.com</p>
+                </div>
+
+                <div>
+                    <h4 class="font-syne font-bold text-wag-primary uppercase mb-4 tracking-wider">Hours</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex justify-between"><span>Mon</span> <span>Closed</span></li>
+                        <li class="flex justify-between"><span>Tue - Thu</span> <span>3pm - 9pm</span></li>
+                        <li class="flex justify-between"><span>Fri</span> <span>3pm - 10pm</span></li>
+                        <li class="flex justify-between"><span>Sat</span> <span>12pm - 10pm</span></li>
+                        <li class="flex justify-between"><span>Sun</span> <span>12pm - 8pm</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600">© 2026 The Wag. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-gray-600 hover:text-white transition-colors"><i data-lucide="instagram"
+                            class="w-5 h-5"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-white transition-colors"><i data-lucide="facebook"
+                            class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
