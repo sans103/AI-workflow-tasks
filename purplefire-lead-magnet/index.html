@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI CRO Agent Setup Guide | PurpleFire</title>
+    <meta name="description"
+        content="Download the complete guide to building an AI-powered CRO system. Generate 10-12 audits per month instead of 2-3. Used by 8-figure ecommerce brands.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* PurpleFire Brand Colors (Official) */
+            --lavender: #D5C8F0;
+            --accent-orange: #FF8A35;
+            --accent-orange-dark: #E67A2E;
+
+            /* Neutrals */
+            --dark: #000000;
+            --navy: #1a1a2e;
+            --gray-900: #1E293B;
+            --gray-800: #334155;
+            --gray-700: #475569;
+            --gray-600: #64748b;
+            --gray-300: #CBD5E1;
+            --gray-100: #F1F5F9;
+            --white: #FFFFFF;
+
+            /* Success */
+            --success: #10B981;
+
+            /* Spacing */
+            --section-padding: 80px 20px;
+        }
+
+        body {
+            font-family: 'Gabarito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-narrow {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-100);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-icon {
+            display: none;
+        }
+
+        .header-cta {
+            background: var(--accent-orange);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--lavender);
+            color: var(--dark);
+            padding: 100px 20px 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: none;
+            pointer-events: none;
+        }
+
+        .hero-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid var(--gray-300);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--dark);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--dark);
+        }
+
+        .hero-highlight {
+            color: var(--accent-orange);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--gray-700);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-orange);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-700);
+        }
+
+        /* Form Section */
+        .form-section {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .form-section p {
+            color: var(--gray-700);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--gray-900);
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(255, 138, 53, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent-orange);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 138, 53, 0.3);
+        }
+
+        .form-note {
+            font-size: 13px;
+            color: var(--gray-700);
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .trust-badges {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--gray-700);
+        }
+
+        .checkmark {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: var(--section-padding);
+            background: var(--gray-100);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            color: var(--accent-orange);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--gray-700);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--lavender);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .benefit-card p {
+            color: var(--gray-700);
+            line-height: 1.7;
+        }
+
+        /* What's Inside Section */
+        .whats-inside {
+            padding: var(--section-padding);
+            background: white;
+        }
+
+        .inside-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .inside-preview {
+            background: var(--gray-100);
+            padding: 40px;
+            border-radius: 16px;
+            border: 2px solid var(--gray-300);
+        }
+
+        .preview-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .preview-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .preview-dot:nth-child(1) {
+            background: #EF4444;
+        }
+
+        .preview-dot:nth-child(2) {
+            background: #F59E0B;
+        }
+
+        .preview-dot:nth-child(3) {
+            background: #10B981;
+        }
+
+        .preview-content {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--gray-800);
+            line-height: 1.8;
+        }
+
+        .preview-highlight {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .chapters-list {
+            list-style: none;
+        }
+
+        .chapter-item {
+            display: flex;
+            align-items: start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .chapter-item:last-child {
+            border-bottom: none;
+        }
+
+        .chapter-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-orange);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .chapter-details h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .chapter-details p {
+            font-size: 14px;
+            color: var(--gray-700);
+        }
+
+        /* Social Proof Section */
+        .social-proof {
+            padding: var(--section-padding);
+            background: var(--navy);
+            color: white;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .proof-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .proof-card .company {
+            font-weight: 700;
+            color: var(--accent-orange);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .proof-card .metric {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--success);
+            margin-bottom: 8px;
+        }
+
+        .proof-card .description {
+            color: var(--gray-300);
+            font-size: 14px;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: var(--section-padding);
+            background: var(--lavender);
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .final-cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: var(--gray-700);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-orange);
+            color: white;
+            padding: 18px 48px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(249, 115, 22, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(249, 115, 22, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--gray-300);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            font-size: 14px;
+            color: var(--gray-700);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero {
+                padding: 80px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .form-section {
+                margin: 0 auto;
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .form-section {
+                padding: 32px 24px;
+            }
+
+            .inside-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .header-cta {
+                display: none;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <div class="logo-icon">P</div>
+                    PurpleFire
+                </a>
+                <a href="#download" class="header-cta">Download Free Guide</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container-narrow hero-content">
+            <div class="hero-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                </svg>
+                Free Implementation Guide
+            </div>
+
+            <h1>
+                Build an AI CRO System That Runs <span class="hero-highlight">10x More Experiments</span>
+            </h1>
+
+            <p>
+                The complete guide to building an AI-powered conversion optimization system used by 8-figure ecommerce
+                brands to generate $10M+ in extra revenue.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">50+ Pages</div>
+                    <div class="stat-label">Implementation Guide</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4 Agents</div>
+                    <div class="stat-label">Full Working Prompts</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$75K+</div>
+                    <div class="stat-label">Development Value</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="download">
+        <div class="container">
+            <div class="form-section">
+                <h2>Download Your Free Guide</h2>
+                <p>Get instant access to the complete AI CRO Agent Setup Guide</p>
+
+                <form id="download-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">First Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Work Email *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@company.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 123-4567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company" placeholder="Acme Inc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="revenue">Monthly Revenue</label>
+                        <select id="revenue" name="revenue">
+                            <option value="">Select range...</option>
+                            <option value="0-50k">$0 - $50K</option>
+                            <option value="50k-100k">$50K - $100K</option>
+                            <option value="100k-500k">$100K - $500K</option>
+                            <option value="500k-1m">$500K - $1M</option>
+                            <option value="1m+">$1M+</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Get Instant Access →
+                    </button>
+
+                    <div class="form-note">
+                        The guide will be sent to your email immediately
+                    </div>
+
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <span class="checkmark">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </span>
+                            No spam
+                        </div>
+                        <div class="trust-badge">
+                            <span class="checkmark">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </span>
+                            Unsubscribe anytime
+                        </div>
+                        <div class="trust-badge">
+                            <span class="checkmark">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </span>
+                            100% Free
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Why This Matters</div>
+                <h2 class="section-title">Stop Spending $20K/Month on 2-3 Tests</h2>
+                <p class="section-description">
+                    Build your own AI-powered CRO system and run 10-12 high-impact experiments per month for $200-400 in
+                    tools.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h3>3 Hours vs. 3 Weeks</h3>
+                    <p>Complete site audits in 3 hours instead of 3 weeks. AI analyzes 20+ pages simultaneously while
+                        you focus on strategy.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <circle cx="12" cy="12" r="6" />
+                            <circle cx="12" cy="12" r="2" />
+                        </svg>
+                    </div>
+                    <h3>Complete Working Prompts</h3>
+                    <p>Not generic 4-line prompts. Get 1,000+ word prompts for each agent with real examples and
+                        expected outputs.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                    </div>
+                    <h3>Week-by-Week Plan</h3>
+                    <p>Day 1 setup to Month 3 scaling. Follow the exact 90-day roadmap to go from 0 to 10+ audits per
+                        month.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23" />
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                    </div>
+                    <h3>$200/Month vs. $5K/Month</h3>
+                    <p>Replace a $5K/month junior analyst with $200 in AI tools. Same output, 95% cost reduction.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+                            <rect x="9" y="9" width="6" height="6" />
+                            <line x1="9" y1="1" x2="9" y2="4" />
+                            <line x1="15" y1="1" x2="15" y2="4" />
+                            <line x1="9" y1="20" x2="9" y2="23" />
+                            <line x1="15" y1="20" x2="15" y2="23" />
+                            <line x1="20" y1="9" x2="23" y2="9" />
+                            <line x1="20" y1="14" x2="23" y2="14" />
+                            <line x1="1" y1="9" x2="4" y2="9" />
+                            <line x1="1" y1="14" x2="4" y2="14" />
+                        </svg>
+                    </div>
+                    <h3>4 Specialized AI Agents</h3>
+                    <p>Site Audit Expert, Competitive Intelligence, ICE Prioritization, and Experiment Brief
+                        Generator—all with full prompts.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                            <polyline points="17 6 23 6 23 12" />
+                        </svg>
+                    </div>
+                    <h3>Proven by 8-Figure Brands</h3>
+                    <p>The exact system PurpleFire uses for clients like Goose Creek Candle (+61% CVR) and NeuroGum
+                        (+62% CVR).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Inside Section -->
+    <section class="whats-inside">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle">Inside The Guide</div>
+                <h2 class="section-title">Everything You Need to Build Your AI CRO System</h2>
+            </div>
+
+            <div class="inside-content">
+                <div class="inside-preview">
+                    <div class="preview-header">
+                        <div class="preview-dot"></div>
+                        <div class="preview-dot"></div>
+                        <div class="preview-dot"></div>
+                    </div>
+                    <div class="preview-content">
+                        <span class="preview-highlight">AGENT #1: SITE AUDIT EXPERT</span>
+
+                        You are a senior CRO analyst with 10
+                        years optimizing 7-8 figure ecommerce
+                        brands...
+
+                        Analyze:
+                        • Above-the-fold effectiveness
+                        • Value proposition clarity
+                        • Trust signals & social proof
+                        • Product page psychology
+                        • Checkout friction points
+
+                        For each leak provide:
+                        → Severity (Critical/High/Med/Low)
+                        → Revenue impact estimate
+                        → Expected lift %
+                        → Implementation difficulty
+
+                        <span class="preview-highlight">OUTPUT: 15-30 prioritized issues</span>
+                        <span class="preview-highlight">TIME SAVED: 19-24 hours per audit</span>
+                    </div>
+                </div>
+
+                <div class="chapters-list">
+                    <div class="chapter-item">
+                        <div class="chapter-number">1</div>
+                        <div class="chapter-details">
+                            <h4>Foundation</h4>
+                            <p>Why traditional CRO is broken, the multi-agent architecture, and 30-minute tool setup</p>
+                        </div>
+                    </div>
+
+                    <div class="chapter-item">
+                        <div class="chapter-number">2</div>
+                        <div class="chapter-details">
+                            <h4>The 4 Core AI Agents</h4>
+                            <p>Complete working prompts for Site Audit, Competitive Intelligence, ICE Prioritization,
+                                and Experiment Briefs</p>
+                        </div>
+                    </div>
+
+                    <div class="chapter-item">
+                        <div class="chapter-number">3</div>
+                        <div class="chapter-details">
+                            <h4>Week-by-Week Implementation</h4>
+                            <p>Day 1: First audit. Week 2: Launch tests. Month 3: Scale to 10+ audits</p>
+                        </div>
+                    </div>
+
+                    <div class="chapter-item">
+                        <div class="chapter-number">4</div>
+                        <div class="chapter-details">
+                            <h4>Advanced Techniques</h4>
+                            <p>Custom agents, presentation pipeline, client reporting, scaling to multiple clients</p>
+                        </div>
+                    </div>
+
+                    <div class="chapter-item">
+                        <div class="chapter-number">5</div>
+                        <div class="chapter-details">
+                            <h4>Appendix & Resources</h4>
+                            <p>Tool comparison matrix, troubleshooting guide, 3 detailed case studies</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-subtitle" style="color: var(--accent-orange);">Client Results</div>
+                <h2 class="section-title" style="color: white;">This System Has Generated $10M+ in Extra Revenue</h2>
+                <p class="section-description" style="color: var(--gray-300);">
+                    Real results from 8-figure ecommerce brands using this exact AI CRO system
+                </p>
+            </div>
+
+            <div class="proof-grid">
+                <div class="proof-card">
+                    <div class="company">Goose Creek Candle</div>
+                    <div class="metric">+61%</div>
+                    <div class="description">Conversion rate increase from 2.3% to 3.7%</div>
+                    <div class="metric" style="margin-top: 16px;">$2.67M</div>
+                    <div class="description">Total attributed revenue in 90 days</div>
+                </div>
+
+                <div class="proof-card">
+                    <div class="company">NeuroGum</div>
+                    <div class="metric">+62%</div>
+                    <div class="description">Conversion rate increase from 2.1% to 3.4%</div>
+                    <div class="metric" style="margin-top: 16px;">$1.55M</div>
+                    <div class="description">Total attributed revenue increase</div>
+                </div>
+
+                <div class="proof-card">
+                    <div class="company">Your Brand Next?</div>
+                    <div class="metric">10-12x</div>
+                    <div class="description">Typical ROI in first 90 days</div>
+                    <div class="metric" style="margin-top: 16px;">10-12</div>
+                    <div class="description">Experiments per month (vs. 2-3 traditional)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container-narrow">
+            <h2>Ready to 10x Your CRO Output?</h2>
+            <p>Download the complete AI CRO Agent Setup Guide and start running your first audit this week.</p>
+            <a href="#download" class="cta-button">Get Your Free Guide Now →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">PurpleFire</div>
+            <div class="footer-links">
+                <a href="https://purplefire.io">Website</a>
+                <a href="https://linkedin.com/in/danielchabert">LinkedIn</a>
+                <a href="mailto:daniel@purplefire.io">Contact</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-copyright">
+                © 2026 PurpleFire. All rights reserved. | Full-funnel growth marketing agency for 7-8 figure ecommerce
+                brands.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler (customize with your email service)
+        document.getElementById('download-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                company: document.getElementById('company').value,
+                revenue: document.getElementById('revenue').value
+            };
+
+            // TODO: Send to your email service (ConvertKit, MailChimp, etc.)
+            console.log('Form submitted:', formData);
+
+            // Show success message (customize this)
+            alert('Success! Check your email for the download link.');
+
+            // Optional: Redirect to thank you page
+            // window.location.href = '/thank-you';
+        });
+    </script>
+</body>
+
+</html>
