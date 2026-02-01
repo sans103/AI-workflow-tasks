@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Social Book - Create Your Book</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@400;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        :root {
+            /* Branding & Modern Palette */
+            --primary: #E7226B;
+            --primary-gradient: linear-gradient(135deg, #E7226B 0%, #FF5A8E 100%);
+            --secondary: #24B7FF;
+            --text-dark: #111827;
+            --text-gray: #6B7280;
+            --text-light: #9CA3AF;
+
+            /* Backgrounds */
+            --bg-body: #F9FAFB;
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --white: #FFFFFF;
+
+            /* Borders */
+            --border: #F3F4F6;
+            --border-hover: #FBCFE8;
+
+            /* Spacing & Shapes */
+            --container-width: 1000px;
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+
+            /* Modern Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.03), 0 4px 6px -2px rgba(0, 0, 0, 0.01);
+            --shadow-card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+            --shadow-branding: 0 10px 40px -10px rgba(231, 34, 107, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg-body);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(231, 34, 107, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(36, 183, 255, 0.03) 0px, transparent 50%);
+            color: var(--text-dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Arima Madurai', cursive;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            height: 72px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        header .container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 38px;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.02);
+        }
+
+        .header-secure {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-gray);
+            background: rgba(243, 244, 246, 0.8);
+            padding: 6px 14px;
+            border-radius: 50px;
+        }
+
+        /* Main Wizard Container */
+        .wizard-container {
+            flex: 1;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Modern Progress Bar */
+        .progress-track {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 56px;
+            position: relative;
+        }
+
+        .progress-steps {
+            display: flex;
+            gap: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 19px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            height: 2px;
+            background: #E5E7EB;
+            z-index: 1;
+        }
+
+        .progress-line-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 2px;
+        }
+
+        .step-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 80px;
+            transition: all 0.3s;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid #E5E7EB;
+            color: #9CA3AF;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        /* Steps States */
+        .step-indicator.active .step-number {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #FFF0F5;
+            box-shadow: 0 0 0 4px rgba(231, 34, 107, 0.1);
+            transform: scale(1.1);
+        }
+
+        .step-indicator.active .step-label {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .step-indicator.completed .step-number {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            transform: scale(1);
+        }
+
+        .step-indicator.completed .step-label {
+            color: var(--text-dark);
+        }
+
+        /* Step Content Cards */
+        .step-content {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            max-width: 960px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-branding);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-header h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #111827 0%, #374151 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .step-header p {
+            color: var(--text-gray);
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Option Grids */
+        .grid-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .option-card {
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .option-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: #FFF0F5;
+            box-shadow: 0 0 0 3px rgba(231, 34, 107, 0.1);
+        }
+
+        .option-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            background: #F9FAFB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            font-size: 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .option-card:hover .option-icon {
+            transform: scale(1.05);
+        }
+
+        .option-card.selected .option-icon {
+            background: var(--white);
+            color: var(--primary);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(231, 34, 107, 0.15);
+        }
+
+        /* Social Brand Colors */
+        .icon-fb {
+            color: #1877F2;
+            background: rgba(24, 119, 242, 0.08);
+        }
+
+        .icon-ig {
+            color: #E4405F;
+            background: rgba(228, 64, 95, 0.08);
+        }
+
+        .icon-google {
+            color: #EA4335;
+            background: rgba(234, 67, 53, 0.08);
+        }
+
+        .option-title {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-dark);
+        }
+
+        .option-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        .check-mark {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            color: var(--white);
+            background: var(--primary);
+            border-radius: 50%;
+            padding: 4px;
+            width: 24px;
+            height: 24px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 2px 5px rgba(231, 34, 107, 0.3);
+        }
+
+        .option-card.selected .check-mark {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Buttons */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 4px 12px rgba(231, 34, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(231, 34, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-gray);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-body);
+            color: var(--text-dark);
+        }
+
+        /* Step 2 Specific (Book Type) */
+        .book-preview-img {
+            width: 100%;
+            height: 180px;
+            background: #F3F4F6;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .option-card:hover .book-preview-img {
+            transform: scale(1.02);
+        }
+
+        /* Dashboard / Result View Layout */
+        .dashboard-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            text-align: left;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border);
+            position: sticky;
+            top: 100px;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dashboard-header h2 {
+            font-size: 28px;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .dashboard-header p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .settings-group {
+            margin-bottom: 32px;
+        }
+
+        .settings-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #F3F4F6;
+            padding-bottom: 8px;
+        }
+
+        .settings-title i {
+            color: var(--primary);
+        }
+
+        .setting-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            background: #F9FAFB;
+            transition: all 0.2s;
+            color: var(--text-gray);
+        }
+
+        .setting-option:hover {
+            background: #EFF6FF;
+            color: var(--primary);
+        }
+
+        .setting-option.active {
+            background: #FFF0F5;
+            color: var(--primary);
+            font-weight: 600;
+            border-color: #FBCFE8;
+            box-shadow: 0 1px 2px rgba(231, 34, 107, 0.05);
+        }
+
+        .setting-option i {
+            margin-right: 12px;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .book-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        .book-card.selected {
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 0 4px rgba(231, 34, 107, 0.1);
+        }
+
+        .book-cover-area {
+            height: 320px;
+            background: #F3F4F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        /* Realistic Book CSS */
+        .book-cover-img {
+            width: 200px;
+            height: 260px;
+            background-color: #fff;
+            box-shadow:
+                -1px 2px 2px rgba(0, 0, 0, 0.05),
+                -2px 4px 4px rgba(0, 0, 0, 0.05),
+                -4px 8px 8px rgba(0, 0, 0, 0.05),
+                -8px 16px 16px rgba(0, 0, 0, 0.05);
+            background-size: cover;
+            background-position: center;
+            border-radius: 2px 6px 6px 2px;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .book-card:hover .book-cover-img {
+            transform: scale(1.03) rotateY(-5deg);
+        }
+
+        .book-spine {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 14px;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.2) 100%);
+            z-index: 10;
+            border-radius: 2px 0 0 2px;
+        }
+
+        .book-details {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-title {
+            font-weight: 800;
+            font-family: 'Arima Madurai', cursive;
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            line-height: 1.2;
+        }
+
+        .book-meta {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .book-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .book-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-edit {
+            font-size: 14px;
+            color: var(--text-gray);
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .btn-edit:hover {
+            color: var(--primary);
+        }
+
+        .selected-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(231, 34, 107, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .book-card.selected .selected-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Step 5 Enhancement (Manual Grid) */
+        #manual-photo-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .book-cover-area {
+            height: 260px;
+            background: #F3F4F6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .book-cover-img {
+            width: 180px;
+            height: 220px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+        }
+
+        .book-details {
+            padding: 20px;
+        }
+
+        .book-title {
+            font-weight: 700;
+            font-family: 'Arima Madurai';
+            font-size: 20px;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+        }
+
+        .book-meta {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .step-content {
+                padding: 32px 20px;
+                border-radius: 0;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+            }
+
+            .grid-options {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-label {
+                display: none;
+            }
+
+            .progress-steps {
+                gap: 24px;
+            }
+
+            .wizard-container {
+                padding: 10px 0;
+            }
+
+            .progress-track {
+                margin-bottom: 32px;
+            }
+
+            /* Mobile Dashboard Fixes */
+            .dashboard-container {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+            }
+
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #manual-photo-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="https://www.mysocialbook.com/apps/editor/build/images/msb-logo.428795a6.png"
+                    alt="My Social Book" style="height: 40px;">
+            </a>
+            <div class="header-secure">
+                <i data-feather="lock" width="14" height="14"></i>
+                Secure & Private
+            </div>
+        </div>
+    </header>
+
+    <div class="wizard-container">
+        <!-- Progress Bar -->
+        <div class="container">
+            <div class="progress-track">
+                <div class="progress-line">
+                    <div class="progress-line-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step-indicator active" id="indicator-1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Source</div>
+                    </div>
+                    <div class="step-indicator" id="indicator-2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Style</div>
+                    </div>
+                    <div class="step-indicator" id="indicator-3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Mode</div>
+                    </div>
+                    <div class="step-indicator" id="indicator-4">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Source Selection -->
+        <div class="container fade-in" id="step-1">
+            <div class="step-content">
+                <div class="step-header">
+                    <h2>Where are your memories?</h2>
+                    <p>Select a source to start building your book. We'll organize everything for you.</p>
+                </div>
+
+                <div class="grid-options">
+                    <div class="option-card" onclick="selectOption(1, 'facebook')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon icon-fb">
+                            <i data-feather="facebook"></i>
+                        </div>
+                        <div class="option-title">Facebook</div>
+                        <div class="option-desc">Personal profile posts, photos, and statuses.</div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(1, 'instagram')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon icon-ig">
+                            <i data-feather="instagram"></i>
+                        </div>
+                        <div class="option-title">Instagram</div>
+                        <div class="option-desc">Your feed photos, captions, and dates.</div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(1, 'google')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon icon-google">
+                            <i data-feather="image"></i>
+                        </div>
+                        <div class="option-title">Google Photos</div>
+                        <div class="option-desc">Directly from your cloud albums.</div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(1, 'upload')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon" style="background: rgba(0,0,0,0.05); color: var(--text-dark);">
+                            <i data-feather="upload-cloud"></i>
+                        </div>
+                        <div class="option-title">My Device</div>
+                        <div class="option-desc">Upload photos from your computer or phone.</div>
+                    </div>
+                </div>
+
+                <div class="controls" style="justify-content: flex-end;">
+                    <button class="btn btn-primary" id="btn-next-1" disabled onclick="nextStep(2)">
+                        Continue <i data-feather="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Book Style -->
+        <div class="container hidden" id="step-2">
+            <div class="step-content">
+                <div class="step-header">
+                    <h2>Choose your book style</h2>
+                    <p>Every story deserves the perfect format.</p>
+                </div>
+
+                <div class="grid-options" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="option-card" onclick="selectOption(2, 'classic')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="book-preview-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800');">
+                        </div>
+                        <div class="option-title">Classic Social Book</div>
+                        <div class="option-desc">Perfect for yearbooks. Includes comments, likes, and dates.</div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(2, 'square')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="book-preview-img"
+                            style="background-image: url('https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&q=80&w=800');">
+                        </div>
+                        <div class="option-title">Modern Square</div>
+                        <div class="option-desc">Photo-focused. Clean layouts highlighting your best shots.</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-secondary" onclick="prevStep(1)">
+                        <i data-feather="arrow-left"></i> Back
+                    </button>
+                    <button class="btn btn-primary" id="btn-next-2" disabled onclick="nextStep(3)">
+                        Continue <i data-feather="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Creation Mode (NEW) -->
+        <div class="container hidden" id="step-3">
+            <div class="step-content">
+                <div class="step-header">
+                    <h2>How should we build it?</h2>
+                    <p>Choose how you want to curate your content.</p>
+                </div>
+
+                <div class="grid-options">
+                    <div class="option-card" onclick="selectOption(3, 'auto')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon">
+                            <i data-feather="wand"></i>
+                        </div>
+                        <div class="option-title">Magic Assistant</div>
+                        <div class="option-desc">We automatically select the best photos & posts.</div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(3, 'manual')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon">
+                            <i data-feather="mouse-pointer"></i>
+                        </div>
+                        <div class="option-title">Manual Selection</div>
+                        <div class="option-desc">You choose exactly which photos/albums to include.</div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-secondary" onclick="prevStep(2)">
+                        <i data-feather="arrow-left"></i> Back
+                    </button>
+                    <button class="btn btn-primary" id="btn-next-3" disabled onclick="nextStep(4)">
+                        Continue <i data-feather="arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Timeframe (Renumbered from Step 3) -->
+        <div class="container hidden" id="step-4">
+            <div class="step-content">
+                <div class="step-header">
+                    <h2>Select your timeframe</h2>
+                    <p>Which chapter of your life are we printing today?</p>
+                </div>
+
+                <div class="grid-options">
+                    <div class="option-card" onclick="selectOption(4, 'all')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon">
+                            <i data-feather="calendar"></i>
+                        </div>
+                        <div class="option-title">Split by Year</div>
+                        <div class="option-desc">Automatically create one volume for each year.</div>
+                    </div>
+
+                    <div class="option-card" onclick="selectOption(4, 'range')">
+                        <i data-feather="check-circle" class="check-mark"></i>
+                        <div class="option-icon">
+                            <i data-feather="sliders"></i>
+                        </div>
+                        <div class="option-title">Custom Range</div>
+                        <div class="option-desc">Select specific dates for a trip or event.</div>
+                    </div>
+                </div>
+
+                <!-- Date Customization Inputs -->
+                <div id="date-inputs" class="hidden fade-in"
+                    style="background: #F9FAFB; padding: 20px; border-radius: 8px; margin-bottom: 24px; border: 1px dashed var(--border);">
+                    <h4 style="margin-bottom: 12px; font-size: 14px; color: var(--text-gray);">Select your date range:
+                    </h4>
+                    <div style="display: flex; gap: 16px; justify-content: center;">
+                        <input type="date" class="form-input"
+                            style="padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit;">
+                        <span style="align-self: center; color: var(--text-gray);">to</span>
+                        <input type="date" class="form-input"
+                            style="padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit;">
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-secondary" onclick="prevStep(3)">
+                        <i data-feather="arrow-left"></i> Back
+                    </button>
+                    <button class="btn btn-primary" id="btn-next-4" disabled onclick="handleTimeNext()">
+                        Connect & Preview <i data-feather="zap"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Content Selection (Manual Only) -->
+        <div class="container hidden" id="step-5">
+            <div class="step-content" style="max-width: 1000px;">
+                <div class="step-header">
+                    <h2>Select your photos</h2>
+                    <p>Curate the moments you want to include in your book.</p>
+                </div>
+
+                <!-- Control Bar -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div style="font-size: 14px; color: var(--text-gray);">
+                        Showing <strong id="photo-count-display">0</strong> photos from <strong>2023</strong>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;"
+                            onclick="toggleAllPhotos(true)">Select All</button>
+                        <button class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;"
+                            onclick="toggleAllPhotos(false)">Deselect All</button>
+                    </div>
+                </div>
+
+                <!-- Photo Grid -->
+                <div class="photo-grid" id="manual-photo-grid"
+                    style="max-height: 500px; overflow-y: auto; padding: 4px;">
+                    <!-- Photos will be injected by JS -->
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-secondary" onclick="prevStep(4)">
+                        <i data-feather="arrow-left"></i> Back
+                    </button>
+                    <button class="btn btn-primary" id="btn-next-5" onclick="finishWizard()">
+                        Build Book <i data-feather="zap"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Success State (Mockup) -->
+        <div class="container hidden" id="step-loading">
+            <div class="step-content">
+                <div class="step-header">
+                    <div
+                        style="width: 80px; height: 80px; background: #DEF7EC; color: #03543F; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                        <i data-feather="loader" class="spin"></i>
+                    </div>
+                    <h2>Connecting to Source...</h2>
+                    <p>We are securely fetching your memories to build your preview.</p>
+                </div>
+                <div
+                    style="max-width: 400px; margin: 0 auto; background: #F3F4F6; height: 8px; border-radius: 4px; overflow: hidden;">
+                    <div
+                        style="width: 60%; height: 100%; background: var(--primary); animation: loading 2s infinite ease-in-out;">
+                    </div>
+                </div>
+                <style>
+                    .spin {
+                        animation: spin 2s linear infinite;
+                    }
+
+                    @keyframes spin {
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+
+                    @keyframes loading {
+                        0% {
+                            width: 0%;
+                            margin-left: 0;
+                        }
+
+                        50% {
+                            width: 100%;
+                            margin-left: 0;
+                        }
+
+                        100% {
+                            width: 0%;
+                            margin-left: 100%;
+                        }
+                    }
+                </style>
+            </div>
+        </div>
+
+        <!-- Result/Preview State (Dashboard Editor) -->
+        <div class="container hidden" id="step-result">
+            <div class="step-content"
+                style="max-width: 1200px; padding: 40px; background: transparent; box-shadow: none;">
+
+                <div class="dashboard-container">
+                    <!-- Left Sidebar: Settings -->
+                    <div class="sidebar">
+                        <div style="margin-bottom: 24px;">
+                            <button onclick="prevStep('result-back')"
+                                style="background: none; border: none; color: var(--text-gray); cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 14px; padding: 0; font-weight: 500;">
+                                <i data-feather="arrow-left" width="16" height="16"></i> Back to Wizard
+                            </button>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="image" width="16"></i> Content Source
+                            </div>
+                            <div class="setting-option active" style="justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <i data-feather="facebook" width="14"></i> Facebook
+                                </span>
+                                <button onclick="nextStep(1)"
+                                    style="border: none; background: none; color: var(--primary); font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: underline;">Change</button>
+                            </div>
+                            <div class="setting-option" onclick="nextStep(5)" style="margin-top: 8px;">
+                                <i data-feather="plus" width="14"></i> Add Photos / Select Own
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="book" width="16"></i> Book Format
+                            </div>
+                            <div class="setting-option active">
+                                <i data-feather="check" width="14"></i> My Social Book (Classic)
+                            </div>
+                            <div class="setting-option">
+                                <i data-feather="circle" width="14"></i> Modern Square
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="printer" width="16"></i> Print Options
+                            </div>
+                            <div class="setting-option active">
+                                <i data-feather="check" width="14"></i> Glossy Finish Softcover
+                            </div>
+                            <div class="setting-option">
+                                <i data-feather="circle" width="14"></i> Matte Hardcover (+$10)
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="calendar" width="16"></i> Time Settings
+                            </div>
+                            <div class="setting-option active">
+                                <i data-feather="check" width="14"></i> Split by Year
+                            </div>
+                            <div class="setting-option">
+                                <i data-feather="circle" width="14"></i> Split by Month
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Area: Collection -->
+                    <div class="main-content">
+                        <div class="dashboard-header">
+                            <div>
+                                <h2>My Book Collection</h2>
+                                <p>Based on your selection (2020 - 2024)</p>
+                            </div>
+                            <div style="display: flex; gap: 12px;">
+                                <button class="btn btn-secondary"
+                                    style="background: white; border: 1px solid var(--border);">
+                                    <i data-feather="refresh-cw" width="14"></i> Reset
+                                </button>
+                                <button class="btn btn-primary" style="padding: 10px 24px;">
+                                    Add All to Cart <i data-feather="shopping-cart" width="16"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="book-grid">
+                            <!-- Book 1: 2024 (Latest) -->
+                            <div class="book-card selected">
+                                <div class="selected-badge"><i data-feather="check" width="12"></i> In Cart</div>
+                                <div class="book-cover-area" onclick="openPreviewModal()">
+                                    <div class="book-cover-img"
+                                        style="background-image: url('https://images.unsplash.com/photo-1516961642222-1d8eaecb6e20?auto=format&fit=crop&q=80&w=600');">
+                                        <div class="book-spine"></div>
+                                        <div
+                                            style="position: absolute; bottom: 20px; left: 10px; right: 10px; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.6); text-align: center;">
+                                            <div
+                                                style="font-family: 'Arima Madurai'; font-weight: 700; font-size: 20px; line-height: 1.2;">
+                                                The Year 2024</div>
+                                        </div>
+                                    </div>
+                                    <!-- Hover Preview Hint -->
+                                    <div style="position: absolute; background: rgba(0,0,0,0.7); color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; opacity: 0; transition: 0.2s;"
+                                        class="preview-btn-overlay">
+                                        <i data-feather="eye" width="12" style="vertical-align: middle;"></i> Click to
+                                        Preview
+                                    </div>
+                                    <style>
+                                        .book-cover-area:hover .preview-btn-overlay {
+                                            opacity: 1;
+                                        }
+                                    </style>
+                                </div>
+                                <div class="book-details">
+                                    <div class="book-title">2024 - Present</div>
+                                    <div class="book-meta">
+                                        <div class="book-meta-item"><i data-feather="image" width="14"></i> 412 photos
+                                        </div>
+                                        <div class="book-meta-item"><i data-feather="file-text" width="14"></i> 64 pages
+                                        </div>
+                                    </div>
+                                    <div class="book-price">
+                                        $38.00
+                                        <div style="display: flex; gap: 8px;">
+                                            <button class="btn-edit" onclick="openPreviewModal()">Preview</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Book 2: 2023 -->
+                            <div class="book-card">
+                                <div class="book-cover-area" onclick="openPreviewModal()">
+                                    <div class="book-cover-img"
+                                        style="background-image: url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=600');">
+                                        <div class="book-spine"></div>
+                                        <div
+                                            style="position: absolute; bottom: 20px; left: 10px; right: 10px; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.6); text-align: center;">
+                                            <div
+                                                style="font-family: 'Arima Madurai'; font-weight: 700; font-size: 20px; line-height: 1.2;">
+                                                Year 2023</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="book-details">
+                                    <div class="book-title">Memories 2023</div>
+                                    <div class="book-meta">
+                                        <div class="book-meta-item"><i data-feather="image" width="14"></i> 890 photos
+                                        </div>
+                                        <div class="book-meta-item"><i data-feather="file-text" width="14"></i> 112
+                                            pages</div>
+                                    </div>
+                                    <div class="book-price">
+                                        $44.00
+                                        <button class="btn btn-primary"
+                                            style="font-size: 13px; padding: 8px 16px;">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Book 3: 2022 -->
+                            <div class="book-card">
+                                <div class="book-cover-area" onclick="openPreviewModal()">
+                                    <div class="book-cover-img"
+                                        style="background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=600');">
+                                        <div class="book-spine"></div>
+                                        <div
+                                            style="position: absolute; bottom: 20px; left: 10px; right: 10px; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.6); text-align: center;">
+                                            <div
+                                                style="font-family: 'Arima Madurai'; font-weight: 700; font-size: 20px; line-height: 1.2;">
+                                                2022 Trip</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="book-details">
+                                    <div class="book-title">Travel 2022</div>
+                                    <div class="book-meta">
+                                        <div class="book-meta-item"><i data-feather="image" width="14"></i> 650 photos
+                                        </div>
+                                        <div class="book-meta-item"><i data-feather="file-text" width="14"></i> 88 pages
+                                        </div>
+                                    </div>
+                                    <div class="book-price">
+                                        $42.00
+                                        <button class="btn btn-primary"
+                                            style="font-size: 13px; padding: 8px 16px;">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Preview Modal -->
+        <div id="preview-modal" class="hidden"
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s;">
+            <div
+                style="background: white; padding: 20px; border-radius: 12px; max-width: 900px; width: 90%; height: 80vh; display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 style="font-family: 'Arima Madurai'; margin: 0;">Book Preview</h3>
+                    <button onclick="closePreviewModal()"
+                        style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+                </div>
+
+                <div
+                    style="flex: 1; background: #eee; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+                    <!-- Simple Page Carousel -->
+                    <div id="preview-page"
+                        style="width: 80%; height: 90%; background: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #999;">
+                        Page 1 Content
+                    </div>
+
+                    <button onclick="changePage(-1)"
+                        style="position: absolute; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); cursor: pointer;">&lt;</button>
+                    <button onclick="changePage(1)"
+                        style="position: absolute; right: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; border: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); cursor: pointer;">&gt;</button>
+                </div>
+
+                <div style="text-align: center; margin-top: 10px; color: #666;">
+                    Page <span id="page-num">1</span> of 142
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div>&copy; 2026 My Social Book. All rights reserved.</div>
+            <div>Privacy Policy • Terms of Service</div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        feather.replace();
+
+        // State
+        const state = {
+            step1: null,
+            step2: null,
+            step3: null,
+            step4: null,
+            step5: []
+        };
+
+        // Navigation
+        function nextStep(targetStep) {
+            // Hide current
+            document.querySelector('.fade-in').classList.add('hidden');
+            document.querySelector('.fade-in').classList.remove('fade-in');
+
+            // Show next
+            const nextEl = document.getElementById(`step-${targetStep}`);
+            nextEl.classList.remove('hidden');
+            nextEl.classList.add('fade-in');
+
+            // Special logic for Step 5
+            if (targetStep === 5) {
+                renderPhotoSelection();
+            }
+
+            // Update progress
+            updateProgress(targetStep);
+        }
+
+        function prevStep(targetStep) {
+            // Hide all potential active views
+            document.querySelectorAll('.container').forEach(el => {
+                if (!el.classList.contains('hidden')) {
+                    el.classList.add('hidden');
+                    el.classList.remove('fade-in');
+                }
+            });
+
+            // Logic for Back Button from Dashboard (Result)
+            if (targetStep === 'result-back') {
+                // If Manual mode, go to Step 5. If Auto, go to Step 4.
+                targetStep = (state.step3 === 'manual') ? 5 : 4;
+            }
+
+            // Show prev
+            const prevEl = document.getElementById(`step-${targetStep}`);
+            prevEl.classList.remove('hidden');
+            prevEl.classList.add('fade-in');
+
+            // Update progress
+            updateProgress(targetStep);
+        }
+
+        function updateProgress(step) {
+            // Update line
+            const fill = document.getElementById('progressFill');
+            let progress = 0;
+
+            if (step === 1) progress = 0;
+            if (step === 2) progress = 33;
+            if (step === 3) progress = 66;
+            if (step >= 4) progress = 100;
+
+            fill.style.width = `${progress}%`;
+
+            // Update indicators (1-4)
+            for (let i = 1; i <= 4; i++) {
+                const indicator = document.getElementById(`indicator-${i}`);
+                if (indicator) {
+                    if (i < step) {
+                        indicator.classList.add('completed');
+                        indicator.classList.remove('active');
+                    } else if (i === step || (step === 5 && i === 4)) {
+                        indicator.classList.add('completed');
+                        indicator.classList.remove('active');
+                    } else {
+                        indicator.classList.remove('active', 'completed');
+                    }
+
+                    if (i === step) {
+                        indicator.classList.remove('completed');
+                        indicator.classList.add('active');
+                    }
+                }
+            }
+        }
+
+        function handleTimeNext() {
+            if (state.step3 === 'manual') {
+                nextStep(5);
+            } else {
+                finishWizard();
+            }
+        }
+
+        // Selection Logic
+        function selectOption(step, value) {
+            // Update State
+            state[`step${step}`] = value;
+
+            // Update UI
+            const stepContainer = document.getElementById(`step-${step}`);
+            const options = stepContainer.querySelectorAll('.option-card');
+
+            options.forEach(card => card.classList.remove('selected'));
+
+            options.forEach(card => {
+                if (card.getAttribute('onclick').includes(`'${value}'`)) {
+                    card.classList.add('selected');
+                }
+            });
+
+            // Auto-advance Logic (Seamless Experience)
+            const shouldAutoAdvance = (step === 1 || step === 2 || (step === 3 && value === 'auto'));
+            if (shouldAutoAdvance) {
+                setTimeout(() => {
+                    nextStep(step + 1);
+                }, 500);
+            }
+
+            // Handle Date Input Visibility (Step 4)
+            if (step === 4) {
+                const dateInputs = document.getElementById('date-inputs');
+                if (value === 'range') {
+                    dateInputs.classList.remove('hidden');
+                } else {
+                    dateInputs.classList.add('hidden');
+                }
+
+                // Update Button Action to use Dynamic Handler
+                const btn = document.getElementById(`btn-next-4`);
+                btn.onclick = handleTimeNext; // Override the onclick
+                btn.removeAttribute('disabled'); // Ensure enabled
+
+                // Update Text
+                if (state.step3 === 'manual') {
+                    btn.innerHTML = 'Select Photos <i data-feather="arrow-right"></i>';
+                } else {
+                    btn.innerHTML = 'Connect & Preview <i data-feather="zap"></i>';
+                }
+                feather.replace();
+            }
+
+            // Enable Next Button
+            const nextBtn = document.getElementById(`btn-next-${step}`);
+            if (nextBtn) nextBtn.disabled = false;
+        }
+
+        // Render Mock Photos
+        function renderPhotoSelection() {
+            const grid = document.getElementById('manual-photo-grid');
+            if (!grid) return;
+
+            grid.innerHTML = ''; // Clear previous
+
+            const photoCount = 20;
+            const countDisplay = document.getElementById('photo-count-display');
+            if (countDisplay) countDisplay.innerText = photoCount;
+
+            const images = [
+                'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=300',
+                'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&q=80&w=300',
+                'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=300',
+                'https://images.unsplash.com/photo-1516961642222-1d8eaecb6e20?auto=format&fit=crop&q=80&w=300',
+                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=300',
+                'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300',
+                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300',
+                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300'
+            ];
+
+            for (let i = 0; i < photoCount; i++) {
+                const imgUrl = images[i % images.length];
+                const div = document.createElement('div');
+                div.className = 'photo-item selected'; // Default selected
+                div.style.cssText = `height: 150px; background-image: url('${imgUrl}'); background-size: cover; background-position: center; border-radius: 12px; position: relative; cursor: pointer; border: 3px solid #059669; transition: all 0.2s;`;
+                div.onclick = function () {
+                    this.classList.toggle('selected');
+                    const isSelected = this.classList.contains('selected');
+                    this.style.borderColor = isSelected ? '#059669' : 'transparent';
+                    this.style.transform = isSelected ? 'scale(0.96)' : 'scale(1)';
+                    this.style.opacity = isSelected ? '1' : '0.8';
+
+                    const check = this.querySelector('.check-indicator');
+                    if (check) check.style.opacity = isSelected ? '1' : '0';
+                };
+
+                div.innerHTML = `
+                    <div class="check-indicator" style="position: absolute; top: 8px; right: 8px; background: #059669; color: white; border-radius: 50%; padding: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: opacity 0.2s;">
+                        <i data-feather="check" width="12" height="12"></i>
+                    </div>
+                `;
+                grid.appendChild(div);
+            }
+            feather.replace();
+        }
+
+        function toggleAllPhotos(select) {
+            const items = document.querySelectorAll('.photo-item');
+            items.forEach(item => {
+                if (select) {
+                    item.classList.add('selected');
+                    item.style.borderColor = '#059669';
+                    item.style.transform = 'scale(0.96)';
+                    item.style.opacity = '1';
+                    const check = item.querySelector('.check-indicator');
+                    if (check) check.style.opacity = '1';
+                } else {
+                    item.classList.remove('selected');
+                    item.style.borderColor = 'transparent';
+                    item.style.transform = 'scale(1)';
+                    item.style.opacity = '0.8';
+                    const check = item.querySelector('.check-indicator');
+                    if (check) check.style.opacity = '0';
+                }
+            });
+        }
+
+        function finishWizard() {
+            // Show Loading
+            document.querySelector('.fade-in').classList.add('hidden');
+            const loadingEl = document.getElementById('step-loading');
+            loadingEl.classList.remove('hidden');
+            loadingEl.classList.add('fade-in');
+
+            // Simulate API Call delay then show result
+            setTimeout(() => {
+                loadingEl.classList.add('hidden');
+                loadingEl.classList.remove('fade-in');
+
+                const resultEl = document.getElementById('step-result');
+                resultEl.classList.remove('hidden');
+                resultEl.classList.add('fade-in');
+
+                // Re-initialize icons for the new content
+                feather.replace();
+            }, 2000); // 2.0 seconds delay (Optimized)
+        }
+
+        // Preview Modal Logic
+        let currentPage = 1;
+        function openPreviewModal() {
+            const modal = document.getElementById('preview-modal');
+            modal.classList.remove('hidden');
+            // Force reflow for opacity transition
+            void modal.offsetWidth;
+            modal.style.opacity = '1';
+        }
+
+        function closePreviewModal() {
+            const modal = document.getElementById('preview-modal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                // Reset page
+                currentPage = 1;
+                changePage(0);
+            }, 300);
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > 142) currentPage = 142;
+
+            document.getElementById('page-num').innerText = currentPage;
+            document.getElementById('preview-page').innerText = `Page ${currentPage} Content`;
+            document.getElementById('preview-page').innerHTML += `<br><span style="font-size: 14px; margin-top: 10px; display: block;">(Mockup Preview)</span>`;
+        }
+
+    </script>
+</body>
+
+</html>
