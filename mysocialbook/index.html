@@ -563,8 +563,8 @@
 
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
         }
 
         .book-card {
@@ -809,8 +809,48 @@
             }
 
             .book-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 16px;
+            }
+
+            /* Mobile Horizontal Card */
+            .book-grid .book-card {
+                flex-direction: row;
+                align-items: stretch;
+                min-height: 140px;
+            }
+
+            .book-grid .book-cover-area {
+                width: 130px;
+                height: auto;
+                padding: 0;
+                flex-shrink: 0;
+            }
+
+            .book-grid .book-cover-img {
+                width: 90px;
+                height: 120px;
+            }
+
+            /* Hide the "The Year..." text overlay on mobile small books if it's too small, or adjust font */
+            .book-cover-img div[style*="font-family"] {
+                font-size: 14px !important;
+                bottom: 10px !important;
+            }
+
+            .book-grid .book-details {
+                padding: 16px;
+                justify-content: center;
+                text-align: left;
+            }
+
+            .book-grid .book-title {
+                font-size: 18px;
+                margin-bottom: 4px;
+            }
+
+            .book-grid .book-price {
+                margin-top: 8px;
             }
 
             #manual-photo-grid {
