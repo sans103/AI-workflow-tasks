@@ -487,8 +487,8 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 32px;
-            padding-bottom: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
             border-bottom: 1px solid var(--border);
         }
 
@@ -562,8 +562,8 @@
 
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
         .book-card {
@@ -788,7 +788,7 @@
 
             /* Mobile Dashboard Fixes */
             .dashboard-container {
-                flex-direction: column;
+                flex-direction: column-reverse;
                 gap: 32px;
             }
 
@@ -799,7 +799,8 @@
             }
 
             .book-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
             }
 
             #manual-photo-grid {
@@ -1132,83 +1133,13 @@
                 style="max-width: 1200px; padding: 40px; background: transparent; box-shadow: none;">
 
                 <div class="dashboard-container">
-                    <!-- Left Sidebar: Settings -->
-                    <div class="sidebar">
-                        <div style="margin-bottom: 24px;">
-                            <button onclick="prevStep('result-back')"
-                                style="background: none; border: none; color: var(--text-gray); cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 14px; padding: 0; font-weight: 500;">
-                                <i data-feather="arrow-left" width="16" height="16"></i> Back to Wizard
-                            </button>
-                        </div>
 
-                        <div class="settings-group">
-                            <div class="settings-title">
-                                <i data-feather="image" width="16"></i> Content Source
-                            </div>
-                            <div class="setting-option active" style="justify-content: space-between;">
-                                <span style="display: flex; align-items: center; gap: 8px;">
-                                    <i data-feather="facebook" width="14"></i> Facebook
-                                </span>
-                                <button onclick="nextStep(1)"
-                                    style="border: none; background: none; color: var(--primary); font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: underline;">Change</button>
-                            </div>
-                            <div class="setting-option" onclick="nextStep(5)" style="margin-top: 8px;">
-                                <i data-feather="plus" width="14"></i> Add Photos / Select Own
-                            </div>
-                        </div>
-
-                        <div class="settings-group">
-                            <div class="settings-title">
-                                <i data-feather="book" width="16"></i> Book Format
-                            </div>
-                            <div class="setting-option active">
-                                <i data-feather="check" width="14"></i> My Social Book (Classic)
-                            </div>
-                            <div class="setting-option">
-                                <i data-feather="circle" width="14"></i> Modern Square
-                            </div>
-                        </div>
-
-                        <div class="settings-group">
-                            <div class="settings-title">
-                                <i data-feather="printer" width="16"></i> Print Options
-                            </div>
-                            <div class="setting-option active">
-                                <i data-feather="check" width="14"></i> Glossy Finish Softcover
-                            </div>
-                            <div class="setting-option">
-                                <i data-feather="circle" width="14"></i> Matte Hardcover (+$10)
-                            </div>
-                        </div>
-
-                        <div class="settings-group">
-                            <div class="settings-title">
-                                <i data-feather="calendar" width="16"></i> Time Settings
-                            </div>
-                            <div class="setting-option active">
-                                <i data-feather="check" width="14"></i> Split by Year
-                            </div>
-                            <div class="setting-option">
-                                <i data-feather="circle" width="14"></i> Split by Month
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Main Area: Collection -->
+                    <!-- Main Area: Collection (NOW FIRST) -->
                     <div class="main-content">
                         <div class="dashboard-header">
                             <div>
                                 <h2>My Book Collection</h2>
                                 <p>Based on your selection (2020 - 2024)</p>
-                            </div>
-                            <div style="display: flex; gap: 12px;">
-                                <button class="btn btn-secondary"
-                                    style="background: white; border: 1px solid var(--border);">
-                                    <i data-feather="refresh-cw" width="14"></i> Reset
-                                </button>
-                                <button class="btn btn-primary" style="padding: 10px 24px;">
-                                    Add All to Cart <i data-feather="shopping-cart" width="16"></i>
-                                </button>
                             </div>
                         </div>
 
@@ -1318,6 +1249,86 @@
                         </div>
 
                     </div>
+
+                    <!-- Right Sidebar: Settings & Cart (NOW SECOND) -->
+                    <div class="sidebar">
+                        <div style="margin-bottom: 24px;">
+                            <button onclick="prevStep('result-back')"
+                                style="background: none; border: none; color: var(--text-gray); cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 14px; padding: 0; font-weight: 500;">
+                                <i data-feather="arrow-left" width="16" height="16"></i> Back to Wizard
+                            </button>
+                        </div>
+
+                        <!-- ADDED CARD: Cart Actions -->
+                        <div
+                            style="background: #FFF0F5; border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center; border: 1px solid #FBCFE8;">
+                            <div
+                                style="font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                <span>Total Price:</span>
+                                <span style="font-size: 18px; color: var(--primary);">$124.00</span>
+                            </div>
+                            <button class="btn btn-primary"
+                                style="width: 100%; justify-content: center; margin-bottom: 12px;">
+                                Add All to Cart <i data-feather="shopping-cart" width="16"></i>
+                            </button>
+                            <button class="btn btn-secondary"
+                                style="width: 100%; border: 1px solid var(--border); background: white;">
+                                <i data-feather="refresh-cw" width="14"></i> Reset Selection
+                            </button>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="image" width="16"></i> Content Source
+                            </div>
+                            <div class="setting-option active" style="justify-content: space-between;">
+                                <span style="display: flex; align-items: center; gap: 8px;">
+                                    <i data-feather="facebook" width="14"></i> Facebook
+                                </span>
+                                <button onclick="nextStep(1)"
+                                    style="border: none; background: none; color: var(--primary); font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: underline;">Change</button>
+                            </div>
+                            <div class="setting-option" onclick="nextStep(5)" style="margin-top: 8px;">
+                                <i data-feather="plus" width="14"></i> Add Photos / Select Own
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="book" width="16"></i> Book Format
+                            </div>
+                            <div class="setting-option active">
+                                <i data-feather="check" width="14"></i> My Social Book (Classic)
+                            </div>
+                            <div class="setting-option">
+                                <i data-feather="circle" width="14"></i> Modern Square
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="printer" width="16"></i> Print Options
+                            </div>
+                            <div class="setting-option active">
+                                <i data-feather="check" width="14"></i> Glossy Finish Softcover
+                            </div>
+                            <div class="setting-option">
+                                <i data-feather="circle" width="14"></i> Matte Hardcover (+$10)
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <div class="settings-title">
+                                <i data-feather="calendar" width="16"></i> Time Settings
+                            </div>
+                            <div class="setting-option active">
+                                <i data-feather="check" width="14"></i> Split by Year
+                            </div>
+                            <div class="setting-option">
+                                <i data-feather="circle" width="14"></i> Split by Month
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -1407,6 +1418,9 @@
 
             // Logic for Back Button from Dashboard (Result)
             if (targetStep === 'result-back') {
+                // Return progress bar
+                document.querySelector('.progress-track').classList.remove('hidden');
+
                 // If Manual mode, go to Step 5. If Auto, go to Step 4.
                 targetStep = (state.step3 === 'manual') ? 5 : 4;
             }
@@ -1599,6 +1613,9 @@
                 const resultEl = document.getElementById('step-result');
                 resultEl.classList.remove('hidden');
                 resultEl.classList.add('fade-in');
+
+                // Hide Progress Bar
+                document.querySelector('.progress-track').classList.add('hidden');
 
                 // Re-initialize icons for the new content
                 feather.replace();
