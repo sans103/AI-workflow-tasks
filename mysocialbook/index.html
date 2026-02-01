@@ -756,6 +756,14 @@
             gap: 12px;
         }
 
+        /* Media Queries */
+        /* Tablet & Mobile */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 40px 0;
+            }
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
             .step-content {
@@ -767,7 +775,8 @@
             }
 
             .grid-options {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
+                /* Force single column on mobile */
             }
 
             .progress-label {
@@ -955,7 +964,7 @@
                     <p>Choose how you want to curate your content.</p>
                 </div>
 
-                <div class="grid-options">
+                <div class="grid-options" style="grid-template-columns: repeat(2, 1fr);">
                     <div class="option-card" onclick="selectOption(3, 'auto')">
                         <i data-feather="check-circle" class="check-mark"></i>
                         <div class="option-icon">
@@ -1040,8 +1049,8 @@
         </div>
 
         <!-- Step 5: Content Selection (Manual Only) -->
-        <div class="container hidden" id="step-5">
-            <div class="step-content" style="max-width: 1000px;">
+        <div class="container hidden" id="step-5" style="max-width: 1200px;">
+            <div class="step-content" style="max-width: 1200px;">
                 <div class="step-header">
                     <h2>Select your photos</h2>
                     <p>Curate the moments you want to include in your book.</p>
