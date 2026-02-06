@@ -1,0 +1,72 @@
+[
+  {
+    "timestamp": "2026-02-07T05:05:05.041736",
+    "model": "pro",
+    "model_name": "gemini-3-pro-image-preview",
+    "prompt": "Professional dog trainer working with a well-trained German Shepherd at a modern professional dog training facility in suburban New Jersey, flagship facility with clean professional indoor training space, warm golden hour lighting streaming through large windows, photorealistic professional photography style, trainer in professional attire showing expert handling, dog attentive and focused, modern facility with professional equipment visible in background, warm inviting atmosphere, high-end professional dog training center aesthetic",
+    "aspect": "1:1",
+    "style": null,
+    "negative": null,
+    "text": null,
+    "thinking": false,
+    "output": "outputs/bucks-dog-training/mullica-hill/images/hero-mullica-hill-square.png",
+    "edit_mode": false,
+    "source_image": null
+  },
+  {
+    "timestamp": "2026-02-07T05:05:30.884177",
+    "model": "pro",
+    "model_name": "gemini-3-pro-image-preview",
+    "prompt": "Professional dog trainer calmly working with reactive German Shepherd showing signs of progress and focus, controlled professional training environment in suburban New Jersey facility, trainer demonstrating expert calm handling techniques, dog shifting from reactive to attentive state, professional indoor training space with safety equipment, reassuring professional atmosphere, photorealistic style, expertise in behavior modification visible, warm professional lighting, modern facility setting",
+    "aspect": "16:9",
+    "style": null,
+    "negative": null,
+    "text": null,
+    "thinking": false,
+    "output": "outputs/bucks-dog-training/mullica-hill/images/aggression-behavior-mod.png",
+    "edit_mode": false,
+    "source_image": null
+  },
+  {
+    "timestamp": "2026-02-07T05:05:53.406375",
+    "model": "pro",
+    "model_name": "gemini-3-pro-image-preview",
+    "prompt": "Professional dog trainer demonstrating perfect obedience training with dog performing heel command, suburban New Jersey professional training facility, clean well-maintained outdoor training area with professional equipment, dog showing excellent focus and precision in commands, trainer in professional attire with confident posture, modern suburban NJ setting with professional facility grounds visible, crisp professional photography, clear blue sky, perfect obedience connection between trainer and dog",
+    "aspect": "16:9",
+    "style": null,
+    "negative": null,
+    "text": null,
+    "thinking": false,
+    "output": "outputs/bucks-dog-training/mullica-hill/images/obedience-training.png",
+    "edit_mode": false,
+    "source_image": null
+  },
+  {
+    "timestamp": "2026-02-07T05:06:10.596707",
+    "model": "pro",
+    "model_name": "gemini-3-pro-image-preview",
+    "prompt": "Service dog in professional training vest sitting calmly and attentively beside trainer in professional indoor training facility, suburban New Jersey professional setting, dog demonstrating perfect public access readiness and task focus, trainer working on specific service dog skills, modern professional facility with training equipment, warm professional lighting, photorealistic style, service dog showing calm confident demeanor, professional atmosphere emphasizing expertise",
+    "aspect": "16:9",
+    "style": null,
+    "negative": null,
+    "text": null,
+    "thinking": false,
+    "output": "outputs/bucks-dog-training/mullica-hill/images/service-dog-training.png",
+    "edit_mode": false,
+    "source_image": null
+  },
+  {
+    "timestamp": "2026-02-07T05:06:28.295619",
+    "model": "pro",
+    "model_name": "gemini-3-pro-image-preview",
+    "prompt": "Joyful dog owner smiling with their transformed well-behaved dog at beautiful suburban New Jersey park, professional facility grounds in background, golden hour warm lighting, emotional connection and trust visible between owner and dog, dog calm and happy sitting attentively, modern suburban NJ setting with well-maintained grounds, heartwarming success story scene, professional lifestyle photography, genuine happiness and pride, perfect training results visible",
+    "aspect": "4:3",
+    "style": null,
+    "negative": null,
+    "text": null,
+    "thinking": false,
+    "output": "outputs/bucks-dog-training/mullica-hill/images/happy-results.png",
+    "edit_mode": false,
+    "source_image": null
+  }
+]
