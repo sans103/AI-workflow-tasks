@@ -92,6 +92,19 @@
             box-shadow: 0 6px 20px rgba(0,200,200,0.4);
         }
 
+        /* Mobile CTA Button */
+        .mobile-cta {
+            display: none;
+            background: var(--primary);
+            color: white !important;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,200,200,0.3);
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(180deg, #FFFDF7 0%, #FFF9E6 100%);
@@ -929,6 +942,10 @@
             .nav-links {
                 display: none;
             }
+
+            .mobile-cta {
+                display: block;
+            }
         }
 
         @media (max-width: 768px) {
@@ -986,6 +1003,7 @@
             <a href="#">Reviews</a>
             <a href="#book-call" class="header-cta">Book a Call</a>
         </nav>
+        <a href="#book-call" class="mobile-cta">Book a Call</a>
     </header>
 
     <!-- Hero Section -->
