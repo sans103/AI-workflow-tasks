@@ -831,15 +831,14 @@
     </footer>
 
     <!-- Dog Bark Sound Effects -->
-    <audio id="bark1" preload="auto">
-        <source src="sounds/barking 1.wav" type="audio/wav">
-    </audio>
-    <audio id="bark2" preload="auto">
-        <source src="sounds/barking 2.wav" type="audio/wav">
-    </audio>
-    <audio id="bark3" preload="auto">
-        <source src="sounds/bark 3.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bark1" preload="auto" src="sounds/bark1.wav"></audio>
+    <audio id="bark2" preload="auto" src="sounds/bark2.wav"></audio>
+    <audio id="bark3" preload="auto" src="sounds/bark3.mp3"></audio>
+
+    <!-- Audio Enable Banner -->
+    <div id="audio-banner" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #D9E021; color: #002E1F; padding: 12px 24px; border-radius: 50px; font-family: 'Syne', sans-serif; font-weight: bold; text-transform: uppercase; cursor: pointer; z-index: 9999; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+        Click to enable dog sounds
+    </div>
 
     <script>
         lucide.createIcons();
@@ -851,18 +850,48 @@
             document.getElementById('bark3')
         ];
 
+        let audioEnabled = false;
         let lastBarkTime = 0;
-        const barkCooldown = 500; // Minimum time between barks (ms)
+        const barkCooldown = 500;
+        const audioBanner = document.getElementById('audio-banner');
+
+        // Show banner after a short delay
+        setTimeout(() => {
+            audioBanner.style.display = 'block';
+        }, 1000);
+
+        // Enable audio on any click
+        function enableAudio() {
+            if (audioEnabled) return;
+
+            // Play and immediately pause to unlock audio
+            barkSounds.forEach(sound => {
+                sound.play().then(() => {
+                    sound.pause();
+                    sound.currentTime = 0;
+                }).catch(() => {});
+            });
+
+            audioEnabled = true;
+            audioBanner.style.display = 'none';
+            console.log('Audio enabled!');
+        }
+
+        // Click banner or anywhere to enable
+        audioBanner.addEventListener('click', enableAudio);
+        document.addEventListener('click', enableAudio, { once: true });
 
         function playRandomBark() {
+            if (!audioEnabled) return;
+
             const now = Date.now();
             if (now - lastBarkTime < barkCooldown) return;
 
             lastBarkTime = now;
             const randomBark = barkSounds[Math.floor(Math.random() * barkSounds.length)];
             randomBark.currentTime = 0;
-            randomBark.volume = 0.3;
-            randomBark.play().catch(() => {}); // Catch autoplay restrictions
+            randomBark.volume = 0.4;
+            randomBark.play().catch(e => console.log('Audio error:', e));
         }
 
         // Add hover sounds to CTA buttons
@@ -870,16 +899,9 @@
             btn.addEventListener('mouseenter', playRandomBark);
         });
 
-        // Add hover sounds to dog images (images containing dogs)
-        document.querySelectorAll('img[alt*="Dog"], img[alt*="dog"], img[alt*="Grooming"], img[alt*="Indoor Park"], img[alt*="Outdoor"], img[alt*="Ali"]').forEach(img => {
+        // Add hover sounds to all images in sections
+        document.querySelectorAll('section img').forEach(img => {
             img.addEventListener('mouseenter', playRandomBark);
-        });
-
-        // Add hover sounds to hero image container
-        document.querySelectorAll('.hero-pattern img, section img').forEach(img => {
-            if (img.closest('.aspect-square') || img.closest('.rounded-2xl')) {
-                img.addEventListener('mouseenter', playRandomBark);
-            }
         });
     </script>
 </body>
