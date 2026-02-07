@@ -962,18 +962,49 @@
             }
 
             .trust-stats-container {
-                flex-direction: column;
-                gap: 30px;
+                flex-direction: row;
+                gap: 16px;
             }
 
             .stat-number {
-                font-size: 40px;
+                font-size: 28px;
+            }
+
+            .stat-label {
+                font-size: 12px;
             }
 
             .results-grid,
-            .pain-points-grid,
             .benefits-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .pain-points-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .pain-point {
+                padding: 16px;
+            }
+
+            .pain-point-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 12px;
+            }
+
+            .pain-point-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .pain-point h4 {
+                font-size: 14px;
+            }
+
+            .pain-point p {
+                font-size: 12px;
             }
 
             .testimonial-quote {
