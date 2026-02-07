@@ -830,8 +830,57 @@
         </div>
     </footer>
 
+    <!-- Dog Bark Sound Effects -->
+    <audio id="bark1" preload="auto">
+        <source src="sounds/barking 1.wav" type="audio/wav">
+    </audio>
+    <audio id="bark2" preload="auto">
+        <source src="sounds/barking 2.wav" type="audio/wav">
+    </audio>
+    <audio id="bark3" preload="auto">
+        <source src="sounds/bark 3.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
         lucide.createIcons();
+
+        // Dog bark sound on hover
+        const barkSounds = [
+            document.getElementById('bark1'),
+            document.getElementById('bark2'),
+            document.getElementById('bark3')
+        ];
+
+        let lastBarkTime = 0;
+        const barkCooldown = 500; // Minimum time between barks (ms)
+
+        function playRandomBark() {
+            const now = Date.now();
+            if (now - lastBarkTime < barkCooldown) return;
+
+            lastBarkTime = now;
+            const randomBark = barkSounds[Math.floor(Math.random() * barkSounds.length)];
+            randomBark.currentTime = 0;
+            randomBark.volume = 0.3;
+            randomBark.play().catch(() => {}); // Catch autoplay restrictions
+        }
+
+        // Add hover sounds to CTA buttons
+        document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+            btn.addEventListener('mouseenter', playRandomBark);
+        });
+
+        // Add hover sounds to dog images (images containing dogs)
+        document.querySelectorAll('img[alt*="Dog"], img[alt*="dog"], img[alt*="Grooming"], img[alt*="Indoor Park"], img[alt*="Outdoor"], img[alt*="Ali"]').forEach(img => {
+            img.addEventListener('mouseenter', playRandomBark);
+        });
+
+        // Add hover sounds to hero image container
+        document.querySelectorAll('.hero-pattern img, section img').forEach(img => {
+            if (img.closest('.aspect-square') || img.closest('.rounded-2xl')) {
+                img.addEventListener('mouseenter', playRandomBark);
+            }
+        });
     </script>
 </body>
 
