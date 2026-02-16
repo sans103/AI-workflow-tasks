@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A by Anyah — Redesign Presentation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <style>
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             overflow: hidden;
             background: #111111;
@@ -112,8 +117,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         /* ===== HORIZONTAL SCROLL CONTAINER ===== */
@@ -430,453 +442,474 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="scroll-container" id="scrollContainer">
+    <div class="scroll-container" id="scrollContainer">
 
-    <!-- ===== SLIDE 0: TITLE ===== -->
-    <div class="title-slide card" data-index="0">
-        <div class="title-logo">
-            <img src="https://abyanyah.com/cdn/shop/files/Asset_9.png" alt="A by Anyah">
+        <!-- ===== SLIDE 0: TITLE ===== -->
+        <div class="title-slide card" data-index="0">
+            <div class="title-logo">
+                <img src="https://abyanyah.com/cdn/shop/files/Asset_9.png" alt="A by Anyah">
+            </div>
+            <div class="title-text">
+                <h1>Redesign Proposal</h1>
+                <p>Homepage &amp; Product Page</p>
+            </div>
+            <div class="title-meta">
+                <p>Prepared by EcomHouse</p>
+                <p>February 2026</p>
+            </div>
+            <div class="title-nav-hint">
+                Scroll to explore
+                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </div>
         </div>
-        <div class="title-text">
-            <h1>Redesign Proposal</h1>
-            <p>Homepage &amp; Product Page</p>
+
+        <!-- ===== SLIDE 1: HOMEPAGE — HERO ===== -->
+        <div class="card" data-index="1">
+            <div class="card-header">
+                <div class="card-label">Homepage Redesign</div>
+                <div class="card-title">Hero &amp; First Impression</div>
+                <div class="card-subtitle">Transform the single-screen video gate into an editorial cinematic experience
+                    with clear navigation</div>
+            </div>
+            <div class="phones-container">
+                <div class="phone-wrapper">
+                    <div class="phone-label">Current</div>
+                    <div class="phone">
+                        <div class="phone-screenshot"><img src="current-homepage.png" alt="Current homepage"></div>
+                    </div>
+                </div>
+                <div class="phone-wrapper">
+                    <div class="phone-label">Proposed</div>
+                    <div class="phone interactive">
+                        <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
+                    </div>
+                    <div class="phone-scroll-hint">Scroll to explore</div>
+                </div>
+            </div>
+            <div class="notes-container">
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">Current: Full-screen video with "ENTER" button, no navigation visible
+                        </div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">Dead-end experience — visitors must click before seeing any products
+                        </div>
+                    </div>
+                </div>
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Full navigation, search, and cart visible immediately</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Editorial hero with brand manifesto + "Discover the Collection" CTA</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="title-meta">
-            <p>Prepared by Bhaskar Roy</p>
-            <p>February 2026</p>
+
+        <!-- ===== SLIDE 2: HOMEPAGE — EDITORIAL + PRODUCTS ===== -->
+        <div class="card" data-index="2">
+            <div class="card-header">
+                <div class="card-label">Homepage Redesign</div>
+                <div class="card-title">Editorial Spread &amp; Product Discovery</div>
+                <div class="card-subtitle">Asymmetric editorial grid showcases hero products with lifestyle imagery, not
+                    packshots — feels like a fashion magazine</div>
+            </div>
+            <div class="phones-container">
+                <div class="phone-wrapper">
+                    <div class="phone-label">Current</div>
+                    <div class="phone">
+                        <div class="phone-screenshot"><img src="current-homepage.png" alt="Current homepage"></div>
+                    </div>
+                </div>
+                <div class="phone-wrapper">
+                    <div class="phone-label">Proposed</div>
+                    <div class="phone interactive" id="phone-hp-editorial">
+                        <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
+                    </div>
+                    <div class="phone-scroll-hint">Scroll to explore</div>
+                </div>
+            </div>
+            <div class="notes-container">
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">Current homepage has zero product visibility — no images, no prices, no
+                            collections</div>
+                    </div>
+                </div>
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Brand manifesto section + editorial product spread with hover-to-discover
+                        </div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Horizontal product marquee shows 8 products with prices</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="title-nav-hint">
-            Scroll to explore
-            <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+
+        <!-- ===== SLIDE 3: HOMEPAGE — TRUST + CONVERSION ===== -->
+        <div class="card" data-index="3">
+            <div class="card-header">
+                <div class="card-label">Homepage Redesign</div>
+                <div class="card-title">Trust, Story &amp; Conversion</div>
+                <div class="card-subtitle">Craftsmanship details, founder story, and email capture — CRO elements woven
+                    into editorial storytelling</div>
+            </div>
+            <div class="phones-container">
+                <div class="phone-wrapper">
+                    <div class="phone-label">Current</div>
+                    <div class="phone">
+                        <div class="phone-screenshot"><img src="current-homepage.png" alt="Current homepage"></div>
+                    </div>
+                </div>
+                <div class="phone-wrapper">
+                    <div class="phone-label">Proposed</div>
+                    <div class="phone interactive" id="phone-hp-trust">
+                        <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
+                    </div>
+                    <div class="phone-scroll-hint">Scroll to explore</div>
+                </div>
+            </div>
+            <div class="notes-container">
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">No trust signals, no brand story, no email capture on current site</div>
+                    </div>
+                </div>
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Savoir-Faire section: Paris heritage, lead/nickel free, craftsmanship
+                        </div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Founder portrait + story builds emotional brand connection</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">"Join the Inner Circle" newsletter captures emails for remarketing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SLIDE 4: PDP — GALLERY + BUYBOX ===== -->
+        <div class="card" data-index="4">
+            <div class="card-header">
+                <div class="card-label">Product Page Redesign</div>
+                <div class="card-title">Product Gallery &amp; Buybox</div>
+                <div class="card-subtitle">Enhanced gallery with zoom, video placeholder, color variant switching, and
+                    buybox accordion details</div>
+            </div>
+            <div class="phones-container">
+                <div class="phone-wrapper">
+                    <div class="phone-label">Current</div>
+                    <div class="phone">
+                        <div class="phone-screenshot"><img src="current-pdp.png" alt="Current product page"></div>
+                    </div>
+                </div>
+                <div class="phone-wrapper">
+                    <div class="phone-label">Proposed</div>
+                    <div class="phone interactive">
+                        <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
+                    </div>
+                    <div class="phone-scroll-hint">Scroll to explore</div>
+                </div>
+            </div>
+            <div class="notes-container">
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">Basic gallery with no zoom, no video, single color only</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">No product details visible above fold — must scroll to find specs</div>
+                    </div>
+                </div>
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Image zoom lightbox + video placeholder in gallery</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Color swatch switching (Platinum, Liquid Onyx, Raspberry Glaze)</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Accordion details + payment icons below Add to Cart</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SLIDE 5: PDP — STORYTELLING SECTIONS ===== -->
+        <div class="card" data-index="5">
+            <div class="card-header">
+                <div class="card-label">Product Page Redesign</div>
+                <div class="card-title">Craftsmanship &amp; Features</div>
+                <div class="card-subtitle">Dedicated sections for material quality, bag features with close-up imagery,
+                    and sticky section navigation</div>
+            </div>
+            <div class="phones-container">
+                <div class="phone-wrapper">
+                    <div class="phone-label">Current</div>
+                    <div class="phone">
+                        <div class="phone-screenshot"><img src="current-pdp.png" alt="Current product page"></div>
+                    </div>
+                </div>
+                <div class="phone-wrapper">
+                    <div class="phone-label">Proposed</div>
+                    <div class="phone interactive" id="phone-pdp-features">
+                        <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
+                    </div>
+                    <div class="phone-scroll-hint">Scroll to explore</div>
+                </div>
+            </div>
+            <div class="notes-container">
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">Current PDP has no material/craftsmanship storytelling</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">No close-up feature imagery, no section navigation</div>
+                    </div>
+                </div>
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Material &amp; Craftsmanship section with editorial photography</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Alternating bag features with close-up detail shots</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Sticky section nav: Overview, Craftsmanship, Features, Cross-sell,
+                            Reviews</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SLIDE 6: PDP — SOCIAL PROOF + CROSS-SELL ===== -->
+        <div class="card" data-index="6">
+            <div class="card-header">
+                <div class="card-label">Product Page Redesign</div>
+                <div class="card-title">Cross-sell, Reviews &amp; Instagram</div>
+                <div class="card-subtitle">Product recommendations from the real catalog, customer reviews, and
+                    Instagram community grid</div>
+            </div>
+            <div class="phones-container">
+                <div class="phone-wrapper">
+                    <div class="phone-label">Current</div>
+                    <div class="phone">
+                        <div class="phone-screenshot"><img src="current-pdp.png" alt="Current product page"></div>
+                    </div>
+                </div>
+                <div class="phone-wrapper">
+                    <div class="phone-label">Proposed</div>
+                    <div class="phone interactive" id="phone-pdp-social">
+                        <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
+                    </div>
+                    <div class="phone-scroll-hint">Scroll to explore</div>
+                </div>
+            </div>
+            <div class="notes-container">
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet"></div>
+                        <div class="note-text">No cross-sell, no reviews, no social proof on current PDP</div>
+                    </div>
+                </div>
+                <div class="note-column">
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">"You May Also Like" with real products from catalog (Aisha, Ange, Archie)
+                        </div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Customer reviews section with star ratings</div>
+                    </div>
+                    <div class="note-item">
+                        <div class="note-bullet green"></div>
+                        <div class="note-text">Instagram grid builds community + social proof</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SLIDE 7: SUMMARY ===== -->
+        <div class="summary-slide card" data-index="7">
+            <div class="card-label" style="margin-bottom: 12px;">A by Anyah</div>
+            <div class="summary-title">Key Improvements</div>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-number">01</div>
+                    <div class="summary-content">
+                        <h3>Brand Discovery</h3>
+                        <p>Homepage transforms from a dead-end video gate to a full editorial experience with manifesto,
+                            collections, and product discovery</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">02</div>
+                    <div class="summary-content">
+                        <h3>Trust &amp; Story</h3>
+                        <p>Craftsmanship details, Paris heritage, founder story, and quality materials build confidence
+                            to justify luxury pricing</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">03</div>
+                    <div class="summary-content">
+                        <h3>Product Experience</h3>
+                        <p>Enhanced PDP with zoom gallery, color switching, video, section navigation, and accordion
+                            details above fold</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">04</div>
+                    <div class="summary-content">
+                        <h3>Conversion Elements</h3>
+                        <p>Newsletter capture, cross-sell, Instagram social proof, reviews, and payment icons — all
+                            woven subtly into the editorial flow</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">05</div>
+                    <div class="summary-content">
+                        <h3>Navigation &amp; UX</h3>
+                        <p>Sticky header with search/cart, section nav on PDP, consistent header/footer across all pages
+                        </p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">06</div>
+                    <div class="summary-content">
+                        <h3>Mobile First</h3>
+                        <p>Fully responsive at 390px, sticky mobile CTA on PDP, touch-friendly galleries, no horizontal
+                            overflow</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-dots" id="navDots"></div>
+        <div class="nav-counter" id="navCounter">01 / 08</div>
+        <div class="nav-arrows">
+            <button class="nav-arrow" id="prevBtn" aria-label="Previous slide">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="nav-arrow" id="nextBtn" aria-label="Next slide">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
         </div>
     </div>
 
-    <!-- ===== SLIDE 1: HOMEPAGE — HERO ===== -->
-    <div class="card" data-index="1">
-        <div class="card-header">
-            <div class="card-label">Homepage Redesign</div>
-            <div class="card-title">Hero &amp; First Impression</div>
-            <div class="card-subtitle">Transform the single-screen video gate into an editorial cinematic experience with clear navigation</div>
-        </div>
-        <div class="phones-container">
-            <div class="phone-wrapper">
-                <div class="phone-label">Current</div>
-                <div class="phone">
-                    <div class="phone-screenshot"><img src="current-homepage.png" alt="Current homepage"></div>
-                </div>
-            </div>
-            <div class="phone-wrapper">
-                <div class="phone-label">Proposed</div>
-                <div class="phone interactive">
-                    <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
-                </div>
-                <div class="phone-scroll-hint">Scroll to explore</div>
-            </div>
-        </div>
-        <div class="notes-container">
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">Current: Full-screen video with "ENTER" button, no navigation visible</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">Dead-end experience — visitors must click before seeing any products</div>
-                </div>
-            </div>
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Full navigation, search, and cart visible immediately</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Editorial hero with brand manifesto + "Discover the Collection" CTA</div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script>
+        (function () {
+            var container = document.getElementById('scrollContainer');
+            var cards = document.querySelectorAll('.card');
+            var dotsContainer = document.getElementById('navDots');
+            var counter = document.getElementById('navCounter');
+            var prevBtn = document.getElementById('prevBtn');
+            var nextBtn = document.getElementById('nextBtn');
+            var totalSlides = cards.length;
+            var currentSlide = 0;
 
-    <!-- ===== SLIDE 2: HOMEPAGE — EDITORIAL + PRODUCTS ===== -->
-    <div class="card" data-index="2">
-        <div class="card-header">
-            <div class="card-label">Homepage Redesign</div>
-            <div class="card-title">Editorial Spread &amp; Product Discovery</div>
-            <div class="card-subtitle">Asymmetric editorial grid showcases hero products with lifestyle imagery, not packshots — feels like a fashion magazine</div>
-        </div>
-        <div class="phones-container">
-            <div class="phone-wrapper">
-                <div class="phone-label">Current</div>
-                <div class="phone">
-                    <div class="phone-screenshot"><img src="current-homepage.png" alt="Current homepage"></div>
-                </div>
-            </div>
-            <div class="phone-wrapper">
-                <div class="phone-label">Proposed</div>
-                <div class="phone interactive" id="phone-hp-editorial">
-                    <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
-                </div>
-                <div class="phone-scroll-hint">Scroll to explore</div>
-            </div>
-        </div>
-        <div class="notes-container">
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">Current homepage has zero product visibility — no images, no prices, no collections</div>
-                </div>
-            </div>
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Brand manifesto section + editorial product spread with hover-to-discover</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Horizontal product marquee shows 8 products with prices</div>
-                </div>
-            </div>
-        </div>
-    </div>
+            // Create dots
+            for (var i = 0; i < totalSlides; i++) {
+                var dot = document.createElement('div');
+                dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', function () {
+                    goToSlide(parseInt(this.getAttribute('data-index')));
+                });
+                dotsContainer.appendChild(dot);
+            }
 
-    <!-- ===== SLIDE 3: HOMEPAGE — TRUST + CONVERSION ===== -->
-    <div class="card" data-index="3">
-        <div class="card-header">
-            <div class="card-label">Homepage Redesign</div>
-            <div class="card-title">Trust, Story &amp; Conversion</div>
-            <div class="card-subtitle">Craftsmanship details, founder story, and email capture — CRO elements woven into editorial storytelling</div>
-        </div>
-        <div class="phones-container">
-            <div class="phone-wrapper">
-                <div class="phone-label">Current</div>
-                <div class="phone">
-                    <div class="phone-screenshot"><img src="current-homepage.png" alt="Current homepage"></div>
-                </div>
-            </div>
-            <div class="phone-wrapper">
-                <div class="phone-label">Proposed</div>
-                <div class="phone interactive" id="phone-hp-trust">
-                    <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
-                </div>
-                <div class="phone-scroll-hint">Scroll to explore</div>
-            </div>
-        </div>
-        <div class="notes-container">
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">No trust signals, no brand story, no email capture on current site</div>
-                </div>
-            </div>
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Savoir-Faire section: Paris heritage, lead/nickel free, craftsmanship</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Founder portrait + story builds emotional brand connection</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">"Join the Inner Circle" newsletter captures emails for remarketing</div>
-                </div>
-            </div>
-        </div>
-    </div>
+            function updateNav(index) {
+                currentSlide = index;
+                var dots = document.querySelectorAll('.nav-dot');
+                dots.forEach(function (d, i) {
+                    d.className = 'nav-dot' + (i === index ? ' active' : '');
+                });
+                var num = (index + 1).toString().padStart(2, '0');
+                counter.textContent = num + ' / ' + totalSlides.toString().padStart(2, '0');
+            }
 
-    <!-- ===== SLIDE 4: PDP — GALLERY + BUYBOX ===== -->
-    <div class="card" data-index="4">
-        <div class="card-header">
-            <div class="card-label">Product Page Redesign</div>
-            <div class="card-title">Product Gallery &amp; Buybox</div>
-            <div class="card-subtitle">Enhanced gallery with zoom, video placeholder, color variant switching, and buybox accordion details</div>
-        </div>
-        <div class="phones-container">
-            <div class="phone-wrapper">
-                <div class="phone-label">Current</div>
-                <div class="phone">
-                    <div class="phone-screenshot"><img src="current-pdp.png" alt="Current product page"></div>
-                </div>
-            </div>
-            <div class="phone-wrapper">
-                <div class="phone-label">Proposed</div>
-                <div class="phone interactive">
-                    <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
-                </div>
-                <div class="phone-scroll-hint">Scroll to explore</div>
-            </div>
-        </div>
-        <div class="notes-container">
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">Basic gallery with no zoom, no video, single color only</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">No product details visible above fold — must scroll to find specs</div>
-                </div>
-            </div>
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Image zoom lightbox + video placeholder in gallery</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Color swatch switching (Platinum, Liquid Onyx, Raspberry Glaze)</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Accordion details + payment icons below Add to Cart</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== SLIDE 5: PDP — STORYTELLING SECTIONS ===== -->
-    <div class="card" data-index="5">
-        <div class="card-header">
-            <div class="card-label">Product Page Redesign</div>
-            <div class="card-title">Craftsmanship &amp; Features</div>
-            <div class="card-subtitle">Dedicated sections for material quality, bag features with close-up imagery, and sticky section navigation</div>
-        </div>
-        <div class="phones-container">
-            <div class="phone-wrapper">
-                <div class="phone-label">Current</div>
-                <div class="phone">
-                    <div class="phone-screenshot"><img src="current-pdp.png" alt="Current product page"></div>
-                </div>
-            </div>
-            <div class="phone-wrapper">
-                <div class="phone-label">Proposed</div>
-                <div class="phone interactive" id="phone-pdp-features">
-                    <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
-                </div>
-                <div class="phone-scroll-hint">Scroll to explore</div>
-            </div>
-        </div>
-        <div class="notes-container">
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">Current PDP has no material/craftsmanship storytelling</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">No close-up feature imagery, no section navigation</div>
-                </div>
-            </div>
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Material &amp; Craftsmanship section with editorial photography</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Alternating bag features with close-up detail shots</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Sticky section nav: Overview, Craftsmanship, Features, Cross-sell, Reviews</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== SLIDE 6: PDP — SOCIAL PROOF + CROSS-SELL ===== -->
-    <div class="card" data-index="6">
-        <div class="card-header">
-            <div class="card-label">Product Page Redesign</div>
-            <div class="card-title">Cross-sell, Reviews &amp; Instagram</div>
-            <div class="card-subtitle">Product recommendations from the real catalog, customer reviews, and Instagram community grid</div>
-        </div>
-        <div class="phones-container">
-            <div class="phone-wrapper">
-                <div class="phone-label">Current</div>
-                <div class="phone">
-                    <div class="phone-screenshot"><img src="current-pdp.png" alt="Current product page"></div>
-                </div>
-            </div>
-            <div class="phone-wrapper">
-                <div class="phone-label">Proposed</div>
-                <div class="phone interactive" id="phone-pdp-social">
-                    <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
-                </div>
-                <div class="phone-scroll-hint">Scroll to explore</div>
-            </div>
-        </div>
-        <div class="notes-container">
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet"></div>
-                    <div class="note-text">No cross-sell, no reviews, no social proof on current PDP</div>
-                </div>
-            </div>
-            <div class="note-column">
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">"You May Also Like" with real products from catalog (Aisha, Ange, Archie)</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Customer reviews section with star ratings</div>
-                </div>
-                <div class="note-item">
-                    <div class="note-bullet green"></div>
-                    <div class="note-text">Instagram grid builds community + social proof</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== SLIDE 7: SUMMARY ===== -->
-    <div class="summary-slide card" data-index="7">
-        <div class="card-label" style="margin-bottom: 12px;">A by Anyah</div>
-        <div class="summary-title">Key Improvements</div>
-        <div class="summary-grid">
-            <div class="summary-item">
-                <div class="summary-number">01</div>
-                <div class="summary-content">
-                    <h3>Brand Discovery</h3>
-                    <p>Homepage transforms from a dead-end video gate to a full editorial experience with manifesto, collections, and product discovery</p>
-                </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-number">02</div>
-                <div class="summary-content">
-                    <h3>Trust &amp; Story</h3>
-                    <p>Craftsmanship details, Paris heritage, founder story, and quality materials build confidence to justify luxury pricing</p>
-                </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-number">03</div>
-                <div class="summary-content">
-                    <h3>Product Experience</h3>
-                    <p>Enhanced PDP with zoom gallery, color switching, video, section navigation, and accordion details above fold</p>
-                </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-number">04</div>
-                <div class="summary-content">
-                    <h3>Conversion Elements</h3>
-                    <p>Newsletter capture, cross-sell, Instagram social proof, reviews, and payment icons — all woven subtly into the editorial flow</p>
-                </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-number">05</div>
-                <div class="summary-content">
-                    <h3>Navigation &amp; UX</h3>
-                    <p>Sticky header with search/cart, section nav on PDP, consistent header/footer across all pages</p>
-                </div>
-            </div>
-            <div class="summary-item">
-                <div class="summary-number">06</div>
-                <div class="summary-content">
-                    <h3>Mobile First</h3>
-                    <p>Fully responsive at 390px, sticky mobile CTA on PDP, touch-friendly galleries, no horizontal overflow</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- Navigation Bar -->
-<div class="nav-bar">
-    <div class="nav-dots" id="navDots"></div>
-    <div class="nav-counter" id="navCounter">01 / 08</div>
-    <div class="nav-arrows">
-        <button class="nav-arrow" id="prevBtn" aria-label="Previous slide">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-        </button>
-        <button class="nav-arrow" id="nextBtn" aria-label="Next slide">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-        </button>
-    </div>
-</div>
-
-<script>
-(function() {
-    var container = document.getElementById('scrollContainer');
-    var cards = document.querySelectorAll('.card');
-    var dotsContainer = document.getElementById('navDots');
-    var counter = document.getElementById('navCounter');
-    var prevBtn = document.getElementById('prevBtn');
-    var nextBtn = document.getElementById('nextBtn');
-    var totalSlides = cards.length;
-    var currentSlide = 0;
-
-    // Create dots
-    for (var i = 0; i < totalSlides; i++) {
-        var dot = document.createElement('div');
-        dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('data-index', i);
-        dot.addEventListener('click', function() {
-            goToSlide(parseInt(this.getAttribute('data-index')));
-        });
-        dotsContainer.appendChild(dot);
-    }
-
-    function updateNav(index) {
-        currentSlide = index;
-        var dots = document.querySelectorAll('.nav-dot');
-        dots.forEach(function(d, i) {
-            d.className = 'nav-dot' + (i === index ? ' active' : '');
-        });
-        var num = (index + 1).toString().padStart(2, '0');
-        counter.textContent = num + ' / ' + totalSlides.toString().padStart(2, '0');
-    }
-
-    function goToSlide(index) {
-        if (index < 0 || index >= totalSlides) return;
-        cards[index].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-        updateNav(index);
-    }
-
-    prevBtn.addEventListener('click', function() {
-        goToSlide(currentSlide - 1);
-    });
-
-    nextBtn.addEventListener('click', function() {
-        goToSlide(currentSlide + 1);
-    });
-
-    // Track scroll position
-    var scrollTimeout;
-    container.addEventListener('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(function() {
-            var scrollLeft = container.scrollLeft;
-            var slideWidth = window.innerWidth;
-            var index = Math.round(scrollLeft / slideWidth);
-            if (index !== currentSlide) {
+            function goToSlide(index) {
+                if (index < 0 || index >= totalSlides) return;
+                cards[index].scrollIntoView({ behavior: 'smooth', inline: 'start' });
                 updateNav(index);
             }
-        }, 100);
-    });
 
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-            e.preventDefault();
-            goToSlide(currentSlide + 1);
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-            e.preventDefault();
-            goToSlide(currentSlide - 1);
-        }
-    });
-})();
-</script>
+            prevBtn.addEventListener('click', function () {
+                goToSlide(currentSlide - 1);
+            });
+
+            nextBtn.addEventListener('click', function () {
+                goToSlide(currentSlide + 1);
+            });
+
+            // Track scroll position
+            var scrollTimeout;
+            container.addEventListener('scroll', function () {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(function () {
+                    var scrollLeft = container.scrollLeft;
+                    var slideWidth = window.innerWidth;
+                    var index = Math.round(scrollLeft / slideWidth);
+                    if (index !== currentSlide) {
+                        updateNav(index);
+                    }
+                }, 100);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    goToSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    goToSlide(currentSlide - 1);
+                }
+            });
+        })();
+    </script>
 
 </body>
+
 </html>
