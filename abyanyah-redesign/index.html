@@ -233,20 +233,7 @@
             z-index: 10;
         }
 
-        .phone iframe {
-            width: 390px;
-            height: 844px;
-            border: none;
-            transform: scale(0.7179);
-            transform-origin: top left;
-            pointer-events: none;
-        }
-
-        .phone.interactive iframe {
-            pointer-events: auto;
-        }
-
-        /* Current site screenshot (scrollable image) */
+        /* Scrollable screenshot inside phone */
         .phone-screenshot {
             width: 100%;
             height: 100%;
@@ -485,10 +472,9 @@
                 </div>
                 <div class="phone-wrapper">
                     <div class="phone-label">Proposed</div>
-                    <div class="phone interactive">
-                        <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
+                    <div class="phone">
+                        <div class="phone-screenshot" data-scroll="0"><img src="redesign-homepage.png" alt="Proposed homepage"></div>
                     </div>
-                    <div class="phone-scroll-hint">Scroll to explore</div>
                 </div>
             </div>
             <div class="notes-container">
@@ -534,10 +520,9 @@
                 </div>
                 <div class="phone-wrapper">
                     <div class="phone-label">Proposed</div>
-                    <div class="phone interactive" id="phone-hp-editorial">
-                        <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
+                    <div class="phone">
+                        <div class="phone-screenshot" data-scroll="582"><img src="redesign-homepage.png" alt="Proposed homepage"></div>
                     </div>
-                    <div class="phone-scroll-hint">Scroll to explore</div>
                 </div>
             </div>
             <div class="notes-container">
@@ -579,10 +564,9 @@
                 </div>
                 <div class="phone-wrapper">
                     <div class="phone-label">Proposed</div>
-                    <div class="phone interactive" id="phone-hp-trust">
-                        <iframe src="abyanyah-homepage-redesign.html" loading="lazy"></iframe>
+                    <div class="phone">
+                        <div class="phone-screenshot" data-scroll="3239"><img src="redesign-homepage.png" alt="Proposed homepage"></div>
                     </div>
-                    <div class="phone-scroll-hint">Scroll to explore</div>
                 </div>
             </div>
             <div class="notes-container">
@@ -627,10 +611,9 @@
                 </div>
                 <div class="phone-wrapper">
                     <div class="phone-label">Proposed</div>
-                    <div class="phone interactive">
-                        <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
+                    <div class="phone">
+                        <div class="phone-screenshot" data-scroll="0"><img src="redesign-pdp.png" alt="Proposed product page"></div>
                     </div>
-                    <div class="phone-scroll-hint">Scroll to explore</div>
                 </div>
             </div>
             <div class="notes-container">
@@ -678,10 +661,9 @@
                 </div>
                 <div class="phone-wrapper">
                     <div class="phone-label">Proposed</div>
-                    <div class="phone interactive" id="phone-pdp-features">
-                        <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
+                    <div class="phone">
+                        <div class="phone-screenshot" data-scroll="1054"><img src="redesign-pdp.png" alt="Proposed product page"></div>
                     </div>
-                    <div class="phone-scroll-hint">Scroll to explore</div>
                 </div>
             </div>
             <div class="notes-container">
@@ -730,10 +712,9 @@
                 </div>
                 <div class="phone-wrapper">
                     <div class="phone-label">Proposed</div>
-                    <div class="phone interactive" id="phone-pdp-social">
-                        <iframe src="ada-platinum-pdp-redesign.html" loading="lazy"></iframe>
+                    <div class="phone">
+                        <div class="phone-screenshot" data-scroll="3529"><img src="redesign-pdp.png" alt="Proposed product page"></div>
                     </div>
-                    <div class="phone-scroll-hint">Scroll to explore</div>
                 </div>
             </div>
             <div class="notes-container">
@@ -869,10 +850,20 @@
                 counter.textContent = num + ' / ' + totalSlides.toString().padStart(2, '0');
             }
 
+            function scrollPhonesToSection(card) {
+                var screenshots = card.querySelectorAll('.phone-screenshot[data-scroll]');
+                screenshots.forEach(function (el) {
+                    var target = parseInt(el.getAttribute('data-scroll'), 10);
+                    el.scrollTop = target;
+                });
+            }
+
             function goToSlide(index) {
                 if (index < 0 || index >= totalSlides) return;
                 cards[index].scrollIntoView({ behavior: 'smooth', inline: 'start' });
                 updateNav(index);
+                // Auto-scroll proposed phone screenshots to the relevant section
+                setTimeout(function () { scrollPhonesToSection(cards[index]); }, 100);
             }
 
             prevBtn.addEventListener('click', function () {
@@ -893,8 +884,24 @@
                     var index = Math.round(scrollLeft / slideWidth);
                     if (index !== currentSlide) {
                         updateNav(index);
+                        scrollPhonesToSection(cards[index]);
                     }
                 }, 100);
+            });
+
+            // Auto-scroll screenshots on image load
+            document.querySelectorAll('.phone-screenshot[data-scroll] img').forEach(function (img) {
+                img.addEventListener('load', function () {
+                    var container = this.parentElement;
+                    var target = parseInt(container.getAttribute('data-scroll'), 10);
+                    container.scrollTop = target;
+                });
+                // If already loaded (cached)
+                if (img.complete) {
+                    var container = img.parentElement;
+                    var target = parseInt(container.getAttribute('data-scroll'), 10);
+                    container.scrollTop = target;
+                }
             });
 
             // Keyboard navigation
