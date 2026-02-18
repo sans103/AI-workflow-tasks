@@ -2176,6 +2176,177 @@
     }
 
     /* ============================================
+       BREED SELECTOR SECTION
+       ============================================ */
+    .breed-section {
+      background: #FFFFFF;
+    }
+
+    .breed-grid {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .breed-image-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #F5F5F5;
+      box-shadow: 0 8px 32px rgba(50, 27, 88, 0.1);
+    }
+
+    .breed-image-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+    }
+
+    .breed-image-wrap img.hidden {
+      opacity: 0;
+    }
+
+    .breed-selector {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .breed-btn {
+      background: #FFFFFF;
+      border: 2px solid #E1E3E4;
+      border-radius: 35px;
+      padding: 12px 8px;
+      font-family: Figtree, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #321B58;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .breed-btn:hover {
+      border-color: #321B58;
+    }
+
+    .breed-btn.active {
+      border-color: #321B58;
+      background: #F9F7FC;
+    }
+
+    .breed-info {
+      background: #F9F7FC;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .breed-info h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .breed-info__size-badge {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .breed-info__size-badge--small {
+      background: #F3E8FF;
+      color: #321B58;
+    }
+
+    .breed-info__size-badge--medium {
+      background: #F3E8FF;
+      color: #321B58;
+    }
+
+    .breed-info__size-badge--large {
+      background: #F3E8FF;
+      color: #321B58;
+    }
+
+    .breed-info__detail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #3E3E3E;
+      margin-bottom: 8px;
+    }
+
+    .breed-info__detail svg {
+      width: 16px;
+      height: 16px;
+      stroke: #321B58;
+      fill: none;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    .breed-info__tip {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: #F9F7FC;
+      border-radius: 10px;
+      border-left: 3px solid #321B58;
+      font-size: 13px;
+      color: #3E3E3E;
+      line-height: 1.5;
+    }
+
+    .breed-info__tip strong {
+      color: #321B58;
+      font-weight: 700;
+    }
+
+    .breed-cta {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .breed-grid {
+        display: block;
+      }
+
+      .breed-image-wrap {
+        margin-bottom: 24px;
+      }
+
+      .breed-selector {
+        display: flex;
+        overflow-x: auto;
+        gap: 8px;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .breed-selector::-webkit-scrollbar {
+        display: none;
+      }
+
+      .breed-btn {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 10px 16px;
+      }
+    }
+
+    /* ============================================
        SECTION 10: FOOTER
        ============================================ */
     .site-footer {
@@ -2287,6 +2458,7 @@
       <ul class="sticky-nav__links">
         <li><a href="#hero" data-section="hero">Overview</a></li>
         <li><a href="#how-it-works" data-section="how-it-works">How It Works</a></li>
+        <li><a href="#breed-selector" data-section="breed-selector">Breeds</a></li>
         <li><a href="#comparison" data-section="comparison">Compare</a></li>
         <li><a href="#reviews" data-section="reviews">Reviews</a></li>
         <li><a href="#faq" data-section="faq">FAQ</a></li>
@@ -2308,6 +2480,7 @@
     </button>
     <a href="#hero" class="mobile-nav-link">Overview</a>
     <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+    <a href="#breed-selector" class="mobile-nav-link">Breeds</a>
     <a href="#comparison" class="mobile-nav-link">Compare</a>
     <a href="#reviews" class="mobile-nav-link">Reviews</a>
     <a href="#faq" class="mobile-nav-link">FAQ</a>
@@ -2776,6 +2949,62 @@
       <div style="margin-top: 32px;" class="reveal">
         <a href="#buybox" class="btn-primary">Get The Sidekick&reg; · $38.99</a>
         <p style="margin-top: 12px; font-size: 14px; color: #3E3E3E;">30-day money-back guarantee. No questions asked.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BREED SELECTOR SECTION
+       ============================================ -->
+  <section class="breed-section section-padding" id="breed-selector">
+    <div class="container">
+      <h2 class="reveal text-center">See The Sidekick on Your Breed</h2>
+      <p class="reveal text-center" style="font-size:17px;color:#3E3E3E;max-width:600px;margin:0 auto 40px;">The Sidekick works on every breed and size. Select your dog below to see the perfect fit.</p>
+
+      <div class="breed-grid reveal">
+        <!-- Left: Image display -->
+        <div>
+          <div class="breed-image-wrap" id="breedImageWrap">
+            <img src="images/breed-golden-retriever.jpg" alt="Golden Retriever wearing The Sidekick" id="breedImg1" loading="lazy">
+            <img src="images/breed-german-shepherd.jpg" alt="German Shepherd wearing The Sidekick" id="breedImg2" class="hidden" loading="lazy">
+            <img src="images/breed-labrador.jpg" alt="Labrador wearing The Sidekick" id="breedImg3" class="hidden" loading="lazy">
+            <img src="images/breed-french-bulldog.jpg" alt="French Bulldog wearing The Sidekick" id="breedImg4" class="hidden" loading="lazy">
+            <img src="images/breed-husky.jpg" alt="Husky wearing The Sidekick" id="breedImg5" class="hidden" loading="lazy">
+            <img src="images/breed-poodle.jpg" alt="Poodle / Doodle wearing The Sidekick" id="breedImg6" class="hidden" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Right: Selector + Info -->
+        <div>
+          <div class="breed-selector" id="breedSelector">
+            <button class="breed-btn active" onclick="selectBreed(this, 0)" aria-pressed="true">Golden Retriever</button>
+            <button class="breed-btn" onclick="selectBreed(this, 1)" aria-pressed="false">German Shepherd</button>
+            <button class="breed-btn" onclick="selectBreed(this, 2)" aria-pressed="false">Labrador</button>
+            <button class="breed-btn" onclick="selectBreed(this, 3)" aria-pressed="false">French Bulldog</button>
+            <button class="breed-btn" onclick="selectBreed(this, 4)" aria-pressed="false">Husky</button>
+            <button class="breed-btn" onclick="selectBreed(this, 5)" aria-pressed="false">Poodle / Doodle</button>
+          </div>
+
+          <div class="breed-info" id="breedInfo">
+            <h3 id="breedName">Golden Retriever</h3>
+            <span class="breed-info__size-badge breed-info__size-badge--large" id="breedSizeBadge">Large</span>
+            <div class="breed-info__detail">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="breedWeight">55&ndash;75 lbs</span>
+            </div>
+            <div class="breed-info__detail">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Recommended size: <strong id="breedRecommended">Regular</strong></span>
+            </div>
+            <div class="breed-info__tip" id="breedTip">
+              <strong>Trainer tip:</strong> Golden Retrievers respond quickly to nose pressure training &mdash; most owners see results on the very first walk.
+            </div>
+          </div>
+
+          <div class="breed-cta">
+            <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary">Get The Sidekick &middot; $38.99</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -3324,6 +3553,126 @@
       if (!isOpen) {
         item.classList.add('open');
       }
+    }
+
+    // ============================================
+    // BREED SELECTOR
+    // ============================================
+    var breedData = [
+      {
+        name: 'Golden Retriever',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '55\u201375 lbs',
+        recommended: 'Regular',
+        tip: 'Golden Retrievers respond quickly to nose pressure training \u2014 most owners see results on the very first walk.',
+        imgId: 'breedImg1'
+      },
+      {
+        name: 'German Shepherd',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '50\u201390 lbs',
+        recommended: 'Regular',
+        tip: 'German Shepherds are highly intelligent and typically adapt to The Sidekick within 1\u20132 sessions.',
+        imgId: 'breedImg2'
+      },
+      {
+        name: 'Labrador',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '55\u201380 lbs',
+        recommended: 'Regular',
+        tip: 'Labs are food-motivated learners \u2014 pair The Sidekick with treats for even faster results.',
+        imgId: 'breedImg3'
+      },
+      {
+        name: 'French Bulldog',
+        sizeLabel: 'Small',
+        sizeClass: 'breed-info__size-badge--small',
+        weight: '16\u201328 lbs',
+        recommended: 'Mini',
+        tip: 'French Bulldogs have shorter snouts, so the Mini size provides the ideal gentle fit without pressure.',
+        imgId: 'breedImg4'
+      },
+      {
+        name: 'Husky',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '35\u201360 lbs',
+        recommended: 'Regular',
+        tip: 'Huskies are strong pullers but respond well to the nose pressure method \u2014 consistency is key.',
+        imgId: 'breedImg5'
+      },
+      {
+        name: 'Poodle / Doodle',
+        sizeLabel: 'Medium',
+        sizeClass: 'breed-info__size-badge--medium',
+        weight: '40\u201370 lbs',
+        recommended: 'Regular',
+        tip: 'Poodles and Doodles are eager-to-please and usually master loose-leash walking faster than most breeds.',
+        imgId: 'breedImg6'
+      }
+    ];
+
+    var currentBreedIndex = 0;
+
+    // Preload all breed images
+    breedData.forEach(function(b) {
+      var img = document.getElementById(b.imgId);
+      if (img && img.dataset.src) {
+        var preloader = new Image();
+        preloader.src = img.dataset.src;
+      }
+    });
+
+    function selectBreed(btn, index) {
+      if (index === currentBreedIndex) return;
+
+      // Update button states
+      document.querySelectorAll('.breed-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      // Crossfade images
+      var currentImg = document.getElementById(breedData[currentBreedIndex].imgId);
+      var nextImg = document.getElementById(breedData[index].imgId);
+
+      if (currentImg && nextImg) {
+        currentImg.style.opacity = '0';
+        nextImg.style.opacity = '1';
+        nextImg.classList.remove('hidden');
+        setTimeout(function() {
+          currentImg.classList.add('hidden');
+        }, 400);
+      }
+
+      // Update breed info with slide-up animation
+      var breedInfo = document.getElementById('breedInfo');
+      breedInfo.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      breedInfo.style.opacity = '0';
+      breedInfo.style.transform = 'translateY(12px)';
+
+      setTimeout(function() {
+        var breed = breedData[index];
+        document.getElementById('breedName').textContent = breed.name;
+
+        var badge = document.getElementById('breedSizeBadge');
+        badge.textContent = breed.sizeLabel;
+        badge.className = 'breed-info__size-badge ' + breed.sizeClass;
+
+        document.getElementById('breedWeight').textContent = breed.weight;
+        document.getElementById('breedRecommended').textContent = breed.recommended;
+        document.getElementById('breedTip').innerHTML = '<strong>Trainer tip:</strong> ' + breed.tip;
+
+        breedInfo.style.opacity = '1';
+        breedInfo.style.transform = 'translateY(0)';
+      }, 200);
+
+      currentBreedIndex = index;
     }
   </script>
 
