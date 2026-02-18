@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Sidekick® uses gentle nose pressure to stop pulling — not pain or choking. Trainer & Vet Approved. 4.7 stars, 2,000+ reviews. $38.99 with 30-day guarantee.">
+  <title>The Sidekick® | Gentle Head Collar That Stops Pulling | Heather's Heroes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { font-family: Figtree, sans-serif; font-size: 18px; font-weight: 400; line-height: 1.6; color: #321B58; background-color: #FFFFFF; overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    h1 { font-family: Figtree, sans-serif; font-size: 42px; font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; color: #321B58; }
+    h2 { font-family: Figtree, sans-serif; font-size: 32px; font-weight: 700; line-height: 1.15; letter-spacing: -0.025em; color: #321B58; }
+    h3 { font-family: Figtree, sans-serif; font-size: 21px; font-weight: 600; line-height: 1.2; letter-spacing: -0.025em; color: #321B58; }
+    p { font-family: Figtree, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.6; color: #18181B; }
+
+    /* ============================================
+       UTILITY
+       ============================================ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+    .section-padding { padding: 72px 0; }
+    .text-center { text-align: center; }
+
+    .btn-primary {
+      display: inline-block; background-color: #FF8A30; color: #FFFFFF; border: none;
+      border-radius: 35px; font-family: Figtree, sans-serif; font-weight: 700; font-size: 16px;
+      padding: 16px 32px; cursor: pointer; transition: background 0.15s ease; text-align: center;
+    }
+    .btn-primary:hover { background-color: #FFC496; }
+
+    .btn-gold {
+      display: inline-block; background-color: #FFC035; color: #321B58; border: none;
+      border-radius: 35px; font-family: Figtree, sans-serif; font-weight: 700; font-size: 16px;
+      padding: 16px 32px; cursor: pointer; transition: background 0.15s ease; text-align: center;
+    }
+    .btn-gold:hover { background-color: #FFD166; }
+
+    .btn-outline-purple {
+      display: inline-block; background-color: transparent; color: #321B58; border: 2px solid #321B58;
+      border-radius: 35px; font-family: Figtree, sans-serif; font-weight: 700; font-size: 16px;
+      padding: 14px 32px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease; text-align: center;
+    }
+    .btn-outline-purple:hover { background-color: #321B58; color: #FFFFFF; }
+
+    /* ============================================
+       SCROLL REVEAL
+       ============================================ */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============================================
+       STICKY NAV
+       ============================================ */
+    .sticky-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background-color: #FFC035; transition: box-shadow 0.3s ease;
+    }
+    .sticky-nav.scrolled { box-shadow: 0 2px 12px rgba(50,27,88,0.15); }
+    .sticky-nav__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1200px; margin: 0 auto; padding: 12px 16px;
+    }
+    .sticky-nav__logo img { height: 40px; width: auto; }
+    .sticky-nav__links { display: flex; align-items: center; gap: 24px; list-style: none; }
+    .sticky-nav__links a { font-size: 14px; font-weight: 700; color: #321B58; transition: opacity 0.15s ease; white-space: nowrap; }
+    .sticky-nav__links a:hover { opacity: 0.7; }
+    .sticky-nav__links a.active { border-bottom: 2px solid #321B58; padding-bottom: 2px; }
+    .sticky-nav__cta {
+      display: inline-block; background-color: #FF8A30; color: #FFFFFF; border: none;
+      border-radius: 35px; font-family: Figtree, sans-serif; font-weight: 700; font-size: 13px;
+      padding: 10px 20px; cursor: pointer; transition: background 0.15s ease; white-space: nowrap;
+    }
+    .sticky-nav__cta:hover { background-color: #FFC496; }
+    .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-mobile-toggle svg { width: 24px; height: 24px; stroke: #321B58; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    .mobile-nav-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(50,27,88,0.95); z-index: 999; padding: 80px 24px 24px;
+    }
+    .mobile-nav-overlay.open { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+    .mobile-nav-overlay a { color: #FFFFFF; font-size: 20px; font-weight: 700; }
+    .mobile-nav-close { position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .mobile-nav-close svg { width: 28px; height: 28px; stroke: #FFFFFF; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    @media (max-width: 768px) {
+      .sticky-nav__links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .sticky-nav__inner { padding: 10px 16px; }
+      .sticky-nav__cta { display: none; }
+      .sticky-nav.scrolled .sticky-nav__cta { display: inline-block; font-size: 12px; padding: 8px 16px; }
+    }
+
+    /* ============================================
+       SECTION 1: HERO / BUYBOX
+       ============================================ */
+    .pdp-section {
+      background-color: #FFFFFF;
+      padding: 72px 0 64px;
+      margin-top: 64px;
+    }
+
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* Gallery */
+    .pdp-gallery { position: relative; }
+    .pdp-gallery__main {
+      width: 100%; border-radius: 16px; aspect-ratio: 1/1; object-fit: cover;
+      background: #F5F5F5; border: 1px solid #E1E3E4;
+    }
+    .pdp-gallery__thumbs { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+    .pdp-gallery__thumb {
+      width: 72px; height: 72px; border-radius: 8px; border: 2px solid transparent;
+      overflow: hidden; cursor: pointer; opacity: 0.6; transition: opacity 0.2s ease, border-color 0.2s ease; flex-shrink: 0;
+    }
+    .pdp-gallery__thumb.active { border-color: #321B58; opacity: 1; }
+    .pdp-gallery__thumb:hover { opacity: 1; }
+    .pdp-gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Info column */
+    .pdp-info { position: sticky; top: 80px; }
+
+    .pdp-info h1 {
+      font-size: 34px;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+
+    .pdp-info__sub {
+      font-size: 16px;
+      color: #3E3E3E;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    /* Trust icons row */
+    .pdp-trust-icons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .pdp-trust-icon-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #321B58;
+    }
+    .pdp-trust-icon-item svg {
+      width: 18px; height: 18px; stroke: #13A165; fill: none; stroke-width: 2.5;
+      stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
+    }
+
+    /* Size + Color selectors */
+    .pdp-option-label {
+      font-size: 13px; font-weight: 700; color: #321B58; margin-bottom: 8px;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .pdp-sizes { display: flex; gap: 8px; margin-bottom: 20px; }
+    .pdp-size-btn {
+      flex: 1; padding: 12px 16px; border: 2px solid #E1E3E4; border-radius: 12px;
+      background: #FFFFFF; cursor: pointer; transition: border-color 0.15s ease; text-align: center;
+    }
+    .pdp-size-btn.selected { border-color: #321B58; }
+    .pdp-size-btn:hover { border-color: #321B58; }
+    .pdp-size-name { display: block; font-size: 14px; font-weight: 700; color: #321B58; }
+    .pdp-size-desc { display: block; font-size: 12px; color: #3E3E3E; margin-top: 2px; }
+
+    .pdp-colors { display: flex; gap: 10px; margin-bottom: 24px; align-items: center; }
+    .pdp-color-swatch {
+      width: 36px; height: 36px; border-radius: 50%; border: 3px solid transparent;
+      cursor: pointer; transition: border-color 0.15s ease; position: relative;
+    }
+    .pdp-color-swatch.selected { border-color: #321B58; }
+    .pdp-color-swatch:hover { border-color: #321B58; }
+    .pdp-color-swatch::after {
+      content: ''; display: block; width: calc(100% - 4px); height: calc(100% - 4px);
+      border-radius: 50%; position: absolute; top: 2px; left: 2px;
+    }
+    .pdp-color-label { font-size: 13px; color: #3E3E3E; margin-left: 4px; }
+    .swatch-red::after { background-color: #D32F2F; }
+    .swatch-blue::after { background-color: #1976D2; }
+    .swatch-black::after { background-color: #212121; }
+    .swatch-turquoise::after { background-color: #00ACC1; }
+    .swatch-purple::after { background-color: #7B1FA2; }
+
+    /* ATC button */
+    .pdp-atc {
+      width: 100%; background-color: #FF8A30; color: #FFFFFF; border: none;
+      border-radius: 35px; font-family: Figtree, sans-serif; font-weight: 700; font-size: 18px;
+      padding: 18px 32px; cursor: pointer; transition: background 0.15s ease; margin-bottom: 16px;
+    }
+    .pdp-atc:hover { background-color: #FFC496; }
+
+    /* Micro trust bar below ATC */
+    .pdp-micro-trust {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+      background: #F9F7FC;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .pdp-micro-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .pdp-micro-item svg {
+      width: 18px; height: 18px; stroke: #FF8A30; fill: none; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 1px;
+    }
+    .pdp-micro-item-text strong {
+      display: block; font-size: 12px; font-weight: 700; color: #321B58; line-height: 1.3;
+    }
+    .pdp-micro-item-text span { font-size: 11px; color: #3E3E3E; }
+
+    /* Hesitation busters */
+    .pdp-hesitations {
+      display: flex; flex-direction: column; gap: 0; margin-bottom: 24px;
+      background: #F9F7FC; border-radius: 12px; overflow: hidden;
+    }
+    .pdp-hesitation { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EDE8F5; }
+    .pdp-hesitation:last-child { border-bottom: none; }
+    .pdp-hesitation-icon {
+      width: 36px; height: 36px; border-radius: 50%; background: #FFFFFF; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 1px 3px rgba(50,27,88,0.08);
+    }
+    .pdp-hesitation-icon svg { width: 18px; height: 18px; stroke: #321B58; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .pdp-hesitation-text strong { display: block; font-size: 14px; font-weight: 700; color: #321B58; line-height: 1.3; }
+    .pdp-hesitation-text span { font-size: 12px; color: #3E3E3E; line-height: 1.4; }
+
+    /* Trust row */
+    .pdp-trust-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 20px; }
+    .pdp-trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #3E3E3E; }
+    .pdp-trust-item svg { width: 16px; height: 16px; stroke: #321B58; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* Accordion */
+    .pdp-accordion { border-top: 1px solid #E1E3E4; }
+    .pdp-accordion-item { border-bottom: 1px solid #E1E3E4; }
+    .pdp-accordion-header {
+      width: 100%; background: none; border: none; padding: 16px 0; display: flex;
+      justify-content: space-between; align-items: center; cursor: pointer;
+      font-family: Figtree, sans-serif; font-size: 15px; font-weight: 700; color: #321B58;
+    }
+    .pdp-accordion-header svg { width: 18px; height: 18px; stroke: #321B58; fill: none; stroke-width: 2; transition: transform 0.2s ease; }
+    .pdp-accordion-item.open .pdp-accordion-header svg { transform: rotate(180deg); }
+    .pdp-accordion-body { display: none; padding: 0 0 16px; }
+    .pdp-accordion-item.open .pdp-accordion-body { display: block; }
+    .pdp-accordion-body p { font-size: 14px; color: #3E3E3E; }
+
+    /* Payment icons */
+    .pdp-payment-icons { display: flex; gap: 8px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+    .pdp-payment-icons svg { height: 24px; width: auto; }
+
+    @media (max-width: 768px) {
+      .pdp-section { padding: 24px 0 48px; margin-top: 60px; }
+      .pdp-grid { display: block; }
+      .pdp-gallery { margin-bottom: 28px; }
+      .pdp-info { position: static; }
+      .pdp-info h1 { font-size: 26px; }
+      .pdp-micro-trust { grid-template-columns: 1fr 1fr; }
+      .pdp-trust-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ============================================
+       SECTION 2: COMPARISON TABLE
+       ============================================ */
+    .comparison-section { background-color: #F5F5F5; }
+    .comparison-section h2 { margin-bottom: 8px; }
+    .comparison-section .section-sub { font-size: 17px; color: #3E3E3E; margin-bottom: 40px; }
+
+    .comparison-cards {
+      max-width: 960px; margin: 0 auto; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(50,27,88,0.1);
+    }
+    .compare-row {
+      display: grid; grid-template-columns: 180px 1fr 1fr 1fr;
+      background: #FFFFFF; border-bottom: 1px solid #F2F2F2;
+    }
+    .compare-row:last-child { border-bottom: none; }
+    .compare-row--header { background: #321B58; }
+    .compare-row--header .compare-cell { color: #FFFFFF; font-size: 13px; font-weight: 700; padding: 16px 14px; text-transform: uppercase; letter-spacing: 0.03em; }
+    .compare-row--header .compare-cell--winner { background: #FF8A30; color: #FFFFFF; }
+    .compare-cell { padding: 18px 14px; font-size: 14px; color: #3E3E3E; line-height: 1.5; text-align: left; display: flex; align-items: center; }
+    .compare-cell--label { font-weight: 700; color: #321B58; font-size: 14px; background: #F9F7FC; }
+    .compare-cell--winner { background: rgba(255,138,48,0.06); color: #321B58; font-weight: 700; font-size: 14px; gap: 8px; }
+    .compare-cell--bad { color: #B91C1C; }
+    .compare-check { width: 20px; height: 20px; stroke: #FF8A30; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    .comparison-footer { text-align: center; margin-top: 32px; }
+    .comparison-footer p { font-size: 16px; color: #3E3E3E; margin-bottom: 20px; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 768px) {
+      .comparison-cards { border-radius: 16px; }
+      .compare-row { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; border-bottom: 2px solid #F2F2F2; }
+      .compare-row--header { display: none; }
+      .compare-cell { padding: 10px 12px; font-size: 13px; }
+      .compare-cell--label { grid-column: 1 / -1; background: #321B58; color: #FFFFFF; font-size: 14px; padding: 12px 14px; }
+      .compare-cell--winner { grid-column: 1 / -1; background: rgba(255,138,48,0.08); padding: 14px; font-size: 14px; }
+    }
+
+    /* ============================================
+       SECTION 3: PROBLEM + HEAD COLLAR vs SIDEKICK
+       ============================================ */
+    .problem-section { background: #FFFFFF; }
+    .problem-section h2 { margin-bottom: 16px; }
+    .problem-section .section-lead { font-size: 17px; color: #6B6B6B; margin-bottom: 40px; }
+
+    .problem-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+    .problem-card { background: #FFFFFF; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 12px rgba(50,27,88,0.07); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .problem-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(50,27,88,0.13); }
+    .problem-card__top { padding: 28px 24px 24px; background: linear-gradient(135deg, #321B58, #4f2b8b); position: relative; }
+    .problem-card__top::after { content: ''; position: absolute; bottom: -18px; left: 0; right: 0; height: 36px; background: #FFFFFF; border-radius: 50% 50% 0 0; }
+    .problem-card__top h3 { color: #FFFFFF; font-size: 20px; position: relative; z-index: 1; }
+    .problem-card__body { padding: 16px 24px 28px; }
+    .problem-card__body p { font-size: 15px; color: #3E3E3E; line-height: 1.6; }
+
+    .transition-text {
+      text-align: center; font-size: 17px; color: #3E3E3E; margin-bottom: 40px; font-style: italic;
+      padding: 0 16px;
+    }
+    .transition-text strong { color: #321B58; font-style: normal; }
+
+    /* Side-by-side comparison */
+    .vs-table { display: grid; grid-template-columns: 1fr 1fr; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(50,27,88,0.1); margin-bottom: 32px; }
+    .vs-col { }
+    .vs-col--bad .vs-header { background: #321B58; color: #FFFFFF; }
+    .vs-col--good .vs-header { background: #FF8A30; color: #FFFFFF; }
+    .vs-header { padding: 16px 20px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; }
+    .vs-row { display: flex; align-items: flex-start; gap: 10px; padding: 14px 20px; border-bottom: 1px solid #F2F2F2; background: #FFFFFF; font-size: 14px; line-height: 1.5; }
+    .vs-row:last-child { border-bottom: none; }
+    .vs-col--bad .vs-row { color: #B91C1C; }
+    .vs-col--good .vs-row { color: #321B58; font-weight: 700; }
+    .vs-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .vs-col--bad .vs-row svg { stroke: #B91C1C; }
+    .vs-col--good .vs-row svg { stroke: #13A165; }
+    .vs-row svg { width: 18px; height: 18px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .problem-cards { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .problem-cards .problem-card:last-child { grid-column: 1 / -1; max-width: 320px; margin: 0 auto; }
+      .vs-table { grid-template-columns: 1fr; }
+      .vs-col--bad { border-bottom: 2px solid #F2F2F2; }
+    }
+
+    /* ============================================
+       SECTION 4A: THE SOLUTION
+       ============================================ */
+    .solution-section { background: #FAFAFA; }
+    .solution-section h2 { margin-bottom: 8px; }
+    .solution-section .section-sub { font-size: 17px; color: #3E3E3E; margin-bottom: 40px; }
+
+    .mode-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+    .mode-card { background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 12px rgba(50,27,88,0.07); }
+    .mode-card__img { width: 100%; height: 220px; overflow: hidden; }
+    .mode-card__img img { width: 100%; height: 100%; object-fit: cover; }
+    .mode-card__body { padding: 24px; }
+    .mode-card__label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #FF8A30; margin-bottom: 4px; }
+    .mode-card__title { font-size: 20px; font-weight: 700; color: #321B58; margin-bottom: 6px; }
+    .mode-card__desc { font-size: 15px; color: #3E3E3E; line-height: 1.6; }
+
+    .solution-callout {
+      background: #321B58; color: #FFFFFF; border-radius: 16px; padding: 24px 28px;
+      font-size: 15px; line-height: 1.6;
+    }
+    .solution-callout svg { width: 20px; height: 20px; stroke: #FFC035; fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; margin-right: 12px; vertical-align: -3px; }
+
+    @media (max-width: 768px) {
+      .mode-cards { display: block; }
+      .mode-card { margin-bottom: 16px; }
+      .mode-card:last-child { margin-bottom: 0; }
+    }
+
+    /* ============================================
+       SECTION 4B: HOW TO USE
+       ============================================ */
+    .howto-section { background: #F5F5F5; }
+    .howto-section h2 { margin-bottom: 36px; }
+
+    .howto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+    .howto-col h3 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #FF8A30; margin-bottom: 16px; }
+    .howto-steps { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .howto-step { display: flex; align-items: flex-start; gap: 12px; }
+    .howto-step-num {
+      width: 28px; height: 28px; border-radius: 50%; background: #321B58; color: #FFFFFF;
+      font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .howto-step-text { font-size: 15px; color: #3E3E3E; line-height: 1.55; padding-top: 3px; }
+
+    .howto-mistakes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .howto-mistake {
+      background: #FFF3E0; border-radius: 12px; padding: 16px; display: flex; gap: 10px; align-items: flex-start;
+    }
+    .howto-mistake svg { width: 20px; height: 20px; stroke: #FF8A30; fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; margin-top: 1px; }
+    .howto-mistake p { font-size: 14px; color: #321B58; font-weight: 700; line-height: 1.4; }
+
+    .howto-link { font-size: 15px; font-weight: 700; color: #321B58; text-decoration: underline; }
+    .howto-link:hover { color: #FF8A30; }
+
+    @media (max-width: 768px) {
+      .howto-grid { display: block; }
+      .howto-col { margin-bottom: 28px; }
+      .howto-col:last-child { margin-bottom: 0; }
+      .howto-mistakes { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       SECTION 4C: WHY USE IT
+       ============================================ */
+    .whyuse-section {
+      background: linear-gradient(100deg, #321b58 40%, #4f2b8b 63%, #321b58 79%);
+      text-align: center;
+    }
+    .whyuse-section h2 { color: #FFFFFF; margin-bottom: 16px; }
+    .whyuse-section .why-body { font-size: 17px; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 700px; margin: 0 auto 28px; }
+
+    @media (max-width: 768px) {
+      .whyuse-section h2 { font-size: 26px; }
+      .whyuse-section .why-body { font-size: 16px; }
+    }
+
+    /* ============================================
+       SECTION 5A: SIZE CHART
+       ============================================ */
+    .sizechart-section { background: #FFFFFF; }
+    .sizechart-section h2 { margin-bottom: 28px; }
+
+    .size-table {
+      width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(50,27,88,0.07); margin-bottom: 20px;
+    }
+    .size-table thead tr { background: #321B58; }
+    .size-table thead th { padding: 14px 16px; color: #FFFFFF; font-size: 13px; font-weight: 700; text-align: left; text-transform: uppercase; letter-spacing: 0.04em; }
+    .size-table tbody tr { border-bottom: 1px solid #F2F2F2; }
+    .size-table tbody tr:last-child { border-bottom: none; }
+    .size-table tbody tr:nth-child(even) { background: #F9F7FC; }
+    .size-table tbody td { padding: 14px 16px; font-size: 14px; color: #3E3E3E; line-height: 1.5; }
+    .size-table tbody td:first-child { font-weight: 700; color: #321B58; }
+
+    .size-tip {
+      background: #FFF9EE; border-left: 3px solid #FFC035; padding: 14px 16px;
+      border-radius: 0 8px 8px 0; margin-bottom: 16px;
+      font-size: 14px; color: #3E3E3E; line-height: 1.5;
+    }
+    .size-tip strong { color: #321B58; }
+    .size-contact { font-size: 14px; }
+    .size-contact a { color: #321B58; font-weight: 700; text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .size-table { font-size: 13px; }
+      .size-table thead th, .size-table tbody td { padding: 10px 12px; }
+    }
+
+    /* ============================================
+       SECTION 5B: WHO IT'S FOR
+       ============================================ */
+    .whofor-section { background: #F9F7FC; }
+    .whofor-section h2 { margin-bottom: 28px; }
+
+    .whofor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .whofor-col { background: #FFFFFF; border-radius: 16px; padding: 24px 28px; }
+    .whofor-col h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 16px; }
+    .whofor-col--yes h3 { color: #13A165; }
+    .whofor-col--warn h3 { color: #FF8A30; }
+    .whofor-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .whofor-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #3E3E3E; line-height: 1.5; }
+    .whofor-item svg { width: 18px; height: 18px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 2px; }
+    .whofor-col--yes .whofor-item svg { stroke: #13A165; }
+    .whofor-col--warn .whofor-item svg { stroke: #FF8A30; }
+
+    @media (max-width: 768px) {
+      .whofor-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       SECTION 5C: SOCIAL PROOF / REVIEWS
+       ============================================ */
+    .reviews-section { background: #FFFFFF; }
+    .reviews-section h2 { margin-bottom: 32px; }
+
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; }
+    .review-card { background: #F9F7FC; border-radius: 16px; padding: 28px 24px; }
+    .review-card__stars { display: flex; gap: 2px; margin-bottom: 14px; }
+    .review-card__stars svg { width: 16px; height: 16px; fill: #FF8A30; }
+    .review-card__text { font-size: 15px; color: #3E3E3E; line-height: 1.6; margin-bottom: 14px; font-style: italic; }
+    .review-card__author { font-size: 14px; font-weight: 700; color: #321B58; }
+    .review-card__badge { display: inline-block; font-size: 11px; color: #13A165; font-weight: 700; margin-top: 4px; }
+
+    .trust-badges-row { display: flex; justify-content: center; gap: 32px; margin-bottom: 16px; flex-wrap: wrap; }
+    .trust-badge-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #321B58; }
+    .trust-badge-item svg { width: 24px; height: 24px; stroke: #321B58; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .reviews-reassurance { text-align: center; font-size: 14px; color: #3E3E3E; }
+    .reviews-reassurance strong { color: #321B58; }
+
+    @media (max-width: 768px) {
+      .reviews-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .reviews-grid .review-card:last-child { grid-column: 1 / -1; max-width: 360px; margin: 0 auto; }
+      .trust-badges-row { gap: 20px; }
+    }
+
+    /* ============================================
+       FINAL CTA
+       ============================================ */
+    .final-cta {
+      background: linear-gradient(100deg, #321b58 40%, #4f2b8b 63%, #321b58 79%);
+      text-align: center; padding: 72px 0;
+    }
+    .final-cta__trust { margin-top: 16px; color: rgba(255,255,255,0.7); font-size: 14px; }
+
+    @media (max-width: 768px) {
+      .final-cta { padding: 48px 0; }
+      .final-cta .btn-primary { width: 100%; font-size: 16px; }
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .site-footer { background-color: #331B54; color: #FFFFFF; padding: 48px 0 24px; text-align: center; }
+    .footer__logo { margin-bottom: 24px; }
+    .footer__logo img { height: 48px; width: auto; margin: 0 auto; }
+    .footer__links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; list-style: none; }
+    .footer__links a { font-size: 15px; color: rgba(255,255,255,0.8); transition: color 0.15s ease; }
+    .footer__links a:hover { color: #FFFFFF; text-decoration: underline; }
+    .footer__social { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
+    .footer__social a {
+      display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+      border-radius: 50%; background: rgba(255,255,255,0.1); transition: background 0.15s ease;
+    }
+    .footer__social a:hover { background: rgba(255,255,255,0.2); }
+    .footer__social svg { width: 18px; height: 18px; fill: #FFFFFF; }
+    .footer__payments { display: flex; justify-content: center; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+    .footer__payment-icon { background: rgba(255,255,255,0.1); border-radius: 4px; padding: 4px 8px; display: flex; align-items: center; }
+    .footer__payment-icon svg { height: 20px; width: auto; }
+    .footer__copyright { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+  </style>
+</head>
+<body>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky-nav" id="stickyNav" aria-label="Main navigation">
+    <div class="sticky-nav__inner">
+      <a href="https://www.heathersheroes.com/" class="sticky-nav__logo">
+        <img src="https://www.heathersheroes.com/cdn/shop/files/hh-logo-purple-min_200x.png?v=1721779743"
+             srcset="https://www.heathersheroes.com/cdn/shop/files/hh-logo-purple-min_200x.png?v=1721779743 1x, https://www.heathersheroes.com/cdn/shop/files/hh-logo-purple-min_200x@2x.png?v=1721779743 2x"
+             alt="Heather's Heroes" width="140" height="54">
+      </a>
+      <ul class="sticky-nav__links">
+        <li><a href="#pdp" data-section="pdp">Overview</a></li>
+        <li><a href="#comparison" data-section="comparison">Compare</a></li>
+        <li><a href="#how-to-use" data-section="how-to-use">How To Use</a></li>
+        <li><a href="#size-chart" data-section="size-chart">Size Guide</a></li>
+        <li><a href="#reviews" data-section="reviews">Reviews</a></li>
+      </ul>
+      <a href="#pdp" class="sticky-nav__cta">Add to Cart &middot; $38.99</a>
+      <button class="nav-mobile-toggle" id="mobileNavToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#pdp">Overview</a>
+    <a href="#comparison">Compare</a>
+    <a href="#how-to-use">How To Use</a>
+    <a href="#size-chart">Size Guide</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#pdp" style="background:#FF8A30;color:#FFFFFF;padding:12px 28px;border-radius:35px;font-weight:700;">Add to Cart &middot; $38.99</a>
+  </div>
+
+  <!-- ============================================
+       SECTION 1: HERO / BUYBOX (PDP-style)
+       ============================================ -->
+  <main>
+  <section class="pdp-section" id="pdp">
+    <div class="container">
+      <div class="pdp-grid">
+
+        <!-- LEFT: Gallery -->
+        <div class="pdp-gallery reveal">
+          <img class="pdp-gallery__main" id="mainProductImage"
+               src="images/product-lifestyle-walk.jpg"
+               alt="Woman walking golden retriever calmly with The Sidekick head collar"
+               loading="eager" width="600" height="600">
+          <div class="pdp-gallery__thumbs">
+            <div class="pdp-gallery__thumb active" onclick="changeMainImage(this,'images/product-lifestyle-walk.jpg')">
+              <img src="images/product-lifestyle-walk.jpg" alt="Calm walk with The Sidekick" loading="lazy" width="72" height="72">
+            </div>
+            <div class="pdp-gallery__thumb" onclick="changeMainImage(this,'https://www.heathersheroes.com/cdn/shop/files/sdk-reg-red.png?v=1755109722')">
+              <img src="https://www.heathersheroes.com/cdn/shop/files/sdk-reg-red.png?v=1755109722" alt="The Sidekick - Red" loading="lazy" width="72" height="72">
+            </div>
+            <div class="pdp-gallery__thumb" onclick="changeMainImage(this,'images/product-nose-closeup.jpg')">
+              <img src="images/product-nose-closeup.jpg" alt="Close-up of gentle nose loop" loading="lazy" width="72" height="72">
+            </div>
+            <div class="pdp-gallery__thumb" onclick="changeMainImage(this,'images/product-features-callout.jpg')">
+              <img src="images/product-features-callout.jpg" alt="Annotated product features" loading="lazy" width="72" height="72">
+            </div>
+            <div class="pdp-gallery__thumb" onclick="changeMainImage(this,'images/product-whats-included.jpg')">
+              <img src="images/product-whats-included.jpg" alt="Everything included in the box" loading="lazy" width="72" height="72">
+            </div>
+            <div class="pdp-gallery__thumb" onclick="changeMainImage(this,'https://www.heathersheroes.com/cdn/shop/products/Sidekick_Korra_grande.jpg?v=1740648403')">
+              <img src="https://www.heathersheroes.com/cdn/shop/products/Sidekick_Korra_grande.jpg?v=1740648403" alt="The Sidekick on a dog" loading="lazy" width="72" height="72">
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Product Info -->
+        <div class="pdp-info reveal">
+
+          <h1>Your Dog Pulls Because It Hurts. Not Because They're Misbehaving.</h1>
+
+          <p class="pdp-info__sub">Traditional leashes tighten around the throat, causing discomfort. Your dog pulls harder to escape it. The Sidekick&reg; uses gentle nose pressure instead, so walks feel calmer for both of you.</p>
+
+          <!-- Trust icons -->
+          <div class="pdp-trust-icons">
+            <div class="pdp-trust-icon-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Designed for Comfort
+            </div>
+            <div class="pdp-trust-icon-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Trainer &amp; Vet Approved
+            </div>
+            <div class="pdp-trust-icon-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Built-In Safety Clip
+            </div>
+          </div>
+
+          <!-- Size selector -->
+          <div class="pdp-option-label">Size</div>
+          <div class="pdp-sizes">
+            <button class="pdp-size-btn selected" onclick="selectSize(this)">
+              <span class="pdp-size-name">Regular (3/8")</span>
+              <span class="pdp-size-desc">Dogs over 10 lbs</span>
+            </button>
+            <button class="pdp-size-btn" onclick="selectSize(this)">
+              <span class="pdp-size-name">Mini (1/4")</span>
+              <span class="pdp-size-desc">Dogs under 25 lbs</span>
+            </button>
+          </div>
+
+          <!-- Color selector -->
+          <div class="pdp-option-label">Color &mdash; <span id="colorLabel" style="font-weight:400;text-transform:none;letter-spacing:0;">Red</span></div>
+          <div class="pdp-colors">
+            <div class="pdp-color-swatch swatch-red selected" title="Red" onclick="selectColor(this,'Red')"></div>
+            <div class="pdp-color-swatch swatch-blue" title="Blue" onclick="selectColor(this,'Blue')"></div>
+            <div class="pdp-color-swatch swatch-black" title="Black" onclick="selectColor(this,'Black')"></div>
+            <div class="pdp-color-swatch swatch-turquoise" title="Turquoise" onclick="selectColor(this,'Turquoise')"></div>
+            <div class="pdp-color-swatch swatch-purple" title="Purple" onclick="selectColor(this,'Purple')"></div>
+          </div>
+
+          <!-- Add to Cart -->
+          <button class="pdp-atc" id="mainAddToCart" onclick="window.location.href='https://www.heathersheroes.com/products/the-sidekick'">Add to Cart &middot; $38.99</button>
+
+          <!-- Micro trust bar -->
+          <div class="pdp-micro-trust">
+            <div class="pdp-micro-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8 14l-2 8h12l-2-8"/></svg>
+              <div class="pdp-micro-item-text">
+                <strong>2nd Place &middot; 2022 Global Pet Expo</strong>
+                <span>Award-winning design</span>
+              </div>
+            </div>
+            <div class="pdp-micro-item">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <div class="pdp-micro-item-text">
+                <strong>4.7/5 (2,000+ Reviews)</strong>
+                <span>Verified buyers</span>
+              </div>
+            </div>
+            <div class="pdp-micro-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <div class="pdp-micro-item-text">
+                <strong>Trusted Worldwide</strong>
+                <span>50,000+ dog families</span>
+              </div>
+            </div>
+            <div class="pdp-micro-item">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <div class="pdp-micro-item-text">
+                <strong>Lifetime Support Included</strong>
+                <span>Help anytime you need it</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hesitation busters -->
+          <div class="pdp-hesitations">
+            <div class="pdp-hesitation">
+              <div class="pdp-hesitation-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="pdp-hesitation-text">
+                <strong>Zero pain, vet approved</strong>
+                <span>Gentle nose pressure, not choking. Recommended by vets and professional trainers.</span>
+              </div>
+            </div>
+            <div class="pdp-hesitation">
+              <div class="pdp-hesitation-icon">
+                <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              </div>
+              <div class="pdp-hesitation-text">
+                <strong>30-day money-back guarantee</strong>
+                <span>Doesn't work for your dog? Full refund, no questions asked.</span>
+              </div>
+            </div>
+            <div class="pdp-hesitation">
+              <div class="pdp-hesitation-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="pdp-hesitation-text">
+                <strong>93% see results by walk 3</strong>
+                <span>Most dogs stop pulling within the first few walks — not months of training.</span>
+              </div>
+            </div>
+            <div class="pdp-hesitation">
+              <div class="pdp-hesitation-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              </div>
+              <div class="pdp-hesitation-text">
+                <strong>Free video tutorials + lifetime support</strong>
+                <span>Step-by-step training guides included with every order.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust row -->
+          <div class="pdp-trust-row">
+            <div class="pdp-trust-item">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              <span>Free Shipping Over $75</span>
+            </div>
+            <div class="pdp-trust-item">
+              <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              <span>30-Day Returns</span>
+            </div>
+            <div class="pdp-trust-item">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Lifetime Support</span>
+            </div>
+            <div class="pdp-trust-item">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span>Secure Checkout</span>
+            </div>
+          </div>
+
+          <!-- Accordions -->
+          <div class="pdp-accordion">
+            <div class="pdp-accordion-item">
+              <button class="pdp-accordion-header" onclick="toggleAccordion(this)">
+                <span>Materials &amp; Care</span>
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="pdp-accordion-body">
+                <p>Soft, flexible nylon rope — gentle on your dog's skin with no hard plastic or stiff straps. Sturdy clasp included. 6 feet long with a 10-inch handle. Machine washable for easy care.</p>
+              </div>
+            </div>
+            <div class="pdp-accordion-item">
+              <button class="pdp-accordion-header" onclick="toggleAccordion(this)">
+                <span>Dimensions &amp; Fit</span>
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="pdp-accordion-body">
+                <p>Regular (3/8" diameter): Best for dogs over 10 lbs. Our most popular size for medium to large breeds. Mini (1/4" diameter): Designed for dogs under 25 lbs or if you prefer a thinner profile. The adjustable stopper ensures a custom fit for every dog.</p>
+              </div>
+            </div>
+            <div class="pdp-accordion-item">
+              <button class="pdp-accordion-header" onclick="toggleAccordion(this)">
+                <span>Shipping &amp; Returns</span>
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="pdp-accordion-body">
+                <p>Free shipping on orders over $75. Standard delivery within 3-7 business days. We offer a 30-day satisfaction guarantee — if The Sidekick doesn't work for you and your pup, send it back for a full refund. No questions asked.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment icons -->
+          <div class="pdp-payment-icons">
+            <svg viewBox="0 0 38 24" width="38" height="24" aria-label="Visa"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"/></svg>
+            <svg viewBox="0 0 38 24" width="38" height="24" aria-label="Mastercard"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><circle fill="#EB001B" cx="15" cy="12" r="7"/><circle fill="#F79E1B" cx="23" cy="12" r="7"/><path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"/></svg>
+            <svg viewBox="0 0 38 24" width="38" height="24" aria-label="Amex"><path fill="#000" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" opacity=".07"/><path fill="#006FCF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z"/><path fill="#FFF" d="M22.012 19.936v-8.421L37 11.528v2.326l-1.732 1.852L37 17.573v2.375h-2.766l-1.47-1.622-1.46 1.628-9.292-.02Z"/><path fill="#006FCF" d="M23.013 19.012v-6.57h5.572v1.513h-3.768v1.028h3.678v1.488h-3.678v1.01h3.768v1.531h-5.572Zm5.544 0 3.083-3.289-3.083-3.282h2.386l1.884 2.083 1.89-2.082H37v.051l-3.017 3.23L37 18.92v.093h-2.307l-1.917-2.103-1.898 2.104h-2.321Z"/></svg>
+            <svg viewBox="0 0 38 24" width="38" height="24" aria-label="PayPal"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"/><path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"/><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"/></svg>
+          </div>
+
+        </div><!-- /pdp-info -->
+      </div><!-- /pdp-grid -->
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 2: COMPARISON TABLE
+       ============================================ -->
+  <section class="comparison-section section-padding" id="comparison">
+    <div class="container text-center">
+      <h2 class="reveal">Why The Sidekick&reg; Is Different</h2>
+      <p class="section-sub reveal">See how it compares to other tools on the market.</p>
+
+      <div class="comparison-cards reveal">
+        <!-- Header row -->
+        <div class="compare-row compare-row--header">
+          <div class="compare-cell compare-cell--label" style="background:#1a0e30;color:#FFFFFF;font-size:13px;font-weight:700;padding:16px 14px;text-transform:uppercase;letter-spacing:.03em;align-items:center;">Criteria</div>
+          <div class="compare-cell" style="color:#FFFFFF;font-size:13px;font-weight:700;padding:16px 14px;text-transform:uppercase;letter-spacing:.03em;align-items:center;">Standard Leash</div>
+          <div class="compare-cell" style="color:#FFFFFF;font-size:13px;font-weight:700;padding:16px 14px;text-transform:uppercase;letter-spacing:.03em;align-items:center;">Other Head Collars</div>
+          <div class="compare-cell compare-cell--winner" style="font-size:13px;font-weight:700;padding:16px 14px;text-transform:uppercase;letter-spacing:.03em;align-items:center;">The Sidekick&reg;</div>
+        </div>
+        <!-- Row 1 -->
+        <div class="compare-row">
+          <div class="compare-cell compare-cell--label">On dog's skin</div>
+          <div class="compare-cell compare-cell--bad">Pulls on throat &amp; neck</div>
+          <div class="compare-cell compare-cell--bad">Hard plastic rubs nose</div>
+          <div class="compare-cell compare-cell--winner">
+            <svg class="compare-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Soft rope, no rubbing
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div class="compare-row">
+          <div class="compare-cell compare-cell--label">If they pull hard</div>
+          <div class="compare-cell compare-cell--bad">Chokes the throat</div>
+          <div class="compare-cell compare-cell--bad">Yanks the neck sideways</div>
+          <div class="compare-cell compare-cell--winner">
+            <svg class="compare-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Gentle pressure on nose
+          </div>
+        </div>
+        <!-- Row 3 -->
+        <div class="compare-row">
+          <div class="compare-cell compare-cell--label">Safety if it slips</div>
+          <div class="compare-cell compare-cell--bad">Dog can bolt</div>
+          <div class="compare-cell compare-cell--bad">No backup — dog escapes</div>
+          <div class="compare-cell compare-cell--winner">
+            <svg class="compare-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Built-in safety clip
+          </div>
+        </div>
+        <!-- Row 4 -->
+        <div class="compare-row">
+          <div class="compare-cell compare-cell--label">Easy to fit</div>
+          <div class="compare-cell" style="color:#3E3E3E;font-size:14px;padding:18px 14px;align-items:center;">Simple but no guidance</div>
+          <div class="compare-cell compare-cell--bad">Complex buckles, slips easily</div>
+          <div class="compare-cell compare-cell--winner">
+            <svg class="compare-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Self-adjusting stopper
+          </div>
+        </div>
+        <!-- Row 5 -->
+        <div class="compare-row">
+          <div class="compare-cell compare-cell--label">Training help</div>
+          <div class="compare-cell compare-cell--bad">None included</div>
+          <div class="compare-cell compare-cell--bad">None included</div>
+          <div class="compare-cell compare-cell--winner">
+            <svg class="compare-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Free video tutorials
+          </div>
+        </div>
+      </div>
+
+      <div class="comparison-footer reveal">
+        <p>The Sidekick&reg; is designed to be gentle, secure, and easy to use without the injuries other tools can cause.</p>
+        <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary">Buy Now &middot; $38.99</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 3: HEAD COLLAR vs SIDEKICK
+       ============================================ -->
+  <section class="problem-section section-padding" id="problem">
+    <div class="container text-center">
+      <h2 class="reveal">If Walks Feel Chaotic, You're Not Alone.</h2>
+      <p class="section-lead reveal">Most dog owners face the same three problems on every single walk.</p>
+
+      <div class="problem-cards">
+        <div class="problem-card reveal">
+          <div class="problem-card__top">
+            <h3>Pulling &amp; Lunging</h3>
+          </div>
+          <div class="problem-card__body">
+            <p>Dogs react to throat pressure by pulling harder, making the problem worse with every walk.</p>
+          </div>
+        </div>
+        <div class="problem-card reveal">
+          <div class="problem-card__top" style="background:linear-gradient(135deg,#4f2b8b,#6B3FA0);">
+            <h3>Straps That Rub &amp; Chafe</h3>
+          </div>
+          <div class="problem-card__body">
+            <p>Other head collars use hard plastic and stiff straps that can irritate sensitive skin over time.</p>
+          </div>
+        </div>
+        <div class="problem-card reveal">
+          <div class="problem-card__top" style="background:linear-gradient(135deg,#FF8A30,#FFA659);">
+            <h3>Complicated to Fit</h3>
+          </div>
+          <div class="problem-card__body">
+            <p>Hard-to-adjust straps mean inconsistent fit — and a loose fit means zero control when it matters.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="transition-text reveal">Other head collars can strain the neck and rub the skin. <strong>The Sidekick&reg; is designed to be gentler AND easier to use.</strong></p>
+
+      <div class="vs-table reveal">
+        <div class="vs-col vs-col--bad">
+          <div class="vs-header">Other Head Collars</div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Hard straps dig into skin
+          </div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Strain on neck when dog pulls
+          </div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Easy to fit wrong = no control
+          </div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Dogs can slip out, no backup
+          </div>
+        </div>
+        <div class="vs-col vs-col--good">
+          <div class="vs-header">The Sidekick&reg;</div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Rope design = no rubbing
+          </div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Pressure on nose (not neck)
+          </div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Self-adjusting stopper
+          </div>
+          <div class="vs-row">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Safety clip keeps them secure
+          </div>
+        </div>
+      </div>
+
+      <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary reveal">Try The Sidekick &middot; $38.99</a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 4A: THE SOLUTION — MODES
+       ============================================ -->
+  <section class="solution-section section-padding" id="solution">
+    <div class="container text-center">
+      <h2 class="reveal">Meet The Sidekick&reg;: One Tool, Multiple Ways to Use It.</h2>
+      <p class="section-sub reveal">Switch between slip lead and head collar modes in seconds. No extra gear needed.</p>
+
+      <div class="mode-cards">
+        <div class="mode-card reveal">
+          <div class="mode-card__img">
+            <img src="images/how-it-works-calm-walk.jpg" alt="Dog walking calmly using slip lead mode" loading="lazy">
+          </div>
+          <div class="mode-card__body">
+            <div class="mode-card__label">Slip Lead Mode</div>
+            <div class="mode-card__title">Quick Control</div>
+            <p class="mode-card__desc">Slip it on in seconds for walks and training. Great for dogs already making progress.</p>
+          </div>
+        </div>
+        <div class="mode-card reveal">
+          <div class="mode-card__img">
+            <img src="images/how-it-works-nose-pressure.jpg" alt="Gentle nose pressure from head collar mode" loading="lazy">
+          </div>
+          <div class="mode-card__body">
+            <div class="mode-card__label">Head Collar Mode</div>
+            <div class="mode-card__title">Gentle Guidance</div>
+            <p class="mode-card__desc">Soft pressure on the nose that releases when your dog calms down — teaching, not punishing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-callout reveal">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Unlike other head collars, The Sidekick&reg; uses soft rope that <strong style="color:#FFC035;">releases pressure when your dog relaxes</strong>, plus a built-in safety clip for peace of mind.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 4B: HOW TO USE
+       ============================================ -->
+  <section class="howto-section section-padding" id="how-to-use">
+    <div class="container text-center">
+      <h2 class="reveal">Simple to Set Up. Easy to Use.</h2>
+
+      <div class="howto-grid reveal">
+        <div class="howto-col" style="text-align:left;">
+          <h3>Head Collar Mode (For More Control)</h3>
+          <ol class="howto-steps">
+            <li class="howto-step">
+              <span class="howto-step-num">1</span>
+              <span class="howto-step-text">Create 2 loops with the S-hook</span>
+            </li>
+            <li class="howto-step">
+              <span class="howto-step-num">2</span>
+              <span class="howto-step-text">Large loop over head, small loop over snout</span>
+            </li>
+            <li class="howto-step">
+              <span class="howto-step-num">3</span>
+              <span class="howto-step-text">Slide stopper to back of head</span>
+            </li>
+            <li class="howto-step">
+              <span class="howto-step-num">4</span>
+              <span class="howto-step-text">Clip safety clip to collar</span>
+            </li>
+            <li class="howto-step">
+              <span class="howto-step-num">5</span>
+              <span class="howto-step-text">Hold relaxed &mdash; apply gentle pressure only when needed</span>
+            </li>
+          </ol>
+        </div>
+        <div class="howto-col" style="text-align:left;">
+          <h3>Slip Lead Mode (Quick &amp; Simple)</h3>
+          <ol class="howto-steps">
+            <li class="howto-step">
+              <span class="howto-step-num">1</span>
+              <span class="howto-step-text">Create one loop and slip it over head</span>
+            </li>
+            <li class="howto-step">
+              <span class="howto-step-num">2</span>
+              <span class="howto-step-text">Slide stopper to back of head</span>
+            </li>
+            <li class="howto-step">
+              <span class="howto-step-num">3</span>
+              <span class="howto-step-text">Clip safety clip to collar for extra security</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="howto-mistakes reveal">
+        <div class="howto-mistake">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <p>Don't hold tight &mdash; keep the leash relaxed and only apply gentle pressure when needed</p>
+        </div>
+        <div class="howto-mistake">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <p>Don't skip the safety clip &mdash; always clip it to your dog's collar before heading out</p>
+        </div>
+      </div>
+
+      <a href="https://www.heathersheroes.com/pages/learning-portal" class="howto-link reveal">Watch the full video tutorial &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 4C: WHY USE IT
+       ============================================ -->
+  <section class="whyuse-section section-padding" id="why-use-it">
+    <div class="container">
+      <h2 class="reveal">It's Not Just Control. It's Communication.</h2>
+      <p class="why-body reveal">Most people don't realize their dog isn't trying to be difficult. The Sidekick&reg; changes the dynamic by using gentle pressure on the bridge of the nose, a natural calming point. This isn't about domination or force. It's about building a language between you and your dog based on respect, not fear.</p>
+      <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-gold reveal" style="font-size:18px;padding:18px 40px;">Start Better Walks Today &middot; $38.99</a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 5A: SIZE CHART
+       ============================================ -->
+  <section class="sizechart-section section-padding" id="size-chart">
+    <div class="container">
+      <h2 class="reveal text-center">Choose Your Size</h2>
+
+      <div class="reveal">
+        <table class="size-table" aria-label="Sidekick size guide">
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Diameter</th>
+              <th>Best For</th>
+              <th>Weight Range</th>
+              <th>Breed Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mini (1/4")</td>
+              <td>Thinner rope</td>
+              <td>Small dogs, narrow snouts</td>
+              <td>Under 25 lbs</td>
+              <td>Yorkie, Chihuahua, Pomeranian, Beagle</td>
+            </tr>
+            <tr>
+              <td>Regular (3/8")</td>
+              <td>Standard rope</td>
+              <td>Most dogs</td>
+              <td>Over 10 lbs</td>
+              <td>Lab, Golden Retriever, GSD, Husky</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="size-tip">
+          <strong>Between 10-25 lbs?</strong> Small or delicate build &rarr; go Mini. Sturdy or still growing &rarr; go Regular.
+        </div>
+        <p class="size-contact">Still unsure? <a href="https://www.heathersheroes.com/pages/contact">Contact us for help &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 5B: WHO IT'S FOR
+       ============================================ -->
+  <section class="whofor-section section-padding" id="who-its-for">
+    <div class="container">
+      <h2 class="reveal text-center">Is The Sidekick&reg; Right for My Dog?</h2>
+
+      <div class="whofor-grid reveal">
+        <div class="whofor-col whofor-col--yes">
+          <h3>Great For</h3>
+          <ul class="whofor-list">
+            <li class="whofor-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Pulling, lunging, over-excitement on walks
+            </li>
+            <li class="whofor-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Leash reactivity (barking at dogs or people)
+            </li>
+            <li class="whofor-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Dogs in training (puppies to adults)
+            </li>
+            <li class="whofor-item">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Families who want calmer, safer walks
+            </li>
+          </ul>
+        </div>
+        <div class="whofor-col whofor-col--warn">
+          <h3>Consult Your Vet First</h3>
+          <ul class="whofor-list">
+            <li class="whofor-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Neck or spinal injuries (ask your vet)
+            </li>
+            <li class="whofor-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Significant breathing issues (ask your vet)
+            </li>
+            <li class="whofor-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Very young puppies (wait for basic training foundation)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 5C: SOCIAL PROOF / REVIEWS
+       ============================================ -->
+  <section class="reviews-section section-padding" id="reviews">
+    <div class="container text-center">
+      <h2 class="reveal">Trusted by Thousands of Dog Families</h2>
+
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-card__text">"Life-changing for our reactive German Shepherd. We can actually walk past other dogs now without a meltdown. This tool combined with the training videos made all the difference."</p>
+          <div class="review-card__author">Sarah M.</div>
+          <div class="review-card__badge">Verified Buyer</div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-card__text">"I was skeptical — another leash promising miracles? But my 60lb Lab stopped pulling within the first week. The nose pressure is so gentle, he doesn't even mind wearing it."</p>
+          <div class="review-card__author">James T.</div>
+          <div class="review-card__badge">Verified Buyer</div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-card__stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-card__text">"We tried the Gentle Leader and it rubbed raw spots on our puppy's nose. The Sidekick is so much softer. Plus the safety clip gives me genuine peace of mind every single walk."</p>
+          <div class="review-card__author">Danielle R.</div>
+          <div class="review-card__badge">Verified Buyer</div>
+        </div>
+      </div>
+
+      <div class="trust-badges-row reveal">
+        <div class="trust-badge-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M8 14l-2 8h12l-2-8"/></svg>
+          Award-Winning
+        </div>
+        <div class="trust-badge-item">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Trainer-Approved
+        </div>
+        <div class="trust-badge-item">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Lifetime Support
+        </div>
+      </div>
+
+      <p class="reviews-reassurance reveal"><strong>30-Day Returns</strong> &middot; <strong>Free Shipping Over $75</strong></p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FINAL CTA
+       ============================================ -->
+  <section class="final-cta" id="final-cta">
+    <div class="container">
+      <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary reveal" style="font-size:20px;padding:20px 52px;">Add to Cart &middot; $38.99</a>
+      <p class="final-cta__trust reveal">30-Day Money-Back Guarantee &middot; Free Shipping Over $75 &middot; Lifetime Support</p>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__logo">
+        <img src="https://www.heathersheroes.com/cdn/shop/files/HeathersHeroes_Logo_White_200x.png?v=1714084133"
+             srcset="https://www.heathersheroes.com/cdn/shop/files/HeathersHeroes_Logo_White_200x.png?v=1714084133 1x, https://www.heathersheroes.com/cdn/shop/files/HeathersHeroes_Logo_White_200x@2x.png?v=1714084133 2x"
+             alt="Heather's Heroes" width="160" height="62">
+      </div>
+
+      <ul class="footer__links">
+        <li><a href="https://www.heathersheroes.com/collections/all">Shop</a></li>
+        <li><a href="https://www.heathersheroes.com/pages/our-story">About Us</a></li>
+        <li><a href="https://heathersheroes.com/pages/heathers-heroes-victories">Reviews</a></li>
+        <li><a href="https://www.heathersheroes.com/pages/learning-portal">Learning Portal</a></li>
+        <li><a href="https://www.heathersheroes.com/pages/contact">Contact</a></li>
+      </ul>
+
+      <div class="footer__social">
+        <a href="https://www.instagram.com/heathersheroespets" target="_blank" rel="noopener" aria-label="Heather's Heroes on Instagram">
+          <svg viewBox="0 0 32 32"><path d="M16 3.094c4.206 0 4.7.019 6.363.094 1.538.069 2.369.325 2.925.544.738.287 1.262.625 1.813 1.175s.894 1.075 1.175 1.813c.212.556.475 1.387.544 2.925.075 1.662.094 2.156.094 6.363s-.019 4.7-.094 6.363c-.069 1.538-.325 2.369-.544 2.925-.288.738-.625 1.262-1.175 1.813s-1.075.894-1.813 1.175c-.556.212-1.387.475-2.925.544-1.663.075-2.156.094-6.363.094s-4.7-.019-6.363-.094c-1.537-.069-2.369-.325-2.925-.544-.737-.288-1.263-.625-1.813-1.175s-.894-1.075-1.175-1.813c-.212-.556-.475-1.387-.544-2.925-.075-1.663-.094-2.156-.094-6.363s.019-4.7.094-6.363c.069-1.537.325-2.369.544-2.925.287-.737.625-1.263 1.175-1.813s1.075-.894 1.813-1.175c.556-.212 1.388-.475 2.925-.544 1.662-.081 2.156-.094 6.363-.094zm0-2.838c-4.275 0-4.813.019-6.494.094-1.675.075-2.819.344-3.819.731-1.037.4-1.913.944-2.788 1.819S1.486 4.656 1.08 5.688c-.387 1-.656 2.144-.731 3.825-.075 1.675-.094 2.213-.094 6.488s.019 4.813.094 6.494c.075 1.675.344 2.819.731 3.825.4 1.038.944 1.913 1.819 2.788s1.756 1.413 2.788 1.819c1 .387 2.144.656 3.825.731s2.213.094 6.494.094 4.813-.019 6.494-.094c1.675-.075 2.819-.344 3.825-.731 1.038-.4 1.913-.944 2.788-1.819s1.413-1.756 1.819-2.788c.387-1 .656-2.144.731-3.825s.094-2.212.094-6.494-.019-4.813-.094-6.494c-.075-1.675-.344-2.819-.731-3.825-.4-1.038-.944-1.913-1.819-2.788s-1.756-1.413-2.788-1.819c-1-.387-2.144-.656-3.825-.731C20.812.275 20.275.256 16 .256z"/><path d="M16 7.912a8.088 8.088 0 0 0 0 16.175c4.463 0 8.087-3.625 8.087-8.088s-3.625-8.088-8.088-8.088zm0 13.338a5.25 5.25 0 1 1 0-10.5 5.25 5.25 0 1 1 0 10.5zM26.294 7.594a1.887 1.887 0 1 1-3.774.002 1.887 1.887 0 0 1 3.774-.003z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/heathersheroespets" target="_blank" rel="noopener" aria-label="Heather's Heroes on Facebook">
+          <svg viewBox="0 0 32 32"><path d="M18.56 31.36V17.28h4.48l.64-5.12h-5.12v-3.2c0-1.28.64-2.56 2.56-2.56h2.56V1.28H19.2c-3.84 0-7.04 2.56-7.04 7.04v3.84H7.68v5.12h4.48v14.08h6.4z"/></svg>
+        </a>
+      </div>
+
+      <div class="footer__payments">
+        <div class="footer__payment-icon">
+          <svg viewBox="0 0 38 24" width="38" height="24" aria-label="Visa"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path d="M28.3 10.1H28c-.4 1-.7 1.5-1 3h1.9c-.3-1.5-.3-2.2-.6-3zm2.9 5.9h-1.7c-.1 0-.1 0-.2-.1l-.2-.9-.1-.2h-2.4c-.1 0-.2 0-.2.2l-.3.9c0 .1-.1.1-.1.1h-2.1l.2-.5L27 8.7c0-.5.3-.7.8-.7h1.5c.1 0 .2 0 .2.2l1.4 6.5c.1.4.2.7.2 1.1.1.1.1.1.1.2zm-13.4-.3l.4-1.8c.1 0 .2.1.2.1.7.3 1.4.5 2.1.4.2 0 .5-.1.7-.2.5-.2.5-.7.1-1.1-.2-.2-.5-.3-.8-.5-.4-.2-.8-.4-1.1-.7-1.2-1-.8-2.4-.1-3.1.6-.4.9-.8 1.7-.8 1.2 0 2.5 0 3.1.2h.1c-.1.6-.2 1.1-.4 1.7-.5-.2-1-.4-1.5-.4-.3 0-.6 0-.9.1-.2 0-.3.1-.4.2-.2.2-.2.5 0 .7l.5.4c.4.2.8.4 1.1.6.5.3 1 .8 1.1 1.4.2.9-.1 1.7-.9 2.3-.5.4-.7.6-1.4.6-1.4 0-2.5.1-3.4-.2-.1.2-.1.2-.2.1zm-3.5.3c.1-.7.1-.7.2-1 .5-2.2 1-4.5 1.4-6.7.1-.2.1-.3.3-.3H18c-.2 1.2-.4 2.1-.7 3.2-.3 1.5-.6 3-1 4.5 0 .2-.1.2-.3.2M5 8.2c0-.1.2-.2.3-.2h3.4c.5 0 .9.3 1 .8l.9 4.4c0 .1 0 .1.1.2 0-.1.1-.1.1-.1l2.1-5.1c-.1-.1 0-.2.1-.2h2.1c0 .1 0 .1-.1.2l-3.1 7.3c-.1.2-.1.3-.2.4-.1.1-.3 0-.5 0H9.7c-.1 0-.2 0-.2-.2L7.9 9.5c-.2-.2-.5-.5-.9-.6-.6-.3-1.7-.5-1.9-.5L5 8.2z" fill="#142688"/></svg>
+        </div>
+        <div class="footer__payment-icon">
+          <svg viewBox="0 0 38 24" width="38" height="24" aria-label="Mastercard"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><circle fill="#EB001B" cx="15" cy="12" r="7"/><circle fill="#F79E1B" cx="23" cy="12" r="7"/><path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"/></svg>
+        </div>
+        <div class="footer__payment-icon">
+          <svg viewBox="0 0 38 24" width="38" height="24" aria-label="Amex"><path fill="#000" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3Z" opacity=".07"/><path fill="#006FCF" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32Z"/><path fill="#FFF" d="M22.012 19.936v-8.421L37 11.528v2.326l-1.732 1.852L37 17.573v2.375h-2.766l-1.47-1.622-1.46 1.628-9.292-.02Z"/><path fill="#006FCF" d="M23.013 19.012v-6.57h5.572v1.513h-3.768v1.028h3.678v1.488h-3.678v1.01h3.768v1.531h-5.572Zm5.544 0 3.083-3.289-3.083-3.282h2.386l1.884 2.083 1.89-2.082H37v.051l-3.017 3.23L37 18.92v.093h-2.307l-1.917-2.103-1.898 2.104h-2.321Z"/></svg>
+        </div>
+        <div class="footer__payment-icon">
+          <svg viewBox="0 0 38 24" width="38" height="24" aria-label="PayPal"><path opacity=".07" d="M35 0H3C1.3 0 0 1.3 0 3v18c0 1.7 1.4 3 3 3h32c1.7 0 3-1.3 3-3V3c0-1.7-1.4-3-3-3z"/><path fill="#fff" d="M35 1c1.1 0 2 .9 2 2v18c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h32"/><path fill="#003087" d="M23.9 8.3c.2-1 0-1.7-.6-2.3-.6-.7-1.7-1-3.1-1h-4.1c-.3 0-.5.2-.6.5L14 15.6c0 .2.1.4.3.4H17l.4-3.4 1.8-2.2 4.7-2.1z"/><path fill="#3086C8" d="M23.9 8.3l-.2.2c-.5 2.8-2.2 3.8-4.6 3.8H18c-.3 0-.5.2-.6.5l-.6 3.9-.2 1c0 .2.1.4.3.4H19c.3 0 .5-.2.5-.4v-.1l.4-2.4v-.1c0-.2.3-.4.5-.4h.3c2.1 0 3.7-.8 4.1-3.2.2-1 .1-1.8-.4-2.4-.1-.5-.3-.7-.5-.8z"/><path fill="#012169" d="M23.3 8.1c-.1-.1-.2-.1-.3-.1-.1 0-.2 0-.3-.1-.3-.1-.7-.1-1.1-.1h-3c-.1 0-.2 0-.2.1-.2.1-.3.2-.3.4l-.7 4.4v.1c0-.3.3-.5.6-.5h1.3c2.5 0 4.1-1 4.6-3.8v-.2c-.1-.1-.3-.2-.5-.2h-.1z"/></svg>
+        </div>
+      </div>
+
+      <div class="footer__copyright">
+        &copy; 2026 Heather's Heroes&reg;. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       JAVASCRIPT
+       ============================================ -->
+  <script>
+    // Sticky nav scroll behavior
+    var stickyNav = document.getElementById('stickyNav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 80) {
+        stickyNav.classList.add('scrolled');
+      } else {
+        stickyNav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // Active nav link highlighting
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.sticky-nav__links a[data-section]');
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(function(link) {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === entry.target.id) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+    sections.forEach(function(s) { sectionObserver.observe(s); });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          var top = target.getBoundingClientRect().top + window.pageYOffset - 64;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+        document.getElementById('mobileNavOverlay').classList.remove('open');
+      });
+    });
+
+    // Mobile nav
+    document.getElementById('mobileNavToggle').addEventListener('click', function() {
+      document.getElementById('mobileNavOverlay').classList.add('open');
+    });
+    document.getElementById('mobileNavClose').addEventListener('click', function() {
+      document.getElementById('mobileNavOverlay').classList.remove('open');
+    });
+
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('.reveal');
+    var revealObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+    revealEls.forEach(function(el) { revealObs.observe(el); });
+
+    // Gallery thumbnail click
+    function changeMainImage(thumb, src) {
+      document.getElementById('mainProductImage').src = src;
+      document.querySelectorAll('.pdp-gallery__thumb').forEach(function(t) { t.classList.remove('active'); });
+      thumb.classList.add('active');
+    }
+
+    // Size selector
+    function selectSize(btn) {
+      document.querySelectorAll('.pdp-size-btn').forEach(function(b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+    }
+
+    // Color map
+    var colorImageMap = {
+      'swatch-red': 'https://www.heathersheroes.com/cdn/shop/files/sdk-reg-red.png?v=1755109722',
+      'swatch-blue': 'https://www.heathersheroes.com/cdn/shop/files/sdk-reg-blu.png?v=1755109722',
+      'swatch-black': 'https://www.heathersheroes.com/cdn/shop/files/sdk-reg-blk.png?v=1755109722',
+      'swatch-turquoise': 'https://www.heathersheroes.com/cdn/shop/files/sdk-reg-tur.png?v=1755109722',
+      'swatch-purple': 'https://www.heathersheroes.com/cdn/shop/files/sdk-reg-ppl.png?v=1755109722'
+    };
+
+    function selectColor(swatch, name) {
+      document.querySelectorAll('.pdp-color-swatch').forEach(function(s) { s.classList.remove('selected'); });
+      swatch.classList.add('selected');
+      document.getElementById('colorLabel').textContent = name;
+      var colorClass = Array.from(swatch.classList).find(function(c) { return c.startsWith('swatch-'); });
+      if (colorClass && colorImageMap[colorClass]) {
+        document.getElementById('mainProductImage').src = colorImageMap[colorClass];
+        document.querySelectorAll('.pdp-gallery__thumb').forEach(function(t) { t.classList.remove('active'); });
+      }
+    }
+
+    // Accordion
+    function toggleAccordion(header) {
+      var item = header.closest('.pdp-accordion-item');
+      item.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
