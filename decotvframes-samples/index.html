@@ -344,12 +344,22 @@ a{text-decoration:none;color:inherit}
 
   .faq-grid{grid-template-columns:1fr;gap:12px}
 
-  .sticky-cta-inner{padding:12px 20px}
-  .sticky-main-row{flex-wrap:wrap;gap:16px}
-  .sticky-slots-group{width:100%;order:-1}
-  .sticky-slots{justify-content:flex-start}
-  .sticky-price-cta-group{width:100%;justify-content:space-between}
-  .sticky-credit-strip{padding:6px 20px;font-size:11px}
+  .sticky-cta-inner{padding:10px 16px}
+  .sticky-main-row{flex-wrap:nowrap;gap:12px}
+  .sticky-bundle-label{display:none}
+  .sticky-slots-group{flex:1;min-width:0;width:auto;order:0}
+  .sticky-slots{gap:6px}
+  .sticky-slot{width:40px;height:40px;border-radius:6px;font-size:8px}
+  .sticky-slot.filled span{font-size:7px}
+  .sticky-divider{display:none}
+  .sticky-price-cta-group{width:auto;gap:12px;flex-shrink:0}
+  .sticky-price-block{text-align:right}
+  .sticky-was{font-size:10px}
+  .sticky-price{font-size:20px}
+  .sticky-save-tag{display:none}
+  .btn-sticky{padding:10px 18px;font-size:13px;border-radius:6px}
+  .btn-sticky .btn-sub{display:none}
+  .sticky-credit-strip{padding:5px 16px;font-size:10px}
 
   .footer .container{padding:0 20px}
   .footer-inner{flex-direction:column;gap:32px}
@@ -364,7 +374,6 @@ a{text-decoration:none;color:inherit}
   .frame-grid{gap:10px}
   .frame-info{padding:10px 12px 8px}
   .frame-name{font-size:12px}
-  .sticky-slot{width:50px;height:48px}
 }
 </style>
 </head>
