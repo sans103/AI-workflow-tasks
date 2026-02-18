@@ -533,6 +533,146 @@
     }
 
     /* ============================================
+       VIDEO STRIP (UGC Reels)
+       ============================================ */
+    .video-strip { background: linear-gradient(135deg, #321B58 0%, #4f2b8b 100%); padding: 56px 0; overflow: hidden; }
+    .video-strip h2 { color: #FFFFFF; margin-bottom: 8px; }
+    .video-strip .section-sub { color: rgba(255,255,255,0.7); font-size: 16px; margin-bottom: 32px; }
+    .video-scroll { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 0 16px 16px; }
+    .video-scroll::-webkit-scrollbar { display: none; }
+    .video-card { flex: 0 0 200px; scroll-snap-align: start; border-radius: 20px; overflow: hidden; position: relative; aspect-ratio: 9/16; background: #1a0e30; cursor: pointer; transition: transform 0.2s ease; }
+    .video-card:hover { transform: scale(1.03); }
+    .video-card img { width: 100%; height: 100%; object-fit: cover; }
+    .video-card__overlay { position: absolute; inset: 0; background: linear-gradient(transparent 50%, rgba(0,0,0,0.7)); display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; }
+    .video-card__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 48px; height: 48px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease; }
+    .video-card:hover .video-card__play { transform: translate(-50%,-50%) scale(1.1); }
+    .video-card__play svg { width: 20px; height: 20px; fill: #321B58; margin-left: 3px; }
+    .video-card__caption { color: #FFFFFF; font-size: 13px; font-weight: 700; line-height: 1.3; }
+    .video-card__author { color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 4px; }
+    @media (max-width: 768px) {
+      .video-card { flex: 0 0 160px; }
+      .video-strip { padding: 40px 0; }
+    }
+
+    /* ============================================
+       INLINE CTA BANNERS
+       ============================================ */
+    .inline-cta { padding: 40px 0; text-align: center; }
+    .inline-cta--purple { background: linear-gradient(100deg, #321b58 40%, #4f2b8b 63%, #321b58 79%); }
+    .inline-cta__text { color: #FFFFFF; font-size: 22px; font-weight: 700; margin-bottom: 16px; line-height: 1.3; }
+    .inline-cta__sub { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 20px; }
+    @media (max-width: 768px) {
+      .inline-cta__text { font-size: 18px; }
+      .inline-cta .btn-primary { width: 100%; }
+    }
+
+    /* ============================================
+       BEFORE/AFTER TRANSFORMATION
+       ============================================ */
+    .transformation { background: #FFFFFF; padding: 72px 0; }
+    .transformation h2 { margin-bottom: 16px; }
+    .transformation .section-sub { font-size: 17px; color: #3E3E3E; margin-bottom: 40px; }
+    .transformation__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+    .transformation__image { border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(50,27,88,0.12); }
+    .transformation__image img { width: 100%; display: block; }
+    .transformation__stats { display: flex; flex-direction: column; gap: 24px; }
+    .stat-card { background: #F5F5F5; border-radius: 16px; padding: 28px; display: flex; align-items: center; gap: 20px; }
+    .stat-card__number { font-size: 40px; font-weight: 700; color: #321B58; line-height: 1; flex-shrink: 0; }
+    .stat-card__number span { color: #FF8A30; }
+    .stat-card__text { font-size: 15px; color: #3E3E3E; line-height: 1.5; }
+    .stat-card__text strong { color: #321B58; }
+    @media (max-width: 768px) {
+      .transformation__grid { display: block; }
+      .transformation__image { margin-bottom: 32px; }
+      .stat-card { padding: 20px; }
+      .stat-card__number { font-size: 32px; }
+    }
+
+    /* ============================================
+       GUARANTEE BANNER
+       ============================================ */
+    .guarantee { background: #FFF9EE; border-top: 3px solid #FFC035; border-bottom: 3px solid #FFC035; padding: 48px 0; }
+    .guarantee__inner { display: flex; align-items: center; gap: 32px; max-width: 800px; margin: 0 auto; }
+    .guarantee__badge { flex-shrink: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #FFC035, #FF8A30); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #FFFFFF; text-align: center; }
+    .guarantee__badge-number { font-size: 28px; font-weight: 700; line-height: 1; }
+    .guarantee__badge-text { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .guarantee__content h3 { font-size: 24px; margin-bottom: 8px; }
+    .guarantee__content p { font-size: 15px; color: #3E3E3E; line-height: 1.6; }
+    @media (max-width: 768px) {
+      .guarantee__inner { flex-direction: column; text-align: center; }
+      .guarantee__badge { width: 80px; height: 80px; }
+      .guarantee__badge-number { font-size: 22px; }
+    }
+
+    /* ============================================
+       AS SEEN ON / AUTHORITY
+       ============================================ */
+    .authority { padding: 56px 0; background: #F9F7FC; border-top: 1px solid #EDE8F5; border-bottom: 1px solid #EDE8F5; }
+    .authority__badge { display: inline-block; background: #321B58; color: #FFC035; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 16px; border-radius: 20px; margin-bottom: 20px; }
+    .authority h2 { font-size: 28px; margin-bottom: 12px; }
+    .authority .section-sub { margin-bottom: 40px; }
+    .authority__logos { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; margin-bottom: 48px; }
+    .authority__logo-item { display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.85; }
+    .authority__logo-item svg { width: 48px; height: 48px; }
+    .authority__logo-item span { font-size: 13px; font-weight: 600; color: #321B58; text-align: center; }
+    .authority__quotes { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 960px; margin: 0 auto; }
+    .authority__quote-card { background: #FFFFFF; border-radius: 16px; padding: 28px 24px; text-align: left; box-shadow: 0 2px 8px rgba(50,27,88,0.06); border: 1px solid #EDE8F5; }
+    .authority__quote-card blockquote { font-size: 15px; font-style: italic; color: #3E3E3E; line-height: 1.6; margin-bottom: 16px; }
+    .authority__quote-footer { display: flex; align-items: center; gap: 12px; }
+    .authority__quote-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #321B58, #5B3A8C); display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .authority__quote-name { font-size: 14px; font-weight: 700; color: #321B58; }
+    .authority__quote-title { font-size: 12px; color: #6B6B6B; }
+    @media (max-width: 768px) {
+      .authority__logos { gap: 32px; }
+      .authority__quotes { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ============================================
+       FAQ SECTION
+       ============================================ */
+    .faq-section { background: #F9F7FC; }
+    .faq-section h2 { margin-bottom: 32px; }
+    .faq-list { max-width: 720px; margin: 0 auto; text-align: left; }
+    .faq-item { border-bottom: 1px solid #E1E3E4; }
+    .faq-question { width: 100%; background: none; border: none; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: Figtree, sans-serif; font-size: 16px; font-weight: 700; color: #321B58; text-align: left; }
+    .faq-question svg { width: 20px; height: 20px; stroke: #321B58; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s ease; flex-shrink: 0; }
+    .faq-item.open .faq-question svg { transform: rotate(180deg); }
+    .faq-answer { display: none; padding: 0 0 20px; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-answer p { font-size: 15px; color: #3E3E3E; line-height: 1.6; }
+
+    /* ============================================
+       BREED SELECTOR SECTION
+       ============================================ */
+    .breed-section { background: #FFFFFF; }
+    .breed-grid { display: grid; grid-template-columns: 55% 45%; gap: 40px; align-items: start; }
+    .breed-image-wrap { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; background: #F5F5F5; box-shadow: 0 8px 32px rgba(50,27,88,0.1); }
+    .breed-image-wrap img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease; }
+    .breed-image-wrap img.hidden { opacity: 0; }
+    .breed-selector { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 24px; }
+    .breed-btn { background: #FFFFFF; border: 2px solid #E1E3E4; border-radius: 35px; padding: 12px 8px; font-family: Figtree, sans-serif; font-size: 14px; font-weight: 700; color: #321B58; cursor: pointer; transition: all 0.2s ease; text-align: center; }
+    .breed-btn:hover { border-color: #321B58; }
+    .breed-btn.active { border-color: #321B58; background: #F9F7FC; }
+    .breed-info { background: #F9F7FC; border-radius: 16px; padding: 24px; }
+    .breed-info h3 { font-size: 22px; margin-bottom: 8px; }
+    .breed-info__size-badge { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .breed-info__size-badge--small { background: #E0F2FE; color: #0369A1; }
+    .breed-info__size-badge--medium { background: #FEF3C7; color: #92400E; }
+    .breed-info__size-badge--large { background: #FEE2E2; color: #991B1B; }
+    .breed-info__detail { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #3E3E3E; margin-bottom: 8px; }
+    .breed-info__detail svg { width: 16px; height: 16px; stroke: #321B58; fill: none; stroke-width: 2; flex-shrink: 0; }
+    .breed-info__tip { margin-top: 16px; padding: 12px 16px; background: #FFF9EE; border-radius: 10px; border-left: 3px solid #FFC035; font-size: 13px; color: #3E3E3E; line-height: 1.5; }
+    .breed-info__tip strong { color: #321B58; }
+    .breed-cta { margin-top: 20px; text-align: center; }
+    @media (max-width: 768px) {
+      .breed-grid { display: block; }
+      .breed-image-wrap { margin-bottom: 24px; }
+      .breed-selector { display: flex; overflow-x: auto; gap: 8px; padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .breed-selector::-webkit-scrollbar { display: none; }
+      .breed-btn { flex: 0 0 auto; white-space: nowrap; padding: 10px 16px; }
+    }
+
+    /* ============================================
        FOOTER
        ============================================ */
     .site-footer { background-color: #331B54; color: #FFFFFF; padding: 48px 0 24px; text-align: center; }
@@ -568,6 +708,7 @@
       <ul class="sticky-nav__links">
         <li><a href="#pdp" data-section="pdp">Overview</a></li>
         <li><a href="#comparison" data-section="comparison">Compare</a></li>
+        <li><a href="#videos" data-section="videos">Videos</a></li>
         <li><a href="#how-to-use" data-section="how-to-use">How To Use</a></li>
         <li><a href="#size-chart" data-section="size-chart">Size Guide</a></li>
         <li><a href="#reviews" data-section="reviews">Reviews</a></li>
@@ -586,6 +727,7 @@
     </button>
     <a href="#pdp">Overview</a>
     <a href="#comparison">Compare</a>
+    <a href="#videos">Videos</a>
     <a href="#how-to-use">How To Use</a>
     <a href="#size-chart">Size Guide</a>
     <a href="#reviews">Reviews</a>
@@ -889,6 +1031,83 @@
   </section>
 
   <!-- ============================================
+       UGC VIDEO STRIP
+       ============================================ -->
+  <section class="video-strip reveal" id="videos">
+    <div class="container text-center">
+      <h2 class="reveal">Wait Till You See These Glow-Ups</h2>
+      <p class="section-sub reveal">From "I can't walk my dog" to "watch us walk past another dog like it's nothing."</p>
+    </div>
+    <div class="video-scroll">
+      <div class="video-card">
+        <img src="images/ugc-dog-walk-1.jpg" alt="German Shepherd calm walk testimonial" loading="lazy">
+        <div class="video-card__overlay">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <p class="video-card__caption">"He stopped pulling day ONE"</p>
+          <p class="video-card__author">@sarah_and_rex</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <img src="images/hero-lifestyle.jpg" alt="Golden retriever peaceful park walk" loading="lazy">
+        <div class="video-card__overlay">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <p class="video-card__caption">"Best $39 I ever spent"</p>
+          <p class="video-card__author">@golden_girl_luna</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <img src="images/ugc-before-after.jpg" alt="Before and after leash training" loading="lazy">
+        <div class="video-card__overlay">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <p class="video-card__caption">"Watch this transformation"</p>
+          <p class="video-card__author">@thelabradorlife</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <img src="images/how-it-works-nose-pressure.jpg" alt="How the nose loop works" loading="lazy">
+        <div class="video-card__overlay">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <p class="video-card__caption">"Trainer shows how it works"</p>
+          <p class="video-card__author">@heathersheroespets</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <img src="images/ugc-puppy-walk.jpg" alt="Puppy on a calm first walk" loading="lazy">
+        <div class="video-card__overlay">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <p class="video-card__caption">"Even our puppy walks like a pro"</p>
+          <p class="video-card__author">@puppy_adventures_co</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <img src="images/how-it-works-calm-walk.jpg" alt="Calm neighborhood walk" loading="lazy">
+        <div class="video-card__overlay">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <p class="video-card__caption">"No more shoulder pain!"</p>
+          <p class="video-card__author">@jess_walks_daily</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <img src="images/ugc-dog-walk-2.jpg" alt="Happy dog during walk" loading="lazy">
+        <div class="video-card__overlay">
+          <div class="video-card__play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <p class="video-card__caption">"Look how happy he is!"</p>
+          <p class="video-card__author">@doggomom_life</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inline CTA after Video Strip -->
+  <div class="inline-cta inline-cta--purple">
+    <div class="container">
+      <p class="inline-cta__text reveal">2,113 dog parents can't be wrong.</p>
+      <p class="inline-cta__sub reveal">Join the pack and see results on your very first walk.</p>
+      <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary reveal">Join the Pack &middot; $38.99</a>
+    </div>
+  </div>
+
+  <!-- ============================================
        SECTION 3: HEAD COLLAR vs SIDEKICK
        ============================================ -->
   <section class="problem-section section-padding" id="problem">
@@ -967,6 +1186,38 @@
       </div>
 
       <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary reveal">Try The Sidekick &middot; $38.99</a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BEFORE/AFTER TRANSFORMATION
+       ============================================ -->
+  <section class="transformation reveal" id="transformation">
+    <div class="container text-center">
+      <h2 class="reveal">From "I Can't Walk My Dog" to "Watch Us."</h2>
+      <p class="section-sub reveal">This isn't a gimmick. These are numbers from 2,113 real dog parents who made the switch.</p>
+      <div class="transformation__grid reveal">
+        <div class="transformation__image">
+          <img src="images/ugc-before-after.jpg" alt="Before: dog pulling hard. After: dog walking calmly with The Sidekick" loading="lazy">
+        </div>
+        <div class="transformation__stats">
+          <div class="stat-card">
+            <div class="stat-card__number">93<span>%</span></div>
+            <div class="stat-card__text"><strong>of dogs stop pulling</strong> within the first 3 walks using The Sidekick's gentle nose pressure method</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">4.7<span>/5</span></div>
+            <div class="stat-card__text"><strong>Average rating from 2,113 reviews</strong> — dog parents call it "the only thing that actually worked"</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number">0<span>x</span></div>
+            <div class="stat-card__text"><strong>Zero choking or pain</strong> — unlike prong collars and choke chains, The Sidekick uses a natural calming pressure point</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 40px;" class="reveal">
+        <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary">Try It Risk-Free &middot; $38.99</a>
+      </div>
     </div>
   </section>
 
@@ -1076,6 +1327,62 @@
   </section>
 
   <!-- ============================================
+       BREED SELECTOR SECTION
+       ============================================ -->
+  <section class="breed-section section-padding" id="breed-selector">
+    <div class="container">
+      <h2 class="reveal text-center">See The Sidekick on Your Breed</h2>
+      <p class="reveal text-center" style="font-size:17px;color:#3E3E3E;max-width:600px;margin:0 auto 40px;">The Sidekick works on every breed and size. Select your dog below to see the perfect fit.</p>
+
+      <div class="breed-grid reveal">
+        <!-- Left: Image display -->
+        <div>
+          <div class="breed-image-wrap" id="breedImageWrap">
+            <img src="images/breed-golden-retriever.jpg" alt="Golden Retriever wearing The Sidekick" id="breedImg1" loading="lazy">
+            <img src="images/breed-german-shepherd.jpg" alt="German Shepherd wearing The Sidekick" id="breedImg2" class="hidden" loading="lazy">
+            <img src="images/breed-labrador.jpg" alt="Labrador wearing The Sidekick" id="breedImg3" class="hidden" loading="lazy">
+            <img src="images/breed-french-bulldog.jpg" alt="French Bulldog wearing The Sidekick" id="breedImg4" class="hidden" loading="lazy">
+            <img src="images/breed-husky.jpg" alt="Husky wearing The Sidekick" id="breedImg5" class="hidden" loading="lazy">
+            <img src="images/breed-poodle.jpg" alt="Poodle / Doodle wearing The Sidekick" id="breedImg6" class="hidden" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Right: Selector + Info -->
+        <div>
+          <div class="breed-selector" id="breedSelector">
+            <button class="breed-btn active" onclick="selectBreed(this, 0)" aria-pressed="true">Golden Retriever</button>
+            <button class="breed-btn" onclick="selectBreed(this, 1)" aria-pressed="false">German Shepherd</button>
+            <button class="breed-btn" onclick="selectBreed(this, 2)" aria-pressed="false">Labrador</button>
+            <button class="breed-btn" onclick="selectBreed(this, 3)" aria-pressed="false">French Bulldog</button>
+            <button class="breed-btn" onclick="selectBreed(this, 4)" aria-pressed="false">Husky</button>
+            <button class="breed-btn" onclick="selectBreed(this, 5)" aria-pressed="false">Poodle / Doodle</button>
+          </div>
+
+          <div class="breed-info" id="breedInfo">
+            <h3 id="breedName">Golden Retriever</h3>
+            <span class="breed-info__size-badge breed-info__size-badge--large" id="breedSizeBadge">Large</span>
+            <div class="breed-info__detail">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="breedWeight">55–75 lbs</span>
+            </div>
+            <div class="breed-info__detail">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              <span>Recommended size: <strong id="breedRecommended">Regular</strong></span>
+            </div>
+            <div class="breed-info__tip" id="breedTip">
+              <strong>Trainer tip:</strong> Golden Retrievers respond quickly to nose pressure training — most owners see results on the very first walk.
+            </div>
+          </div>
+
+          <div class="breed-cta">
+            <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary">Get The Sidekick &middot; $38.99</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        SECTION 4C: WHY USE IT
        ============================================ -->
   <section class="whyuse-section section-padding" id="why-use-it">
@@ -1181,6 +1488,85 @@
   </section>
 
   <!-- ============================================
+       AS SEEN ON / AUTHORITY
+       ============================================ -->
+  <section class="authority text-center reveal" id="authority">
+    <div class="container">
+      <div class="authority__badge reveal">Trusted by the Best</div>
+      <h2 class="reveal">This Isn't Just a Leash. It's Trainer-Approved.</h2>
+      <p class="section-sub reveal">Featured on national TV and recommended by certified dog trainers across the country.</p>
+
+      <div class="authority__logos reveal">
+        <div class="authority__logo-item">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#321B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="36" height="24" rx="2"/><polygon points="20 16 20 28 32 22 20 16"/><line x1="6" y1="38" x2="42" y2="38"/></svg>
+          <span>As Seen on<br>The Profit</span>
+        </div>
+        <div class="authority__logo-item">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#321B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="16" r="10"/><path d="M8 42c0-8.8 7.2-16 16-16s16 7.2 16 16"/><path d="M28 14l-6 6 3 2-6 6"/></svg>
+          <span>Certified Trainer<br>Recommended</span>
+        </div>
+        <div class="authority__logo-item">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#321B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4.9 9.9 10.9 1.6-7.9 7.7 1.9 10.8L24 29l-9.8 5.1 1.9-10.8-7.9-7.7 10.9-1.6z"/><circle cx="24" cy="38" r="6"/><path d="M20 42h8"/></svg>
+          <span>50,000+ Happy<br>Dog Parents</span>
+        </div>
+        <div class="authority__logo-item">
+          <svg viewBox="0 0 48 48" fill="none" stroke="#321B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6h8v8l6-6v24l-6-6v8H20l6-6H8V16h18l-6-6z"/><circle cx="36" cy="24" r="6"/><path d="M36 20v8"/><path d="M32 24h8"/></svg>
+          <span>Vet<br>Approved</span>
+        </div>
+      </div>
+
+      <div class="authority__quotes reveal">
+        <div class="authority__quote-card">
+          <blockquote>"I've tried every tool on the market with my clients' dogs. The Sidekick is the first one that teaches impulse control without causing stress. It's now my go-to recommendation."</blockquote>
+          <div class="authority__quote-footer">
+            <div class="authority__quote-avatar">JR</div>
+            <div>
+              <div class="authority__quote-name">Jake Robinson, CPDT-KA</div>
+              <div class="authority__quote-title">Certified Dog Trainer, 12+ years</div>
+            </div>
+          </div>
+        </div>
+        <div class="authority__quote-card">
+          <blockquote>"As a vet, I see the damage prong collars and choke chains cause. The Sidekick is the humane alternative I've been waiting for — effective, safe, and dogs actually enjoy wearing it."</blockquote>
+          <div class="authority__quote-footer">
+            <div class="authority__quote-avatar">DL</div>
+            <div>
+              <div class="authority__quote-name">Dr. Lisa Park, DVM</div>
+              <div class="authority__quote-title">Veterinarian, Animal Wellness Clinic</div>
+            </div>
+          </div>
+        </div>
+        <div class="authority__quote-card">
+          <blockquote>"We featured Heather's Heroes on The Profit because they're solving a real problem. The Sidekick isn't just a product — it's changing the way people train their dogs."</blockquote>
+          <div class="authority__quote-footer">
+            <div class="authority__quote-avatar">TP</div>
+            <div>
+              <div class="authority__quote-name">The Profit</div>
+              <div class="authority__quote-title">CNBC TV Show</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee Banner -->
+  <div class="guarantee reveal" id="guarantee">
+    <div class="container">
+      <div class="guarantee__inner">
+        <div class="guarantee__badge">
+          <div class="guarantee__badge-number">30</div>
+          <div class="guarantee__badge-text">Day<br>Guarantee</div>
+        </div>
+        <div class="guarantee__content">
+          <h3>Love It or Your Money Back. Seriously.</h3>
+          <p>We're so confident The Sidekick will change your walks that we offer a no-questions-asked 30-day return policy. If it doesn't work for you and your pup — full refund. You don't even need a reason. That's how sure we are.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
        SECTION 5C: SOCIAL PROOF / REVIEWS
        ============================================ -->
   <section class="reviews-section section-padding" id="reviews">
@@ -1246,10 +1632,86 @@
   </section>
 
   <!-- ============================================
+       FAQ SECTION
+       ============================================ -->
+  <section class="faq-section section-padding reveal" id="faq">
+    <div class="container text-center">
+      <h2 class="reveal">You've Got Questions. We've Got Receipts.</h2>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What size should I get for my dog?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Regular (3/8") fits most dogs over 10 lbs. Mini (1/4") is perfect for dogs under 25 lbs as adults, or if you prefer a thinner profile. When in doubt, Regular works for the vast majority of breeds.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>How is this different from a Gentle Leader or head halter?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Unlike rigid head halters that can rub and chafe, The Sidekick uses soft, flexible rope that sits gently on the nose. There's no hard plastic or stiff straps. Plus, it includes a built-in safety clip — something most head halters lack.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Will my dog actually stop pulling?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>The 3-in-1 design teaches your dog through pressure and release — the same method used by professional trainers worldwide. Combined with the included video tutorials, most owners see improvement within the first walk.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What if my dog shakes it off their nose?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>That's exactly what the safety clip is for. It attaches directly to your dog's collar, so even if the nose loop comes off, your dog is still secure.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is $38.99 expensive for a leash?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>The Sidekick isn't just a leash — it's a 3-in-1 training system with lifetime support. Compare that to $200+ for a single session with a dog trainer, or $50+ for head halters that don't include any training guidance.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What's your return policy?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>We offer a 30-day satisfaction guarantee. If The Sidekick doesn't work for you and your pup, send it back for a full refund. No questions asked.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is it safe for puppies?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! The Mini size is specifically designed for smaller and younger dogs. The soft rope material is gentle on developing necks and noses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
        FINAL CTA
        ============================================ -->
   <section class="final-cta" id="final-cta">
     <div class="container">
+      <h2 class="reveal" style="color:#FFFFFF;font-size:36px;margin-bottom:16px;">Your Dog Deserves Better Walks.<br>So Do You.</h2>
+      <p class="reveal" style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:32px;">50,000+ dog parents made the switch. Most see results on Walk #1.</p>
       <a href="https://www.heathersheroes.com/products/the-sidekick" class="btn-primary reveal" style="font-size:20px;padding:20px 52px;">Add to Cart &middot; $38.99</a>
       <p class="final-cta__trust reveal">30-Day Money-Back Guarantee &middot; Free Shipping Over $75 &middot; Lifetime Support</p>
     </div>
@@ -1407,6 +1869,132 @@
     function toggleAccordion(header) {
       var item = header.closest('.pdp-accordion-item');
       item.classList.toggle('open');
+    }
+
+    // FAQ toggle
+    function toggleFaq(btn) {
+      var item = btn.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+
+    // ============================================
+    // BREED SELECTOR
+    // ============================================
+    var breedData = [
+      {
+        name: 'Golden Retriever',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '55\u201375 lbs',
+        recommended: 'Regular',
+        tip: 'Golden Retrievers respond quickly to nose pressure training \u2014 most owners see results on the very first walk.',
+        imgId: 'breedImg1'
+      },
+      {
+        name: 'German Shepherd',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '50\u201390 lbs',
+        recommended: 'Regular',
+        tip: 'German Shepherds are highly intelligent and typically adapt to The Sidekick within 1\u20132 sessions.',
+        imgId: 'breedImg2'
+      },
+      {
+        name: 'Labrador',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '55\u201380 lbs',
+        recommended: 'Regular',
+        tip: 'Labs are food-motivated learners \u2014 pair The Sidekick with treats for even faster results.',
+        imgId: 'breedImg3'
+      },
+      {
+        name: 'French Bulldog',
+        sizeLabel: 'Small',
+        sizeClass: 'breed-info__size-badge--small',
+        weight: '16\u201328 lbs',
+        recommended: 'Mini',
+        tip: 'French Bulldogs have shorter snouts, so the Mini size provides the ideal gentle fit without pressure.',
+        imgId: 'breedImg4'
+      },
+      {
+        name: 'Husky',
+        sizeLabel: 'Large',
+        sizeClass: 'breed-info__size-badge--large',
+        weight: '35\u201360 lbs',
+        recommended: 'Regular',
+        tip: 'Huskies are strong pullers but respond well to the nose pressure method \u2014 consistency is key.',
+        imgId: 'breedImg5'
+      },
+      {
+        name: 'Poodle / Doodle',
+        sizeLabel: 'Medium',
+        sizeClass: 'breed-info__size-badge--medium',
+        weight: '40\u201370 lbs',
+        recommended: 'Regular',
+        tip: 'Poodles and Doodles are eager-to-please and usually master loose-leash walking faster than most breeds.',
+        imgId: 'breedImg6'
+      }
+    ];
+
+    var currentBreedIndex = 0;
+
+    // Preload all breed images
+    breedData.forEach(function(b) {
+      var img = document.getElementById(b.imgId);
+      if (img && img.dataset.src) {
+        var preloader = new Image();
+        preloader.src = img.dataset.src;
+      }
+    });
+
+    function selectBreed(btn, index) {
+      if (index === currentBreedIndex) return;
+
+      // Update button states
+      document.querySelectorAll('.breed-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      // Crossfade images
+      var currentImg = document.getElementById(breedData[currentBreedIndex].imgId);
+      var nextImg = document.getElementById(breedData[index].imgId);
+
+      if (currentImg && nextImg) {
+        currentImg.style.opacity = '0';
+        nextImg.style.opacity = '1';
+        nextImg.classList.remove('hidden');
+        setTimeout(function() {
+          currentImg.classList.add('hidden');
+        }, 400);
+      }
+
+      // Update breed info with slide-up animation
+      var breedInfo = document.getElementById('breedInfo');
+      breedInfo.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      breedInfo.style.opacity = '0';
+      breedInfo.style.transform = 'translateY(12px)';
+
+      setTimeout(function() {
+        var breed = breedData[index];
+        document.getElementById('breedName').textContent = breed.name;
+
+        var badge = document.getElementById('breedSizeBadge');
+        badge.textContent = breed.sizeLabel;
+        badge.className = 'breed-info__size-badge ' + breed.sizeClass;
+
+        document.getElementById('breedWeight').textContent = breed.weight;
+        document.getElementById('breedRecommended').textContent = breed.recommended;
+        document.getElementById('breedTip').innerHTML = '<strong>Trainer tip:</strong> ' + breed.tip;
+
+        breedInfo.style.opacity = '1';
+        breedInfo.style.transform = 'translateY(0)';
+      }, 200);
+
+      currentBreedIndex = index;
     }
   </script>
 
