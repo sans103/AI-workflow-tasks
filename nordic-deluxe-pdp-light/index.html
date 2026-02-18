@@ -39,7 +39,8 @@
         }
 
         html {
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px
         }
 
         body {
@@ -139,6 +140,65 @@
             height: 8px;
             background: var(--cyan);
             border-radius: 50%
+        }
+
+        /* SECTION NAV */
+        .section-nav {
+            position: fixed;
+            top: 54px;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, .08);
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: transform .3s ease, opacity .3s ease;
+            pointer-events: none
+        }
+
+        .section-nav.visible {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto
+        }
+
+        .section-nav-inner {
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            max-width: var(--max);
+            margin: 0 auto
+        }
+
+        .section-nav-inner::-webkit-scrollbar {
+            display: none
+        }
+
+        .section-nav-inner a {
+            flex-shrink: 0;
+            padding: 10px 16px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray);
+            text-decoration: none;
+            letter-spacing: .3px;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: color .2s, border-color .2s
+        }
+
+        .section-nav-inner a:hover {
+            color: var(--white)
+        }
+
+        .section-nav-inner a.active {
+            color: var(--white);
+            border-bottom-color: var(--cyan)
         }
 
         /* HERO */
@@ -1684,8 +1744,21 @@
         </div>
     </header>
 
+    <!-- SECTION NAV -->
+    <nav class="section-nav" id="sectionNav">
+        <div class="section-nav-inner">
+            <a href="#produkt" data-section="produkt">Produkt</a>
+            <a href="#funktioner" data-section="funktioner">Funktioner</a>
+            <a href="#vacuum" data-section="vacuum">Vacuum</a>
+            <a href="#resultater" data-section="resultater">Resultater</a>
+            <a href="#sammenligning" data-section="sammenligning">Sammenligning</a>
+            <a href="#anmeldelser" data-section="anmeldelser">Anmeldelser</a>
+            <a href="#faq" data-section="faq">FAQ</a>
+        </div>
+    </nav>
+
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="produkt">
         <div class="hero-grid">
             <div class="gallery">
                 <div class="gallery-main" id="mainImage">
@@ -1852,7 +1925,7 @@
     </section>
 
     <!-- FEATURES -->
-    <section class="features-section light-section reveal">
+    <section class="features-section light-section reveal" id="funktioner">
         <p class="section-label">Funktioner</p>
         <h2 class="section-title">Bygget til perfektion</h2>
         <div class="features-grid">
@@ -1896,7 +1969,7 @@
     </section>
 
     <!-- VACUUM USP HERO -->
-    <section class="vacuum-hero reveal">
+    <section class="vacuum-hero reveal" id="vacuum">
         <div class="container">
             <p class="section-label">Vacuum Teknologi</p>
             <h2>Sig farvel til <span>rod i vasken</span></h2>
@@ -1927,7 +2000,7 @@
     </section>
 
     <!-- IN-ACTION GALLERY -->
-    <section class="action-section reveal">
+    <section class="action-section reveal" id="resultater">
         <p class="section-label">Se den i aktion</p>
         <h2 class="section-title">Rigtige kunder, rigtige resultater</h2>
         <div class="action-carousel-wrap">
@@ -2028,7 +2101,7 @@
     </section>
 
     <!-- COMPARISON TABLE -->
-    <section class="compare-section light-section reveal">
+    <section class="compare-section light-section reveal" id="sammenligning">
         <p class="section-label">Sammenligning</p>
         <h2 class="section-title">Nordic Deluxe vs. Andre trimmere</h2>
         <table class="compare-table">
@@ -2111,7 +2184,7 @@
     </section>
 
     <!-- REVIEWS -->
-    <section class="reviews-section reveal">
+    <section class="reviews-section reveal" id="anmeldelser">
         <div style="max-width:var(--max);margin:0 auto;padding:0 0 20px">
             <p class="section-label">Anmeldelser</p>
             <h2 class="section-title">Hvad vores kunder siger</h2>
@@ -2310,7 +2383,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="faq-section light-section reveal">
+    <section class="faq-section light-section reveal" id="faq">
         <div class="faq-container">
             <p class="section-label" style="text-align:center;margin-bottom:10px">Ofte stillede spørgsmål</p>
             <h2 class="section-title" style="margin-bottom:40px">Har du spørgsmål?</h2>
@@ -2521,6 +2594,54 @@
             /* Dot click */
             dots.forEach(function (dot, idx) {
                 dot.addEventListener('click', function () { scrollToIndex(idx) });
+            });
+        })();
+        /* Section nav - show/hide + active tracking */
+        (function () {
+            var nav = document.getElementById('sectionNav');
+            var hero = document.getElementById('produkt');
+            var links = nav.querySelectorAll('a[data-section]');
+            var sections = [];
+            links.forEach(function (a) {
+                var el = document.getElementById(a.dataset.section);
+                if (el) sections.push({ id: a.dataset.section, el: el, link: a });
+            });
+
+            /* Show nav when hero scrolls out */
+            var navObs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    nav.classList.toggle('visible', !e.isIntersecting);
+                });
+            }, { threshold: 0, rootMargin: '-54px 0px 0px 0px' });
+            navObs.observe(hero);
+
+            /* Track active section */
+            var sectionObs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        var id = e.target.id;
+                        links.forEach(function (a) {
+                            a.classList.toggle('active', a.dataset.section === id);
+                        });
+                        var activeLink = nav.querySelector('a.active');
+                        if (activeLink) {
+                            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+            sections.forEach(function (s) { sectionObs.observe(s.el) });
+
+            /* Smooth scroll with offset */
+            links.forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var target = document.getElementById(this.dataset.section);
+                    if (target) {
+                        var y = target.getBoundingClientRect().top + window.pageYOffset - 100;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                });
             });
         })();
     </script>
