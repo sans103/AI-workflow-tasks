@@ -166,14 +166,23 @@
             pointer-events: auto
         }
 
+        .section-nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding-right: 16px
+        }
+
         .section-nav-inner {
             display: flex;
             gap: 0;
             overflow-x: auto;
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
-            max-width: var(--max);
-            margin: 0 auto
+            flex: 1;
+            min-width: 0
         }
 
         .section-nav-inner::-webkit-scrollbar {
@@ -200,6 +209,51 @@
         .section-nav-inner a.active {
             color: var(--white);
             border-bottom-color: var(--cyan)
+        }
+
+        /* SECTION NAV ATC (desktop only) */
+        .section-nav-atc {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            padding-left: 16px;
+            border-left: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .sna-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+            font-family: var(--font-heading)
+        }
+
+        .sna-original {
+            font-size: 13px;
+            color: var(--muted);
+            text-decoration: line-through
+        }
+
+        .sna-btn {
+            background: var(--cyan);
+            color: var(--bg);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: box-shadow .2s, transform .15s;
+            box-shadow: var(--cyan-glow)
+        }
+
+        .sna-btn:hover {
+            box-shadow: 0 0 24px rgba(0, 255, 255, .4);
+            transform: translateY(-1px)
         }
 
         /* HERO */
@@ -1538,6 +1592,17 @@
             transform: none
         }
 
+        /* DESKTOP: merge ATC into section nav */
+        @media(min-width:769px) {
+            .section-nav-atc {
+                display: flex
+            }
+
+            .sticky-atc {
+                display: none !important
+            }
+        }
+
         /* RESPONSIVE */
         @media(max-width:1024px) {
             .hero-grid {
@@ -1746,14 +1811,21 @@
 
     <!-- SECTION NAV -->
     <nav class="section-nav" id="sectionNav">
-        <div class="section-nav-inner">
-            <a href="#produkt" data-section="produkt">Produkt</a>
-            <a href="#funktioner" data-section="funktioner">Funktioner</a>
-            <a href="#vacuum" data-section="vacuum">Vacuum</a>
-            <a href="#resultater" data-section="resultater">Resultater</a>
-            <a href="#sammenligning" data-section="sammenligning">Sammenligning</a>
-            <a href="#anmeldelser" data-section="anmeldelser">Anmeldelser</a>
-            <a href="#faq" data-section="faq">FAQ</a>
+        <div class="section-nav-container">
+            <div class="section-nav-inner">
+                <a href="#produkt" data-section="produkt">Produkt</a>
+                <a href="#funktioner" data-section="funktioner">Funktioner</a>
+                <a href="#vacuum" data-section="vacuum">Vacuum</a>
+                <a href="#resultater" data-section="resultater">Resultater</a>
+                <a href="#sammenligning" data-section="sammenligning">Sammenligning</a>
+                <a href="#anmeldelser" data-section="anmeldelser">Anmeldelser</a>
+                <a href="#faq" data-section="faq">FAQ</a>
+            </div>
+            <div class="section-nav-atc">
+                <span class="sna-price">549 kr</span>
+                <span class="sna-original">999 kr</span>
+                <button class="sna-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">TILFØJ TIL KURV</button>
+            </div>
         </div>
     </nav>
 
