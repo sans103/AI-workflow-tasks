@@ -126,12 +126,12 @@ a{text-decoration:none;color:inherit}
 .frame-collection{font-size:11px;color:var(--text-light);margin-top:3px;text-transform:uppercase;letter-spacing:.8px;font-weight:500}
 .frame-price{font-size:13px;font-weight:700;color:var(--text-mid);margin-top:6px}
 .frame-card-actions{display:flex;border-top:1px solid var(--border-light)}
-.frame-preview-btn{flex:1;background:transparent;color:var(--text-mid);border:none;padding:11px 0;font-size:11px;font-weight:600;letter-spacing:.3px;cursor:pointer;text-align:center;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px}
-.frame-preview-btn:hover{background:var(--warm-bg);color:var(--text)}
-.frame-card.active-preview .frame-preview-btn{background:var(--gold);color:var(--white)}
+.frame-preview-btn{flex:1;background:var(--surface);color:var(--text);border:none;border-right:1px solid var(--border-light);padding:11px 0;font-size:11px;font-weight:600;letter-spacing:.3px;cursor:pointer;text-align:center;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:5px}
+.frame-preview-btn:hover{background:var(--border);color:var(--text)}
+.frame-card.active-preview .frame-preview-btn{border-color:var(--gold);color:var(--gold);background:var(--surface)}
 .frame-add-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;background:var(--surface);color:var(--text);border:none;padding:11px 0;font-size:11px;font-weight:700;letter-spacing:.3px;cursor:pointer;text-align:center;transition:all .2s}
 .frame-add-btn:hover{background:var(--border)}
-.frame-card.selected .frame-add-btn{background:var(--gold)}
+.frame-card.selected .frame-add-btn{background:var(--gold);color:var(--white)}
 
 .show-more-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-top:1px solid var(--border)}
 .show-more-text{font-size:13px;color:var(--text-mid)}
