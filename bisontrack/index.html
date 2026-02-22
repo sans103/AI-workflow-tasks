@@ -671,6 +671,42 @@
       border-radius: 4px;
     }
 
+    /* ── PRO RIDERS ──────────────────────────────── */
+    .riders-section { background: var(--black); padding: 80px 32px; }
+    .riders-grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .rider-card { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 3/4; }
+    .rider-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .4s; }
+    .rider-card:hover img { transform: scale(1.04); }
+    .rider-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%); }
+    .rider-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px; }
+    .rider-name { font-size: 15px; font-weight: 800; color: var(--white); letter-spacing: .01em; margin-bottom: 3px; }
+    .rider-title { font-family: var(--font-body); font-size: 12px; color: var(--lime); font-weight: 600; }
+
+    /* ── CONSULTATION CTA ────────────────────────── */
+    .consult-section { background: var(--off); padding: 80px 32px; border-top: 1px solid var(--border); }
+    .consult-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 420px 1fr; gap: 80px; align-items: center; }
+    .consult-left { border-radius: 8px; overflow: hidden; }
+    .consult-left img { width: 100%; height: 100%; object-fit: cover; }
+    .consult-points { display: flex; flex-direction: column; gap: 14px; margin: 24px 0 28px; }
+    .consult-point { display: flex; align-items: flex-start; gap: 12px; font-family: var(--font-body); font-size: 15px; color: var(--mid); line-height: 1.5; }
+    .consult-icon { width: 36px; height: 36px; background: var(--lime); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #000; margin-top: 2px; }
+
+    /* ── COMPARISON TABLE ────────────────────────── */
+    .compare-section { background: var(--white); padding: 80px 32px; }
+    .compare-wrap { max-width: 900px; margin: 0 auto; overflow-x: auto; }
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th, .compare-table td { padding: 14px 20px; text-align: center; font-size: 14px; border-bottom: 1px solid var(--border); }
+    .compare-feature { text-align: left !important; font-weight: 600; color: var(--dark); font-size: 14px; }
+    .compare-bison { background: var(--dark); color: var(--white); font-weight: 700; }
+    .compare-logo-cell { display: flex; justify-content: center; }
+    .compare-other { color: var(--muted); font-weight: 600; font-size: 13px; }
+    .compare-yes { color: #16a34a; font-weight: 700; background: rgba(22,163,74,.06); }
+    .compare-no { color: #dc2626; }
+    .compare-partial { color: var(--muted); font-size: 12px; font-style: italic; }
+    .compare-other-cell { font-family: var(--font-body); font-size: 13px; color: var(--muted); }
+    .compare-table tbody tr:hover td { background: var(--off); }
+    .compare-table tbody tr:hover .compare-yes { background: rgba(22,163,74,.1); }
+
     /* ── NEWSLETTER ──────────────────────────────── */
     .nl-section { background: var(--lime); padding: 72px 32px; }
     .nl-inner { max-width: 600px; margin: 0 auto; text-align: center; }
@@ -778,6 +814,12 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .how-section { padding: 60px 20px; }
       .testi-section { padding: 60px 20px; }
+      .riders-grid { grid-template-columns: repeat(2, 1fr); }
+      .riders-section { padding: 60px 20px; }
+      .consult-inner { grid-template-columns: 1fr; gap: 32px; }
+      .consult-section { padding: 60px 20px; }
+      .consult-left { max-height: 320px; }
+      .compare-section { padding: 60px 20px; }
       .testi-grid { grid-template-columns: 1fr; }
       .rating-row { flex-direction: column; align-items: flex-start; }
       .partners-logos { gap: 24px; }
@@ -944,15 +986,15 @@
     </div>
   </div>
 
-  <!-- Hero lifestyle image — Vegan suit, full-body editorial -->
+  <!-- Hero lifestyle image — real site banner from bisontrack.com -->
   <div class="hero-image">
     <img
-      src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVeganCustomMotorcycleRacingSuit_8e5531ff-cca3-4898-9533-692b50824911.png"
-      alt="Bison Track Custom Motorcycle Racing Suit — lifestyle"
+      src="https://bisontrack.com/cdn/shop/files/Bison_motorcycle_suits_website_banner.png?v=1727473445"
+      alt="Bison Track — Custom Motorcycle Racing Suits"
       loading="eager"
+      style="object-position: center center;"
     >
-    <!-- Lifestyle overlay — subtle gradient for cinematic feel -->
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(247,247,247,0.18) 0%,transparent 40%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(247,247,247,0.12) 0%,transparent 35%);pointer-events:none;"></div>
   </div>
 </section>
 
@@ -1043,7 +1085,10 @@
 <section class="products-section">
   <div class="products-header">
     <div>
-      <div class="section-label">Pasturesale — Up to 58% Off</div>
+      <div class="section-label" style="color:#dc2626;">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:4px;"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+        Pasturesale — Limited Sizes Left. Up to 58% Off.
+      </div>
       <h2 class="section-h2">Featured Suits &amp; Gear</h2>
     </div>
     <a href="/collections/bison-off-the-rack" class="btn-outline-dark2">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -1140,17 +1185,17 @@
   </div>
 </section>
 
-<!-- TRUSTED PARTNERS -->
+<!-- TRUSTED PARTNERS + PRESS -->
 <section class="partners-section">
   <div class="partners-inner">
-    <div class="partners-label">Trusted by Racers. Proven on Track.</div>
-    <div class="partners-logos">
-      <span class="partner-badge">MotoAmerica</span>
-      <span class="partner-badge">North America Talent Cup</span>
-      <span class="partner-badge">WERA</span>
-      <span class="partner-badge">CCS Racing</span>
-      <span class="partner-badge">NASA Motorsports</span>
+    <div class="partners-label">Worn by Champions. Trusted on Track.</div>
+    <div class="partners-logos" style="align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;">
+      <img src="https://bisontrack.com/cdn/shop/files/North_America_Talent_Cup_Logo.jpg?v=1716480945" alt="North America Talent Cup" style="height:48px;width:auto;object-fit:contain;opacity:.8;filter:grayscale(40%);">
+      <img src="https://bisontrack.com/cdn/shop/files/The_Blox_Combined_Logo.jpg?v=1716645801" alt="The Blox" style="height:44px;width:auto;object-fit:contain;opacity:.8;filter:grayscale(40%);">
+      <img src="https://bisontrack.com/cdn/shop/files/Ultimate_Motorcycling.jpg?v=1716646054" alt="Ultimate Motorcycling" style="height:44px;width:auto;object-fit:contain;opacity:.8;filter:grayscale(40%);">
+      <img src="https://bisontrack.com/cdn/shop/files/International_Business_Times_Logo_d14001f2-438c-4a28-b494-7f58a242b794.png?v=1718930890" alt="International Business Times" style="height:36px;width:auto;object-fit:contain;opacity:.75;filter:grayscale(40%);">
     </div>
+    <div class="partners-label" style="margin-top:24px;font-size:11px;">As seen &amp; worn in</div>
   </div>
 </section>
 
@@ -1195,6 +1240,153 @@
       </div>
       <a href="#reviews" class="btn-lime">Read All Reviews <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
+  </div>
+</section>
+
+<!-- PRO RIDERS — real action photos from live site -->
+<section class="riders-section">
+  <div class="section-wrap" style="text-align:center;margin-bottom:40px;">
+    <div class="section-label" style="color:var(--lime)">MotoAmerica &amp; World Series</div>
+    <h2 class="section-h2 section-h2-white">The Riders Who Trust Bison Track</h2>
+    <p class="section-sub section-sub-light" style="margin:0 auto;">From North America Talent Cup to the FIM Women's World Championship — our gear performs where it counts.</p>
+  </div>
+  <div class="riders-grid">
+    <div class="rider-card">
+      <img src="https://bisontrack.com/cdn/shop/files/2024_clark_chris_round01_barcelona_worldssp300_sunday-02761-1.jpg?v=1718476415" alt="Chris Clark — WorldSSP300" loading="lazy">
+      <div class="rider-overlay"></div>
+      <div class="rider-info">
+        <div class="rider-name">Chris Clark</div>
+        <div class="rider-title">WorldSSP300 — Barcelona</div>
+      </div>
+    </div>
+    <div class="rider-card">
+      <img src="https://bisontrack.com/cdn/shop/files/2024_FIM_Women_s_World_Championship_Cremona_Test_Mallory_Dobbs_11.jpg?v=1716482167" alt="Mallory Dobbs — FIM Women's World Championship" loading="lazy">
+      <div class="rider-overlay"></div>
+      <div class="rider-info">
+        <div class="rider-name">Mallory Dobbs</div>
+        <div class="rider-title">FIM Women's World Championship</div>
+      </div>
+    </div>
+    <div class="rider-card">
+      <img src="https://bisontrack.com/cdn/shop/files/Mikayla_Moore.jpg?v=1718918010" alt="Mikayla Moore — MotoAmerica" loading="lazy">
+      <div class="rider-overlay"></div>
+      <div class="rider-info">
+        <div class="rider-name">Mikayla Moore</div>
+        <div class="rider-title">MotoAmerica</div>
+      </div>
+    </div>
+    <div class="rider-card">
+      <img src="https://bisontrack.com/cdn/shop/files/2024_Jerez_Kensei_Matsudaira_07.jpg?v=1716646549" alt="Kensei Matsudaira — Jerez" loading="lazy">
+      <div class="rider-overlay"></div>
+      <div class="rider-info">
+        <div class="rider-name">Kensei Matsudaira</div>
+        <div class="rider-title">Jerez Round — 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM FIT CONSULTATION CTA — risk reduction, high-intent nudge -->
+<section class="consult-section">
+  <div class="consult-inner">
+    <div class="consult-left">
+      <img src="https://bisontrack.com/cdn/shop/files/Our_Fitment_Guarantee.jpg?v=1718924571" alt="Bison Track Fitment Guarantee" loading="lazy">
+    </div>
+    <div class="consult-right">
+      <div class="section-label">1-on-1 Fitting</div>
+      <h2 class="section-h2">Not Sure Where to Start?</h2>
+      <p class="section-sub">Every Bison Track custom order includes a personal fitting session with our team. We take your measurements, walk you through every option, and make sure your suit is built exactly right — before we ever cut leather.</p>
+      <div class="consult-points">
+        <div class="consult-point">
+          <div class="consult-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div><strong>Trackside or Virtual</strong> — we fit you wherever you are</div>
+        </div>
+        <div class="consult-point">
+          <div class="consult-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div><strong>8–10 Week Lead Time</strong> — hand-crafted to your spec</div>
+        </div>
+        <div class="consult-point">
+          <div class="consult-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <div><strong>Fit Guaranteed</strong> — if it doesn't fit, we fix it</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+        <a href="/collections/bison-custom-built" class="btn-dark">
+          Start My Custom Order
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/pages/contact" class="btn-outline-dark">Ask a Question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS COMPARISON — overcome competitor objections -->
+<section class="compare-section">
+  <div class="section-wrap" style="text-align:center;margin-bottom:40px;">
+    <div class="section-label">Why Bison Track</div>
+    <h2 class="section-h2">Custom vs. Off-the-Shelf</h2>
+    <p class="section-sub" style="margin:0 auto;">The brands riders settle for vs. the brand that builds around them.</p>
+  </div>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th class="compare-feature">Feature</th>
+          <th class="compare-bison">
+            <div class="compare-logo-cell">
+              <img src="https://bisontrack.com/cdn/shop/files/Bison_Logo_wht_w._blk.png?v=1704582570" alt="Bison Track" style="height:28px;width:auto;filter:invert(1);">
+            </div>
+          </th>
+          <th class="compare-other">Alpinestars</th>
+          <th class="compare-other">Dainese</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Custom measurements</td>
+          <td class="compare-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg></td>
+          <td class="compare-no"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></td>
+          <td class="compare-partial">Premium only</td>
+        </tr>
+        <tr>
+          <td>1-on-1 design session</td>
+          <td class="compare-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg></td>
+          <td class="compare-no"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></td>
+          <td class="compare-no"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></td>
+        </tr>
+        <tr>
+          <td>Fit guarantee</td>
+          <td class="compare-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg></td>
+          <td class="compare-no"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></td>
+          <td class="compare-no"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></td>
+        </tr>
+        <tr>
+          <td>Pro race-proven</td>
+          <td class="compare-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg></td>
+          <td class="compare-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg></td>
+          <td class="compare-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg></td>
+        </tr>
+        <tr>
+          <td>2-year warranty</td>
+          <td class="compare-yes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg></td>
+          <td class="compare-no"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></td>
+          <td class="compare-partial">1 year</td>
+        </tr>
+        <tr>
+          <td>Starting price</td>
+          <td class="compare-yes" style="font-weight:700;">$1,200</td>
+          <td class="compare-other-cell">$900–$3,500</td>
+          <td class="compare-other-cell">$1,800–$5,000</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
