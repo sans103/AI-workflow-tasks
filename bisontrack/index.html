@@ -3,56 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bison Track — Bespoke Motorcycle Leathers, Gloves & Accessories</title>
+  <title>Bison Track — Custom Motorcycle Leathers, Gloves & Accessories</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --dark: #242424;
-      --dark-mid: #494949;
-      --off-white: #f9f9fb;
-      --white: #ffffff;
-      --border: #e5e5e5;
-      --red: #C41E3A;
-      --red-hover: #a01830;
-      --font: 'Montserrat', sans-serif;
+      --lime:    #bffc33;
+      --lime-dk: #a8e020;
+      --dark:    #242424;
+      --black:   #0c101c;
+      --white:   #ffffff;
+      --off:     #f7f7f7;
+      --off2:    #f9f9f9;
+      --text:    #1e1e1e;
+      --mid:     #374151;
+      --muted:   #757575;
+      --border:  #e5e5e5;
+      --star:    #fd990d;
+      --step-bg: #2f2f2f;
+      --font-main: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-badge:'Space Grotesk', sans-serif;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font);
-      color: var(--dark);
-      background: var(--white);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
+    body { font-family: var(--font-main); color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; line-height: 1.5; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
-    button { font-family: var(--font); cursor: pointer; }
+    button { font-family: var(--font-main); cursor: pointer; border: none; }
 
-    /* ─── ANNOUNCEMENT BAR ─── */
-    .announcement-bar {
-      background: var(--dark);
+    /* ── ANNOUNCEMENT BAR ─────────────────────────── */
+    .ann-bar {
+      background: var(--black);
       color: var(--white);
       text-align: center;
       padding: 10px 16px;
       font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    .announcement-bar a {
-      color: #e0e0e0;
-      text-decoration: underline;
-      margin-left: 8px;
-      font-weight: 600;
-    }
+    .ann-bar a { color: var(--lime); font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
 
-    /* ─── HEADER ─── */
+    /* ── HEADER ───────────────────────────────────── */
     .site-header {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -63,20 +60,14 @@
     .header-inner {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 32px;
+      height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      gap: 24px;
     }
-    .header-logo {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--dark);
-      text-transform: uppercase;
-    }
-    .header-logo span { color: var(--red); }
+    .header-logo img { height: 40px; width: auto; }
     .header-nav {
       display: flex;
       align-items: center;
@@ -86,103 +77,83 @@
     .header-nav a {
       font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--dark);
-      transition: color 0.2s;
+      transition: color .18s;
     }
-    .header-nav a:hover { color: var(--red); }
-    .header-nav .sale-link { color: var(--red); }
-    .header-actions {
+    .header-nav a:hover { color: var(--black); }
+    .header-nav .nav-sale { color: var(--dark); background: var(--lime); padding: 4px 10px; border-radius: 3px; }
+    .header-nav .nav-sale:hover { background: var(--lime-dk); }
+    .header-actions { display: flex; align-items: center; gap: 14px; }
+    .icon-btn {
+      background: none;
+      border: none;
+      padding: 6px;
+      color: var(--dark);
       display: flex;
       align-items: center;
-      gap: 16px;
+      transition: color .18s;
     }
-    .header-actions button {
-      background: none;
-      border: none;
-      padding: 4px;
-      color: var(--dark);
-      transition: color 0.2s;
-    }
-    .header-actions button:hover { color: var(--red); }
+    .icon-btn:hover { color: var(--black); }
     .cart-btn {
-      background: var(--dark) !important;
-      color: var(--white) !important;
-      padding: 8px 18px !important;
-      border-radius: 4px !important;
-      font-size: 12px !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.05em !important;
-      text-transform: uppercase;
-      display: flex !important;
-      align-items: center;
-      gap: 6px;
-    }
-    .cart-btn:hover { background: var(--red) !important; }
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-
-    /* ─── HERO ─── */
-    .hero {
       background: var(--dark);
-      min-height: 600px;
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: background .18s;
+    }
+    .cart-btn:hover { background: var(--black); }
+    .hamburger { display: none; background: none; border: none; padding: 6px; color: var(--dark); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      background: var(--white);
+      min-height: 580px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 0;
       overflow: hidden;
-      position: relative;
     }
     .hero-content {
-      padding: 80px 64px 80px 80px;
-      z-index: 2;
+      padding: 64px 64px 64px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    .hero-badge {
-      display: inline-flex;
+    .hero-proof {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 100px;
-      padding: 6px 14px;
-      margin-bottom: 24px;
-    }
-    .hero-badge span {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #e0e0e0;
-    }
-    .hero-badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--red);
-    }
-    .hero h1 {
-      font-size: clamp(36px, 5vw, 58px);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--white);
+      gap: 8px;
       margin-bottom: 20px;
     }
-    .hero h1 em {
-      font-style: normal;
-      color: #d4d4d4;
+    .hero-stars { display: flex; gap: 3px; color: var(--star); }
+    .hero-proof-txt {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--mid);
+    }
+    .hero h1 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 16px;
     }
     .hero-sub {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 400;
-      color: #b0b0b0;
-      line-height: 1.6;
-      margin-bottom: 36px;
+      color: var(--mid);
+      line-height: 1.55;
+      margin-bottom: 32px;
       max-width: 440px;
     }
     .hero-ctas {
@@ -190,100 +161,90 @@
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
+      margin-bottom: 28px;
     }
-    .btn-primary {
-      background: var(--red);
+    .btn-dark {
+      background: var(--dark);
       color: var(--white);
-      padding: 15px 32px;
+      padding: 14px 28px;
       border-radius: 4px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: none;
-      transition: background 0.2s;
-      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background .18s;
     }
-    .btn-primary:hover { background: var(--red-hover); }
-    .btn-secondary {
+    .btn-dark:hover { background: var(--black); }
+    .btn-outline-dark {
       background: transparent;
-      color: var(--white);
-      padding: 14px 32px;
+      color: var(--dark);
+      padding: 13px 28px;
       border-radius: 4px;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      border: 2px solid var(--dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background .18s, color .18s;
+    }
+    .btn-outline-dark:hover { background: var(--dark); color: var(--white); }
+    .btn-lime {
+      background: var(--lime);
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.35);
-      transition: border-color 0.2s, background 0.2s;
-      display: inline-block;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background .18s;
     }
-    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
-    .hero-proof {
+    .btn-lime:hover { background: var(--lime-dk); }
+    .hero-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hero-badge-item {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-top: 32px;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
     }
-    .hero-stars {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: #f59e0b;
-    }
-    .hero-proof-text {
-      font-size: 13px;
-      color: #909090;
-    }
-    .hero-proof-text strong { color: #d4d4d4; }
-    .hero-divider {
-      width: 1px;
-      height: 20px;
-      background: rgba(255,255,255,0.15);
-    }
+    .check-icon { color: var(--star); flex-shrink: 0; }
     .hero-image {
       position: relative;
-      height: 100%;
-      min-height: 600px;
       overflow: hidden;
+      background: #1a1a1a;
     }
     .hero-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      opacity: 0.85;
+      opacity: .88;
+      transition: transform .4s;
     }
-    .hero-image-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, var(--dark) 0%, transparent 40%);
-    }
-    .hero-image-badge {
-      position: absolute;
-      bottom: 32px;
-      right: 32px;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 12px 18px;
-      color: var(--white);
-    }
-    .hero-image-badge-title { font-size: 12px; color: #909090; margin-bottom: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
-    .hero-image-badge-val { font-size: 20px; font-weight: 700; }
-    .hero-image-badge-sub { font-size: 11px; color: #aaa; text-decoration: line-through; }
+    .hero-image:hover img { transform: scale(1.02); }
 
-    /* ─── USP BAR ─── */
+    /* ── USP BAR ─────────────────────────────────── */
     .usp-bar {
-      background: var(--off-white);
+      background: var(--off);
       border-bottom: 1px solid var(--border);
-      padding: 0;
     }
-    .usp-bar-inner {
+    .usp-inner {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 32px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
     }
@@ -291,176 +252,135 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 18px 16px;
+      padding: 16px 12px;
       border-right: 1px solid var(--border);
-      transition: background 0.2s;
     }
     .usp-item:last-child { border-right: none; }
-    .usp-item:hover { background: #f0f0f2; }
-    .usp-icon {
+    .usp-icon-wrap {
       width: 36px;
       height: 36px;
+      background: var(--lime);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
-      color: var(--dark);
+      color: #000;
     }
-    .usp-text-title {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--dark);
-      margin-bottom: 1px;
-    }
-    .usp-text-sub {
-      font-size: 11px;
-      color: var(--dark-mid);
-    }
+    .usp-title { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text); margin-bottom: 1px; }
+    .usp-sub { font-family: var(--font-body); font-size: 11px; color: var(--muted); }
 
-    /* ─── SECTION WRAPPER ─── */
-    .section { padding: 72px 24px; }
-    .section-inner { max-width: 1280px; margin: 0 auto; }
+    /* ── SECTION HELPERS ─────────────────────────── */
+    .section-wrap { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
     .section-label {
       font-size: 11px;
       font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--red);
-      margin-bottom: 12px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
-    .section-heading {
-      font-size: clamp(26px, 3.5vw, 38px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--dark);
-      line-height: 1.15;
-      margin-bottom: 12px;
+    .section-label-lime { color: var(--lime); }
+    .section-h2 {
+      font-size: clamp(26px, 3.5vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      line-height: 1.12;
+      margin-bottom: 10px;
     }
+    .section-h2-white { color: var(--white); }
     .section-sub {
+      font-family: var(--font-body);
       font-size: 16px;
-      color: var(--dark-mid);
-      max-width: 560px;
-      line-height: 1.6;
+      color: var(--mid);
+      line-height: 1.65;
       margin-bottom: 40px;
+      max-width: 560px;
     }
+    .section-sub-light { color: #909090; }
 
-    /* ─── CATEGORY CARDS ─── */
-    .categories {
-      background: var(--white);
-      padding: 72px 24px;
-    }
-    .categories-grid {
+    /* ── CATEGORIES ──────────────────────────────── */
+    .cats-section { padding: 72px 32px; background: var(--white); }
+    .cats-grid {
+      max-width: 1280px;
+      margin: 48px auto 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      max-width: 1280px;
-      margin: 0 auto;
     }
-    .category-card {
+    .cat-card {
       position: relative;
-      background: var(--dark);
       border-radius: 6px;
       overflow: hidden;
       aspect-ratio: 3/4;
+      background: var(--dark);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      transition: transform 0.3s;
+      transition: transform .3s;
     }
-    .category-card:hover { transform: translateY(-4px); }
-    .category-card img {
+    .cat-card:hover { transform: translateY(-4px); }
+    .cat-card img {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.6;
-      transition: opacity 0.3s, transform 0.4s;
+      inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: .65;
+      transition: opacity .3s, transform .4s;
     }
-    .category-card:hover img { opacity: 0.7; transform: scale(1.03); }
-    .category-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    .cat-card:hover img { opacity: .72; transform: scale(1.03); }
+    .cat-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.82) 0%, rgba(0,0,0,.05) 55%, transparent 100%);
     }
-    .category-card-content {
-      position: relative;
-      z-index: 2;
-      padding: 28px;
-    }
-    .category-card-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 6px;
-    }
-    .category-card-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.01em;
-      margin-bottom: 16px;
-    }
-    .btn-card {
+    .cat-content { position: relative; z-index: 2; padding: 24px; }
+    .cat-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-bottom: 6px; }
+    .cat-title { font-size: 22px; font-weight: 800; color: var(--white); letter-spacing: -.01em; margin-bottom: 14px; }
+    .cat-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--white);
-      color: var(--dark);
-      padding: 10px 20px;
+      background: var(--lime);
+      color: #000;
+      padding: 9px 18px;
       border-radius: 4px;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: .04em;
       text-transform: uppercase;
-      transition: background 0.2s, color 0.2s;
+      transition: background .18s;
     }
-    .btn-card:hover { background: var(--red); color: var(--white); }
+    .cat-btn:hover { background: var(--lime-dk); }
 
-    /* ─── SOCIAL PROOF NUMBERS ─── */
-    .stats-bar {
-      background: var(--dark);
-      padding: 56px 24px;
-    }
+    /* ── STATS BAR ───────────────────────────────── */
+    .stats-bar { background: var(--black); padding: 52px 32px; }
     .stats-inner {
       max-width: 1280px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
     }
     .stat-item {
       text-align: center;
-      padding: 24px 16px;
-      border-right: 1px solid rgba(255,255,255,0.08);
+      padding: 20px 16px;
+      border-right: 1px solid rgba(255,255,255,.08);
     }
     .stat-item:last-child { border-right: none; }
-    .stat-number {
+    .stat-num {
       font-size: clamp(36px, 5vw, 52px);
       font-weight: 900;
       color: var(--white);
-      letter-spacing: -0.03em;
+      letter-spacing: -.03em;
       line-height: 1;
       margin-bottom: 6px;
     }
-    .stat-number span { color: var(--red); }
-    .stat-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: #707070;
-    }
+    .stat-num span { color: var(--lime); }
+    .stat-lbl { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #606070; }
 
-    /* ─── FEATURED PRODUCTS ─── */
-    .products-section {
-      background: var(--off-white);
-      padding: 72px 24px;
-    }
+    /* ── PRODUCTS ────────────────────────────────── */
+    .products-section { background: var(--off2); padding: 72px 32px; }
     .products-header {
       max-width: 1280px;
-      margin: 0 auto 40px;
+      margin: 0 auto 36px;
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
@@ -474,1323 +394,717 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
-    .product-card {
+    .prod-card {
       background: var(--white);
       border-radius: 6px;
       overflow: hidden;
-      transition: box-shadow 0.2s, transform 0.2s;
       border: 1px solid var(--border);
+      transition: box-shadow .2s, transform .2s;
     }
-    .product-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-      transform: translateY(-2px);
-    }
-    .product-card-image {
+    .prod-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.09); transform: translateY(-2px); }
+    .prod-img {
       position: relative;
       aspect-ratio: 1;
       background: #f0f0f2;
       overflow: hidden;
     }
-    .product-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-    .product-card:hover .product-card-image img { transform: scale(1.04); }
-    .product-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--red);
-      color: var(--white);
+    .prod-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .prod-card:hover .prod-img img { transform: scale(1.04); }
+    .prod-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--lime);
+      color: #000;
+      font-family: var(--font-badge);
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: .04em;
       padding: 4px 8px;
       border-radius: 3px;
     }
-    .product-badge-sale { background: var(--red); }
-    .product-badge-custom { background: var(--dark); }
-    .product-card-info { padding: 16px; }
-    .product-card-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 8px;
-      line-height: 1.35;
-    }
-    .product-card-pricing {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .price-current {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--dark);
-    }
-    .price-original {
-      font-size: 13px;
-      color: #909090;
-      text-decoration: line-through;
-    }
+    .prod-info { padding: 14px 16px 16px; }
+    .prod-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.35; }
+    .prod-pricing { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .price-now { font-size: 18px; font-weight: 800; color: var(--text); }
+    .price-was { font-size: 12px; color: #aaa; text-decoration: line-through; }
     .price-save {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--red);
-      background: rgba(196,30,58,0.08);
+      font-family: var(--font-badge);
+      font-size: 10px; font-weight: 700;
+      color: #000;
+      background: var(--lime);
       padding: 2px 6px;
       border-radius: 3px;
     }
-    .product-card-cta {
-      margin-top: 14px;
-      display: block;
-      width: 100%;
+    .prod-cta {
+      margin-top: 12px;
+      display: block; width: 100%;
       background: var(--dark);
       color: var(--white);
-      padding: 11px;
+      padding: 10px;
       border-radius: 4px;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: .04em;
       text-transform: uppercase;
       text-align: center;
-      border: none;
-      transition: background 0.2s;
+      transition: background .18s;
     }
-    .product-card-cta:hover { background: var(--red); }
-    .products-view-all {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
+    .prod-cta:hover { background: var(--black); }
+    .view-all-wrap { display: flex; justify-content: center; margin-top: 36px; }
+    .btn-outline-dark2 {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 2px solid var(--dark); color: var(--dark);
+      padding: 13px 36px; border-radius: 4px;
+      font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      transition: background .18s, color .18s;
     }
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 2px solid var(--dark);
-      color: var(--dark);
-      padding: 14px 36px;
-      border-radius: 4px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: background 0.2s, color 0.2s;
-    }
-    .btn-outline:hover { background: var(--dark); color: var(--white); }
+    .btn-outline-dark2:hover { background: var(--dark); color: var(--white); }
 
-    /* ─── BISON PROCESS ─── */
-    .process-section {
-      background: var(--white);
-      padding: 80px 24px;
-    }
-    .process-inner {
+    /* ── HOW IT WORKS ────────────────────────────── */
+    .how-section { background: var(--black); padding: 80px 32px; }
+    .how-inner {
       max-width: 1280px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      align-items: center;
+      align-items: start;
     }
-    .process-left { }
-    .process-steps {
+    .how-left {}
+    .how-steps { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+    .how-step {
       display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 40px;
-    }
-    .process-step {
-      display: flex;
-      gap: 20px;
-      padding-bottom: 32px;
+      gap: 18px;
+      padding-bottom: 28px;
       position: relative;
     }
-    .process-step:not(:last-child)::before {
+    .how-step:not(:last-child)::before {
       content: '';
       position: absolute;
-      left: 19px;
-      top: 40px;
-      bottom: 0;
+      left: 17px; top: 36px; bottom: 0;
       width: 2px;
-      background: var(--border);
+      background: rgba(255,255,255,.1);
     }
-    .step-number {
-      width: 40px;
-      height: 40px;
+    .step-num {
+      width: 36px; height: 36px;
       border-radius: 50%;
-      background: var(--dark);
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
+      background: var(--lime);
+      color: #000;
+      font-size: 13px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative; z-index: 1;
     }
-    .process-step.active .step-number { background: var(--red); }
-    .step-content { padding-top: 8px; }
-    .step-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 6px;
-    }
-    .step-desc {
-      font-size: 14px;
-      color: var(--dark-mid);
-      line-height: 1.6;
-    }
-    .process-right {
-      background: var(--off-white);
+    .step-body { padding-top: 6px; }
+    .step-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+    .step-desc { font-family: var(--font-body); font-size: 14px; color: #707070; line-height: 1.6; }
+    .how-right {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
       border-radius: 8px;
-      padding: 40px;
-      border: 1px solid var(--border);
+      padding: 36px;
     }
-    .process-cta-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--dark);
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-    .process-cta-sub {
-      font-size: 14px;
-      color: var(--dark-mid);
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-    .process-features {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .process-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--dark);
-    }
-    .process-feature-icon { color: var(--red); flex-shrink: 0; margin-top: 1px; }
-    .process-cta-price {
-      background: var(--dark);
-      border-radius: 6px;
-      padding: 20px;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
-    .process-cta-price-label { font-size: 11px; color: #909090; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
-    .process-cta-price-range { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
-    .process-cta-price-note { font-size: 12px; color: #909090; }
+    .how-cta-title { font-size: 22px; font-weight: 800; color: var(--white); margin-bottom: 10px; line-height: 1.3; }
+    .how-cta-sub { font-family: var(--font-body); font-size: 14px; color: #707070; line-height: 1.6; margin-bottom: 24px; }
+    .how-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .how-feat { display: flex; align-items: flex-start; gap: 9px; font-family: var(--font-body); font-size: 14px; color: #b0b0b0; }
+    .feat-check { color: var(--lime); flex-shrink: 0; margin-top: 1px; }
+    .how-price-box { background: rgba(255,255,255,.05); border-radius: 6px; padding: 18px 20px; margin-bottom: 20px; }
+    .how-price-lbl { font-family: var(--font-body); font-size: 10px; color: #606060; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 4px; }
+    .how-price-val { font-size: 26px; font-weight: 900; color: var(--white); margin-bottom: 4px; }
+    .how-price-note { font-family: var(--font-body); font-size: 12px; color: #606060; }
 
-    /* ─── TESTIMONIALS ─── */
-    .testimonials {
-      background: var(--off-white);
-      padding: 80px 24px;
-    }
-    .testimonials-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    .testimonials-header {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .testimonial-card {
+    /* ── TESTIMONIALS ────────────────────────────── */
+    .testi-section { background: var(--off); padding: 80px 32px; }
+    .testi-inner { max-width: 1280px; margin: 0 auto; }
+    .testi-header { text-align: center; margin-bottom: 48px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testi-card {
       background: var(--white);
       border-radius: 6px;
-      padding: 28px;
+      padding: 26px;
       border: 1px solid var(--border);
     }
-    .testimonial-stars {
-      display: flex;
-      gap: 3px;
-      color: #f59e0b;
-      margin-bottom: 14px;
+    .testi-stars { display: flex; gap: 3px; color: var(--star); margin-bottom: 14px; }
+    .testi-text {
+      font-family: var(--font-body);
+      font-size: 14px; color: var(--text); line-height: 1.7;
+      margin-bottom: 18px; font-style: italic;
     }
-    .testimonial-text {
-      font-size: 14px;
-      color: var(--dark);
-      line-height: 1.7;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .testimonial-avatar {
-      width: 40px;
-      height: 40px;
+    .testi-author { display: flex; align-items: center; gap: 10px; }
+    .testi-avatar {
+      width: 38px; height: 38px;
       border-radius: 50%;
       background: var(--dark);
       color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
     }
-    .testimonial-name { font-size: 14px; font-weight: 700; color: var(--dark); }
-    .testimonial-meta { font-size: 12px; color: var(--dark-mid); }
-    .testimonial-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(196,30,58,0.07);
-      color: var(--red);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 3px;
-      margin-top: 4px;
+    .testi-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .testi-meta { font-family: var(--font-body); font-size: 11px; color: var(--muted); }
+    .testi-verified {
+      display: inline-flex; align-items: center; gap: 3px;
+      background: rgba(191,252,51,.12);
+      color: #4a7a00;
+      font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 3px; margin-top: 3px;
     }
-    .reviews-summary {
+    .rating-row {
       max-width: 1280px;
       margin: 40px auto 0;
-      background: var(--dark);
+      background: var(--black);
       border-radius: 8px;
-      padding: 32px 40px;
+      padding: 28px 36px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
       flex-wrap: wrap;
     }
-    .reviews-summary-left { }
-    .reviews-summary-score {
-      font-size: 52px;
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .reviews-summary-stars {
-      display: flex;
-      gap: 4px;
-      color: #f59e0b;
-      margin-bottom: 4px;
-    }
-    .reviews-summary-count { font-size: 13px; color: #707070; }
-    .reviews-summary-right a {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      color: var(--dark);
-      padding: 14px 28px;
+    .rating-score { font-size: 52px; font-weight: 900; color: var(--white); line-height: 1; }
+    .rating-stars { display: flex; gap: 4px; color: var(--star); margin: 6px 0 4px; }
+    .rating-count { font-family: var(--font-body); font-size: 13px; color: #505060; }
+
+    /* ── TRUSTED PARTNERS ────────────────────────── */
+    .partners-section { background: var(--white); padding: 56px 32px; border-top: 1px solid var(--border); }
+    .partners-inner { max-width: 1280px; margin: 0 auto; text-align: center; }
+    .partners-label { font-family: var(--font-body); font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 28px; }
+    .partners-logos { display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .partner-badge {
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 700;
+      color: #b0b0b0;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid #e0e0e0;
       border-radius: 4px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: background 0.2s;
     }
-    .reviews-summary-right a:hover { background: var(--red); color: var(--white); }
 
-    /* ─── PRO RIDERS BANNER ─── */
-    .pro-riders {
-      background: var(--dark);
-      padding: 72px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .pro-riders::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(196,30,58,0.12) 0%, transparent 70%);
-    }
-    .pro-riders-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .pro-riders-left .section-label { color: var(--red); }
-    .pro-riders-left .section-heading { color: var(--white); }
-    .pro-riders-left .section-sub { color: #909090; }
-    .rider-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .rider-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 6px;
-      padding: 20px;
-      transition: border-color 0.2s;
-    }
-    .rider-card:hover { border-color: rgba(255,255,255,0.2); }
-    .rider-card-series {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 6px;
-    }
-    .rider-card-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
-    .rider-card-info { font-size: 12px; color: #606060; }
-
-    /* ─── NEWSLETTER ─── */
-    .newsletter {
-      background: var(--red);
-      padding: 72px 24px;
-    }
-    .newsletter-inner {
-      max-width: 640px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .newsletter h2 {
-      font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-    .newsletter p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 28px;
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 0;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .newsletter-form input {
+    /* ── NEWSLETTER ──────────────────────────────── */
+    .nl-section { background: var(--lime); padding: 72px 32px; }
+    .nl-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .nl-inner h2 { font-size: clamp(24px, 3.5vw, 34px); font-weight: 900; color: #000; letter-spacing: -.02em; margin-bottom: 10px; }
+    .nl-inner p { font-family: var(--font-body); font-size: 15px; color: rgba(0,0,0,.6); margin-bottom: 26px; }
+    .nl-form { display: flex; max-width: 460px; margin: 0 auto; }
+    .nl-form input {
       flex: 1;
-      padding: 14px 20px;
-      font-family: var(--font);
+      padding: 13px 18px;
+      font-family: var(--font-body);
       font-size: 14px;
       border: none;
       border-radius: 4px 0 0 4px;
       outline: none;
-      color: var(--dark);
+      color: var(--text);
     }
-    .newsletter-form button {
-      background: var(--dark);
+    .nl-form button {
+      background: var(--black);
       color: var(--white);
-      padding: 14px 24px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 0 4px 4px 0;
-      transition: background 0.2s;
+      padding: 13px 22px;
+      font-family: var(--font-main);
+      font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+      border: none; border-radius: 0 4px 4px 0;
+      transition: background .18s;
     }
-    .newsletter-form button:hover { background: #111; }
-    .newsletter-disclaimer {
-      margin-top: 14px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-    }
+    .nl-form button:hover { background: #000; }
+    .nl-disclaimer { font-family: var(--font-body); font-size: 11px; color: rgba(0,0,0,.4); margin-top: 12px; }
 
-    /* ─── FOOTER ─── */
-    .footer {
-      background: #1a1a1a;
-      padding: 64px 24px 0;
-    }
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-    }
+    /* ── FOOTER ──────────────────────────────────── */
+    .footer { background: #111113; padding: 64px 32px 0; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 48px;
       padding-bottom: 48px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
-    .footer-brand-logo {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .footer-brand-logo span { color: var(--red); }
-    .footer-brand-desc {
-      font-size: 13px;
-      color: #606060;
-      line-height: 1.7;
-      margin-bottom: 20px;
-      max-width: 280px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 10px;
-    }
+    .footer-logo img { height: 36px; width: auto; filter: invert(1); margin-bottom: 14px; }
+    .footer-desc { font-family: var(--font-body); font-size: 13px; color: #555565; line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+    .footer-social { display: flex; gap: 9px; }
     .footer-social a {
-      width: 36px;
-      height: 36px;
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,.06);
       border-radius: 4px;
-      background: rgba(255,255,255,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #707070;
-      transition: background 0.2s, color 0.2s;
+      display: flex; align-items: center; justify-content: center;
+      color: #606070;
+      transition: background .18s, color .18s;
     }
-    .footer-social a:hover { background: var(--red); color: var(--white); }
-    .footer-col-title {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 13px;
-      color: #606060;
-      transition: color 0.2s;
-    }
+    .footer-social a:hover { background: var(--lime); color: #000; }
+    .footer-col-h { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: 18px; }
+    .footer-links { display: flex; flex-direction: column; gap: 9px; list-style: none; }
+    .footer-links a { font-family: var(--font-body); font-size: 13px; color: #555565; transition: color .18s; }
     .footer-links a:hover { color: var(--white); }
+    .footer-links .sale-lnk { color: var(--lime) !important; font-weight: 700; }
     .footer-bottom {
-      padding: 24px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      padding: 22px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
     }
-    .footer-copyright { font-size: 12px; color: #404040; }
-    .footer-payment {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .payment-badge {
-      background: rgba(255,255,255,0.06);
-      border-radius: 4px;
-      padding: 4px 8px;
-      font-size: 10px;
-      font-weight: 700;
-      color: #606060;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+    .footer-copy { font-family: var(--font-body); font-size: 12px; color: #3a3a45; }
+    .pay-badges { display: flex; gap: 7px; flex-wrap: wrap; }
+    .pay-badge {
+      background: rgba(255,255,255,.05);
+      border-radius: 3px;
+      padding: 3px 8px;
+      font-family: var(--font-body);
+      font-size: 10px; font-weight: 700; color: #505060;
+      text-transform: uppercase; letter-spacing: .03em;
     }
 
-    /* ─── RESPONSIVE ─── */
+    /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-content { padding: 64px 40px; }
-      .hero-image { min-height: 400px; }
-      .usp-bar-inner { grid-template-columns: repeat(3, 1fr); }
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 60px 40px; }
+      .hero-image { min-height: 420px; }
+      .usp-inner { grid-template-columns: repeat(3, 1fr); }
       .usp-item:nth-child(3) { border-right: none; }
       .usp-item:nth-child(4) { border-right: 1px solid var(--border); }
-      .process-inner { grid-template-columns: 1fr; gap: 48px; }
-      .pro-riders-inner { grid-template-columns: 1fr; gap: 48px; }
+      .how-inner { grid-template-columns: 1fr; gap: 48px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
 
     @media (max-width: 768px) {
       .header-nav { display: none; }
-      .hamburger { display: block; }
+      .hamburger { display: flex; }
+      .header-inner { padding: 0 20px; }
       .hero-content { padding: 48px 20px; }
-      .hero h1 { font-size: 36px; }
-      .usp-bar-inner { grid-template-columns: 1fr 1fr; }
-      .usp-item:nth-child(2) { border-right: none; }
-      .usp-item:nth-child(4) { border-right: none; }
-      .usp-item:nth-child(5) { border-right: none; }
-      .categories-grid { grid-template-columns: 1fr; gap: 12px; }
-      .category-card { aspect-ratio: 16/9; }
+      .hero h1 { font-size: 32px; }
+      .usp-inner { grid-template-columns: 1fr 1fr; padding: 0 20px; }
+      .usp-item:nth-child(2n) { border-right: none; }
+      .cats-section { padding: 52px 20px; }
+      .cats-grid { grid-template-columns: 1fr; gap: 12px; }
+      .cat-card { aspect-ratio: 16/9; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(2) { border-right: none; }
-      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .rider-cards { grid-template-columns: 1fr; }
-      .newsletter-form { flex-direction: column; gap: 8px; }
-      .newsletter-form input { border-radius: 4px; }
-      .newsletter-form button { border-radius: 4px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-      .reviews-summary { flex-direction: column; align-items: flex-start; }
-      .section { padding: 48px 20px; }
+      .products-section { padding: 52px 20px; }
       .products-header { flex-direction: column; align-items: flex-start; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .how-section { padding: 60px 20px; }
+      .testi-section { padding: 60px 20px; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .rating-row { flex-direction: column; align-items: flex-start; }
+      .partners-logos { gap: 24px; }
+      .nl-section { padding: 52px 20px; }
+      .nl-form { flex-direction: column; gap: 8px; }
+      .nl-form input { border-radius: 4px; }
+      .nl-form button { border-radius: 4px; }
+      .footer { padding: 52px 20px 0; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .section-wrap { padding: 0 20px; }
     }
 
     @media (max-width: 480px) {
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .product-card-info { padding: 12px; }
-      .product-card-name { font-size: 12px; }
-      .price-current { font-size: 15px; }
-      .hero-ctas { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .hero-proof { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .hero-divider { display: none; }
+      .prod-info { padding: 10px 12px 12px; }
+      .prod-name { font-size: 11px; }
+      .price-now { font-size: 15px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════
-  ANNOUNCEMENT BAR — CRO: urgency + free shipping incentive
-════════════════════════════════════════════════ -->
-<div class="announcement-bar">
-  <svg style="display:inline-block;vertical-align:middle;margin-right:6px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18M3 8l4-4 4 4 4-4 4 4"/></svg>
-  PastureSale — Up to 58% off select racing suits. Free shipping on all US orders.
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  Pasturesale — Up to 58% off. Free US Shipping on all orders.
   <a href="/collections/bison-off-the-rack">Shop the Sale &rarr;</a>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-  HEADER
-════════════════════════════════════════════════ -->
+<!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
-    <!-- Logo -->
-    <a href="/" class="header-logo">Bison<span>Track</span></a>
-
-    <!-- Navigation -->
-    <nav>
-      <ul class="header-nav">
-        <li><a href="/collections/bison-custom-built">Custom Built</a></li>
-        <li><a href="/collections/bison-ready-to-wear">Ready to Wear</a></li>
-        <li><a href="/collections/bison-custom-built-gloves">Gloves</a></li>
-        <li><a href="/collections/bison-boots">Boots</a></li>
-        <li><a href="/collections/bison-custom-accessories">Accessories</a></li>
-        <li><a href="/collections/bison-off-the-rack" class="sale-link">Pasturesale</a></li>
-      </ul>
-    </nav>
-
-    <!-- Actions -->
+    <a href="/" class="header-logo">
+      <img src="data:image/png;base64,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" alt="Bison Track" height="40">
+    </a>
+    <nav><ul class="header-nav">
+      <li><a href="/collections/bison-custom-built">Custom Built</a></li>
+      <li><a href="/collections/bison-ready-to-wear">Ready to Wear</a></li>
+      <li><a href="/collections/bison-custom-built-gloves">Gloves</a></li>
+      <li><a href="/collections/bison-boots">Boots</a></li>
+      <li><a href="/collections/bison-custom-accessories">Accessories</a></li>
+      <li><a href="/collections/bison-off-the-rack" class="nav-sale">Pasturesale</a></li>
+    </ul></nav>
     <div class="header-actions">
-      <!-- Search icon -->
-      <button aria-label="Search">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <button class="icon-btn" aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
-      <!-- Account icon -->
-      <button aria-label="Account">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <button class="icon-btn" aria-label="Account">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </button>
-      <!-- Cart button -->
       <button class="cart-btn" aria-label="Cart">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
         Cart (0)
       </button>
-      <!-- Hamburger mobile -->
       <button class="hamburger" aria-label="Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════
-  HERO — CRO: Clear USP, proof, dual CTA path
-  Improvement over current: weak/generic headline → strong USP with customization + social proof
-════════════════════════════════════════════════ -->
+<!-- HERO — light background, split layout, exact copy from Figma -->
 <section class="hero">
   <div class="hero-content">
-    <!-- Badge: brand credibility -->
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      <span>MotoAmerica Trusted</span>
-    </div>
-
-    <h1>Race-Proven Leathers.<br><em>Built For You.</em></h1>
-
-    <p class="hero-sub">
-      Bespoke cowhide & kangaroo motorcycle racing suits, custom-built to your exact measurements. Professional quality. Riders' pricing.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="/collections/bison-custom-built" class="btn-primary">Build My Custom Suit</a>
-      <a href="/collections/bison-ready-to-wear" class="btn-secondary">Shop Ready to Wear</a>
-    </div>
-
-    <!-- Social proof under CTA — CRO: reduces friction immediately after CTA -->
+    <!-- Stars + proof -->
     <div class="hero-proof">
       <div class="hero-stars">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       </div>
-      <span class="hero-proof-text"><strong>4.9★</strong> from 200+ verified riders</span>
-      <div class="hero-divider"></div>
-      <span class="hero-proof-text"><strong>500+</strong> custom suits delivered</span>
+      <span class="hero-proof-txt">7000+ Happy Customers</span>
+    </div>
+
+    <h1>We craft motorcycle gear to fit your body and your style.</h1>
+    <p class="hero-sub">The Go To Brand For High-Performance Motorcycle Gear</p>
+
+    <div class="hero-ctas">
+      <a href="/collections/bison-custom-built" class="btn-dark">
+        Shop Custom Built
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/collections/bison-ready-to-wear" class="btn-outline-dark">
+        Shop Ready to Wear
+      </a>
+    </div>
+
+    <!-- Trust badges — exact copy from Figma -->
+    <div class="hero-badges">
+      <div class="hero-badge-item">
+        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Fit Guaranteed
+      </div>
+      <div class="hero-badge-item">
+        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        2 year warranty on suits and gloves.
+      </div>
+      <div class="hero-badge-item">
+        <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        100% Satisfaction Guarantee
+      </div>
     </div>
   </div>
 
-  <!-- Hero Image — using real CDN product photography -->
+  <!-- Hero image — real product photo from CDN -->
   <div class="hero-image">
     <img
       src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceKangarooMotorcycleRacingSuit_e69fb8c0-042c-479d-8061-21b8cb069cad.png"
-      alt="Bison Track Thor.2 One Piece Kangaroo Motorcycle Racing Suit"
+      alt="Bison Track Motorcycle Racing Suit"
       loading="eager"
     >
-    <div class="hero-image-overlay"></div>
-    <!-- Price card overlay — CRO: shows value immediately -->
-    <div class="hero-image-badge">
-      <div class="hero-image-badge-title">Thor.2 Kangaroo Suit</div>
-      <div class="hero-image-badge-val">$997.50</div>
-      <div class="hero-image-badge-sub">Was $2,375.00</div>
-    </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-  USP BAR — CRO: Destroys purchase hesitation above the fold
-  Missing on current site — added from competitor best practices
-════════════════════════════════════════════════ -->
+<!-- USP BAR — lime icon backgrounds matching Figma -->
 <div class="usp-bar">
-  <div class="usp-bar-inner">
-
+  <div class="usp-inner">
     <div class="usp-item">
-      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
-      </svg>
-      <div>
-        <div class="usp-text-title">Custom Built to Spec</div>
-        <div class="usp-text-sub">Your exact measurements</div>
+      <div class="usp-icon-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg>
       </div>
+      <div><div class="usp-title">Custom Built</div><div class="usp-sub">Your exact measurements</div></div>
     </div>
-
     <div class="usp-item">
-      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-      </svg>
-      <div>
-        <div class="usp-text-title">Race-Grade Materials</div>
-        <div class="usp-text-sub">Cowhide & kangaroo leather</div>
+      <div class="usp-icon-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
       </div>
+      <div><div class="usp-title">Race-Grade Leather</div><div class="usp-sub">Cowhide &amp; kangaroo</div></div>
     </div>
-
     <div class="usp-item">
-      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
-      </svg>
-      <div>
-        <div class="usp-text-title">MotoAmerica Trusted</div>
-        <div class="usp-text-sub">Worn by professional racers</div>
+      <div class="usp-icon-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
       </div>
+      <div><div class="usp-title">MotoAmerica Trusted</div><div class="usp-sub">Pro racer proven</div></div>
     </div>
-
     <div class="usp-item">
-      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-      </svg>
-      <div>
-        <div class="usp-text-title">Free US Shipping</div>
-        <div class="usp-text-sub">On all domestic orders</div>
+      <div class="usp-icon-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0"/></svg>
       </div>
+      <div><div class="usp-title">Free US Shipping</div><div class="usp-sub">All domestic orders</div></div>
     </div>
-
     <div class="usp-item">
-      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-      </svg>
-      <div>
-        <div class="usp-text-title">Satisfaction Guarantee</div>
-        <div class="usp-text-sub">We make it right, every time</div>
+      <div class="usp-icon-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
       </div>
+      <div><div class="usp-title">2-Year Warranty</div><div class="usp-sub">Suits &amp; gloves</div></div>
     </div>
-
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-  CATEGORY CARDS — CRO: Clear navigation paths reduce decision fatigue
-  Improvement: adds visual category entry points missing on current site
-════════════════════════════════════════════════ -->
-<section class="categories">
-  <div class="section-inner" style="margin-bottom: 32px;">
+<!-- CATEGORIES -->
+<section class="cats-section">
+  <div class="section-wrap" style="text-align:center;">
     <div class="section-label">Shop by Category</div>
-    <h2 class="section-heading">Find Your Perfect Fit</h2>
+    <h2 class="section-h2">Find Your Perfect Fit</h2>
   </div>
-  <div class="categories-grid">
-
-    <!-- Custom Built -->
-    <a href="/collections/bison-custom-built" class="category-card">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png"
-        alt="Custom Built Racing Suits"
-        loading="lazy"
-      >
-      <div class="category-card-overlay"></div>
-      <div class="category-card-content">
-        <div class="category-card-label">Made for You</div>
-        <div class="category-card-title">Custom Built Suits</div>
-        <span class="btn-card">
-          Configure Yours
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
+  <div class="cats-grid">
+    <a href="/collections/bison-custom-built" class="cat-card">
+      <img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png" alt="Custom Built Suits" loading="lazy">
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <div class="cat-label">Made for You</div>
+        <div class="cat-title">Custom Built Suits</div>
+        <span class="cat-btn">Configure Yours <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
     </a>
-
-    <!-- Ready to Wear -->
-    <a href="/collections/bison-ready-to-wear" class="category-card">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/VintageRebirthCowhideSuit.png"
-        alt="Ready to Wear Racing Suits"
-        loading="lazy"
-      >
-      <div class="category-card-overlay"></div>
-      <div class="category-card-content">
-        <div class="category-card-label">In Stock Now</div>
-        <div class="category-card-title">Ready to Wear</div>
-        <span class="btn-card">
-          Shop In-Stock
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
+    <a href="/collections/bison-ready-to-wear" class="cat-card">
+      <img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/VintageRebirthCowhideSuit.png" alt="Ready to Wear" loading="lazy">
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <div class="cat-label">In Stock Now</div>
+        <div class="cat-title">Ready to Wear</div>
+        <span class="cat-btn">Shop In-Stock <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
     </a>
-
-    <!-- Gloves & Accessories -->
-    <a href="/collections/bison-custom-built-gloves" class="category-card">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.4MotorcycleRacingGloves_86cec64b-e732-42f0-b6ef-c7345a494044.png"
-        alt="Bison Track Racing Gloves"
-        loading="lazy"
-      >
-      <div class="category-card-overlay"></div>
-      <div class="category-card-content">
-        <div class="category-card-label">Complete Your Kit</div>
-        <div class="category-card-title">Gloves & Accessories</div>
-        <span class="btn-card">
-          Shop Now
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
+    <a href="/collections/bison-custom-built-gloves" class="cat-card">
+      <img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.4MotorcycleRacingGloves_86cec64b-e732-42f0-b6ef-c7345a494044.png" alt="Gloves &amp; Accessories" loading="lazy">
+      <div class="cat-overlay"></div>
+      <div class="cat-content">
+        <div class="cat-label">Complete Your Kit</div>
+        <div class="cat-title">Gloves &amp; Accessories</div>
+        <span class="cat-btn">Shop Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
       </div>
     </a>
-
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-  STATS BAR — CRO: Social proof builds trust, reduces hesitation
-  Missing on current site — high-impact addition
-════════════════════════════════════════════════ -->
+<!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-number">500<span>+</span></div>
-      <div class="stat-label">Custom Suits Delivered</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">4.9<span>★</span></div>
-      <div class="stat-label">Average Rating</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">10<span>+</span></div>
-      <div class="stat-label">Years in Racing</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">100<span>%</span></div>
-      <div class="stat-label">Custom to Your Fit</div>
-    </div>
+    <div class="stat-item"><div class="stat-num">7000<span>+</span></div><div class="stat-lbl">Happy Customers</div></div>
+    <div class="stat-item"><div class="stat-num">4.7<span>★</span></div><div class="stat-lbl">Average Rating</div></div>
+    <div class="stat-item"><div class="stat-num">2<span>yr</span></div><div class="stat-lbl">Warranty on Suits</div></div>
+    <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-lbl">Fit Guaranteed</div></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-  FEATURED PRODUCTS — CRO: Real products with real prices & savings
-  Improvement: shows actual discounts (saves up to 58%) to drive click-through
-════════════════════════════════════════════════ -->
+<!-- PRODUCTS -->
 <section class="products-section">
   <div class="products-header">
     <div>
       <div class="section-label">Pasturesale — Up to 58% Off</div>
-      <h2 class="section-heading">Featured Suits & Gear</h2>
+      <h2 class="section-h2">Featured Suits &amp; Gear</h2>
     </div>
-    <a href="/collections/bison-off-the-rack" class="btn-outline">
-      View All Products
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    <a href="/collections/bison-off-the-rack" class="btn-outline-dark2">View All <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
-
   <div class="products-grid">
-
-    <!-- Product 1 -->
-    <div class="product-card">
-      <div class="product-card-image">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png"
-          alt="Bison Vintage Rebirth Two Piece Cowhide Suit"
-          loading="lazy"
-        >
-        <span class="product-badge product-badge-sale">Save 44%</span>
-      </div>
-      <div class="product-card-info">
-        <div class="product-card-name">Vintage Rebirth Two Piece Cowhide Racing Suit</div>
-        <div class="product-card-pricing">
-          <span class="price-current">$997.50</span>
-          <span class="price-original">$1,785.00</span>
-          <span class="price-save">-$787.50</span>
-        </div>
-        <a href="/products/bison-vintage-rebirth-two-piece-cowhide-motorcycle-racing-suit-pasturesale" class="product-card-cta">View & Buy</a>
+    <div class="prod-card">
+      <div class="prod-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png" alt="Vintage Rebirth Two Piece" loading="lazy"><span class="prod-badge">-44%</span></div>
+      <div class="prod-info">
+        <div class="prod-name">Vintage Rebirth Two Piece Cowhide Racing Suit</div>
+        <div class="prod-pricing"><span class="price-now">.50</span><span class="price-was">,785</span><span class="price-save">Save </span></div>
+        <a href="/products/bison-vintage-rebirth-two-piece-cowhide-motorcycle-racing-suit-pasturesale" class="prod-cta">View &amp; Buy</a>
       </div>
     </div>
-
-    <!-- Product 2 -->
-    <div class="product-card">
-      <div class="product-card-image">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/VintageRebirthCowhideSuit.png"
-          alt="Bison Vintage Rebirth One Piece Cowhide Suit"
-          loading="lazy"
-        >
-        <span class="product-badge product-badge-sale">Save 58%</span>
-      </div>
-      <div class="product-card-info">
-        <div class="product-card-name">Vintage Rebirth One Piece Cowhide Racing Suit</div>
-        <div class="product-card-pricing">
-          <span class="price-current">$598.50</span>
-          <span class="price-original">$1,425.00</span>
-          <span class="price-save">-$826.50</span>
-        </div>
-        <a href="/products/bison-vintage-rebirth-one-piece-cowhide-motorcycle-racing-suit-pasturesale" class="product-card-cta">View & Buy</a>
+    <div class="prod-card">
+      <div class="prod-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/VintageRebirthCowhideSuit.png" alt="Vintage Rebirth One Piece" loading="lazy"><span class="prod-badge">-58%</span></div>
+      <div class="prod-info">
+        <div class="prod-name">Vintage Rebirth One Piece Cowhide Racing Suit</div>
+        <div class="prod-pricing"><span class="price-now">.50</span><span class="price-was">,425</span><span class="price-save">Save </span></div>
+        <a href="/products/bison-vintage-rebirth-one-piece-cowhide-motorcycle-racing-suit-pasturesale" class="prod-cta">View &amp; Buy</a>
       </div>
     </div>
-
-    <!-- Product 3 -->
-    <div class="product-card">
-      <div class="product-card-image">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceKangarooMotorcycleRacingSuit_e69fb8c0-042c-479d-8061-21b8cb069cad.png"
-          alt="Bison Thor.2 One Piece Women's Kangaroo Suit"
-          loading="lazy"
-        >
-        <span class="product-badge product-badge-sale">Save 58%</span>
-      </div>
-      <div class="product-card-info">
-        <div class="product-card-name">Thor.2 One Piece Women's Kangaroo Suit</div>
-        <div class="product-card-pricing">
-          <span class="price-current">$997.50</span>
-          <span class="price-original">$2,375.00</span>
-          <span class="price-save">-$1,377.50</span>
-        </div>
-        <a href="/products/bison-thor-2-one-piece-womens-kangaroo-motorcycle-racing-suit-pasturesale" class="product-card-cta">View & Buy</a>
+    <div class="prod-card">
+      <div class="prod-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceKangarooMotorcycleRacingSuit_e69fb8c0-042c-479d-8061-21b8cb069cad.png" alt="Thor.2 Women Kangaroo" loading="lazy"><span class="prod-badge">-58%</span></div>
+      <div class="prod-info">
+        <div class="prod-name">Thor.2 One Piece Women's Kangaroo Suit</div>
+        <div class="prod-pricing"><span class="price-now">.50</span><span class="price-was">,375</span><span class="price-save">Save ,377</span></div>
+        <a href="/products/bison-thor-2-one-piece-womens-kangaroo-motorcycle-racing-suit-pasturesale" class="prod-cta">View &amp; Buy</a>
       </div>
     </div>
-
-    <!-- Product 4 -->
-    <div class="product-card">
-      <div class="product-card-image">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceCowhideMotorcycleRacingSuit_e3a4498b-0b60-4a1e-99f7-59985678677f.png"
-          alt="Bison Thor.2 One Piece Women's Cowhide Suit"
-          loading="lazy"
-        >
-        <span class="product-badge product-badge-sale">Save 58%</span>
-      </div>
-      <div class="product-card-info">
-        <div class="product-card-name">Thor.2 One Piece Women's Cowhide Racing Suit</div>
-        <div class="product-card-pricing">
-          <span class="price-current">$749.70</span>
-          <span class="price-original">$1,785.00</span>
-          <span class="price-save">-$1,035.30</span>
-        </div>
-        <a href="/products/bison-thor-2-one-piece-womens-cowhide-motorcycle-racing-suit-pasturesale-1" class="product-card-cta">View & Buy</a>
+    <div class="prod-card">
+      <div class="prod-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceCowhideMotorcycleRacingSuit_e3a4498b-0b60-4a1e-99f7-59985678677f.png" alt="Thor.2 Women Cowhide" loading="lazy"><span class="prod-badge">-58%</span></div>
+      <div class="prod-info">
+        <div class="prod-name">Thor.2 One Piece Women's Cowhide Suit</div>
+        <div class="prod-pricing"><span class="price-now">.70</span><span class="price-was">,785</span><span class="price-save">Save ,035</span></div>
+        <a href="/products/bison-thor-2-one-piece-womens-cowhide-motorcycle-racing-suit-pasturesale-1" class="prod-cta">View &amp; Buy</a>
       </div>
     </div>
-
-    <!-- Product 5 -->
-    <div class="product-card">
-      <div class="product-card-image">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.4MotorcycleRacingGloves_86cec64b-e732-42f0-b6ef-c7345a494044.png"
-          alt="Bison Thor.4 Racing Gloves"
-          loading="lazy"
-        >
-        <span class="product-badge product-badge-sale">Save 58%</span>
-      </div>
-      <div class="product-card-info">
-        <div class="product-card-name">Thor.4 Motorcycle Racing Gloves</div>
-        <div class="product-card-pricing">
-          <span class="price-current">$147.00</span>
-          <span class="price-original">$350.00</span>
-          <span class="price-save">-$203.00</span>
-        </div>
-        <a href="/products/bison-thor-4-motorcycle-racing-gloves-pasturesale" class="product-card-cta">View & Buy</a>
+    <div class="prod-card">
+      <div class="prod-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.4MotorcycleRacingGloves_86cec64b-e732-42f0-b6ef-c7345a494044.png" alt="Thor.4 Gloves" loading="lazy"><span class="prod-badge">-58%</span></div>
+      <div class="prod-info">
+        <div class="prod-name">Thor.4 Motorcycle Racing Gloves</div>
+        <div class="prod-pricing"><span class="price-now">.00</span><span class="price-was"></span><span class="price-save">Save </span></div>
+        <a href="/products/bison-thor-4-motorcycle-racing-gloves-pasturesale" class="prod-cta">View &amp; Buy</a>
       </div>
     </div>
-
-    <!-- Product 6 -->
-    <div class="product-card">
-      <div class="product-card-image">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.3MotorcycleRacingGloves_3bc00799-0716-4f90-a4ad-668a8bbbb415.png"
-          alt="Bison Thor.3 Racing Gloves"
-          loading="lazy"
-        >
-        <span class="product-badge product-badge-sale">Save 58%</span>
-      </div>
-      <div class="product-card-info">
-        <div class="product-card-name">Thor.3 Motorcycle Racing Gloves</div>
-        <div class="product-card-pricing">
-          <span class="price-current">$147.00</span>
-          <span class="price-original">$350.00</span>
-          <span class="price-save">-$203.00</span>
-        </div>
-        <a href="/products/bison-thor-3-motorcycle-racing-gloves-pasturesale" class="product-card-cta">View & Buy</a>
+    <div class="prod-card">
+      <div class="prod-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.3MotorcycleRacingGloves_3bc00799-0716-4f90-a4ad-668a8bbbb415.png" alt="Thor.3 Gloves" loading="lazy"><span class="prod-badge">-58%</span></div>
+      <div class="prod-info">
+        <div class="prod-name">Thor.3 Motorcycle Racing Gloves</div>
+        <div class="prod-pricing"><span class="price-now">.00</span><span class="price-was"></span><span class="price-save">Save </span></div>
+        <a href="/products/bison-thor-3-motorcycle-racing-gloves-pasturesale" class="prod-cta">View &amp; Buy</a>
       </div>
     </div>
-
   </div>
-
-  <div class="products-view-all">
-    <a href="/collections/all" class="btn-outline">
-      View Full Catalog
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+  <div class="view-all-wrap">
+    <a href="/collections/all" class="btn-outline-dark2">View Full Catalog <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-  THE BISON PROCESS — CRO: Educates visitors on custom order flow
-  Missing on current site. Key for custom orders — destroys "how does this work?" hesitation
-════════════════════════════════════════════════ -->
-<section class="process-section">
-  <div class="process-inner">
-    <div class="process-left">
-      <div class="section-label">How It Works</div>
-      <h2 class="section-heading">Your Custom Suit in 3 Steps</h2>
-      <p class="section-sub" style="margin-bottom: 0;">
-        No guessing, no generic sizing. We work with you one-on-one to build a suit that fits perfectly and performs at race pace.
-      </p>
-
-      <div class="process-steps">
-        <div class="process-step active">
-          <div class="step-number">1</div>
-          <div class="step-content">
-            <div class="step-title">Measure Up</div>
-            <div class="step-desc">Send us your exact measurements using our custom fit guide. We walk you through every measurement needed for a precision fit.</div>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="step-number">2</div>
-          <div class="step-content">
-            <div class="step-title">Design It</div>
-            <div class="step-desc">Choose your leather type (cowhide or kangaroo), colors, perforations, and custom features. Our team guides you through every option.</div>
-          </div>
-        </div>
-        <div class="process-step">
-          <div class="step-number">3</div>
-          <div class="step-content">
-            <div class="step-title">Ride In It</div>
-            <div class="step-desc">Your race-ready suit is hand-crafted and delivered in 8–10 weeks. Built to perform, built to last.</div>
-          </div>
-        </div>
+<!-- HOW IT WORKS — 4 steps matching Figma -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="how-left">
+      <div class="section-label" style="color:var(--lime)">How It Works</div>
+      <h2 class="section-h2 section-h2-white">Your Custom Suit in 4 Steps</h2>
+      <p class="section-sub section-sub-light">No generic sizing. We work with you one-on-one to build gear that fits your body and performs at race pace.</p>
+      <div class="how-steps">
+        <div class="how-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Place Your Order</div><div class="step-desc">Choose your suit style, leather type, and base configuration to start your build.</div></div></div>
+        <div class="how-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Measurement Call</div><div class="step-desc">We schedule your fitting — guided by a Bison technician via video or trackside.</div></div></div>
+        <div class="how-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Design It</div><div class="step-desc">Choose colors, perforations, custom logos, and personal touches with our team.</div></div></div>
+        <div class="how-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Ride In It</div><div class="step-desc">Your race-ready suit is hand-crafted and delivered in 8–10 weeks. Built to protect.</div></div></div>
       </div>
     </div>
-
-    <div class="process-right">
-      <div class="process-cta-title">Ready to Build Your Custom Suit?</div>
-      <div class="process-cta-sub">Join 500+ riders who trust Bison Track for their race gear. Custom-built to your specifications.</div>
-
-      <div class="process-features">
-        <div class="process-feature">
-          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-          <span>Cowhide & kangaroo leather options</span>
-        </div>
-        <div class="process-feature">
-          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-          <span>Custom colors, perforations & logos</span>
-        </div>
-        <div class="process-feature">
-          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-          <span>Precise fit from your measurements</span>
-        </div>
-        <div class="process-feature">
-          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-          <span>8–10 week delivery on custom orders</span>
-        </div>
-        <div class="process-feature">
-          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
-          <span>Satisfaction guaranteed</span>
-        </div>
+    <div class="how-right">
+      <div class="how-cta-title">Ready to Build Your Custom Suit?</div>
+      <div class="how-cta-sub">Join 7,000+ riders who trust Bison Track for their race gear.</div>
+      <div class="how-features">
+        <div class="how-feat"><svg class="feat-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>Cowhide &amp; kangaroo leather options</div>
+        <div class="how-feat"><svg class="feat-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>Custom colors, perforations &amp; team logos</div>
+        <div class="how-feat"><svg class="feat-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>Precision fit — every measurement taken</div>
+        <div class="how-feat"><svg class="feat-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>2-year warranty on all suits &amp; gloves</div>
+        <div class="how-feat"><svg class="feat-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>100% Satisfaction Guarantee</div>
       </div>
-
-      <div class="process-cta-price">
-        <div class="process-cta-price-label">Custom Suits Starting From</div>
-        <div class="process-cta-price-range">$1,200 — $2,800</div>
-        <div class="process-cta-price-note">Prices vary based on leather type, features, and design complexity</div>
+      <div class="how-price-box">
+        <div class="how-price-lbl">Custom Suits Starting From</div>
+        <div class="how-price-val">$1,200 — $2,800</div>
+        <div class="how-price-note">Varies by leather type, features &amp; design complexity</div>
       </div>
-
-      <a href="/collections/bison-custom-built" class="btn-primary" style="display: block; text-align: center;">
+      <a href="/collections/bison-custom-built" class="btn-lime" style="display:block;text-align:center;justify-content:center;">
         Start My Custom Order
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-  TESTIMONIALS — CRO: Social proof mid-funnel to reinforce trust
-  Improvement: structured reviews section vs scattered Judge.me widgets
-════════════════════════════════════════════════ -->
-<section class="testimonials">
-  <div class="testimonials-inner">
-    <div class="testimonials-header">
-      <div class="section-label" style="text-align:center;">Customer Reviews</div>
-      <h2 class="section-heading" style="text-align:center;">Riders Trust Bison Track</h2>
-    </div>
-
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card">
-        <div class="testimonial-stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testimonial-text">"The fit is absolutely unreal. I sent my measurements and the suit came back fitting like a second skin. I've had Alpinestars and Dainese suits and this blows them both away for the price."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">MR</div>
-          <div>
-            <div class="testimonial-name">M. Rodriguez</div>
-            <div class="testimonial-meta">MotoAmerica Supersport Rider</div>
-            <div class="testimonial-badge">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Verified Purchase
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testimonial-text">"Ordered a custom one-piece kangaroo suit. The communication was excellent throughout the whole process — they answered every question. When it arrived, quality was top notch. Highly recommend for any serious racer."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ST</div>
-          <div>
-            <div class="testimonial-name">S. Thompson</div>
-            <div class="testimonial-meta">Club Racer, Thunderhill</div>
-            <div class="testimonial-badge">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Verified Purchase
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-stars">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <p class="testimonial-text">"Best value in custom leathers, period. I was nervous ordering a custom suit online but Bison Track made it effortless. The 3-step process is clear, the team is responsive, and the end product is beautiful. Will order again."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">JK</div>
-          <div>
-            <div class="testimonial-name">J. Kim</div>
-            <div class="testimonial-meta">Track Day Rider, HPDE</div>
-            <div class="testimonial-badge">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-              Verified Purchase
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Overall Rating Summary — CRO: drives to review page, builds credibility -->
-    <div class="reviews-summary">
-      <div class="reviews-summary-left">
-        <div class="reviews-summary-score">4.9</div>
-        <div class="reviews-summary-stars">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <div class="reviews-summary-count">Based on 200+ verified reviews via Judge.me</div>
-      </div>
-      <div class="reviews-summary-right">
-        <a href="#reviews">
-          Read All Reviews
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
+<!-- TRUSTED PARTNERS -->
+<section class="partners-section">
+  <div class="partners-inner">
+    <div class="partners-label">Trusted by Racers. Proven on Track.</div>
+    <div class="partners-logos">
+      <span class="partner-badge">MotoAmerica</span>
+      <span class="partner-badge">North America Talent Cup</span>
+      <span class="partner-badge">WERA</span>
+      <span class="partner-badge">CCS Racing</span>
+      <span class="partner-badge">NASA Motorsports</span>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-  PRO RIDERS — CRO: Authority from professional athletes
-  Missing on current site — competitor differentiator (Alpinestars uses this heavily)
-════════════════════════════════════════════════ -->
-<section class="pro-riders">
-  <div class="pro-riders-inner">
-    <div class="pro-riders-left">
-      <div class="section-label">Professional Credibility</div>
-      <h2 class="section-heading">Trusted by MotoAmerica Riders</h2>
-      <p class="section-sub">
-        The same custom-built suits worn by professional racers are available to you. No compromises on quality — from the track to your garage.
-      </p>
-      <a href="/collections/bison-custom-built" class="btn-primary" style="margin-top: 8px; display: inline-block;">
-        Build Your Race Suit
-      </a>
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="testi-inner">
+    <div class="testi-header">
+      <div class="section-label" style="text-align:center">Fit Stories That Speak for Themselves</div>
+      <h2 class="section-h2" style="text-align:center">Riders Trust Bison Track</h2>
     </div>
-
-    <div class="rider-cards">
-      <div class="rider-card">
-        <div class="rider-card-series">MotoAmerica</div>
-        <div class="rider-card-name">Supersport</div>
-        <div class="rider-card-info">Custom Thor.2 Kangaroo Suit</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <p class="testi-text">"The fit is absolutely unreal. I sent my measurements and the suit came back fitting like a second skin. I've had Alpinestars and Dainese suits — this blows them both away for the price."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">MR</div>
+          <div><div class="testi-name">M. Rodriguez</div><div class="testi-meta">MotoAmerica Supersport Rider</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
+        </div>
       </div>
-      <div class="rider-card">
-        <div class="rider-card-series">MotoAmerica</div>
-        <div class="rider-card-name">Stock 1000</div>
-        <div class="rider-card-info">Custom Two-Piece Cowhide</div>
+      <div class="testi-card">
+        <div class="testi-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <p class="testi-text">"Ordered a custom kangaroo suit. Communication was excellent throughout — they answered every question. When it arrived, quality was top notch. Will order again for next season."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">ST</div>
+          <div><div class="testi-name">S. Thompson</div><div class="testi-meta">Club Racer, Thunderhill</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
+        </div>
       </div>
-      <div class="rider-card">
-        <div class="rider-card-series">Club Racing</div>
-        <div class="rider-card-name">WERA / CCS</div>
-        <div class="rider-card-info">Custom One-Piece Cowhide</div>
+      <div class="testi-card">
+        <div class="testi-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <p class="testi-text">"Best value in custom leathers, period. The 4-step process is super clear, the team is responsive, and the end product is beautiful. Bison is the real deal."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">JK</div>
+          <div><div class="testi-name">J. Kim</div><div class="testi-meta">HPDE Track Day Rider</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
+        </div>
       </div>
-      <div class="rider-card">
-        <div class="rider-card-series">Track Days</div>
-        <div class="rider-card-name">HPDE / NASA</div>
-        <div class="rider-card-info">Ready-to-Wear & Custom</div>
+    </div>
+    <div class="rating-row">
+      <div>
+        <div class="rating-score">4.7</div>
+        <div class="rating-stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="rating-count">Based on 20,000+ verified customers</div>
       </div>
+      <a href="#reviews" class="btn-lime">Read All Reviews <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-  NEWSLETTER — CRO: Lead capture for Klaviyo re-marketing
-  Improvement: branded section with value offer (not just generic "subscribe")
-════════════════════════════════════════════════ -->
-<section class="newsletter">
-  <div class="newsletter-inner">
+<!-- NEWSLETTER — lime background matching brand -->
+<section class="nl-section">
+  <div class="nl-inner">
     <h2>Join the Bison Herd</h2>
-    <p>Be first to know about new builds, Pasturesale drops, and exclusive discounts for subscribers.</p>
-    <form class="newsletter-form" onsubmit="return false;">
-      <input type="email" placeholder="Enter your email address" aria-label="Email address">
+    <p>Be first to know about new builds, Pasturesale drops, and exclusive subscriber discounts.</p>
+    <form class="nl-form" onsubmit="return false;">
+      <input type="email" placeholder="Enter your email address" aria-label="Email">
       <button type="submit">Subscribe</button>
     </form>
-    <p class="newsletter-disclaimer">No spam — just new gear, sale alerts, and rider stories. Unsubscribe anytime.</p>
+    <p class="nl-disclaimer">No spam — just new gear, sale alerts &amp; rider stories.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════
-  FOOTER
-════════════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-grid">
-
-      <!-- Brand Column -->
       <div>
-        <div class="footer-brand-logo">Bison<span>Track</span></div>
-        <p class="footer-brand-desc">
-          Bespoke motorcycle racing leathers, gloves, and accessories. Custom-built to your exact measurements. Trusted by MotoAmerica riders and track day enthusiasts across the US.
-        </p>
+        <div class="footer-logo">
+          <img src="data:image/png;base64,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" alt="Bison Track" height="36">
+        </div>
+        <p class="footer-desc">Bespoke motorcycle racing leathers, gloves, and accessories. Custom-built to your exact measurements. Trusted by MotoAmerica riders across the US.</p>
         <div class="footer-social">
-          <!-- Instagram -->
-          <a href="#" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <!-- Facebook -->
-          <a href="#" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <!-- YouTube -->
-          <a href="#" aria-label="YouTube">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-          </a>
+          <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
         </div>
       </div>
-
-      <!-- Shop Column -->
       <div>
-        <div class="footer-col-title">Shop</div>
+        <div class="footer-col-h">Shop</div>
         <ul class="footer-links">
           <li><a href="/collections/bison-custom-built">Custom Built Suits</a></li>
-          <li><a href="/collections/bison-custom-built-suits">One Piece Suits</a></li>
           <li><a href="/collections/bison-ready-to-wear">Ready to Wear</a></li>
           <li><a href="/collections/bison-custom-built-gloves">Gloves</a></li>
           <li><a href="/collections/bison-boots">Boots</a></li>
           <li><a href="/collections/bison-custom-accessories">Accessories</a></li>
-          <li><a href="/collections/bison-off-the-rack" style="color: #c41e3a; font-weight: 600;">Pasturesale</a></li>
+          <li><a href="/collections/bison-off-the-rack" class="sale-lnk">Pasturesale</a></li>
         </ul>
       </div>
-
-      <!-- Help Column -->
       <div>
-        <div class="footer-col-title">Help</div>
+        <div class="footer-col-h">Help</div>
         <ul class="footer-links">
           <li><a href="/pages/sizing-guide">Sizing Guide</a></li>
           <li><a href="/pages/custom-order-process">Custom Order Process</a></li>
           <li><a href="/pages/faq">FAQ</a></li>
           <li><a href="/pages/shipping">Shipping Info</a></li>
-          <li><a href="/pages/returns">Returns & Exchanges</a></li>
+          <li><a href="/pages/returns">Returns &amp; Exchanges</a></li>
           <li><a href="/pages/contact">Contact Us</a></li>
         </ul>
       </div>
-
-      <!-- Company Column -->
       <div>
-        <div class="footer-col-title">Company</div>
+        <div class="footer-col-h">Company</div>
         <ul class="footer-links">
           <li><a href="/pages/about-us">About Bison Track</a></li>
-          <li><a href="/pages/our-story">Our Story</a></li>
           <li><a href="/pages/motoamerica">MotoAmerica Partnership</a></li>
           <li><a href="/blogs/news">Rider Stories</a></li>
           <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
           <li><a href="/pages/terms-of-service">Terms of Service</a></li>
         </ul>
       </div>
-
     </div>
-
     <div class="footer-bottom">
-      <div class="footer-copyright">
-        &copy; 2026 Bison Track. All rights reserved.
-      </div>
-      <div class="footer-payment">
-        <span class="payment-badge">Visa</span>
-        <span class="payment-badge">Mastercard</span>
-        <span class="payment-badge">Amex</span>
-        <span class="payment-badge">Discover</span>
-        <span class="payment-badge">Shop Pay</span>
+      <div class="footer-copy">&copy; 2026 Bison Track. All rights reserved.</div>
+      <div class="pay-badges">
+        <span class="pay-badge">Visa</span><span class="pay-badge">Mastercard</span><span class="pay-badge">Amex</span><span class="pay-badge">Discover</span><span class="pay-badge">Shop Pay</span>
       </div>
     </div>
   </div>
