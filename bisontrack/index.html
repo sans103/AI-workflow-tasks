@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bison Track — Bespoke Motorcycle Leathers, Gloves & Accessories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark: #242424;
+      --dark-mid: #494949;
+      --off-white: #f9f9fb;
+      --white: #ffffff;
+      --border: #e5e5e5;
+      --red: #C41E3A;
+      --red-hover: #a01830;
+      --font: 'Montserrat', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: var(--font); cursor: pointer; }
+
+    /* ─── ANNOUNCEMENT BAR ─── */
+    .announcement-bar {
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    .announcement-bar a {
+      color: #e0e0e0;
+      text-decoration: underline;
+      margin-left: 8px;
+      font-weight: 600;
+    }
+
+    /* ─── HEADER ─── */
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .header-logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      text-transform: uppercase;
+    }
+    .header-logo span { color: var(--red); }
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .header-nav a {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--dark);
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--red); }
+    .header-nav .sale-link { color: var(--red); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-actions button {
+      background: none;
+      border: none;
+      padding: 4px;
+      color: var(--dark);
+      transition: color 0.2s;
+    }
+    .header-actions button:hover { color: var(--red); }
+    .cart-btn {
+      background: var(--dark) !important;
+      color: var(--white) !important;
+      padding: 8px 18px !important;
+      border-radius: 4px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase;
+      display: flex !important;
+      align-items: center;
+      gap: 6px;
+    }
+    .cart-btn:hover { background: var(--red) !important; }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--dark);
+      min-height: 600px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-content {
+      padding: 80px 64px 80px 80px;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin-bottom: 24px;
+    }
+    .hero-badge span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e0e0e0;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #d4d4d4;
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 400;
+      color: #b0b0b0;
+      line-height: 1.6;
+      margin-bottom: 36px;
+      max-width: 440px;
+    }
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 15px 32px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      transition: background 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--red-hover); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.35);
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.06); }
+    .hero-proof {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .hero-stars {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: #f59e0b;
+    }
+    .hero-proof-text {
+      font-size: 13px;
+      color: #909090;
+    }
+    .hero-proof-text strong { color: #d4d4d4; }
+    .hero-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255,255,255,0.15);
+    }
+    .hero-image {
+      position: relative;
+      height: 100%;
+      min-height: 600px;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.85;
+    }
+    .hero-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--dark) 0%, transparent 40%);
+    }
+    .hero-image-badge {
+      position: absolute;
+      bottom: 32px;
+      right: 32px;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 12px 18px;
+      color: var(--white);
+    }
+    .hero-image-badge-title { font-size: 12px; color: #909090; margin-bottom: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .hero-image-badge-val { font-size: 20px; font-weight: 700; }
+    .hero-image-badge-sub { font-size: 11px; color: #aaa; text-decoration: line-through; }
+
+    /* ─── USP BAR ─── */
+    .usp-bar {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .usp-bar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .usp-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 16px;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .usp-item:last-child { border-right: none; }
+    .usp-item:hover { background: #f0f0f2; }
+    .usp-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      color: var(--dark);
+    }
+    .usp-text-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+      margin-bottom: 1px;
+    }
+    .usp-text-sub {
+      font-size: 11px;
+      color: var(--dark-mid);
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section { padding: 72px 24px; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .section-sub {
+      font-size: 16px;
+      color: var(--dark-mid);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* ─── CATEGORY CARDS ─── */
+    .categories {
+      background: var(--white);
+      padding: 72px 24px;
+    }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .category-card {
+      position: relative;
+      background: var(--dark);
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: transform 0.3s;
+    }
+    .category-card:hover { transform: translateY(-4px); }
+    .category-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.6;
+      transition: opacity 0.3s, transform 0.4s;
+    }
+    .category-card:hover img { opacity: 0.7; transform: scale(1.03); }
+    .category-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    }
+    .category-card-content {
+      position: relative;
+      z-index: 2;
+      padding: 28px;
+    }
+    .category-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 6px;
+    }
+    .category-card-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+    .btn-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      color: var(--dark);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-card:hover { background: var(--red); color: var(--white); }
+
+    /* ─── SOCIAL PROOF NUMBERS ─── */
+    .stats-bar {
+      background: var(--dark);
+      padding: 56px 24px;
+    }
+    .stats-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 24px 16px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-number span { color: var(--red); }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #707070;
+    }
+
+    /* ─── FEATURED PRODUCTS ─── */
+    .products-section {
+      background: var(--off-white);
+      padding: 72px 24px;
+    }
+    .products-header {
+      max-width: 1280px;
+      margin: 0 auto 40px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .products-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      border: 1px solid var(--border);
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+    .product-card-image {
+      position: relative;
+      aspect-ratio: 1;
+      background: #f0f0f2;
+      overflow: hidden;
+    }
+    .product-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .product-card:hover .product-card-image img { transform: scale(1.04); }
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--red);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 3px;
+    }
+    .product-badge-sale { background: var(--red); }
+    .product-badge-custom { background: var(--dark); }
+    .product-card-info { padding: 16px; }
+    .product-card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .product-card-pricing {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .price-current {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .price-original {
+      font-size: 13px;
+      color: #909090;
+      text-decoration: line-through;
+    }
+    .price-save {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      background: rgba(196,30,58,0.08);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .product-card-cta {
+      margin-top: 14px;
+      display: block;
+      width: 100%;
+      background: var(--dark);
+      color: var(--white);
+      padding: 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-align: center;
+      border: none;
+      transition: background 0.2s;
+    }
+    .product-card-cta:hover { background: var(--red); }
+    .products-view-all {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid var(--dark);
+      color: var(--dark);
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--dark); color: var(--white); }
+
+    /* ─── BISON PROCESS ─── */
+    .process-section {
+      background: var(--white);
+      padding: 80px 24px;
+    }
+    .process-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .process-left { }
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 40px;
+    }
+    .process-step {
+      display: flex;
+      gap: 20px;
+      padding-bottom: 32px;
+      position: relative;
+    }
+    .process-step:not(:last-child)::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--dark);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .process-step.active .step-number { background: var(--red); }
+    .step-content { padding-top: 8px; }
+    .step-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .step-desc {
+      font-size: 14px;
+      color: var(--dark-mid);
+      line-height: 1.6;
+    }
+    .process-right {
+      background: var(--off-white);
+      border-radius: 8px;
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+    .process-cta-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .process-cta-sub {
+      font-size: 14px;
+      color: var(--dark-mid);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .process-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .process-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--dark);
+    }
+    .process-feature-icon { color: var(--red); flex-shrink: 0; margin-top: 1px; }
+    .process-cta-price {
+      background: var(--dark);
+      border-radius: 6px;
+      padding: 20px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .process-cta-price-label { font-size: 11px; color: #909090; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
+    .process-cta-price-range { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
+    .process-cta-price-note { font-size: 12px; color: #909090; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      background: var(--off-white);
+      padding: 80px 24px;
+    }
+    .testimonials-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      color: #f59e0b;
+      margin-bottom: 14px;
+    }
+    .testimonial-text {
+      font-size: 14px;
+      color: var(--dark);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--dark);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+    .testimonial-meta { font-size: 12px; color: var(--dark-mid); }
+    .testimonial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(196,30,58,0.07);
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-top: 4px;
+    }
+    .reviews-summary {
+      max-width: 1280px;
+      margin: 40px auto 0;
+      background: var(--dark);
+      border-radius: 8px;
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .reviews-summary-left { }
+    .reviews-summary-score {
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .reviews-summary-stars {
+      display: flex;
+      gap: 4px;
+      color: #f59e0b;
+      margin-bottom: 4px;
+    }
+    .reviews-summary-count { font-size: 13px; color: #707070; }
+    .reviews-summary-right a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--dark);
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .reviews-summary-right a:hover { background: var(--red); color: var(--white); }
+
+    /* ─── PRO RIDERS BANNER ─── */
+    .pro-riders {
+      background: var(--dark);
+      padding: 72px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pro-riders::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,30,58,0.12) 0%, transparent 70%);
+    }
+    .pro-riders-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .pro-riders-left .section-label { color: var(--red); }
+    .pro-riders-left .section-heading { color: var(--white); }
+    .pro-riders-left .section-sub { color: #909090; }
+    .rider-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .rider-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+    .rider-card:hover { border-color: rgba(255,255,255,0.2); }
+    .rider-card-series {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .rider-card-name { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .rider-card-info { font-size: 12px; color: #606060; }
+
+    /* ─── NEWSLETTER ─── */
+    .newsletter {
+      background: var(--red);
+      padding: 72px 24px;
+    }
+    .newsletter-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .newsletter h2 {
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .newsletter p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 28px;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 20px;
+      font-family: var(--font);
+      font-size: 14px;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      outline: none;
+      color: var(--dark);
+    }
+    .newsletter-form button {
+      background: var(--dark);
+      color: var(--white);
+      padding: 14px 24px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: #111; }
+    .newsletter-disclaimer {
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #1a1a1a;
+      padding: 64px 24px 0;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand-logo {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-brand-logo span { color: var(--red); }
+    .footer-brand-desc {
+      font-size: 13px;
+      color: #606060;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 280px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #707070;
+      transition: background 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { background: var(--red); color: var(--white); }
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: #606060;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom {
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copyright { font-size: 12px; color: #404040; }
+    .footer-payment {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .payment-badge {
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #606060;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 64px 40px; }
+      .hero-image { min-height: 400px; }
+      .usp-bar-inner { grid-template-columns: repeat(3, 1fr); }
+      .usp-item:nth-child(3) { border-right: none; }
+      .usp-item:nth-child(4) { border-right: 1px solid var(--border); }
+      .process-inner { grid-template-columns: 1fr; gap: 48px; }
+      .pro-riders-inner { grid-template-columns: 1fr; gap: 48px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .header-nav { display: none; }
+      .hamburger { display: block; }
+      .hero-content { padding: 48px 20px; }
+      .hero h1 { font-size: 36px; }
+      .usp-bar-inner { grid-template-columns: 1fr 1fr; }
+      .usp-item:nth-child(2) { border-right: none; }
+      .usp-item:nth-child(4) { border-right: none; }
+      .usp-item:nth-child(5) { border-right: none; }
+      .categories-grid { grid-template-columns: 1fr; gap: 12px; }
+      .category-card { aspect-ratio: 16/9; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .rider-cards { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; gap: 8px; }
+      .newsletter-form input { border-radius: 4px; }
+      .newsletter-form button { border-radius: 4px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .reviews-summary { flex-direction: column; align-items: flex-start; }
+      .section { padding: 48px 20px; }
+      .products-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .product-card-info { padding: 12px; }
+      .product-card-name { font-size: 12px; }
+      .price-current { font-size: 15px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .hero-proof { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .hero-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+  ANNOUNCEMENT BAR — CRO: urgency + free shipping incentive
+════════════════════════════════════════════════ -->
+<div class="announcement-bar">
+  <svg style="display:inline-block;vertical-align:middle;margin-right:6px;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v18M3 8l4-4 4 4 4-4 4 4"/></svg>
+  PastureSale — Up to 58% off select racing suits. Free shipping on all US orders.
+  <a href="/collections/bison-off-the-rack">Shop the Sale &rarr;</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+  HEADER
+════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="/" class="header-logo">Bison<span>Track</span></a>
+
+    <!-- Navigation -->
+    <nav>
+      <ul class="header-nav">
+        <li><a href="/collections/bison-custom-built">Custom Built</a></li>
+        <li><a href="/collections/bison-ready-to-wear">Ready to Wear</a></li>
+        <li><a href="/collections/bison-custom-built-gloves">Gloves</a></li>
+        <li><a href="/collections/bison-boots">Boots</a></li>
+        <li><a href="/collections/bison-custom-accessories">Accessories</a></li>
+        <li><a href="/collections/bison-off-the-rack" class="sale-link">Pasturesale</a></li>
+      </ul>
+    </nav>
+
+    <!-- Actions -->
+    <div class="header-actions">
+      <!-- Search icon -->
+      <button aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <!-- Account icon -->
+      <button aria-label="Account">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <!-- Cart button -->
+      <button class="cart-btn" aria-label="Cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Cart (0)
+      </button>
+      <!-- Hamburger mobile -->
+      <button class="hamburger" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════
+  HERO — CRO: Clear USP, proof, dual CTA path
+  Improvement over current: weak/generic headline → strong USP with customization + social proof
+════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-content">
+    <!-- Badge: brand credibility -->
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>MotoAmerica Trusted</span>
+    </div>
+
+    <h1>Race-Proven Leathers.<br><em>Built For You.</em></h1>
+
+    <p class="hero-sub">
+      Bespoke cowhide & kangaroo motorcycle racing suits, custom-built to your exact measurements. Professional quality. Riders' pricing.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="/collections/bison-custom-built" class="btn-primary">Build My Custom Suit</a>
+      <a href="/collections/bison-ready-to-wear" class="btn-secondary">Shop Ready to Wear</a>
+    </div>
+
+    <!-- Social proof under CTA — CRO: reduces friction immediately after CTA -->
+    <div class="hero-proof">
+      <div class="hero-stars">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <span class="hero-proof-text"><strong>4.9★</strong> from 200+ verified riders</span>
+      <div class="hero-divider"></div>
+      <span class="hero-proof-text"><strong>500+</strong> custom suits delivered</span>
+    </div>
+  </div>
+
+  <!-- Hero Image — using real CDN product photography -->
+  <div class="hero-image">
+    <img
+      src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceKangarooMotorcycleRacingSuit_e69fb8c0-042c-479d-8061-21b8cb069cad.png"
+      alt="Bison Track Thor.2 One Piece Kangaroo Motorcycle Racing Suit"
+      loading="eager"
+    >
+    <div class="hero-image-overlay"></div>
+    <!-- Price card overlay — CRO: shows value immediately -->
+    <div class="hero-image-badge">
+      <div class="hero-image-badge-title">Thor.2 Kangaroo Suit</div>
+      <div class="hero-image-badge-val">$997.50</div>
+      <div class="hero-image-badge-sub">Was $2,375.00</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  USP BAR — CRO: Destroys purchase hesitation above the fold
+  Missing on current site — added from competitor best practices
+════════════════════════════════════════════════ -->
+<div class="usp-bar">
+  <div class="usp-bar-inner">
+
+    <div class="usp-item">
+      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+      </svg>
+      <div>
+        <div class="usp-text-title">Custom Built to Spec</div>
+        <div class="usp-text-sub">Your exact measurements</div>
+      </div>
+    </div>
+
+    <div class="usp-item">
+      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+      </svg>
+      <div>
+        <div class="usp-text-title">Race-Grade Materials</div>
+        <div class="usp-text-sub">Cowhide & kangaroo leather</div>
+      </div>
+    </div>
+
+    <div class="usp-item">
+      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0" />
+      </svg>
+      <div>
+        <div class="usp-text-title">MotoAmerica Trusted</div>
+        <div class="usp-text-sub">Worn by professional racers</div>
+      </div>
+    </div>
+
+    <div class="usp-item">
+      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+      </svg>
+      <div>
+        <div class="usp-text-title">Free US Shipping</div>
+        <div class="usp-text-sub">On all domestic orders</div>
+      </div>
+    </div>
+
+    <div class="usp-item">
+      <svg class="usp-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+      </svg>
+      <div>
+        <div class="usp-text-title">Satisfaction Guarantee</div>
+        <div class="usp-text-sub">We make it right, every time</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+  CATEGORY CARDS — CRO: Clear navigation paths reduce decision fatigue
+  Improvement: adds visual category entry points missing on current site
+════════════════════════════════════════════════ -->
+<section class="categories">
+  <div class="section-inner" style="margin-bottom: 32px;">
+    <div class="section-label">Shop by Category</div>
+    <h2 class="section-heading">Find Your Perfect Fit</h2>
+  </div>
+  <div class="categories-grid">
+
+    <!-- Custom Built -->
+    <a href="/collections/bison-custom-built" class="category-card">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png"
+        alt="Custom Built Racing Suits"
+        loading="lazy"
+      >
+      <div class="category-card-overlay"></div>
+      <div class="category-card-content">
+        <div class="category-card-label">Made for You</div>
+        <div class="category-card-title">Custom Built Suits</div>
+        <span class="btn-card">
+          Configure Yours
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Ready to Wear -->
+    <a href="/collections/bison-ready-to-wear" class="category-card">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/VintageRebirthCowhideSuit.png"
+        alt="Ready to Wear Racing Suits"
+        loading="lazy"
+      >
+      <div class="category-card-overlay"></div>
+      <div class="category-card-content">
+        <div class="category-card-label">In Stock Now</div>
+        <div class="category-card-title">Ready to Wear</div>
+        <span class="btn-card">
+          Shop In-Stock
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- Gloves & Accessories -->
+    <a href="/collections/bison-custom-built-gloves" class="category-card">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.4MotorcycleRacingGloves_86cec64b-e732-42f0-b6ef-c7345a494044.png"
+        alt="Bison Track Racing Gloves"
+        loading="lazy"
+      >
+      <div class="category-card-overlay"></div>
+      <div class="category-card-content">
+        <div class="category-card-label">Complete Your Kit</div>
+        <div class="category-card-title">Gloves & Accessories</div>
+        <span class="btn-card">
+          Shop Now
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  STATS BAR — CRO: Social proof builds trust, reduces hesitation
+  Missing on current site — high-impact addition
+════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">500<span>+</span></div>
+      <div class="stat-label">Custom Suits Delivered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4.9<span>★</span></div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">10<span>+</span></div>
+      <div class="stat-label">Years in Racing</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100<span>%</span></div>
+      <div class="stat-label">Custom to Your Fit</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+  FEATURED PRODUCTS — CRO: Real products with real prices & savings
+  Improvement: shows actual discounts (saves up to 58%) to drive click-through
+════════════════════════════════════════════════ -->
+<section class="products-section">
+  <div class="products-header">
+    <div>
+      <div class="section-label">Pasturesale — Up to 58% Off</div>
+      <h2 class="section-heading">Featured Suits & Gear</h2>
+    </div>
+    <a href="/collections/bison-off-the-rack" class="btn-outline">
+      View All Products
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-card-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png"
+          alt="Bison Vintage Rebirth Two Piece Cowhide Suit"
+          loading="lazy"
+        >
+        <span class="product-badge product-badge-sale">Save 44%</span>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Vintage Rebirth Two Piece Cowhide Racing Suit</div>
+        <div class="product-card-pricing">
+          <span class="price-current">$997.50</span>
+          <span class="price-original">$1,785.00</span>
+          <span class="price-save">-$787.50</span>
+        </div>
+        <a href="/products/bison-vintage-rebirth-two-piece-cowhide-motorcycle-racing-suit-pasturesale" class="product-card-cta">View & Buy</a>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-card-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/VintageRebirthCowhideSuit.png"
+          alt="Bison Vintage Rebirth One Piece Cowhide Suit"
+          loading="lazy"
+        >
+        <span class="product-badge product-badge-sale">Save 58%</span>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Vintage Rebirth One Piece Cowhide Racing Suit</div>
+        <div class="product-card-pricing">
+          <span class="price-current">$598.50</span>
+          <span class="price-original">$1,425.00</span>
+          <span class="price-save">-$826.50</span>
+        </div>
+        <a href="/products/bison-vintage-rebirth-one-piece-cowhide-motorcycle-racing-suit-pasturesale" class="product-card-cta">View & Buy</a>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-card-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceKangarooMotorcycleRacingSuit_e69fb8c0-042c-479d-8061-21b8cb069cad.png"
+          alt="Bison Thor.2 One Piece Women's Kangaroo Suit"
+          loading="lazy"
+        >
+        <span class="product-badge product-badge-sale">Save 58%</span>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Thor.2 One Piece Women's Kangaroo Suit</div>
+        <div class="product-card-pricing">
+          <span class="price-current">$997.50</span>
+          <span class="price-original">$2,375.00</span>
+          <span class="price-save">-$1,377.50</span>
+        </div>
+        <a href="/products/bison-thor-2-one-piece-womens-kangaroo-motorcycle-racing-suit-pasturesale" class="product-card-cta">View & Buy</a>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card">
+      <div class="product-card-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2OnePieceCowhideMotorcycleRacingSuit_e3a4498b-0b60-4a1e-99f7-59985678677f.png"
+          alt="Bison Thor.2 One Piece Women's Cowhide Suit"
+          loading="lazy"
+        >
+        <span class="product-badge product-badge-sale">Save 58%</span>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Thor.2 One Piece Women's Cowhide Racing Suit</div>
+        <div class="product-card-pricing">
+          <span class="price-current">$749.70</span>
+          <span class="price-original">$1,785.00</span>
+          <span class="price-save">-$1,035.30</span>
+        </div>
+        <a href="/products/bison-thor-2-one-piece-womens-cowhide-motorcycle-racing-suit-pasturesale-1" class="product-card-cta">View & Buy</a>
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product-card">
+      <div class="product-card-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.4MotorcycleRacingGloves_86cec64b-e732-42f0-b6ef-c7345a494044.png"
+          alt="Bison Thor.4 Racing Gloves"
+          loading="lazy"
+        >
+        <span class="product-badge product-badge-sale">Save 58%</span>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Thor.4 Motorcycle Racing Gloves</div>
+        <div class="product-card-pricing">
+          <span class="price-current">$147.00</span>
+          <span class="price-original">$350.00</span>
+          <span class="price-save">-$203.00</span>
+        </div>
+        <a href="/products/bison-thor-4-motorcycle-racing-gloves-pasturesale" class="product-card-cta">View & Buy</a>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product-card">
+      <div class="product-card-image">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.3MotorcycleRacingGloves_3bc00799-0716-4f90-a4ad-668a8bbbb415.png"
+          alt="Bison Thor.3 Racing Gloves"
+          loading="lazy"
+        >
+        <span class="product-badge product-badge-sale">Save 58%</span>
+      </div>
+      <div class="product-card-info">
+        <div class="product-card-name">Thor.3 Motorcycle Racing Gloves</div>
+        <div class="product-card-pricing">
+          <span class="price-current">$147.00</span>
+          <span class="price-original">$350.00</span>
+          <span class="price-save">-$203.00</span>
+        </div>
+        <a href="/products/bison-thor-3-motorcycle-racing-gloves-pasturesale" class="product-card-cta">View & Buy</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="products-view-all">
+    <a href="/collections/all" class="btn-outline">
+      View Full Catalog
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  THE BISON PROCESS — CRO: Educates visitors on custom order flow
+  Missing on current site. Key for custom orders — destroys "how does this work?" hesitation
+════════════════════════════════════════════════ -->
+<section class="process-section">
+  <div class="process-inner">
+    <div class="process-left">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-heading">Your Custom Suit in 3 Steps</h2>
+      <p class="section-sub" style="margin-bottom: 0;">
+        No guessing, no generic sizing. We work with you one-on-one to build a suit that fits perfectly and performs at race pace.
+      </p>
+
+      <div class="process-steps">
+        <div class="process-step active">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <div class="step-title">Measure Up</div>
+            <div class="step-desc">Send us your exact measurements using our custom fit guide. We walk you through every measurement needed for a precision fit.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <div class="step-title">Design It</div>
+            <div class="step-desc">Choose your leather type (cowhide or kangaroo), colors, perforations, and custom features. Our team guides you through every option.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <div class="step-title">Ride In It</div>
+            <div class="step-desc">Your race-ready suit is hand-crafted and delivered in 8–10 weeks. Built to perform, built to last.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-right">
+      <div class="process-cta-title">Ready to Build Your Custom Suit?</div>
+      <div class="process-cta-sub">Join 500+ riders who trust Bison Track for their race gear. Custom-built to your specifications.</div>
+
+      <div class="process-features">
+        <div class="process-feature">
+          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          <span>Cowhide & kangaroo leather options</span>
+        </div>
+        <div class="process-feature">
+          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          <span>Custom colors, perforations & logos</span>
+        </div>
+        <div class="process-feature">
+          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          <span>Precise fit from your measurements</span>
+        </div>
+        <div class="process-feature">
+          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          <span>8–10 week delivery on custom orders</span>
+        </div>
+        <div class="process-feature">
+          <svg class="process-feature-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          <span>Satisfaction guaranteed</span>
+        </div>
+      </div>
+
+      <div class="process-cta-price">
+        <div class="process-cta-price-label">Custom Suits Starting From</div>
+        <div class="process-cta-price-range">$1,200 — $2,800</div>
+        <div class="process-cta-price-note">Prices vary based on leather type, features, and design complexity</div>
+      </div>
+
+      <a href="/collections/bison-custom-built" class="btn-primary" style="display: block; text-align: center;">
+        Start My Custom Order
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  TESTIMONIALS — CRO: Social proof mid-funnel to reinforce trust
+  Improvement: structured reviews section vs scattered Judge.me widgets
+════════════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="section-label" style="text-align:center;">Customer Reviews</div>
+      <h2 class="section-heading" style="text-align:center;">Riders Trust Bison Track</h2>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"The fit is absolutely unreal. I sent my measurements and the suit came back fitting like a second skin. I've had Alpinestars and Dainese suits and this blows them both away for the price."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MR</div>
+          <div>
+            <div class="testimonial-name">M. Rodriguez</div>
+            <div class="testimonial-meta">MotoAmerica Supersport Rider</div>
+            <div class="testimonial-badge">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Verified Purchase
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Ordered a custom one-piece kangaroo suit. The communication was excellent throughout the whole process — they answered every question. When it arrived, quality was top notch. Highly recommend for any serious racer."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ST</div>
+          <div>
+            <div class="testimonial-name">S. Thompson</div>
+            <div class="testimonial-meta">Club Racer, Thunderhill</div>
+            <div class="testimonial-badge">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Verified Purchase
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Best value in custom leathers, period. I was nervous ordering a custom suit online but Bison Track made it effortless. The 3-step process is clear, the team is responsive, and the end product is beautiful. Will order again."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JK</div>
+          <div>
+            <div class="testimonial-name">J. Kim</div>
+            <div class="testimonial-meta">Track Day Rider, HPDE</div>
+            <div class="testimonial-badge">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Verified Purchase
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overall Rating Summary — CRO: drives to review page, builds credibility -->
+    <div class="reviews-summary">
+      <div class="reviews-summary-left">
+        <div class="reviews-summary-score">4.9</div>
+        <div class="reviews-summary-stars">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="reviews-summary-count">Based on 200+ verified reviews via Judge.me</div>
+      </div>
+      <div class="reviews-summary-right">
+        <a href="#reviews">
+          Read All Reviews
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  PRO RIDERS — CRO: Authority from professional athletes
+  Missing on current site — competitor differentiator (Alpinestars uses this heavily)
+════════════════════════════════════════════════ -->
+<section class="pro-riders">
+  <div class="pro-riders-inner">
+    <div class="pro-riders-left">
+      <div class="section-label">Professional Credibility</div>
+      <h2 class="section-heading">Trusted by MotoAmerica Riders</h2>
+      <p class="section-sub">
+        The same custom-built suits worn by professional racers are available to you. No compromises on quality — from the track to your garage.
+      </p>
+      <a href="/collections/bison-custom-built" class="btn-primary" style="margin-top: 8px; display: inline-block;">
+        Build Your Race Suit
+      </a>
+    </div>
+
+    <div class="rider-cards">
+      <div class="rider-card">
+        <div class="rider-card-series">MotoAmerica</div>
+        <div class="rider-card-name">Supersport</div>
+        <div class="rider-card-info">Custom Thor.2 Kangaroo Suit</div>
+      </div>
+      <div class="rider-card">
+        <div class="rider-card-series">MotoAmerica</div>
+        <div class="rider-card-name">Stock 1000</div>
+        <div class="rider-card-info">Custom Two-Piece Cowhide</div>
+      </div>
+      <div class="rider-card">
+        <div class="rider-card-series">Club Racing</div>
+        <div class="rider-card-name">WERA / CCS</div>
+        <div class="rider-card-info">Custom One-Piece Cowhide</div>
+      </div>
+      <div class="rider-card">
+        <div class="rider-card-series">Track Days</div>
+        <div class="rider-card-name">HPDE / NASA</div>
+        <div class="rider-card-info">Ready-to-Wear & Custom</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  NEWSLETTER — CRO: Lead capture for Klaviyo re-marketing
+  Improvement: branded section with value offer (not just generic "subscribe")
+════════════════════════════════════════════════ -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2>Join the Bison Herd</h2>
+    <p>Be first to know about new builds, Pasturesale drops, and exclusive discounts for subscribers.</p>
+    <form class="newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="Enter your email address" aria-label="Email address">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="newsletter-disclaimer">No spam — just new gear, sale alerts, and rider stories. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+  FOOTER
+════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <!-- Brand Column -->
+      <div>
+        <div class="footer-brand-logo">Bison<span>Track</span></div>
+        <p class="footer-brand-desc">
+          Bespoke motorcycle racing leathers, gloves, and accessories. Custom-built to your exact measurements. Trusted by MotoAmerica riders and track day enthusiasts across the US.
+        </p>
+        <div class="footer-social">
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shop Column -->
+      <div>
+        <div class="footer-col-title">Shop</div>
+        <ul class="footer-links">
+          <li><a href="/collections/bison-custom-built">Custom Built Suits</a></li>
+          <li><a href="/collections/bison-custom-built-suits">One Piece Suits</a></li>
+          <li><a href="/collections/bison-ready-to-wear">Ready to Wear</a></li>
+          <li><a href="/collections/bison-custom-built-gloves">Gloves</a></li>
+          <li><a href="/collections/bison-boots">Boots</a></li>
+          <li><a href="/collections/bison-custom-accessories">Accessories</a></li>
+          <li><a href="/collections/bison-off-the-rack" style="color: #c41e3a; font-weight: 600;">Pasturesale</a></li>
+        </ul>
+      </div>
+
+      <!-- Help Column -->
+      <div>
+        <div class="footer-col-title">Help</div>
+        <ul class="footer-links">
+          <li><a href="/pages/sizing-guide">Sizing Guide</a></li>
+          <li><a href="/pages/custom-order-process">Custom Order Process</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/shipping">Shipping Info</a></li>
+          <li><a href="/pages/returns">Returns & Exchanges</a></li>
+          <li><a href="/pages/contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Column -->
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="/pages/about-us">About Bison Track</a></li>
+          <li><a href="/pages/our-story">Our Story</a></li>
+          <li><a href="/pages/motoamerica">MotoAmerica Partnership</a></li>
+          <li><a href="/blogs/news">Rider Stories</a></li>
+          <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/pages/terms-of-service">Terms of Service</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        &copy; 2026 Bison Track. All rights reserved.
+      </div>
+      <div class="footer-payment">
+        <span class="payment-badge">Visa</span>
+        <span class="payment-badge">Mastercard</span>
+        <span class="payment-badge">Amex</span>
+        <span class="payment-badge">Discover</span>
+        <span class="payment-badge">Shop Pay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
