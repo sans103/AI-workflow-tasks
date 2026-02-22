@@ -1,0 +1,3549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinenTrail CRO Audit | February 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #111;
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .container {
+            display: flex;
+            scroll-snap-type: x mandatory;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            height: 100vh;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            min-width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem 6rem 2rem;
+            position: relative;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(163,118,46,0.3) transparent;
+        }
+
+        .card::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .card::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .card::-webkit-scrollbar-thumb {
+            background: rgba(163,118,46,0.3);
+            border-radius: 4px;
+        }
+
+        .card-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #3A2A10 0%, #201A0A 100%);
+            justify-content: center;
+        }
+
+        .title-badge {
+            display: inline-block;
+            background: #a3762e;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+        }
+
+        .title-logo {
+            max-width: 280px;
+            height: auto;
+            margin-bottom: 2rem;
+            background: #fff;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+        }
+
+        .title-slide h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .title-slide .subtitle {
+            font-size: 1.5rem;
+            color: #a3762e;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .title-slide .meta {
+            color: #868383;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-hint {
+            position: absolute;
+            bottom: 6rem;
+            color: #868383;
+            font-size: 0.875rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Content Cards */
+        .card-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #a3762e;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .card-subtitle {
+            font-size: 1.125rem;
+            color: #868383;
+            margin-bottom: 2rem;
+        }
+
+        .card-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Section Header */
+        .section-slide {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .section-number {
+            font-size: 8rem;
+            font-weight: 700;
+            color: rgba(163,118,46,0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-sub {
+            font-size: 1.25rem;
+            color: #868383;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.04);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: #868383;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .metric-value.good {
+            color: #10b981;
+        }
+
+        .metric-value.warn {
+            color: #f59e0b;
+        }
+
+        .metric-value.danger {
+            color: #ef4444;
+        }
+
+        .metric-value.accent {
+            color: #a3762e;
+        }
+
+        /* Data Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .data-table th {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #868383;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table td {
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .data-table .good {
+            color: #10b981;
+        }
+
+        .data-table .warn {
+            color: #f59e0b;
+        }
+
+        .data-table .danger {
+            color: #ef4444;
+        }
+
+        .data-table .accent {
+            color: #a3762e;
+            font-weight: 600;
+        }
+
+        /* Insight Box */
+        .insight-box {
+            background: rgba(163,118,46,0.1);
+            border-left: 4px solid #a3762e;
+            padding: 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-top: 1.5rem;
+        }
+
+        .insight-box.danger {
+            background: rgba(239,68,68,0.1);
+            border-left-color: #ef4444;
+        }
+
+        /* Source Grid */
+        .source-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .source-card {
+            background: rgba(255,255,255,0.04);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .source-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .source-detail {
+            font-size: 0.875rem;
+            color: #868383;
+            margin-bottom: 0.25rem;
+        }
+
+        .source-detail strong {
+            color: #a3762e;
+            font-weight: 600;
+        }
+
+        .source-card.disabled {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        /* Takeaway Grid */
+        .takeaway-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .takeaway-card {
+            background: rgba(255,255,255,0.04);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .takeaway-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #a3762e;
+            margin-bottom: 0.5rem;
+        }
+
+        .takeaway-stat {
+            font-size: 0.875rem;
+            color: #868383;
+            margin-bottom: 0.75rem;
+        }
+
+        .takeaway-card p {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        /* Issues Grid */
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .issue-card {
+            background: rgba(255,255,255,0.04);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #868383;
+        }
+
+        .issue-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .issue-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .issue-card p {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .issue-stat {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #868383;
+        }
+
+        .issue-card.critical {
+            border-left-color: #ef4444;
+        }
+
+        .issue-card.critical .issue-number {
+            color: #ef4444;
+        }
+
+        .issue-card.high {
+            border-left-color: #f59e0b;
+        }
+
+        .issue-card.high .issue-number {
+            color: #f59e0b;
+        }
+
+        .issue-card.medium {
+            border-left-color: #3b82f6;
+        }
+
+        .issue-card.medium .issue-number {
+            color: #3b82f6;
+        }
+
+        .issue-card.low {
+            border-left-color: #10b981;
+        }
+
+        .issue-card.low .issue-number {
+            color: #10b981;
+        }
+
+        /* PageSpeed Grid */
+        .ps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .ps-card {
+            background: rgba(255,255,255,0.04);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .ps-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .ps-device {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .ps-score {
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .ps-score.good {
+            background: rgba(16,185,129,0.2);
+            color: #10b981;
+        }
+
+        .ps-score.needs-improvement {
+            background: rgba(245,158,11,0.2);
+            color: #f59e0b;
+        }
+
+        .ps-score.poor {
+            background: rgba(239,68,68,0.2);
+            color: #ef4444;
+        }
+
+        .ps-metrics {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .ps-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+        }
+
+        .ps-metric-label {
+            font-size: 0.875rem;
+            color: #868383;
+        }
+
+        .ps-metric-value {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Audit Layout (with phone mockup) */
+        .audit-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .phone-mockup {
+            position: sticky;
+            top: 2rem;
+            width: 280px;
+            background: #000;
+            border-radius: 24px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 8px solid #1a1a1a;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 560px;
+            background: #fff;
+            border-radius: 16px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: #a3762e transparent;
+        }
+
+        .phone-screen::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .phone-screen::-webkit-scrollbar-thumb {
+            background: #a3762e;
+            border-radius: 2px;
+        }
+
+        .phone-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .phone-label {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #868383;
+            margin-top: 0.5rem;
+        }
+
+        .phone-scroll-hint {
+            text-align: center;
+            font-size: 0.625rem;
+            color: #868383;
+            margin-top: 0.25rem;
+            font-style: italic;
+        }
+
+        .findings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .finding-item {
+            background: rgba(255,255,255,0.04);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 4px solid #868383;
+        }
+
+        .finding-item.critical {
+            border-left-color: #ef4444;
+        }
+
+        .finding-item.high {
+            border-left-color: #f59e0b;
+        }
+
+        .finding-item.medium {
+            border-left-color: #3b82f6;
+        }
+
+        .finding-item.low {
+            border-left-color: #10b981;
+        }
+
+        .finding-item.positive {
+            border-left-color: #10b981;
+        }
+
+        .finding-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .finding-severity {
+            font-size: 0.625rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .finding-severity.critical {
+            background: rgba(239,68,68,0.2);
+            color: #ef4444;
+        }
+
+        .finding-severity.high {
+            background: rgba(245,158,11,0.2);
+            color: #f59e0b;
+        }
+
+        .finding-severity.medium {
+            background: rgba(59,130,246,0.2);
+            color: #3b82f6;
+        }
+
+        .finding-severity.low {
+            background: rgba(16,185,129,0.2);
+            color: #10b981;
+        }
+
+        .finding-severity.positive {
+            background: rgba(16,185,129,0.2);
+            color: #10b981;
+        }
+
+        .finding-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .finding-text {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 0.5rem;
+        }
+
+        .finding-data {
+            font-size: 0.8125rem;
+            color: #a3762e;
+            font-weight: 500;
+        }
+
+        /* Findings without phone */
+        .findings-only {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Fix Grid */
+        .fix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .fix-card {
+            background: rgba(255,255,255,0.04);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .fix-card.urgent {
+            border-left-color: #ef4444;
+        }
+
+        .fix-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .fix-card p {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .fix-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8125rem;
+        }
+
+        .fix-meta span {
+            color: #868383;
+        }
+
+        .fix-meta strong {
+            color: #a3762e;
+            font-weight: 600;
+        }
+
+        /* Strength Grid */
+        .strength-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .strength-card {
+            background: rgba(16,185,129,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #10b981;
+        }
+
+        .strength-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #10b981;
+            margin-bottom: 0.75rem;
+        }
+
+        .strength-card p {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        /* Critical Gaps */
+        .gap-item {
+            background: rgba(255,255,255,0.04);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #ef4444;
+            margin-bottom: 1.5rem;
+        }
+
+        .gap-item.high {
+            border-left-color: #f59e0b;
+        }
+
+        .gap-item.medium-high {
+            border-left-color: #3b82f6;
+        }
+
+        .gap-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gap-icon {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+        }
+
+        .gap-icon svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.6;
+        }
+
+        .gap-title {
+            flex: 1;
+        }
+
+        .gap-number {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #868383;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .gap-title h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .gap-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+        .gap-impact {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #ef4444;
+            background: rgba(239,68,68,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .gap-item.high .gap-impact {
+            color: #f59e0b;
+            background: rgba(245,158,11,0.1);
+        }
+
+        .gap-item.medium-high .gap-impact {
+            color: #3b82f6;
+            background: rgba(59,130,246,0.1);
+        }
+
+        /* Roadmap Table */
+        .roadmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .roadmap-table th,
+        .roadmap-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            vertical-align: top;
+        }
+
+        .roadmap-table th {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #868383;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .roadmap-table td {
+            font-size: 0.9375rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .roadmap-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* Thank You Slide */
+        .thankyou-slide {
+            background: linear-gradient(135deg, #3A2A10 0%, #201A0A 100%);
+        }
+
+        .ty-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .ty-sub {
+            font-size: 1.25rem;
+            color: #868383;
+            margin-bottom: 0.5rem;
+        }
+
+        .ty-powered {
+            font-size: 0.875rem;
+            color: #868383;
+            margin-top: 2rem;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(17,17,17,0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 0.5rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: #a3762e;
+            transform: scale(1.5);
+        }
+
+        .nav-counter {
+            font-size: 0.875rem;
+            color: #868383;
+            min-width: 100px;
+            text-align: left;
+        }
+
+        .nav-controls {
+            display: flex;
+            gap: 0.5rem;
+            min-width: 100px;
+            justify-content: flex-end;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(163,118,46,0.2);
+            border-color: #a3762e;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                padding: 2rem 1rem 6rem 1rem;
+            }
+
+            .card-title {
+                font-size: 2rem;
+            }
+
+            .title-slide h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-number {
+                font-size: 4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .audit-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .phone-mockup {
+                position: static;
+                margin: 0 auto;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-bar {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-dots {
+                display: none;
+            }
+        }
+
+        /* ===== FUNNEL ===== */
+        .funnel-container { max-width: 800px; width: 100%; }
+        .funnel-step { display: flex; align-items: center; gap: 16px; margin-bottom: 6px; }
+        .funnel-label { font-size: 0.8125rem; letter-spacing: 1px; color: #ccc; width: 120px; text-align: right; flex-shrink: 0; }
+        .funnel-bar-wrap { flex: 1; height: 36px; background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; }
+        .funnel-bar { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 12px; min-width: 24px; }
+        .funnel-bar-value { font-size: 0.8125rem; font-weight: 500; color: #fff; white-space: nowrap; }
+        .funnel-pct { font-size: 0.75rem; color: #868383; margin-left: 8px; }
+        .funnel-drop { width: 140px; text-align: left; flex-shrink: 0; }
+        .funnel-drop-value { font-size: 0.8125rem; color: #ef4444; font-weight: 500; }
+
+        /* ===== LEAK CARDS ===== */
+        .leak-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; max-width: 960px; width: 100%; }
+        .leak-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; }
+        .leak-card::before { content: attr(data-num); position: absolute; top: -8px; right: 12px; font-size: 64px; font-weight: 200; color: rgba(239,68,68,0.08); }
+        .leak-title { font-size: 0.9375rem; font-weight: 500; margin-bottom: 0.25rem; }
+        .leak-pct { font-size: 1.75rem; font-weight: 300; color: #ef4444; margin-bottom: 0.5rem; }
+        .leak-text { font-size: 0.8125rem; color: #999; line-height: 1.6; }
+        .leak-cause { font-size: 0.75rem; color: #f59e0b; margin-top: 0.5rem; font-style: italic; }
+
+        /* ===== COMPARISON LAYOUT ===== */
+        .compare-layout { display: flex; gap: 2rem; max-width: 800px; width: 100%; align-items: stretch; }
+        .compare-box { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.75rem; text-align: center; }
+        .compare-box.highlight { border-color: rgba(163,118,46,0.3); background: rgba(163,118,46,0.05); }
+        .compare-label { font-size: 0.8125rem; letter-spacing: 2px; text-transform: uppercase; color: #868383; margin-bottom: 0.75rem; }
+        .compare-rate { font-size: 2.5rem; font-weight: 300; margin-bottom: 0.25rem; }
+        .compare-rate.good { color: #10b981; }
+        .compare-rate.bad { color: #ef4444; }
+        .compare-sub { font-size: 0.8125rem; color: #868383; line-height: 1.6; }
+        .compare-vs { display: flex; align-items: center; justify-content: center; font-size: 1.25rem; color: #333; font-weight: 300; padding: 0 0.5rem; }
+
+        /* ===== NEW VS RETURNING ===== */
+        .nvr-layout { display: flex; gap: 2rem; max-width: 800px; width: 100%; }
+        .nvr-box { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.5rem; text-align: center; }
+        .nvr-label { font-size: 0.875rem; letter-spacing: 2px; text-transform: uppercase; color: #868383; margin-bottom: 0.75rem; }
+        .nvr-sessions { font-size: 1.75rem; font-weight: 300; color: #fff; }
+        .nvr-sessions-label { font-size: 0.75rem; color: #868383; letter-spacing: 1px; margin-bottom: 0.75rem; }
+        .nvr-stats { text-align: left; }
+        .nvr-stat { display: flex; justify-content: space-between; font-size: 0.8125rem; padding: 0.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .nvr-stat .lbl { color: #868383; }
+        .nvr-stat .val { font-weight: 500; }
+    </style>
+</head>
+<body>
+    <div class="container" id="slideContainer">
+
+        <!-- SLIDE 0: TITLE -->
+        <div class="card title-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="title-badge">2026</div>
+                <img src="https://linentrail.com/cdn/shop/files/Black_LT_with_linen_trail.png?v=1733143783" alt="LinenTrail" class="title-logo">
+                <h1>CRO Audit</h1>
+                <div class="subtitle">linentrail.com</div>
+                <div class="meta">February 22, 2026 | 90-Day GA4 + Behavioral + Technical Analysis</div>
+                <div class="meta">Prepared by Bhaskar Roy</div>
+                <div class="nav-hint">Scroll to explore &rarr;</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 1: DATA SOURCES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Data Sources</div>
+                <h2 class="card-title">What We Analyzed</h2>
+                <div class="card-subtitle">6 data sources collected &amp; processed</div>
+
+                <div class="source-grid">
+                    <div class="source-card">
+                        <h3>Microsoft Clarity</h3>
+                        <div class="source-detail"><strong>3 days</strong></div>
+                        <div class="source-detail">4,107 sessions</div>
+                    </div>
+                    <div class="source-card">
+                        <h3>PageSpeed Insights</h3>
+                        <div class="source-detail"><strong>Current</strong></div>
+                        <div class="source-detail">Mobile: 81 / Desktop: 98</div>
+                    </div>
+                    <div class="source-card">
+                        <h3>Tracking Tags Audit</h3>
+                        <div class="source-detail"><strong>Current</strong></div>
+                        <div class="source-detail">3 tags detected, 1 missing</div>
+                    </div>
+                    <div class="source-card">
+                        <h3>Brand Extraction</h3>
+                        <div class="source-detail"><strong>Playwright</strong></div>
+                        <div class="source-detail">Screenshots + HTML + CSS</div>
+                    </div>
+                    <div class="source-card">
+                        <h3>Competitor Research</h3>
+                        <div class="source-detail"><strong>4 brands</strong></div>
+                        <div class="source-detail">KAVERi, Linen Wear, Linen Club, Cottonworld</div>
+                    </div>
+                    <div class="source-card">
+                        <h3>Heuristic Review</h3>
+                        <div class="source-detail"><strong>4 page types</strong></div>
+                        <div class="source-detail">Homepage, Collection, PDP, Cart</div>
+                    </div>
+                    <div class="source-card">
+                        <h3>GA4 Analytics</h3>
+                        <div class="source-detail"><strong>90 Days</strong></div>
+                        <div class="source-detail">324,193 sessions | 2,450 purchases</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: EXECUTIVE SUMMARY -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Executive Summary</div>
+                <h2 class="card-title">Key Findings</h2>
+
+                <p>LinenTrail generates &#8377;1.39 Cr revenue from 324K sessions (0.76% CR, &#8377;5,682 AOV). The biggest lever is the 22.7x conversion gap between homepage (2.73%) and collection pages (0.12%). Returning users drive 69.9% of revenue at 2.143% CR &mdash; 6.3x better than new users.</p>
+
+                <div class="findings-list" style="margin-top: 2rem;">
+                    <div class="finding-item critical">
+                        <div class="finding-header">
+                            <div class="finding-severity critical">CRITICAL</div>
+                            <div class="finding-title">22.7x conversion gap: Homepage (2.73%) vs Collections (0.12%)</div>
+                        </div>
+                        <div class="finding-text">The #1 landing page by traffic converts 22x worse than the homepage. 54K sessions to mens-trousers yield only 64 purchases.</div>
+                    </div>
+
+                    <div class="finding-item high">
+                        <div class="finding-header">
+                            <div class="finding-severity high">HIGH</div>
+                            <div class="finding-title">Returning users: 6.3x higher CR, 69.9% of revenue</div>
+                        </div>
+                        <div class="finding-text">No loyalty program or retention mechanism despite strong repeat-purchase behavior</div>
+                    </div>
+
+                    <div class="finding-item critical">
+                        <div class="finding-header">
+                            <div class="finding-severity critical">CRITICAL</div>
+                            <div class="finding-title">Mobile TTI 17.1 seconds</div>
+                        </div>
+                        <div class="finding-text">88.7% of users wait 17s for interactivity. TBT 460ms blocks UI.</div>
+                    </div>
+
+                    <div class="finding-item critical">
+                        <div class="finding-header">
+                            <div class="finding-severity critical">CRITICAL</div>
+                            <div class="finding-title">12.3% quickback rate</div>
+                        </div>
+                        <div class="finding-text">1 in 8 visitors immediately leave, signaling landing page expectation mismatch</div>
+                    </div>
+
+                    <div class="finding-item high">
+                        <div class="finding-header">
+                            <div class="finding-severity high">HIGH</div>
+                            <div class="finding-title">Missing Meta Pixel</div>
+                        </div>
+                        <div class="finding-text">18.4% social traffic (Instagram + Facebook) with zero remarketing capability</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GA4-0: SECTION HEADER - GA4 Analytics -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">01</div>
+                <div class="section-title">GA4 Analytics</div>
+                <div class="section-sub">90 Day Performance Data &nbsp;|&nbsp; 324K Sessions &nbsp;|&nbsp; &#8377;1.39 Cr Revenue</div>
+            </div>
+        </div>
+
+        <!-- GA4-1: PERFORMANCE DASHBOARD -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">Performance Dashboard</h2>
+                <div class="card-subtitle" style="text-align:center;">Nov 2025 &ndash; Feb 2026</div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Sessions</div>
+                        <div class="metric-value">324,193</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Users</div>
+                        <div class="metric-value">225,110</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Purchases</div>
+                        <div class="metric-value">2,450</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Revenue</div>
+                        <div class="metric-value accent">&#8377;1.39 Cr</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Conv. Rate</div>
+                        <div class="metric-value danger">0.76%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">AOV</div>
+                        <div class="metric-value">&#8377;5,682</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Bounce Rate</div>
+                        <div class="metric-value warn">44.3%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Avg Session</div>
+                        <div class="metric-value">122.9s</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Pages / Session</div>
+                        <div class="metric-value">2.85</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Rev / Session</div>
+                        <div class="metric-value">&#8377;42.94</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GA4-2: E-COMMERCE FUNNEL -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">E-Commerce Funnel</h2>
+                <div class="card-subtitle" style="text-align:center;">324,193 sessions to 2,450 purchases</div>
+
+                <div class="funnel-container" style="margin: 0 auto;">
+                    <div class="funnel-step"><div class="funnel-label">Sessions</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:100%;background:linear-gradient(90deg,#a3762e,#8a6326)"><span class="funnel-bar-value">324,193</span><span class="funnel-pct">100%</span></div></div><div class="funnel-drop"></div></div>
+                    <div class="funnel-step"><div class="funnel-label">View Product</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:77%;background:linear-gradient(90deg,#3b82f6,#2563eb)"><span class="funnel-bar-value">414,102</span><span class="funnel-pct">127.7%</span></div></div><div class="funnel-drop"><div class="funnel-drop-value">Multiple views/session</div></div></div>
+                    <div class="funnel-step"><div class="funnel-label">Add to Cart</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:max(8.6%, 24px);background:linear-gradient(90deg,#8b5cf6,#7c3aed)"><span class="funnel-bar-value">28,018</span><span class="funnel-pct">6.77%</span></div></div><div class="funnel-drop"><div class="funnel-drop-value">&minus;93.2% don't add</div></div></div>
+                    <div class="funnel-step"><div class="funnel-label">Begin Checkout</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:max(3.3%, 24px);background:linear-gradient(90deg,#f59e0b,#d97706)"><span class="funnel-bar-value">10,736</span><span class="funnel-pct">3.31%</span></div></div><div class="funnel-drop"><div class="funnel-drop-value">&minus;61.7% cart abandon</div></div></div>
+                    <div class="funnel-step"><div class="funnel-label">Payment Info</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:max(1.4%, 24px);background:linear-gradient(90deg,#f97316,#ea580c)"><span class="funnel-bar-value">4,687</span><span class="funnel-pct">1.45%</span></div></div><div class="funnel-drop"><div class="funnel-drop-value">&minus;56.3% drop</div></div></div>
+                    <div class="funnel-step"><div class="funnel-label">Purchase</div><div class="funnel-bar-wrap"><div class="funnel-bar" style="width:max(0.8%, 24px);background:linear-gradient(90deg,#ef4444,#dc2626)"><span class="funnel-bar-value">2,450</span><span class="funnel-pct">0.76%</span></div></div><div class="funnel-drop"><div class="funnel-drop-value">&minus;47.7% payment loss</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GA4-3: BIGGEST FUNNEL LEAKS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">Biggest Funnel Leaks</h2>
+                <div class="card-subtitle" style="text-align:center;">Where revenue is lost in the purchase journey</div>
+
+                <div class="leak-grid" style="margin: 0 auto;">
+                    <div class="leak-card" data-num="1"><div class="leak-title">View to Add to Cart</div><div class="leak-pct">&minus;93.2%</div><div class="leak-text">386,084 product views don't result in add to cart. PDP lacks shipping info, trust signals, return policy, and cross-sell.</div><div class="leak-cause">No shipping info, no trust badges, no 'Complete the Look'</div></div>
+                    <div class="leak-card" data-num="2"><div class="leak-title">Cart to Checkout</div><div class="leak-pct">&minus;61.7%</div><div class="leak-text">17,282 carts never reach checkout. At &#8377;5,682 AOV this represents ~&#8377;9.82 Cr potential lost revenue per quarter.</div><div class="leak-cause">Shipping cost surprise, no free shipping progress bar</div></div>
+                    <div class="leak-card" data-num="3"><div class="leak-title">Checkout to Payment</div><div class="leak-pct">&minus;56.3%</div><div class="leak-text">6,049 users start checkout but don't enter payment. Payment friction or trust barrier at final step.</div><div class="leak-cause">Likely payment integration issues, hCaptcha friction</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GA4-4: DEVICE PERFORMANCE -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">Device Performance</h2>
+                <div class="card-subtitle" style="text-align:center;">Desktop converts 1.89x better than mobile &mdash; 86.2% of traffic is mobile</div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Device</th>
+                            <th class="num">Sessions</th>
+                            <th class="num">Share</th>
+                            <th class="num">Purchases</th>
+                            <th class="num">CR</th>
+                            <th class="num">Revenue</th>
+                            <th class="num">AOV</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mobile</td>
+                            <td class="num">279,426</td>
+                            <td class="num">86.2%</td>
+                            <td class="num">1,889</td>
+                            <td class="num danger">0.676%</td>
+                            <td class="num">&#8377;10.5M</td>
+                            <td class="num">&#8377;5,573</td>
+                        </tr>
+                        <tr>
+                            <td>Desktop</td>
+                            <td class="num">40,560</td>
+                            <td class="num">12.5%</td>
+                            <td class="num">517</td>
+                            <td class="num good">1.275%</td>
+                            <td class="num">&#8377;3.1M</td>
+                            <td class="num">&#8377;6,025</td>
+                        </tr>
+                        <tr>
+                            <td>Tablet</td>
+                            <td class="num">2,576</td>
+                            <td class="num">0.8%</td>
+                            <td class="num">44</td>
+                            <td class="num good">1.71%</td>
+                            <td class="num">&#8377;0.28M</td>
+                            <td class="num">&#8377;6,298</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">Desktop CR (1.275%) is 1.89x higher than mobile (0.676%) &mdash; yet 86.2% of traffic is mobile. Desktop AOV is 8.1% higher (&#8377;6,025 vs &#8377;5,573). Improving mobile CR by just 0.3 percentage points = ~838 extra purchases/quarter. <strong>Estimated uplift: ~&#8377;4.76M quarterly.</strong></div>
+            </div>
+        </div>
+
+        <!-- GA4-5: TRAFFIC SOURCES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">Traffic Source Performance</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th class="num">Sessions</th>
+                            <th class="num">Share</th>
+                            <th class="num">Purchases</th>
+                            <th class="num">CR</th>
+                            <th class="num">Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>google / cpc</td>
+                            <td class="num">125,476</td>
+                            <td class="num">38.7%</td>
+                            <td class="num">668</td>
+                            <td class="num danger">0.53%</td>
+                            <td class="num">&#8377;3.7M</td>
+                        </tr>
+                        <tr>
+                            <td>google / organic</td>
+                            <td class="num">56,646</td>
+                            <td class="num">17.5%</td>
+                            <td class="num">199</td>
+                            <td class="num danger">0.35%</td>
+                            <td class="num">&#8377;1.2M</td>
+                        </tr>
+                        <tr>
+                            <td>(direct) / (none)</td>
+                            <td class="num">28,434</td>
+                            <td class="num">8.8%</td>
+                            <td class="num">404</td>
+                            <td class="num good">1.42%</td>
+                            <td class="num">&#8377;2.4M</td>
+                        </tr>
+                        <tr>
+                            <td>fb / Facebook Feed</td>
+                            <td class="num">16,812</td>
+                            <td class="num">5.2%</td>
+                            <td class="num">160</td>
+                            <td class="num">0.95%</td>
+                            <td class="num">&#8377;805K</td>
+                        </tr>
+                        <tr>
+                            <td>ig / Instagram Feed</td>
+                            <td class="num">16,786</td>
+                            <td class="num">5.2%</td>
+                            <td class="num">175</td>
+                            <td class="num">1.04%</td>
+                            <td class="num">&#8377;913K</td>
+                        </tr>
+                        <tr>
+                            <td>ig / Instagram Reels</td>
+                            <td class="num">11,414</td>
+                            <td class="num">3.5%</td>
+                            <td class="num">78</td>
+                            <td class="num">0.68%</td>
+                            <td class="num">&#8377;423K</td>
+                        </tr>
+                        <tr>
+                            <td>slide-cart-upsell</td>
+                            <td class="num">3,849</td>
+                            <td class="num">1.2%</td>
+                            <td class="num">296</td>
+                            <td class="num accent">7.69%</td>
+                            <td class="num">&#8377;2.0M</td>
+                        </tr>
+                        <tr>
+                            <td>Bitespeed / WhatsApp</td>
+                            <td class="num">6,232</td>
+                            <td class="num">1.9%</td>
+                            <td class="num">74</td>
+                            <td class="num good">1.19%</td>
+                            <td class="num">&#8377;408K</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">Google CPC drives 38.7% of traffic but converts at only 0.53%. Direct traffic (repeat buyers) converts at 1.42%. The slide-cart-drawer-upsell mechanism converts at 7.69% &mdash; proving on-site upselling works massively.</div>
+            </div>
+        </div>
+
+        <!-- GA4-6: TRAFFIC TAKEAWAYS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">Traffic Source Key Takeaways</h2>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <div class="takeaway-title" style="color:#a3762e;">Slide-Cart Upsell: Revenue Machine</div>
+                        <div class="takeaway-stat">7.69% CR | &#8377;2.02M Revenue</div>
+                        <p>The highest converting source by 5x. Only 3,849 sessions but 296 purchases. Proves on-site upselling works &mdash; replicate across PDPs and collection pages.</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Direct Traffic: Loyal Repeat Buyers</div>
+                        <div class="takeaway-stat">1.42% CR | &#8377;2.4M Revenue</div>
+                        <p>Users who type the URL convert 2.7x better than Google CPC. Strong brand loyalty once product is experienced.</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Google CPC: Volume Without Conversion</div>
+                        <div class="takeaway-stat">0.53% CR on 125K sessions</div>
+                        <p>38.7% of all traffic but only 0.53% CR. Landing pages (mostly collections) fail to convert ad traffic. Landing page optimization is critical.</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">WhatsApp (Bitespeed): Retention Channel</div>
+                        <div class="takeaway-stat">1.19% CR | &#8377;408K Revenue</div>
+                        <p>WhatsApp marketing messages convert 2.2x better than Google CPC. Effective retention tool &mdash; expand usage.</p>
+                    </div>
+                </div>
+
+                <div class="insight-box">Combined social (FB + IG) = 17.4% of traffic with no Meta Pixel installed. UTM attribution is being lost in social in-app browsers.</div>
+            </div>
+        </div>
+
+        <!-- GA4-7: TOP LANDING PAGES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">Top Landing Pages</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Landing Page</th>
+                            <th class="num">Sessions</th>
+                            <th class="num">Purchases</th>
+                            <th class="num">CR</th>
+                            <th class="num">Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>/collections/mens-trousers</td>
+                            <td class="num">54,046</td>
+                            <td class="num">64</td>
+                            <td class="num danger">0.12%</td>
+                            <td class="num">&#8377;530K</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/all</td>
+                            <td class="num">26,497</td>
+                            <td class="num">159</td>
+                            <td class="num">0.60%</td>
+                            <td class="num">&#8377;916K</td>
+                        </tr>
+                        <tr>
+                            <td>/ (Homepage)</td>
+                            <td class="num">17,939</td>
+                            <td class="num">489</td>
+                            <td class="num good">2.73%</td>
+                            <td class="num">&#8377;2.9M</td>
+                        </tr>
+                        <tr>
+                            <td>Factory Outlet</td>
+                            <td class="num">7,654</td>
+                            <td class="num">123</td>
+                            <td class="num good">1.61%</td>
+                            <td class="num">&#8377;446K</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/mens-shirts</td>
+                            <td class="num">7,114</td>
+                            <td class="num">36</td>
+                            <td class="num">0.51%</td>
+                            <td class="num">&#8377;246K</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/mens-kurta</td>
+                            <td class="num">5,429</td>
+                            <td class="num">10</td>
+                            <td class="num danger">0.18%</td>
+                            <td class="num">&#8377;64K</td>
+                        </tr>
+                        <tr>
+                            <td>Blog: grey-pants</td>
+                            <td class="num">2,797</td>
+                            <td class="num">0</td>
+                            <td class="num danger">0%</td>
+                            <td class="num">&#8377;0</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">The #1 landing page by traffic (mens-trousers, 54K sessions) converts at 0.12% &mdash; 22.7x worse than the homepage (2.73%). Factory Outlet at 1.61% CR confirms a price-sensitive segment. Blog pages drive SEO traffic but zero conversions.</div>
+            </div>
+        </div>
+
+        <!-- GA4-8: THE 22.7x CONVERSION GAP -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">Key Finding</div>
+                <h2 class="card-title" style="text-align:center;">The 22.7x Conversion Gap</h2>
+                <div class="card-subtitle" style="text-align:center;">Collection landing pages vs Homepage</div>
+
+                <div class="compare-layout" style="margin: 0 auto;">
+                    <div class="compare-box highlight" style="border-color:rgba(163,118,46,.3);background:rgba(163,118,46,.05);">
+                        <div class="compare-label">Homepage</div>
+                        <div class="compare-rate good">2.73%</div>
+                        <div class="compare-sub">17,939 sessions<br>489 purchases<br>&#8377;2.9M revenue</div>
+                    </div>
+                    <div class="compare-vs">vs</div>
+                    <div class="compare-box">
+                        <div class="compare-label">Top Collection (Trousers)</div>
+                        <div class="compare-rate bad">0.12%</div>
+                        <div class="compare-sub">54,046 sessions<br>64 purchases<br>&#8377;530K revenue</div>
+                    </div>
+                </div>
+
+                <div class="insight-box"><strong>The Opportunity:</strong> Google CPC and social ads send traffic directly to collection pages which lack homepage trust signals, brand story, and clear navigation. If collection CR improved from 0.12% to just 1.0% = ~476 additional purchases per quarter. <strong>Estimated uplift: ~&#8377;2.7M/quarter.</strong> Fix: Add trust strip, shipping info, brand messaging, and better product filtering to collection pages.</div>
+            </div>
+        </div>
+
+        <!-- GA4-9: NEW VS RETURNING -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">New vs Returning Users</h2>
+
+                <div class="nvr-layout" style="margin: 0 auto;">
+                    <div class="nvr-box">
+                        <div class="nvr-label">New Visitors</div>
+                        <div class="nvr-sessions">218,629</div>
+                        <div class="nvr-sessions-label">sessions</div>
+                        <div class="nvr-stats">
+                            <div class="nvr-stat"><span class="lbl">CR</span><span class="val">0.341%</span></div>
+                            <div class="nvr-stat"><span class="lbl">AOV</span><span class="val">&#8377;5,584</span></div>
+                            <div class="nvr-stat"><span class="lbl">Purchases</span><span class="val">746</span></div>
+                            <div class="nvr-stat"><span class="lbl">Revenue</span><span class="val">&#8377;4.17M</span></div>
+                        </div>
+                    </div>
+                    <div class="nvr-box">
+                        <div class="nvr-label">Returning Visitors</div>
+                        <div class="nvr-sessions">79,281</div>
+                        <div class="nvr-sessions-label">sessions</div>
+                        <div class="nvr-stats">
+                            <div class="nvr-stat"><span class="lbl">CR</span><span class="val" style="color:#a3762e">2.143%</span></div>
+                            <div class="nvr-stat"><span class="lbl">AOV</span><span class="val" style="color:#a3762e">&#8377;5,726</span></div>
+                            <div class="nvr-stat"><span class="lbl">Purchases</span><span class="val">1,699</span></div>
+                            <div class="nvr-stat"><span class="lbl">Revenue</span><span class="val">&#8377;9.73M</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box"><strong>Retention is the biggest lever.</strong> Returning users convert 6.3x better and drive 69.9% of all revenue. Linen = repeat-purchase category (wardrobe building). No loyalty program, no subscription, no auto-reorder exists. Building retention features is a direct revenue multiplier.</div>
+            </div>
+        </div>
+
+        <!-- GA4-10: DAY OF WEEK -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; 90 Days</div>
+                <h2 class="card-title" style="text-align:center;">Day of Week Performance</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th class="num">Sessions</th>
+                            <th class="num">Purchases</th>
+                            <th class="num">CR</th>
+                            <th class="num">Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sunday</td>
+                            <td class="num">47,125</td>
+                            <td class="num">364</td>
+                            <td class="num">0.77%</td>
+                            <td class="num accent">&#8377;2.20M</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td class="num">46,458</td>
+                            <td class="num">381</td>
+                            <td class="num">0.82%</td>
+                            <td class="num">&#8377;2.16M</td>
+                        </tr>
+                        <tr>
+                            <td>Monday</td>
+                            <td class="num">46,364</td>
+                            <td class="num">366</td>
+                            <td class="num">0.79%</td>
+                            <td class="num">&#8377;2.15M</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td class="num">45,136</td>
+                            <td class="num">393</td>
+                            <td class="num good">0.87%</td>
+                            <td class="num">&#8377;2.05M</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td class="num">45,958</td>
+                            <td class="num">292</td>
+                            <td class="num danger">0.64%</td>
+                            <td class="num">&#8377;1.69M</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td class="num">43,602</td>
+                            <td class="num">326</td>
+                            <td class="num">0.75%</td>
+                            <td class="num">&#8377;1.92M</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td class="num">44,066</td>
+                            <td class="num">328</td>
+                            <td class="num">0.74%</td>
+                            <td class="num">&#8377;1.75M</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">Friday has the highest CR (0.87%), Sunday the highest revenue (&#8377;2.20M). Thursday is the weakest day (0.64% CR) &mdash; consider targeted promotions or flash sales on Thursdays.</div>
+            </div>
+        </div>
+
+        <!-- GA4-11: PATH ANALYSIS - NAVIGATION FLOW -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; Path Analysis (28 Days)</div>
+                <h2 class="card-title" style="text-align:center;">User Navigation Flow</h2>
+                <div class="card-subtitle" style="text-align:center;">Where users land and what they do next</div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Entry Page</th>
+                            <th class="num">Sessions</th>
+                            <th>Top Next Pages</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>/ (Homepage)</td>
+                            <td class="num">7,024</td>
+                            <td style="font-size:0.875rem;">mens-shirts (1,801) &rarr; all (1,322) &rarr; long-sleeve (889) &rarr; mens-trousers (805)</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/mens-trousers</td>
+                            <td class="num">16,845</td>
+                            <td style="font-size:0.875rem;">casual-pants (806) &rarr; formal-pants (767) &rarr; relaxed-fit (680) &rarr; tapered (403)</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/all</td>
+                            <td class="num">8,221</td>
+                            <td style="font-size:0.875rem;">mens-shirts (1,147) &rarr; mens-trousers (623) &rarr; long-sleeve (492) &rarr; t-shirts (357)</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/mens-shirts</td>
+                            <td class="num">3,519</td>
+                            <td style="font-size:0.875rem;">long-sleeve (505)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">Homepage visitors actively browse &mdash; navigating to 5+ collection types. But collection landing visitors (from ads) have poor cross-navigation. <strong>mens-trousers receives 16.8K landing sessions</strong> but most exit after viewing the same page &mdash; no clear path to products. Add sub-collection links, fit filters, and 'Trending Now' sections.</div>
+            </div>
+        </div>
+
+        <!-- GA4-12: PATH ANALYSIS - BLOG SEO PROBLEM -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; Path Analysis</div>
+                <h2 class="card-title" style="text-align:center;">Blog Traffic: SEO Goldmine, Conversion Desert</h2>
+                <div class="card-subtitle" style="text-align:center;">Blog pages drive 10K+ sessions but near-zero purchases</div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:960px;width:100%;margin:0 auto;">
+                    <div>
+                        <div style="font-size:0.8125rem;letter-spacing:2px;text-transform:uppercase;color:#a3762e;margin-bottom:1rem;font-weight:500;">Blog Landing Pages</div>
+                        <table class="data-table" style="font-size:0.875rem;">
+                            <thead>
+                                <tr>
+                                    <th>Blog Post</th>
+                                    <th class="num">Sessions</th>
+                                    <th class="num">Purchases</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>what-color-shirt-goes-with-grey-pants</td>
+                                    <td class="num">2,797</td>
+                                    <td class="num danger">0</td>
+                                </tr>
+                                <tr>
+                                    <td>best-linen-brands-in-india</td>
+                                    <td class="num">1,992</td>
+                                    <td class="num">3</td>
+                                </tr>
+                                <tr>
+                                    <td>what-color-goes-with-brown-pants</td>
+                                    <td class="num">1,633</td>
+                                    <td class="num danger">0</td>
+                                </tr>
+                                <tr>
+                                    <td>pink-shirt-pants-for-ladies</td>
+                                    <td class="num">1,440</td>
+                                    <td class="num danger">0</td>
+                                </tr>
+                                <tr>
+                                    <td>dark-skin-men-fashion</td>
+                                    <td class="num">736</td>
+                                    <td class="num danger">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div style="font-size:0.8125rem;letter-spacing:2px;text-transform:uppercase;color:#a3762e;margin-bottom:1rem;font-weight:500;">The Opportunity</div>
+                        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.5rem;">
+                            <div style="font-size:0.9375rem;color:#ccc;line-height:1.8;">
+                                <div style="margin-bottom:0.75rem;">Blog pages rank on Google for high-intent fashion queries</div>
+                                <div style="margin-bottom:0.75rem;">But they contain <strong style="color:#ef4444;">NO product CTAs</strong>, <strong style="color:#ef4444;">NO collection links</strong>, <strong style="color:#ef4444;">NO 'Shop This Look' modules</strong></div>
+                                <div style="margin-bottom:0.75rem;"><strong style="color:#fff;">8,598 sessions wasted</strong> &mdash; these users are actively searching for outfit guidance</div>
+                                <div style="color:#a3762e;font-weight:500;">Fix: Add product carousels, 'Shop the Look' CTAs, and internal collection links to all blog posts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="max-width:960px;margin:1.5rem auto 0;"><strong>Quick Win:</strong> Adding 'Shop This Look' product cards to the top 5 blog posts could capture 1&ndash;2% of blog traffic as buyers &mdash; potentially 86&ndash;172 additional purchases per quarter.</div>
+            </div>
+        </div>
+
+        <!-- GA4-13: TOP PRODUCTS BY REVENUE -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; Product Performance</div>
+                <h2 class="card-title" style="text-align:center;">Top Products by Revenue (90 Days)</h2>
+                <div class="card-subtitle" style="text-align:center;">Trousers dominate revenue &bull; Stain Remover is a surprise cross-sell winner</div>
+
+                <table class="data-table" style="max-width:1080px;margin:0 auto;font-size:0.875rem;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;">Product</th>
+                            <th class="num">Views</th>
+                            <th class="num">ATC</th>
+                            <th class="num">Purchased</th>
+                            <th class="num">Revenue</th>
+                            <th class="num">View&rarr;ATC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ian Pure Linen Trousers - Ecru</td>
+                            <td class="num">5,815</td>
+                            <td class="num">334</td>
+                            <td class="num">46</td>
+                            <td class="num accent">&#8377;1,87,181</td>
+                            <td class="num">5.7%</td>
+                        </tr>
+                        <tr>
+                            <td>Breeze Linen Casual Elastic Pants - Ecru</td>
+                            <td class="num">9,801</td>
+                            <td class="num">199</td>
+                            <td class="num">27</td>
+                            <td class="num accent">&#8377;1,08,323</td>
+                            <td class="num warn">2.0%</td>
+                        </tr>
+                        <tr>
+                            <td>Breeze Linen Casual Elastic Pants - White</td>
+                            <td class="num">9,144</td>
+                            <td class="num">136</td>
+                            <td class="num">19</td>
+                            <td class="num accent">&#8377;76,281</td>
+                            <td class="num warn">1.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Hal Classic Pleated Trousers - Dark Green</td>
+                            <td class="num">1,221</td>
+                            <td class="num">125</td>
+                            <td class="num">17</td>
+                            <td class="num accent">&#8377;66,283</td>
+                            <td class="num" style="color:#a3762e;">10.2%</td>
+                        </tr>
+                        <tr>
+                            <td>Flux Reversible Jacket - Ecru/Regal Blue</td>
+                            <td class="num">36</td>
+                            <td class="num">11</td>
+                            <td class="num">4</td>
+                            <td class="num accent">&#8377;51,596</td>
+                            <td class="num" style="color:#a3762e;">30.6%</td>
+                        </tr>
+                        <tr>
+                            <td>Wade Deconstructed Jacket - Dark Green</td>
+                            <td class="num">28</td>
+                            <td class="num">6</td>
+                            <td class="num">6</td>
+                            <td class="num accent">&#8377;44,194</td>
+                            <td class="num" style="color:#a3762e;">21.4%</td>
+                        </tr>
+                        <tr>
+                            <td>Ron Full Sleeve Shirt - Blue Grey</td>
+                            <td class="num">640</td>
+                            <td class="num">89</td>
+                            <td class="num">13</td>
+                            <td class="num accent">&#8377;43,987</td>
+                            <td class="num" style="color:#a3762e;">13.9%</td>
+                        </tr>
+                        <tr>
+                            <td>Organic Stain Remover for Clothes</td>
+                            <td class="num">163</td>
+                            <td class="num">44</td>
+                            <td class="num" style="color:#a3762e;">57</td>
+                            <td class="num accent">&#8377;22,545</td>
+                            <td class="num" style="color:#a3762e;">27.0%</td>
+                        </tr>
+                        <tr>
+                            <td>Linen Up-cycled Moon Bag - Black</td>
+                            <td class="num" style="color:#a3762e;">605</td>
+                            <td class="num">429</td>
+                            <td class="num">13</td>
+                            <td class="num accent">&#8377;19,487</td>
+                            <td class="num" style="color:#a3762e;">141%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box" style="max-width:1080px;margin:1.5rem auto 0;"><strong>Key Insight:</strong> Ian Trousers - Ecru is the #1 product (&#8377;1.87L) but only 5.7% View&rarr;ATC. Meanwhile Organic Stain Remover has 57 purchases with 27% ATC &mdash; a natural cross-sell opportunity. Linen Moon Bag has 141% View&rarr;ATC (605 ATCs vs 429 views), indicating strong impulse buying behavior.</div>
+            </div>
+        </div>
+
+        <!-- GA4-14: PRODUCT PERFORMANCE INSIGHTS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; Product Performance</div>
+                <h2 class="card-title" style="text-align:center;">Product Performance Insights</h2>
+                <div class="card-subtitle" style="text-align:center;">Category trends &bull; Cross-sell opportunities &bull; Conversion gaps</div>
+
+                <div class="takeaway-grid" style="max-width:1080px;margin:0 auto;">
+                    <div class="takeaway-card">
+                        <div class="takeaway-icon" style="color:#a3762e;">&#9733;</div>
+                        <div class="takeaway-title">Trousers Dominate Revenue</div>
+                        <div class="takeaway-text">Top 3 revenue products are all trousers/pants. Ian Ecru (&#8377;1.87L), Breeze Ecru (&#8377;1.08L), Breeze White (&#8377;76K). Category accounts for 5 of top 7 products.</div>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-icon" style="color:#a3762e;">&#128176;</div>
+                        <div class="takeaway-title">Jackets: High Value, Low Volume</div>
+                        <div class="takeaway-text">Flux Jacket: &#8377;51.6K from just 4 purchases (&#8377;12,899 AOV). Wade Jacket: &#8377;44.2K from 6 purchases. Low views (36 &amp; 28) suggest discovery problem &mdash; need better cross-sell from trousers.</div>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-icon" style="color:#a3762e;">&#127873;</div>
+                        <div class="takeaway-title">Accessories as Cross-Sell Winners</div>
+                        <div class="takeaway-text">Stain Remover: 57 purchases, 27% View&rarr;ATC. Moon Bag: 141% View&rarr;ATC ratio. Both are ideal add-on products for cart page cross-sell &mdash; low price, high intent.</div>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-icon" style="color:#ef4444;">&#9888;</div>
+                        <div class="takeaway-title">Breeze Pants: View&rarr;ATC Crisis</div>
+                        <div class="takeaway-text">Breeze Ecru gets 9,801 views but only 2.0% ATC. Breeze White: 9,144 views, 1.5% ATC. These are the most-viewed products with the worst conversion &mdash; PDP needs trust signals, sizing info, urgency.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GA4-15: PAGE PATH EXPLORATION -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; Page Path Exploration</div>
+                <h2 class="card-title" style="text-align:center;">User Journey: Page Path Exploration</h2>
+                <div class="card-subtitle" style="text-align:center;">28-Day Path Analysis | 94,647 Sessions | session_start &rarr; 5 Steps</div>
+
+                <div style="max-width:1100px;width:100%;margin:0 auto;overflow-x:auto;">
+                    <div style="display:flex;gap:1rem;align-items:flex-start;min-width:1000px;">
+                        <!-- Step 1 -->
+                        <div style="flex:1;">
+                            <div style="font-size:0.6875rem;letter-spacing:2px;text-transform:uppercase;color:#a3762e;margin-bottom:0.5rem;font-weight:600;">Step 1 &mdash; Landing</div>
+                            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.75rem;">
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;font-weight:600;">/mens-trousers</span> <span style="color:#888;font-size:0.75rem;">16,461</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;font-weight:600;">/all</span> <span style="color:#888;font-size:0.75rem;">8,064</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;font-weight:600;">/ (Home)</span> <span style="color:#888;font-size:0.75rem;">6,873</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;font-weight:600;">/mens-shirts</span> <span style="color:#888;font-size:0.75rem;">3,466</span></div>
+                                <div style="font-size:0.8125rem;"><span style="color:#fff;font-weight:600;">/ian-pure-linen...</span> <span style="color:#888;font-size:0.75rem;">&lt;3K</span></div>
+                            </div>
+                        </div>
+                        <!-- Arrow -->
+                        <div style="display:flex;align-items:center;padding-top:2.5rem;color:#555;font-size:1.5rem;">&rarr;</div>
+                        <!-- Step 2 -->
+                        <div style="flex:1;">
+                            <div style="font-size:0.6875rem;letter-spacing:2px;text-transform:uppercase;color:#a3762e;margin-bottom:0.5rem;font-weight:600;">Step 2 &mdash; Browse</div>
+                            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.75rem;">
+                                <div style="margin-bottom:0.25rem;font-size:0.75rem;color:#888;">From /mens-trousers:</div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/casual-pants</span> <span style="color:#888;font-size:0.75rem;">655</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/formal-pants</span> <span style="color:#888;font-size:0.75rem;">607</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/relaxed-fit</span> <span style="color:#888;font-size:0.75rem;">549</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/tapered-fit</span> <span style="color:#888;font-size:0.75rem;">326</span></div>
+                                <div style="font-size:0.75rem;color:#666;">+15 more: 3,484</div>
+                            </div>
+                        </div>
+                        <!-- Arrow -->
+                        <div style="display:flex;align-items:center;padding-top:2.5rem;color:#555;font-size:1.5rem;">&rarr;</div>
+                        <!-- Step 3 -->
+                        <div style="flex:1;">
+                            <div style="font-size:0.6875rem;letter-spacing:2px;text-transform:uppercase;color:#a3762e;margin-bottom:0.5rem;font-weight:600;">Step 3 &mdash; Filter</div>
+                            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.75rem;">
+                                <div style="margin-bottom:0.25rem;font-size:0.75rem;color:#888;">From /casual-pants:</div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/mens-trousers</span> <span style="color:#888;font-size:0.75rem;">343</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/breeze-linen...ecru</span> <span style="color:#888;font-size:0.75rem;">19</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/breeze-linen...white</span> <span style="color:#888;font-size:0.75rem;">13</span></div>
+                                <div style="font-size:0.75rem;color:#666;">+15 more: 75</div>
+                                <div style="margin-top:0.5rem;padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);font-size:0.75rem;color:#888;">From Homepage:</div>
+                                <div style="font-size:0.8125rem;"><span style="color:#fff;">/mens-shirts</span> <span style="color:#888;font-size:0.75rem;">1,274</span></div>
+                                <div style="font-size:0.8125rem;"><span style="color:#fff;">/all</span> <span style="color:#888;font-size:0.75rem;">966</span></div>
+                            </div>
+                        </div>
+                        <!-- Arrow -->
+                        <div style="display:flex;align-items:center;padding-top:2.5rem;color:#555;font-size:1.5rem;">&rarr;</div>
+                        <!-- Step 4 -->
+                        <div style="flex:1;">
+                            <div style="font-size:0.6875rem;letter-spacing:2px;text-transform:uppercase;color:#a3762e;margin-bottom:0.5rem;font-weight:600;">Step 4 &mdash; Deep Browse</div>
+                            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.75rem;">
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/long-sleeve</span> <span style="color:#888;font-size:0.75rem;">234</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/all</span> <span style="color:#888;font-size:0.75rem;">121</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/short-sleeve</span> <span style="color:#888;font-size:0.75rem;">100</span></div>
+                                <div style="font-size:0.75rem;color:#666;">+15 more: 236</div>
+                            </div>
+                        </div>
+                        <!-- Arrow -->
+                        <div style="display:flex;align-items:center;padding-top:2.5rem;color:#555;font-size:1.5rem;">&rarr;</div>
+                        <!-- Step 5 -->
+                        <div style="flex:1;">
+                            <div style="font-size:0.6875rem;letter-spacing:2px;text-transform:uppercase;color:#a3762e;margin-bottom:0.5rem;font-weight:600;">Step 5 &mdash; Exit</div>
+                            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:0.75rem;">
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/mens-trousers</span> <span style="color:#888;font-size:0.75rem;">22</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/breeze-linen...ecru</span> <span style="color:#888;font-size:0.75rem;">1</span></div>
+                                <div style="margin-bottom:0.375rem;font-size:0.8125rem;"><span style="color:#fff;">/theo-linen...ecru</span> <span style="color:#888;font-size:0.75rem;">1</span></div>
+                                <div style="font-size:0.75rem;color:#ef4444;margin-top:0.5rem;font-weight:500;">Massive drop-off &mdash; users loop through collections without reaching product pages</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="max-width:1100px;margin:1.5rem auto 0;"><strong>Critical Finding:</strong> From 16,461 sessions starting at /mens-trousers, only 343 reach a sub-collection by Step 3, and by Step 5 only 22 remain. Users loop between collection pages without finding products. The collection &rarr; PDP bridge is broken &mdash; no Quick Add, no filters, no product recommendations.</div>
+            </div>
+        </div>
+
+        <!-- GA4-16: TOP PAGES BY VIEWS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label" style="text-align:center;">GA4 &mdash; Page Performance</div>
+                <h2 class="card-title" style="text-align:center;">Top Pages by Views (90 Days)</h2>
+                <div class="card-subtitle" style="text-align:center;">923,638 total pageviews across site &bull; Collection pages dominate</div>
+
+                <table class="data-table" style="max-width:1080px;margin:0 auto;font-size:0.875rem;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:left;">Page Path</th>
+                            <th class="num">Views</th>
+                            <th class="num">Users</th>
+                            <th class="num">Avg Duration</th>
+                            <th class="num">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>/collections/mens-trousers</td>
+                            <td class="num" style="color:#a3762e;font-weight:600;">76,544</td>
+                            <td class="num">51,515</td>
+                            <td class="num">39.1s</td>
+                            <td class="num"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:0.75rem;">Collection</span></td>
+                        </tr>
+                        <tr>
+                            <td>/collections/all</td>
+                            <td class="num">55,013</td>
+                            <td class="num">28,756</td>
+                            <td class="num">53.0s</td>
+                            <td class="num"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:0.75rem;">Collection</span></td>
+                        </tr>
+                        <tr>
+                            <td>/collections/factory-outlet</td>
+                            <td class="num">44,799</td>
+                            <td class="num">8,051</td>
+                            <td class="num" style="color:#a3762e;">137.7s</td>
+                            <td class="num"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:0.75rem;">Collection</span></td>
+                        </tr>
+                        <tr>
+                            <td>/collections/mens-shirts</td>
+                            <td class="num">30,681</td>
+                            <td class="num">16,854</td>
+                            <td class="num">59.3s</td>
+                            <td class="num"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:0.75rem;">Collection</span></td>
+                        </tr>
+                        <tr>
+                            <td>/ (Homepage)</td>
+                            <td class="num">29,771</td>
+                            <td class="num">15,583</td>
+                            <td class="num">81.1s</td>
+                            <td class="num"><span style="background:#1e3a2f;color:#6ee7b7;padding:2px 8px;border-radius:4px;font-size:0.75rem;">Homepage</span></td>
+                        </tr>
+                        <tr>
+                            <td>/collections/long-sleeve-shirts</td>
+                            <td class="num">19,469</td>
+                            <td class="num">6,834</td>
+                            <td class="num">99.1s</td>
+                            <td class="num"><span style="background:#1e3a5f;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:0.75rem;">Collection</span></td>
+                        </tr>
+                        <tr>
+                            <td>/search</td>
+                            <td class="num">11,002</td>
+                            <td class="num">2,039</td>
+                            <td class="num" style="color:#a3762e;">130.7s</td>
+                            <td class="num"><span style="background:#3a2f1e;color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:0.75rem;">Search</span></td>
+                        </tr>
+                        <tr>
+                            <td>/products/breeze-casual-elastic-pants-ecru</td>
+                            <td class="num">7,920</td>
+                            <td class="num">5,669</td>
+                            <td class="num">54.4s</td>
+                            <td class="num"><span style="background:#2f1e3a;color:#c084fc;padding:2px 8px;border-radius:4px;font-size:0.75rem;">PDP</span></td>
+                        </tr>
+                        <tr>
+                            <td>/products/breeze-casual-pants-white</td>
+                            <td class="num">6,338</td>
+                            <td class="num">4,554</td>
+                            <td class="num">49.9s</td>
+                            <td class="num"><span style="background:#2f1e3a;color:#c084fc;padding:2px 8px;border-radius:4px;font-size:0.75rem;">PDP</span></td>
+                        </tr>
+                        <tr>
+                            <td>/products/ian-pure-linen-trousers-cocoa-brown</td>
+                            <td class="num">5,709</td>
+                            <td class="num">4,322</td>
+                            <td class="num">34.1s</td>
+                            <td class="num"><span style="background:#2f1e3a;color:#c084fc;padding:2px 8px;border-radius:4px;font-size:0.75rem;">PDP</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box" style="max-width:1080px;margin:1.5rem auto 0;"><strong>Pattern:</strong> Collection pages get 4&ndash;10x more views than any PDP. Users browse collections extensively but rarely click into products. Factory Outlet has the highest engagement (137.7s avg) suggesting deal-seekers spend time comparing. Search users (130.7s) are highly engaged but represent only 2,039 users &mdash; site search may be hard to discover.</div>
+            </div>
+        </div>
+
+        <!-- SLIDE: SECTION HEADER - Behavioral Analytics -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">02</div>
+                <div class="section-title">Behavioral Analytics</div>
+                <div class="section-sub">Microsoft Clarity | 4,107 Sessions | 3-Day Snapshot</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: BEHAVIORAL OVERVIEW -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Clarity &mdash; 3 Days</div>
+                <h2 class="card-title">Behavioral Analytics Overview</h2>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Sessions</div>
+                        <div class="metric-value">4,107</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Distinct Users</div>
+                        <div class="metric-value">4,010</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Pages/Session</div>
+                        <div class="metric-value">1.89</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Avg Active Time</div>
+                        <div class="metric-value">38s</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Avg Scroll Depth</div>
+                        <div class="metric-value danger">28.72%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Quickback Rate</div>
+                        <div class="metric-value danger">12.32%</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+                    <div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Device</th>
+                                    <th>Sessions</th>
+                                    <th>Share</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mobile</td>
+                                    <td>3,642</td>
+                                    <td class="accent">88.7%</td>
+                                </tr>
+                                <tr>
+                                    <td>PC</td>
+                                    <td>409</td>
+                                    <td>10.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Tablet</td>
+                                    <td>57</td>
+                                    <td>1.4%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>OS</th>
+                                    <th>Sessions</th>
+                                    <th>Share</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Android</td>
+                                    <td>2,756</td>
+                                    <td class="accent">67.1%</td>
+                                </tr>
+                                <tr>
+                                    <td>iOS</td>
+                                    <td>943</td>
+                                    <td>23.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Windows</td>
+                                    <td>251</td>
+                                    <td>6.1%</td>
+                                </tr>
+                                <tr>
+                                    <td>MacOS</td>
+                                    <td>81</td>
+                                    <td>2.0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: TRAFFIC SOURCES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Clarity &mdash; 3 Days</div>
+                <h2 class="card-title">Traffic Source Breakdown</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Source</th>
+                            <th>Sessions</th>
+                            <th>Share</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Google (web)</td>
+                            <td>943</td>
+                            <td class="accent">23.0%</td>
+                        </tr>
+                        <tr>
+                            <td>Google Quick Search</td>
+                            <td>476</td>
+                            <td>11.6%</td>
+                        </tr>
+                        <tr>
+                            <td>Direct</td>
+                            <td>414</td>
+                            <td>10.1%</td>
+                        </tr>
+                        <tr>
+                            <td>Instagram (in-app)</td>
+                            <td>454</td>
+                            <td>11.0%</td>
+                        </tr>
+                        <tr>
+                            <td>Facebook (in-app)</td>
+                            <td>321</td>
+                            <td>7.8%</td>
+                        </tr>
+                        <tr>
+                            <td>Facebook (mobile)</td>
+                            <td>129</td>
+                            <td>3.1%</td>
+                        </tr>
+                        <tr>
+                            <td>Instagram (direct)</td>
+                            <td>106</td>
+                            <td>2.6%</td>
+                        </tr>
+                        <tr>
+                            <td>YouTube</td>
+                            <td>71</td>
+                            <td>1.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">
+                    34.6% of traffic comes from Google Search (organic + quick search). Social channels (Instagram + Facebook in-app + direct) drive ~18.4% of all sessions &mdash; yet there is no Meta Pixel installed for retargeting.
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: TRAFFIC TAKEAWAYS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Clarity &mdash; 3 Days</div>
+                <h2 class="card-title">Traffic Source Key Takeaways</h2>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Google Search Dominates</div>
+                        <div class="takeaway-stat">34.6% of sessions</div>
+                        <p>Organic + Quick Search combined. SEO is the primary acquisition channel.</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Social = 18.4% (Hidden)</div>
+                        <div class="takeaway-stat">Instagram + Facebook in-app browsers</div>
+                        <p>Much of this traffic appears as 'Direct' due to in-app browser stripping referrers. No Meta Pixel to track.</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Android 67%, iOS 23%</div>
+                        <div class="takeaway-stat">Chrome Mobile is the primary browser</div>
+                        <p>Optimize specifically for Chrome on Android. iOS Safari is secondary.</p>
+                    </div>
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Factory Outlet = Price Sensitivity</div>
+                        <div class="takeaway-stat">111 visits (2.7% of top pages)</div>
+                        <p>Significant traffic to the outlet/sale section suggests price-conscious audience segment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: TOP PAGES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Clarity &mdash; 3 Days</div>
+                <h2 class="card-title">Top Pages by Visits</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Page</th>
+                            <th>Visits</th>
+                            <th>Share</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>/collections/mens-trousers</td>
+                            <td>433</td>
+                            <td class="accent">10.5%</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/all</td>
+                            <td>384</td>
+                            <td>9.3%</td>
+                        </tr>
+                        <tr>
+                            <td>/ (Homepage)</td>
+                            <td>281</td>
+                            <td>6.8%</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/mens-shirts</td>
+                            <td>205</td>
+                            <td>5.0%</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/new-arrival</td>
+                            <td>188</td>
+                            <td>4.6%</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/long-sleeve-shirts</td>
+                            <td>146</td>
+                            <td>3.6%</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/linen-trail-factory-outlet</td>
+                            <td>111</td>
+                            <td>2.7%</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/mens-kurta</td>
+                            <td>107</td>
+                            <td>2.6%</td>
+                        </tr>
+                        <tr>
+                            <td>/collections/casual-pants</td>
+                            <td>101</td>
+                            <td>2.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Ecru Casual Pants (PDP)</td>
+                            <td>96</td>
+                            <td>2.3%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">
+                    Collection pages dominate &mdash; trousers (#1) gets more traffic than the homepage (#3). Men's trousers + casual pants = 13% of visits. The Factory Outlet (111 visits) confirms price sensitivity. Top PDP (Ecru Casual Pants) appears at #10 &mdash; PDPs receive far less direct traffic than collections.
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: FRUSTRATION SIGNALS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Clarity &mdash; 3 Days</div>
+                <h2 class="card-title">Frustration Signals</h2>
+
+                <div class="issues-grid">
+                    <div class="issue-card critical">
+                        <div class="issue-number">12.32%</div>
+                        <h3>Quickback Clicks</h3>
+                        <p>Users rapidly hitting back after landing. ~506 users in 3 days landed and immediately returned. Suggests disconnect between ad/search promise and landing page content.</p>
+                        <div class="issue-stat">HIGH FRICTION</div>
+                    </div>
+
+                    <div class="issue-card high">
+                        <div class="issue-number">3.04%</div>
+                        <h3>Script Errors</h3>
+                        <p>332 errors across 130 page views. Third-party scripts (Judge.me, hCaptcha, Bitespeed) contributing to mobile TTI.</p>
+                        <div class="issue-stat">MODERATE</div>
+                    </div>
+
+                    <div class="issue-card medium">
+                        <div class="issue-number">0.29%</div>
+                        <h3>Dead Clicks</h3>
+                        <p>Normal range. Users occasionally clicking non-interactive elements.</p>
+                        <div class="issue-stat">NORMAL</div>
+                    </div>
+
+                    <div class="issue-card low">
+                        <div class="issue-number">0%</div>
+                        <h3>Rage Clicks</h3>
+                        <p>Excellent &mdash; no rage click issues detected. UI elements respond as expected.</p>
+                        <div class="issue-stat">EXCELLENT</div>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    The 12.32% quickback rate is the most concerning signal. Combined with 28.72% scroll depth, most visitors aren't even seeing below-fold content. The 3.04% script error rate may be contributing to the poor mobile TTI (17.1s).
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION HEADER - Technical Performance -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">03</div>
+                <div class="section-title">Technical Performance</div>
+                <div class="section-sub">PageSpeed Insights | Tracking Audit | Mobile-Critical Issues</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: PAGESPEED -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Technical</div>
+                <h2 class="card-title">PageSpeed Performance</h2>
+                <div class="card-subtitle">Mobile TTI of 17.1s is critical &mdash; 88.7% of traffic is mobile</div>
+
+                <div class="ps-grid">
+                    <div class="ps-card">
+                        <div class="ps-header">
+                            <div class="ps-device">Mobile</div>
+                            <div class="ps-score needs-improvement">81</div>
+                        </div>
+                        <div class="ps-metrics">
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">FCP</span>
+                                <span class="ps-metric-value good">2.1s</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">LCP</span>
+                                <span class="ps-metric-value good">2.4s</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">TBT</span>
+                                <span class="ps-metric-value danger">460ms</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">CLS</span>
+                                <span class="ps-metric-value good">0</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">Speed Index</span>
+                                <span class="ps-metric-value warn">5.1s</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">TTI</span>
+                                <span class="ps-metric-value danger">17.1s</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ps-card">
+                        <div class="ps-header">
+                            <div class="ps-device">Desktop</div>
+                            <div class="ps-score good">98</div>
+                        </div>
+                        <div class="ps-metrics">
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">FCP</span>
+                                <span class="ps-metric-value good">0.6s</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">LCP</span>
+                                <span class="ps-metric-value good">0.6s</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">TBT</span>
+                                <span class="ps-metric-value good">50ms</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">CLS</span>
+                                <span class="ps-metric-value good">0</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">Speed Index</span>
+                                <span class="ps-metric-value good">1.6s</span>
+                            </div>
+                            <div class="ps-metric">
+                                <span class="ps-metric-label">TTI</span>
+                                <span class="ps-metric-value good">3.9s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: TRACKING AUDIT -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Technical</div>
+                <h2 class="card-title">Tracking &amp; Analytics Audit</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tag</th>
+                            <th>Status</th>
+                            <th>ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Google Tag Manager</td>
+                            <td class="good">&#10003; Detected</td>
+                            <td>GTM-M2TZ7H9</td>
+                        </tr>
+                        <tr>
+                            <td>Google Analytics 4</td>
+                            <td class="good">&#10003; Detected</td>
+                            <td>G-Z04BG46DYR</td>
+                        </tr>
+                        <tr>
+                            <td>Google Ads</td>
+                            <td class="good">&#10003; Detected</td>
+                            <td>AW-832935660</td>
+                        </tr>
+                        <tr>
+                            <td>Meta Pixel (Facebook)</td>
+                            <td class="danger">&#10007; Missing</td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>Microsoft Clarity</td>
+                            <td class="warn">&#10007; Not on-site</td>
+                            <td>Token exists, tag not detected</td>
+                        </tr>
+                        <tr>
+                            <td>Hotjar</td>
+                            <td>Not detected</td>
+                            <td>&mdash;</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="fix-grid">
+                    <div class="fix-card urgent">
+                        <h3>Install Meta Pixel</h3>
+                        <p>18.4% social traffic with zero retargeting. Add via GTM. Estimated: recover 3&ndash;5% of abandoned sessions.</p>
+                        <div class="fix-meta">
+                            <span>Effort: <strong>15 min</strong></span>
+                            <span>Impact: <strong>Revenue recovery</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="fix-card urgent">
+                        <h3>Verify Clarity</h3>
+                        <p>API token exists but tag not detected on-site. Confirm GTM deployment or install directly.</p>
+                        <div class="fix-meta">
+                            <span>Effort: <strong>10 min</strong></span>
+                            <span>Impact: <strong>Behavioral data</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="fix-card">
+                        <h3>Consider TikTok Pixel</h3>
+                        <p>If social advertising expansion is planned.</p>
+                        <div class="fix-meta">
+                            <span>Effort: <strong>15 min</strong></span>
+                            <span>Impact: <strong>Future channel</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION HEADER - Heuristic Analysis -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">04</div>
+                <div class="section-title">Heuristic Analysis</div>
+                <div class="section-sub">Homepage | Collection | PDP | Cart &amp; Checkout</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13: HOMEPAGE ANALYSIS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Page Analysis</div>
+                <h2 class="card-title">Homepage</h2>
+                <div class="card-subtitle">281 visits (3 days) | 28.7% avg scroll | 12.3% quickback</div>
+
+                <div class="audit-layout">
+                    <div>
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <img src="../../../brand-guides/linentrail-com/screenshots/mobile-full.png" alt="LinenTrail Homepage Mobile">
+                            </div>
+                        </div>
+                        <div class="phone-label">linentrail.com</div>
+                        <div class="phone-scroll-hint">Scroll inside phone</div>
+                    </div>
+
+                    <div class="findings-list">
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">Hero slideshow has 5 slides rotating every 8s</div>
+                            </div>
+                            <div class="finding-text">Only 28.7% scroll past it. Users miss categories, new arrivals, reviews below fold.</div>
+                            <div class="finding-data">Data: 5 slides, 8s rotation</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">Anniversary Sale as permanent hero</div>
+                            </div>
+                            <div class="finding-text">No clear value proposition about the brand or product quality for first-time visitors.</div>
+                            <div class="finding-data">Data: No brand differentiation above fold</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">No trust badges, shipping info, or guarantees above fold</div>
+                            </div>
+                            <div class="finding-text">Missing opportunity to address buyer hesitations immediately.</div>
+                        </div>
+
+                        <div class="finding-item medium">
+                            <div class="finding-header">
+                                <div class="finding-severity medium">MEDIUM</div>
+                                <div class="finding-title">Currency defaults to USD despite 93% India traffic</div>
+                            </div>
+                            <div class="finding-text">Confusing for primary audience.</div>
+                            <div class="finding-data">Data: 93.3% India traffic</div>
+                        </div>
+
+                        <div class="finding-item medium">
+                            <div class="finding-header">
+                                <div class="finding-severity medium">MEDIUM</div>
+                                <div class="finding-title">Customer Reviews only show 'Read More'</div>
+                            </div>
+                            <div class="finding-text">No star ratings or snippets visible at a glance. Social proof not working.</div>
+                        </div>
+
+                        <div class="finding-item positive">
+                            <div class="finding-header">
+                                <div class="finding-severity positive">POSITIVE</div>
+                                <div class="finding-title">Strong visual hero with lifestyle photography</div>
+                            </div>
+                            <div class="finding-text">Clean navigation with Shop for Him / Shop for Her structure.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14: COLLECTION PAGE ANALYSIS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Page Analysis</div>
+                <h2 class="card-title">Collection Pages</h2>
+                <div class="card-subtitle">#1 page type by visits | /collections/mens-trousers: 433 visits</div>
+
+                <div class="findings-only">
+                    <div class="findings-list">
+                        <div class="finding-item critical">
+                            <div class="finding-header">
+                                <div class="finding-severity critical">CRITICAL</div>
+                                <div class="finding-title">No visible filter/sort controls</div>
+                            </div>
+                            <div class="finding-text">Users can't narrow 100+ products by size, color, price, or style.</div>
+                            <div class="finding-data">Data: CO-01: Critical</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">Product cards lack visible review counts/ratings</div>
+                            </div>
+                            <div class="finding-text">No social proof at the browsing stage.</div>
+                            <div class="finding-data">Data: Judge.me stars not showing</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">No 'Quick Add' &mdash; only Quick View</div>
+                            </div>
+                            <div class="finding-text">Extra step before adding to cart increases friction.</div>
+                        </div>
+
+                        <div class="finding-item medium">
+                            <div class="finding-header">
+                                <div class="finding-severity medium">MEDIUM</div>
+                                <div class="finding-title">No promotional banners within collection grid</div>
+                            </div>
+                            <div class="finding-text">Missed opportunity to highlight BOGO or bestsellers.</div>
+                        </div>
+
+                        <div class="finding-item medium">
+                            <div class="finding-header">
+                                <div class="finding-severity medium">MEDIUM</div>
+                                <div class="finding-title">Infinite scroll may hide total product count</div>
+                            </div>
+                            <div class="finding-text">Users don't know how much more to browse.</div>
+                        </div>
+
+                        <div class="finding-item positive">
+                            <div class="finding-header">
+                                <div class="finding-severity positive">POSITIVE</div>
+                                <div class="finding-title">Clean product grid layout</div>
+                            </div>
+                            <div class="finding-text">Dynamic variant swatches for size/color selection. Sale and Sold Out badges configured.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15: PDP ANALYSIS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Page Analysis</div>
+                <h2 class="card-title">Product Detail Pages (PDP)</h2>
+                <div class="card-subtitle">Top PDP: Ecru Casual Pants (96 visits) | Multiple variant options</div>
+
+                <div class="findings-only">
+                    <div class="findings-list">
+                        <div class="finding-item critical">
+                            <div class="finding-header">
+                                <div class="finding-severity critical">CRITICAL</div>
+                                <div class="finding-title">No visible shipping cost/time near add-to-cart</div>
+                            </div>
+                            <div class="finding-text">#1 reason for cart abandonment. Users don't know what shipping costs until checkout.</div>
+                            <div class="finding-data">Data: PDP-01: Critical</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">Pre-select variant is OFF</div>
+                            </div>
+                            <div class="finding-text">Users must manually select size. Extra friction before ATC.</div>
+                            <div class="finding-data">Data: PDP-02: High</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">No visible return/exchange policy on PDP</div>
+                            </div>
+                            <div class="finding-text">Trust barrier for first-time buyers of premium linen.</div>
+                            <div class="finding-data">Data: PDP-03: High</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">No cross-sell 'Complete the Look' or 'Pair With'</div>
+                            </div>
+                            <div class="finding-text">Missed AOV increase for linen shoppers buying coordinated outfits.</div>
+                            <div class="finding-data">Data: PDP-04: High</div>
+                        </div>
+
+                        <div class="finding-item medium">
+                            <div class="finding-header">
+                                <div class="finding-severity medium">MEDIUM</div>
+                                <div class="finding-title">No urgency indicators</div>
+                            </div>
+                            <div class="finding-text">No low-stock alerts or timers. No motivation to buy now vs later.</div>
+                        </div>
+
+                        <div class="finding-item positive">
+                            <div class="finding-header">
+                                <div class="finding-severity positive">POSITIVE</div>
+                                <div class="finding-title">Multiple product images (5+) per item</div>
+                            </div>
+                            <div class="finding-text">Variant selection for Size, Fit, Color. Judge.me reviews integration. Dynamic checkout (Shop Pay, PayPal).</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 16: CART & CHECKOUT ANALYSIS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Page Analysis</div>
+                <h2 class="card-title">Cart &amp; Checkout</h2>
+                <div class="card-subtitle">User-reported concern: cart abandonment</div>
+
+                <div class="findings-only">
+                    <div class="findings-list">
+                        <div class="finding-item critical">
+                            <div class="finding-header">
+                                <div class="finding-severity critical">CRITICAL</div>
+                                <div class="finding-title">No free shipping threshold or progress bar</div>
+                            </div>
+                            <div class="finding-text">Users don't know how close they are. No incentive to add more.</div>
+                            <div class="finding-data">Data: CA-01: Critical</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">No cross-sell/upsell in cart</div>
+                            </div>
+                            <div class="finding-text">Missed AOV opportunity. Linen shoppers buy coordinated pieces.</div>
+                            <div class="finding-data">Data: CA-02: High</div>
+                        </div>
+
+                        <div class="finding-item high">
+                            <div class="finding-header">
+                                <div class="finding-severity high">HIGH</div>
+                                <div class="finding-title">No cart abandonment email capability</div>
+                            </div>
+                            <div class="finding-text">No Meta Pixel for remarketing. Can't recover abandoned carts via ads.</div>
+                            <div class="finding-data">Data: No retargeting infrastructure</div>
+                        </div>
+
+                        <div class="finding-item medium">
+                            <div class="finding-header">
+                                <div class="finding-severity medium">MEDIUM</div>
+                                <div class="finding-title">No trust badges near checkout button</div>
+                            </div>
+                            <div class="finding-text">Hesitation at final decision point.</div>
+                        </div>
+
+                        <div class="finding-item medium">
+                            <div class="finding-header">
+                                <div class="finding-severity medium">MEDIUM</div>
+                                <div class="finding-title">No estimated delivery date</div>
+                            </div>
+                            <div class="finding-text">Uncertainty about when order arrives.</div>
+                        </div>
+
+                        <div class="finding-item positive">
+                            <div class="finding-header">
+                                <div class="finding-severity positive">POSITIVE</div>
+                                <div class="finding-title">Cart sync + dynamic checkout</div>
+                            </div>
+                            <div class="finding-text">Persistent cart, Shop Pay, PayPal, Bitespeed back-in-stock notifications.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 17: STRENGTHS TO PRESERVE -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Heuristic Review</div>
+                <h2 class="card-title">Strengths to Preserve</h2>
+                <div class="card-subtitle">What's working well &mdash; don't change these</div>
+
+                <div class="strength-grid">
+                    <div class="strength-card">
+                        <h3>100% Pure European Linen</h3>
+                        <p>Certified pure flax linen &mdash; strong differentiator vs competitors using blends</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>World's Largest Pure Linen Collection</h3>
+                        <p>Deep product range: shirts, trousers, kurtas, co-ords, jackets, shorts</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Judge.me Reviews Integration</h3>
+                        <p>Gold star color (#9A6F2A) matches brand. Reviews on product cards.</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Multiple Payment Options</h3>
+                        <p>Shop Pay, PayPal, dynamic checkout &mdash; reduces payment friction</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Well-Structured Navigation</h3>
+                        <p>Clear Shop for Him / Her / Collection structure with detailed subcategories</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Active Sale Promotions</h3>
+                        <p>BOGO (Buy 1 Get 1 Free) anniversary sale drives urgency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION HEADER - Competitor Landscape -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">05</div>
+                <div class="section-title">Competitor Landscape</div>
+                <div class="section-sub">KAVERi | Linen Wear | Linen Club | Cottonworld</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 19: COMPETITOR TABLE -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Competitors</div>
+                <h2 class="card-title">Comparison</h2>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>LinenTrail</th>
+                            <th>KAVERi</th>
+                            <th>Linen Wear</th>
+                            <th>Linen Club</th>
+                            <th>Cottonworld</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Positioning</td>
+                            <td>Premium pure linen DTC</td>
+                            <td>Women's designer linen</td>
+                            <td>Men's linen specialist</td>
+                            <td>Multi-brand linen</td>
+                            <td>Mass market cotton+linen</td>
+                        </tr>
+                        <tr>
+                            <td>Price Range</td>
+                            <td>Premium</td>
+                            <td>Mid-premium</td>
+                            <td>Premium</td>
+                            <td>Premium</td>
+                            <td class="good">&#8377;990&ndash;&#8377;2,000+</td>
+                        </tr>
+                        <tr>
+                            <td>Gender Focus</td>
+                            <td>Men + Women</td>
+                            <td>Women only</td>
+                            <td>Men only</td>
+                            <td>Men only</td>
+                            <td>Unisex</td>
+                        </tr>
+                        <tr>
+                            <td>Loyalty Program</td>
+                            <td class="danger">No</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td class="good">Yes</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Physical Stores</td>
+                            <td class="danger">No</td>
+                            <td class="good">Yes</td>
+                            <td>No</td>
+                            <td class="good">Yes</td>
+                            <td class="good">Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Reviews Platform</td>
+                            <td>Judge.me</td>
+                            <td>&mdash;</td>
+                            <td class="good">Judge.me</td>
+                            <td>&mdash;</td>
+                            <td>&mdash;</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Currency</td>
+                            <td class="danger">USD default</td>
+                            <td class="good">150+ currencies</td>
+                            <td>INR</td>
+                            <td>INR</td>
+                            <td>INR</td>
+                        </tr>
+                        <tr>
+                            <td>Brand Story</td>
+                            <td>Anniversary sale</td>
+                            <td class="good">Slow fashion</td>
+                            <td>Men's specialist</td>
+                            <td>Heritage brand</td>
+                            <td>Established mass</td>
+                        </tr>
+                        <tr>
+                            <td>Live Chat</td>
+                            <td class="danger">No</td>
+                            <td>No</td>
+                            <td>No</td>
+                            <td class="good">Chat360</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 20: COMPETITIVE GAPS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Competitors</div>
+                <h2 class="card-title">Key Competitive Gaps</h2>
+                <div class="card-subtitle">Where LinenTrail falls behind competitors</div>
+
+                <div class="takeaway-grid">
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">No Loyalty Program</div>
+                        <p>Linen Club has a rewards program. LinenTrail has no retention mechanism despite premium pricing.</p>
+                    </div>
+
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Online-Only &mdash; No Physical Presence</div>
+                        <p>KAVERi, Linen Club, and Cottonworld have physical stores. Premium linen buyers want to touch fabric before purchase.</p>
+                    </div>
+
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Currency Defaults to USD</div>
+                        <p>93.3% India traffic but currency shows USD. KAVERi supports 150+ currencies. Immediate trust issue.</p>
+                    </div>
+
+                    <div class="takeaway-card">
+                        <div class="takeaway-title">Sale-Focused, Not Story-Focused</div>
+                        <p>KAVERi's slow fashion narrative creates brand loyalty. LinenTrail leads with 'Anniversary Sale' &mdash; no brand differentiation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 21: LINENTRAIL ADVANTAGES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Competitors</div>
+                <h2 class="card-title">LinenTrail Advantages</h2>
+                <div class="card-subtitle">Where LinenTrail leads the market</div>
+
+                <div class="strength-grid">
+                    <div class="strength-card">
+                        <h3>World's Largest Pure Linen Collection</h3>
+                        <p>Unmatched breadth: shirts, trousers, kurtas, co-ords, jackets, shorts for both men and women</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>100% Pure European Flax</h3>
+                        <p>Certified quality. Most competitors use blends or don't certify material origin</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Deep Men's Range</h3>
+                        <p>Strongest men's linen collection &mdash; trousers alone are the #1 page</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Active BOGO Promotions</h3>
+                        <p>Buy 1 Get 1 Free drives urgency and value perception at premium price point</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Strong Google Organic</h3>
+                        <p>34.6% of traffic from Google Search &mdash; strong SEO foundation</p>
+                    </div>
+
+                    <div class="strength-card">
+                        <h3>Detailed Subcategories</h3>
+                        <p>Fit types (casual/formal/relaxed/straight/tapered) aid product discovery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION HEADER - Critical Gaps -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">06</div>
+                <div class="section-title">Critical Analysis</div>
+                <div class="section-sub">5 Critical Gaps | Combined Estimate: 20&ndash;35% Lost Potential</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 23: 5 CRITICAL GAPS -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Critical Analysis</div>
+                <h2 class="card-title">The 5 Critical Gaps</h2>
+                <div class="card-subtitle">Each gap costs direct conversion. Combined estimate: <span style="color: #ef4444;">20&ndash;35% lost potential</span></div>
+
+                <div class="gap-item">
+                    <div class="gap-header">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="gap-title">
+                            <div class="gap-number">GAP #1: CRITICAL</div>
+                            <h3>Mobile TTI 17.1 Seconds</h3>
+                        </div>
+                    </div>
+                    <div class="gap-description">
+                        88.7% mobile traffic waits 17s for interactivity. TBT 460ms blocks UI. Judge.me, hCaptcha, Bitespeed all load upfront. Mobile CR 0.676% vs Desktop 1.275%.
+                    </div>
+                    <div class="gap-impact">Impact: &minus;15&ndash;25% mobile CR</div>
+                </div>
+
+                <div class="gap-item">
+                    <div class="gap-header">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="22" y1="12" x2="18" y2="12"/>
+                                <line x1="6" y1="12" x2="2" y2="12"/>
+                                <line x1="12" y1="6" x2="12" y2="2"/>
+                                <line x1="12" y1="22" x2="12" y2="18"/>
+                            </svg>
+                        </div>
+                        <div class="gap-title">
+                            <div class="gap-number">GAP #2: CRITICAL</div>
+                            <h3>Missing Meta Pixel &mdash; Zero Retargeting</h3>
+                        </div>
+                    </div>
+                    <div class="gap-description">
+                        18.4% social traffic (Instagram + Facebook) with no remarketing capability. Cannot build lookalike audiences or optimize ad delivery.
+                    </div>
+                    <div class="gap-impact">Impact: &minus;10&ndash;15% recovery</div>
+                </div>
+
+                <div class="gap-item high">
+                    <div class="gap-header">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="19" y1="12" x2="5" y2="12"/>
+                                <polyline points="12 19 5 12 12 5"/>
+                            </svg>
+                        </div>
+                        <div class="gap-title">
+                            <div class="gap-number">GAP #3: HIGH</div>
+                            <h3>12.3% Quickback Rate &mdash; Expectation Mismatch</h3>
+                        </div>
+                    </div>
+                    <div class="gap-description">
+                        1 in 8 visitors immediately leave. Ad/search promise doesn't match landing page content. Combined with 28.7% scroll depth. Collection pages convert at just 0.12% vs homepage 2.73%.
+                    </div>
+                    <div class="gap-impact">Impact: &minus;8&ndash;12% engagement</div>
+                </div>
+
+                <div class="gap-item high">
+                    <div class="gap-header">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <div class="gap-title">
+                            <div class="gap-number">GAP #4: HIGH</div>
+                            <h3>No Shipping Info, Trust Signals, or Guarantees</h3>
+                        </div>
+                    </div>
+                    <div class="gap-description">
+                        No visible shipping cost/time on PDPs. No free shipping threshold shown. No return policy visible. No trust badges above fold.
+                    </div>
+                    <div class="gap-impact">Impact: &minus;8&ndash;12% cart CR</div>
+                </div>
+
+                <div class="gap-item medium-high">
+                    <div class="gap-header">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </div>
+                        <div class="gap-title">
+                            <div class="gap-number">GAP #5: MEDIUM-HIGH</div>
+                            <h3>2.85 Pages/Session (GA4) but 93.2% View-to-ATC Drop</h3>
+                        </div>
+                    </div>
+                    <div class="gap-description">
+                        No collection filters, no cross-sell, no 'Complete the Look'. Users can't find products efficiently.
+                    </div>
+                    <div class="gap-impact">Impact: &minus;5&ndash;8% AOV</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 24: KEY OPPORTUNITIES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Revenue Impact</div>
+                <h2 class="card-title">Key Opportunities</h2>
+                <div class="card-subtitle">Estimated impact from closing the critical gaps</div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Opportunity</th>
+                            <th>Data Point</th>
+                            <th>Estimated Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mobile Performance Fix</td>
+                            <td>88.7% traffic at 17.1s TTI</td>
+                            <td class="accent">+15&ndash;25% mobile engagement</td>
+                        </tr>
+                        <tr>
+                            <td>Meta Pixel Installation</td>
+                            <td>18.4% social traffic untracked</td>
+                            <td class="accent">+3&ndash;5% session recovery</td>
+                        </tr>
+                        <tr>
+                            <td>PDP Trust &amp; Info Barriers</td>
+                            <td>No shipping, no returns, no badges</td>
+                            <td>+10&ndash;15% ATC rate</td>
+                        </tr>
+                        <tr>
+                            <td>Collection Filtering</td>
+                            <td>1.89 pages/session, no filters</td>
+                            <td>+20&ndash;30% pages/session</td>
+                        </tr>
+                        <tr>
+                            <td>Cross-Sell / Outfit Builder</td>
+                            <td>Linen shoppers buy coordinated sets</td>
+                            <td>+10&ndash;15% AOV</td>
+                        </tr>
+                        <tr>
+                            <td>Free Shipping Progress Bar</td>
+                            <td>No threshold visibility</td>
+                            <td>+5&ndash;10% cart completion</td>
+                        </tr>
+                        <tr>
+                            <td>Currency Default to INR</td>
+                            <td>93.3% India traffic, USD default</td>
+                            <td>+3&ndash;5% trust improvement</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">
+                    Conservative estimate: Fixing the top 3 gaps (Mobile TTI + Meta Pixel + PDP Trust) would recover an estimated 25&ndash;40% of currently lost engagement and conversion.
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION HEADER - CRO Roadmap -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">07</div>
+                <div class="section-title">CRO Roadmap</div>
+                <div class="section-sub">Data-Backed Tests | Page / Observation / Test / Hypothesis</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 26: CRO ROADMAP HIGH PRIORITY -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">CRO Roadmap</div>
+                <h2 class="card-title">High Priority Tests</h2>
+
+                <table class="roadmap-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Page / Area</th>
+                            <th style="width: 25%;">Observation (Data)</th>
+                            <th style="width: 30%;">Test Idea</th>
+                            <th style="width: 30%;">Hypothesis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Homepage</td>
+                            <td>28.7% avg scroll depth, 12.3% quickback rate. 5-slide rotating hero.</td>
+                            <td>Replace sale-focused hero with value proposition + trust signals + single CTA</td>
+                            <td>If we lead with "100% Pure European Linen" + free shipping badge instead of BOGO sale, quickback rate will decrease by 20%</td>
+                        </tr>
+                        <tr>
+                            <td>Sitewide</td>
+                            <td>Mobile TTI 17.1s. 88.7% mobile traffic. TBT 460ms.</td>
+                            <td>Defer non-critical JS: Judge.me, hCaptcha, Bitespeed. Lazy-load below-fold scripts.</td>
+                            <td>Reducing TTI from 17.1s to under 8s will improve mobile engagement by 15%+</td>
+                        </tr>
+                        <tr>
+                            <td>PDP</td>
+                            <td>No shipping info, no return policy, no trust badges near ATC</td>
+                            <td>Add "Free Shipping over &#8377;X" + "Easy 7-Day Returns" + trust badges near ATC</td>
+                            <td>Showing shipping and return info on PDP will increase ATC rate by 15%</td>
+                        </tr>
+                        <tr>
+                            <td>Collection</td>
+                            <td>1.89 pages/session. No filter/sort. Trousers is #1 page.</td>
+                            <td>Add filter/sort controls by size, color, price, fit + default sort by bestsellers</td>
+                            <td>Filtering will increase pages/session to 2.5+ and improve product discovery</td>
+                        </tr>
+                        <tr>
+                            <td>PDP</td>
+                            <td>Variant pre-selection OFF. Users must manually select size.</td>
+                            <td>Pre-select most popular size + show "Select Your Size" with size guide CTA</td>
+                            <td>Pre-selecting reduces friction. Click-to-ATC conversion will increase by 12%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SLIDE 27: CRO ROADMAP MEDIUM PRIORITY -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">CRO Roadmap</div>
+                <h2 class="card-title">Medium Priority Tests</h2>
+
+                <table class="roadmap-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Page / Area</th>
+                            <th style="width: 25%;">Observation (Data)</th>
+                            <th style="width: 30%;">Test Idea</th>
+                            <th style="width: 30%;">Hypothesis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cart</td>
+                            <td>No upsell/cross-sell in cart. Cart abandonment concern.</td>
+                            <td>Add "Complete Your Look" product recommendations for coordinated linen pieces</td>
+                            <td>Linen shoppers buy outfits. Paired suggestions will increase AOV by 10%</td>
+                        </tr>
+                        <tr>
+                            <td>Homepage</td>
+                            <td>Currency selector defaults to USD. 93.3% India traffic.</td>
+                            <td>Set INR as default currency for Indian visitors via geolocation</td>
+                            <td>Reducing confusion will improve trust and reduce quickback rate</td>
+                        </tr>
+                        <tr>
+                            <td>PDP</td>
+                            <td>No cross-sell "Pair With" section on product pages</td>
+                            <td>Add "Complete the Look" with shirt+trouser pairing suggestions</td>
+                            <td>Increase AOV and pages/session by presenting natural outfit combinations</td>
+                        </tr>
+                        <tr>
+                            <td>Sitewide</td>
+                            <td>Missing Meta Pixel. 18.4% social traffic. No remarketing.</td>
+                            <td>Install Meta Pixel via GTM. Configure standard events (ViewContent, ATC, Purchase)</td>
+                            <td>Enable retargeting to recover 3&ndash;5% of abandoned sessions via Facebook/Instagram</td>
+                        </tr>
+                        <tr>
+                            <td>Cart</td>
+                            <td>No free shipping threshold or progress bar visible</td>
+                            <td>Add free shipping progress bar: "You're &#8377;X away from free shipping!"</td>
+                            <td>Motivate threshold completion, increasing AOV</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION HEADER - Recommended Actions -->
+        <div class="card section-slide">
+            <div class="card-content" style="text-align: center;">
+                <div class="section-number">08</div>
+                <div class="section-title">Recommended Actions</div>
+                <div class="section-sub">Immediate Fixes | Short-Term Wins | Medium-Term Improvements</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 29: RECOMMENDED FIXES -->
+        <div class="card">
+            <div class="card-content">
+                <div class="card-label">Action Plan</div>
+                <h2 class="card-title">Prioritized Recommendations</h2>
+                <div class="card-subtitle">Sorted by impact and effort</div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Priority</th>
+                            <th style="width: 45%;">Action</th>
+                            <th style="width: 15%;">Effort</th>
+                            <th style="width: 25%;">Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="danger">Immediate</td>
+                            <td>Install Meta Pixel via GTM</td>
+                            <td>15 min</td>
+                            <td>Enables social retargeting</td>
+                        </tr>
+                        <tr>
+                            <td class="danger">Immediate</td>
+                            <td>Fix currency default to INR for Indian visitors</td>
+                            <td>10 min</td>
+                            <td>Reduces confusion for 93.3% of traffic</td>
+                        </tr>
+                        <tr>
+                            <td class="danger">Immediate</td>
+                            <td>Add shipping info to PDP near ATC button</td>
+                            <td>30 min</td>
+                            <td>Reduces #1 cart abandonment cause</td>
+                        </tr>
+                        <tr>
+                            <td class="danger">Immediate</td>
+                            <td>Pre-select first available size on PDP</td>
+                            <td>15 min</td>
+                            <td>Removes ATC friction</td>
+                        </tr>
+                        <tr>
+                            <td class="warn">This Week</td>
+                            <td>Verify Clarity installation on-site</td>
+                            <td>10 min</td>
+                            <td>Enables behavioral analysis</td>
+                        </tr>
+                        <tr>
+                            <td class="warn">This Week</td>
+                            <td>Defer non-critical JS (reduce TTI from 17.1s)</td>
+                            <td>2&ndash;3 hrs</td>
+                            <td>Improves mobile for 88.7% of traffic</td>
+                        </tr>
+                        <tr>
+                            <td class="warn">This Week</td>
+                            <td>Add trust badges above fold (shipping, returns, quality)</td>
+                            <td>1 hr</td>
+                            <td>Addresses buyer hesitation</td>
+                        </tr>
+                        <tr>
+                            <td>This Month</td>
+                            <td>Add free shipping progress bar to cart</td>
+                            <td>2 hrs</td>
+                            <td>Increases AOV</td>
+                        </tr>
+                        <tr>
+                            <td>This Month</td>
+                            <td>Add filter/sort on collection pages</td>
+                            <td>4&ndash;6 hrs</td>
+                            <td>Improves product discovery</td>
+                        </tr>
+                        <tr>
+                            <td>This Month</td>
+                            <td>Add "Complete the Look" cross-sell on PDP</td>
+                            <td>4&ndash;6 hrs</td>
+                            <td>Increases AOV</td>
+                        </tr>
+                        <tr>
+                            <td>This Month</td>
+                            <td>Redesign homepage hero with value proposition</td>
+                            <td>4&ndash;8 hrs</td>
+                            <td>Reduces quickback, communicates brand</td>
+                        </tr>
+                        <tr>
+                            <td>Next Quarter</td>
+                            <td>Launch cart abandonment email flow</td>
+                            <td>8&ndash;12 hrs</td>
+                            <td>Recovers 5&ndash;10% of abandoned carts</td>
+                        </tr>
+                        <tr>
+                            <td>Next Quarter</td>
+                            <td>Add review counts/ratings on collection product cards</td>
+                            <td>2&ndash;3 hrs</td>
+                            <td>Social proof at browsing stage</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box danger">
+                    <strong>Key Priority:</strong> Install Meta Pixel immediately. With 18.4% of traffic from social and zero retargeting capability, this is the single highest-ROI 15-minute fix available.
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 30: THANK YOU -->
+        <div class="card thankyou-slide">
+            <div class="card-content" style="text-align: center;">
+                <h1 class="ty-title">Thank You</h1>
+                <div class="ty-sub">linentrail.com CRO Audit | February 2026</div>
+                <div class="ty-sub">Prepared by Bhaskar Roy</div>
+                <div class="ty-powered" style="margin-top: 3rem;">Powered by: GA4 Analytics | Microsoft Clarity | PageSpeed Insights | Playwright | Competitor Research</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="nav-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">31</span>
+        </div>
+        <div class="nav-dots" id="navDots"></div>
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"/>
+                </svg>
+            </button>
+            <button class="nav-btn" id="nextBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('slideContainer');
+        const slides = document.querySelectorAll('.card');
+        const totalSlides = slides.length;
+        const currentSlideSpan = document.getElementById('currentSlide');
+        const totalSlidesSpan = document.getElementById('totalSlides');
+        const navDots = document.getElementById('navDots');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentSlide = 0;
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('nav-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            navDots.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function updateSlide() {
+            container.scrollTo({
+                left: currentSlide * window.innerWidth,
+                behavior: 'smooth'
+            });
+
+            currentSlideSpan.textContent = currentSlide + 1;
+            totalSlidesSpan.textContent = totalSlides;
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+        });
+
+        // Scroll detection
+        let scrollTimeout;
+        container.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollLeft = container.scrollLeft;
+                const slideWidth = window.innerWidth;
+                const newSlide = Math.round(scrollLeft / slideWidth);
+                if (newSlide !== currentSlide) {
+                    currentSlide = newSlide;
+                    updateSlide();
+                }
+            }, 100);
+        });
+
+        // Initialize
+        updateSlide();
+    </script>
+</body>
+</html>
