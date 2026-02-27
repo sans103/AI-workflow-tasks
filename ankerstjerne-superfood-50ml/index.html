@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankerstjerne SUPERFOOD 50ml PDP Redesign — Annotated Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f5f0;
+            color: #374151;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Header ─── */
+        .page-header {
+            background: #ffffff;
+            padding: 28px 40px 24px;
+            border-bottom: 1px solid #e5e5e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .header-left { max-width: 600px; }
+
+        .brand-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a365d;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* ─── Legend ─── */
+        .legend {
+            background: #fafaf8;
+            border: 1px solid #e5e5e0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            min-width: 180px;
+        }
+
+        .legend-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-new { background: #15803d; }
+        .dot-improved { background: #1d4ed8; }
+        .dot-conversion { background: #a16207; }
+        .dot-ux { background: #be185d; }
+        .dot-trust { background: #4338ca; }
+        .dot-storytelling { background: #7c3aed; }
+
+        /* ─── Stats Bar ─── */
+        .stats-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e0;
+            padding: 14px 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        /* ─── Comparison Container ─── */
+        .comparison-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 40px 24px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ─── Side (Before / After) ─── */
+        .side {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .side-content {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        .side-before .side-content {
+            flex-direction: row; /* [annotations] [phone] */
+        }
+
+        .side-after .side-content {
+            flex-direction: row; /* [phone] [annotations] */
+        }
+
+        /* ─── Phone Label ─── */
+        .phone-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* ─── Phone Frame ─── */
+        .phone-column {
+            flex-shrink: 0;
+            width: 260px;
+        }
+
+        .phone-frame {
+            width: 260px;
+            border-radius: 24px;
+            border: 2.5px solid #d0d0d0;
+            overflow: hidden;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 18px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .phone-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ─── Annotations Column ─── */
+        .annotations-column {
+            position: relative;
+            width: 220px;
+            flex-shrink: 0;
+        }
+
+        /* ─── Annotation Card ─── */
+        .annotation-card {
+            position: absolute;
+            width: 220px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e8e8e4;
+        }
+
+        .annotation-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .tag-new { background: #dcfce7; color: #15803d; }
+        .tag-improved { background: #dbeafe; color: #1d4ed8; }
+        .tag-conversion { background: #fef3c7; color: #a16207; }
+        .tag-ux { background: #fce7f3; color: #be185d; }
+        .tag-trust { background: #e0e7ff; color: #4338ca; }
+        .tag-storytelling { background: #f3e8ff; color: #7c3aed; }
+
+        .annotation-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .annotation-card p {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* ─── SVG Connectors ─── */
+        .connectors-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: visible;
+        }
+
+        /* ─── Footer ─── */
+        .page-footer {
+            text-align: center;
+            padding: 24px 40px 40px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="header-left">
+            <div class="brand-tag">Dr. Stine Ankerstjerne</div>
+            <h1 class="page-title">SUPERFOOD 50ml PDP Redesign Annotations</h1>
+            <p class="page-subtitle">SUPERFOOD multipurpose vitamin face gel — Mobile Product Page Comparison</p>
+        </div>
+        <div class="legend">
+            <div class="legend-title">Change Types</div>
+            <div class="legend-items">
+                <span class="legend-item"><span class="legend-dot dot-new"></span> New Section</span>
+                <span class="legend-item"><span class="legend-dot dot-improved"></span> Improved</span>
+                <span class="legend-item"><span class="legend-dot dot-conversion"></span> Conversion</span>
+                <span class="legend-item"><span class="legend-dot dot-ux"></span> UX</span>
+                <span class="legend-item"><span class="legend-dot dot-trust"></span> Trust</span>
+                <span class="legend-item"><span class="legend-dot dot-storytelling"></span> Storytelling</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">16</span> Total Changes
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5</span> New Sections
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span> Conversion Upgrades
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span> Trust Signals Added
+        </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="comparison-container">
+
+        <!-- BEFORE Side -->
+        <div class="side side-before" id="sideBefore">
+            <div class="phone-label">Before</div>
+            <div class="side-content">
+                <div class="annotations-column" id="annotationsLeft"></div>
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameBefore">
+                        <img src="current-superfood-50ml.png" id="imgBefore" alt="Current Ankerstjerne SUPERFOOD 50ml PDP">
+                    </div>
+                </div>
+            </div>
+            <svg class="connectors-svg" id="svgBefore"></svg>
+        </div>
+
+        <!-- AFTER Side -->
+        <div class="side side-after" id="sideAfter">
+            <div class="phone-label">Redesign</div>
+            <div class="side-content">
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameAfter">
+                        <img src="redesign-superfood-50ml.png" id="imgAfter" alt="Redesigned Ankerstjerne SUPERFOOD 50ml PDP">
+                    </div>
+                </div>
+                <div class="annotations-column" id="annotationsRight"></div>
+            </div>
+            <svg class="connectors-svg" id="svgAfter"></svg>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        Prepared by Bhaskar Roy &mdash; February 2026
+    </footer>
+
+    <script>
+        /* ─── Annotation Data ─── */
+
+        // Before: 780 x 17162 px original
+        // Sections mapped:
+        // Cookie popup: 0-500px (~0-3%)
+        // Header: 0-200px (~1%)
+        // Hero product image (pink bg with woman): 200-2200px (~1-13%)
+        // Product title/price/buy area: 2200-4000px (~13-23%)
+        // Description + ingredient text: 4000-7000px (~23-41%)
+        // "Vi lover ikke - Vi dokumenterer" section: 7000-8500px (~41-50%)
+        // Clinical results (woman photo): 8500-10500px (~50-61%)
+        // Product comparison/upsell: 10500-12000px (~61-70%)
+        // Review/testimonial section: 12000-13500px (~70-79%)
+        // Brand story / Dr. Stine: 13500-15500px (~79-90%)
+        // Footer: 15500-17162px (~90-100%)
+
+        const beforeAnnotations = [
+            {
+                yPercent: 2,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Cookie Popup Blocks Content',
+                desc: 'EU cookie consent covers viewport. Products invisible until dismissed.'
+            },
+            {
+                yPercent: 8,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Single Hero Image',
+                desc: 'One lifestyle photo visible. No gallery thumbnails, no ingredient shots, no product-in-use images.'
+            },
+            {
+                yPercent: 18,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Basic Price Display',
+                desc: 'Simple price with no urgency cues, no subscription comparison, and no savings callout.'
+            },
+            {
+                yPercent: 32,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Wall-of-Text Description',
+                desc: 'Long unstructured product description. No icons, visual hierarchy, or scannable benefit format.'
+            },
+            {
+                yPercent: 46,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Clinical Claim Buried',
+                desc: '"Vi lover ikke - Vi dokumenterer" section is deep below fold. Key brand differentiator not prominent.'
+            },
+            {
+                yPercent: 56,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Basic Results Section',
+                desc: 'Clinical results exist but with minimal visual impact. Small images, basic text layout.'
+            },
+            {
+                yPercent: 68,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'No Bundle or Cross-Sell',
+                desc: 'No upsell to 100ml size, no routine suggestions, no bundle offers to increase AOV.'
+            },
+            {
+                yPercent: 82,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Reviews Far Below Fold',
+                desc: 'Customer testimonials and reviews appear very deep. Most mobile visitors never scroll here.'
+            }
+        ];
+
+        // After: 780 x 27576 px original
+        // Sections mapped:
+        // Trust bar: 0-80px (~0.3%)
+        // Header + section nav: 80-350px (~1.3%)
+        // Gallery + thumbnails: 350-2200px (~1-8%)
+        // Title/rating/benefit pills: 2200-3200px (~8-12%)
+        // Results timeline: 3200-3800px (~12-14%)
+        // Price/subscription: 3800-5800px (~14-21%)
+        // Quantity/ATC/trust badges: 5800-7000px (~21-25%)
+        // "Slik bruker du SUPERFOOD" tutorial: 7000-8800px (~25-32%)
+        // Size comparison (50ml vs 100ml): 8800-10000px (~32-36%)
+        // Ingredient cards with images: 10000-13000px (~36-47%)
+        // Clinical stats: 13000-14500px (~47-53%)
+        // Comparison cards (us vs them): 14500-16500px (~53-60%)
+        // Video testimonials: 16500-18500px (~60-67%)
+        // Reviews with Trustpilot: 18500-20500px (~67-74%)
+        // Upsell/routine section: 20500-22500px (~74-82%)
+        // Cross-sell product grid: 22500-24000px (~82-87%)
+        // FAQ accordion: 24000-26000px (~87-94%)
+        // Footer: 26000-27576px (~94-100%)
+
+        const afterAnnotations = [
+            {
+                yPercent: 0.3,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Trust Bar with Key Promises',
+                desc: 'Gratis frakt, gratis prøver, 1-3 dagers levering visible before any scroll.'
+            },
+            {
+                yPercent: 1.3,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Sticky Section Navigation',
+                desc: 'Anchored nav: Ingredienser, Resultater, Sammenligning, Anmeldelser, FAQ. Aids long-page navigation on mobile.'
+            },
+            {
+                yPercent: 5,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Multi-Image Gallery',
+                desc: '4 clickable thumbnails including product, ingredient visuals, and lifestyle shots.'
+            },
+            {
+                yPercent: 10,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Benefit Pills — Scannable',
+                desc: 'Niacinamid 4%, Dexpanthenol 5%, Klinisk dokumentert — key differentiators at a glance.'
+            },
+            {
+                yPercent: 13,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Results Timeline in Buy Box',
+                desc: 'Visual timeline: Uke 2 first results → Uke 4 visible improvement → Uke 8 full effect. Sets realistic expectations.'
+            },
+            {
+                yPercent: 18,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: '3-Tier Subscription Selector',
+                desc: 'Abonnement (spar 15%), Engangskjøp, 3-måneders pakke with "Mest populær" badge and social proof.'
+            },
+            {
+                yPercent: 24,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Trust Badges Below CTA',
+                desc: '30-dagers garanti, Norsk kvalitet, Enkel avmelding — addresses top 3 purchase objections.'
+            },
+            {
+                yPercent: 29,
+                tag: 'tag-new', tagText: 'New',
+                title: '3-Step Tutorial with Icons',
+                desc: 'Branded DR.Stine icons showing how to use the product. Reduces uncertainty for first-time buyers.'
+            },
+            {
+                yPercent: 34,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Size Comparison Cards',
+                desc: '50ml vs 100ml side-by-side with price-per-ml and duration. Drives upsell to larger size.'
+            },
+            {
+                yPercent: 42,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Ingredient Cards with Images',
+                desc: 'Real CDN ingredient images (Niacinamid, Dexpanthenol, Retinyl, Havtorn, Vitamin E) with dosage and Norwegian descriptions.'
+            },
+            {
+                yPercent: 50,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Clinical Stats — Bold Visual',
+                desc: '100%, 100% stats in large cards on salmon pink background. Instantly scannable.'
+            },
+            {
+                yPercent: 57,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Us vs. Them Comparison Cards',
+                desc: 'Card-based comparison: SUPERFOOD (salmon pink) vs Vanlige ansiktskremer (gray). 5 categories.'
+            },
+            {
+                yPercent: 64,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Video Testimonial Cards',
+                desc: 'Customer testimonial cards with quotes. Real social proof near the decision point.'
+            },
+            {
+                yPercent: 71,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Reviews with Trustpilot Badge',
+                desc: 'Trustpilot 4.5 stars, filterable review cards. Review content is categorized and scannable.'
+            },
+            {
+                yPercent: 82,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Cross-Sell Product Grid',
+                desc: 'Related products section with product cards. Keeps shoppers browsing and increases pages per session.'
+            },
+            {
+                yPercent: 91,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'FAQ Accordion + Sticky ATC',
+                desc: 'Expandable FAQ addressing key objections. Plus sticky add-to-cart bar appears on scroll.'
+            }
+        ];
+
+        /* ─── Render Function ─── */
+
+        function renderAnnotations() {
+            const imgBefore = document.getElementById('imgBefore');
+            const imgAfter = document.getElementById('imgAfter');
+
+            if (!imgBefore.complete || !imgAfter.complete) {
+                // Wait for images to load
+                return;
+            }
+
+            const phoneBeforeH = imgBefore.offsetHeight;
+            const phoneAfterH = imgAfter.offsetHeight;
+
+            // Phone label offset (the label + margin above the phone)
+            const labelOffset = 40; // approx height of label
+
+            // Render Before annotations (left side)
+            const leftCol = document.getElementById('annotationsLeft');
+            leftCol.innerHTML = '';
+            leftCol.style.height = phoneBeforeH + 'px';
+
+            let lastBottomLeft = 0;
+            beforeAnnotations.forEach((ann, i) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.right = '0';
+                leftCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneBeforeH - 20;
+                if (desiredTop < lastBottomLeft + 8) desiredTop = lastBottomLeft + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomLeft = desiredTop + card.offsetHeight;
+            });
+
+            // Render After annotations (right side)
+            const rightCol = document.getElementById('annotationsRight');
+            rightCol.innerHTML = '';
+            rightCol.style.height = phoneAfterH + 'px';
+
+            let lastBottomRight = 0;
+            afterAnnotations.forEach((ann, i) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.left = '0';
+                rightCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneAfterH - 20;
+                if (desiredTop < lastBottomRight + 8) desiredTop = lastBottomRight + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomRight = desiredTop + card.offsetHeight;
+            });
+
+            // Draw SVG connectors
+            drawConnectors('before');
+            drawConnectors('after');
+        }
+
+        function drawConnectors(side) {
+            const isLeft = side === 'before';
+            const svg = document.getElementById(isLeft ? 'svgBefore' : 'svgAfter');
+            const sideEl = document.getElementById(isLeft ? 'sideBefore' : 'sideAfter');
+            const annotations = isLeft ? beforeAnnotations : afterAnnotations;
+            const img = document.getElementById(isLeft ? 'imgBefore' : 'imgAfter');
+            const phoneFrame = document.getElementById(isLeft ? 'phoneFrameBefore' : 'phoneFrameAfter');
+            const annotCol = document.getElementById(isLeft ? 'annotationsLeft' : 'annotationsRight');
+
+            const sideRect = sideEl.getBoundingClientRect();
+            const phoneRect = phoneFrame.getBoundingClientRect();
+            const annotRect = annotCol.getBoundingClientRect();
+            const imgH = img.offsetHeight;
+
+            svg.innerHTML = '';
+            svg.style.width = sideEl.offsetWidth + 'px';
+            svg.style.height = sideEl.offsetHeight + 'px';
+
+            // Phone edges relative to side element
+            const phoneLeftInSide = phoneRect.left - sideRect.left;
+            const phoneRightInSide = phoneRect.right - sideRect.left;
+            const phoneTopInSide = phoneRect.top - sideRect.top;
+
+            // Annotations column edges
+            const annotLeftInSide = annotRect.left - sideRect.left;
+            const annotRightInSide = annotRect.right - sideRect.left;
+
+            annotations.forEach(ann => {
+                // Dot position: on the phone edge at the yPercent point
+                const dotY = phoneTopInSide + (ann.yPercent / 100) * imgH;
+
+                let dotX, cardEdgeX, cardMidY;
+
+                if (isLeft) {
+                    // Dot on left edge of phone, card on the left
+                    dotX = phoneLeftInSide + 2;
+                    cardEdgeX = annotRightInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                } else {
+                    // Dot on right edge of phone, card on the right
+                    dotX = phoneRightInSide - 2;
+                    cardEdgeX = annotLeftInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                }
+
+                // Draw dot
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', dotX);
+                circle.setAttribute('cy', dotY);
+                circle.setAttribute('r', '3.5');
+                circle.setAttribute('fill', '#999');
+                svg.appendChild(circle);
+
+                // Draw dashed line from dot to card edge
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', dotX);
+                line.setAttribute('y1', dotY);
+                line.setAttribute('x2', cardEdgeX);
+                line.setAttribute('y2', cardMidY);
+                line.setAttribute('stroke', '#bbb');
+                line.setAttribute('stroke-width', '1.2');
+                line.setAttribute('stroke-dasharray', '4, 3');
+                svg.appendChild(line);
+
+                // Draw small dot at card edge
+                const circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle2.setAttribute('cx', cardEdgeX);
+                circle2.setAttribute('cy', cardMidY);
+                circle2.setAttribute('r', '2.5');
+                circle2.setAttribute('fill', '#bbb');
+                svg.appendChild(circle2);
+            });
+        }
+
+        /* ─── Init ─── */
+        const imgBefore = document.getElementById('imgBefore');
+        const imgAfter = document.getElementById('imgAfter');
+        let loadedCount = 0;
+
+        function onImageLoad() {
+            loadedCount++;
+            if (loadedCount >= 2) {
+                renderAnnotations();
+            }
+        }
+
+        imgBefore.addEventListener('load', onImageLoad);
+        imgAfter.addEventListener('load', onImageLoad);
+
+        if (imgBefore.complete) { loadedCount++; }
+        if (imgAfter.complete) { loadedCount++; }
+        if (loadedCount >= 2) {
+            requestAnimationFrame(renderAnnotations);
+        }
+
+        // Redraw on resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderAnnotations, 200);
+        });
+    </script>
+</body>
+</html>

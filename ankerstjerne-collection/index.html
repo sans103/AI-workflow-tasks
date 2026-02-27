@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Stine Ankerstjerne Collection Page Redesign — Annotated Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f5f5f0;
+            color: #374151;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Header ─── */
+        .page-header {
+            background: #ffffff;
+            padding: 28px 40px 24px;
+            border-bottom: 1px solid #e5e5e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .header-left { max-width: 600px; }
+
+        .brand-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a365d;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* ─── Legend ─── */
+        .legend {
+            background: #fafaf8;
+            border: 1px solid #e5e5e0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            min-width: 180px;
+        }
+
+        .legend-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-new { background: #15803d; }
+        .dot-improved { background: #1d4ed8; }
+        .dot-conversion { background: #a16207; }
+        .dot-ux { background: #be185d; }
+        .dot-trust { background: #4338ca; }
+        .dot-storytelling { background: #7c3aed; }
+
+        /* ─── Stats Bar ─── */
+        .stats-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e0;
+            padding: 14px 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        /* ─── Comparison Container ─── */
+        .comparison-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 40px 24px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ─── Side (Before / After) ─── */
+        .side {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .side-content {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        .side-before .side-content {
+            flex-direction: row; /* [annotations] [phone] */
+        }
+
+        .side-after .side-content {
+            flex-direction: row; /* [phone] [annotations] */
+        }
+
+        /* ─── Phone Label ─── */
+        .phone-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* ─── Phone Frame ─── */
+        .phone-column {
+            flex-shrink: 0;
+            width: 260px;
+        }
+
+        .phone-frame {
+            width: 260px;
+            border-radius: 24px;
+            border: 2.5px solid #d0d0d0;
+            overflow: hidden;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 18px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .phone-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ─── Annotations Column ─── */
+        .annotations-column {
+            position: relative;
+            width: 220px;
+            flex-shrink: 0;
+        }
+
+        /* ─── Annotation Card ─── */
+        .annotation-card {
+            position: absolute;
+            width: 220px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e8e8e4;
+        }
+
+        .annotation-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .tag-new { background: #dcfce7; color: #15803d; }
+        .tag-improved { background: #dbeafe; color: #1d4ed8; }
+        .tag-conversion { background: #fef3c7; color: #a16207; }
+        .tag-ux { background: #fce7f3; color: #be185d; }
+        .tag-trust { background: #e0e7ff; color: #4338ca; }
+        .tag-storytelling { background: #f3e8ff; color: #7c3aed; }
+
+        .annotation-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .annotation-card p {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* ─── SVG Connectors ─── */
+        .connectors-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: visible;
+        }
+
+        /* ─── Footer ─── */
+        .page-footer {
+            text-align: center;
+            padding: 24px 40px 40px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="header-left">
+            <div class="brand-tag">Dr. Stine Ankerstjerne</div>
+            <h1 class="page-title">Collection Page Redesign Annotations</h1>
+            <p class="page-subtitle">Alle Produkter — Mobile Collection Page Comparison</p>
+        </div>
+        <div class="legend">
+            <div class="legend-title">Change Types</div>
+            <div class="legend-items">
+                <span class="legend-item"><span class="legend-dot dot-new"></span> New Section</span>
+                <span class="legend-item"><span class="legend-dot dot-improved"></span> Improved</span>
+                <span class="legend-item"><span class="legend-dot dot-conversion"></span> Conversion</span>
+                <span class="legend-item"><span class="legend-dot dot-ux"></span> UX</span>
+                <span class="legend-item"><span class="legend-dot dot-trust"></span> Trust</span>
+                <span class="legend-item"><span class="legend-dot dot-storytelling"></span> Storytelling</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">12</span> Total Changes
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span> New Sections
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span> Conversion Upgrades
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">2</span> Trust Signals Added
+        </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="comparison-container">
+
+        <!-- BEFORE Side -->
+        <div class="side side-before" id="sideBefore">
+            <div class="phone-label">Before</div>
+            <div class="side-content">
+                <div class="annotations-column" id="annotationsLeft"></div>
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameBefore">
+                        <img src="current-collection.png" id="imgBefore" alt="Current Ankerstjerne Collection Page">
+                    </div>
+                </div>
+            </div>
+            <svg class="connectors-svg" id="svgBefore"></svg>
+        </div>
+
+        <!-- AFTER Side -->
+        <div class="side side-after" id="sideAfter">
+            <div class="phone-label">Redesign</div>
+            <div class="side-content">
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameAfter">
+                        <img src="redesign-collection.png" id="imgAfter" alt="Redesigned Ankerstjerne Collection Page">
+                    </div>
+                </div>
+                <div class="annotations-column" id="annotationsRight"></div>
+            </div>
+            <svg class="connectors-svg" id="svgAfter"></svg>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        Prepared by Bhaskar Roy &mdash; February 2026
+    </footer>
+
+    <script>
+        /* ─── Annotation Data ─── */
+
+        // Before: 780 x 12450 px original
+        // Sections mapped from visual inspection:
+        // Cookie/EU popup: 0-600px (~0-5%)
+        // Header/logo: 0-200px (~1-2%)
+        // Product listing starts: ~600px (~5%)
+        // Magazine/ELLE banner: ~1400px (~11%)
+        // More products: ~2200px (~18%)
+        // "Sendes populære produkter" heading: ~5500px (~44%)
+        // Stats section (100%, 100%, 100%): ~7500px (~60%)
+        // Shop Produkt Kategorier: ~8800px (~71%)
+        // Product images at bottom: ~10000px (~80%)
+        // Footer: ~11500px (~92%)
+
+        const beforeAnnotations = [
+            {
+                yPercent: 3,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Cookie Popup Blocks Content',
+                desc: 'EU cookie consent modal covers the viewport. No products visible until dismissed — hurts first impression.'
+            },
+            {
+                yPercent: 10,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'No Hero Section',
+                desc: 'Products start immediately with no brand story, value proposition, or collection context. Missed opportunity for positioning.'
+            },
+            {
+                yPercent: 20,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'No Filter or Sort Options',
+                desc: 'Products listed without category filters, sorting, or quick navigation. Hard to find specific products on mobile.'
+            },
+            {
+                yPercent: 35,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'No Social Proof Near Products',
+                desc: 'No ratings, review counts, or Trustpilot badge visible near products. Trust signals are missing where purchase decisions happen.'
+            },
+            {
+                yPercent: 50,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'No Bundles or Routine Builder',
+                desc: 'Individual products only — no bundle offers or routine suggestions to increase average order value.'
+            },
+            {
+                yPercent: 65,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Generic Stats Presentation',
+                desc: 'Clinical stats exist but are buried deep and lack visual hierarchy. Key brand differentiators aren\'t prominent.'
+            },
+            {
+                yPercent: 82,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Basic Category Navigation',
+                desc: 'Simple category section at the bottom. By this point most mobile shoppers have already left.'
+            }
+        ];
+
+        // After: 780 x 15420 px original
+        // Sections mapped from visual inspection:
+        // Trust bar (black): 0-80px (~0.5%)
+        // Header with real logo: 80-230px (~1.5%)
+        // Hero banner section: 230-1200px (~2-8%)
+        // Filter pills (Alle, Hudpleie, Kollagen...): ~1200px (~8%)
+        // Social proof bar (salmon pink, Trustpilot): ~1400px (~9%)
+        // Product grid (2-col with ratings, badges): ~1600px (~10%)
+        // Clinical stats editorial break: ~5400px (~35%)
+        // More products grid: ~7000px (~45%)
+        // Routine Builder (salmon pink): ~9500px (~62%)
+        // Bundles section: ~11000px (~71%)
+        // Awards bar: ~12200px (~79%)
+        // Newsletter section (salmon pink): ~12800px (~83%)
+        // Footer: ~13800px (~90%)
+
+        const afterAnnotations = [
+            {
+                yPercent: 0.5,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Trust Bar with Key Promises',
+                desc: 'Gratis frakt, gratis prøver, 1-3 dagers levering. Instant confidence before any browsing.'
+            },
+            {
+                yPercent: 5,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Hero Banner with Value Prop',
+                desc: '"Utviklet av leger. Elsket av huden." — establishes brand positioning and clinical credibility immediately.'
+            },
+            {
+                yPercent: 8,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Category Filter Pills',
+                desc: 'Alle, Hudpleie, Kollagen, Hender, Anti-Age, SPF, Sett & Bundles — instant product discovery on mobile.'
+            },
+            {
+                yPercent: 9.5,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Social Proof Bar',
+                desc: '4.5 Trustpilot stars, 200,000+ customers, Beauty Awards 2025 winner — all on salmon pink accent bar.'
+            },
+            {
+                yPercent: 15,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Product Cards with Ratings',
+                desc: '2-column grid with star ratings, review counts, benefit text, and \'Legg i handlekurv\' CTA on every card. Badges for Bestseller/Save.'
+            },
+            {
+                yPercent: 35,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Clinical Stats Editorial Break',
+                desc: '32%, 100%, 65% stats with lifestyle image. Breaks up product grid with brand storytelling.'
+            },
+            {
+                yPercent: 48,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Continued Product Grid',
+                desc: 'Second batch of products including bundles, hand cream, anti-pollution. Consistent card design throughout.'
+            },
+            {
+                yPercent: 62,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Routine Builder Section',
+                desc: '3-step routine (Rens → Behandle → Beskytt) with total price and savings. Drives bundle conversion.'
+            },
+            {
+                yPercent: 72,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Bundle Highlight Cards',
+                desc: 'Best Seller Bundle and THE SET with savings callouts. Dedicated section for high-AOV products.'
+            },
+            {
+                yPercent: 79,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Awards & Press Bar',
+                desc: 'TARA PRO AGE, ELLE, DANISH BEAUTY AWARD, VOGUE, COSTUME, BEAUTY AWARDS 2025 — scrollable press logos.'
+            },
+            {
+                yPercent: 84,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Newsletter with 10% Off',
+                desc: 'Email capture with 10% discount incentive on salmon pink background. Captures exit-intent traffic.'
+            },
+            {
+                yPercent: 92,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Structured Footer',
+                desc: '4-column footer with Produkter, Kundeservice, Om oss, Rettigheter. Complete site navigation.'
+            }
+        ];
+
+        /* ─── Render Function ─── */
+
+        function renderAnnotations() {
+            const imgBefore = document.getElementById('imgBefore');
+            const imgAfter = document.getElementById('imgAfter');
+
+            if (!imgBefore.complete || !imgAfter.complete) {
+                // Wait for images to load
+                return;
+            }
+
+            const phoneBeforeH = imgBefore.offsetHeight;
+            const phoneAfterH = imgAfter.offsetHeight;
+
+            // Phone label offset (the label + margin above the phone)
+            const labelOffset = 40; // approx height of label
+
+            // Render Before annotations (left side)
+            const leftCol = document.getElementById('annotationsLeft');
+            leftCol.innerHTML = '';
+            leftCol.style.height = phoneBeforeH + 'px';
+
+            let lastBottomLeft = 0;
+            beforeAnnotations.forEach((ann, i) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.right = '0';
+                leftCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneBeforeH - 20;
+                if (desiredTop < lastBottomLeft + 8) desiredTop = lastBottomLeft + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomLeft = desiredTop + card.offsetHeight;
+            });
+
+            // Render After annotations (right side)
+            const rightCol = document.getElementById('annotationsRight');
+            rightCol.innerHTML = '';
+            rightCol.style.height = phoneAfterH + 'px';
+
+            let lastBottomRight = 0;
+            afterAnnotations.forEach((ann, i) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.left = '0';
+                rightCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneAfterH - 20;
+                if (desiredTop < lastBottomRight + 8) desiredTop = lastBottomRight + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomRight = desiredTop + card.offsetHeight;
+            });
+
+            // Draw SVG connectors
+            drawConnectors('before');
+            drawConnectors('after');
+        }
+
+        function drawConnectors(side) {
+            const isLeft = side === 'before';
+            const svg = document.getElementById(isLeft ? 'svgBefore' : 'svgAfter');
+            const sideEl = document.getElementById(isLeft ? 'sideBefore' : 'sideAfter');
+            const annotations = isLeft ? beforeAnnotations : afterAnnotations;
+            const img = document.getElementById(isLeft ? 'imgBefore' : 'imgAfter');
+            const phoneFrame = document.getElementById(isLeft ? 'phoneFrameBefore' : 'phoneFrameAfter');
+            const annotCol = document.getElementById(isLeft ? 'annotationsLeft' : 'annotationsRight');
+
+            const sideRect = sideEl.getBoundingClientRect();
+            const phoneRect = phoneFrame.getBoundingClientRect();
+            const annotRect = annotCol.getBoundingClientRect();
+            const imgH = img.offsetHeight;
+
+            svg.innerHTML = '';
+            svg.style.width = sideEl.offsetWidth + 'px';
+            svg.style.height = sideEl.offsetHeight + 'px';
+
+            // Phone edges relative to side element
+            const phoneLeftInSide = phoneRect.left - sideRect.left;
+            const phoneRightInSide = phoneRect.right - sideRect.left;
+            const phoneTopInSide = phoneRect.top - sideRect.top;
+
+            // Annotations column edges
+            const annotLeftInSide = annotRect.left - sideRect.left;
+            const annotRightInSide = annotRect.right - sideRect.left;
+
+            annotations.forEach(ann => {
+                // Dot position: on the phone edge at the yPercent point
+                const dotY = phoneTopInSide + (ann.yPercent / 100) * imgH;
+
+                let dotX, cardEdgeX, cardMidY;
+
+                if (isLeft) {
+                    // Dot on left edge of phone, card on the left
+                    dotX = phoneLeftInSide + 2;
+                    cardEdgeX = annotRightInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                } else {
+                    // Dot on right edge of phone, card on the right
+                    dotX = phoneRightInSide - 2;
+                    cardEdgeX = annotLeftInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                }
+
+                // Draw dot
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', dotX);
+                circle.setAttribute('cy', dotY);
+                circle.setAttribute('r', '3.5');
+                circle.setAttribute('fill', '#999');
+                svg.appendChild(circle);
+
+                // Draw dashed line from dot to card edge
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', dotX);
+                line.setAttribute('y1', dotY);
+                line.setAttribute('x2', cardEdgeX);
+                line.setAttribute('y2', cardMidY);
+                line.setAttribute('stroke', '#bbb');
+                line.setAttribute('stroke-width', '1.2');
+                line.setAttribute('stroke-dasharray', '4, 3');
+                svg.appendChild(line);
+
+                // Draw small dot at card edge
+                const circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle2.setAttribute('cx', cardEdgeX);
+                circle2.setAttribute('cy', cardMidY);
+                circle2.setAttribute('r', '2.5');
+                circle2.setAttribute('fill', '#bbb');
+                svg.appendChild(circle2);
+            });
+        }
+
+        /* ─── Init ─── */
+        const imgBefore = document.getElementById('imgBefore');
+        const imgAfter = document.getElementById('imgAfter');
+        let loadedCount = 0;
+
+        function onImageLoad() {
+            loadedCount++;
+            if (loadedCount >= 2) {
+                renderAnnotations();
+            }
+        }
+
+        imgBefore.addEventListener('load', onImageLoad);
+        imgAfter.addEventListener('load', onImageLoad);
+
+        if (imgBefore.complete) { loadedCount++; }
+        if (imgAfter.complete) { loadedCount++; }
+        if (loadedCount >= 2) {
+            requestAnimationFrame(renderAnnotations);
+        }
+
+        // Redraw on resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderAnnotations, 200);
+        });
+    </script>
+</body>
+</html>
