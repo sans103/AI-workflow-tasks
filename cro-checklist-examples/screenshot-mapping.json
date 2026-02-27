@@ -1,0 +1,423 @@
+[
+  {
+    "id": "hp-01-value-prop",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-01-value-prop.png",
+    "desc": "Allbirds above-fold value proposition",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-01-value-prop.png",
+    "size": 1209681,
+    "status": "captured"
+  },
+  {
+    "id": "hp-02-headline",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-02-headline.png",
+    "desc": "Dollar Shave Club specific headline",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-02-headline.png",
+    "size": 709524,
+    "status": "captured"
+  },
+  {
+    "id": "hp-03-hero-visual",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-03-hero-visual.png",
+    "desc": "Away hero with product in context",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-03-hero-visual.png",
+    "size": 1576556,
+    "status": "captured"
+  },
+  {
+    "id": "hp-04-navigation",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-04-navigation.png",
+    "desc": "Apple 7-item navigation",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-04-navigation.png",
+    "size": 9333,
+    "status": "captured"
+  },
+  {
+    "id": "hp-05-category-path",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-05-category-path.png",
+    "desc": "IKEA mega-menu category path",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-05-category-path.png",
+    "size": 215101,
+    "status": "captured"
+  },
+  {
+    "id": "hp-06-search",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-06-search.png",
+    "desc": "Amazon search bar prominence",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-06-search.png",
+    "size": 62543,
+    "status": "captured"
+  },
+  {
+    "id": "hp-07-trust-signals",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-07-trust-signals.png",
+    "desc": "Casper trust signal diversity above fold",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-07-trust-signals.png",
+    "size": 538011,
+    "status": "captured"
+  },
+  {
+    "id": "hp-08-social-proof",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-08-social-proof.png",
+    "desc": "Basecamp specific social proof number",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-08-social-proof.png",
+    "size": 478812,
+    "status": "captured"
+  },
+  {
+    "id": "hp-09-mobile-cta",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-09-mobile-cta.png",
+    "desc": "Shopify mobile CTA above fold",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-09-mobile-cta.png",
+    "size": 142733,
+    "status": "captured"
+  },
+  {
+    "id": "hp-10-message-match",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-10-message-match.png",
+    "desc": "Gymshark announcement bar with offer",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-10-message-match.png",
+    "size": 495704,
+    "status": "captured"
+  },
+  {
+    "id": "hp-11-announcement-bar",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-11-announcement-bar.png",
+    "desc": "Gymshark announcement bar value clarity",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-11-announcement-bar.png",
+    "size": 4642,
+    "status": "captured"
+  },
+  {
+    "id": "hp-12-performance",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/hp-12-performance.png",
+    "desc": "PageSpeed Insights tool",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/hp-12-performance.png",
+    "size": 47711,
+    "status": "captured"
+  },
+  {
+    "id": "cl-01-filters",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-01-filters.png",
+    "desc": "Nike instant filter feedback",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-01-filters.png",
+    "size": 391095,
+    "status": "captured"
+  },
+  {
+    "id": "cl-02-filter-arch",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-02-filter-arch.png",
+    "desc": "Sephora category-specific filters",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-02-filter-arch.png",
+    "size": 19336,
+    "status": "captured"
+  },
+  {
+    "id": "cl-03-sort",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-03-sort.png",
+    "desc": "Best Buy sort options",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-03-sort.png",
+    "size": 592368,
+    "status": "captured"
+  },
+  {
+    "id": "cl-04-zero-results",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-04-zero-results.png",
+    "desc": "ASOS zero-results recovery",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-04-zero-results.png",
+    "size": 27037,
+    "status": "captured"
+  },
+  {
+    "id": "cl-05-product-card",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-05-product-card.png",
+    "desc": "Nordstrom product card info density",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-05-product-card.png",
+    "size": 381014,
+    "status": "captured"
+  },
+  {
+    "id": "cl-06-visual-merch",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-06-visual-merch.png",
+    "desc": "Zara editorial visual merchandising",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-06-visual-merch.png",
+    "size": 28305,
+    "status": "captured"
+  },
+  {
+    "id": "cl-07-quick-view",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-07-quick-view.png",
+    "desc": "Target quick-view capability",
+    "status": "failed",
+    "error": "page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.target.com/c/womens-clothing/-/N-5xtcl\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "id": "cl-08-price-anchor",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-08-price-anchor.png",
+    "desc": "Wayfair price anchoring on cards",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-08-price-anchor.png",
+    "size": 26265,
+    "status": "captured"
+  },
+  {
+    "id": "cl-09-mobile-scroll",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-09-mobile-scroll.png",
+    "desc": "H&M mobile sticky filter bar",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-09-mobile-scroll.png",
+    "size": 23017,
+    "status": "captured"
+  },
+  {
+    "id": "cl-10-inventory",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-10-inventory.png",
+    "desc": "Zara inventory signals on cards",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-10-inventory.png",
+    "size": 28833,
+    "status": "captured"
+  },
+  {
+    "id": "cl-11-seo-copy",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-11-seo-copy.png",
+    "desc": "REI collection page SEO copy",
+    "status": "failed",
+    "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.rei.com/c/hiking-boots\nCall log:\n  - navigating to \"https://www.rei.com/c/hiking-boots\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "id": "cl-12-cross-nav",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cl-12-cross-nav.png",
+    "desc": "IKEA breadcrumb + related categories",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cl-12-cross-nav.png",
+    "size": 60350,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-01-above-fold",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-01-above-fold.png",
+    "desc": "Apple AirPods Pro above-fold 5 elements",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-01-above-fold.png",
+    "size": 177485,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-02-cognitive-load",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-02-cognitive-load.png",
+    "desc": "Allbirds simple 2-decision PDP",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-02-cognitive-load.png",
+    "size": 235330,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-03-variants",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-03-variants.png",
+    "desc": "Nike visual variant swatches",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-03-variants.png",
+    "size": 97348,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-04-sticky-atc",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-04-sticky-atc.png",
+    "desc": "Glossier sticky ATC on scroll",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-04-sticky-atc.png",
+    "size": 531487,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-05-gallery",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-05-gallery.png",
+    "desc": "Allbirds diverse image gallery",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-05-gallery.png",
+    "size": 154990,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-06-description",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-06-description.png",
+    "desc": "Dyson scannable product description",
+    "status": "failed",
+    "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.dyson.com/vacuum-cleaners/cordless/v15/detect-absolute\nCall log:\n  - navigating to \"https://www.dyson.com/vacuum-cleaners/cordless/v15/detect-absolute\", waiting until \"domcontentloaded\"\n"
+  },
+  {
+    "id": "pdp-07-price-justify",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-07-price-justify.png",
+    "desc": "Quip price justification proximity",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-07-price-justify.png",
+    "size": 311053,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-08-shipping",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-08-shipping.png",
+    "desc": "Everlane shipping + returns near ATC",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-08-shipping.png",
+    "size": 27476,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-09-size-guide",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-09-size-guide.png",
+    "desc": "Nike true-to-size from reviews",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-09-size-guide.png",
+    "size": 206094,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-10-reviews",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-10-reviews.png",
+    "desc": "Amazon deep review section with photos",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-10-reviews.png",
+    "size": 268034,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-11-proof-stack",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-11-proof-stack.png",
+    "desc": "Casper multi-type social proof",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-11-proof-stack.png",
+    "size": 55454,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-12-urgency",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-12-urgency.png",
+    "desc": "Amazon real inventory-based urgency",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-12-urgency.png",
+    "size": 34320,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-13-objections",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-13-objections.png",
+    "desc": "Purple objection pre-emption",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-13-objections.png",
+    "size": 518770,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-14-cross-sell",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-14-cross-sell.png",
+    "desc": "Apple contextual cross-sell",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-14-cross-sell.png",
+    "size": 117397,
+    "status": "captured"
+  },
+  {
+    "id": "pdp-15-mobile-atc",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/pdp-15-mobile-atc.png",
+    "desc": "Glossier mobile thumb-zone ATC",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/pdp-15-mobile-atc.png",
+    "size": 318323,
+    "status": "captured"
+  },
+  {
+    "id": "cc-01-cost-visible",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-01-cost-visible.png",
+    "desc": "Target cart cost transparency (homepage ref)",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-01-cost-visible.png",
+    "size": 539716,
+    "status": "captured"
+  },
+  {
+    "id": "cc-02-shipping-bar",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-02-shipping-bar.png",
+    "desc": "Bath & Body Works free shipping progress",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-02-shipping-bar.png",
+    "size": 18957,
+    "status": "captured"
+  },
+  {
+    "id": "cc-03-cart-edit",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-03-cart-edit.png",
+    "desc": "Apple in-cart editing fluidity",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-03-cart-edit.png",
+    "size": 135511,
+    "status": "captured"
+  },
+  {
+    "id": "cc-04-cart-upsell",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-04-cart-upsell.png",
+    "desc": "Amazon frequently bought together",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-04-cart-upsell.png",
+    "size": 669731,
+    "status": "captured"
+  },
+  {
+    "id": "cc-05-persistent-cart",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-05-persistent-cart.png",
+    "desc": "Shopify persistent cart (concept)",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-05-persistent-cart.png",
+    "size": 317931,
+    "status": "captured"
+  },
+  {
+    "id": "cc-06-guest-checkout",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-06-guest-checkout.png",
+    "desc": "Shopify guest checkout (concept)",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-06-guest-checkout.png",
+    "size": 320227,
+    "status": "captured"
+  },
+  {
+    "id": "cc-07-form-fields",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-07-form-fields.png",
+    "desc": "Apple checkout minimal form fields",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-07-form-fields.png",
+    "size": 135511,
+    "status": "captured"
+  },
+  {
+    "id": "cc-08-progress",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-08-progress.png",
+    "desc": "ASOS checkout progress indicator (concept)",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-08-progress.png",
+    "size": 24648,
+    "status": "captured"
+  },
+  {
+    "id": "cc-09-inline-errors",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-09-inline-errors.png",
+    "desc": "Stripe inline form validation",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-09-inline-errors.png",
+    "size": 285589,
+    "status": "captured"
+  },
+  {
+    "id": "cc-10-express",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-10-express.png",
+    "desc": "Shopify express checkout options",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-10-express.png",
+    "size": 330918,
+    "status": "captured"
+  },
+  {
+    "id": "cc-11-trust-payment",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-11-trust-payment.png",
+    "desc": "Stripe trust at payment step",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-11-trust-payment.png",
+    "size": 285589,
+    "status": "captured"
+  },
+  {
+    "id": "cc-12-order-summary",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-12-order-summary.png",
+    "desc": "Amazon persistent order summary",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-12-order-summary.png",
+    "size": 947590,
+    "status": "captured"
+  },
+  {
+    "id": "cc-13-email-capture",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-13-email-capture.png",
+    "desc": "Shopify email-first checkout (concept)",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-13-email-capture.png",
+    "size": 319520,
+    "status": "captured"
+  },
+  {
+    "id": "cc-14-confirmation",
+    "url": "https://raycazy.github.io/AI-workflow-tasks/cro-checklist-examples/cc-14-confirmation.png",
+    "desc": "Dollar Shave Club post-purchase (concept)",
+    "file": "/Users/bhaskar/Desktop/ai/cazy-design-dev-support-ai-claude/multiagent-cro-workflow/github-pages/AI-workflow-tasks/cro-checklist-examples/cc-14-confirmation.png",
+    "size": 589489,
+    "status": "captured"
+  }
+]
