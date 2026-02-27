@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puffin Drinkwear — Buy 3 Get 1 Free | Hero Banner</title>
+    <meta name="description"
+        content="Buy 3 Puffin coolers, get the 4th FREE. Premium insulated can coolers for every adventure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========================================
+       RESET & BASE
+       ======================================== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #F2F1EF;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========================================
+       ANNOUNCEMENT BAR
+       ======================================== */
+        .announcement-bar {
+            background: #1A252B;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .announcement-bar span {
+            color: #F99E89;
+        }
+
+        /* ========================================
+       HERO SECTION
+       ======================================== */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 720px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: #212F37;
+        }
+
+        /* Lifestyle background */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            filter: brightness(0.7);
+        }
+
+        /* Cinematic gradient overlay */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background:
+                linear-gradient(108deg,
+                    rgba(26, 37, 43, 0.97) 0%,
+                    rgba(33, 47, 55, 0.92) 30%,
+                    rgba(33, 47, 55, 0.75) 55%,
+                    rgba(255, 46, 0, 0.35) 80%,
+                    rgba(255, 55, 0, 0.55) 100%);
+        }
+
+        /* Ambient light effects */
+        .hero-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 80% 50%, rgba(249, 158, 137, 0.15) 0%, transparent 45%),
+                radial-gradient(ellipse at 25% 90%, rgba(255, 219, 150, 0.06) 0%, transparent 35%),
+                radial-gradient(ellipse at 60% 20%, rgba(255, 46, 0, 0.08) 0%, transparent 30%);
+        }
+
+        /* ========================================
+       HERO INNER LAYOUT
+       ======================================== */
+        .hero-inner {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 56px;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        /* ========================================
+       LEFT COLUMN: COPY
+       ======================================== */
+        .hero-copy {
+            color: #fff;
+        }
+
+        /* Eyebrow tag */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: rgba(255, 219, 150, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background: rgba(255, 219, 150, 0.5);
+            border-radius: 1px;
+        }
+
+        /* Promotional pill badge */
+        .promo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #FF2E00 0%, #E62800 100%);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 11px 24px;
+            border-radius: 60px;
+            margin-bottom: 28px;
+            box-shadow:
+                0 4px 20px rgba(255, 46, 0, 0.45),
+                0 0 60px rgba(255, 46, 0, 0.12);
+            animation: badgeGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(255, 46, 0, 0.45), 0 0 60px rgba(255, 46, 0, 0.12);
+            }
+
+            50% {
+                box-shadow: 0 6px 28px rgba(255, 46, 0, 0.6), 0 0 80px rgba(255, 46, 0, 0.2);
+            }
+        }
+
+        .promo-badge svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Main headline */
+        .hero-headline {
+            font-size: 58px;
+            font-weight: 900;
+            line-height: 1.04;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+            color: #fff;
+        }
+
+        .hero-headline .accent {
+            color: #F99E89;
+            position: relative;
+        }
+
+        .hero-headline .tiny {
+            font-size: 48px;
+            font-weight: 800;
+        }
+
+        /* Subheadline */
+        .hero-subhead {
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 36px;
+            max-width: 430px;
+        }
+
+        .hero-subhead strong {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+        }
+
+        /* CTAs */
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #FF2E00 0%, #E62800 100%);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 17px 42px;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow:
+                0 6px 28px rgba(255, 46, 0, 0.4),
+                0 0 0 0 rgba(255, 46, 0, 0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 12px 40px rgba(255, 46, 0, 0.5),
+                0 0 0 4px rgba(255, 46, 0, 0.12);
+        }
+
+        .cta-primary svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.35s ease;
+        }
+
+        .cta-primary:hover svg {
+            transform: translateX(4px);
+        }
+
+        .cta-secondary {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            color: #fff;
+        }
+
+        .cta-secondary:hover::after {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Trust signals */
+        .trust-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 500;
+        }
+
+        .trust-item svg {
+            width: 16px;
+            height: 16px;
+            color: #FFDB96;
+            flex-shrink: 0;
+        }
+
+        .trust-item strong {
+            color: #FFDB96;
+            font-weight: 700;
+        }
+
+        .star-group {
+            display: flex;
+            gap: 2px;
+        }
+
+        .star-group svg {
+            width: 14px;
+            height: 14px;
+            fill: #FFDB96;
+        }
+
+        .trust-divider {
+            width: 1px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ========================================
+       RIGHT COLUMN: PRODUCT VISUAL
+       ======================================== */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 540px;
+        }
+
+        /* Ambient glow behind products */
+        .ambient-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle,
+                    rgba(255, 46, 0, 0.14) 0%,
+                    rgba(249, 158, 137, 0.06) 35%,
+                    transparent 65%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.08);
+                opacity: 0.8;
+            }
+        }
+
+        /* Floating offer circle */
+        .offer-circle {
+            position: absolute;
+            top: 10px;
+            right: 0px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(145deg, #FF2E00 0%, #CC2400 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            box-shadow:
+                0 8px 36px rgba(255, 46, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            border: 3px solid rgba(255, 255, 255, 0.12);
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(2deg);
+            }
+        }
+
+        .offer-circle .oc-top {
+            font-size: 12px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .offer-circle .oc-mid {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.1;
+        }
+
+        .offer-circle .oc-bot {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Product showcase row */
+        .products-showcase {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .prd-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .prd-item:hover {
+            transform: translateY(-12px);
+        }
+
+        .prd-img-wrap {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
+            border: 2px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .prd-item.size-sm .prd-img-wrap {
+            width: 130px;
+            height: 170px;
+        }
+
+        .prd-item.size-lg .prd-img-wrap {
+            width: 158px;
+            height: 210px;
+            border: 2px solid rgba(249, 158, 137, 0.25);
+            box-shadow:
+                0 16px 48px rgba(0, 0, 0, 0.35),
+                0 0 40px rgba(255, 46, 0, 0.12);
+        }
+
+        .prd-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Number indicator on each product */
+        .prd-number {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 30px;
+            height: 30px;
+            background: rgba(33, 47, 55, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            color: #fff;
+            z-index: 10;
+        }
+
+        /* FREE sticker on 4th product */
+        .free-sticker {
+            position: absolute;
+            top: -12px;
+            right: -10px;
+            background: linear-gradient(135deg, #FF2E00 0%, #E62800 100%);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border-radius: 60px;
+            z-index: 10;
+            box-shadow: 0 4px 18px rgba(255, 46, 0, 0.5);
+            animation: pulseTag 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulseTag {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.08) rotate(-2deg);
+            }
+        }
+
+        /* Plus / Equals signs */
+        .math-sign {
+            font-size: 22px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.2);
+            align-self: center;
+            margin-bottom: 28px;
+            flex-shrink: 0;
+        }
+
+        /* Product name label */
+        .prd-name {
+            margin-top: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.4px;
+            text-align: center;
+        }
+
+        /* Tagline below products */
+        .showcase-tagline {
+            margin-top: 32px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .showcase-tagline p {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.3px;
+        }
+
+        .showcase-tagline p em {
+            color: #F99E89;
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* Tiny "no code needed" tag */
+        .no-code-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .no-code-tag svg {
+            width: 14px;
+            height: 14px;
+            color: #47D16C;
+        }
+
+        /* ========================================
+       RESPONSIVE — TABLET
+       ======================================== */
+        @media (max-width: 1100px) {
+            .hero-headline {
+                font-size: 46px;
+            }
+
+            .hero-headline .tiny {
+                font-size: 38px;
+            }
+
+            .hero-inner {
+                padding: 60px 36px;
+                gap: 40px;
+            }
+
+            .prd-item.size-sm .prd-img-wrap {
+                width: 110px;
+                height: 145px;
+            }
+
+            .prd-item.size-lg .prd-img-wrap {
+                width: 135px;
+                height: 180px;
+            }
+
+            .offer-circle {
+                width: 100px;
+                height: 100px;
+            }
+
+            .offer-circle .oc-top {
+                font-size: 10px;
+            }
+
+            .offer-circle .oc-mid {
+                font-size: 20px;
+            }
+
+            .offer-circle .oc-bot {
+                font-size: 9px;
+            }
+        }
+
+        /* ========================================
+       RESPONSIVE — MOBILE
+       ======================================== */
+        @media (max-width: 900px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                padding: 48px 24px;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .eyebrow {
+                justify-content: center;
+            }
+
+            .hero-headline {
+                font-size: 40px;
+                letter-spacing: -1.5px;
+            }
+
+            .hero-headline .tiny {
+                font-size: 33px;
+            }
+
+            .hero-subhead {
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 16px;
+                max-width: 100%;
+            }
+
+            .cta-group {
+                justify-content: center;
+            }
+
+            .trust-row {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                min-height: 380px;
+            }
+
+            .prd-item.size-sm .prd-img-wrap {
+                width: 90px;
+                height: 120px;
+            }
+
+            .prd-item.size-lg .prd-img-wrap {
+                width: 110px;
+                height: 150px;
+            }
+
+            .offer-circle {
+                width: 85px;
+                height: 85px;
+                top: -8px;
+                right: -6px;
+            }
+
+            .offer-circle .oc-top {
+                font-size: 9px;
+            }
+
+            .offer-circle .oc-mid {
+                font-size: 17px;
+            }
+
+            .offer-circle .oc-bot {
+                font-size: 8px;
+            }
+
+            .math-sign {
+                font-size: 16px;
+                margin-bottom: 18px;
+            }
+
+            .prd-number {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
+
+            .ambient-glow {
+                width: 340px;
+                height: 340px;
+            }
+        }
+
+        /* ========================================
+       RESPONSIVE — SMALL MOBILE
+       ======================================== */
+        @media (max-width: 480px) {
+            .hero-inner {
+                padding: 36px 16px;
+            }
+
+            .hero-headline {
+                font-size: 32px;
+            }
+
+            .hero-headline .tiny {
+                font-size: 27px;
+            }
+
+            .hero-subhead {
+                font-size: 15px;
+            }
+
+            .cta-primary {
+                padding: 14px 30px;
+                font-size: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .products-showcase {
+                gap: 4px;
+            }
+
+            .prd-item.size-sm .prd-img-wrap {
+                width: 68px;
+                height: 90px;
+                border-radius: 12px;
+            }
+
+            .prd-item.size-lg .prd-img-wrap {
+                width: 82px;
+                height: 110px;
+                border-radius: 12px;
+            }
+
+            .offer-circle {
+                width: 68px;
+                height: 68px;
+                top: -14px;
+                right: -10px;
+            }
+
+            .offer-circle .oc-top {
+                font-size: 8px;
+            }
+
+            .offer-circle .oc-mid {
+                font-size: 14px;
+            }
+
+            .offer-circle .oc-bot {
+                font-size: 7px;
+            }
+
+            .math-sign {
+                font-size: 13px;
+                margin-bottom: 14px;
+            }
+
+            .prd-name {
+                font-size: 9px;
+            }
+
+            .free-sticker {
+                font-size: 9px;
+                padding: 5px 12px;
+            }
+
+            .trust-divider {
+                display: none;
+            }
+
+            .trust-row {
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ====== ANNOUNCEMENT BAR ====== -->
+    <div class="announcement-bar">
+        🔥 <span>Buy 3 Puffins, Get 1 FREE</span> — No code needed. Your can will thank you.
+    </div>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="hero-banner">
+
+        <!-- Lifestyle background -->
+        <div class="hero-bg">
+            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/Lights_and_Sirens_group_1-transformed.jpg?v=1765987742"
+                alt="Puffin coolers at the campfire" loading="eager">
+        </div>
+
+        <!-- Cinematic overlay -->
+        <div class="hero-overlay"></div>
+
+        <div class="hero-inner">
+
+            <!-- ====== LEFT: COPY ====== -->
+            <div class="hero-copy">
+
+                <div class="eyebrow">Puffin Drinkwear</div>
+
+                <!-- Promo badge -->
+                <div class="promo-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    Buy 3 Get 1 Free
+                </div>
+
+                <!-- Headline — witty, punchy -->
+                <h1 class="hero-headline">
+                    Three's a Party.<br>
+                    <span class="accent tiny">The Fourth Won't<br>Cost You a Dime.</span>
+                </h1>
+
+                <!-- Subheadline — brand-voice fun -->
+                <p class="hero-subhead">
+                    Pick any 3 Puffin coolers and we'll throw in a 4th — <strong>absolutely free.</strong>
+                    Because naked cans are a party foul.
+                </p>
+
+                <!-- CTAs -->
+                <div class="cta-group">
+                    <a href="https://puffindrinkwear.com/collections/all-products" class="cta-primary"
+                        id="hero-cta-primary">
+                        Grab Your 4-Pack
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="https://puffindrinkwear.com/collections/all-products" class="cta-secondary"
+                        id="hero-cta-secondary">Browse All Styles</a>
+                </div>
+
+                <!-- Trust signals -->
+                <div class="trust-row">
+                    <div class="trust-item">
+                        <div class="star-group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        </div>
+                        <span><strong>4.9</strong> from 10k+ reviews</span>
+                    </div>
+                    <div class="trust-divider"></div>
+                    <div class="trust-item">
+                        <!-- Heroicon: truck -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a3 3 0 1 1 6 0h.375c1.035 0 1.875-.84 1.875-1.875V16.5h-5.625c-.621 0-1.125-.504-1.125-1.125V15ZM8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v7.5c0 .414.336.75.75.75H21a.75.75 0 0 0 .53-.22l2.25-2.25a.75.75 0 0 0 .22-.53V7.5a.75.75 0 0 0-.75-.75h-7.5ZM19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
+                        </svg>
+                        <span>Free shipping $60+</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== RIGHT: PRODUCT VISUAL ====== -->
+            <div class="hero-visual">
+
+                <!-- Ambient glow -->
+                <div class="ambient-glow"></div>
+
+                <!-- Floating offer badge -->
+                <div class="offer-circle">
+                    <span class="oc-top">Buy 3</span>
+                    <span class="oc-mid">Get 1</span>
+                    <span class="oc-bot">Free</span>
+                </div>
+
+                <!-- Product row: 3 + 1 free -->
+                <div class="products-showcase">
+
+                    <!-- Product 1 -->
+                    <div class="prd-item size-sm">
+                        <div class="prd-img-wrap">
+                            <span class="prd-number">1</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/TheFeller-PuffinRed1_1c0ea140-e20c-498c-98d4-da72777fb396.jpg?v=1765403113"
+                                alt="The Feller — Puffin Red" loading="eager">
+                        </div>
+                        <span class="prd-name">The Feller</span>
+                    </div>
+
+                    <span class="math-sign">+</span>
+
+                    <!-- Product 2 (featured / centre) -->
+                    <div class="prd-item size-lg">
+                        <div class="prd-img-wrap">
+                            <span class="prd-number">2</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/DSC05340.jpg?v=1765990695"
+                                alt="The Hoodie cooler on a drink" loading="eager">
+                        </div>
+                        <span class="prd-name">The Hoodie</span>
+                    </div>
+
+                    <span class="math-sign">+</span>
+
+                    <!-- Product 3 -->
+                    <div class="prd-item size-sm">
+                        <div class="prd-img-wrap">
+                            <span class="prd-number">3</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/ThePuffy-VarsityBlue1_12cfa2d9-f379-4cba-b84f-ac43db4d8596.png?v=1764024327"
+                                alt="The Puffy — Varsity Blue" loading="eager">
+                        </div>
+                        <span class="prd-name">The Puffy</span>
+                    </div>
+
+                    <span class="math-sign">=</span>
+
+                    <!-- Product 4: FREE -->
+                    <div class="prd-item size-sm">
+                        <div class="prd-img-wrap">
+                            <span class="free-sticker">FREE!</span>
+                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/ThePahka-SandyWhite1_9fc4dfd1-5565-4f51-9b4a-19aca6a12311.png?v=1764022266"
+                                alt="The Pahka — Sandy White (FREE)" loading="eager">
+                        </div>
+                        <span class="prd-name">The Pahka</span>
+                    </div>
+
+                </div>
+
+                <!-- Tagline under products -->
+                <div class="showcase-tagline">
+                    <p>The coolest drinkwear on the planet. <em>Pick any 3, the 4th is yours.</em></p>
+                    <div class="no-code-tag">
+                        <!-- Heroicon: check-circle -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        No code required — auto-applied at cart
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>
