@@ -707,6 +707,25 @@
     .compare-table tbody tr:hover td { background: var(--off); }
     .compare-table tbody tr:hover .compare-yes { background: rgba(22,163,74,.1); }
 
+    /* ── FAQ ACCORDION ────────────────────────────── */
+    .faq-section { background: var(--off); padding: 80px 32px; border-top: 1px solid var(--border); }
+    .faq-wrap { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; padding: 22px 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-family: var(--font-main); font-size: 16px; font-weight: 700; color: var(--dark);
+      cursor: pointer; text-align: left;
+    }
+    .faq-q:hover { color: var(--black); }
+    .faq-chevron { flex-shrink: 0; transition: transform .25s; color: var(--muted); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease;
+      font-family: var(--font-body); font-size: 15px; color: var(--mid); line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 500px; padding-bottom: 22px; }
+
     /* ── NEWSLETTER ──────────────────────────────── */
     .nl-section { background: var(--lime); padding: 72px 32px; }
     .nl-inner { max-width: 600px; margin: 0 auto; text-align: center; }
@@ -814,8 +833,9 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .how-section { padding: 60px 20px; }
       .testi-section { padding: 60px 20px; }
-      .riders-grid { grid-template-columns: repeat(2, 1fr); }
+      .riders-grid { grid-template-columns: repeat(2, 1fr) !important; }
       .riders-section { padding: 60px 20px; }
+      .faq-section { padding: 60px 20px; }
       .consult-inner { grid-template-columns: 1fr; gap: 32px; }
       .consult-section { padding: 60px 20px; }
       .consult-left { max-height: 320px; }
@@ -843,12 +863,15 @@
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="ann-bar">
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-  Pasturesale — Up to 58% off. Free US Shipping on all orders.
-  <a href="/collections/bison-off-the-rack">Shop the Sale &rarr;</a>
+<!-- ANNOUNCEMENT BAR — rotating messages like live site -->
+<div class="ann-bar" id="ann-bar">
+  <span class="ann-msg ann-active">Buy now, pay over time! Select <strong>Shop Pay</strong> at checkout.</span>
+  <span class="ann-msg">Bison covers import taxes and custom duties on US orders. <a href="/collections/pasturesale">Pasturesale — 50% Off &rarr;</a></span>
 </div>
+<script>
+(function(){var b=document.getElementById('ann-bar');if(!b)return;var m=b.querySelectorAll('.ann-msg'),i=0;setInterval(function(){m[i].classList.remove('ann-active');i=(i+1)%m.length;m[i].classList.add('ann-active');},4500);})();
+</script>
+<style>.ann-msg{display:none;}.ann-msg.ann-active{display:inline;}</style>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -1034,6 +1057,24 @@
   </div>
 </div>
 
+<!-- VALUE PROP — emotional hook from live site -->
+<section style="padding:72px 32px;background:var(--white);">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+    <div style="border-radius:8px;overflow:hidden;">
+      <img src="https://bisontrack.com/cdn/shop/files/Copy_of_black_friday_1.png?v=1716396701" alt="Bison Track — ill-fitting gear" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div>
+      <div class="section-label">The Problem</div>
+      <h2 class="section-h2">Are you tired of ill-fitting moto gear with no style?</h2>
+      <p class="section-sub" style="margin-bottom:28px;">We've got you covered. Every Bison Track suit is custom-built to your exact measurements — not a generic size chart. Whether you're 5'2" or 6'4", 130 lbs or 380 lbs, your gear fits you.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/collections/bison-custom-built" class="btn-dark">Start Your Custom Build <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="/pages/measurement-central" class="btn-outline-dark">How Measuring Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CATEGORIES -->
 <section class="cats-section">
   <div class="section-wrap" style="text-align:center;">
@@ -1194,6 +1235,7 @@
       <img src="https://bisontrack.com/cdn/shop/files/The_Blox_Combined_Logo.jpg?v=1716645801" alt="The Blox" style="height:44px;width:auto;object-fit:contain;opacity:.8;filter:grayscale(40%);">
       <img src="https://bisontrack.com/cdn/shop/files/Ultimate_Motorcycling.jpg?v=1716646054" alt="Ultimate Motorcycling" style="height:44px;width:auto;object-fit:contain;opacity:.8;filter:grayscale(40%);">
       <img src="https://bisontrack.com/cdn/shop/files/International_Business_Times_Logo_d14001f2-438c-4a28-b494-7f58a242b794.png?v=1718930890" alt="International Business Times" style="height:36px;width:auto;object-fit:contain;opacity:.75;filter:grayscale(40%);">
+      <img src="https://bisontrack.com/cdn/shop/files/esc_logo_fefbea98-344a-4e3e-a5de-1af021cd65b5.png?v=1734109020" alt="ESC.live" style="height:40px;width:auto;object-fit:contain;opacity:.8;filter:grayscale(40%);">
     </div>
     <div class="partners-label" style="margin-top:24px;font-size:11px;">As seen &amp; worn in</div>
   </div>
@@ -1209,26 +1251,26 @@
     <div class="testi-grid">
       <div class="testi-card">
         <div class="testi-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="testi-text">"The fit is absolutely unreal. I sent my measurements and the suit came back fitting like a second skin. I've had Alpinestars and Dainese suits — this blows them both away for the price."</p>
+        <p class="testi-text">"First of all I am a 380 lb 6 foot 2 inch rider and a off the rack race suit is out of the question, in comes Bison riding gear. I have a suit custom fitted along with gloves and custom undersuits and they are the best. Fit is perfect and the talk of the pit area."</p>
         <div class="testi-author">
-          <div class="testi-avatar">MR</div>
-          <div><div class="testi-name">M. Rodriguez</div><div class="testi-meta">MotoAmerica Supersport Rider</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
+          <div class="testi-avatar">MD</div>
+          <div><div class="testi-name">Michael Driggers</div><div class="testi-meta">Custom Suit Owner</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
         </div>
       </div>
       <div class="testi-card">
         <div class="testi-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="testi-text">"Ordered a custom kangaroo suit. Communication was excellent throughout — they answered every question. When it arrived, quality was top notch. Will order again for next season."</p>
+        <p class="testi-text">"The suit fit perfect and looks awesome. It was tested in a fast low side and it did its job and still looks new. If you are looking for a new suit, you can't go wrong with Bison. Proud to be part of The Herd!"</p>
         <div class="testi-author">
-          <div class="testi-avatar">ST</div>
-          <div><div class="testi-name">S. Thompson</div><div class="testi-meta">Club Racer, Thunderhill</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
+          <div class="testi-avatar">MC</div>
+          <div><div class="testi-name">Matthew Chapin</div><div class="testi-meta">Track Day Rider</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
         </div>
       </div>
       <div class="testi-card">
         <div class="testi-stars"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-        <p class="testi-text">"Best value in custom leathers, period. The 4-step process is super clear, the team is responsive, and the end product is beautiful. Bison is the real deal."</p>
+        <p class="testi-text">"With anything custom comes small adjustments. I got my suit and had an issue with it needing to be altered a bit. I reached out to them and they set it up for me to bring the suit to one of their seamstresses. When the suit was completed they sent it back no problem."</p>
         <div class="testi-author">
-          <div class="testi-avatar">JK</div>
-          <div><div class="testi-name">J. Kim</div><div class="testi-meta">HPDE Track Day Rider</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
+          <div class="testi-avatar">JG</div>
+          <div><div class="testi-name">Jordan Glaser</div><div class="testi-meta">Custom Suit Owner</div><div class="testi-verified"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Verified Purchase</div></div>
         </div>
       </div>
     </div>
@@ -1250,39 +1292,47 @@
     <h2 class="section-h2 section-h2-white">The Riders Who Trust Bison Track</h2>
     <p class="section-sub section-sub-light" style="margin:0 auto;">From North America Talent Cup to the FIM Women's World Championship — our gear performs where it counts.</p>
   </div>
-  <div class="riders-grid">
-    <div class="rider-card">
+  <div class="riders-grid" style="grid-template-columns:repeat(5,1fr);">
+    <a href="https://www.hawkmazzottamotocamp.com/" target="_blank" class="rider-card">
+      <img src="https://bisontrack.com/cdn/shop/files/Mazzotta_Hawk.jpg?v=1711922268" alt="Hawk Mazzotta — Super Hooligan" loading="lazy">
+      <div class="rider-overlay"></div>
+      <div class="rider-info">
+        <div class="rider-name">Hawk Mazzotta</div>
+        <div class="rider-title">Super Hooligan Championship</div>
+      </div>
+    </a>
+    <a href="https://chrisclarkracing.com/" target="_blank" class="rider-card">
       <img src="https://bisontrack.com/cdn/shop/files/2024_clark_chris_round01_barcelona_worldssp300_sunday-02761-1.jpg?v=1718476415" alt="Chris Clark — WorldSSP300" loading="lazy">
       <div class="rider-overlay"></div>
       <div class="rider-info">
         <div class="rider-name">Chris Clark</div>
-        <div class="rider-title">WorldSSP300 — Barcelona</div>
+        <div class="rider-title">FIM Supersport 300</div>
       </div>
-    </div>
-    <div class="rider-card">
+    </a>
+    <a href="https://www.instagram.com/maldobbs126/" target="_blank" class="rider-card">
       <img src="https://bisontrack.com/cdn/shop/files/2024_FIM_Women_s_World_Championship_Cremona_Test_Mallory_Dobbs_11.jpg?v=1716482167" alt="Mallory Dobbs — FIM Women's World Championship" loading="lazy">
       <div class="rider-overlay"></div>
       <div class="rider-info">
         <div class="rider-name">Mallory Dobbs</div>
         <div class="rider-title">FIM Women's World Championship</div>
       </div>
-    </div>
-    <div class="rider-card">
+    </a>
+    <a href="https://www.mikaylamooreracing.com/" target="_blank" class="rider-card">
       <img src="https://bisontrack.com/cdn/shop/files/Mikayla_Moore.jpg?v=1718918010" alt="Mikayla Moore — MotoAmerica" loading="lazy">
       <div class="rider-overlay"></div>
       <div class="rider-info">
         <div class="rider-name">Mikayla Moore</div>
-        <div class="rider-title">MotoAmerica</div>
+        <div class="rider-title">Royal Enfield Build. Train. Race.</div>
       </div>
-    </div>
-    <div class="rider-card">
+    </a>
+    <a href="https://www.kensei74.com/" target="_blank" class="rider-card">
       <img src="https://bisontrack.com/cdn/shop/files/2024_Jerez_Kensei_Matsudaira_07.jpg?v=1716646549" alt="Kensei Matsudaira — Jerez" loading="lazy">
       <div class="rider-overlay"></div>
       <div class="rider-info">
         <div class="rider-name">Kensei Matsudaira</div>
-        <div class="rider-title">Jerez Round — 2024</div>
+        <div class="rider-title">RFME ESBK PreMoto3</div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -1390,6 +1440,37 @@
   </div>
 </section>
 
+<!-- FAQ — real Q&As from live site, addresses objections -->
+<section class="faq-section">
+  <div class="section-wrap" style="text-align:center;margin-bottom:40px;">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-h2">Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item open">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        Why should I choose Bison?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">We know there are a lot of great companies out there who can get you in a suit. We also know that there is no other company who offers a one-on-one experience catered just for you, at the price we do, and certainly not while providing the pro-level quality you'll find in your Bison gear. The bottom line is this: You're treated like a pro no matter who you are, and your gear will be built with the same care and materials whether you're riding on the street or on the television. We're also a family-owned business with a true passion for motorcycle road racing.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        What does the order process look like?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">The great thing about a Bison kit is that it is built just for you, from measurements to colors and logos. Once you place your order on our website, you will receive an order confirmation with important next steps. We work one-on-one with you to design the suit and gloves of your dreams. Due to demand, our team is unable to work on designs without a paid order in our system.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        What does the timeline of a typical order look like?
+        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="faq-a">The design process can be completed in as quickly as 24 hours, however it isn't unusual for us to spend time with the customer tweaking and modifying designs. Our average design time is about two weeks. Once the design is approved and we have measurements, completed suit and/or gloves are typically in your hands in under 60 days!</div>
+    </div>
+  </div>
+</section>
+
 <!-- NEWSLETTER — lime background matching brand -->
 <section class="nl-section">
   <div class="nl-inner">
@@ -1413,9 +1494,12 @@
         </div>
         <p class="footer-desc">Bespoke motorcycle racing leathers, gloves, and accessories. Custom-built to your exact measurements. Trusted by MotoAmerica riders across the US.</p>
         <div class="footer-social">
-          <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="https://www.instagram.com/bison_track/" target="_blank" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://www.facebook.com/BisonTrackGear" target="_blank" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://www.youtube.com/bisontrackgear" target="_blank" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+          <a href="https://twitter.com/bisontrack" target="_blank" aria-label="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4l-6.768 6.768"/></svg></a>
+          <a href="https://www.linkedin.com/company/bisontrack/" target="_blank" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.tiktok.com/@bisontrack" target="_blank" aria-label="TikTok"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
         </div>
       </div>
       <div>
@@ -1430,24 +1514,25 @@
         </ul>
       </div>
       <div>
-        <div class="footer-col-h">Help</div>
+        <div class="footer-col-h">Help &amp; Policies</div>
         <ul class="footer-links">
-          <li><a href="/pages/sizing-guide">Sizing Guide</a></li>
-          <li><a href="/pages/custom-order-process">Custom Order Process</a></li>
           <li><a href="/pages/faq">FAQ</a></li>
-          <li><a href="/pages/shipping">Shipping Info</a></li>
-          <li><a href="/pages/returns">Returns &amp; Exchanges</a></li>
-          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/contact-us">Contact Us</a></li>
+          <li><a href="/pages/bison-fitment-guarantee-policy">Fitment Guarantee Policy</a></li>
+          <li><a href="/pages/bison-warranty-policy">Warranty Policy</a></li>
+          <li><a href="/policies/refund-policy">Refund Policy</a></li>
+          <li><a href="/policies/shipping-policy">Shipping Policy</a></li>
         </ul>
       </div>
       <div>
         <div class="footer-col-h">Company</div>
         <ul class="footer-links">
-          <li><a href="/pages/about-us">About Bison Track</a></li>
-          <li><a href="/pages/motoamerica">MotoAmerica Partnership</a></li>
-          <li><a href="/blogs/news">Rider Stories</a></li>
-          <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
-          <li><a href="/pages/terms-of-service">Terms of Service</a></li>
+          <li><a href="/pages/about-us">About Us</a></li>
+          <li><a href="/pages/community">Community</a></li>
+          <li><a href="/pages/meet-our-team">Meet Our Team</a></li>
+          <li><a href="/blogs/news">Blog</a></li>
+          <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/policies/terms-of-service">Terms of Service</a></li>
         </ul>
       </div>
     </div>
