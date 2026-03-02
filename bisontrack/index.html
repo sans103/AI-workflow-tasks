@@ -442,13 +442,13 @@
     }
     .cat-btn:hover { background: var(--lime-dk); }
 
-    /* ── STATS BAR ───────────────────────────────── */
-    .stats-bar { background: var(--black); padding: 52px 32px; }
+    /* ── NUMBERS / SOCIAL PROOF BAR ─────────────── */
+    .stats-bar { background: var(--black); padding: 56px 32px; }
     .stats-inner {
       max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
     .stat-item {
       text-align: center;
@@ -466,6 +466,59 @@
     }
     .stat-num span { color: var(--lime); }
     .stat-lbl { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #606070; }
+    .stat-src { font-size: 10px; color: #4a4a5a; margin-top: 4px; font-style: italic; }
+
+    /* ── BESTSELLERS ─────────────────────────────── */
+    .best-section { background: var(--off2); padding: 72px 32px; }
+    .best-wrap { max-width: 1280px; margin: 0 auto; }
+    .best-tabs {
+      display: flex; gap: 8px; margin-bottom: 32px; overflow-x: auto;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .best-tabs::-webkit-scrollbar { display: none; }
+    .best-tab {
+      padding: 10px 20px; border-radius: 4px; border: 1px solid var(--border);
+      background: var(--white); font-family: var(--font-main); font-size: 12px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+      cursor: pointer; white-space: nowrap; transition: all .18s;
+      color: var(--mid);
+    }
+    .best-tab:hover { border-color: var(--dark); color: var(--dark); }
+    .best-tab.active { background: var(--dark); color: var(--white); border-color: var(--dark); }
+    .best-panel { display: none; }
+    .best-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .best-card {
+      background: var(--white); border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border); transition: box-shadow .2s;
+    }
+    .best-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+    .best-card-img {
+      position: relative; aspect-ratio: 1; background: #f5f5f5; overflow: hidden;
+    }
+    .best-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .3s;
+    }
+    .best-card:hover .best-card-img img { transform: scale(1.04); }
+    .best-card-sale {
+      position: absolute; top: 10px; left: 10px;
+      background: #dc2626; color: #fff; font-size: 11px; font-weight: 700;
+      padding: 3px 8px; border-radius: 3px;
+    }
+    .best-card-info { padding: 16px; }
+    .best-card-name {
+      font-family: var(--font-main); font-size: 13px; font-weight: 700;
+      color: var(--text); margin-bottom: 6px; line-height: 1.35;
+    }
+    .best-card-price { font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--text); }
+    .best-card-was { font-size: 12px; color: var(--muted); text-decoration: line-through; margin-left: 6px; font-weight: 400; }
+    .best-card-cta {
+      display: inline-block; margin-top: 10px; padding: 8px 18px;
+      background: var(--dark); color: var(--white); font-family: var(--font-main);
+      font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      border-radius: 4px; text-decoration: none; transition: background .18s;
+    }
+    .best-card-cta:hover { background: var(--lime); color: var(--dark); }
 
     /* ── PRODUCTS ────────────────────────────────── */
     .products-section { background: var(--off2); padding: 72px 32px; }
@@ -826,8 +879,11 @@
       .cats-section { padding: 52px 20px; }
       .cats-grid { grid-template-columns: 1fr; gap: 12px; }
       .cat-card { aspect-ratio: 16/9; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .stat-item:nth-child(2) { border-right: none; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+      .stat-item:last-child { border-bottom: none; }
+      .best-section { padding: 52px 20px; }
+      .best-panel.active { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .products-section { padding: 52px 20px; }
       .products-header { flex-direction: column; align-items: flex-start; }
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -858,6 +914,8 @@
       .prod-name { font-size: 11px; }
       .price-now { font-size: 15px; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .best-panel.active { grid-template-columns: 1fr; }
+      .best-card-img { aspect-ratio: 4/3; }
     }
   </style>
 </head>
@@ -1112,15 +1170,190 @@
   </div>
 </section>
 
-<!-- STATS BAR -->
+<!-- NUMBERS / SOCIAL PROOF -->
 <div class="stats-bar">
   <div class="stats-inner">
-    <div class="stat-item"><div class="stat-num">7000<span>+</span></div><div class="stat-lbl">Happy Customers</div></div>
-    <div class="stat-item"><div class="stat-num">4.7<span>★</span></div><div class="stat-lbl">Average Rating</div></div>
-    <div class="stat-item"><div class="stat-num">2<span>yr</span></div><div class="stat-lbl">Warranty on Suits</div></div>
-    <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-lbl">Fit Guaranteed</div></div>
+    <div class="stat-item">
+      <div class="stat-num">5.0<span>/5</span></div>
+      <div class="stat-lbl">Average Customer Rating</div>
+      <div class="stat-src">Verified via Judge.me Reviews</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5<span> Pro</span></div>
+      <div class="stat-lbl">Championship Riders Trust Bison</div>
+      <div class="stat-src">MotoAmerica, NATC &amp; International Series</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">189<span>+</span></div>
+      <div class="stat-lbl">Products in Catalog</div>
+      <div class="stat-src">Custom Built &amp; Ready-to-Wear</div>
+    </div>
   </div>
 </div>
+
+<!-- BESTSELLERS -->
+<section class="best-section">
+  <div class="best-wrap">
+    <div class="section-label">Top Picks from Every Category</div>
+    <h2 class="section-h2">Bestsellers</h2>
+    <div class="best-tabs" id="best-tabs">
+      <button class="best-tab active" data-tab="cbs">Custom Built Suits</button>
+      <button class="best-tab" data-tab="cbg">Custom Built Gloves</button>
+      <button class="best-tab" data-tab="rtw">Ready to Wear Suits</button>
+      <button class="best-tab" data-tab="rtwg">Ready to Wear Gloves</button>
+      <button class="best-tab" data-tab="ps">PastureSale</button>
+    </div>
+
+    <!-- Custom Built Suits -->
+    <div class="best-panel active" id="panel-cbs">
+      <a href="/products/thor-2-custom-motorcycle-racing-suit" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2CustomMotorcycleRacingSuit_OnePiece.jpg" alt="Thor.2 Custom Suit" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">Thor.2 Custom Motorcycle Racing Suit</div>
+          <div class="best-card-price">$1,785.00</div>
+          <span class="best-card-cta">Configure Yours</span>
+        </div>
+      </a>
+      <a href="/products/bison-helite-e-turtle-2-airbag-vest" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonHeliteE-Turtle2AirbagVest_SideBack.png" alt="Helite Airbag Vest" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">Helite E-Turtle 2 Airbag Vest</div>
+          <div class="best-card-price">$850.00</div>
+          <span class="best-card-cta">Configure Yours</span>
+        </div>
+      </a>
+      <a href="/products/thor-1-custom-motorcycle-racing-suit" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor_1Leather_Front_540x540_jpg.png" alt="Thor.1 Custom Suit" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">Thor.1 Custom Motorcycle Racing Suit</div>
+          <div class="best-card-price">$1,425.00</div>
+          <span class="best-card-cta">Configure Yours</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Custom Built Gloves -->
+    <div class="best-panel" id="panel-cbg">
+      <a href="/products/thor-2-custom-motorcycle-racing-gloves" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.2MotorcycleRacingGloves.png" alt="Thor.2 Racing Gloves" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">Thor.2 Custom Racing Gloves</div>
+          <div class="best-card-price">$400.00</div>
+          <span class="best-card-cta">Configure Yours</span>
+        </div>
+      </a>
+      <a href="/products/thor-3-custom-motorcycle-gauntlet-gloves" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.3CustomMotorcycleGauntletGloves.png" alt="Thor.3 Gauntlet Gloves" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">Thor.3 Custom Gauntlet Gloves</div>
+          <div class="best-card-price">$350.00</div>
+          <span class="best-card-cta">Configure Yours</span>
+        </div>
+      </a>
+      <a href="/products/thor-4-custom-motorcycle-racing-gloves" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonThor.4MotorcycleRacingGloves_86cec64b-e732-42f0-b6ef-c7345a494044.png" alt="Thor.4 Racing Gloves" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">Thor.4 Custom Racing Gloves</div>
+          <div class="best-card-price">$350.00</div>
+          <span class="best-card-cta">Configure Yours</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- RTW Suits -->
+    <div class="best-panel" id="panel-rtw">
+      <a href="/products/bf-thor-2-motorcycle-racing-suit" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonBFThor.2MotorcycleRacingSuit.png" alt="BF Thor.2 RTW Suit" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">BF Thor.2 Motorcycle Racing Suit</div>
+          <div class="best-card-price">$1,600.00</div>
+          <span class="best-card-cta">Shop Now</span>
+        </div>
+      </a>
+      <a href="/products/bf-thor-1-motorcycle-racing-suit" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonBFThor.1MotorcycleRacingSuit.png" alt="BF Thor.1 RTW Suit" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">BF Thor.1 Motorcycle Racing Suit</div>
+          <div class="best-card-price">$1,100.00</div>
+          <span class="best-card-cta">Shop Now</span>
+        </div>
+      </a>
+      <a href="/products/bison-helite-e-turtle-2-airbag-vest" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonHeliteE-Turtle2AirbagVest_SideBack.png" alt="Helite Airbag Vest" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">Helite E-Turtle 2 Airbag Vest</div>
+          <div class="best-card-price">$850.00</div>
+          <span class="best-card-cta">Shop Now</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- RTW Gloves -->
+    <div class="best-panel" id="panel-rtwg">
+      <a href="/products/bf-thor-1-motorcycle-racing-gloves" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonBFThor.1MotorcycleRacingGloves.png" alt="BF Thor.1 Gloves" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">BF Thor.1 Motorcycle Racing Gloves</div>
+          <div class="best-card-price">$200.00</div>
+          <span class="best-card-cta">Shop Now</span>
+        </div>
+      </a>
+      <a href="/products/bf-thor-3-motorcycle-gauntlet-gloves" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonBFThor.3MotorcycleGauntletGloves.png" alt="BF Thor.3 Gauntlet Gloves" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">BF Thor.3 Motorcycle Gauntlet Gloves</div>
+          <div class="best-card-price">$270.00</div>
+          <span class="best-card-cta">Shop Now</span>
+        </div>
+      </a>
+      <a href="/products/bf-thor-2-motorcycle-racing-gloves" class="best-card">
+        <div class="best-card-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonBFThor.2MotorcycleRacingGloves.png" alt="BF Thor.2 Gloves" loading="lazy"></div>
+        <div class="best-card-info">
+          <div class="best-card-name">BF Thor.2 Motorcycle Racing Gloves</div>
+          <div class="best-card-price">$320.00</div>
+          <span class="best-card-cta">Shop Now</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- PastureSale -->
+    <div class="best-panel" id="panel-ps">
+      <a href="/products/vintage-rebirth-two-piece-cowhide-motorcycle-racing-suit" class="best-card">
+        <div class="best-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png" alt="Vintage Rebirth Two Piece" loading="lazy">
+          <span class="best-card-sale">-58%</span>
+        </div>
+        <div class="best-card-info">
+          <div class="best-card-name">Vintage Rebirth Two-Piece Cowhide Suit</div>
+          <div class="best-card-price">$749.70 <span class="best-card-was">$1,785.00</span></div>
+          <span class="best-card-cta">Shop Sale</span>
+        </div>
+      </a>
+      <a href="/products/vintage-rebirth-one-piece-cowhide-motorcycle-racing-suit" class="best-card">
+        <div class="best-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/VintageRebirthCowhideSuit.png" alt="Vintage Rebirth One Piece" loading="lazy">
+          <span class="best-card-sale">-58%</span>
+        </div>
+        <div class="best-card-info">
+          <div class="best-card-name">Vintage Rebirth One-Piece Cowhide Suit</div>
+          <div class="best-card-price">$598.50 <span class="best-card-was">$1,425.00</span></div>
+          <span class="best-card-cta">Shop Sale</span>
+        </div>
+      </a>
+      <a href="/products/bison-vegan-motorcycle-racing-suit" class="best-card">
+        <div class="best-card-img">
+          <img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVeganMotorcycleRacingSuit.png" alt="Vegan Racing Suit" loading="lazy">
+          <span class="best-card-sale">-58%</span>
+        </div>
+        <div class="best-card-info">
+          <div class="best-card-name">Vegan Motorcycle Racing Suit</div>
+          <div class="best-card-price">$598.50 <span class="best-card-was">$1,425.00</span></div>
+          <span class="best-card-cta">Shop Sale</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- PRODUCTS -->
 <section class="products-section">
@@ -1545,5 +1778,16 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.best-tab'),panels=document.querySelectorAll('.best-panel');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(b){b.classList.remove('active');});
+    panels.forEach(function(p){p.classList.remove('active');});
+    t.classList.add('active');
+    document.getElementById('panel-'+t.getAttribute('data-tab')).classList.add('active');
+  });});
+})();
+</script>
 </body>
 </html>
