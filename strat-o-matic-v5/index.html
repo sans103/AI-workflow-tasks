@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>Baseball MAX | The Avant-Garde Baseball Simulator</title>
+    <meta name="description" content="Break the rules. Play real baseball. Baseball MAX by Strat-O-Matic — the most realistic baseball simulator that defies convention. 7 game modes, 150+ years of history, 15,000+ real player cards.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Colors - BOLD */
+            --red: #c8102e;
+            --red-dark: #a00d25;
+            --electric-blue: #00d9ff;
+            --neon-green: #39ff14;
+            --yellow: #d4f02c;
+
+            /* High Contrast */
+            --black: #000000;
+            --white: #ffffff;
+            --gray-900: #0a0a0a;
+            --gray-800: #1a1a1a;
+            --gray-700: #2a2a2a;
+
+            /* Brutalist Spacing */
+            --gap-brutal: 64px;
+            --gap-awkward: 48px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--white);
+            background: var(--black);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor Follower */
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--electric-blue);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out, opacity 0.15s;
+            mix-blend-mode: screen;
+        }
+
+        .cursor-follower.hover {
+            transform: scale(2);
+            opacity: 0.5;
+        }
+
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+                clip-path: inset(40% 0 61% 0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+                clip-path: inset(92% 0 1% 0);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+                clip-path: inset(43% 0 1% 0);
+            }
+            60% {
+                transform: translate(2px, 2px);
+                clip-path: inset(25% 0 58% 0);
+            }
+            80% {
+                transform: translate(2px, -2px);
+                clip-path: inset(54% 0 7% 0);
+            }
+            100% {
+                transform: translate(0);
+                clip-path: inset(58% 0 43% 0);
+            }
+        }
+
+        @keyframes glitch-2 {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(2px, -2px);
+            }
+            40% {
+                transform: translate(-2px, 2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(-2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+            color: var(--electric-blue);
+            z-index: -1;
+        }
+
+        .glitch::after {
+            animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite reverse;
+            color: var(--red);
+            z-index: -2;
+        }
+
+        /* Floating Shapes */
+        @keyframes float-shape {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -30px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.08;
+            animation: float-shape 20s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            border: 3px solid var(--red);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            top: 60%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        .shape-3 {
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 260px solid var(--neon-green);
+            top: 40%;
+            left: 70%;
+            animation-delay: -10s;
+        }
+
+        /* Sticky Header - Glassmorphism */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .header-logo {
+            height: 36px;
+            display: block;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .header-nav a:hover {
+            color: var(--red);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .header-btn {
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border: 2px solid var(--white);
+            transition: all 0.3s;
+        }
+
+        .header-btn-login {
+            background: transparent;
+            color: var(--white);
+        }
+
+        .header-btn-login:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .header-btn-signup {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+
+        .header-btn-signup:hover {
+            background: var(--red-dark);
+            border-color: var(--red-dark);
+        }
+
+        .header-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .header-hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .header-hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .header-hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .header-hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .header-mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 24px 40px;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header-mobile-menu.active {
+            display: flex;
+        }
+
+        .header-mobile-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Navigation - Vertical Sidebar */
+        .nav {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .nav a {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            opacity: 0.5;
+        }
+
+        .nav a:hover {
+            color: var(--red);
+            opacity: 1;
+        }
+
+        /* Hero - Diagonal Split with Background Image */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 10, 10, 0.8) 100%);
+            z-index: 1;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('stadium-night.jpg') center/cover;
+            clip-path: polygon(0 0, 60% 0, 50% 100%, 0% 100%);
+            transform: rotate(-5deg) scale(1.1);
+            opacity: 0.3;
+            filter: grayscale(100%) contrast(1.2);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 120px 40px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-left {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-right {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-screenshot {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border: 4px solid var(--white);
+            box-shadow: 20px 20px 0 rgba(200, 16, 46, 0.3);
+            transform: rotate(3deg);
+            transition: transform 0.5s;
+        }
+
+        .hero-screenshot:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transform: rotate(-2deg);
+            margin-bottom: 40px;
+            animation: badge-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes badge-pulse {
+            0%, 100% { transform: rotate(-2deg) scale(1); }
+            50% { transform: rotate(-2deg) scale(1.05); }
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(80px, 15vw, 280px);
+            line-height: 0.9;
+            font-weight: 400;
+            letter-spacing: -4px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: visible;
+        }
+
+        .hero-title .word {
+            display: block;
+        }
+
+        .hero-title .word-play {
+            color: var(--white);
+            transform: translateX(-5%);
+        }
+
+        .hero-title .word-max {
+            background: linear-gradient(135deg, var(--red) 0%, var(--electric-blue) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 32px);
+            font-weight: 100;
+            color: var(--white);
+            max-width: 600px;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+            transform: translateX(10%);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 48px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 3px solid var(--black);
+            box-shadow: 8px 8px 0 var(--black);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0 var(--black);
+        }
+
+        /* Manifesto - Full Color Block */
+        .manifesto {
+            padding: 120px 40px;
+            background: var(--red);
+            position: relative;
+            z-index: 1;
+            clip-path: polygon(0 5%, 100% 0%, 100% 95%, 0% 100%);
+        }
+
+        .manifesto-quote {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .manifesto-text {
+            font-size: clamp(32px, 5vw, 72px);
+            font-weight: 900;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+
+        .manifesto-author {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Leaderboard - LED Scoreboard Style */
+        .leaderboard {
+            padding: 120px 40px;
+            background: var(--black);
+            position: relative;
+            z-index: 1;
+        }
+
+        .leaderboard-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(80px, 12vw, 200px);
+            margin-bottom: 80px;
+            text-align: center;
+            letter-spacing: -4px;
+            color: var(--white);
+        }
+
+        .leaderboard-table {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            border: 4px solid var(--red);
+            background: var(--gray-900);
+            overflow-x: auto;
+        }
+
+        .leaderboard-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Courier New', monospace;
+        }
+
+        .leaderboard-table thead {
+            background: var(--red);
+            border-bottom: 3px solid var(--white);
+        }
+
+        .leaderboard-table th {
+            padding: 20px 16px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .leaderboard-table tbody tr {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .leaderboard-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        .leaderboard-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        .leaderboard-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        .leaderboard-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+        .leaderboard-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+        .leaderboard-table tbody tr:nth-child(6) { animation-delay: 0.6s; }
+        .leaderboard-table tbody tr:nth-child(7) { animation-delay: 0.7s; }
+        .leaderboard-table tbody tr:nth-child(8) { animation-delay: 0.8s; }
+        .leaderboard-table tbody tr:nth-child(9) { animation-delay: 0.9s; }
+        .leaderboard-table tbody tr:nth-child(10) { animation-delay: 1.0s; }
+
+        .leaderboard-table tbody tr:hover {
+            background: rgba(200, 16, 46, 0.2);
+        }
+
+        .leaderboard-table tbody tr:nth-child(1) td:first-child {
+            color: #FFD700;
+            font-weight: 900;
+        }
+
+        .leaderboard-table tbody tr:nth-child(2) td:first-child {
+            color: #C0C0C0;
+            font-weight: 900;
+        }
+
+        .leaderboard-table tbody tr:nth-child(3) td:first-child {
+            color: #CD7F32;
+            font-weight: 900;
+        }
+
+        .leaderboard-table td {
+            padding: 20px 16px;
+            font-size: 16px;
+            color: var(--white);
+        }
+
+        .streak-win {
+            color: var(--neon-green);
+            font-weight: 700;
+        }
+
+        .streak-lose {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .leaderboard-cta {
+            text-align: center;
+        }
+
+        .leaderboard-btn {
+            display: inline-block;
+            padding: 20px 48px;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid var(--white);
+            box-shadow: 6px 6px 0 var(--red);
+            transition: all 0.3s;
+        }
+
+        .leaderboard-btn:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--red);
+        }
+
+        /* Stats Wall - Brutalist Grid */
+        .stats-wall {
+            padding: 120px 40px;
+            background: var(--black);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-cell {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-cell::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--red);
+            transition: left 0.5s;
+            z-index: 0;
+        }
+
+        .stat-cell:hover::before {
+            left: 0;
+        }
+
+        .stat-cell:hover {
+            border-color: var(--red);
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(60px, 8vw, 120px);
+            line-height: 1;
+            color: var(--white);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-cell:hover .stat-label {
+            color: var(--white);
+        }
+
+        /* Game Modes - Brutalist Alternating Layout */
+        .game-modes {
+            padding: 120px 40px;
+            background: var(--gray-900);
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-modes-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(80px, 12vw, 200px);
+            margin-bottom: 80px;
+            text-align: center;
+            letter-spacing: -4px;
+        }
+
+        .game-mode {
+            max-width: 1200px;
+            margin: 0 auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border: 4px solid var(--red);
+            position: relative;
+        }
+
+        .game-mode:nth-child(even) .game-mode-img {
+            order: 2;
+        }
+
+        .game-mode:nth-child(even) .game-mode-content {
+            order: 1;
+        }
+
+        .game-mode-img {
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .game-mode-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.2);
+            transition: filter 0.5s;
+        }
+
+        .game-mode:hover .game-mode-img img {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        .game-mode-content {
+            background: var(--black);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .game-mode-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            border: 2px solid;
+            width: fit-content;
+        }
+
+        .badge-free {
+            background: var(--neon-green);
+            color: var(--black);
+            border-color: var(--neon-green);
+        }
+
+        .badge-trial {
+            background: var(--electric-blue);
+            color: var(--black);
+            border-color: var(--electric-blue);
+        }
+
+        .badge-premium {
+            background: var(--red);
+            color: var(--white);
+            border-color: var(--red);
+        }
+
+        .badge-soon {
+            background: var(--yellow);
+            color: var(--black);
+            border-color: var(--yellow);
+        }
+
+        .game-mode-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 0.9;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .game-mode-desc {
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0;
+        }
+
+        /* Testimonials - Brutalist Quotes */
+        .testimonials {
+            padding: 120px 40px;
+            background: var(--black);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonials-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(80px, 12vw, 200px);
+            margin-bottom: 80px;
+            text-align: center;
+            letter-spacing: -4px;
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+        }
+
+        .testimonial {
+            background: var(--gray-900);
+            border: 4px solid var(--white);
+            padding: 60px 40px;
+            position: relative;
+            transition: all 0.5s;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -40px;
+            left: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 200px;
+            color: var(--red);
+            line-height: 1;
+            opacity: 0.3;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            border-color: var(--red);
+        }
+
+        .testimonial-quote {
+            font-size: 24px;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--white);
+            margin-bottom: 32px;
+        }
+
+        .testimonial-author {
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Lifestyle Collage - Asymmetric Overlapping */
+        .lifestyle {
+            padding: 120px 40px;
+            background: var(--gray-900);
+            position: relative;
+            z-index: 1;
+        }
+
+        .lifestyle-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            margin-bottom: 80px;
+            text-align: center;
+            letter-spacing: -2px;
+        }
+
+        .lifestyle-collage {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            height: 800px;
+        }
+
+        .lifestyle-img {
+            position: absolute;
+            width: 400px;
+            height: 500px;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 16px 16px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        .lifestyle-img:hover {
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 10;
+        }
+
+        .lifestyle-img-1 {
+            top: 0;
+            left: 0;
+            transform: rotate(-3deg);
+            z-index: 4;
+        }
+
+        .lifestyle-img-2 {
+            top: 100px;
+            right: 200px;
+            transform: rotate(5deg);
+            z-index: 3;
+        }
+
+        .lifestyle-img-3 {
+            bottom: 100px;
+            left: 200px;
+            transform: rotate(-5deg);
+            z-index: 2;
+        }
+
+        .lifestyle-img-4 {
+            bottom: 0;
+            right: 0;
+            transform: rotate(3deg);
+            z-index: 1;
+        }
+
+        /* Pricing - Three Tiers Brutalist */
+        .pricing {
+            padding: 120px 40px;
+            background: var(--white);
+            color: var(--black);
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(80px, 12vw, 200px);
+            margin-bottom: 80px;
+            text-align: center;
+            letter-spacing: -4px;
+            color: var(--black);
+        }
+
+        .pricing-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .pricing-card {
+            padding: 80px 40px;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 3px solid var(--black);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:nth-child(1) {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .pricing-card:nth-child(2) {
+            background: var(--red);
+            color: var(--white);
+            transform: scale(1.05);
+            z-index: 2;
+            border-color: var(--red);
+        }
+
+        .pricing-card:nth-child(3) {
+            background: var(--gray-900);
+            color: var(--white);
+        }
+
+        .pricing-featured {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--yellow);
+            color: var(--black);
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .pricing-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .pricing-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 6vw, 80px);
+            line-height: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .pricing-price {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .pricing-price span {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .pricing-price-old {
+            font-size: 32px;
+            text-decoration: line-through;
+            opacity: 0.5;
+            margin-bottom: 8px;
+        }
+
+        .pricing-trial {
+            font-size: 14px;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 60px;
+        }
+
+        .pricing-features li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 16px;
+        }
+
+        .pricing-card:nth-child(1) .pricing-features li {
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .pricing-cta {
+            display: inline-block;
+            padding: 20px 40px;
+            background: var(--white);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid var(--black);
+            box-shadow: 6px 6px 0 var(--black);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .pricing-cta:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--black);
+        }
+
+        .pricing-card:nth-child(2) .pricing-cta {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--white);
+            box-shadow: 6px 6px 0 var(--white);
+        }
+
+        .pricing-card:nth-child(2) .pricing-cta:hover {
+            box-shadow: 3px 3px 0 var(--white);
+        }
+
+        .pricing-card:nth-child(3) .pricing-cta {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .pricing-note {
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 40px;
+            color: var(--black);
+        }
+
+        /* CTA Takeover - Full Screen */
+        .cta-takeover {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-takeover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('lifestyle-late-night.jpg') center/cover;
+            opacity: 0.15;
+            filter: grayscale(100%);
+        }
+
+        .cta-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+        }
+
+        .cta-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(60px, 10vw, 200px);
+            line-height: 0.9;
+            margin-bottom: 60px;
+            letter-spacing: -2px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 28px 56px;
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border: 4px solid var(--white);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn-primary {
+            background: var(--red);
+            color: var(--white);
+            box-shadow: 12px 12px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translate(6px, 6px);
+            box-shadow: 6px 6px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--white);
+        }
+
+        .cta-btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Footer - Minimal Brutalist */
+        .footer {
+            padding: 60px 40px;
+            background: var(--black);
+            border-top: 4px solid var(--white);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--red);
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+        }
+
+        /* Scroll Animations - start visible, animate as enhancement */
+        .scroll-reveal {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-reveal.waiting {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card:nth-child(2) {
+                transform: scale(1);
+            }
+
+            .game-mode {
+                grid-template-columns: 1fr;
+            }
+
+            .game-mode:nth-child(even) .game-mode-img {
+                order: 1;
+            }
+
+            .game-mode:nth-child(even) .game-mode-content {
+                order: 2;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-screenshot {
+                max-width: 100%;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cursor-follower {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            .header-nav,
+            .header-buttons {
+                display: none;
+            }
+
+            .header-hamburger {
+                display: flex;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: 80vh;
+                padding-top: 80px;
+            }
+
+            .hero::before {
+                clip-path: polygon(0 0, 100% 0, 100% 40%, 0% 60%);
+            }
+
+            .hero-content {
+                padding: 80px 24px 60px;
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 80px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+                transform: translateX(0);
+            }
+
+            .hero-cta {
+                padding: 20px 40px;
+                font-size: 16px;
+            }
+
+            .manifesto {
+                padding: 80px 24px;
+            }
+
+            .manifesto-text {
+                font-size: 32px;
+            }
+
+            .leaderboard {
+                padding: 80px 24px;
+            }
+
+            .leaderboard-table {
+                font-size: 12px;
+            }
+
+            .leaderboard-table th,
+            .leaderboard-table td {
+                padding: 12px 8px;
+                font-size: 12px;
+            }
+
+            .stats-wall {
+                padding: 80px 24px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-cell {
+                padding: 40px 20px;
+            }
+
+            .stat-number {
+                font-size: 60px;
+            }
+
+            .game-modes {
+                padding: 80px 24px;
+            }
+
+            .game-mode {
+                grid-template-columns: 1fr;
+            }
+
+            .game-mode-content {
+                padding: 40px 24px;
+            }
+
+            .testimonials {
+                padding: 80px 24px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .testimonial {
+                padding: 40px 24px;
+            }
+
+            .lifestyle {
+                padding: 80px 24px;
+            }
+
+            .lifestyle-collage {
+                height: 600px;
+            }
+
+            .lifestyle-img {
+                width: 280px;
+                height: 350px;
+            }
+
+            .lifestyle-img-1 {
+                top: 0;
+                left: 0;
+            }
+
+            .lifestyle-img-2 {
+                top: 50px;
+                right: 0;
+            }
+
+            .lifestyle-img-3 {
+                bottom: 50px;
+                left: 0;
+            }
+
+            .lifestyle-img-4 {
+                bottom: 0;
+                right: 0;
+            }
+
+            .pricing {
+                padding: 80px 24px;
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 60px 32px;
+            }
+
+            .pricing-card:nth-child(2) {
+                transform: scale(1);
+            }
+
+            .cta-takeover {
+                min-height: 80vh;
+            }
+
+            .cta-title {
+                font-size: 60px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .cta-btn {
+                padding: 20px 40px;
+                font-size: 16px;
+                width: 100%;
+            }
+
+            .footer {
+                padding: 40px 24px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Custom Cursor Follower -->
+    <div class="cursor-follower"></div>
+
+    <!-- Floating Abstract Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Sticky Header -->
+    <header class="header">
+        <div class="header-container">
+            <img src="https://strat-logo-files.s3.amazonaws.com/MAX-LOGO-Final.png" alt="Baseball MAX" class="header-logo">
+            <nav class="header-nav">
+                <a href="#games">Games</a>
+                <a href="#leaderboard">Leaderboard</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#features">Features</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="#" class="header-btn header-btn-login">Login</a>
+                <a href="#" class="header-btn header-btn-signup">Sign Up</a>
+            </div>
+            <div class="header-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="header-mobile-menu">
+            <a href="#games">Games</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#features">Features</a>
+            <a href="#">Login</a>
+            <a href="#">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Vertical Navigation -->
+    <nav class="nav">
+        <a href="#hero">Start</a>
+        <a href="#leaderboard">Board</a>
+        <a href="#games">Games</a>
+        <a href="#stats">Stats</a>
+        <a href="#pricing">Pricing</a>
+    </nav>
+
+    <!-- Hero - Diagonal Split with Screenshot -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-badge glitch" data-text="BREAK THE RULES">BREAK THE RULES</div>
+                <h1 class="hero-title">
+                    <span class="word word-play">PLAY</span>
+                    <span class="word word-max">MAX</span>
+                </h1>
+                <p class="hero-subtitle">7 game modes, 150+ years of history, 15,000+ real player cards. The most realistic baseball simulator that defies convention.</p>
+                <a href="#pricing" class="hero-cta">
+                    Start Playing Now
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-right">
+                <img src="gameplay-hero-desktop.png" alt="Baseball MAX Gameplay" class="hero-screenshot">
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto - Full Color Block -->
+    <section id="manifesto" class="manifesto">
+        <div class="manifesto-quote scroll-reveal">
+            <p class="manifesto-text">"Baseball isn't just a game. It's a rebellion against mediocrity."</p>
+            <p class="manifesto-author">— Every Manager Who Dared to Win</p>
+        </div>
+    </section>
+
+    <!-- Leaderboard - LED Scoreboard -->
+    <section id="leaderboard" class="leaderboard">
+        <h2 class="leaderboard-title scroll-reveal">LEADERBOARD</h2>
+        <div class="leaderboard-table scroll-reveal">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Manager</th>
+                        <th>Team</th>
+                        <th>W-L</th>
+                        <th>Win%</th>
+                        <th>Streak</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>CoachK_89</td>
+                        <td>1927 Yankees</td>
+                        <td>142-20</td>
+                        <td>.876</td>
+                        <td class="streak-win">W12</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>BaseballBrain</td>
+                        <td>1998 Yankees</td>
+                        <td>138-24</td>
+                        <td>.852</td>
+                        <td class="streak-win">W8</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>StratMaster</td>
+                        <td>2016 Cubs</td>
+                        <td>131-31</td>
+                        <td>.809</td>
+                        <td class="streak-lose">L1</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>DiamondDog</td>
+                        <td>1995 Braves</td>
+                        <td>128-34</td>
+                        <td>.790</td>
+                        <td class="streak-win">W5</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>BigPapi_34</td>
+                        <td>2004 Red Sox</td>
+                        <td>125-37</td>
+                        <td>.772</td>
+                        <td class="streak-win">W3</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>MrOctober</td>
+                        <td>1972 Athletics</td>
+                        <td>122-40</td>
+                        <td>.753</td>
+                        <td class="streak-win">W2</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>DodgerBlue</td>
+                        <td>1955 Dodgers</td>
+                        <td>119-43</td>
+                        <td>.735</td>
+                        <td class="streak-lose">L2</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>TheKid24</td>
+                        <td>2001 Mariners</td>
+                        <td>116-46</td>
+                        <td>.716</td>
+                        <td class="streak-win">W1</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>CardinalFan</td>
+                        <td>2011 Cardinals</td>
+                        <td>113-49</td>
+                        <td>.698</td>
+                        <td class="streak-lose">L3</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>ChiTown</td>
+                        <td>1906 Cubs</td>
+                        <td>110-52</td>
+                        <td>.679</td>
+                        <td class="streak-win">W4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="leaderboard-cta scroll-reveal">
+            <a href="#" class="leaderboard-btn">View Full Leaderboard</a>
+        </div>
+    </section>
+
+    <!-- Game Modes - Brutalist Alternating -->
+    <section id="games" class="game-modes">
+        <h2 class="game-modes-title scroll-reveal">GAME MODES</h2>
+
+        <!-- Game of the Day -->
+        <div class="game-mode scroll-reveal">
+            <div class="game-mode-img">
+                <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/11135624/Placeholder-Image-5.webp" alt="Game of the Day">
+            </div>
+            <div class="game-mode-content">
+                <span class="game-mode-badge badge-free">FREE</span>
+                <h3 class="game-mode-name">Game of the Day</h3>
+                <p class="game-mode-desc">Play today's real MLB matchup with current stats. Free, no account needed — but your data won't be saved.</p>
+            </div>
+        </div>
+
+        <!-- Exhibition Game -->
+        <div class="game-mode scroll-reveal">
+            <div class="game-mode-img">
+                <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122351/Placeholder-Image-2.webp" alt="Exhibition Game">
+            </div>
+            <div class="game-mode-content">
+                <span class="game-mode-badge badge-trial">TRIAL</span>
+                <h3 class="game-mode-name">Exhibition Game</h3>
+                <p class="game-mode-desc">Pick any 2 teams from any era in baseball history.</p>
+            </div>
+        </div>
+
+        <!-- Historical League -->
+        <div class="game-mode scroll-reveal">
+            <div class="game-mode-img">
+                <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122353/Placeholder-Image-1.webp" alt="Historical League">
+            </div>
+            <div class="game-mode-content">
+                <span class="game-mode-badge badge-premium">PREMIUM</span>
+                <h3 class="game-mode-name">Historical League</h3>
+                <p class="game-mode-desc">Replay your favorite team's season with authentic rosters and stats.</p>
+            </div>
+        </div>
+
+        <!-- Draft League -->
+        <div class="game-mode scroll-reveal">
+            <div class="game-mode-img">
+                <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122359/Placeholder-Image-3.webp" alt="Draft League">
+            </div>
+            <div class="game-mode-content">
+                <span class="game-mode-badge badge-premium">PREMIUM</span>
+                <h3 class="game-mode-name">Draft League</h3>
+                <p class="game-mode-desc">Draft your dream team and compete in organized leagues.</p>
+            </div>
+        </div>
+
+        <!-- Tournament -->
+        <div class="game-mode scroll-reveal">
+            <div class="game-mode-img">
+                <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122357/Placeholder-Image-4.webp" alt="Tournament">
+            </div>
+            <div class="game-mode-content">
+                <span class="game-mode-badge badge-premium">PREMIUM</span>
+                <h3 class="game-mode-name">Tournament</h3>
+                <p class="game-mode-desc">Create or join tournaments using any team from any era.</p>
+            </div>
+        </div>
+
+        <!-- 2026 Season -->
+        <div class="game-mode scroll-reveal">
+            <div class="game-mode-img">
+                <img src="gameplay-hero-desktop.png" alt="2026 Season">
+            </div>
+            <div class="game-mode-content">
+                <span class="game-mode-badge badge-soon">COMING SOON</span>
+                <h3 class="game-mode-name">2026 Season</h3>
+                <p class="game-mode-desc">The 2026 MLB season is coming soon.</p>
+            </div>
+        </div>
+
+        <!-- All-Star Game -->
+        <div class="game-mode scroll-reveal">
+            <div class="game-mode-img">
+                <img src="player-silhouette.jpg" alt="All-Star Game">
+            </div>
+            <div class="game-mode-content">
+                <span class="game-mode-badge badge-premium">PREMIUM</span>
+                <h3 class="game-mode-name">All-Star Game</h3>
+                <p class="game-mode-desc">Build your dream All-Star roster and replay any Midsummer Classic.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Wall - Brutalist Grid -->
+    <section id="stats" class="stats-wall">
+        <div class="stats-grid">
+            <div class="stat-cell scroll-reveal">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Game Modes</div>
+            </div>
+            <div class="stat-cell scroll-reveal" style="transition-delay: 0.1s;">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Years of History</div>
+            </div>
+            <div class="stat-cell scroll-reveal" style="transition-delay: 0.2s;">
+                <div class="stat-number">15,000+</div>
+                <div class="stat-label">Real Player Cards</div>
+            </div>
+            <div class="stat-cell scroll-reveal" style="transition-delay: 0.3s;">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Possibilities</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials - Brutalist Quotes -->
+    <section class="testimonials">
+        <h2 class="testimonials-title scroll-reveal">WHAT PLAYERS SAY</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial scroll-reveal">
+                <p class="testimonial-quote">My brother lives across the country... Last week I beat him in the 12th inning on a walk-off.</p>
+                <p class="testimonial-author">Jake M., 34, Austin TX</p>
+            </div>
+            <div class="testimonial scroll-reveal" style="transition-delay: 0.1s;">
+                <p class="testimonial-quote">Thought Baseball MAX would be simple. Wrong. The strategic depth is INSANE.</p>
+                <p class="testimonial-author">David R., 41, Boston MA</p>
+            </div>
+            <div class="testimonial scroll-reveal" style="transition-delay: 0.2s;">
+                <p class="testimonial-quote">I can finally answer the questions I've been asking for 30 years.</p>
+                <p class="testimonial-author">Robert L., 58, Philadelphia PA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lifestyle Collage - Asymmetric Overlapping -->
+    <section id="lifestyle" class="lifestyle">
+        <h2 class="lifestyle-title scroll-reveal">PLAY ANYWHERE. ANYTIME.</h2>
+        <div class="lifestyle-collage">
+            <img src="lifestyle-father-son.jpg" alt="Father and son bonding over Baseball MAX" class="lifestyle-img lifestyle-img-1 scroll-reveal">
+            <img src="lifestyle-friends-gaming.jpg" alt="Friends competing in Baseball MAX tournament" class="lifestyle-img lifestyle-img-2 scroll-reveal" style="transition-delay: 0.1s;">
+            <img src="lifestyle-commute.jpg" alt="Playing Baseball MAX on commute" class="lifestyle-img lifestyle-img-3 scroll-reveal" style="transition-delay: 0.2s;">
+            <img src="lifestyle-late-night.jpg" alt="Late night Baseball MAX session" class="lifestyle-img lifestyle-img-4 scroll-reveal" style="transition-delay: 0.3s;">
+        </div>
+    </section>
+
+    <!-- Pricing - Three Tiers -->
+    <section id="pricing" class="pricing">
+        <h2 class="pricing-title">PRICING</h2>
+        <div class="pricing-container">
+            <!-- Free Play -->
+            <div class="pricing-card scroll-reveal">
+                <div class="pricing-label">Try It Free</div>
+                <h2 class="pricing-name">FREE PLAY</h2>
+                <div class="pricing-price">$0</div>
+                <ul class="pricing-features">
+                    <li>Game of the Day only</li>
+                    <li>No signup required</li>
+                    <li>Progress not saved</li>
+                    <li>Limited stats</li>
+                </ul>
+                <a href="#" class="pricing-cta">Play Now</a>
+            </div>
+
+            <!-- Monthly - FEATURED -->
+            <div class="pricing-card scroll-reveal" style="transition-delay: 0.1s;">
+                <div class="pricing-featured">MOST POPULAR</div>
+                <div class="pricing-label">Best for New Players</div>
+                <h2 class="pricing-name">MONTHLY</h2>
+                <div class="pricing-price-old">$19.99/mo</div>
+                <div class="pricing-price">$14.99<span>/mo</span></div>
+                <div class="pricing-trial">For 3 months • 3-day free trial</div>
+                <ul class="pricing-features">
+                    <li>All 7 game modes</li>
+                    <li>150+ years of teams</li>
+                    <li>15,000+ player cards</li>
+                    <li>Full stats & analytics</li>
+                    <li>Progress saved</li>
+                    <li>Cross-platform</li>
+                </ul>
+                <a href="#" class="pricing-cta">Start Free Trial</a>
+            </div>
+
+            <!-- Yearly -->
+            <div class="pricing-card scroll-reveal" style="transition-delay: 0.2s;">
+                <div class="pricing-featured">BEST VALUE — ONLY $10/MO</div>
+                <div class="pricing-label">Save 40%</div>
+                <h2 class="pricing-name">YEARLY</h2>
+                <div class="pricing-price-old">$199.99/yr</div>
+                <div class="pricing-price">$119.99<span>/yr</span></div>
+                <div class="pricing-trial">First year • 3-day free trial</div>
+                <ul class="pricing-features">
+                    <li>All 7 game modes</li>
+                    <li>150+ years of teams</li>
+                    <li>15,000+ player cards</li>
+                    <li>Full stats & analytics</li>
+                    <li>Progress saved</li>
+                    <li>Cross-platform</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#" class="pricing-cta">Start Free Trial</a>
+            </div>
+        </div>
+        <p class="pricing-note">All plans start with a 3-day free trial. All plans renew at full price.</p>
+    </section>
+
+    <!-- CTA Takeover - Full Screen -->
+    <section class="cta-takeover">
+        <div class="cta-content">
+            <h2 class="cta-title scroll-reveal">READY TO<br>MANAGE?</h2>
+            <div class="cta-buttons scroll-reveal" style="transition-delay: 0.2s;">
+                <a href="#pricing" class="cta-btn cta-btn-primary">Start Free Trial</a>
+                <a href="#" class="cta-btn cta-btn-secondary">Play Free Game</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Minimal Brutalist -->
+    <footer class="footer">
+        <div class="footer-logo">BASEBALL MAX</div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+            <a href="#">Support</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+        </div>
+        <div class="footer-copy">© 2026 Strat-O-Matic. Break the rules.</div>
+    </footer>
+
+    <script>
+        // Custom Cursor Follower
+        const cursorFollower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            const distX = mouseX - followerX;
+            const distY = mouseY - followerY;
+
+            followerX += distX * 0.1;
+            followerY += distY * 0.1;
+
+            cursorFollower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .stat-cell, .game-mode, .testimonial');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorFollower.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorFollower.classList.remove('hover');
+            });
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.header-hamburger');
+        const mobileMenu = document.querySelector('.header-mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Scroll Reveal Animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            // Only hide elements that are below the fold
+            const rect = el.getBoundingClientRect();
+            if (rect.top > window.innerHeight) {
+                el.classList.add('waiting');
+            }
+            observer.observe(el);
+        });
+
+        // Page Load Glitch Effect
+        window.addEventListener('load', () => {
+            const badge = document.querySelector('.hero-badge');
+            badge.style.animation = 'glitch-2 0.3s ease-in-out';
+            setTimeout(() => {
+                badge.style.animation = 'badge-pulse 3s ease-in-out infinite';
+            }, 300);
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Parallax Effect on Floating Shapes
+        let scrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollY = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.1;
+                shape.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        });
+
+        // Dynamic Background Color Change on Scroll
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight / 2;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    const bg = window.getComputedStyle(section).backgroundColor;
+                    document.querySelector('.cursor-follower').style.background =
+                        bg === 'rgb(200, 16, 46)' ? '#00d9ff' : '#00d9ff';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

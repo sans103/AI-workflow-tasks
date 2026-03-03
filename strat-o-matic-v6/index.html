@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Baseball MAX - The most immersive baseball simulation experience. 7 game modes, 150+ years of history, 15,000+ real player cards.">
+    <title>Baseball MAX | Play Real Baseball</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #c8102e;
+            --blue: #00d9ff;
+            --yellow: #ffd700;
+            --green: #39ff14;
+            --white: #ffffff;
+            --black: #000000;
+            --gray: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--blue);
+            pointer-events: none;
+            z-index: 100000;
+            mix-blend-mode: difference;
+            transition: transform 0.2s ease-out, width 0.2s, height 0.2s;
+            will-change: transform;
+        }
+
+        .cursor.hover {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 2px solid rgba(200, 16, 46, 0.3);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .header-logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--red);
+            transition: width 0.3s;
+        }
+
+        .header-nav a:hover {
+            color: var(--red);
+        }
+
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .header-btn {
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--white);
+            transition: all 0.3s;
+            background: transparent;
+            color: var(--white);
+        }
+
+        .header-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .header-btn-primary {
+            background: var(--red);
+            border-color: var(--red);
+            color: var(--white);
+        }
+
+        .header-btn-primary:hover {
+            background: var(--white);
+            color: var(--red);
+            border-color: var(--white);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Gradient Mesh Background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background: radial-gradient(circle at 20% 50%, var(--red) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, var(--blue) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, #8b00ff 0%, transparent 50%);
+            animation: gradient-morph 30s ease infinite;
+        }
+
+        @keyframes gradient-morph {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.25; }
+        }
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.05;
+        }
+
+        .shape-circle {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--blue);
+            border-radius: 50%;
+            top: 20%;
+            left: 10%;
+            animation: float-1 25s ease-in-out infinite;
+        }
+
+        .shape-square {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--red);
+            top: 60%;
+            right: 15%;
+            animation: float-2 30s ease-in-out infinite;
+        }
+
+        .shape-triangle {
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid var(--green);
+            top: 80%;
+            left: 70%;
+            animation: float-3 35s ease-in-out infinite;
+        }
+
+        @keyframes float-1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(90deg); }
+            50% { transform: translate(100px, 0) rotate(180deg); }
+            75% { transform: translate(50px, 50px) rotate(270deg); }
+        }
+
+        @keyframes float-2 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-60px, 40px) rotate(120deg); }
+            66% { transform: translate(30px, -30px) rotate(240deg); }
+        }
+
+        @keyframes float-3 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-40px, -60px) rotate(180deg); }
+        }
+
+        /* Scanning Line */
+        .scan-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blue), transparent);
+            opacity: 0.1;
+            animation: scan 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        /* Hero Section with 3D Bat Animation */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            perspective: 1500px;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('stadium-night.jpg') center/cover;
+            filter: grayscale(100%) brightness(0.3);
+            transform-style: preserve-3d;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 40px;
+            max-width: 1400px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 24px;
+            background: var(--red);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(200, 16, 46, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(200, 16, 46, 0.8); }
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(60px, 10vw, 180px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -4px;
+            margin-bottom: 40px;
+            white-space: nowrap;
+        }
+
+        .hero-title .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100px) rotateX(-90deg);
+            animation: char-reveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes char-reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 32px);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            opacity: 0;
+            animation: fade-up 1s ease 0.5s forwards;
+        }
+
+        @keyframes fade-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 24px 48px;
+            background: var(--red);
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid var(--white);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fade-up 1s ease 0.8s forwards;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .hero-cta:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .hero-cta span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 3D Baseball Bat Scene */
+        .bat-scene {
+            position: absolute;
+            bottom: 10%;
+            left: 10%;
+            width: 400px;
+            height: 400px;
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+
+        .bat {
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            width: 16px;
+            height: 320px;
+            background: linear-gradient(180deg, #8B4513 0%, #D2691E 30%, #654321 100%);
+            border-radius: 8px 8px 24px 24px;
+            transform-origin: bottom center;
+            transform: translateX(50%) rotateY(-90deg) rotateZ(45deg);
+            opacity: 0;
+            animation: bat-swing 2s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .bat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 80px;
+            background: #654321;
+            border-radius: 50%;
+        }
+
+        .bat::after {
+            content: '';
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        @keyframes bat-swing {
+            0% {
+                transform: translateX(50%) rotateY(-90deg) rotateZ(45deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateX(50%) rotateY(0deg) rotateZ(-15deg);
+                opacity: 1;
+            }
+            70% {
+                transform: translateX(50%) rotateY(20deg) rotateZ(-25deg);
+            }
+            100% {
+                transform: translateX(50%) rotateY(30deg) rotateZ(-30deg);
+                opacity: 1;
+            }
+        }
+
+        .baseball {
+            position: absolute;
+            bottom: 120px;
+            right: 50%;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 35% 35%, #fff 0%, #e8e8e8 100%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: ball-fly 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.8s forwards;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .baseball::before,
+        .baseball::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--red);
+            border-radius: 50%;
+        }
+
+        .baseball::before {
+            top: 15px;
+            transform: rotateZ(30deg);
+        }
+
+        .baseball::after {
+            top: 35px;
+            transform: rotateZ(-30deg);
+        }
+
+        @keyframes ball-fly {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-800px, -400px) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        .impact-particles {
+            position: absolute;
+            bottom: 120px;
+            right: 50%;
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--yellow);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-burst 0.8s ease-out 1.8s forwards;
+        }
+
+        @keyframes particle-burst {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .particle:nth-child(1) { --x: -60px; --y: -60px; }
+        .particle:nth-child(2) { --x: 60px; --y: -80px; }
+        .particle:nth-child(3) { --x: -80px; --y: 40px; }
+        .particle:nth-child(4) { --x: 40px; --y: 60px; }
+        .particle:nth-child(5) { --x: -40px; --y: -100px; }
+        .particle:nth-child(6) { --x: 80px; --y: -40px; }
+
+        /* Scoreboard Section */
+        .scoreboard-section {
+            padding: 120px 40px;
+            background: var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scoreboard-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -4px;
+        }
+
+        .scoreboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            border: 6px solid #333;
+            padding: 40px;
+            font-family: 'Orbitron', monospace;
+            box-shadow: 0 0 60px rgba(200, 16, 46, 0.3),
+                        inset 0 0 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .scoreboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.97; }
+        }
+
+        .scoreboard-header {
+            display: grid;
+            grid-template-columns: 200px repeat(9, 1fr) 80px;
+            gap: 8px;
+            margin-bottom: 4px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #333;
+        }
+
+        .scoreboard-header-cell {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--yellow);
+            letter-spacing: 2px;
+        }
+
+        .scoreboard-row {
+            display: grid;
+            grid-template-columns: 200px repeat(9, 1fr) 80px;
+            gap: 8px;
+            padding: 20px 0;
+            border-bottom: 2px solid #222;
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .inning-score {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--blue);
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .inning-score.animate {
+            animation: score-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes score-pop {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .runs-total {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--red);
+        }
+
+        /* Horizontal Scroll Gallery */
+        .gallery-section {
+            padding: 120px 0;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 40px;
+            padding: 0 40px;
+            will-change: transform;
+        }
+
+        .gallery-item {
+            flex-shrink: 0;
+            width: 500px;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--white);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* Stats Dashboard Section */
+        .stats-section {
+            padding: 120px 40px;
+            background: var(--black);
+        }
+
+        .stats-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -4px;
+        }
+
+        .stats-dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-card {
+            background: var(--gray);
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1s ease;
+        }
+
+        .stat-card.in-view::before {
+            transform: scaleX(1);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 16px;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 64px;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .stat-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stat-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--red), var(--blue));
+            width: 0;
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .stat-card.in-view .stat-bar {
+            width: var(--width);
+        }
+
+        /* Leaderboard Section */
+        .leaderboard-section {
+            padding: 120px 40px;
+            background: var(--gray);
+            position: relative;
+        }
+
+        .leaderboard-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            text-align: center;
+            margin-bottom: 24px;
+            letter-spacing: -4px;
+        }
+
+        .leaderboard-subtitle {
+            text-align: center;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 80px;
+            font-weight: 300;
+        }
+
+        .leaderboard-table {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            border: 6px solid var(--red);
+            padding: 40px;
+            box-shadow: 0 0 60px rgba(200, 16, 46, 0.5),
+                        inset 0 0 40px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leaderboard-table::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(57, 255, 20, 0.02) 2px,
+                rgba(57, 255, 20, 0.02) 4px
+            );
+            pointer-events: none;
+        }
+
+        .leaderboard-header {
+            display: grid;
+            grid-template-columns: 60px 1fr 200px 120px 100px 100px;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--red);
+            margin-bottom: 8px;
+        }
+
+        .leaderboard-header div {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--yellow);
+            text-transform: uppercase;
+        }
+
+        .leaderboard-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 200px 120px 100px 100px;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .leaderboard-row.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .leaderboard-row:nth-child(1) {
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+        }
+
+        .leaderboard-row:nth-child(2) {
+            background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent);
+        }
+
+        .leaderboard-row:nth-child(3) {
+            background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent);
+        }
+
+        .leaderboard-rank {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leaderboard-row:nth-child(1) .leaderboard-rank {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+
+        .leaderboard-row:nth-child(2) .leaderboard-rank {
+            color: #c0c0c0;
+            text-shadow: 0 0 20px rgba(192, 192, 192, 0.6);
+        }
+
+        .leaderboard-row:nth-child(3) .leaderboard-rank {
+            color: #cd7f32;
+            text-shadow: 0 0 20px rgba(205, 127, 50, 0.6);
+        }
+
+        .leaderboard-manager {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+
+        .leaderboard-team {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+        }
+
+        .leaderboard-record {
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .leaderboard-pct {
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+        }
+
+        .leaderboard-streak {
+            font-family: 'Orbitron', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leaderboard-streak.winning {
+            color: var(--green);
+        }
+
+        .leaderboard-streak.losing {
+            color: var(--red);
+        }
+
+        .leaderboard-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .leaderboard-btn {
+            display: inline-block;
+            padding: 20px 48px;
+            background: transparent;
+            color: var(--white);
+            border: 3px solid var(--red);
+            font-size: 16px;
+            font-weight: 900;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .leaderboard-btn:hover {
+            background: var(--red);
+            color: var(--white);
+            box-shadow: 0 0 40px rgba(200, 16, 46, 0.6);
+        }
+
+        /* Game Modes Section */
+        .modes-section {
+            padding: 120px 40px;
+            background: var(--black);
+        }
+
+        .modes-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -4px;
+        }
+
+        .modes-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            gap: 80px;
+        }
+
+        .mode-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .mode-card:nth-child(even) {
+            transform: translateX(100px);
+        }
+
+        .mode-card.in-view {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .mode-card:nth-child(even) .mode-content {
+            order: 2;
+        }
+
+        .mode-image-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            border: 4px solid var(--red);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .mode-image-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(200, 16, 46, 0.8);
+        }
+
+        .mode-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mode-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 20px;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .mode-badge.free {
+            background: var(--green);
+            color: var(--black);
+        }
+
+        .mode-badge.trial {
+            background: var(--blue);
+            color: var(--black);
+        }
+
+        .mode-badge.premium {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .mode-badge.coming-soon {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .mode-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .mode-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 16px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 120px 40px;
+            background: var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -4px;
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: 60px;
+        }
+
+        .testimonial {
+            position: relative;
+            padding: 60px;
+            background: var(--black);
+            border-left: 6px solid var(--red);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .testimonial.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial:nth-child(2) {
+            transform: scale(1.05);
+            border-left-width: 8px;
+        }
+
+        .testimonial-quote {
+            font-size: clamp(24px, 4vw, 48px);
+            font-style: italic;
+            line-height: 1.4;
+            margin-bottom: 32px;
+            color: var(--white);
+        }
+
+        .testimonial-author {
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 1px;
+        }
+
+        /* Manifesto Section */
+        .manifesto-section {
+            padding: 160px 40px;
+            background: var(--red);
+            text-align: center;
+            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+        }
+
+        .manifesto-quote {
+            font-size: clamp(32px, 6vw, 96px);
+            font-weight: 900;
+            line-height: 1.2;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            letter-spacing: -2px;
+        }
+
+        .manifesto-author {
+            font-size: 18px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            opacity: 0.8;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 120px 40px;
+            background: var(--black);
+        }
+
+        .pricing-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -4px;
+        }
+
+        .pricing-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+        }
+
+        .pricing-card {
+            background: var(--gray);
+            padding: 60px;
+            border: 3px solid var(--white);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .pricing-card.featured {
+            background: var(--red);
+            border-color: var(--yellow);
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -20px;
+            right: 40px;
+            background: var(--yellow);
+            color: var(--black);
+            padding: 8px 20px;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .pricing-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .pricing-price {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .pricing-price span {
+            font-size: 24px;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .pricing-old-price {
+            font-size: 24px;
+            text-decoration: line-through;
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .pricing-duration {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 24px;
+        }
+
+        .pricing-savings {
+            display: inline-block;
+            background: var(--green);
+            color: var(--black);
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        .pricing-features li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 16px;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 24px;
+            background: var(--white);
+            color: var(--black);
+            text-align: center;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid var(--black);
+            transition: all 0.3s;
+        }
+
+        .pricing-cta:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        .featured .pricing-cta {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--yellow);
+        }
+
+        .featured .pricing-cta:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+
+        .pricing-note {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-top: 16px;
+            line-height: 1.4;
+        }
+
+        .pricing-disclaimer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 14px;
+            opacity: 0.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('lifestyle-late-night.jpg') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .final-cta-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(60px, 12vw, 240px);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 60px;
+            letter-spacing: -6px;
+        }
+
+        .final-cta-buttons {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .final-cta-btn {
+            padding: 28px 56px;
+            font-size: 20px;
+            font-weight: 900;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 4px solid var(--white);
+            transition: all 0.3s;
+        }
+
+        .final-cta-btn-primary {
+            background: var(--red);
+            color: var(--white);
+        }
+
+        .final-cta-btn-primary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .final-cta-btn-secondary {
+            background: transparent;
+            color: var(--white);
+        }
+
+        .final-cta-btn-secondary:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 40px 40px;
+            background: var(--black);
+            border-top: 4px solid var(--red);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--red);
+        }
+
+        .footer-copy {
+            font-size: 14px;
+            opacity: 0.6;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-screenshot {
+                width: 400px;
+                right: 2%;
+                bottom: 5%;
+            }
+
+            .leaderboard-header,
+            .leaderboard-row {
+                grid-template-columns: 50px 1fr 150px 100px 80px 80px;
+                gap: 12px;
+            }
+
+            .leaderboard-header div,
+            .leaderboard-manager,
+            .leaderboard-team,
+            .leaderboard-record,
+            .leaderboard-pct,
+            .leaderboard-streak {
+                font-size: 14px;
+            }
+
+            .leaderboard-rank {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cursor {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            .header-container {
+                padding: 16px 20px;
+            }
+
+            .header-nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 40px;
+                gap: 24px;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+                border-bottom: 2px solid var(--red);
+            }
+
+            .header-nav.active {
+                transform: translateX(0);
+            }
+
+            .header-actions {
+                position: fixed;
+                top: 300px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                padding: 20px 40px;
+                flex-direction: column;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .header-actions.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero-screenshot {
+                display: none;
+            }
+
+            .bat-scene {
+                width: 200px;
+                height: 200px;
+                bottom: 5%;
+                left: 5%;
+            }
+
+            .bat {
+                height: 160px;
+                width: 10px;
+            }
+
+            .baseball {
+                width: 30px;
+                height: 30px;
+                bottom: 60px;
+            }
+
+            .scoreboard {
+                padding: 20px;
+                overflow-x: auto;
+            }
+
+            .scoreboard-header,
+            .scoreboard-row {
+                grid-template-columns: 120px repeat(9, 60px) 60px;
+            }
+
+            .scoreboard-header-cell {
+                font-size: 10px;
+            }
+
+            .team-name {
+                font-size: 12px;
+            }
+
+            .inning-score {
+                font-size: 16px;
+            }
+
+            .runs-total {
+                font-size: 20px;
+            }
+
+            .gallery-item {
+                width: 300px;
+                height: 400px;
+            }
+
+            .leaderboard-table {
+                padding: 20px;
+                overflow-x: auto;
+            }
+
+            .leaderboard-header,
+            .leaderboard-row {
+                grid-template-columns: 40px 120px 140px 90px 70px 70px;
+                gap: 8px;
+            }
+
+            .leaderboard-header div {
+                font-size: 10px;
+            }
+
+            .leaderboard-rank {
+                font-size: 16px;
+            }
+
+            .leaderboard-manager,
+            .leaderboard-team {
+                font-size: 12px;
+            }
+
+            .leaderboard-record,
+            .leaderboard-pct,
+            .leaderboard-streak {
+                font-size: 12px;
+            }
+
+            .mode-card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .mode-card:nth-child(even) .mode-content {
+                order: 1;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .final-cta-buttons {
+                flex-direction: column;
+            }
+
+            .final-cta-btn {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="header-logo">
+                <img src="https://strat-logo-files.s3.amazonaws.com/MAX-LOGO-Final.png" alt="Baseball MAX" height="36">
+            </a>
+            <nav class="header-nav" id="headerNav">
+                <a href="#modes">Games</a>
+                <a href="#leaderboard">Leaderboard</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#stats">Features</a>
+            </nav>
+            <div class="header-actions" id="headerActions">
+                <a href="#" class="header-btn">Login</a>
+                <a href="#" class="header-btn header-btn-primary">Sign Up</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Gradient Background -->
+    <div class="gradient-bg"></div>
+
+    <!-- Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-circle"></div>
+        <div class="shape shape-square"></div>
+        <div class="shape shape-triangle"></div>
+    </div>
+
+    <!-- Scanning Line -->
+    <div class="scan-line"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">BREAK THE RULES</div>
+            <h1 class="hero-title" id="heroTitle">PLAY MAX</h1>
+            <p class="hero-subtitle">The most immersive baseball simulation ever created. 7 game modes, 150+ years of history, 15,000+ real player cards.</p>
+            <a href="#pricing" class="hero-cta">
+                <span>Start Playing Now</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+
+        <!-- 3D Baseball Bat Animation -->
+        <div class="bat-scene">
+            <div class="bat"></div>
+            <div class="baseball"></div>
+            <div class="impact-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scoreboard Section -->
+    <section class="scoreboard-section">
+        <h2 class="scoreboard-title">LIVE SIMULATION</h2>
+        <div class="scoreboard">
+            <div class="scoreboard-header">
+                <div class="scoreboard-header-cell">TEAM</div>
+                <div class="scoreboard-header-cell">1</div>
+                <div class="scoreboard-header-cell">2</div>
+                <div class="scoreboard-header-cell">3</div>
+                <div class="scoreboard-header-cell">4</div>
+                <div class="scoreboard-header-cell">5</div>
+                <div class="scoreboard-header-cell">6</div>
+                <div class="scoreboard-header-cell">7</div>
+                <div class="scoreboard-header-cell">8</div>
+                <div class="scoreboard-header-cell">9</div>
+                <div class="scoreboard-header-cell">R</div>
+            </div>
+            <div class="scoreboard-row">
+                <div class="team-name">NYY 1927</div>
+                <div class="inning-score" data-score="2">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="inning-score" data-score="1">0</div>
+                <div class="inning-score" data-score="3">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="inning-score" data-score="2">0</div>
+                <div class="inning-score" data-score="1">0</div>
+                <div class="inning-score" data-score="4">0</div>
+                <div class="runs-total" data-total="13">0</div>
+            </div>
+            <div class="scoreboard-row">
+                <div class="team-name">LAD 2024</div>
+                <div class="inning-score" data-score="1">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="inning-score" data-score="2">0</div>
+                <div class="inning-score" data-score="1">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="inning-score" data-score="3">0</div>
+                <div class="inning-score" data-score="0">0</div>
+                <div class="runs-total" data-total="7">0</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Scroll Gallery -->
+    <section class="gallery-section">
+        <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-item">
+                <img src="lifestyle-father-son.jpg" alt="Father and son bonding over Baseball MAX" loading="lazy">
+                <div class="gallery-caption">FAMILY BONDING</div>
+            </div>
+            <div class="gallery-item">
+                <img src="lifestyle-friends-gaming.jpg" alt="Friends competing in Baseball MAX" loading="lazy">
+                <div class="gallery-caption">COMPETE WITH FRIENDS</div>
+            </div>
+            <div class="gallery-item">
+                <img src="max-landing-desktop.png" alt="Baseball MAX gameplay" loading="lazy">
+                <div class="gallery-caption">REALISTIC SIMULATION</div>
+            </div>
+            <div class="gallery-item">
+                <img src="lifestyle-commute.jpg" alt="Play anywhere" loading="lazy">
+                <div class="gallery-caption">PLAY ANYWHERE</div>
+            </div>
+            <div class="gallery-item">
+                <img src="lifestyle-late-night.jpg" alt="Late night gaming" loading="lazy">
+                <div class="gallery-caption">ANYTIME YOU WANT</div>
+            </div>
+            <div class="gallery-item">
+                <img src="action-bat-hit.jpg" alt="Baseball action" loading="lazy">
+                <div class="gallery-caption">INTENSE ACTION</div>
+            </div>
+            <div class="gallery-item">
+                <img src="stadium-night.jpg" alt="Stadium atmosphere" loading="lazy">
+                <div class="gallery-caption">STADIUM ATMOSPHERE</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <section id="stats" class="stats-section">
+        <h2 class="stats-title">BY THE NUMBERS</h2>
+        <div class="stats-dashboard">
+            <div class="stat-card">
+                <div class="stat-label">Active Managers</div>
+                <div class="stat-value" data-target="2000">0</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar" style="--width: 85%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Games Played</div>
+                <div class="stat-value" data-target="4600">0</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar" style="--width: 92%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Historic Teams</div>
+                <div class="stat-value" data-target="150">0</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar" style="--width: 75%;"></div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Player Database</div>
+                <div class="stat-value" data-target="15000">0</div>
+                <div class="stat-bar-container">
+                    <div class="stat-bar" style="--width: 95%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="leaderboard-section">
+        <h2 class="leaderboard-title">LEADERBOARD</h2>
+        <p class="leaderboard-subtitle">Top Managers This Season</p>
+        <div class="leaderboard-table">
+            <div class="leaderboard-header">
+                <div>#</div>
+                <div>Manager</div>
+                <div>Team</div>
+                <div>W-L</div>
+                <div>Win%</div>
+                <div>Streak</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">1</div>
+                <div class="leaderboard-manager">CoachK_89</div>
+                <div class="leaderboard-team">1927 Yankees</div>
+                <div class="leaderboard-record">142-20</div>
+                <div class="leaderboard-pct">.876</div>
+                <div class="leaderboard-streak winning">W12</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">2</div>
+                <div class="leaderboard-manager">BaseballBrain</div>
+                <div class="leaderboard-team">1998 Yankees</div>
+                <div class="leaderboard-record">138-24</div>
+                <div class="leaderboard-pct">.852</div>
+                <div class="leaderboard-streak winning">W8</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">3</div>
+                <div class="leaderboard-manager">StratMaster</div>
+                <div class="leaderboard-team">2016 Cubs</div>
+                <div class="leaderboard-record">131-31</div>
+                <div class="leaderboard-pct">.809</div>
+                <div class="leaderboard-streak losing">L1</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">4</div>
+                <div class="leaderboard-manager">DiamondDog</div>
+                <div class="leaderboard-team">1995 Braves</div>
+                <div class="leaderboard-record">128-34</div>
+                <div class="leaderboard-pct">.790</div>
+                <div class="leaderboard-streak winning">W5</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">5</div>
+                <div class="leaderboard-manager">BigPapi_34</div>
+                <div class="leaderboard-team">2004 Red Sox</div>
+                <div class="leaderboard-record">125-37</div>
+                <div class="leaderboard-pct">.772</div>
+                <div class="leaderboard-streak winning">W3</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">6</div>
+                <div class="leaderboard-manager">MrOctober</div>
+                <div class="leaderboard-team">1972 Athletics</div>
+                <div class="leaderboard-record">122-40</div>
+                <div class="leaderboard-pct">.753</div>
+                <div class="leaderboard-streak winning">W2</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">7</div>
+                <div class="leaderboard-manager">DodgerBlue</div>
+                <div class="leaderboard-team">1955 Dodgers</div>
+                <div class="leaderboard-record">119-43</div>
+                <div class="leaderboard-pct">.735</div>
+                <div class="leaderboard-streak losing">L2</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">8</div>
+                <div class="leaderboard-manager">TheKid24</div>
+                <div class="leaderboard-team">2001 Mariners</div>
+                <div class="leaderboard-record">116-46</div>
+                <div class="leaderboard-pct">.716</div>
+                <div class="leaderboard-streak winning">W1</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">9</div>
+                <div class="leaderboard-manager">CardinalFan</div>
+                <div class="leaderboard-team">2011 Cardinals</div>
+                <div class="leaderboard-record">113-49</div>
+                <div class="leaderboard-pct">.698</div>
+                <div class="leaderboard-streak losing">L3</div>
+            </div>
+            <div class="leaderboard-row">
+                <div class="leaderboard-rank">10</div>
+                <div class="leaderboard-manager">ChiTown</div>
+                <div class="leaderboard-team">1906 Cubs</div>
+                <div class="leaderboard-record">110-52</div>
+                <div class="leaderboard-pct">.679</div>
+                <div class="leaderboard-streak winning">W4</div>
+            </div>
+        </div>
+        <div class="leaderboard-cta">
+            <a href="#" class="leaderboard-btn">View Full Leaderboard</a>
+        </div>
+    </section>
+
+    <!-- Game Modes -->
+    <section id="modes" class="modes-section">
+        <h2 class="modes-title">GAME MODES</h2>
+        <div class="modes-grid">
+            <!-- Game of the Day -->
+            <div class="mode-card">
+                <div class="mode-image-container">
+                    <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/11135624/Placeholder-Image-5.webp" alt="Game of the Day">
+                    <div class="mode-badge free">FREE</div>
+                </div>
+                <div class="mode-content">
+                    <h3>Game of the Day</h3>
+                    <p>Play today's real MLB matchup with current stats. Free, no account needed — but your data won't be saved.</p>
+                </div>
+            </div>
+
+            <!-- Exhibition Game -->
+            <div class="mode-card">
+                <div class="mode-image-container">
+                    <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122351/Placeholder-Image-2.webp" alt="Exhibition Game">
+                    <div class="mode-badge trial">TRIAL</div>
+                </div>
+                <div class="mode-content">
+                    <h3>Exhibition Game</h3>
+                    <p>Pick any 2 teams from any era in baseball history. Yankees '61 vs Dodgers '24.</p>
+                </div>
+            </div>
+
+            <!-- Historical League -->
+            <div class="mode-card">
+                <div class="mode-image-container">
+                    <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122353/Placeholder-Image-1.webp" alt="Historical League">
+                    <div class="mode-badge premium">PREMIUM</div>
+                </div>
+                <div class="mode-content">
+                    <h3>Historical League</h3>
+                    <p>Replay your favorite team's season. Manage every game with authentic rosters and stats.</p>
+                </div>
+            </div>
+
+            <!-- Draft League -->
+            <div class="mode-card">
+                <div class="mode-image-container">
+                    <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122359/Placeholder-Image-3.webp" alt="Draft League">
+                    <div class="mode-badge premium">PREMIUM</div>
+                </div>
+                <div class="mode-content">
+                    <h3>Draft League</h3>
+                    <p>Draft your dream team and compete in organized leagues with other managers.</p>
+                </div>
+            </div>
+
+            <!-- Tournament -->
+            <div class="mode-card">
+                <div class="mode-image-container">
+                    <img src="https://strat-site-files.s3.amazonaws.com/wp-content/uploads/2025/04/09122357/Placeholder-Image-4.webp" alt="Tournament">
+                    <div class="mode-badge premium">PREMIUM</div>
+                </div>
+                <div class="mode-content">
+                    <h3>Tournament</h3>
+                    <p>Create or join tournaments using any team from any era in Baseball History.</p>
+                </div>
+            </div>
+
+            <!-- 2026 Season -->
+            <div class="mode-card">
+                <div class="mode-image-container">
+                    <img src="gameplay-hero-desktop.png" alt="2026 Season">
+                    <div class="mode-badge coming-soon">COMING SOON</div>
+                </div>
+                <div class="mode-content">
+                    <h3>2026 Season</h3>
+                    <p>The 2026 MLB season is coming soon. Manage your team through the full 162-game schedule.</p>
+                </div>
+            </div>
+
+            <!-- All-Star Game -->
+            <div class="mode-card">
+                <div class="mode-image-container">
+                    <img src="player-silhouette.jpg" alt="All-Star Game">
+                    <div class="mode-badge premium">PREMIUM</div>
+                </div>
+                <div class="mode-content">
+                    <h3>All-Star Game</h3>
+                    <p>Build your dream All-Star roster and replay any Midsummer Classic in history.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <h2 class="testimonials-title">WHAT MANAGERS SAY</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p class="testimonial-quote">"My brother lives across the country... Last week I beat him in the 12th inning on a walk-off."</p>
+                <p class="testimonial-author">Jake M., 34, Austin TX</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-quote">"Thought Baseball MAX would be simple. Wrong. The strategic depth is INSANE."</p>
+                <p class="testimonial-author">David R., 41, Boston MA</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-quote">"I can finally answer the questions I've been asking for 30 years."</p>
+                <p class="testimonial-author">Robert L., 58, Philadelphia PA</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="manifesto-section">
+        <blockquote class="manifesto-quote">
+            "Baseball isn't just a game. It's a rebellion against mediocrity."
+        </blockquote>
+        <p class="manifesto-author">— Every Manager Who Dared to Win</p>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing-section">
+        <h2 class="pricing-title">CHOOSE YOUR LEVEL</h2>
+        <div class="pricing-grid">
+            <!-- Free Play -->
+            <div class="pricing-card">
+                <h3 class="pricing-name">FREE PLAY</h3>
+                <div class="pricing-price">$0</div>
+                <div class="pricing-duration">Forever</div>
+                <ul class="pricing-features">
+                    <li>Game of the Day (daily)</li>
+                    <li>No signup required</li>
+                    <li>Real MLB stats</li>
+                    <li>Progress not saved</li>
+                </ul>
+                <a href="#" class="pricing-cta">Play Now</a>
+            </div>
+
+            <!-- Monthly -->
+            <div class="pricing-card">
+                <h3 class="pricing-name">MONTHLY</h3>
+                <div class="pricing-price">$14.99<span>/mo</span></div>
+                <div class="pricing-old-price">$19.99/mo</div>
+                <div class="pricing-duration">For 3 months</div>
+                <ul class="pricing-features">
+                    <li>All game modes</li>
+                    <li>Historical rosters</li>
+                    <li>Advanced stats</li>
+                    <li>Save progress</li>
+                    <li>League management</li>
+                </ul>
+                <a href="#" class="pricing-cta">Start 3-Day Free Trial</a>
+                <p class="pricing-note">Renews at $19.99/mo after intro period</p>
+            </div>
+
+            <!-- Yearly (Featured) -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">BEST VALUE — ONLY $10/MO</div>
+                <h3 class="pricing-name">YEARLY</h3>
+                <div class="pricing-price">$119.99<span>/yr</span></div>
+                <div class="pricing-old-price">$199.99/yr</div>
+                <div class="pricing-duration">For the first year</div>
+                <div class="pricing-savings">Save 40%</div>
+                <ul class="pricing-features">
+                    <li>Everything in Monthly</li>
+                    <li>Priority features</li>
+                    <li>Multiple active seasons</li>
+                    <li>Tournament access</li>
+                    <li>Draft leagues</li>
+                    <li>All-Star games</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="#" class="pricing-cta">Start 3-Day Free Trial</a>
+                <p class="pricing-note">Renews at $199.99/yr after first year</p>
+            </div>
+        </div>
+        <p class="pricing-disclaimer">All plans start with a 3-day free trial. All plans renew at full price.</p>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="final-cta-content">
+            <h2 class="final-cta-title">READY TO<br>MANAGE?</h2>
+            <div class="final-cta-buttons">
+                <a href="#" class="final-cta-btn final-cta-btn-primary">Start Free Trial</a>
+                <a href="#" class="final-cta-btn final-cta-btn-secondary">Play Free Game</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">BASEBALL MAX</div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+            <a href="#">Support</a>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+        </div>
+        <div class="footer-copy">© 2026 Strat-O-Matic. Break the rules.</div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const headerNav = document.getElementById('headerNav');
+        const headerActions = document.getElementById('headerActions');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            headerNav.classList.toggle('active');
+            headerActions.classList.toggle('active');
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+
+            cursorX += dx * 0.15;
+            cursorY += dy * 0.15;
+
+            cursor.style.transform = `translate(${cursorX - 20}px, ${cursorY - 20}px)`;
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor hover effect
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Split hero title into characters
+        const heroTitle = document.getElementById('heroTitle');
+        const text = heroTitle.textContent;
+        heroTitle.innerHTML = text.split('').map((char, i) =>
+            `<span class="char" style="animation-delay: ${i * 0.05}s">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+
+        // Scoreboard animation
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const scoreboardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const inningScores = entry.target.querySelectorAll('.inning-score');
+                    const runsTotals = entry.target.querySelectorAll('.runs-total');
+
+                    inningScores.forEach((cell, index) => {
+                        setTimeout(() => {
+                            const targetScore = parseInt(cell.dataset.score);
+                            cell.textContent = targetScore;
+                            cell.classList.add('animate');
+                        }, index * 200);
+                    });
+
+                    runsTotals.forEach((total, index) => {
+                        setTimeout(() => {
+                            const targetTotal = parseInt(total.dataset.total);
+                            animateCounter(total, 0, targetTotal, 1000);
+                        }, inningScores.length * 200 + index * 500);
+                    });
+
+                    scoreboardObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scoreboard').forEach(el => {
+            scoreboardObserver.observe(el);
+        });
+
+        // Counter animation function
+        function animateCounter(element, start, end, duration) {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= end) {
+                    current = end;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.round(current);
+            }, 16);
+        }
+
+        // Stats cards animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+
+                    const valueElement = entry.target.querySelector('.stat-value');
+                    const target = parseInt(valueElement.dataset.target);
+                    animateCounter(valueElement, 0, target, 2000);
+
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card').forEach(card => {
+            statsObserver.observe(card);
+        });
+
+        // Leaderboard animation
+        const leaderboardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const rows = entry.target.querySelectorAll('.leaderboard-row');
+                    rows.forEach((row, index) => {
+                        setTimeout(() => {
+                            row.classList.add('animate');
+                        }, index * 100);
+                    });
+                    leaderboardObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.leaderboard-table').forEach(el => {
+            leaderboardObserver.observe(el);
+        });
+
+        // Testimonials animation
+        const testimonialsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.testimonial').forEach(card => {
+            testimonialsObserver.observe(card);
+        });
+
+        // Horizontal scroll gallery
+        const galleryTrack = document.getElementById('galleryTrack');
+        let scrollProgress = 0;
+        const scrollSpeed = 0.5;
+
+        window.addEventListener('scroll', () => {
+            const gallerySection = document.querySelector('.gallery-section');
+            const rect = gallerySection.getBoundingClientRect();
+            const sectionHeight = gallerySection.offsetHeight;
+
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const progress = (window.innerHeight - rect.top) / (window.innerHeight + sectionHeight);
+                const maxScroll = galleryTrack.scrollWidth - window.innerWidth;
+                scrollProgress = progress * maxScroll;
+                galleryTrack.style.transform = `translateX(-${scrollProgress}px)`;
+            }
+        });
+
+        // Game modes animation
+        const modesObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.mode-card').forEach(card => {
+            modesObserver.observe(card);
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+
+            // Hero background parallax
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+
+            // Floating shapes parallax
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.05 + (index * 0.05);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Screen shake on bat impact
+        let shakeTimeout;
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                shakeTimeout = setTimeout(() => {
+                    document.body.style.animation = 'shake 0.3s';
+                    setTimeout(() => {
+                        document.body.style.animation = '';
+                    }, 300);
+                }, 1800);
+            }, 1000);
+        });
+
+        // Shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+                20%, 40%, 60%, 80% { transform: translateX(3px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileMenuToggle.classList.contains('active')) {
+                        mobileMenuToggle.classList.remove('active');
+                        headerNav.classList.remove('active');
+                        headerActions.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Prefers reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('*').forEach(el => {
+                el.style.animation = 'none';
+                el.style.transition = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
