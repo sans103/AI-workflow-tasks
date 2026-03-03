@@ -807,6 +807,49 @@
     .nl-form button:hover { background: #000; }
     .nl-disclaimer { font-family: var(--font-body); font-size: 11px; color: rgba(0,0,0,.4); margin-top: 12px; }
 
+    /* ── ABOUT US ────────────────────────────────── */
+    .about-section { background: var(--white); padding: 80px 32px; }
+    .about-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    }
+    .about-img {
+      border-radius: 8px; overflow: hidden; aspect-ratio: 4/3;
+      background: #f0f0f0;
+    }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; }
+    .about-tag {
+      display: inline-block; padding: 4px 12px; border-radius: 3px;
+      background: var(--lime); color: var(--dark); font-family: var(--font-badge);
+      font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .about-h2 {
+      font-family: var(--font-main); font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800; color: var(--dark); line-height: 1.2; margin-bottom: 18px;
+    }
+    .about-text {
+      font-family: var(--font-body); font-size: 15px; line-height: 1.75;
+      color: var(--mid); margin-bottom: 14px;
+    }
+    .about-values {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px;
+    }
+    .about-val {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-family: var(--font-body); font-size: 13px; font-weight: 600;
+      color: var(--text); line-height: 1.4;
+    }
+    .about-val svg { flex-shrink: 0; color: var(--lime); margin-top: 2px; }
+    .about-cta {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 28px;
+      padding: 12px 28px; background: var(--dark); color: var(--white);
+      font-family: var(--font-main); font-size: 12px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; border-radius: 4px;
+      text-decoration: none; transition: background .18s;
+    }
+    .about-cta:hover { background: var(--lime); color: var(--dark); }
+
     /* ── FOOTER ──────────────────────────────────── */
     .footer { background: #111113; padding: 64px 32px 0; }
     .footer-inner { max-width: 1280px; margin: 0 auto; }
@@ -903,6 +946,9 @@
       .nl-form { flex-direction: column; gap: 8px; }
       .nl-form input { border-radius: 4px; }
       .nl-form button { border-radius: 4px; }
+      .about-section { padding: 60px 20px; }
+      .about-inner { grid-template-columns: 1fr; gap: 32px; }
+      .about-values { grid-template-columns: 1fr; }
       .footer { padding: 52px 20px 0; }
       .footer-grid { grid-template-columns: 1fr; gap: 28px; }
       .section-wrap { padding: 0 20px; }
@@ -1670,6 +1716,43 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- ABOUT US -->
+<section class="about-section">
+  <div class="about-inner">
+    <div class="about-img">
+      <img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/Bison_motorcycle_suits_website_banner.png?v=1727473445" alt="Bison Track — Family-Owned Motorcycle Gear" loading="lazy">
+    </div>
+    <div class="about-copy">
+      <span class="about-tag">Our Story</span>
+      <h2 class="about-h2">Family-Owned. Rider-Founded. Built for The Herd.</h2>
+      <p class="about-text">Bison Track was born when co-founder Rob Lackey — a passionate motorcycle racer — crashed in an affordable but low-quality custom suit and realized riders deserved better. Together with his wife Tosha, a CPA and marketing strategist, they set out to build pro-level bespoke gear at a price every rider can afford.</p>
+      <p class="about-text">Today, the Lackeys travel full-time in their RV to racetracks across North America, fitting riders in person and growing "The Herd" — a community united by a shared love of riding and the belief that your gear should be a reflection of you. That philosophy has a name: <strong>BISONALITY</strong>.</p>
+      <div class="about-values">
+        <div class="about-val">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+          Bespoke Custom Fit for Every Rider
+        </div>
+        <div class="about-val">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+          Pro-Level Quality, Accessible Pricing
+        </div>
+        <div class="about-val">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+          Crash-Tested by the Founders
+        </div>
+        <div class="about-val">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+          100% Fitment Guarantee
+        </div>
+      </div>
+      <a href="/pages/about-us" class="about-cta">
+        Meet The Team
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
