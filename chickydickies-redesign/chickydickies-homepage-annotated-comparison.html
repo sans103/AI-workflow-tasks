@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicky Dickies Homepage Redesign — Annotated Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Figtree', sans-serif;
+            background: #f5f5f0;
+            color: #374151;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Header ─── */
+        .page-header {
+            background: #ffffff;
+            padding: 28px 40px 24px;
+            border-bottom: 1px solid #e5e5e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .header-left { max-width: 600px; }
+
+        .brand-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a365d;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* ─── Legend ─── */
+        .legend {
+            background: #fafaf8;
+            border: 1px solid #e5e5e0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            min-width: 180px;
+        }
+
+        .legend-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-new { background: #15803d; }
+        .dot-improved { background: #1d4ed8; }
+        .dot-conversion { background: #a16207; }
+        .dot-ux { background: #be185d; }
+        .dot-trust { background: #4338ca; }
+        .dot-storytelling { background: #7c3aed; }
+
+        /* ─── Stats Bar ─── */
+        .stats-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e0;
+            padding: 14px 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        /* ─── Comparison Container ─── */
+        .comparison-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 40px 24px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ─── Side (Before / After) ─── */
+        .side {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .side-content {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        .side-before .side-content {
+            flex-direction: row;
+        }
+
+        .side-after .side-content {
+            flex-direction: row;
+        }
+
+        /* ─── Phone Label ─── */
+        .phone-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* ─── Phone Frame ─── */
+        .phone-column {
+            flex-shrink: 0;
+            width: 260px;
+        }
+
+        .phone-frame {
+            width: 260px;
+            border-radius: 24px;
+            border: 2.5px solid #d0d0d0;
+            overflow: hidden;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 18px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .phone-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ─── Annotations Column ─── */
+        .annotations-column {
+            position: relative;
+            width: 220px;
+            flex-shrink: 0;
+        }
+
+        /* ─── Annotation Card ─── */
+        .annotation-card {
+            position: absolute;
+            width: 220px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e8e8e4;
+        }
+
+        .annotation-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .tag-new { background: #dcfce7; color: #15803d; }
+        .tag-improved { background: #dbeafe; color: #1d4ed8; }
+        .tag-conversion { background: #fef3c7; color: #a16207; }
+        .tag-ux { background: #fce7f3; color: #be185d; }
+        .tag-trust { background: #e0e7ff; color: #4338ca; }
+        .tag-storytelling { background: #f3e8ff; color: #7c3aed; }
+
+        .annotation-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .annotation-card p {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* ─── SVG Connectors ─── */
+        .connectors-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: visible;
+        }
+
+        /* ─── Footer ─── */
+        .page-footer {
+            text-align: center;
+            padding: 24px 40px 40px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="header-left">
+            <div class="brand-tag">Chicky Dickies</div>
+            <h1 class="page-title">Homepage Redesign Annotations</h1>
+            <p class="page-subtitle">Luxury kids cashmere &amp; merino accessories — Mobile Homepage Comparison</p>
+        </div>
+        <div class="legend">
+            <div class="legend-title">Change Types</div>
+            <div class="legend-items">
+                <span class="legend-item"><span class="legend-dot dot-new"></span> New Section</span>
+                <span class="legend-item"><span class="legend-dot dot-improved"></span> Improved</span>
+                <span class="legend-item"><span class="legend-dot dot-conversion"></span> Conversion</span>
+                <span class="legend-item"><span class="legend-dot dot-ux"></span> UX</span>
+                <span class="legend-item"><span class="legend-dot dot-trust"></span> Trust</span>
+                <span class="legend-item"><span class="legend-dot dot-storytelling"></span> Storytelling</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">14</span> Total Changes
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span> New Sections
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">4</span> Conversion Upgrades
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span> Storytelling Elements
+        </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="comparison-container">
+
+        <!-- BEFORE Side -->
+        <div class="side side-before" id="sideBefore">
+            <div class="phone-label">Before</div>
+            <div class="side-content">
+                <div class="annotations-column" id="annotationsLeft"></div>
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameBefore">
+                        <img src="current-homepage.png" id="imgBefore" alt="Current Chicky Dickies Homepage">
+                    </div>
+                </div>
+            </div>
+            <svg class="connectors-svg" id="svgBefore"></svg>
+        </div>
+
+        <!-- AFTER Side -->
+        <div class="side side-after" id="sideAfter">
+            <div class="phone-label">Redesign</div>
+            <div class="side-content">
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameAfter">
+                        <img src="redesign-homepage.png" id="imgAfter" alt="Redesigned Chicky Dickies Homepage">
+                    </div>
+                </div>
+                <div class="annotations-column" id="annotationsRight"></div>
+            </div>
+            <svg class="connectors-svg" id="svgAfter"></svg>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        Prepared by Bhaskar Roy &mdash; March 2026
+    </footer>
+
+    <script>
+        /* ─── Annotation Data ─── */
+
+        // Before: 780 x 8006 px (current chickydickies.co homepage)
+        // Sections mapped:
+        // Announcement bar + header: 0-300px (~0-4%)
+        // Hero banner: 300-1200px (~4-15%)
+        // Product collection grid: 1200-3500px (~15-44%)
+        // Basic content/about: 3500-5000px (~44-62%)
+        // Social links: 5000-5800px (~62-72%)
+        // Footer: 5800-8006px (~72-100%)
+
+        const beforeAnnotations = [
+            {
+                yPercent: 2,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Basic Header — No Trust Signals',
+                desc: 'Simple navigation with no brand promise, free shipping bar, or urgency cues above the fold.'
+            },
+            {
+                yPercent: 10,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Generic Hero Banner',
+                desc: 'Single product-focused banner. No editorial storytelling, no lifestyle imagery showing kids wearing the product.'
+            },
+            {
+                yPercent: 22,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Standard Product Grid',
+                desc: 'Basic collection tiles with no curation, no bestseller badges, no editorial context or storytelling.'
+            },
+            {
+                yPercent: 38,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'No Social Proof or UGC',
+                desc: 'Zero user-generated content, no customer photos, no video testimonials from parents.'
+            },
+            {
+                yPercent: 52,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Missing Brand Narrative',
+                desc: 'No material education, craftsmanship story, or heritage details. Luxury positioning unsupported.'
+            },
+            {
+                yPercent: 65,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'No Gift-Giving Section',
+                desc: 'Despite luxury price point, no gifting cues, occasion suggestions, or curated gift sets.'
+            },
+            {
+                yPercent: 78,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Minimal Social Presence',
+                desc: 'Basic social links with no Instagram grid, no community building, no visual social proof.'
+            },
+            {
+                yPercent: 90,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Weak Footer Engagement',
+                desc: 'No newsletter signup, no email capture, no community CTA. Exits with zero retention mechanism.'
+            }
+        ];
+
+        // After: 780 x 18432 px (redesigned homepage)
+        // Sections mapped from editorial redesign:
+        // Hero text (stacked): 0-600px (~0-3.3%)
+        // Hero image (kid photo): 600-1500px (~3.3-8.1%)
+        // Trust strip: 1500-1650px (~8.1-9%)
+        // Shoppable UGC carousel: 1650-3000px (~9-16.3%)
+        // Bestsellers carousel: 3000-4400px (~16.3-23.9%)
+        // Editorial intro: 4400-5600px (~23.9-30.4%)
+        // Featured scarves: 5600-7200px (~30.4-39%)
+        // Brand story split: 7200-8800px (~39-47.7%)
+        // Gift guide: 8800-10200px (~47.7-55.3%)
+        // Play collection: 10200-11600px (~55.3-62.9%)
+        // Reversible split: 11600-13000px (~62.9-70.5%)
+        // Materials section: 13000-14400px (~70.5-78.1%)
+        // Social grid: 14400-15800px (~78.1-85.7%)
+        // Newsletter: 15800-16800px (~85.7-91.1%)
+        // Footer: 16800-18432px (~91.1-100%)
+
+        const afterAnnotations = [
+            {
+                yPercent: 1.5,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Editorial Hero Typography',
+                desc: 'DM Serif Display italic headline with stacked layout — text above, image below. No overlay. Clean editorial feel.'
+            },
+            {
+                yPercent: 5.5,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Real Kid Lifestyle Imagery',
+                desc: 'Hero image shows child wearing the product (not just product shots). Emotional connection for parents.'
+            },
+            {
+                yPercent: 8.5,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Trust Strip with Brand Promises',
+                desc: 'Free shipping, 100% cashmere, handmade — instant credibility signals right after hero.'
+            },
+            {
+                yPercent: 12.5,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Shoppable UGC Video Carousel',
+                desc: 'Dark-bg section with portrait 9:14 video cards, creator handles, and product cards with quick-add buttons. Social proof meets commerce.'
+            },
+            {
+                yPercent: 20,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Curated Bestsellers Carousel',
+                desc: 'Horizontal-scroll carousel with bestseller badges, real product images, and quick-shop functionality.'
+            },
+            {
+                yPercent: 27,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Editorial Brand Introduction',
+                desc: 'Serif typography with brand story: "Handmade in Scotland, from the world\'s finest cashmere." Builds luxury narrative.'
+            },
+            {
+                yPercent: 34.5,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Featured Scarves Collection',
+                desc: 'Lifestyle imagery with editorial layout showcasing hero products. Curation over grid.'
+            },
+            {
+                yPercent: 43,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Brand Story Split Layout',
+                desc: 'Two-column heritage section with founder story, craftsmanship photos, and brand values.'
+            },
+            {
+                yPercent: 51,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Gift Guide Section',
+                desc: 'Curated gifting occasions (Baby Shower, Birthday, Holiday) with visual cards. Drives higher AOV for luxury gifting.'
+            },
+            {
+                yPercent: 59,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Play Collection — Active Kids',
+                desc: 'Dedicated section for active-wear pieces. Shows products in motion/play context. Addresses parent concern about durability.'
+            },
+            {
+                yPercent: 66.5,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Reversible Feature Highlight',
+                desc: 'Visual storytelling of the reversible design — two looks, one purchase. Strong value justification for premium price.'
+            },
+            {
+                yPercent: 74,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Material Education Section',
+                desc: 'Mongolian cashmere and merino wool sourcing, care instructions, and quality certifications. Justifies luxury pricing.'
+            },
+            {
+                yPercent: 82,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Instagram-Style Social Grid',
+                desc: '3-column square image grid replacing circular thumbnails. Stronger visual impact with "Follow @chickydickies" CTA.'
+            },
+            {
+                yPercent: 88,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Newsletter Signup Section',
+                desc: 'Email capture with incentive offer. Retention mechanism to bring parents back for seasonal drops and new arrivals.'
+            }
+        ];
+
+        /* ─── Render Function ─── */
+
+        function renderAnnotations() {
+            const imgBefore = document.getElementById('imgBefore');
+            const imgAfter = document.getElementById('imgAfter');
+
+            if (!imgBefore.complete || !imgAfter.complete) {
+                return;
+            }
+
+            const phoneBeforeH = imgBefore.offsetHeight;
+            const phoneAfterH = imgAfter.offsetHeight;
+
+            // Render Before annotations (left side)
+            const leftCol = document.getElementById('annotationsLeft');
+            leftCol.innerHTML = '';
+            leftCol.style.height = phoneBeforeH + 'px';
+
+            let lastBottomLeft = 0;
+            beforeAnnotations.forEach((ann, i) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.right = '0';
+                leftCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneBeforeH - 20;
+                if (desiredTop < lastBottomLeft + 8) desiredTop = lastBottomLeft + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomLeft = desiredTop + card.offsetHeight;
+            });
+
+            // Render After annotations (right side)
+            const rightCol = document.getElementById('annotationsRight');
+            rightCol.innerHTML = '';
+            rightCol.style.height = phoneAfterH + 'px';
+
+            let lastBottomRight = 0;
+            afterAnnotations.forEach((ann, i) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.left = '0';
+                rightCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneAfterH - 20;
+                if (desiredTop < lastBottomRight + 8) desiredTop = lastBottomRight + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomRight = desiredTop + card.offsetHeight;
+            });
+
+            // Draw SVG connectors
+            drawConnectors('before');
+            drawConnectors('after');
+        }
+
+        function drawConnectors(side) {
+            const isLeft = side === 'before';
+            const svg = document.getElementById(isLeft ? 'svgBefore' : 'svgAfter');
+            const sideEl = document.getElementById(isLeft ? 'sideBefore' : 'sideAfter');
+            const annotations = isLeft ? beforeAnnotations : afterAnnotations;
+            const img = document.getElementById(isLeft ? 'imgBefore' : 'imgAfter');
+            const phoneFrame = document.getElementById(isLeft ? 'phoneFrameBefore' : 'phoneFrameAfter');
+            const annotCol = document.getElementById(isLeft ? 'annotationsLeft' : 'annotationsRight');
+
+            const sideRect = sideEl.getBoundingClientRect();
+            const phoneRect = phoneFrame.getBoundingClientRect();
+            const annotRect = annotCol.getBoundingClientRect();
+            const imgH = img.offsetHeight;
+
+            svg.innerHTML = '';
+            svg.style.width = sideEl.offsetWidth + 'px';
+            svg.style.height = sideEl.offsetHeight + 'px';
+
+            const phoneLeftInSide = phoneRect.left - sideRect.left;
+            const phoneRightInSide = phoneRect.right - sideRect.left;
+            const phoneTopInSide = phoneRect.top - sideRect.top;
+
+            const annotLeftInSide = annotRect.left - sideRect.left;
+            const annotRightInSide = annotRect.right - sideRect.left;
+
+            annotations.forEach(ann => {
+                const dotY = phoneTopInSide + (ann.yPercent / 100) * imgH;
+
+                let dotX, cardEdgeX, cardMidY;
+
+                if (isLeft) {
+                    dotX = phoneLeftInSide + 2;
+                    cardEdgeX = annotRightInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                } else {
+                    dotX = phoneRightInSide - 2;
+                    cardEdgeX = annotLeftInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                }
+
+                // Draw dot on phone edge
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', dotX);
+                circle.setAttribute('cy', dotY);
+                circle.setAttribute('r', '3.5');
+                circle.setAttribute('fill', '#999');
+                svg.appendChild(circle);
+
+                // Draw dashed line from dot to card edge
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', dotX);
+                line.setAttribute('y1', dotY);
+                line.setAttribute('x2', cardEdgeX);
+                line.setAttribute('y2', cardMidY);
+                line.setAttribute('stroke', '#bbb');
+                line.setAttribute('stroke-width', '1.2');
+                line.setAttribute('stroke-dasharray', '4, 3');
+                svg.appendChild(line);
+
+                // Draw small dot at card edge
+                const circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle2.setAttribute('cx', cardEdgeX);
+                circle2.setAttribute('cy', cardMidY);
+                circle2.setAttribute('r', '2.5');
+                circle2.setAttribute('fill', '#bbb');
+                svg.appendChild(circle2);
+            });
+        }
+
+        /* ─── Init ─── */
+        const imgBefore = document.getElementById('imgBefore');
+        const imgAfter = document.getElementById('imgAfter');
+        let loadedCount = 0;
+
+        function onImageLoad() {
+            loadedCount++;
+            if (loadedCount >= 2) {
+                renderAnnotations();
+            }
+        }
+
+        imgBefore.addEventListener('load', onImageLoad);
+        imgAfter.addEventListener('load', onImageLoad);
+
+        if (imgBefore.complete) { loadedCount++; }
+        if (imgAfter.complete) { loadedCount++; }
+        if (loadedCount >= 2) {
+            requestAnimationFrame(renderAnnotations);
+        }
+
+        // Redraw on resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderAnnotations, 200);
+        });
+    </script>
+</body>
+</html>

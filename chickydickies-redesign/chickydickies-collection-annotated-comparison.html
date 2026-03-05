@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicky Dickies Collection Page Redesign — Annotated Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Figtree', sans-serif;
+            background: #f5f5f0;
+            color: #374151;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Header ─── */
+        .page-header {
+            background: #ffffff;
+            padding: 28px 40px 24px;
+            border-bottom: 1px solid #e5e5e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .header-left { max-width: 600px; }
+
+        .brand-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a365d;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* ─── Legend ─── */
+        .legend {
+            background: #fafaf8;
+            border: 1px solid #e5e5e0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            min-width: 180px;
+        }
+
+        .legend-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-new { background: #15803d; }
+        .dot-improved { background: #1d4ed8; }
+        .dot-conversion { background: #a16207; }
+        .dot-ux { background: #be185d; }
+        .dot-trust { background: #4338ca; }
+        .dot-storytelling { background: #7c3aed; }
+
+        /* ─── Stats Bar ─── */
+        .stats-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e0;
+            padding: 14px 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        /* ─── Comparison Container ─── */
+        .comparison-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 40px 24px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .side {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .side-content {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        .side-before .side-content { flex-direction: row; }
+        .side-after .side-content { flex-direction: row; }
+
+        .phone-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .phone-column {
+            flex-shrink: 0;
+            width: 260px;
+        }
+
+        .phone-frame {
+            width: 260px;
+            border-radius: 24px;
+            border: 2.5px solid #d0d0d0;
+            overflow: hidden;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 18px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .phone-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .annotations-column {
+            position: relative;
+            width: 220px;
+            flex-shrink: 0;
+        }
+
+        .annotation-card {
+            position: absolute;
+            width: 220px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e8e8e4;
+        }
+
+        .annotation-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .tag-new { background: #dcfce7; color: #15803d; }
+        .tag-improved { background: #dbeafe; color: #1d4ed8; }
+        .tag-conversion { background: #fef3c7; color: #a16207; }
+        .tag-ux { background: #fce7f3; color: #be185d; }
+        .tag-trust { background: #e0e7ff; color: #4338ca; }
+        .tag-storytelling { background: #f3e8ff; color: #7c3aed; }
+
+        .annotation-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .annotation-card p {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .connectors-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: visible;
+        }
+
+        .page-footer {
+            text-align: center;
+            padding: 24px 40px 40px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="header-left">
+            <div class="brand-tag">Chicky Dickies</div>
+            <h1 class="page-title">Collection Page Redesign Annotations</h1>
+            <p class="page-subtitle">Triangle Scarves Collection — Mobile Collection Page Comparison</p>
+        </div>
+        <div class="legend">
+            <div class="legend-title">Change Types</div>
+            <div class="legend-items">
+                <span class="legend-item"><span class="legend-dot dot-new"></span> New Section</span>
+                <span class="legend-item"><span class="legend-dot dot-improved"></span> Improved</span>
+                <span class="legend-item"><span class="legend-dot dot-conversion"></span> Conversion</span>
+                <span class="legend-item"><span class="legend-dot dot-ux"></span> UX</span>
+                <span class="legend-item"><span class="legend-dot dot-trust"></span> Trust</span>
+                <span class="legend-item"><span class="legend-dot dot-storytelling"></span> Storytelling</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">10</span> Total Changes
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span> New Sections
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span> Conversion Upgrades
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">2</span> Storytelling Elements
+        </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="comparison-container">
+
+        <!-- BEFORE Side -->
+        <div class="side side-before" id="sideBefore">
+            <div class="phone-label">Before</div>
+            <div class="side-content">
+                <div class="annotations-column" id="annotationsLeft"></div>
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameBefore">
+                        <img src="current-collection.png" id="imgBefore" alt="Current Scarves Collection">
+                    </div>
+                </div>
+            </div>
+            <svg class="connectors-svg" id="svgBefore"></svg>
+        </div>
+
+        <!-- AFTER Side -->
+        <div class="side side-after" id="sideAfter">
+            <div class="phone-label">Redesign</div>
+            <div class="side-content">
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameAfter">
+                        <img src="redesign-collection.png" id="imgAfter" alt="Redesigned Scarves Collection">
+                    </div>
+                </div>
+                <div class="annotations-column" id="annotationsRight"></div>
+            </div>
+            <svg class="connectors-svg" id="svgAfter"></svg>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        Prepared by Bhaskar Roy &mdash; March 2026
+    </footer>
+
+    <script>
+        /* ─── Annotation Data ─── */
+
+        // Before: 780 x 7002 px (current chickydickies.co collection page)
+        // Sections mapped:
+        // Header: 0-300px (~0-4%)
+        // Collection title (text only): 300-600px (~4-9%)
+        // Product grid (basic): 600-5000px (~9-71%)
+        // Footer: 5000-7002px (~71-100%)
+
+        const beforeAnnotations = [
+            {
+                yPercent: 2,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Basic Header — No Context',
+                desc: 'Standard navigation with no collection-specific messaging or announcement bar.'
+            },
+            {
+                yPercent: 7,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Plain Text Collection Title',
+                desc: 'Simple "Scarves" heading with no lifestyle hero, no editorial imagery, no brand storytelling.'
+            },
+            {
+                yPercent: 18,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'No Filter or Sort Options',
+                desc: 'No way to filter by material, size, color, or price. Users browse everything linearly.'
+            },
+            {
+                yPercent: 35,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Uniform Grid — No Hierarchy',
+                desc: 'All products same size, same layout. No featured products, no bestseller callouts, no visual variety.'
+            },
+            {
+                yPercent: 55,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'No Editorial Content',
+                desc: 'Pure product grid with no interspersed storytelling, material education, or brand narrative breaks.'
+            },
+            {
+                yPercent: 75,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'No Cross-Sell or Feature Highlights',
+                desc: 'No reversible feature callouts, no "complete the look" suggestions, no bundle or gifting prompts.'
+            }
+        ];
+
+        // After: 780 x 11554 px (redesigned collection page)
+        // Sections mapped:
+        // Announcement bar + header: 0-400px (~0-3.5%)
+        // Collection hero: 400-1400px (~3.5-12%)
+        // Editorial intro: 1400-1900px (~12-16.4%)
+        // Filter bar: 1900-2300px (~16.4-20%)
+        // Grid row 1 (Berry, Mossy, Flannel): 2300-4600px (~20-40%)
+        // Editorial interlude: 4600-5400px (~40-47%)
+        // Grid row 2 (Lilac, Blue, Espresso): 5400-7000px (~47-60.5%)
+        // Story split (Reversible): 7000-8200px (~60.5-71%)
+        // Grid row 3 (Babs, Tina Berry): 8200-9400px (~71-81%)
+        // Footer: 9400-11554px (~81-100%)
+
+        const afterAnnotations = [
+            {
+                yPercent: 7.5,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Editorial Collection Hero',
+                desc: 'Full-width lifestyle hero with DM Serif Display italic headline, kid model wearing product. Sets premium tone.'
+            },
+            {
+                yPercent: 14,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Brand Storytelling Intro',
+                desc: 'Serif editorial text: craftsmanship, Mongolian cashmere, handmade details. Contextualizes the collection before browsing.'
+            },
+            {
+                yPercent: 18,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Smart Filter Bar',
+                desc: 'Pill-style filters: All, Merino Cashmere, Cotton Cashmere, Stripes, Solids. Plus sort by Best Selling / Price.'
+            },
+            {
+                yPercent: 27,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Enhanced Product Cards',
+                desc: 'Cards with hover effects, material badges, size indicators, and quick-view. Color swatches visible on card.'
+            },
+            {
+                yPercent: 36,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Curated Grid with Hierarchy',
+                desc: 'Products grouped by material type (Merino Cashmere, Cotton Cashmere). Section labels guide browsing.'
+            },
+            {
+                yPercent: 43.5,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Editorial Interlude',
+                desc: 'Mid-grid storytelling break with lifestyle imagery and copy about craftsmanship. Breaks monotony, reinforces brand.'
+            },
+            {
+                yPercent: 54,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Stripe Collection Section',
+                desc: 'Dedicated row for Cotton Cashmere Stripes with editorial styling. Material education inline with product browsing.'
+            },
+            {
+                yPercent: 65.5,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Reversible Feature Story',
+                desc: 'Full-width split layout showcasing the reversible design. Two looks, one purchase — strong value proposition.'
+            },
+            {
+                yPercent: 76,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Feature Product Spotlight',
+                desc: 'Larger cards for Babs and Tina Berry styles. Signature pieces get visual priority and more real estate.'
+            },
+            {
+                yPercent: 87,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Rich Footer with Newsletter',
+                desc: 'Email capture, brand story links, and social grid. Retention mechanism for seasonal collection drops.'
+            }
+        ];
+
+        /* ─── Render Function ─── */
+
+        function renderAnnotations() {
+            const imgBefore = document.getElementById('imgBefore');
+            const imgAfter = document.getElementById('imgAfter');
+
+            if (!imgBefore.complete || !imgAfter.complete) return;
+
+            const phoneBeforeH = imgBefore.offsetHeight;
+            const phoneAfterH = imgAfter.offsetHeight;
+
+            const leftCol = document.getElementById('annotationsLeft');
+            leftCol.innerHTML = '';
+            leftCol.style.height = phoneBeforeH + 'px';
+
+            let lastBottomLeft = 0;
+            beforeAnnotations.forEach((ann) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.right = '0';
+                leftCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneBeforeH - 20;
+                if (desiredTop < lastBottomLeft + 8) desiredTop = lastBottomLeft + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomLeft = desiredTop + card.offsetHeight;
+            });
+
+            const rightCol = document.getElementById('annotationsRight');
+            rightCol.innerHTML = '';
+            rightCol.style.height = phoneAfterH + 'px';
+
+            let lastBottomRight = 0;
+            afterAnnotations.forEach((ann) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.left = '0';
+                rightCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneAfterH - 20;
+                if (desiredTop < lastBottomRight + 8) desiredTop = lastBottomRight + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomRight = desiredTop + card.offsetHeight;
+            });
+
+            drawConnectors('before');
+            drawConnectors('after');
+        }
+
+        function drawConnectors(side) {
+            const isLeft = side === 'before';
+            const svg = document.getElementById(isLeft ? 'svgBefore' : 'svgAfter');
+            const sideEl = document.getElementById(isLeft ? 'sideBefore' : 'sideAfter');
+            const annotations = isLeft ? beforeAnnotations : afterAnnotations;
+            const img = document.getElementById(isLeft ? 'imgBefore' : 'imgAfter');
+            const phoneFrame = document.getElementById(isLeft ? 'phoneFrameBefore' : 'phoneFrameAfter');
+            const annotCol = document.getElementById(isLeft ? 'annotationsLeft' : 'annotationsRight');
+
+            const sideRect = sideEl.getBoundingClientRect();
+            const phoneRect = phoneFrame.getBoundingClientRect();
+            const annotRect = annotCol.getBoundingClientRect();
+            const imgH = img.offsetHeight;
+
+            svg.innerHTML = '';
+            svg.style.width = sideEl.offsetWidth + 'px';
+            svg.style.height = sideEl.offsetHeight + 'px';
+
+            const phoneLeftInSide = phoneRect.left - sideRect.left;
+            const phoneRightInSide = phoneRect.right - sideRect.left;
+            const phoneTopInSide = phoneRect.top - sideRect.top;
+            const annotLeftInSide = annotRect.left - sideRect.left;
+            const annotRightInSide = annotRect.right - sideRect.left;
+
+            annotations.forEach(ann => {
+                const dotY = phoneTopInSide + (ann.yPercent / 100) * imgH;
+                let dotX, cardEdgeX, cardMidY;
+
+                if (isLeft) {
+                    dotX = phoneLeftInSide + 2;
+                    cardEdgeX = annotRightInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                } else {
+                    dotX = phoneRightInSide - 2;
+                    cardEdgeX = annotLeftInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                }
+
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', dotX);
+                circle.setAttribute('cy', dotY);
+                circle.setAttribute('r', '3.5');
+                circle.setAttribute('fill', '#999');
+                svg.appendChild(circle);
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', dotX);
+                line.setAttribute('y1', dotY);
+                line.setAttribute('x2', cardEdgeX);
+                line.setAttribute('y2', cardMidY);
+                line.setAttribute('stroke', '#bbb');
+                line.setAttribute('stroke-width', '1.2');
+                line.setAttribute('stroke-dasharray', '4, 3');
+                svg.appendChild(line);
+
+                const circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle2.setAttribute('cx', cardEdgeX);
+                circle2.setAttribute('cy', cardMidY);
+                circle2.setAttribute('r', '2.5');
+                circle2.setAttribute('fill', '#bbb');
+                svg.appendChild(circle2);
+            });
+        }
+
+        /* ─── Init ─── */
+        const imgBefore = document.getElementById('imgBefore');
+        const imgAfter = document.getElementById('imgAfter');
+        let loadedCount = 0;
+
+        function onImageLoad() {
+            loadedCount++;
+            if (loadedCount >= 2) renderAnnotations();
+        }
+
+        imgBefore.addEventListener('load', onImageLoad);
+        imgAfter.addEventListener('load', onImageLoad);
+
+        if (imgBefore.complete) loadedCount++;
+        if (imgAfter.complete) loadedCount++;
+        if (loadedCount >= 2) requestAnimationFrame(renderAnnotations);
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderAnnotations, 200);
+        });
+    </script>
+</body>
+</html>

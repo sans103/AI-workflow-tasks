@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicky Dickies PDP Redesign — Annotated Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Figtree', sans-serif;
+            background: #f5f5f0;
+            color: #374151;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── Header ─── */
+        .page-header {
+            background: #ffffff;
+            padding: 28px 40px 24px;
+            border-bottom: 1px solid #e5e5e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .header-left { max-width: 600px; }
+
+        .brand-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a365d;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* ─── Legend ─── */
+        .legend {
+            background: #fafaf8;
+            border: 1px solid #e5e5e0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            min-width: 180px;
+        }
+
+        .legend-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-new { background: #15803d; }
+        .dot-improved { background: #1d4ed8; }
+        .dot-conversion { background: #a16207; }
+        .dot-ux { background: #be185d; }
+        .dot-trust { background: #4338ca; }
+        .dot-storytelling { background: #7c3aed; }
+
+        /* ─── Stats Bar ─── */
+        .stats-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e0;
+            padding: 14px 40px;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        /* ─── Comparison Container ─── */
+        .comparison-container {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 40px 24px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .side {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .side-content {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        .side-before .side-content { flex-direction: row; }
+        .side-after .side-content { flex-direction: row; }
+
+        .phone-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #6b7280;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .phone-column {
+            flex-shrink: 0;
+            width: 260px;
+        }
+
+        .phone-frame {
+            width: 260px;
+            border-radius: 24px;
+            border: 2.5px solid #d0d0d0;
+            overflow: hidden;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 18px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 5;
+        }
+
+        .phone-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .annotations-column {
+            position: relative;
+            width: 220px;
+            flex-shrink: 0;
+        }
+
+        .annotation-card {
+            position: absolute;
+            width: 220px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e8e8e4;
+        }
+
+        .annotation-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .tag-new { background: #dcfce7; color: #15803d; }
+        .tag-improved { background: #dbeafe; color: #1d4ed8; }
+        .tag-conversion { background: #fef3c7; color: #a16207; }
+        .tag-ux { background: #fce7f3; color: #be185d; }
+        .tag-trust { background: #e0e7ff; color: #4338ca; }
+        .tag-storytelling { background: #f3e8ff; color: #7c3aed; }
+
+        .annotation-card h3 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .annotation-card p {
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .connectors-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: visible;
+        }
+
+        .page-footer {
+            text-align: center;
+            padding: 24px 40px 40px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="header-left">
+            <div class="brand-tag">Chicky Dickies</div>
+            <h1 class="page-title">Product Page Redesign Annotations</h1>
+            <p class="page-subtitle">Stan Merino Cashmere Neck Warmer in Denim — Mobile PDP Comparison</p>
+        </div>
+        <div class="legend">
+            <div class="legend-title">Change Types</div>
+            <div class="legend-items">
+                <span class="legend-item"><span class="legend-dot dot-new"></span> New Section</span>
+                <span class="legend-item"><span class="legend-dot dot-improved"></span> Improved</span>
+                <span class="legend-item"><span class="legend-dot dot-conversion"></span> Conversion</span>
+                <span class="legend-item"><span class="legend-dot dot-ux"></span> UX</span>
+                <span class="legend-item"><span class="legend-dot dot-trust"></span> Trust</span>
+                <span class="legend-item"><span class="legend-dot dot-storytelling"></span> Storytelling</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-number">13</span> Total Changes
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5</span> New Sections
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span> Conversion Upgrades
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span> Trust Signals Added
+        </div>
+    </div>
+
+    <!-- Comparison -->
+    <div class="comparison-container">
+
+        <!-- BEFORE Side -->
+        <div class="side side-before" id="sideBefore">
+            <div class="phone-label">Before</div>
+            <div class="side-content">
+                <div class="annotations-column" id="annotationsLeft"></div>
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameBefore">
+                        <img src="current-pdp.png" id="imgBefore" alt="Current Stan Dickey PDP">
+                    </div>
+                </div>
+            </div>
+            <svg class="connectors-svg" id="svgBefore"></svg>
+        </div>
+
+        <!-- AFTER Side -->
+        <div class="side side-after" id="sideAfter">
+            <div class="phone-label">Redesign</div>
+            <div class="side-content">
+                <div class="phone-column">
+                    <div class="phone-frame" id="phoneFrameAfter">
+                        <img src="redesign-pdp.png" id="imgAfter" alt="Redesigned Stan Dickey PDP">
+                    </div>
+                </div>
+                <div class="annotations-column" id="annotationsRight"></div>
+            </div>
+            <svg class="connectors-svg" id="svgAfter"></svg>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        Prepared by Bhaskar Roy &mdash; March 2026
+    </footer>
+
+    <script>
+        /* ─── Annotation Data ─── */
+
+        // Before: 780 x 7152 px (current chickydickies.co PDP)
+        // Sections mapped:
+        // Header: 0-300px (~0-4%)
+        // Single product image: 300-2000px (~4-28%)
+        // Title + price: 2000-2600px (~28-36%)
+        // Variant selector: 2600-3200px (~36-45%)
+        // Add to Cart: 3200-3600px (~45-50%)
+        // Description text: 3600-4800px (~50-67%)
+        // Reviews / social: 4800-5600px (~67-78%)
+        // Footer: 5600-7152px (~78-100%)
+
+        const beforeAnnotations = [
+            {
+                yPercent: 2,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'No Section Navigation',
+                desc: 'Long product page with no anchor nav. Users must scroll blindly through the entire page.'
+            },
+            {
+                yPercent: 16,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Single Product Image',
+                desc: 'One static product photo. No gallery, no thumbnails, no lifestyle shots, no detail close-ups.'
+            },
+            {
+                yPercent: 32,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Basic Title & Price',
+                desc: 'Plain text title and price. No star rating, no review count, no urgency cues visible above the fold.'
+            },
+            {
+                yPercent: 42,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Standard Variant Selector',
+                desc: 'Basic dropdown or text selectors. No visual color swatches, no size guide, no price-per-size visibility.'
+            },
+            {
+                yPercent: 54,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'Plain Text Description',
+                desc: 'Unformatted paragraph text. No scannable benefits, no icons, no material callouts.'
+            },
+            {
+                yPercent: 68,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'No Social Proof on Page',
+                desc: 'No UGC videos, no customer photos, no "as seen on" social content near the buy box.'
+            },
+            {
+                yPercent: 80,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'No A+ Content',
+                desc: 'No below-fold brand storytelling, material education, sizing visuals, or brand promise section.'
+            },
+            {
+                yPercent: 92,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'No Recommendations',
+                desc: 'Page ends abruptly with no "You may also like" or cross-sell section to increase AOV.'
+            }
+        ];
+
+        // After: 780 x 13062 px (redesigned PDP)
+        // Sections mapped:
+        // Announcement bar + header: 0-400px (~0-3%)
+        // Section nav: 400-500px (~3-3.8%)
+        // Breadcrumbs: 500-600px (~3.8-4.6%)
+        // Image gallery: 600-2000px (~4.6-15.3%)
+        // Buybox title/rating: 2000-2600px (~15.3-20%)
+        // Size selector: 2600-3200px (~20-24.5%)
+        // Color selector: 3200-3800px (~24.5-29%)
+        // UGC video strip: 3800-4200px (~29-32%)
+        // Add to Cart + Trust: 4200-5000px (~32-38%)
+        // Description + Accordions: 5000-6400px (~38-49%)
+        // A+ Material Story: 6400-7800px (~49-60%)
+        // A+ Sizing Visual: 7800-9000px (~60-69%)
+        // A+ Brand Promise: 9000-9800px (~69-75%)
+        // Recommendations: 9800-11200px (~75-86%)
+        // Sticky ATC bar: overlay
+        // Footer: 11200-13062px (~86-100%)
+
+        const afterAnnotations = [
+            {
+                yPercent: 3.4,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Sticky Section Navigation',
+                desc: 'Anchored nav bar: Photos, Details, Reviews, Shipping, You May Also Like. One-tap access to any section.'
+            },
+            {
+                yPercent: 10,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Multi-Image Gallery',
+                desc: 'Swipeable gallery with dot indicators + scrollable thumbnails. Product, lifestyle, and detail shots.'
+            },
+            {
+                yPercent: 17.5,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Star Rating & Review Count',
+                desc: '4.8-star rating with 24 reviews prominently displayed. Social proof at the top of the buy box.'
+            },
+            {
+                yPercent: 22,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Visual Size Selector',
+                desc: 'Pill-style size options (Mini $48, Small $52, Large $58) with clear pricing per size. No guesswork.'
+            },
+            {
+                yPercent: 27,
+                tag: 'tag-improved', tagText: 'Improved',
+                title: 'Color Swatches with Names',
+                desc: '6 visual color swatches (Denim, Berry, Camel, Stone, Charcoal, Oatmeal) with tooltips on hover.'
+            },
+            {
+                yPercent: 30.5,
+                tag: 'tag-new', tagText: 'New',
+                title: 'UGC Video Strip',
+                desc: 'Scrollable row of customer/creator video thumbnails with play buttons. Real parents, real kids.'
+            },
+            {
+                yPercent: 35,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'Trust Badges Below CTA',
+                desc: 'Free shipping, easy returns, machine washable, handcrafted in NYC — objection handling at purchase point.'
+            },
+            {
+                yPercent: 44,
+                tag: 'tag-ux', tagText: 'UX',
+                title: 'Accordion Details',
+                desc: 'Collapsible sections: Materials & Care, Sizing Guide, Shipping & Returns. Clean, scannable format.'
+            },
+            {
+                yPercent: 54.5,
+                tag: 'tag-storytelling', tagText: 'Storytelling',
+                title: 'A+ Material Story',
+                desc: 'Full-width editorial section: "From Fiber to Warmth." Mongolian cashmere sourcing, handcraft details, quality narrative.'
+            },
+            {
+                yPercent: 64.5,
+                tag: 'tag-new', tagText: 'New',
+                title: 'A+ Visual Sizing Guide',
+                desc: 'Illustrated sizing chart with age ranges, measurements, and lifestyle photos showing fit on different ages.'
+            },
+            {
+                yPercent: 72,
+                tag: 'tag-trust', tagText: 'Trust',
+                title: 'A+ Brand Promise',
+                desc: 'Quality guarantee, sustainability commitment, and brand values section. Reinforces premium positioning.'
+            },
+            {
+                yPercent: 80,
+                tag: 'tag-conversion', tagText: 'Conversion',
+                title: 'Product Recommendations Grid',
+                desc: '"You May Also Like" with 4 related products. Horizontal scroll with quick-view. Drives AOV and discovery.'
+            },
+            {
+                yPercent: 88,
+                tag: 'tag-new', tagText: 'New',
+                title: 'Sticky Add-to-Cart Bar',
+                desc: 'Fixed bottom bar with product name, price, and ATC button. Purchase path always accessible while scrolling.'
+            }
+        ];
+
+        /* ─── Render Function ─── */
+
+        function renderAnnotations() {
+            const imgBefore = document.getElementById('imgBefore');
+            const imgAfter = document.getElementById('imgAfter');
+
+            if (!imgBefore.complete || !imgAfter.complete) return;
+
+            const phoneBeforeH = imgBefore.offsetHeight;
+            const phoneAfterH = imgAfter.offsetHeight;
+
+            const leftCol = document.getElementById('annotationsLeft');
+            leftCol.innerHTML = '';
+            leftCol.style.height = phoneBeforeH + 'px';
+
+            let lastBottomLeft = 0;
+            beforeAnnotations.forEach((ann) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.right = '0';
+                leftCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneBeforeH - 20;
+                if (desiredTop < lastBottomLeft + 8) desiredTop = lastBottomLeft + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomLeft = desiredTop + card.offsetHeight;
+            });
+
+            const rightCol = document.getElementById('annotationsRight');
+            rightCol.innerHTML = '';
+            rightCol.style.height = phoneAfterH + 'px';
+
+            let lastBottomRight = 0;
+            afterAnnotations.forEach((ann) => {
+                const card = document.createElement('div');
+                card.className = 'annotation-card';
+                card.innerHTML = `
+                    <div class="annotation-tag ${ann.tag}">${ann.tagText}</div>
+                    <h3>${ann.title}</h3>
+                    <p>${ann.desc}</p>
+                `;
+                card.style.left = '0';
+                rightCol.appendChild(card);
+
+                let desiredTop = (ann.yPercent / 100) * phoneAfterH - 20;
+                if (desiredTop < lastBottomRight + 8) desiredTop = lastBottomRight + 8;
+                card.style.top = desiredTop + 'px';
+
+                ann._top = desiredTop;
+                ann._cardH = card.offsetHeight;
+                ann._cardMidY = desiredTop + card.offsetHeight / 2;
+                lastBottomRight = desiredTop + card.offsetHeight;
+            });
+
+            drawConnectors('before');
+            drawConnectors('after');
+        }
+
+        function drawConnectors(side) {
+            const isLeft = side === 'before';
+            const svg = document.getElementById(isLeft ? 'svgBefore' : 'svgAfter');
+            const sideEl = document.getElementById(isLeft ? 'sideBefore' : 'sideAfter');
+            const annotations = isLeft ? beforeAnnotations : afterAnnotations;
+            const img = document.getElementById(isLeft ? 'imgBefore' : 'imgAfter');
+            const phoneFrame = document.getElementById(isLeft ? 'phoneFrameBefore' : 'phoneFrameAfter');
+            const annotCol = document.getElementById(isLeft ? 'annotationsLeft' : 'annotationsRight');
+
+            const sideRect = sideEl.getBoundingClientRect();
+            const phoneRect = phoneFrame.getBoundingClientRect();
+            const annotRect = annotCol.getBoundingClientRect();
+            const imgH = img.offsetHeight;
+
+            svg.innerHTML = '';
+            svg.style.width = sideEl.offsetWidth + 'px';
+            svg.style.height = sideEl.offsetHeight + 'px';
+
+            const phoneLeftInSide = phoneRect.left - sideRect.left;
+            const phoneRightInSide = phoneRect.right - sideRect.left;
+            const phoneTopInSide = phoneRect.top - sideRect.top;
+            const annotLeftInSide = annotRect.left - sideRect.left;
+            const annotRightInSide = annotRect.right - sideRect.left;
+
+            annotations.forEach(ann => {
+                const dotY = phoneTopInSide + (ann.yPercent / 100) * imgH;
+                let dotX, cardEdgeX, cardMidY;
+
+                if (isLeft) {
+                    dotX = phoneLeftInSide + 2;
+                    cardEdgeX = annotRightInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                } else {
+                    dotX = phoneRightInSide - 2;
+                    cardEdgeX = annotLeftInSide;
+                    cardMidY = phoneTopInSide + ann._cardMidY;
+                }
+
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', dotX);
+                circle.setAttribute('cy', dotY);
+                circle.setAttribute('r', '3.5');
+                circle.setAttribute('fill', '#999');
+                svg.appendChild(circle);
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', dotX);
+                line.setAttribute('y1', dotY);
+                line.setAttribute('x2', cardEdgeX);
+                line.setAttribute('y2', cardMidY);
+                line.setAttribute('stroke', '#bbb');
+                line.setAttribute('stroke-width', '1.2');
+                line.setAttribute('stroke-dasharray', '4, 3');
+                svg.appendChild(line);
+
+                const circle2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle2.setAttribute('cx', cardEdgeX);
+                circle2.setAttribute('cy', cardMidY);
+                circle2.setAttribute('r', '2.5');
+                circle2.setAttribute('fill', '#bbb');
+                svg.appendChild(circle2);
+            });
+        }
+
+        /* ─── Init ─── */
+        const imgBefore = document.getElementById('imgBefore');
+        const imgAfter = document.getElementById('imgAfter');
+        let loadedCount = 0;
+
+        function onImageLoad() {
+            loadedCount++;
+            if (loadedCount >= 2) renderAnnotations();
+        }
+
+        imgBefore.addEventListener('load', onImageLoad);
+        imgAfter.addEventListener('load', onImageLoad);
+
+        if (imgBefore.complete) loadedCount++;
+        if (imgAfter.complete) loadedCount++;
+        if (loadedCount >= 2) requestAnimationFrame(renderAnnotations);
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(renderAnnotations, 200);
+        });
+    </script>
+</body>
+</html>
