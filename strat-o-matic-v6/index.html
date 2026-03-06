@@ -340,12 +340,11 @@
 
         .hero-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(60px, 10vw, 180px);
+            font-size: clamp(48px, 10vw, 180px);
             font-weight: 900;
             line-height: 1;
             letter-spacing: -4px;
             margin-bottom: 40px;
-            white-space: nowrap;
         }
 
         .hero-title .char {
@@ -1660,12 +1659,120 @@
                 transform: scale(1);
             }
 
+            .hero {
+                min-height: auto;
+                padding-top: 80px;
+            }
+
+            .hero-content {
+                padding: 80px 24px 60px;
+            }
+
+            .hero-title {
+                font-size: clamp(40px, 12vw, 60px);
+                letter-spacing: -2px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .hero-cta {
+                padding: 18px 36px;
+                font-size: 15px;
+            }
+
+            .scoreboard-title,
+            .stats-title,
+            .leaderboard-title,
+            .modes-title,
+            .testimonials-title,
+            .pricing-title {
+                font-size: clamp(28px, 8vw, 48px);
+                letter-spacing: -2px;
+                margin-bottom: 40px;
+            }
+
+            .scoreboard-section {
+                padding: 80px 16px;
+            }
+
+            .stats-section {
+                padding: 80px 24px;
+            }
+
+            .stats-dashboard {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 24px 16px;
+            }
+
+            .stat-value {
+                font-size: 36px;
+            }
+
+            .gallery-section {
+                padding: 80px 0;
+            }
+
+            .gallery-item {
+                width: 260px;
+                height: 340px;
+            }
+
+            .gallery-caption {
+                font-size: 14px;
+                padding: 16px;
+            }
+
+            .leaderboard-section {
+                padding: 80px 16px;
+            }
+
+            .modes-section {
+                padding: 80px 24px;
+            }
+
+            .mode-content {
+                padding: 32px 24px;
+            }
+
+            .mode-title {
+                font-size: 24px;
+            }
+
+            .testimonials-section {
+                padding: 80px 24px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-section {
+                padding: 80px 24px;
+            }
+
+            .final-cta {
+                min-height: 60vh;
+            }
+
+            .final-cta-title {
+                font-size: clamp(40px, 12vw, 80px);
+                letter-spacing: -2px;
+            }
+
             .final-cta-buttons {
                 flex-direction: column;
             }
 
             .final-cta-btn {
                 width: 100%;
+                padding: 20px 40px;
+                font-size: 16px;
             }
         }
 

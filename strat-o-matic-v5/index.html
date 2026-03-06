@@ -1365,6 +1365,12 @@
         }
 
         @media (max-width: 768px) {
+            .scroll-reveal,
+            .scroll-reveal.waiting {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+
             .cursor-follower {
                 display: none;
             }
@@ -1387,31 +1393,61 @@
             }
 
             .hero {
-                min-height: 80vh;
+                min-height: auto;
                 padding-top: 80px;
+                background: #000;
             }
 
             .hero::before {
-                clip-path: polygon(0 0, 100% 0, 100% 40%, 0% 60%);
+                clip-path: none;
+                transform: none;
+                opacity: 0.2;
             }
 
             .hero-content {
-                padding: 80px 24px 60px;
+                padding: 80px 24px 40px;
                 grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .hero-right {
+                order: -1;
+            }
+
+            .hero-screenshot {
+                max-width: 100%;
+                transform: rotate(0deg);
+                box-shadow: 8px 8px 0 rgba(200, 16, 46, 0.3);
+                border-width: 3px;
+            }
+
+            .hero-badge {
+                margin-bottom: 16px;
+                transform: rotate(0deg);
             }
 
             .hero-title {
-                font-size: 80px;
+                font-size: clamp(56px, 16vw, 90px);
+                letter-spacing: -2px;
+                margin-bottom: 20px;
             }
 
-            .hero-subtitle {
-                font-size: 18px;
+            .hero-title .word-play {
                 transform: translateX(0);
             }
 
-            .hero-cta {
-                padding: 20px 40px;
+            .hero-subtitle {
                 font-size: 16px;
+                transform: translateX(0);
+                max-width: 100%;
+                margin-bottom: 32px;
+            }
+
+            .hero-cta {
+                padding: 18px 36px;
+                font-size: 15px;
+                width: 100%;
+                justify-content: center;
             }
 
             .manifesto {
