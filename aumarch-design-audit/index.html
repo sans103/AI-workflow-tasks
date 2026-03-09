@@ -6,16 +6,19 @@
     <title>Aum Architects — Design Improvement Report</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0a0a;
+            --white: #FFFFFF;
+            --black: #1a1a1a;
+            --dark: #374151;
+            --muted: #9ca3af;
+            --light-gray: #f8f8f8;
+            --border-gray: #eeeeee;
             --accent-bronze: #C8965C;
-            --text-white: #ffffff;
-            --text-light: #bbbbbb;
-            --text-muted: #777777;
-            --card-dark: #141414;
-            --card-darker: #1c1c1c;
+            --red: #e53e3e;
+            --green: #22c55e;
+            --blue: #3b82f6;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -27,8 +30,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-white);
+            background: var(--white);
+            color: var(--dark);
             overflow-x: hidden;
             overflow-y: hidden;
         }
@@ -54,7 +57,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem;
+            padding: 5rem;
             position: relative;
             opacity: 0;
             transition: opacity 0.6s ease;
@@ -70,156 +73,174 @@
         }
 
         h1 {
-            font-size: 6rem;
-            font-weight: 900;
-            line-height: 1;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            color: var(--black);
         }
 
         h2 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            letter-spacing: -0.01em;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            letter-spacing: -0.03em;
+            color: var(--black);
         }
 
         h3 {
-            font-size: 2rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            font-weight: 500;
             margin-bottom: 1.5rem;
             color: var(--accent-bronze);
         }
 
         .subtitle {
             font-size: 1.5rem;
-            color: var(--text-light);
+            color: var(--dark);
+            font-weight: 400;
             margin-bottom: 0.5rem;
         }
 
         .muted {
-            color: var(--text-muted);
+            color: var(--muted);
             font-size: 1.125rem;
+            font-weight: 300;
         }
 
         .accent-line {
-            width: 120px;
-            height: 3px;
+            width: 100px;
+            height: 1px;
             background: var(--accent-bronze);
-            margin: 2rem 0;
+            margin: 2.5rem 0;
         }
 
         .metrics-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin: 3rem 0;
         }
 
         .metric-card {
-            background: var(--card-dark);
-            padding: 2rem;
-            border-radius: 12px;
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 8px;
             text-align: center;
             transition: var(--transition);
-            border: 1px solid rgba(200, 150, 92, 0.1);
+            border: 1px solid var(--border-gray);
         }
 
         .metric-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-bronze);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
         .metric-value {
             font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--accent-bronze);
+            font-weight: 700;
+            color: var(--black);
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .metric-label {
-            font-size: 1rem;
-            color: var(--text-light);
+            font-size: 0.875rem;
+            color: var(--muted);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            font-weight: 500;
         }
 
         .issue-card, .feature-card {
-            background: var(--card-dark);
+            background: var(--white);
             padding: 2rem;
-            border-radius: 12px;
+            border-radius: 8px;
             margin-bottom: 1.5rem;
-            border-left: 4px solid var(--accent-bronze);
+            border-left: 3px solid var(--accent-bronze);
+            border: 1px solid var(--border-gray);
+            border-left: 3px solid var(--accent-bronze);
             transition: var(--transition);
         }
 
         .issue-card:hover, .feature-card:hover {
-            background: var(--card-darker);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
         .issue-number {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.25rem;
+            font-weight: 600;
             color: var(--accent-bronze);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .issue-title {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
-            color: var(--text-white);
+            color: var(--black);
         }
 
         .issue-description {
-            color: var(--text-light);
-            line-height: 1.6;
+            color: var(--dark);
+            line-height: 1.7;
+            font-weight: 400;
         }
 
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
 
         thead {
-            background: var(--card-darker);
+            background: var(--light-gray);
         }
 
         th {
-            padding: 1rem;
+            padding: 1.25rem 1rem;
             text-align: left;
             font-weight: 600;
-            color: var(--accent-bronze);
+            color: var(--black);
             text-transform: uppercase;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            border-bottom: 2px solid var(--border-gray);
         }
 
         td {
-            padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-light);
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid var(--border-gray);
+            color: var(--dark);
+            font-size: 0.9375rem;
+            line-height: 1.6;
         }
 
         tbody tr:nth-child(odd) {
-            background: var(--card-dark);
+            background: #f9fafb;
         }
 
         tbody tr:nth-child(even) {
-            background: var(--card-darker);
+            background: var(--white);
         }
 
         tbody tr:hover {
-            background: rgba(200, 150, 92, 0.05);
+            background: #fafafa;
         }
 
         a {
@@ -229,8 +250,7 @@
         }
 
         a:hover {
-            text-decoration: underline;
-            color: var(--text-white);
+            opacity: 0.7;
         }
 
         .section-divider {
@@ -238,71 +258,79 @@
         }
 
         .section-number {
-            font-size: 10rem;
-            font-weight: 900;
+            font-size: 8rem;
+            font-weight: 300;
             color: var(--accent-bronze);
-            opacity: 0.3;
+            opacity: 0.25;
             line-height: 1;
+            letter-spacing: -0.04em;
         }
 
         .section-title {
-            font-size: 4rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 300;
             margin-top: 1rem;
+            letter-spacing: -0.03em;
         }
 
         .section-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-top: 1rem;
+            font-size: 1.25rem;
+            color: var(--muted);
+            margin-top: 1.5rem;
+            font-weight: 300;
         }
 
         .comparison-box {
-            background: var(--card-dark);
-            padding: 2rem;
-            border-radius: 12px;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
             position: relative;
             height: 100%;
+            border: 1px solid var(--border-gray);
         }
 
         .label {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            border-radius: 4px;
+            font-size: 0.6875rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
         }
 
         .label.current {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--red);
+            border: 1px solid var(--red);
         }
 
         .label.proposed {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--green);
+            border: 1px solid var(--green);
         }
 
         .comparison-title {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 600;
-            margin-bottom: 1rem;
-            padding-right: 5rem;
+            margin-bottom: 1.5rem;
+            padding-right: 6rem;
+            color: var(--black);
         }
 
         .comparison-list {
             list-style: none;
-            color: var(--text-light);
+            color: var(--dark);
         }
 
         .comparison-list li {
-            padding: 0.5rem 0;
+            padding: 0.625rem 0;
             padding-left: 1.5rem;
             position: relative;
+            line-height: 1.6;
         }
 
         .comparison-list li:before {
@@ -314,37 +342,39 @@
         }
 
         .phase-card {
-            background: var(--card-dark);
-            padding: 2rem;
-            border-radius: 12px;
-            border-top: 4px solid var(--accent-bronze);
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-gray);
+            border-top: 3px solid var(--accent-bronze);
         }
 
         .phase-title {
             font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--accent-bronze);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--black);
         }
 
         .phase-subtitle {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 0.875rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-size: 0.8125rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            font-weight: 500;
         }
 
         .phase-list {
             list-style: none;
-            color: var(--text-light);
+            color: var(--dark);
         }
 
         .phase-list li {
             padding: 0.75rem 0;
             padding-left: 2rem;
             position: relative;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .phase-list li:before {
@@ -357,47 +387,47 @@
 
         .nav-bar {
             position: fixed;
-            bottom: 2rem;
+            bottom: 2.5rem;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(20, 20, 20, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
+            background: var(--white);
+            border: 1px solid var(--border-gray);
+            padding: 0.75rem 2rem;
             border-radius: 50px;
             display: flex;
             align-items: center;
             gap: 2rem;
-            border: 1px solid rgba(200, 150, 92, 0.2);
             z-index: 1000;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
         }
 
         .nav-dots {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.625rem;
         }
 
         .nav-dot {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            background: var(--text-muted);
+            background: var(--muted);
             cursor: pointer;
             transition: var(--transition);
         }
 
         .nav-dot.active {
             background: var(--accent-bronze);
-            transform: scale(1.5);
+            transform: scale(1.4);
         }
 
         .nav-dot:hover {
-            background: var(--text-light);
+            background: var(--dark);
         }
 
         .nav-button {
             background: none;
             border: none;
-            color: var(--text-light);
+            color: var(--dark);
             cursor: pointer;
             padding: 0.5rem;
             display: flex;
@@ -416,48 +446,44 @@
         }
 
         .slide-counter {
-            color: var(--text-light);
-            font-size: 0.875rem;
+            color: var(--dark);
+            font-size: 0.8125rem;
             font-weight: 500;
             min-width: 4rem;
             text-align: center;
         }
 
         .technique-number {
-            display: inline-block;
-            width: 2rem;
-            height: 2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.75rem;
+            height: 1.75rem;
             background: var(--accent-bronze);
-            color: var(--bg-dark);
+            color: var(--white);
             border-radius: 50%;
-            text-align: center;
-            line-height: 2rem;
-            font-weight: 700;
+            font-size: 0.875rem;
+            font-weight: 600;
             margin-right: 1rem;
         }
 
-        .reference-section {
-            margin-bottom: 2rem;
-        }
-
-        .reference-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-bronze);
-            margin-bottom: 1rem;
-        }
-
         .reference-item {
-            background: var(--card-dark);
+            background: var(--white);
             padding: 1.5rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 3px solid var(--accent-bronze);
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-gray);
+            transition: var(--transition);
+        }
+
+        .reference-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
         .reference-name {
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--black);
         }
 
         .reference-url {
@@ -468,23 +494,24 @@
         }
 
         .reference-desc {
-            color: var(--text-light);
+            color: var(--dark);
             font-size: 0.875rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .flow-steps {
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
 
         .flow-step {
             flex: 1;
-            background: var(--card-dark);
-            padding: 1.5rem;
-            border-radius: 12px;
+            background: var(--white);
+            border: 1px solid var(--border-gray);
+            padding: 1.75rem;
+            border-radius: 8px;
             text-align: center;
             position: relative;
         }
@@ -502,7 +529,7 @@
 
         .step-number {
             font-size: 2rem;
-            font-weight: 900;
+            font-weight: 700;
             color: var(--accent-bronze);
             margin-bottom: 0.5rem;
         }
@@ -510,50 +537,161 @@
         .step-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--black);
+            font-size: 0.9375rem;
         }
 
         .step-desc {
-            font-size: 0.875rem;
-            color: var(--text-muted);
+            font-size: 0.8125rem;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
         .large-number {
             font-size: 5rem;
-            font-weight: 900;
+            font-weight: 300;
             color: var(--accent-bronze);
+            letter-spacing: -0.04em;
         }
 
         .highlight-box {
-            background: rgba(200, 150, 92, 0.1);
-            border: 1px solid var(--accent-bronze);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
+            background: rgba(200, 150, 92, 0.05);
+            border: 1px solid rgba(200, 150, 92, 0.2);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 2.5rem 0;
         }
 
-        @media (max-width: 768px) {
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .screenshot-card {
+            background: var(--white);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .screenshot-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .screenshot-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+        }
+
+        .screenshot-info {
+            padding: 1.25rem;
+        }
+
+        .screenshot-name {
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+        }
+
+        .screenshot-url {
+            font-size: 0.8125rem;
+            color: var(--accent-bronze);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .screenshot-desc {
+            font-size: 0.8125rem;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        .browser-mockup {
+            background: var(--white);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+
+        .browser-bar {
+            background: var(--light-gray);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--muted);
+        }
+
+        .browser-address {
+            flex: 1;
+            margin-left: 1rem;
+            background: var(--white);
+            padding: 0.375rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--muted);
+            border: 1px solid var(--border-gray);
+        }
+
+        .browser-content {
+            padding: 0;
+        }
+
+        .browser-content img {
+            width: 100%;
+            display: block;
+        }
+
+        .callout {
+            position: absolute;
+            background: var(--red);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        @media (max-width: 1024px) {
             .slide {
-                padding: 2rem;
+                padding: 3rem;
             }
 
             h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
             h2 {
-                font-size: 2rem;
+                font-size: 2.25rem;
             }
 
-            .grid-2 {
+            .grid-2, .grid-3 {
                 grid-template-columns: 1fr;
             }
 
             .section-number {
-                font-size: 6rem;
+                font-size: 5rem;
             }
 
-            .section-title {
-                font-size: 2.5rem;
+            .screenshot-grid {
+                grid-template-columns: 1fr;
             }
 
             .flow-steps {
@@ -566,14 +704,6 @@
                 right: 50%;
                 top: auto;
                 transform: translateX(50%);
-            }
-
-            table {
-                font-size: 0.875rem;
-            }
-
-            th, td {
-                padding: 0.75rem 0.5rem;
             }
         }
 
@@ -593,9 +723,9 @@
                 <div class="accent-line" style="margin-left: auto; margin-right: auto;"></div>
                 <h1>DESIGN IMPROVEMENT<br>REPORT</h1>
                 <div class="subtitle">aumarch.com</div>
-                <p class="muted" style="margin-top: 2rem;">Visual & UX Audit | Design Inspiration | Improvement Roadmap</p>
+                <p class="muted" style="margin-top: 3rem;">Visual & UX Audit | Design Inspiration | Improvement Roadmap</p>
                 <p class="muted" style="margin-top: 1rem;">March 2026 | Prepared by Bhaskar Roy</p>
-                <div class="accent-line" style="margin-left: auto; margin-right: auto;"></div>
+                <div class="accent-line" style="margin-left: auto; margin-right: auto; margin-top: 3rem;"></div>
             </div>
         </div>
 
@@ -603,6 +733,7 @@
         <div class="slide" data-slide="2">
             <div class="slide-content">
                 <h2>Aum Architects at a Glance</h2>
+                <p class="subtitle" style="margin-bottom: 2.5rem;">20 years of architectural excellence — but the website doesn't show it</p>
                 <div class="metrics-row">
                     <div class="metric-card">
                         <span class="metric-value">20+</span>
@@ -622,8 +753,8 @@
                     </div>
                 </div>
                 <div class="highlight-box">
-                    <p style="font-size: 1.5rem; line-height: 1.6; margin-bottom: 1rem;">The firm has the credentials of a world-class practice.</p>
-                    <p style="font-size: 1.25rem; color: var(--text-muted);">The website, however, feels like a basic portfolio template from 2015.</p>
+                    <p style="font-size: 1.25rem; line-height: 1.7; margin-bottom: 1rem; color: var(--black);">The firm has the credentials of a world-class practice.</p>
+                    <p style="font-size: 1rem; color: var(--muted);">The website, however, feels like a basic portfolio template from 2015.</p>
                 </div>
             </div>
         </div>
@@ -642,31 +773,31 @@
             <div class="slide-content">
                 <h2>Performance — Critical Issues</h2>
                 <div class="metrics-row">
-                    <div class="metric-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                        <span class="metric-value" style="color: #ef4444;">37</span>
+                    <div class="metric-card" style="background: rgba(239, 68, 68, 0.05); border-color: var(--red);">
+                        <span class="metric-value" style="color: var(--red);">37</span>
                         <span class="metric-label">Mobile PageSpeed</span>
                     </div>
-                    <div class="metric-card" style="border-color: rgba(245, 158, 11, 0.5);">
+                    <div class="metric-card" style="background: rgba(245, 158, 11, 0.05);">
                         <span class="metric-value" style="color: #f59e0b;">68</span>
                         <span class="metric-label">Desktop PageSpeed</span>
                     </div>
-                    <div class="metric-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                        <span class="metric-value" style="color: #ef4444;">7.5s</span>
+                    <div class="metric-card" style="background: rgba(239, 68, 68, 0.05); border-color: var(--red);">
+                        <span class="metric-value" style="color: var(--red);">7.5s</span>
                         <span class="metric-label">LCP (Mobile)</span>
                     </div>
-                    <div class="metric-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                        <span class="metric-value" style="color: #ef4444;">9.7s</span>
+                    <div class="metric-card" style="background: rgba(239, 68, 68, 0.05); border-color: var(--red);">
+                        <span class="metric-value" style="color: var(--red);">9.7s</span>
                         <span class="metric-label">Speed Index</span>
                     </div>
-                    <div class="metric-card" style="border-color: rgba(245, 158, 11, 0.5);">
+                    <div class="metric-card" style="background: rgba(245, 158, 11, 0.05);">
                         <span class="metric-value" style="color: #f59e0b;">720ms</span>
                         <span class="metric-label">Total Blocking Time</span>
                     </div>
                 </div>
                 <div class="highlight-box">
-                    <p style="font-size: 1.25rem; line-height: 1.6;">Users wait <strong style="color: var(--accent-bronze);">7.5 seconds</strong> to see content on mobile. Target: under 2.5 seconds.</p>
+                    <p style="font-size: 1.125rem; line-height: 1.6; color: var(--dark);">Users wait <strong style="color: var(--accent-bronze);">7.5 seconds</strong> to see content on mobile. Target: under 2.5 seconds.</p>
                 </div>
-                <div class="grid-2">
+                <div class="grid-2" style="margin-top: 3rem;">
                     <div class="issue-card">
                         <div class="issue-title">Unoptimized Images</div>
                         <div class="issue-description">Large JPGs loading at full resolution</div>
@@ -787,7 +918,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <p class="muted" style="text-align: center; margin-top: 2rem;">Brand colors, fonts (Montserrat/Poppins), and logo remain unchanged.</p>
+                <p class="muted" style="text-align: center; margin-top: 3rem;">Brand colors, fonts (Montserrat/Poppins), and logo remain unchanged.</p>
             </div>
         </div>
 
@@ -800,126 +931,168 @@
             </div>
         </div>
 
-        <!-- Slide 8: Architecture Firms -->
+        <!-- Slide 8: Architecture Firms Screenshots -->
         <div class="slide" data-slide="8">
             <div class="slide-content">
                 <h2>Architecture Firms Setting the Standard</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Firm</th>
-                            <th>URL</th>
-                            <th>Key Design Technique</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Zaha Hadid Architects</td>
-                            <td><a href="https://www.zaha-hadid.com" target="_blank">zaha-hadid.com</a></td>
-                            <td>Directional navigation, multi-format documentation</td>
-                        </tr>
-                        <tr>
-                            <td>BIG (Bjarke Ingels)</td>
-                            <td><a href="https://big.dk" target="_blank">big.dk</a></td>
-                            <td>Hero-first grid, categorical filtering</td>
-                        </tr>
-                        <tr>
-                            <td>Snøhetta</td>
-                            <td><a href="https://snohetta.com" target="_blank">snohetta.com</a></td>
-                            <td>Horizontal scroll carousel, dark mode</td>
-                        </tr>
-                        <tr>
-                            <td>Foster + Partners</td>
-                            <td><a href="https://www.fosterandpartners.com" target="_blank">fosterandpartners.com</a></td>
-                            <td>Minimalist grid, 2000px images, dark theme</td>
-                        </tr>
-                        <tr>
-                            <td>MVRDV</td>
-                            <td><a href="https://www.mvrdv.com" target="_blank">mvrdv.com</a></td>
-                            <td>Thematic organization, fade-in transitions, SPA</td>
-                        </tr>
-                        <tr>
-                            <td>Herzog & de Meuron</td>
-                            <td><a href="https://www.herzogdemeuron.com" target="_blank">herzogdemeuron.com</a></td>
-                            <td>Project-led hierarchy, conceptual navigation</td>
-                        </tr>
-                        <tr>
-                            <td>Steven Holl</td>
-                            <td><a href="https://www.stevenholl.com" target="_blank">stevenholl.com</a></td>
-                            <td>Conceptual word index, hero-driven visuals</td>
-                        </tr>
-                        <tr>
-                            <td>UNStudio</td>
-                            <td><a href="https://www.unstudio.com" target="_blank">unstudio.com</a></td>
-                            <td>Video hero, world clocks, mega menu</td>
-                        </tr>
-                        <tr>
-                            <td>SOM</td>
-                            <td><a href="https://www.som.com" target="_blank">som.com</a></td>
-                            <td>22 specializations, modular cards, deep nav</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Slide 9: Editorial + Scroll References -->
-        <div class="slide" data-slide="9">
-            <div class="slide-content">
-                <h2>Editorial Layout & Scroll Animation References</h2>
-                <div class="grid-2">
-                    <div>
-                        <h3>Editorial Layouts</h3>
-                        <div class="reference-item">
-                            <div class="reference-name">Dezeen</div>
-                            <a href="https://www.dezeen.com" target="_blank" class="reference-url">dezeen.com</a>
-                            <div class="reference-desc">Architecture journalism, asymmetric grids, hero imagery</div>
-                        </div>
-                        <div class="reference-item">
-                            <div class="reference-name">ArchDaily</div>
-                            <a href="https://www.archdaily.com" target="_blank" class="reference-url">archdaily.com</a>
-                            <div class="reference-desc">Featured projects, editorial hierarchy, image-first approach</div>
-                        </div>
-                        <div class="reference-item">
-                            <div class="reference-name">Wallpaper*</div>
-                            <a href="https://www.wallpaper.com" target="_blank" class="reference-url">wallpaper.com</a>
-                            <div class="reference-desc">Magazine-style layouts, dramatic photography, minimal text</div>
+                <div class="screenshot-grid">
+                    <div class="screenshot-card">
+                        <img src="screenshots/zaha-hadid.png" alt="Zaha Hadid Architects" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">Zaha Hadid Architects</div>
+                            <a href="https://www.zaha-hadid.com" target="_blank" class="screenshot-url">zaha-hadid.com</a>
+                            <div class="screenshot-desc">Directional navigation, multi-format documentation</div>
                         </div>
                     </div>
-                    <div>
-                        <h3>Scroll Animation Showcases</h3>
-                        <div class="reference-item">
-                            <div class="reference-name">Lando Norris</div>
-                            <a href="https://www.landonorris.com" target="_blank" class="reference-url">landonorris.com</a>
-                            <div class="reference-desc">Locomotive Scroll, parallax depth, cinematic transitions</div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/big-dk.png" alt="BIG" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">BIG (Bjarke Ingels)</div>
+                            <a href="https://big.dk" target="_blank" class="screenshot-url">big.dk</a>
+                            <div class="screenshot-desc">Hero-first grid, categorical filtering</div>
                         </div>
-                        <div class="reference-item">
-                            <div class="reference-name">Beaucoup Studio</div>
-                            <a href="https://beaucoup.studio" target="_blank" class="reference-url">beaucoup.studio</a>
-                            <div class="reference-desc">GSAP ScrollTrigger, staggered reveals, editorial grid</div>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/snohetta.png" alt="Snohetta" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">Snøhetta</div>
+                            <a href="https://snohetta.com" target="_blank" class="screenshot-url">snohetta.com</a>
+                            <div class="screenshot-desc">Horizontal scroll carousel, dark mode</div>
                         </div>
-                        <div class="reference-item">
-                            <div class="reference-name">GTA VI</div>
-                            <a href="https://www.rockstargames.com/VI" target="_blank" class="reference-url">rockstargames.com/VI</a>
-                            <div class="reference-desc">Clip-path reveals, scroll-driven video, immersive storytelling</div>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/foster-partners.png" alt="Foster + Partners" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">Foster + Partners</div>
+                            <a href="https://www.fosterandpartners.com" target="_blank" class="screenshot-url">fosterandpartners.com</a>
+                            <div class="screenshot-desc">Minimalist grid, 2000px images, dark theme</div>
                         </div>
-                        <div class="reference-item">
-                            <div class="reference-name">Locomotive</div>
-                            <a href="https://locomotive.ca" target="_blank" class="reference-url">locomotive.ca</a>
-                            <div class="reference-desc">Creators of Locomotive Scroll, smooth scroll reference</div>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/mvrdv.png" alt="MVRDV" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">MVRDV</div>
+                            <a href="https://www.mvrdv.com" target="_blank" class="screenshot-url">mvrdv.com</a>
+                            <div class="screenshot-desc">Thematic organization, fade-in transitions, SPA</div>
                         </div>
-                        <div class="reference-item">
-                            <div class="reference-name">GKC Architecture</div>
-                            <a href="https://www.gkc.ca" target="_blank" class="reference-url">gkc.ca</a>
-                            <div class="reference-desc">Architecture-specific scroll patterns, project showcases</div>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/herzog-de-meuron.png" alt="Herzog & de Meuron" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">Herzog & de Meuron</div>
+                            <a href="https://www.herzogdemeuron.com" target="_blank" class="screenshot-url">herzogdemeuron.com</a>
+                            <div class="screenshot-desc">Project-led hierarchy, conceptual navigation</div>
+                        </div>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/steven-holl.png" alt="Steven Holl Architects" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">Steven Holl Architects</div>
+                            <a href="https://www.stevenholl.com" target="_blank" class="screenshot-url">stevenholl.com</a>
+                            <div class="screenshot-desc">Conceptual word index, hero-driven visuals</div>
+                        </div>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/unstudio.png" alt="UNStudio" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">UNStudio</div>
+                            <a href="https://www.unstudio.com" target="_blank" class="screenshot-url">unstudio.com</a>
+                            <div class="screenshot-desc">Video hero, world clocks, mega menu</div>
+                        </div>
+                    </div>
+                    <div class="screenshot-card">
+                        <img src="screenshots/som.png" alt="SOM" class="screenshot-image" loading="lazy">
+                        <div class="screenshot-info">
+                            <div class="screenshot-name">SOM</div>
+                            <a href="https://www.som.com" target="_blank" class="screenshot-url">som.com</a>
+                            <div class="screenshot-desc">22 specializations, modular cards, deep navigation</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 10: 5 Key Patterns -->
+        <!-- Slide 9: Editorial + Scroll References with Screenshots -->
+        <div class="slide" data-slide="9">
+            <div class="slide-content">
+                <h2>Editorial Layout & Scroll Animation References</h2>
+                <div class="grid-2">
+                    <div>
+                        <h3>Editorial Layouts</h3>
+                        <div class="screenshot-card" style="margin-bottom: 1.5rem;">
+                            <img src="screenshots/dezeen.png" alt="Dezeen" class="screenshot-image" loading="lazy">
+                            <div class="screenshot-info">
+                                <div class="screenshot-name">Dezeen</div>
+                                <a href="https://www.dezeen.com" target="_blank" class="screenshot-url">dezeen.com</a>
+                                <div class="screenshot-desc">Architecture journalism, asymmetric grids, hero imagery</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-card">
+                            <img src="screenshots/archdaily.png" alt="ArchDaily" class="screenshot-image" loading="lazy">
+                            <div class="screenshot-info">
+                                <div class="screenshot-name">ArchDaily</div>
+                                <a href="https://www.archdaily.com" target="_blank" class="screenshot-url">archdaily.com</a>
+                                <div class="screenshot-desc">Featured projects, editorial hierarchy, image-first approach</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Scroll Animation Showcases</h3>
+                        <div class="screenshot-card" style="margin-bottom: 1.5rem;">
+                            <img src="screenshots/locomotive.png" alt="Locomotive" class="screenshot-image" loading="lazy">
+                            <div class="screenshot-info">
+                                <div class="screenshot-name">Locomotive</div>
+                                <a href="https://locomotive.ca" target="_blank" class="screenshot-url">locomotive.ca</a>
+                                <div class="screenshot-desc">Creators of Locomotive Scroll, smooth scroll reference</div>
+                            </div>
+                        </div>
+                        <div class="screenshot-card">
+                            <img src="screenshots/beaucoup.png" alt="Beaucoup Studio" class="screenshot-image" loading="lazy">
+                            <div class="screenshot-info">
+                                <div class="screenshot-name">Beaucoup Studio</div>
+                                <a href="https://beaucoup.studio" target="_blank" class="screenshot-url">beaucoup.studio</a>
+                                <div class="screenshot-desc">GSAP ScrollTrigger, staggered reveals, editorial grid</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Current Site Screenshot -->
         <div class="slide" data-slide="10">
+            <div class="slide-content">
+                <h2>Current State: aumarch.com</h2>
+                <div class="browser-mockup">
+                    <div class="browser-bar">
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-address">aumarch.com</div>
+                    </div>
+                    <div class="browser-content" style="position: relative;">
+                        <img src="screenshots/aumarch-current.png" alt="Current Aumarch website" loading="lazy">
+                    </div>
+                </div>
+                <div class="grid-2" style="margin-top: 2.5rem;">
+                    <div class="issue-card">
+                        <div class="issue-title" style="color: var(--red);">⚠ Static hero — no immersive imagery</div>
+                        <div class="issue-description">Anniversary logo instead of award-winning project photography</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-title" style="color: var(--red);">⚠ Generic grid layout</div>
+                        <div class="issue-description">Basic 2-column uniformity, no editorial masonry or featured projects</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-title" style="color: var(--red);">⚠ No scroll animations</div>
+                        <div class="issue-description">Zero parallax, reveals, or micro-interactions throughout the site</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: 5 Key Patterns -->
+        <div class="slide" data-slide="11">
             <div class="slide-content">
                 <h2>5 Design Patterns That Define Premium Architecture Sites</h2>
                 <div class="feature-card">
@@ -945,17 +1118,17 @@
             </div>
         </div>
 
-        <!-- Slide 11: Section Divider - Design Ideas -->
-        <div class="slide" data-slide="11">
+        <!-- Slide 12: Section Divider - Design Ideas -->
+        <div class="slide" data-slide="12">
             <div class="slide-content section-divider">
                 <div class="section-number">03</div>
-                <h2 class="section-title">Design Ideas for Aumarch</h2>
+                <h2 class="section-title">Design Ideas</h2>
                 <p class="section-subtitle">Specific Recommendations for Each Section</p>
             </div>
         </div>
 
-        <!-- Slide 12: Hero Concept -->
-        <div class="slide" data-slide="12">
+        <!-- Slide 13: Hero Concept -->
+        <div class="slide" data-slide="13">
             <div class="slide-content">
                 <h2>Hero Section — The First 3 Seconds</h2>
                 <div class="grid-2">
@@ -982,12 +1155,12 @@
                         </ul>
                     </div>
                 </div>
-                <p class="muted" style="text-align: center; margin-top: 2rem;">Inspired by: UNStudio, Foster + Partners, Lando Norris</p>
+                <p class="muted" style="text-align: center; margin-top: 3rem;">Inspired by: UNStudio, Foster + Partners, Lando Norris</p>
             </div>
         </div>
 
-        <!-- Slide 13: Portfolio Concept -->
-        <div class="slide" data-slide="13">
+        <!-- Slide 14: Portfolio Concept -->
+        <div class="slide" data-slide="14">
             <div class="slide-content">
                 <h2>Portfolio — Editorial Masonry Grid</h2>
                 <div class="grid-2">
@@ -1008,12 +1181,12 @@
                         <div class="issue-description">Projects fade in with staggered delays as user scrolls (GSAP ScrollTrigger). Creates dynamic, engaging portfolio browsing experience.</div>
                     </div>
                 </div>
-                <p class="muted" style="text-align: center; margin-top: 2rem;">Inspired by: MVRDV, Zaha Hadid, Beaucoup Studio</p>
+                <p class="muted" style="text-align: center; margin-top: 3rem;">Inspired by: MVRDV, Zaha Hadid, Beaucoup Studio</p>
             </div>
         </div>
 
-        <!-- Slide 14: Project Pages -->
-        <div class="slide" data-slide="14">
+        <!-- Slide 15: Project Pages -->
+        <div class="slide" data-slide="15">
             <div class="slide-content">
                 <h2>Project Pages — Scroll-Driven Storytelling</h2>
                 <div class="flow-steps">
@@ -1043,30 +1216,30 @@
                         <div class="step-desc">Location, year, size, team</div>
                     </div>
                 </div>
-                <div class="highlight-box" style="margin-top: 3rem;">
-                    <h3 style="margin-bottom: 1rem;">Scroll-Driven Narrative</h3>
-                    <p style="color: var(--text-light); line-height: 1.6;">Each project tells a story as the user scrolls: concept → process → final result. Parallax layers create depth. Image reveals maintain engagement. Text is minimal—architecture speaks for itself.</p>
+                <div class="highlight-box" style="margin-top: 3.5rem;">
+                    <h3 style="margin-bottom: 1.25rem; color: var(--black);">Scroll-Driven Narrative</h3>
+                    <p style="color: var(--dark); line-height: 1.7;">Each project tells a story as the user scrolls: concept → process → final result. Parallax layers create depth. Image reveals maintain engagement. Text is minimal—architecture speaks for itself.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 15: Statistics Concept -->
-        <div class="slide" data-slide="15">
+        <!-- Slide 16: Statistics Concept -->
+        <div class="slide" data-slide="16">
             <div class="slide-content">
                 <h2>Statistics Section — Bold Numbers</h2>
-                <div style="text-align: center; padding: 3rem 0;">
-                    <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 3rem;">
+                <div style="text-align: center; padding: 3.5rem 0;">
+                    <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 3.5rem;">
                         <div>
                             <div class="large-number">563</div>
-                            <div class="metric-label">PROJECTS COMPLETED</div>
+                            <div class="metric-label" style="color: var(--muted); margin-top: 0.75rem;">PROJECTS COMPLETED</div>
                         </div>
                         <div>
                             <div class="large-number">20+</div>
-                            <div class="metric-label">YEARS OF EXCELLENCE</div>
+                            <div class="metric-label" style="color: var(--muted); margin-top: 0.75rem;">YEARS OF EXCELLENCE</div>
                         </div>
                         <div>
                             <div class="large-number">12</div>
-                            <div class="metric-label">COUNTRIES</div>
+                            <div class="metric-label" style="color: var(--muted); margin-top: 0.75rem;">COUNTRIES</div>
                         </div>
                     </div>
                 </div>
@@ -1076,8 +1249,8 @@
                         <div class="issue-description">Numbers animate from 0 when scrolled into view. Creates "wow" moment and draws attention to impressive stats.</div>
                     </div>
                     <div class="feature-card">
-                        <div class="issue-title">Full-Width Dark Section</div>
-                        <div class="issue-description">Statistics live in dedicated full-width dark section. High contrast makes numbers pop.</div>
+                        <div class="issue-title">High Contrast Section</div>
+                        <div class="issue-description">Statistics live in dedicated full-width section. High contrast makes numbers pop and creates visual break.</div>
                     </div>
                     <div class="feature-card">
                         <div class="issue-title">Staggered Reveal</div>
@@ -1091,8 +1264,8 @@
             </div>
         </div>
 
-        <!-- Slide 16: Animation Toolkit -->
-        <div class="slide" data-slide="16">
+        <!-- Slide 17: Animation Toolkit -->
+        <div class="slide" data-slide="17">
             <div class="slide-content">
                 <h2>Scroll Animation Toolkit</h2>
                 <table>
@@ -1159,8 +1332,8 @@
             </div>
         </div>
 
-        <!-- Slide 17: Section Divider - Technical -->
-        <div class="slide" data-slide="17">
+        <!-- Slide 18: Section Divider - Technical -->
+        <div class="slide" data-slide="18">
             <div class="slide-content section-divider">
                 <div class="section-number">04</div>
                 <h2 class="section-title">Technical Recommendations</h2>
@@ -1168,8 +1341,8 @@
             </div>
         </div>
 
-        <!-- Slide 18: Tech Stack -->
-        <div class="slide" data-slide="18">
+        <!-- Slide 19: Tech Stack -->
+        <div class="slide" data-slide="19">
             <div class="slide-content">
                 <h2>Recommended Technology Stack</h2>
                 <table>
@@ -1213,61 +1386,61 @@
                         </tr>
                     </tbody>
                 </table>
-                <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Performance Targets</h3>
+                <h3 style="margin-top: 3.5rem; margin-bottom: 2rem;">Performance Targets</h3>
                 <div class="metrics-row">
                     <div class="metric-card">
-                        <span class="metric-value">70+</span>
+                        <span class="metric-value" style="color: var(--accent-bronze);">70+</span>
                         <span class="metric-label">Mobile PageSpeed</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">90+</span>
+                        <span class="metric-value" style="color: var(--accent-bronze);">90+</span>
                         <span class="metric-label">Desktop PageSpeed</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">&lt;2.5s</span>
+                        <span class="metric-value" style="color: var(--accent-bronze);">&lt;2.5s</span>
                         <span class="metric-label">LCP</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">&lt;0.1</span>
+                        <span class="metric-value" style="color: var(--accent-bronze);">&lt;0.1</span>
                         <span class="metric-label">CLS</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">&lt;200ms</span>
+                        <span class="metric-value" style="color: var(--accent-bronze);">&lt;200ms</span>
                         <span class="metric-label">TBT</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 19: Accessibility -->
-        <div class="slide" data-slide="19">
+        <!-- Slide 20: Accessibility -->
+        <div class="slide" data-slide="20">
             <div class="slide-content">
                 <h2>Accessibility — Non-Negotiable</h2>
-                <div class="feature-card" style="border-color: #3b82f6;">
-                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">1</span>Reduced Motion Support</div>
+                <div class="feature-card" style="border-left-color: var(--blue);">
+                    <div class="issue-number"><span class="technique-number" style="background: var(--blue);">1</span>Reduced Motion Support</div>
                     <div class="issue-description">Respect prefers-reduced-motion media query. Disable all animations for users with motion sensitivity. Simple fade-ins only.</div>
                 </div>
-                <div class="feature-card" style="border-color: #3b82f6;">
-                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">2</span>Keyboard Navigation</div>
+                <div class="feature-card" style="border-left-color: var(--blue);">
+                    <div class="issue-number"><span class="technique-number" style="background: var(--blue);">2</span>Keyboard Navigation</div>
                     <div class="issue-description">All interactive elements keyboard accessible. Focus indicators visible. Tab order logical. Skip links to main content.</div>
                 </div>
-                <div class="feature-card" style="border-color: #3b82f6;">
-                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">3</span>Screen Reader Support</div>
+                <div class="feature-card" style="border-left-color: var(--blue);">
+                    <div class="issue-number"><span class="technique-number" style="background: var(--blue);">3</span>Screen Reader Support</div>
                     <div class="issue-description">Alt text on all images. ARIA labels on custom elements. Semantic HTML (nav, main, article). Descriptive link text.</div>
                 </div>
-                <div class="feature-card" style="border-color: #3b82f6;">
-                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">4</span>WCAG AA Compliance</div>
+                <div class="feature-card" style="border-left-color: var(--blue);">
+                    <div class="issue-number"><span class="technique-number" style="background: var(--blue);">4</span>WCAG AA Compliance</div>
                     <div class="issue-description">4.5:1 contrast for text, 3:1 for UI elements. No color-only communication. Forms have proper labels. Error messages descriptive.</div>
                 </div>
-                <div class="feature-card" style="border-color: #3b82f6;">
-                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">5</span>Touch Targets</div>
+                <div class="feature-card" style="border-left-color: var(--blue);">
+                    <div class="issue-number"><span class="technique-number" style="background: var(--blue);">5</span>Touch Targets</div>
                     <div class="issue-description">Minimum 44x44px touch targets on mobile. Adequate spacing between interactive elements. No hover-only functionality.</div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 20: Section Divider - Implementation -->
-        <div class="slide" data-slide="20">
+        <!-- Slide 21: Section Divider - Implementation -->
+        <div class="slide" data-slide="21">
             <div class="slide-content section-divider">
                 <div class="section-number">05</div>
                 <h2 class="section-title">Implementation Roadmap</h2>
@@ -1275,8 +1448,8 @@
             </div>
         </div>
 
-        <!-- Slide 21: Phases 1-2 -->
-        <div class="slide" data-slide="21">
+        <!-- Slide 22: Phases 1-2 -->
+        <div class="slide" data-slide="22">
             <div class="slide-content">
                 <h2>Phases 1-2: Foundation & Performance (Weeks 1-4)</h2>
                 <div class="grid-2">
@@ -1310,8 +1483,8 @@
             </div>
         </div>
 
-        <!-- Slide 22: Phases 3-4 -->
-        <div class="slide" data-slide="22">
+        <!-- Slide 23: Phases 3-4 -->
+        <div class="slide" data-slide="23">
             <div class="slide-content">
                 <h2>Phases 3-4: Portfolio & Polish (Weeks 5-8)</h2>
                 <div class="grid-2">
@@ -1345,8 +1518,8 @@
             </div>
         </div>
 
-        <!-- Slide 23: Summary -->
-        <div class="slide" data-slide="23">
+        <!-- Slide 24: Summary -->
+        <div class="slide" data-slide="24">
             <div class="slide-content">
                 <h2>The Bottom Line</h2>
                 <table>
@@ -1400,23 +1573,23 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="highlight-box" style="margin-top: 3rem;">
-                    <p style="font-size: 1.5rem; line-height: 1.6; text-align: center;">
+                <div class="highlight-box" style="margin-top: 3.5rem;">
+                    <p style="font-size: 1.375rem; line-height: 1.7; text-align: center; color: var(--black);">
                         The firm's world-class work deserves a world-class digital showcase.
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 24: Thank You -->
-        <div class="slide" data-slide="24">
+        <!-- Slide 25: Thank You -->
+        <div class="slide" data-slide="25">
             <div class="slide-content" style="text-align: center;">
                 <div class="accent-line" style="margin-left: auto; margin-right: auto;"></div>
-                <h1>THANK YOU</h1>
-                <p class="subtitle" style="margin-top: 2rem;">Prepared by Bhaskar Roy</p>
+                <h1 style="font-weight: 300;">THANK YOU</h1>
+                <p class="subtitle" style="margin-top: 3rem;">Prepared by Bhaskar Roy</p>
                 <p class="muted" style="margin-top: 1rem;">aumarch.com</p>
                 <p class="muted" style="margin-top: 0.5rem;">All reference URLs verified March 2026</p>
-                <div class="accent-line" style="margin-left: auto; margin-right: auto; margin-top: 3rem;"></div>
+                <div class="accent-line" style="margin-left: auto; margin-right: auto; margin-top: 3.5rem;"></div>
             </div>
         </div>
     </div>
@@ -1424,14 +1597,14 @@
     <!-- Navigation Bar -->
     <div class="nav-bar">
         <button class="nav-button" id="prev-btn" aria-label="Previous slide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
         </button>
         <div class="nav-dots" id="nav-dots"></div>
-        <div class="slide-counter" id="slide-counter">1 / 24</div>
+        <div class="slide-counter" id="slide-counter">1 / 25</div>
         <button class="nav-button" id="next-btn" aria-label="Next slide">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
         </button>
@@ -1448,7 +1621,6 @@
         let currentSlide = 0;
         const totalSlides = slides.length;
 
-        // Create navigation dots
         slides.forEach((_, index) => {
             const dot = document.createElement('div');
             dot.classList.add('nav-dot');
@@ -1465,19 +1637,15 @@
                 behavior: 'smooth'
             });
 
-            // Update dots
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
 
-            // Update counter
             slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
 
-            // Update buttons
             prevBtn.disabled = currentSlide === 0;
             nextBtn.disabled = currentSlide === totalSlides - 1;
 
-            // Mark slide as visible for fade-in effect
             slides[currentSlide].classList.add('visible');
         }
 
@@ -1500,17 +1668,14 @@
             }
         }
 
-        // Event listeners
         prevBtn.addEventListener('click', prevSlide);
         nextBtn.addEventListener('click', nextSlide);
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
         });
 
-        // Detect scroll position to update current slide
         let scrollTimeout;
         slidesContainer.addEventListener('scroll', () => {
             clearTimeout(scrollTimeout);
@@ -1525,11 +1690,9 @@
             }, 100);
         });
 
-        // Initialize
         slides[0].classList.add('visible');
         updateSlide();
 
-        // Intersection Observer for fade-in animations
         const observerOptions = {
             root: slidesContainer,
             rootMargin: '0px',
@@ -1548,7 +1711,6 @@
             observer.observe(slide);
         });
 
-        // Handle window resize
         window.addEventListener('resize', () => {
             updateSlide();
         });
