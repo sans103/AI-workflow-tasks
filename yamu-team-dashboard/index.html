@@ -569,6 +569,66 @@
                 page-break-inside: avoid;
             }
         }
+
+        /* Drag-and-drop reordering */
+        .section {
+            cursor: default;
+        }
+
+        .section-title {
+            cursor: grab;
+            user-select: none;
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .section-title:active {
+            cursor: grabbing;
+        }
+
+        .section-title::before {
+            content: "⠿";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--gray-300);
+            transition: color 0.2s;
+        }
+
+        .section-title:hover::before {
+            color: var(--accent);
+        }
+
+        .section.dragging {
+            opacity: 0.4;
+            border: 2px dashed var(--accent);
+            border-radius: 8px;
+        }
+
+        .section.drag-over {
+            border-top: 3px solid var(--accent);
+            padding-top: 12px;
+        }
+
+        .reset-order {
+            display: inline-block;
+            margin-left: 16px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: var(--gray-600);
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        .reset-order:hover {
+            background: var(--gray-200);
+            color: var(--title);
+        }
     </style>
 </head>
 <body>
@@ -576,11 +636,11 @@
         <header>
             <h1>YAMU CRO Team Capacity</h1>
             <div class="subtitle">CRO, Design & Development Team</div>
-            <div class="meta">Last updated: March 7, 2026 (10:15 AM IST)</div>
+            <div class="meta">Last updated: March 7, 2026 (10:15 AM IST) | Drag section headers to reorder <button class="reset-order" onclick="resetSectionOrder()">Reset order</button></div>
         </header>
 
         <!-- Team Capacity Cards -->
-        <section class="section">
+        <section class="section" data-section-id="capacity">
             <h2 class="section-title">Team Capacity Overview</h2>
             <div class="cards">
                 <div class="card">
@@ -700,7 +760,7 @@
         </section>
 
         <!-- Ad-hoc Readiness -->
-        <section class="section">
+        <section class="section" data-section-id="adhoc">
             <h2 class="section-title">Ad-hoc Readiness</h2>
             <div class="metric-cards">
                 <div class="metric-card red">
@@ -770,7 +830,7 @@
         </section>
 
         <!-- Red Flags -->
-        <section class="section">
+        <section class="section" data-section-id="redflags">
             <h2 class="section-title">Red Flags</h2>
             <div class="alert-card">
                 <strong>Team has no ad-hoc buffer</strong>
@@ -803,7 +863,7 @@
         </section>
 
         <!-- Weekly Utilization Forecast -->
-        <section class="section">
+        <section class="section" data-section-id="utilization">
             <h2 class="section-title">Weekly Utilization Forecast</h2>
             <div class="utilization-chart">
                 <div class="week-row">
@@ -933,7 +993,7 @@
         </section>
 
         <!-- Overdue Tasks -->
-        <section class="section">
+        <section class="section" data-section-id="overdue">
             <h2 class="section-title">Overdue Tasks</h2>
             <table>
                 <thead class="danger">
@@ -1008,7 +1068,7 @@
         </section>
 
         <!-- This Week Tasks -->
-        <section class="section">
+        <section class="section" data-section-id="thisweek">
             <h2 class="section-title">This Week Tasks (Mar 10-14)</h2>
 
             <h3 style="color: var(--danger); font-size: 18px; margin-bottom: 12px; margin-top: 24px;">
@@ -1183,7 +1243,7 @@
         </section>
 
         <!-- Upcoming Tasks -->
-        <section class="section">
+        <section class="section" data-section-id="upcoming">
             <h2 class="section-title">Upcoming (Mar 16+)</h2>
             <table>
                 <thead>
@@ -1229,7 +1289,7 @@
         </section>
 
         <!-- Backlog -->
-        <section class="section">
+        <section class="section" data-section-id="backlog">
             <h2 class="section-title">Backlog</h2>
             <table>
                 <thead class="gray">
@@ -1331,7 +1391,7 @@
         </section>
 
         <!-- Estimate Evaluation -->
-        <section class="section">
+        <section class="section" data-section-id="estimates">
             <h2 class="section-title">Estimate Evaluation Summary</h2>
             <div class="metric-cards">
                 <div class="metric-card green">
@@ -1464,7 +1524,7 @@
         </section>
 
         <!-- Shared Tasks -->
-        <section class="section">
+        <section class="section" data-section-id="shared">
             <h2 class="section-title">Shared Tasks Overview</h2>
             <table>
                 <thead>
@@ -1594,7 +1654,7 @@
         </section>
 
         <!-- Recommendations -->
-        <section class="section">
+        <section class="section" data-section-id="recommendations">
             <h2 class="section-title">Recommendations</h2>
             <div class="recommendations">
                 <div class="rec-card">
@@ -1662,7 +1722,99 @@
                     }, 100);
                 });
             }, 200);
+
+            // Drag-and-drop section reordering
+            initDragAndDrop();
+            restoreSectionOrder();
         });
+
+        const STORAGE_KEY = 'yamu-dashboard-section-order';
+        let draggedSection = null;
+
+        function initDragAndDrop() {
+            const sections = document.querySelectorAll('.section[data-section-id]');
+            sections.forEach(section => {
+                const title = section.querySelector('.section-title');
+                if (!title) return;
+
+                title.setAttribute('draggable', 'true');
+
+                title.addEventListener('dragstart', function(e) {
+                    draggedSection = section;
+                    section.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/plain', section.dataset.sectionId);
+                });
+
+                title.addEventListener('dragend', function() {
+                    draggedSection = null;
+                    section.classList.remove('dragging');
+                    document.querySelectorAll('.section.drag-over').forEach(s => s.classList.remove('drag-over'));
+                });
+
+                section.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    if (draggedSection && draggedSection !== section) {
+                        section.classList.add('drag-over');
+                    }
+                });
+
+                section.addEventListener('dragleave', function() {
+                    section.classList.remove('drag-over');
+                });
+
+                section.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    section.classList.remove('drag-over');
+                    if (!draggedSection || draggedSection === section) return;
+
+                    const container = section.parentNode;
+                    const allSections = Array.from(container.querySelectorAll('.section[data-section-id]'));
+                    const dragIdx = allSections.indexOf(draggedSection);
+                    const dropIdx = allSections.indexOf(section);
+
+                    if (dragIdx < dropIdx) {
+                        container.insertBefore(draggedSection, section.nextSibling);
+                    } else {
+                        container.insertBefore(draggedSection, section);
+                    }
+
+                    saveSectionOrder();
+                });
+            });
+        }
+
+        function saveSectionOrder() {
+            const sections = document.querySelectorAll('.section[data-section-id]');
+            const order = Array.from(sections).map(s => s.dataset.sectionId);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+        }
+
+        function restoreSectionOrder() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) return;
+
+            try {
+                const order = JSON.parse(saved);
+                const container = document.querySelector('.container');
+                const footer = container.querySelector('footer');
+
+                order.forEach(id => {
+                    const section = container.querySelector('[data-section-id="' + id + '"]');
+                    if (section) {
+                        container.insertBefore(section, footer);
+                    }
+                });
+            } catch (e) {
+                localStorage.removeItem(STORAGE_KEY);
+            }
+        }
+
+        function resetSectionOrder() {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+        }
     </script>
 </body>
 </html>
