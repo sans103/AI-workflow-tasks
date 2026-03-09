@@ -408,7 +408,7 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 120px 40px 80px;
+            padding: 100px 40px 60px;
             max-width: 1600px;
             margin: 0 auto;
             width: 100%;
@@ -452,7 +452,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             transform: rotate(-2deg);
-            margin-bottom: 40px;
+            margin-bottom: 24px;
             animation: badge-pulse 3s ease-in-out infinite;
         }
 
@@ -463,11 +463,11 @@
 
         .hero-title {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(80px, 15vw, 280px);
+            font-size: clamp(80px, 12vw, 200px);
             line-height: 0.9;
             font-weight: 400;
             letter-spacing: -4px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
             overflow: visible;
         }
@@ -496,11 +496,11 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(18px, 2.5vw, 32px);
+            font-size: clamp(16px, 1.8vw, 24px);
             font-weight: 100;
             color: var(--white);
             max-width: 600px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             letter-spacing: 1px;
             transform: translateX(10%);
         }
@@ -1427,13 +1427,18 @@
             }
 
             .hero-title {
-                font-size: clamp(56px, 16vw, 90px);
+                font-size: clamp(48px, 14vw, 80px);
                 letter-spacing: -2px;
                 margin-bottom: 20px;
             }
 
+            .hero-title .word {
+                display: inline;
+            }
+
             .hero-title .word-play {
                 transform: translateX(0);
+                margin-right: 12px;
             }
 
             .hero-subtitle {
