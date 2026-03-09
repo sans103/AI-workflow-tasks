@@ -183,6 +183,65 @@
             color: var(--gray-600);
         }
 
+        .adhoc-buffer {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--gray-300);
+        }
+
+        .adhoc-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .adhoc-bar-container {
+            height: 8px;
+            background: var(--gray-100);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .adhoc-bar-planned {
+            height: 100%;
+            border-radius: 4px 0 0 4px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .adhoc-bar-planned.over { background: var(--danger); }
+        .adhoc-bar-planned.tight { background: var(--warning); }
+        .adhoc-bar-planned.ok { background: var(--success); }
+
+        .adhoc-range-marker {
+            position: absolute;
+            top: -2px;
+            height: 12px;
+            border-left: 2px dashed var(--gray-600);
+            opacity: 0.5;
+        }
+
+        .adhoc-note {
+            font-size: 11px;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+
+        .adhoc-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .adhoc-badge.none { background: #fee2e2; color: var(--danger); }
+        .adhoc-badge.minimal { background: #fef3c7; color: #92400e; }
+        .adhoc-badge.available { background: #d1fae5; color: #065f46; }
+
         .alert-card {
             background: #fef2f2;
             border-left: 4px solid var(--danger);
@@ -533,6 +592,19 @@
                         <div><span>Comms:</span><span>8h/week</span></div>
                         <div><span>Execution:</span><strong>16h/week</strong></div>
                     </div>
+                    <div class="adhoc-buffer">
+                        <div class="adhoc-label">
+                            <span>Ad-hoc room:</span>
+                            <strong style="color: var(--danger);">0h/week</strong>
+                        </div>
+                        <div class="adhoc-bar-container">
+                            <div class="adhoc-bar-planned over" style="width: 100%"></div>
+                        </div>
+                        <div class="adhoc-note">
+                            <span class="adhoc-badge none">No ad-hoc room</span>
+                            Burning 16.8h/wk on 16h capacity — over by 0.8h
+                        </div>
+                    </div>
                     <div class="progress-ring-container">
                         <div class="progress-ring overloaded">
                             <svg width="100" height="100">
@@ -557,6 +629,19 @@
                         <div><span>Calls:</span><span>12h/week</span></div>
                         <div><span>Comms:</span><span>8h/week</span></div>
                         <div><span>Execution:</span><strong>20h/week</strong></div>
+                    </div>
+                    <div class="adhoc-buffer">
+                        <div class="adhoc-label">
+                            <span>Ad-hoc room:</span>
+                            <strong style="color: var(--danger);">~0.5h/week</strong>
+                        </div>
+                        <div class="adhoc-bar-container">
+                            <div class="adhoc-bar-planned tight" style="width: 97%"></div>
+                        </div>
+                        <div class="adhoc-note">
+                            <span class="adhoc-badge none">No ad-hoc room</span>
+                            Burning 19.5h/wk on 20h capacity — 0.5h free
+                        </div>
                     </div>
                     <div class="progress-ring-container">
                         <div class="progress-ring">
@@ -583,6 +668,19 @@
                         <div><span>Comms:</span><span>4h/week</span></div>
                         <div><span>Execution:</span><strong>32h/week</strong></div>
                     </div>
+                    <div class="adhoc-buffer">
+                        <div class="adhoc-label">
+                            <span>Ad-hoc room:</span>
+                            <strong style="color: var(--warning);">3h/week</strong>
+                        </div>
+                        <div class="adhoc-bar-container">
+                            <div class="adhoc-bar-planned tight" style="width: 91%"></div>
+                        </div>
+                        <div class="adhoc-note">
+                            <span class="adhoc-badge minimal">Barely minimum</span>
+                            Burning 29h/wk on 32h capacity — covers min 3h ad-hoc only
+                        </div>
+                    </div>
                     <div class="progress-ring-container">
                         <div class="progress-ring">
                             <svg width="100" height="100">
@@ -601,9 +699,83 @@
             </div>
         </section>
 
+        <!-- Ad-hoc Readiness -->
+        <section class="section">
+            <h2 class="section-title">Ad-hoc Readiness</h2>
+            <div class="metric-cards">
+                <div class="metric-card red">
+                    <div class="metric-number">3.5h</div>
+                    <div class="metric-label">Team Ad-hoc Room / Week</div>
+                </div>
+                <div class="metric-card yellow">
+                    <div class="metric-number">3–15h</div>
+                    <div class="metric-label">Typical Ad-hoc Demand / Week</div>
+                </div>
+                <div class="metric-card red">
+                    <div class="metric-number">0 of 3</div>
+                    <div class="metric-label">Members Can Absorb Ad-hoc</div>
+                </div>
+                <div class="metric-card gray">
+                    <div class="metric-number">68h</div>
+                    <div class="metric-label">Team Execution Cap / Week</div>
+                </div>
+            </div>
+            <div class="alert-card" style="background: #fffbeb; border-left-color: var(--warning);">
+                <strong style="color: #92400e;">Ad-hoc capacity gap</strong>
+                The team can absorb a maximum of <strong>3.5h/week</strong> in unplanned work (only from Aanand's 3h buffer).
+                Typical ad-hoc demand is 3–15h/week. At the minimum (3h), the team barely copes. At the average (~9h),
+                tasks will slip by ~5.5h/week. At peak (15h), expect ~11.5h/week of planned work to be delayed.
+            </div>
+            <table style="margin-top: 16px;">
+                <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th>Execution Cap</th>
+                        <th>Weekly Burn</th>
+                        <th>Ad-hoc Room</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bhaskar Roy</td>
+                        <td>16h/week</td>
+                        <td>16.8h/week</td>
+                        <td>0h</td>
+                        <td><span class="badge danger">Over capacity</span></td>
+                    </tr>
+                    <tr>
+                        <td>Sanskriti Prabhakar</td>
+                        <td>20h/week</td>
+                        <td>19.5h/week</td>
+                        <td>0.5h</td>
+                        <td><span class="badge danger">No room</span></td>
+                    </tr>
+                    <tr>
+                        <td>Aanand Madhav</td>
+                        <td>32h/week</td>
+                        <td>29h/week</td>
+                        <td>3h</td>
+                        <td><span class="badge warning">Barely min</span></td>
+                    </tr>
+                    <tr style="font-weight: 600; background: var(--gray-100);">
+                        <td>Team Total</td>
+                        <td>68h/week</td>
+                        <td>65.3h/week</td>
+                        <td>3.5h</td>
+                        <td><span class="badge danger">Gap: 5.5–11.5h</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
         <!-- Red Flags -->
         <section class="section">
             <h2 class="section-title">Red Flags</h2>
+            <div class="alert-card">
+                <strong>Team has no ad-hoc buffer</strong>
+                Any unplanned client request (3–15h) will push planned deadlines. Only Aanand has 3h/week margin.
+            </div>
             <div class="alert-card">
                 <strong>LL - New App (36h, due Mar 12)</strong>
                 Impossible timeline - needs deadline push to Mar 21+ to be feasible
@@ -1381,10 +1553,10 @@
                 <div class="rec-card">
                     <h3>Structural Changes</h3>
                     <ul>
-                        <li>Bhaskar needs to delegate more - 78h solo tasks at 16h/week capacity unsustainable</li>
-                        <li>Schedule Gum of Gods tasks (30h total) for April or deprioritize</li>
+                        <li>Build ad-hoc buffer: Target 5–8h/week team reserve by deferring low-priority backlog items (Gum of Gods 30h, Pest Share app 20h) to April</li>
+                        <li>Bhaskar needs to delegate more — 78h solo tasks at 16h/week capacity unsustainable and leaves zero ad-hoc room</li>
                         <li>Add time estimates to 4 tasks missing them</li>
-                        <li>Institute weekly Monday capacity planning sessions</li>
+                        <li>Institute weekly Monday capacity check: planned hours + expected ad-hoc load vs. available execution hours</li>
                     </ul>
                 </div>
             </div>
