@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aum Architects — Design Improvement Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --accent-bronze: #C8965C;
+            --text-white: #ffffff;
+            --text-light: #bbbbbb;
+            --text-muted: #777777;
+            --card-dark: #141414;
+            --card-darker: #1c1c1c;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .slides-container {
+            display: flex;
+            height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .slides-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            position: relative;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .slide.visible {
+            opacity: 1;
+        }
+
+        .slide-content {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 6rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--accent-bronze);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .muted {
+            color: var(--text-muted);
+            font-size: 1.125rem;
+        }
+
+        .accent-line {
+            width: 120px;
+            height: 3px;
+            background: var(--accent-bronze);
+            margin: 2rem 0;
+        }
+
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background: var(--card-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(200, 150, 92, 0.1);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-bronze);
+        }
+
+        .metric-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-bronze);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .issue-card, .feature-card {
+            background: var(--card-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-bronze);
+            transition: var(--transition);
+        }
+
+        .issue-card:hover, .feature-card:hover {
+            background: var(--card-darker);
+        }
+
+        .issue-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-bronze);
+            margin-bottom: 0.5rem;
+        }
+
+        .issue-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-white);
+        }
+
+        .issue-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        thead {
+            background: var(--card-darker);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--accent-bronze);
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+        }
+
+        tbody tr:nth-child(odd) {
+            background: var(--card-dark);
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--card-darker);
+        }
+
+        tbody tr:hover {
+            background: rgba(200, 150, 92, 0.05);
+        }
+
+        a {
+            color: var(--accent-bronze);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--text-white);
+        }
+
+        .section-divider {
+            text-align: center;
+        }
+
+        .section-number {
+            font-size: 10rem;
+            font-weight: 900;
+            color: var(--accent-bronze);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        .comparison-box {
+            background: var(--card-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            position: relative;
+            height: 100%;
+        }
+
+        .label {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .label.current {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .label.proposed {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .comparison-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-right: 5rem;
+        }
+
+        .comparison-list {
+            list-style: none;
+            color: var(--text-light);
+        }
+
+        .comparison-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .comparison-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-bronze);
+            font-weight: 700;
+        }
+
+        .phase-card {
+            background: var(--card-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 4px solid var(--accent-bronze);
+        }
+
+        .phase-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-bronze);
+        }
+
+        .phase-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .phase-list {
+            list-style: none;
+            color: var(--text-light);
+        }
+
+        .phase-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .phase-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-bronze);
+            font-weight: 700;
+        }
+
+        .nav-bar {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            border: 1px solid rgba(200, 150, 92, 0.2);
+            z-index: 1000;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-dot.active {
+            background: var(--accent-bronze);
+            transform: scale(1.5);
+        }
+
+        .nav-dot:hover {
+            background: var(--text-light);
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .nav-button:hover {
+            color: var(--accent-bronze);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            font-weight: 500;
+            min-width: 4rem;
+            text-align: center;
+        }
+
+        .technique-number {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            background: var(--accent-bronze);
+            color: var(--bg-dark);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2rem;
+            font-weight: 700;
+            margin-right: 1rem;
+        }
+
+        .reference-section {
+            margin-bottom: 2rem;
+        }
+
+        .reference-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-bronze);
+            margin-bottom: 1rem;
+        }
+
+        .reference-item {
+            background: var(--card-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--accent-bronze);
+        }
+
+        .reference-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-url {
+            color: var(--accent-bronze);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .reference-desc {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .flow-step {
+            flex: 1;
+            background: var(--card-dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .flow-step:not(:last-child):after {
+            content: "→";
+            position: absolute;
+            right: -1.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-bronze);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-bronze);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .large-number {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--accent-bronze);
+        }
+
+        .highlight-box {
+            background: rgba(200, 150, 92, 0.1);
+            border: 1px solid var(--accent-bronze);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .section-number {
+                font-size: 6rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .flow-steps {
+                flex-direction: column;
+            }
+
+            .flow-step:not(:last-child):after {
+                content: "↓";
+                bottom: -1.75rem;
+                right: 50%;
+                top: auto;
+                transform: translateX(50%);
+            }
+
+            table {
+                font-size: 0.875rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container" id="slides-container">
+        <!-- Slide 1: Cover -->
+        <div class="slide" data-slide="1">
+            <div class="slide-content" style="text-align: center;">
+                <div class="accent-line" style="margin-left: auto; margin-right: auto;"></div>
+                <h1>DESIGN IMPROVEMENT<br>REPORT</h1>
+                <div class="subtitle">aumarch.com</div>
+                <p class="muted" style="margin-top: 2rem;">Visual & UX Audit | Design Inspiration | Improvement Roadmap</p>
+                <p class="muted" style="margin-top: 1rem;">March 2026 | Prepared by Bhaskar Roy</p>
+                <div class="accent-line" style="margin-left: auto; margin-right: auto;"></div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Firm at a Glance -->
+        <div class="slide" data-slide="2">
+            <div class="slide-content">
+                <h2>Aum Architects at a Glance</h2>
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <span class="metric-value">20+</span>
+                        <span class="metric-label">Years</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">563</span>
+                        <span class="metric-label">Projects</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">12</span>
+                        <span class="metric-label">Countries</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">Multiple</span>
+                        <span class="metric-label">Awards</span>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <p style="font-size: 1.5rem; line-height: 1.6; margin-bottom: 1rem;">The firm has the credentials of a world-class practice.</p>
+                    <p style="font-size: 1.25rem; color: var(--text-muted);">The website, however, feels like a basic portfolio template from 2015.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Section Divider - Current State Audit -->
+        <div class="slide" data-slide="3">
+            <div class="slide-content section-divider">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Current State Audit</h2>
+                <p class="section-subtitle">Performance | Visual Design | UX | Content</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Performance Issues -->
+        <div class="slide" data-slide="4">
+            <div class="slide-content">
+                <h2>Performance — Critical Issues</h2>
+                <div class="metrics-row">
+                    <div class="metric-card" style="border-color: rgba(239, 68, 68, 0.5);">
+                        <span class="metric-value" style="color: #ef4444;">37</span>
+                        <span class="metric-label">Mobile PageSpeed</span>
+                    </div>
+                    <div class="metric-card" style="border-color: rgba(245, 158, 11, 0.5);">
+                        <span class="metric-value" style="color: #f59e0b;">68</span>
+                        <span class="metric-label">Desktop PageSpeed</span>
+                    </div>
+                    <div class="metric-card" style="border-color: rgba(239, 68, 68, 0.5);">
+                        <span class="metric-value" style="color: #ef4444;">7.5s</span>
+                        <span class="metric-label">LCP (Mobile)</span>
+                    </div>
+                    <div class="metric-card" style="border-color: rgba(239, 68, 68, 0.5);">
+                        <span class="metric-value" style="color: #ef4444;">9.7s</span>
+                        <span class="metric-label">Speed Index</span>
+                    </div>
+                    <div class="metric-card" style="border-color: rgba(245, 158, 11, 0.5);">
+                        <span class="metric-value" style="color: #f59e0b;">720ms</span>
+                        <span class="metric-label">Total Blocking Time</span>
+                    </div>
+                </div>
+                <div class="highlight-box">
+                    <p style="font-size: 1.25rem; line-height: 1.6;">Users wait <strong style="color: var(--accent-bronze);">7.5 seconds</strong> to see content on mobile. Target: under 2.5 seconds.</p>
+                </div>
+                <div class="grid-2">
+                    <div class="issue-card">
+                        <div class="issue-title">Unoptimized Images</div>
+                        <div class="issue-description">Large JPGs loading at full resolution</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-title">Render-Blocking Resources</div>
+                        <div class="issue-description">CSS and fonts block initial render</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-title">No Lazy Loading</div>
+                        <div class="issue-description">All images load immediately</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: 8 Critical Issues -->
+        <div class="slide" data-slide="5">
+            <div class="slide-content">
+                <h2>8 Critical Issues Found</h2>
+                <div class="grid-2">
+                    <div class="issue-card">
+                        <div class="issue-number">01</div>
+                        <div class="issue-title">Static Hero Section</div>
+                        <div class="issue-description">Anniversary logo instead of immersive project photography</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-number">02</div>
+                        <div class="issue-title">Zero Scroll Animations</div>
+                        <div class="issue-description">No parallax, no reveals, no micro-interactions</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-number">03</div>
+                        <div class="issue-title">Generic Portfolio Grid</div>
+                        <div class="issue-description">Only 2 categories for 563 projects. No masonry, no filters</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-number">04</div>
+                        <div class="issue-title">Missing About Page</div>
+                        <div class="issue-description">Returns 404 error. Critical credibility gap</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-number">05</div>
+                        <div class="issue-title">No Contact Form</div>
+                        <div class="issue-description">Only email and phone links</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-number">06</div>
+                        <div class="issue-title">Flat Typography</div>
+                        <div class="issue-description">Standard hierarchy, no dramatic scale</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-number">07</div>
+                        <div class="issue-title">Small Image Presentation</div>
+                        <div class="issue-description">Uniform grids, no full-bleed imagery</div>
+                    </div>
+                    <div class="issue-card">
+                        <div class="issue-number">08</div>
+                        <div class="issue-title">No Hover States</div>
+                        <div class="issue-description">No micro-interaction or hover feedback</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Before/After Vision -->
+        <div class="slide" data-slide="6">
+            <div class="slide-content">
+                <h2>The Transformation Vision</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>Current State</th>
+                            <th>Proposed State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Hero</strong></td>
+                            <td>Static anniversary logo</td>
+                            <td>Fullscreen cinematic project imagery with parallax</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scroll</strong></td>
+                            <td>No animations</td>
+                            <td>Smooth scroll + subtle parallax + reveal transitions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Images</strong></td>
+                            <td>Small uniform grids</td>
+                            <td>Full-bleed imagery, masonry layout, editorial asymmetry</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Typography</strong></td>
+                            <td>Standard hierarchy</td>
+                            <td>Dramatic scale (80-120px headlines), tight tracking</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Portfolio</strong></td>
+                            <td>2 categories, basic grid</td>
+                            <td>22+ filters, masonry grid, featured projects</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Project Pages</strong></td>
+                            <td>Basic image gallery</td>
+                            <td>Scroll-driven storytelling with parallax layers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interactions</strong></td>
+                            <td>None</td>
+                            <td>Custom cursor, hover states, page transitions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td>37 mobile / 68 desktop</td>
+                            <td>70+ mobile / 90+ desktop</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="muted" style="text-align: center; margin-top: 2rem;">Brand colors, fonts (Montserrat/Poppins), and logo remain unchanged.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Section Divider - Design Inspiration -->
+        <div class="slide" data-slide="7">
+            <div class="slide-content section-divider">
+                <div class="section-number">02</div>
+                <h2 class="section-title">Design Inspiration</h2>
+                <p class="section-subtitle">Award-Winning Architecture Websites | Verified References</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Architecture Firms -->
+        <div class="slide" data-slide="8">
+            <div class="slide-content">
+                <h2>Architecture Firms Setting the Standard</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Firm</th>
+                            <th>URL</th>
+                            <th>Key Design Technique</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Zaha Hadid Architects</td>
+                            <td><a href="https://www.zaha-hadid.com" target="_blank">zaha-hadid.com</a></td>
+                            <td>Directional navigation, multi-format documentation</td>
+                        </tr>
+                        <tr>
+                            <td>BIG (Bjarke Ingels)</td>
+                            <td><a href="https://big.dk" target="_blank">big.dk</a></td>
+                            <td>Hero-first grid, categorical filtering</td>
+                        </tr>
+                        <tr>
+                            <td>Snøhetta</td>
+                            <td><a href="https://snohetta.com" target="_blank">snohetta.com</a></td>
+                            <td>Horizontal scroll carousel, dark mode</td>
+                        </tr>
+                        <tr>
+                            <td>Foster + Partners</td>
+                            <td><a href="https://www.fosterandpartners.com" target="_blank">fosterandpartners.com</a></td>
+                            <td>Minimalist grid, 2000px images, dark theme</td>
+                        </tr>
+                        <tr>
+                            <td>MVRDV</td>
+                            <td><a href="https://www.mvrdv.com" target="_blank">mvrdv.com</a></td>
+                            <td>Thematic organization, fade-in transitions, SPA</td>
+                        </tr>
+                        <tr>
+                            <td>Herzog & de Meuron</td>
+                            <td><a href="https://www.herzogdemeuron.com" target="_blank">herzogdemeuron.com</a></td>
+                            <td>Project-led hierarchy, conceptual navigation</td>
+                        </tr>
+                        <tr>
+                            <td>Steven Holl</td>
+                            <td><a href="https://www.stevenholl.com" target="_blank">stevenholl.com</a></td>
+                            <td>Conceptual word index, hero-driven visuals</td>
+                        </tr>
+                        <tr>
+                            <td>UNStudio</td>
+                            <td><a href="https://www.unstudio.com" target="_blank">unstudio.com</a></td>
+                            <td>Video hero, world clocks, mega menu</td>
+                        </tr>
+                        <tr>
+                            <td>SOM</td>
+                            <td><a href="https://www.som.com" target="_blank">som.com</a></td>
+                            <td>22 specializations, modular cards, deep nav</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 9: Editorial + Scroll References -->
+        <div class="slide" data-slide="9">
+            <div class="slide-content">
+                <h2>Editorial Layout & Scroll Animation References</h2>
+                <div class="grid-2">
+                    <div>
+                        <h3>Editorial Layouts</h3>
+                        <div class="reference-item">
+                            <div class="reference-name">Dezeen</div>
+                            <a href="https://www.dezeen.com" target="_blank" class="reference-url">dezeen.com</a>
+                            <div class="reference-desc">Architecture journalism, asymmetric grids, hero imagery</div>
+                        </div>
+                        <div class="reference-item">
+                            <div class="reference-name">ArchDaily</div>
+                            <a href="https://www.archdaily.com" target="_blank" class="reference-url">archdaily.com</a>
+                            <div class="reference-desc">Featured projects, editorial hierarchy, image-first approach</div>
+                        </div>
+                        <div class="reference-item">
+                            <div class="reference-name">Wallpaper*</div>
+                            <a href="https://www.wallpaper.com" target="_blank" class="reference-url">wallpaper.com</a>
+                            <div class="reference-desc">Magazine-style layouts, dramatic photography, minimal text</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Scroll Animation Showcases</h3>
+                        <div class="reference-item">
+                            <div class="reference-name">Lando Norris</div>
+                            <a href="https://www.landonorris.com" target="_blank" class="reference-url">landonorris.com</a>
+                            <div class="reference-desc">Locomotive Scroll, parallax depth, cinematic transitions</div>
+                        </div>
+                        <div class="reference-item">
+                            <div class="reference-name">Beaucoup Studio</div>
+                            <a href="https://beaucoup.studio" target="_blank" class="reference-url">beaucoup.studio</a>
+                            <div class="reference-desc">GSAP ScrollTrigger, staggered reveals, editorial grid</div>
+                        </div>
+                        <div class="reference-item">
+                            <div class="reference-name">GTA VI</div>
+                            <a href="https://www.rockstargames.com/VI" target="_blank" class="reference-url">rockstargames.com/VI</a>
+                            <div class="reference-desc">Clip-path reveals, scroll-driven video, immersive storytelling</div>
+                        </div>
+                        <div class="reference-item">
+                            <div class="reference-name">Locomotive</div>
+                            <a href="https://locomotive.ca" target="_blank" class="reference-url">locomotive.ca</a>
+                            <div class="reference-desc">Creators of Locomotive Scroll, smooth scroll reference</div>
+                        </div>
+                        <div class="reference-item">
+                            <div class="reference-name">GKC Architecture</div>
+                            <a href="https://www.gkc.ca" target="_blank" class="reference-url">gkc.ca</a>
+                            <div class="reference-desc">Architecture-specific scroll patterns, project showcases</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: 5 Key Patterns -->
+        <div class="slide" data-slide="10">
+            <div class="slide-content">
+                <h2>5 Design Patterns That Define Premium Architecture Sites</h2>
+                <div class="feature-card">
+                    <div class="issue-number"><span class="technique-number">1</span>Full-Bleed Imagery</div>
+                    <div class="issue-description">Full-screen, cinematic project photography is standard. No small thumbnails or uniform grids—featured projects get hero treatment with edge-to-edge visuals.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="issue-number"><span class="technique-number">2</span>Smooth Scroll + Subtle Parallax</div>
+                    <div class="issue-description">Lenis or Locomotive Scroll for buttery smooth scrolling, combined with GSAP ScrollTrigger for parallax layers and reveal animations. Creates depth and engagement.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="issue-number"><span class="technique-number">3</span>Editorial Asymmetric Grids</div>
+                    <div class="issue-description">Break monotony with masonry layouts and featured sections. Mix of full-width heroes, half-width cards, and staggered reveals. Wallpaper* and Dezeen patterns.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="issue-number"><span class="technique-number">4</span>Dramatic Typography</div>
+                    <div class="issue-description">80-120px headlines with tight letter-spacing, serif/sans mixing, and generous whitespace. Numbers get hero treatment (statistics as visual elements).</div>
+                </div>
+                <div class="feature-card">
+                    <div class="issue-number"><span class="technique-number">5</span>Content-First Minimalism</div>
+                    <div class="issue-description">Generous whitespace, minimal text, maximum visual impact. Let the architecture speak—copy is secondary to imagery. Foster + Partners and Herzog & de Meuron approach.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Section Divider - Design Ideas -->
+        <div class="slide" data-slide="11">
+            <div class="slide-content section-divider">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Design Ideas for Aumarch</h2>
+                <p class="section-subtitle">Specific Recommendations for Each Section</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Hero Concept -->
+        <div class="slide" data-slide="12">
+            <div class="slide-content">
+                <h2>Hero Section — The First 3 Seconds</h2>
+                <div class="grid-2">
+                    <div class="comparison-box">
+                        <span class="label current">CURRENT</span>
+                        <div class="comparison-title">Static Anniversary Logo on White Background</div>
+                        <ul class="comparison-list">
+                            <li>No visual impact or emotional connection</li>
+                            <li>Looks like a placeholder page</li>
+                            <li>Wastes prime real estate</li>
+                            <li>Zero scroll depth or parallax</li>
+                            <li>Doesn't showcase firm's best work</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-box">
+                        <span class="label proposed">PROPOSED</span>
+                        <div class="comparison-title">Fullscreen Cinematic Project Image with Parallax Depth</div>
+                        <ul class="comparison-list">
+                            <li>Hero image from latest award-winning project</li>
+                            <li>Parallax effect (foreground/midground/background)</li>
+                            <li>Minimal overlay text (firm name + tagline)</li>
+                            <li>Smooth scroll indicator at bottom</li>
+                            <li>Auto-rotate between 3-5 hero projects</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="muted" style="text-align: center; margin-top: 2rem;">Inspired by: UNStudio, Foster + Partners, Lando Norris</p>
+            </div>
+        </div>
+
+        <!-- Slide 13: Portfolio Concept -->
+        <div class="slide" data-slide="13">
+            <div class="slide-content">
+                <h2>Portfolio — Editorial Masonry Grid</h2>
+                <div class="grid-2">
+                    <div class="feature-card">
+                        <div class="issue-title">Masonry Layout</div>
+                        <div class="issue-description">Projects displayed in editorial masonry grid with varying sizes. Featured projects get full-width hero treatment, others in 2-3 column asymmetric layout.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="issue-title">Advanced Filtering</div>
+                        <div class="issue-description">22+ filters (Residential, Commercial, Healthcare, Education, etc.). Multiple filters active simultaneously. Show project count per category.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="issue-title">Custom Cursor</div>
+                        <div class="issue-description">Custom cursor changes on project hover—displays "View Project" or project year. Adds premium feel and micro-interaction feedback.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="issue-title">Staggered Reveals</div>
+                        <div class="issue-description">Projects fade in with staggered delays as user scrolls (GSAP ScrollTrigger). Creates dynamic, engaging portfolio browsing experience.</div>
+                    </div>
+                </div>
+                <p class="muted" style="text-align: center; margin-top: 2rem;">Inspired by: MVRDV, Zaha Hadid, Beaucoup Studio</p>
+            </div>
+        </div>
+
+        <!-- Slide 14: Project Pages -->
+        <div class="slide" data-slide="14">
+            <div class="slide-content">
+                <h2>Project Pages — Scroll-Driven Storytelling</h2>
+                <div class="flow-steps">
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Full-Bleed Hero</div>
+                        <div class="step-desc">Cinematic project image with parallax</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Design Philosophy</div>
+                        <div class="step-desc">Text reveals with fade-in animations</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Process Imagery</div>
+                        <div class="step-desc">Sketches, models with parallax layers</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Final Photography</div>
+                        <div class="step-desc">Full-width galleries, masonry layout</div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Specs & Details</div>
+                        <div class="step-desc">Location, year, size, team</div>
+                    </div>
+                </div>
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <h3 style="margin-bottom: 1rem;">Scroll-Driven Narrative</h3>
+                    <p style="color: var(--text-light); line-height: 1.6;">Each project tells a story as the user scrolls: concept → process → final result. Parallax layers create depth. Image reveals maintain engagement. Text is minimal—architecture speaks for itself.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Statistics Concept -->
+        <div class="slide" data-slide="15">
+            <div class="slide-content">
+                <h2>Statistics Section — Bold Numbers</h2>
+                <div style="text-align: center; padding: 3rem 0;">
+                    <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 3rem;">
+                        <div>
+                            <div class="large-number">563</div>
+                            <div class="metric-label">PROJECTS COMPLETED</div>
+                        </div>
+                        <div>
+                            <div class="large-number">20+</div>
+                            <div class="metric-label">YEARS OF EXCELLENCE</div>
+                        </div>
+                        <div>
+                            <div class="large-number">12</div>
+                            <div class="metric-label">COUNTRIES</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="feature-card">
+                        <div class="issue-title">Count-Up Animation</div>
+                        <div class="issue-description">Numbers animate from 0 when scrolled into view. Creates "wow" moment and draws attention to impressive stats.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="issue-title">Full-Width Dark Section</div>
+                        <div class="issue-description">Statistics live in dedicated full-width dark section. High contrast makes numbers pop.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="issue-title">Staggered Reveal</div>
+                        <div class="issue-description">Each stat reveals with slight delay (100-200ms apart). Adds polish and keeps user engaged.</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="issue-title">World Map Visualization</div>
+                        <div class="issue-description">Optional: Interactive map showing 12 countries where projects are located. Reinforces global reach.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Animation Toolkit -->
+        <div class="slide" data-slide="16">
+            <div class="slide-content">
+                <h2>Scroll Animation Toolkit</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Technique</th>
+                            <th>Where to Use</th>
+                            <th>Technology</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Smooth Scroll</strong></td>
+                            <td>Entire site (replaces native browser scroll)</td>
+                            <td>Lenis or Locomotive Scroll</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clip-Path Reveals</strong></td>
+                            <td>Project cards, hero sections</td>
+                            <td>GSAP ScrollTrigger + CSS clip-path</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Split-Text Animations</strong></td>
+                            <td>Headlines, taglines</td>
+                            <td>GSAP SplitText plugin</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Staggered Fade-Ins</strong></td>
+                            <td>Portfolio grids, team photos</td>
+                            <td>GSAP stagger parameter</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Parallax Depth</strong></td>
+                            <td>Hero images, project pages</td>
+                            <td>GSAP ScrollTrigger scrub</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Count-Up Numbers</strong></td>
+                            <td>Statistics section</td>
+                            <td>GSAP to() + onUpdate callback</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Custom Cursor</strong></td>
+                            <td>Portfolio hover, project links</td>
+                            <td>JavaScript mousemove + CSS transform</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Page Transitions</strong></td>
+                            <td>Between pages (SPA feel)</td>
+                            <td>Barba.js + GSAP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Marquee Scroll</strong></td>
+                            <td>Client logos, awards</td>
+                            <td>GSAP to() loop + linear ease</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Smart Sticky Nav</strong></td>
+                            <td>Header (hides on scroll down, shows on scroll up)</td>
+                            <td>JavaScript scroll direction detection</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 17: Section Divider - Technical -->
+        <div class="slide" data-slide="17">
+            <div class="slide-content section-divider">
+                <div class="section-number">04</div>
+                <h2 class="section-title">Technical Recommendations</h2>
+                <p class="section-subtitle">Technology Stack & Performance Targets</p>
+            </div>
+        </div>
+
+        <!-- Slide 18: Tech Stack -->
+        <div class="slide" data-slide="18">
+            <div class="slide-content">
+                <h2>Recommended Technology Stack</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Technology</th>
+                            <th>Why</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Framework</strong></td>
+                            <td>Next.js 14 (React)</td>
+                            <td>SSG for performance, image optimization, SEO-friendly</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Smooth Scroll</strong></td>
+                            <td>Lenis (by Studio Freight)</td>
+                            <td>Lighter than Locomotive, buttery smooth, actively maintained</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scroll Animations</strong></td>
+                            <td>GSAP + ScrollTrigger</td>
+                            <td>Industry standard, performant, extensive documentation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Image Optimization</strong></td>
+                            <td>Next.js Image + WebP</td>
+                            <td>Automatic lazy loading, responsive images, format optimization</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hosting</strong></td>
+                            <td>Vercel or Netlify</td>
+                            <td>Edge CDN, automatic deployments, excellent performance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CMS</strong></td>
+                            <td>Contentful or Sanity</td>
+                            <td>Headless CMS for easy project updates, image management</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Performance Targets</h3>
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <span class="metric-value">70+</span>
+                        <span class="metric-label">Mobile PageSpeed</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">90+</span>
+                        <span class="metric-label">Desktop PageSpeed</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">&lt;2.5s</span>
+                        <span class="metric-label">LCP</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">&lt;0.1</span>
+                        <span class="metric-label">CLS</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">&lt;200ms</span>
+                        <span class="metric-label">TBT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Accessibility -->
+        <div class="slide" data-slide="19">
+            <div class="slide-content">
+                <h2>Accessibility — Non-Negotiable</h2>
+                <div class="feature-card" style="border-color: #3b82f6;">
+                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">1</span>Reduced Motion Support</div>
+                    <div class="issue-description">Respect prefers-reduced-motion media query. Disable all animations for users with motion sensitivity. Simple fade-ins only.</div>
+                </div>
+                <div class="feature-card" style="border-color: #3b82f6;">
+                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">2</span>Keyboard Navigation</div>
+                    <div class="issue-description">All interactive elements keyboard accessible. Focus indicators visible. Tab order logical. Skip links to main content.</div>
+                </div>
+                <div class="feature-card" style="border-color: #3b82f6;">
+                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">3</span>Screen Reader Support</div>
+                    <div class="issue-description">Alt text on all images. ARIA labels on custom elements. Semantic HTML (nav, main, article). Descriptive link text.</div>
+                </div>
+                <div class="feature-card" style="border-color: #3b82f6;">
+                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">4</span>WCAG AA Compliance</div>
+                    <div class="issue-description">4.5:1 contrast for text, 3:1 for UI elements. No color-only communication. Forms have proper labels. Error messages descriptive.</div>
+                </div>
+                <div class="feature-card" style="border-color: #3b82f6;">
+                    <div class="issue-number" style="background: #3b82f6;"><span class="technique-number">5</span>Touch Targets</div>
+                    <div class="issue-description">Minimum 44x44px touch targets on mobile. Adequate spacing between interactive elements. No hover-only functionality.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Section Divider - Implementation -->
+        <div class="slide" data-slide="20">
+            <div class="slide-content section-divider">
+                <div class="section-number">05</div>
+                <h2 class="section-title">Implementation Roadmap</h2>
+                <p class="section-subtitle">4 Phases | 8 Weeks Total</p>
+            </div>
+        </div>
+
+        <!-- Slide 21: Phases 1-2 -->
+        <div class="slide" data-slide="21">
+            <div class="slide-content">
+                <h2>Phases 1-2: Foundation & Performance (Weeks 1-4)</h2>
+                <div class="grid-2">
+                    <div class="phase-card">
+                        <div class="phase-title">Phase 1: Performance Fix</div>
+                        <div class="phase-subtitle">WEEK 1-2 | Target: 70+ mobile PageSpeed</div>
+                        <ul class="phase-list">
+                            <li>Image optimization (WebP conversion, proper sizing)</li>
+                            <li>Implement lazy loading on all below-fold images</li>
+                            <li>Optimize CSS delivery (inline critical CSS)</li>
+                            <li>Font optimization (preload, font-display: swap)</li>
+                            <li>Minify CSS/JS, enable compression</li>
+                            <li>Set up CDN for asset delivery</li>
+                            <li>Run Lighthouse audit and fix remaining issues</li>
+                        </ul>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-title">Phase 2: Hero & Homepage</div>
+                        <div class="phase-subtitle">WEEK 3-4 | Target: Memorable first impression</div>
+                        <ul class="phase-list">
+                            <li>Replace static logo with fullscreen hero imagery</li>
+                            <li>Implement Lenis smooth scroll</li>
+                            <li>Add parallax effect to hero section</li>
+                            <li>Redesign homepage layout (editorial asymmetry)</li>
+                            <li>Add scroll-triggered fade-in animations</li>
+                            <li>Implement hero image carousel (3-5 projects)</li>
+                            <li>Create statistics section with count-up animation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22: Phases 3-4 -->
+        <div class="slide" data-slide="22">
+            <div class="slide-content">
+                <h2>Phases 3-4: Portfolio & Polish (Weeks 5-8)</h2>
+                <div class="grid-2">
+                    <div class="phase-card">
+                        <div class="phase-title">Phase 3: Portfolio & Projects</div>
+                        <div class="phase-subtitle">WEEK 5-6 | Target: Showcase 563 projects</div>
+                        <ul class="phase-list">
+                            <li>Build masonry portfolio grid</li>
+                            <li>Implement advanced filtering (22+ categories)</li>
+                            <li>Add staggered reveal animations to portfolio</li>
+                            <li>Redesign project detail pages (scroll storytelling)</li>
+                            <li>Add parallax layers to project images</li>
+                            <li>Create project image galleries (masonry layout)</li>
+                            <li>Implement project navigation (prev/next)</li>
+                        </ul>
+                    </div>
+                    <div class="phase-card">
+                        <div class="phase-title">Phase 4: Interactions & Polish</div>
+                        <div class="phase-subtitle">WEEK 7-8 | Target: Premium feel</div>
+                        <ul class="phase-list">
+                            <li>Add custom cursor on portfolio hover</li>
+                            <li>Implement hover states across site</li>
+                            <li>Add page transitions (Barba.js)</li>
+                            <li>Create About page (404 fix)</li>
+                            <li>Add contact form with validation</li>
+                            <li>Implement smart sticky navigation</li>
+                            <li>Final QA, accessibility audit, launch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 23: Summary -->
+        <div class="slide" data-slide="23">
+            <div class="slide-content">
+                <h2>The Bottom Line</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>Before</th>
+                            <th>After</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>First Impression</strong></td>
+                            <td>Static anniversary logo</td>
+                            <td>Cinematic hero imagery with parallax</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Portfolio Experience</strong></td>
+                            <td>Basic 2-category grid</td>
+                            <td>Editorial masonry with 22+ filters</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scroll Experience</strong></td>
+                            <td>None (standard browser scroll)</td>
+                            <td>Smooth scroll + parallax + reveals</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile Performance</strong></td>
+                            <td>37 PageSpeed (7.5s LCP)</td>
+                            <td>70+ PageSpeed (&lt;2.5s LCP)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Image Presentation</strong></td>
+                            <td>Small uniform grids</td>
+                            <td>Full-bleed editorial imagery</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Typography</strong></td>
+                            <td>Standard hierarchy</td>
+                            <td>Dramatic 80-120px headlines</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interactions</strong></td>
+                            <td>None</td>
+                            <td>Custom cursor, hover states, transitions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Overall Feel</strong></td>
+                            <td>2015 template</td>
+                            <td>2026 premium architecture studio</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="highlight-box" style="margin-top: 3rem;">
+                    <p style="font-size: 1.5rem; line-height: 1.6; text-align: center;">
+                        The firm's world-class work deserves a world-class digital showcase.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 24: Thank You -->
+        <div class="slide" data-slide="24">
+            <div class="slide-content" style="text-align: center;">
+                <div class="accent-line" style="margin-left: auto; margin-right: auto;"></div>
+                <h1>THANK YOU</h1>
+                <p class="subtitle" style="margin-top: 2rem;">Prepared by Bhaskar Roy</p>
+                <p class="muted" style="margin-top: 1rem;">aumarch.com</p>
+                <p class="muted" style="margin-top: 0.5rem;">All reference URLs verified March 2026</p>
+                <div class="accent-line" style="margin-left: auto; margin-right: auto; margin-top: 3rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <button class="nav-button" id="prev-btn" aria-label="Previous slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <div class="nav-dots" id="nav-dots"></div>
+        <div class="slide-counter" id="slide-counter">1 / 24</div>
+        <button class="nav-button" id="next-btn" aria-label="Next slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const slidesContainer = document.getElementById('slides-container');
+        const slides = document.querySelectorAll('.slide');
+        const navDots = document.getElementById('nav-dots');
+        const slideCounter = document.getElementById('slide-counter');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        // Create navigation dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('nav-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            navDots.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.nav-dot');
+
+        function updateSlide() {
+            slidesContainer.scrollTo({
+                left: currentSlide * window.innerWidth,
+                behavior: 'smooth'
+            });
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+
+            // Update counter
+            slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+
+            // Update buttons
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+
+            // Mark slide as visible for fade-in effect
+            slides[currentSlide].classList.add('visible');
+        }
+
+        function goToSlide(index) {
+            currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
+            updateSlide();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Detect scroll position to update current slide
+        let scrollTimeout;
+        slidesContainer.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollLeft = slidesContainer.scrollLeft;
+                const slideWidth = window.innerWidth;
+                const newSlide = Math.round(scrollLeft / slideWidth);
+                if (newSlide !== currentSlide) {
+                    currentSlide = newSlide;
+                    updateSlide();
+                }
+            }, 100);
+        });
+
+        // Initialize
+        slides[0].classList.add('visible');
+        updateSlide();
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            root: slidesContainer,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        slides.forEach(slide => {
+            observer.observe(slide);
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            updateSlide();
+        });
+    </script>
+</body>
+</html>
