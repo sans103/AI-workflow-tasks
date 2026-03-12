@@ -636,8 +636,20 @@
         <header>
             <h1>YAMU CRO Team Capacity</h1>
             <div class="subtitle">CRO, Design & Development Team</div>
-            <div class="meta">Last updated: March 7, 2026 (10:15 AM IST) | Drag section headers to reorder <button class="reset-order" onclick="resetSectionOrder()">Reset order</button></div>
+            <div class="meta">Last updated: March 12, 2026 (3:30 PM IST) | Drag section headers to reorder <button class="reset-order" onclick="resetSectionOrder()">Reset order</button></div>
         </header>
+
+        <!-- Status → Completion % Legend -->
+        <section class="section" data-section-id="legend" style="margin-bottom: 24px;">
+            <h2 class="section-title">Status Completion Key</h2>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px;">
+                <span><span class="badge gray">To Do</span> 0% — full estimate remains</span>
+                <span><span class="badge warning">In Progress</span> started — full estimate counted</span>
+                <span><span class="badge" style="background:#dbeafe;color:#1e40af;">Approval Needed</span> 70% done — 30% remains</span>
+                <span><span class="badge" style="background:#fef3c7;color:#92400e;">Client Approval</span> 80% done — 20% remains</span>
+                <span><span class="badge success">Completed</span> 100% — 0h remaining</span>
+            </div>
+        </section>
 
         <!-- Team Capacity Cards -->
         <section class="section" data-section-id="capacity">
@@ -662,7 +674,7 @@
                         </div>
                         <div class="adhoc-note">
                             <span class="adhoc-badge none">No ad-hoc room</span>
-                            Burning 16.8h/wk on 16h capacity — over by 0.8h
+                            Burning 17.2h/wk on 16h capacity — over by 1.2h
                         </div>
                     </div>
                     <div class="progress-ring-container">
@@ -672,11 +684,11 @@
                                 <circle class="fg" cx="50" cy="50" r="42"
                                     stroke-dasharray="264" stroke-dashoffset="0"></circle>
                             </svg>
-                            <div class="progress-text">131%</div>
+                            <div class="progress-text">134%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>84h</strong> total / 64h capacity (4 wks)<br>
-                            Clears in: <strong>5 weeks</strong>
+                            <strong>86h</strong> remaining / 64h capacity (4 wks)<br>
+                            Clears in: <strong>5+ weeks</strong>
                         </div>
                     </div>
                 </div>
@@ -693,14 +705,14 @@
                     <div class="adhoc-buffer">
                         <div class="adhoc-label">
                             <span>Ad-hoc room:</span>
-                            <strong style="color: var(--danger);">~0.5h/week</strong>
+                            <strong style="color: var(--warning);">1.5h/week</strong>
                         </div>
                         <div class="adhoc-bar-container">
-                            <div class="adhoc-bar-planned tight" style="width: 97%"></div>
+                            <div class="adhoc-bar-planned tight" style="width: 93%"></div>
                         </div>
                         <div class="adhoc-note">
-                            <span class="adhoc-badge none">No ad-hoc room</span>
-                            Burning 19.5h/wk on 20h capacity — 0.5h free
+                            <span class="adhoc-badge minimal">Minimal room</span>
+                            Burning 18.5h/wk on 20h capacity — 1.5h free
                         </div>
                     </div>
                     <div class="progress-ring-container">
@@ -708,12 +720,12 @@
                             <svg width="100" height="100">
                                 <circle class="bg" cx="50" cy="50" r="42"></circle>
                                 <circle class="fg" cx="50" cy="50" r="42"
-                                    stroke-dasharray="264" stroke-dashoffset="5"></circle>
+                                    stroke-dasharray="264" stroke-dashoffset="18"></circle>
                             </svg>
-                            <div class="progress-text">98%</div>
+                            <div class="progress-text">93%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>78h</strong> total / 80h capacity (4 wks)<br>
+                            <strong>74h</strong> remaining / 80h capacity (4 wks)<br>
                             Clears in: <strong>4 weeks</strong>
                         </div>
                     </div>
@@ -731,14 +743,14 @@
                     <div class="adhoc-buffer">
                         <div class="adhoc-label">
                             <span>Ad-hoc room:</span>
-                            <strong style="color: var(--warning);">3h/week</strong>
+                            <strong style="color: var(--warning);">3.2h/week</strong>
                         </div>
                         <div class="adhoc-bar-container">
-                            <div class="adhoc-bar-planned tight" style="width: 91%"></div>
+                            <div class="adhoc-bar-planned tight" style="width: 90%"></div>
                         </div>
                         <div class="adhoc-note">
                             <span class="adhoc-badge minimal">Barely minimum</span>
-                            Burning 29h/wk on 32h capacity — covers min 3h ad-hoc only
+                            Burning 28.8h/wk on 32h capacity — covers min 3h ad-hoc only
                         </div>
                     </div>
                     <div class="progress-ring-container">
@@ -746,12 +758,12 @@
                             <svg width="100" height="100">
                                 <circle class="bg" cx="50" cy="50" r="42"></circle>
                                 <circle class="fg" cx="50" cy="50" r="42"
-                                    stroke-dasharray="264" stroke-dashoffset="24"></circle>
+                                    stroke-dasharray="264" stroke-dashoffset="26"></circle>
                             </svg>
-                            <div class="progress-text">91%</div>
+                            <div class="progress-text">90%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>116h</strong> total / 128h capacity (4 wks)<br>
+                            <strong>115h</strong> remaining / 128h capacity (4 wks)<br>
                             Clears in: <strong>4 weeks</strong>
                         </div>
                     </div>
@@ -764,7 +776,7 @@
             <h2 class="section-title">Ad-hoc Readiness</h2>
             <div class="metric-cards">
                 <div class="metric-card red">
-                    <div class="metric-number">3.5h</div>
+                    <div class="metric-number">4.7h</div>
                     <div class="metric-label">Team Ad-hoc Room / Week</div>
                 </div>
                 <div class="metric-card yellow">
@@ -782,9 +794,9 @@
             </div>
             <div class="alert-card" style="background: #fffbeb; border-left-color: var(--warning);">
                 <strong style="color: #92400e;">Ad-hoc capacity gap</strong>
-                The team can absorb a maximum of <strong>3.5h/week</strong> in unplanned work (only from Aanand's 3h buffer).
-                Typical ad-hoc demand is 3–15h/week. At the minimum (3h), the team barely copes. At the average (~9h),
-                tasks will slip by ~5.5h/week. At peak (15h), expect ~11.5h/week of planned work to be delayed.
+                The team can absorb a maximum of <strong>4.7h/week</strong> in unplanned work (Aanand 3.2h + Sanskriti 1.5h).
+                Typical ad-hoc demand is 3–15h/week. At the minimum (3h), team barely copes. At the average (~9h),
+                tasks will slip by ~4.3h/week. At peak (15h), expect ~10.3h/week of planned work to be delayed.
             </div>
             <table style="margin-top: 16px;">
                 <thead>
@@ -800,30 +812,30 @@
                     <tr>
                         <td>Bhaskar Roy</td>
                         <td>16h/week</td>
-                        <td>16.8h/week</td>
+                        <td>17.2h/week</td>
                         <td>0h</td>
                         <td><span class="badge danger">Over capacity</span></td>
                     </tr>
                     <tr>
                         <td>Sanskriti Prabhakar</td>
                         <td>20h/week</td>
-                        <td>19.5h/week</td>
-                        <td>0.5h</td>
-                        <td><span class="badge danger">No room</span></td>
+                        <td>18.5h/week</td>
+                        <td>1.5h</td>
+                        <td><span class="badge warning">Minimal</span></td>
                     </tr>
                     <tr>
                         <td>Aanand Madhav</td>
                         <td>32h/week</td>
-                        <td>29h/week</td>
-                        <td>3h</td>
+                        <td>28.8h/week</td>
+                        <td>3.2h</td>
                         <td><span class="badge warning">Barely min</span></td>
                     </tr>
                     <tr style="font-weight: 600; background: var(--gray-100);">
                         <td>Team Total</td>
                         <td>68h/week</td>
-                        <td>65.3h/week</td>
-                        <td>3.5h</td>
-                        <td><span class="badge danger">Gap: 5.5–11.5h</span></td>
+                        <td>64.5h/week</td>
+                        <td>4.7h</td>
+                        <td><span class="badge danger">Gap: 4.3–10.3h</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -833,8 +845,8 @@
         <section class="section" data-section-id="redflags">
             <h2 class="section-title">Red Flags</h2>
             <div class="alert-card">
-                <strong>Team has no ad-hoc buffer</strong>
-                Any unplanned client request (3–15h) will push planned deadlines. Only Aanand has 3h/week margin.
+                <strong>Team ad-hoc buffer critically low</strong>
+                Team has only 4.7h/week buffer (Aanand 3.2h + Sanskriti 1.5h). Any unplanned request over 5h will push planned deadlines.
             </div>
             <div class="alert-card">
                 <strong>LL - New App (36h, due Mar 12)</strong>
@@ -1138,7 +1150,7 @@
             </table>
 
             <h3 style="color: var(--danger); font-size: 18px; margin-bottom: 12px; margin-top: 32px;">
-                Sanskriti Prabhakar — 32.5h scheduled / 20h capacity = 163% OVERLOADED
+                Sanskriti Prabhakar — 36h scheduled / 20h capacity = 180% OVERLOADED
             </h3>
             <table>
                 <thead>
@@ -1193,6 +1205,13 @@
                         <td>Mar 9</td>
                         <td>--</td>
                     </tr>
+                    <tr>
+                        <td>LL - Easter banner <span class="badge success">NEW</span></td>
+                        <td>Lulu Liquor</td>
+                        <td>3.5h</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -1218,11 +1237,11 @@
                         <td>Bhaskar</td>
                     </tr>
                     <tr>
-                        <td>Updated product descriptions</td>
+                        <td>Updated product descriptions <span class="badge" style="background:#dbeafe;color:#1e40af;">70% done</span></td>
                         <td>Goodys</td>
-                        <td>3h</td>
+                        <td>0.9h remaining</td>
                         <td>Mar 10</td>
-                        <td>--</td>
+                        <td>Approval Needed</td>
                     </tr>
                     <tr>
                         <td>Canine & Camel sales page</td>
@@ -1380,11 +1399,11 @@
                         <td>--</td>
                     </tr>
                     <tr>
-                        <td>Completed homepage redesign</td>
+                        <td>Completed homepage redesign <span class="badge" style="background:#fef3c7;color:#92400e;">80% done</span></td>
                         <td>Bison Track</td>
                         <td>Sanskriti</td>
-                        <td>10h</td>
-                        <td>Waiting Client</td>
+                        <td>2h remaining</td>
+                        <td><span class="badge" style="background:#fef3c7;color:#92400e;">Client Approval</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -1687,7 +1706,7 @@
         </section>
 
         <footer>
-            Dashboard generated by YAMU PM System | Data source: ClickUp | Last synced: March 7, 2026 (10:15 AM IST)
+            Dashboard generated by YAMU PM System | Data source: ClickUp | Last synced: March 12, 2026 (3:30 PM IST)
         </footer>
     </div>
 
@@ -1700,7 +1719,7 @@
 
             rings.forEach((ring, index) => {
                 const circle = ring.querySelector('.fg');
-                const percentages = [131, 98, 91]; // Bhaskar, Sanskriti, Aanand
+                const percentages = [134, 93, 90]; // Bhaskar, Sanskriti, Aanand
                 const percent = percentages[index];
 
                 circle.style.strokeDasharray = circumference;
