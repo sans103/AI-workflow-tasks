@@ -629,6 +629,19 @@
             background: var(--gray-200);
             color: var(--title);
         }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .priority-badge.p-high { background: #fee2e2; color: #dc2626; }
+        .priority-badge.p-medium { background: #fef3c7; color: #92400e; }
+        .priority-badge.p-low { background: #f3f4f6; color: #4b5563; }
+        .priority-badge.p-prospect { background: #dbeafe; color: #1e40af; }
     </style>
 </head>
 <body>
@@ -648,6 +661,16 @@
                 <span><span class="badge" style="background:#dbeafe;color:#1e40af;">Approval Needed</span> 70% done — 30% remains</span>
                 <span><span class="badge" style="background:#fef3c7;color:#92400e;">Client Approval</span> 80% done — 20% remains</span>
                 <span><span class="badge success">Completed</span> 100% — 0h remaining</span>
+            </div>
+            <div style="margin-top: 16px;">
+                <strong style="font-size: 14px; color: var(--title);">Account Priority</strong>
+                <span style="font-size: 12px; color: var(--gray-600);"> (Impact on Revenue + Urgency from CRO sheet)</span>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; margin-top: 8px;">
+                    <span><span class="priority-badge p-high">High</span> Bison Track, Lulu Liquor, Ancient Aura, Heather's Heroes, Araceli, Goody's, Thrive, EZ Process</span>
+                    <span><span class="priority-badge p-medium">Medium</span> Gum of Gods, Strat-O-Matic, All Paws, The Wag</span>
+                    <span><span class="priority-badge p-low">Low</span> NFC, Puffin, Wonderlight, Pest Share, Ballet Centre, YAMU</span>
+                    <span><span class="priority-badge p-prospect">Prospect</span> Omiana, Prosthocosmeticdentistry, Lumara</span>
+                </div>
             </div>
         </section>
 
@@ -1012,6 +1035,7 @@
                     <tr>
                         <th>Task</th>
                         <th>Brand</th>
+                        <th>Acct Priority</th>
                         <th>Assignee(s)</th>
                         <th>Est.</th>
                         <th>Due</th>
@@ -1022,6 +1046,7 @@
                     <tr>
                         <td><a href="https://app.clickup.com/t/868fykpfa" target="_blank">The Wag LP (Grooming + General)</a></td>
                         <td>The Wag</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>Aanand</td>
                         <td>3h</td>
                         <td>Feb 2</td>
@@ -1030,6 +1055,7 @@
                     <tr>
                         <td><a href="https://app.clickup.com/t/868hqcy8f" target="_blank">Update training form on LP</a></td>
                         <td>All Paws</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>Aanand</td>
                         <td>2h</td>
                         <td>Mar 4</td>
@@ -1038,6 +1064,7 @@
                     <tr>
                         <td><a href="https://app.clickup.com/t/868hrtkcf" target="_blank">New Thankyou page setup</a></td>
                         <td>Thrive Tutoring</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Aanand</td>
                         <td>3h</td>
                         <td>Mar 6</td>
@@ -1046,6 +1073,7 @@
                     <tr>
                         <td><a href="https://app.clickup.com/t/868hrtn83" target="_blank">WL - HP Hero banner</a></td>
                         <td>Wonderlight</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
                         <td>Sanskriti</td>
                         <td>3h</td>
                         <td>Mar 6</td>
@@ -1054,6 +1082,7 @@
                     <tr>
                         <td><a href="https://app.clickup.com/t/868h2jmhv" target="_blank">PD - PDP 1st Fold Optimisation</a></td>
                         <td>Puffin</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
                         <td>Sanskriti</td>
                         <td>2h</td>
                         <td>Jan 20</td>
@@ -1062,6 +1091,7 @@
                     <tr>
                         <td><a href="https://app.clickup.com/t/868h653z5" target="_blank">Debunking LP</a></td>
                         <td>Heather's Heroes</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti</td>
                         <td>--</td>
                         <td>Feb 23</td>
@@ -1070,6 +1100,7 @@
                     <tr>
                         <td><a href="https://app.clickup.com/t/868ha1pqq" target="_blank">BT - Thor2.0 PDP Redesign</a></td>
                         <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Aanand + Sanskriti</td>
                         <td>2h</td>
                         <td>Dec 10</td>
@@ -1091,6 +1122,7 @@
                     <tr>
                         <th>Task</th>
                         <th>Brand</th>
+                        <th>Acct Priority</th>
                         <th>Est.</th>
                         <th>Due</th>
                         <th>Shared?</th>
@@ -1100,6 +1132,7 @@
                     <tr>
                         <td>LL - New App</td>
                         <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>14h (40%)</td>
                         <td>Mar 12</td>
                         <td>Sanskriti</td>
@@ -1107,6 +1140,7 @@
                     <tr>
                         <td>Copy changes brief</td>
                         <td>Araceli Beauty</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>6h</td>
                         <td>Mar 10</td>
                         <td>--</td>
@@ -1114,6 +1148,7 @@
                     <tr>
                         <td>PDPs updated BYT page UI</td>
                         <td>Goodys</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>4h</td>
                         <td>Mar 10</td>
                         <td>--</td>
@@ -1121,6 +1156,7 @@
                     <tr>
                         <td>LP design Baseball-max</td>
                         <td>Strat-O-Matic</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>3h (40%)</td>
                         <td>Mar 12</td>
                         <td>Aanand</td>
@@ -1128,6 +1164,7 @@
                     <tr>
                         <td>Google Ads conversion events</td>
                         <td>NFC</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
                         <td>3h</td>
                         <td>Mar 11</td>
                         <td>--</td>
@@ -1135,6 +1172,7 @@
                     <tr>
                         <td>Cinnamon Bun Crunch PDPs</td>
                         <td>Goodys</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>1h</td>
                         <td>Mar 10</td>
                         <td>--</td>
@@ -1142,6 +1180,7 @@
                     <tr>
                         <td>New Form Setup</td>
                         <td>Thrive Tutoring</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>4h</td>
                         <td>Mar 12</td>
                         <td>--</td>
@@ -1149,6 +1188,7 @@
                     <tr>
                         <td>Omiana audit <span class="badge success">NEW</span></td>
                         <td>CRO</td>
+                        <td><span class="priority-badge p-prospect">Prospect</span></td>
                         <td>3h</td>
                         <td>Mar 12</td>
                         <td>--</td>
@@ -1156,6 +1196,7 @@
                     <tr>
                         <td>prosthocosmeticdentistry.com <span class="badge success">NEW</span></td>
                         <td>CRO</td>
+                        <td><span class="priority-badge p-prospect">Prospect</span></td>
                         <td>3h</td>
                         <td>Mar 13</td>
                         <td>--</td>
@@ -1163,6 +1204,7 @@
                     <tr>
                         <td>Lumara Systems audit <span class="badge success">NEW</span></td>
                         <td>CRO</td>
+                        <td><span class="priority-badge p-prospect">Prospect</span></td>
                         <td>3h</td>
                         <td>Mar 16</td>
                         <td>--</td>
@@ -1170,6 +1212,7 @@
                     <tr>
                         <td>Daytona Banner <span class="badge" style="background:#fef3c7;color:#92400e;">80% done</span></td>
                         <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>--</td>
                         <td>Mar 9</td>
                         <td>Client Approval</td>
@@ -1185,6 +1228,7 @@
                     <tr>
                         <th>Task</th>
                         <th>Brand</th>
+                        <th>Acct Priority</th>
                         <th>Est.</th>
                         <th>Due</th>
                         <th>Shared?</th>
@@ -1194,6 +1238,7 @@
                     <tr>
                         <td>LL - New App</td>
                         <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>22h (60%)</td>
                         <td>Mar 12</td>
                         <td>Bhaskar</td>
@@ -1201,6 +1246,7 @@
                     <tr>
                         <td>WL - Beauty focused LP</td>
                         <td>Wonderlight</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
                         <td>4.5h</td>
                         <td>Mar 10</td>
                         <td>--</td>
@@ -1208,6 +1254,7 @@
                     <tr>
                         <td>BT - Pasture CLP Hero banner</td>
                         <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>3h</td>
                         <td>Mar 13</td>
                         <td>--</td>
@@ -1215,6 +1262,7 @@
                     <tr>
                         <td>Canine & Camel sales page</td>
                         <td>Heather's Heroes</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>2h (45%)</td>
                         <td>Mar 9</td>
                         <td>Aanand</td>
@@ -1222,6 +1270,7 @@
                     <tr>
                         <td>BT - Trackside Event LP</td>
                         <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>1h (45%)</td>
                         <td>Mar 9</td>
                         <td>Aanand</td>
@@ -1229,6 +1278,7 @@
                     <tr>
                         <td>AB test shoppable UGC</td>
                         <td>Ancient Aura</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>--</td>
                         <td>Mar 9</td>
                         <td>--</td>
@@ -1236,6 +1286,7 @@
                     <tr>
                         <td>LL - Easter banner <span class="badge success">NEW</span></td>
                         <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>3.5h</td>
                         <td>--</td>
                         <td>--</td>
@@ -1251,6 +1302,7 @@
                     <tr>
                         <th>Task</th>
                         <th>Brand</th>
+                        <th>Acct Priority</th>
                         <th>Est.</th>
                         <th>Due</th>
                         <th>Shared?</th>
@@ -1260,6 +1312,7 @@
                     <tr>
                         <td>LP design Baseball-max</td>
                         <td>Strat-O-Matic</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>5h (60%)</td>
                         <td>Mar 12</td>
                         <td>Bhaskar</td>
@@ -1267,6 +1320,7 @@
                     <tr>
                         <td>Updated product descriptions <span class="badge" style="background:#dbeafe;color:#1e40af;">70% done</span></td>
                         <td>Goodys</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>0.9h remaining</td>
                         <td>Mar 10</td>
                         <td>Approval Needed</td>
@@ -1274,6 +1328,7 @@
                     <tr>
                         <td>Canine & Camel sales page</td>
                         <td>Heather's Heroes</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>3h (55%)</td>
                         <td>Mar 9</td>
                         <td>Sanskriti</td>
@@ -1281,6 +1336,7 @@
                     <tr>
                         <td>BT - Trackside Event LP</td>
                         <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>1h (55%)</td>
                         <td>Mar 9</td>
                         <td>Sanskriti</td>
@@ -1297,6 +1353,7 @@
                     <tr>
                         <th>Task</th>
                         <th>Brand</th>
+                        <th>Acct Priority</th>
                         <th>Assignee(s)</th>
                         <th>Est.</th>
                         <th>Due</th>
@@ -1306,6 +1363,7 @@
                     <tr>
                         <td>Shoppable UGC setup</td>
                         <td>Araceli Beauty</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar</td>
                         <td>10h</td>
                         <td>Mar 16</td>
@@ -1313,6 +1371,7 @@
                     <tr>
                         <td>Collection page redesign</td>
                         <td>Goodys</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar + Aanand</td>
                         <td>16h</td>
                         <td>Mar 20</td>
@@ -1320,6 +1379,7 @@
                     <tr>
                         <td>Mobile App build</td>
                         <td>Goodys</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar + Aanand</td>
                         <td>36h</td>
                         <td>Mar 23</td>
@@ -1327,6 +1387,7 @@
                     <tr>
                         <td>Symbol collection pages</td>
                         <td>Ancient Aura</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti + Aanand</td>
                         <td>12h</td>
                         <td>Mar 25</td>
@@ -1343,95 +1404,108 @@
                     <tr>
                         <th>Task</th>
                         <th>Brand</th>
+                        <th>Acct Priority</th>
                         <th>Assignee(s)</th>
                         <th>Est.</th>
-                        <th>Priority</th>
+                        <th>Suggested Due</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Redesign Product Images</td>
+                        <td>Completed homepage redesign <span class="badge" style="background:#fef3c7;color:#92400e;">80% done</span></td>
                         <td>Bison Track</td>
-                        <td>Bhaskar + Sanskriti</td>
-                        <td>6h</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>AA - Redesign Drawer cart</td>
-                        <td>Ancient Aura</td>
-                        <td>Sanskriti + Aanand</td>
-                        <td>8h</td>
-                        <td>--</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti</td>
+                        <td>2h remaining</td>
+                        <td>Mar 16</td>
                     </tr>
                     <tr>
                         <td>BT - Correct Upsell products LPs</td>
                         <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti</td>
                         <td>4h</td>
-                        <td>--</td>
+                        <td>Mar 23</td>
                     </tr>
                     <tr>
                         <td>LL - AB - Lulu drawer cart</td>
                         <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti + Aanand</td>
                         <td>2h</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>PDP redesign new look</td>
-                        <td>Lulu Liquor</td>
-                        <td>Sanskriti + Aanand</td>
-                        <td>25h</td>
-                        <td>--</td>
+                        <td>Mar 23</td>
                     </tr>
                     <tr>
                         <td>Optimize Mobile Hamburger Menu</td>
                         <td>Heather's Heroes</td>
+                        <td><span class="priority-badge p-high">High</span></td>
                         <td>Aanand + Sanskriti</td>
                         <td>4h</td>
-                        <td>--</td>
+                        <td>Mar 30</td>
                     </tr>
                     <tr>
-                        <td>Custom App lead magnet</td>
-                        <td>Pest Share</td>
-                        <td>Aanand</td>
-                        <td>20h</td>
-                        <td>Low</td>
+                        <td>AA - Redesign Drawer cart</td>
+                        <td>Ancient Aura</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti + Aanand</td>
+                        <td>8h</td>
+                        <td>Mar 30</td>
+                    </tr>
+                    <tr>
+                        <td>Redesign Product Images</td>
+                        <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Bhaskar + Sanskriti</td>
+                        <td>6h</td>
+                        <td>Apr 7</td>
+                    </tr>
+                    <tr>
+                        <td>PDP redesign new look</td>
+                        <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti + Aanand</td>
+                        <td>25h</td>
+                        <td>Apr 7</td>
                     </tr>
                     <tr>
                         <td>Shoppable UGC</td>
                         <td>Gum of Gods</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>Bhaskar</td>
                         <td>10h</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>Bundle Redesign</td>
-                        <td>Gum of Gods</td>
-                        <td>Bhaskar + Aanand</td>
-                        <td>10h</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>PDP Redesign - subscription box</td>
-                        <td>Gum of Gods</td>
-                        <td>Bhaskar + Aanand</td>
-                        <td>10h</td>
-                        <td>--</td>
+                        <td>Apr 14</td>
                     </tr>
                     <tr>
                         <td>Design baseballmax game landing</td>
                         <td>Strat-O-Matic</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>Bhaskar + Aanand</td>
                         <td>8h</td>
-                        <td>--</td>
+                        <td>Apr 14</td>
                     </tr>
                     <tr>
-                        <td>Completed homepage redesign <span class="badge" style="background:#fef3c7;color:#92400e;">80% done</span></td>
-                        <td>Bison Track</td>
-                        <td>Sanskriti</td>
-                        <td>2h remaining</td>
-                        <td><span class="badge" style="background:#fef3c7;color:#92400e;">Client Approval</span></td>
+                        <td>Bundle Redesign</td>
+                        <td>Gum of Gods</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
+                        <td>Bhaskar + Aanand</td>
+                        <td>10h</td>
+                        <td>Apr 21</td>
+                    </tr>
+                    <tr>
+                        <td>PDP Redesign - subscription box</td>
+                        <td>Gum of Gods</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
+                        <td>Bhaskar + Aanand</td>
+                        <td>10h</td>
+                        <td>Apr 28</td>
+                    </tr>
+                    <tr>
+                        <td>Custom App lead magnet</td>
+                        <td>Pest Share</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>20h</td>
+                        <td>May 4</td>
                     </tr>
                 </tbody>
             </table>
