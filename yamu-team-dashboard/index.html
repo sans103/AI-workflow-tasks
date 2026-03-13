@@ -706,7 +706,7 @@
 
         <!-- Team Capacity Cards -->
         <section class="section" data-section-id="capacity">
-            <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Utilization = Total remaining hours / (Execution capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev). Aanand has +20% revision buffer on all estimates.">?</span></h2>
+            <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Utilization = Total remaining hours / (Execution capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev). Aanand's revision buffer adds 20% to his share %, making shared tasks under-estimated (total actual hours exceed original estimate).">?</span></h2>
             <div class="cards">
                 <div class="card">
                     <h3>Bhaskar Roy</h3>
@@ -792,7 +792,7 @@
                         <div><span>Calls:</span><span>4h/week</span></div>
                         <div><span>Comms:</span><span>4h/week</span></div>
                         <div><span>Execution:</span><strong>32h/week</strong></div>
-                        <div style="color: var(--danger); font-size: 12px; margin-top: 4px;"><span>Revision buffer:</span><strong>+20% on all estimates</strong></div>
+                        <div style="color: var(--danger); font-size: 12px; margin-top: 4px;"><span>Revision buffer:</span><strong>+20% on his share %</strong></div>
                     </div>
                     <div class="adhoc-buffer">
                         <div class="adhoc-label">
@@ -804,7 +804,7 @@
                         </div>
                         <div class="adhoc-note">
                             <span class="adhoc-badge none">Over capacity</span>
-                            Burning 35.4h/wk (incl. 20% revisions) on 32h capacity
+                            Burning 35.4h/wk (incl. revision buffer) on 32h capacity
                         </div>
                     </div>
                     <div class="progress-ring-container">
@@ -817,7 +817,7 @@
                             <div class="progress-text">112%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>143h</strong> remaining (119h + 20% revisions) / 128h capacity (4 wks)<br>
+                            <strong>143h</strong> remaining (119h base + 24h revision buffer) / 128h capacity (4 wks)<br>
                             Clears in: <strong>5 weeks</strong>
                         </div>
                     </div>
@@ -1129,7 +1129,7 @@
             </table>
 
             <h3 style="color: var(--success); font-size: 18px; margin-bottom: 12px; margin-top: 32px;">
-                Aanand Madhav — Stack Rank
+                Aanand Madhav — Stack Rank <span style="font-size: 13px; color: var(--danger); font-weight: 400;">(+20% revision buffer on his share)</span>
             </h3>
             <table>
                 <thead>
@@ -1137,7 +1137,7 @@
                         <th>#</th>
                         <th>Task</th>
                         <th>Brand</th>
-                        <th>Est. (+20%)</th>
+                        <th>Est.</th>
                         <th>Why This Order</th>
                     </tr>
                 </thead>
@@ -1146,14 +1146,14 @@
                         <td><strong>1</strong></td>
                         <td>Updated product descriptions (70%)</td>
                         <td>Goodys <span class="priority-badge p-high">High</span></td>
-                        <td>1.1h</td>
-                        <td>Almost done (70%), high client. Close out in &lt;2h — quick win</td>
+                        <td>0.9h remaining</td>
+                        <td>Almost done (70%), high client. Close out — quick win</td>
                     </tr>
                     <tr>
                         <td><strong>2</strong></td>
-                        <td>Thrive Thankyou page</td>
+                        <td>Thrive Thankyou page (60%)</td>
                         <td>Thrive <span class="priority-badge p-high">High</span></td>
-                        <td>3.6h</td>
+                        <td>3h</td>
                         <td>High-urgency client, 7 days overdue. Thank-you page = conversion tracking</td>
                     </tr>
                     <tr>
@@ -1167,21 +1167,21 @@
                         <td><strong>4</strong></td>
                         <td>Canine & Camel sales page (55%)</td>
                         <td>Heather's <span class="priority-badge p-high">High</span></td>
-                        <td>3.6h</td>
+                        <td>5h</td>
                         <td>Revenue page, overdue. HH is top client — relationship risk</td>
                     </tr>
                     <tr>
                         <td><strong>5</strong></td>
                         <td>BT Trackside Event LP (55%)</td>
                         <td>Bison Track <span class="priority-badge p-high">High</span></td>
-                        <td>1.2h</td>
+                        <td>2h</td>
                         <td>Event deadline, small task. Finish alongside Canine & Camel</td>
                     </tr>
                     <tr>
                         <td><strong>6</strong></td>
                         <td>LP Baseball-max (60%)</td>
                         <td>Strat-O-Matic <span class="priority-badge p-medium">Medium</span></td>
-                        <td>6h</td>
+                        <td>8h</td>
                         <td>Medium client, in progress with Bhaskar. Can flex 2-3 days</td>
                     </tr>
                     <tr>
@@ -1195,21 +1195,21 @@
                         <td><strong>8</strong></td>
                         <td>Cinnamon Bun PDPs</td>
                         <td>Goodys <span class="priority-badge p-high">High</span></td>
-                        <td>1.2h</td>
+                        <td>1h</td>
                         <td>Quick PDP update, slot between tasks</td>
                     </tr>
                     <tr style="opacity: 0.6;">
                         <td><strong>9</strong></td>
                         <td>All Paws training form</td>
                         <td>All Paws <span class="priority-badge p-medium">Medium</span></td>
-                        <td>2.4h</td>
+                        <td>2h</td>
                         <td>Medium client, 9 days overdue but form update = low revenue impact</td>
                     </tr>
                     <tr style="opacity: 0.6;">
                         <td><strong>10</strong></td>
                         <td>The Wag LP</td>
                         <td>The Wag <span class="priority-badge p-medium">Medium</span></td>
-                        <td>3.6h</td>
+                        <td>3h</td>
                         <td>33 days overdue but medium client. Losing The Wag = minimal Yamu impact</td>
                     </tr>
                 </tbody>
@@ -1864,14 +1864,14 @@
 
         <!-- Estimate Evaluation -->
         <section class="section" data-section-id="estimates">
-            <h2 class="section-title">Estimate Evaluation Summary <span class="tip" data-tip="Estimates compared against similar past tasks and complexity. Under-estimated = likely to take significantly longer. Over-estimated = can be done faster. Missing = no time estimate in ClickUp.">?</span></h2>
+            <h2 class="section-title">Estimate Evaluation Summary <span class="tip" data-tip="Estimates vs actual complexity + Aanand's 20% revision buffer. Under-estimated = total actual hours exceed estimate (from complexity or buffer). Includes 7 shared tasks where Aanand's increased share makes the task exceed its estimate.">?</span></h2>
             <div class="metric-cards">
                 <div class="metric-card green">
-                    <div class="metric-number">24</div>
+                    <div class="metric-number">16</div>
                     <div class="metric-label">Fair</div>
                 </div>
                 <div class="metric-card red">
-                    <div class="metric-number">4</div>
+                    <div class="metric-number">12</div>
                     <div class="metric-label">Under-Estimated</div>
                 </div>
                 <div class="metric-card yellow">
@@ -1894,6 +1894,7 @@
                         <th>Current Est.</th>
                         <th>Realistic</th>
                         <th>Gap</th>
+                        <th>Reason</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1902,30 +1903,87 @@
                         <td>4.5h</td>
                         <td>8-12h</td>
                         <td><span class="badge danger">+4-8h</span></td>
+                        <td>Complexity</td>
                     </tr>
                     <tr>
                         <td>Canine & Camel sales page</td>
                         <td>5h</td>
                         <td>10-16h</td>
                         <td><span class="badge danger">+5-11h</span></td>
+                        <td>Complexity</td>
                     </tr>
                     <tr>
                         <td>BT Trackside Event LP</td>
                         <td>2h</td>
                         <td>3-5h</td>
                         <td><span class="badge danger">+1-3h</span></td>
+                        <td>Complexity</td>
                     </tr>
                     <tr>
                         <td>Cinnamon Bun Crunch PDPs</td>
                         <td>1h</td>
                         <td>2-3h</td>
                         <td><span class="badge danger">+1-2h</span></td>
+                        <td>Complexity</td>
                     </tr>
                     <tr>
                         <td>Custom App lead magnet</td>
                         <td>20h</td>
                         <td>30-40h</td>
                         <td><span class="badge danger">+10-20h</span></td>
+                        <td>Complexity + Buffer</td>
+                    </tr>
+                    <tr style="background: #fef2f2;">
+                        <td colspan="5" style="font-weight: 600; font-size: 13px; color: var(--danger); padding: 8px 12px;">Due to Aanand's 20% revision buffer (his share % increases, total actual exceeds estimate)</td>
+                    </tr>
+                    <tr>
+                        <td>Mobile App build</td>
+                        <td>36h</td>
+                        <td>40.3h</td>
+                        <td><span class="badge danger">+4.3h</span></td>
+                        <td>Aanand 60%→72%</td>
+                    </tr>
+                    <tr>
+                        <td>PDP redesign new look</td>
+                        <td>25h</td>
+                        <td>27.8h</td>
+                        <td><span class="badge danger">+2.8h</span></td>
+                        <td>Aanand 55%→66%</td>
+                    </tr>
+                    <tr>
+                        <td>Collection page redesign</td>
+                        <td>16h</td>
+                        <td>17.9h</td>
+                        <td><span class="badge danger">+1.9h</span></td>
+                        <td>Aanand 60%→72%</td>
+                    </tr>
+                    <tr>
+                        <td>Symbol collection pages</td>
+                        <td>12h</td>
+                        <td>13.3h</td>
+                        <td><span class="badge danger">+1.3h</span></td>
+                        <td>Aanand 55%→66%</td>
+                    </tr>
+                    <tr>
+                        <td>Bundle Redesign</td>
+                        <td>10h</td>
+                        <td>11.2h</td>
+                        <td><span class="badge danger">+1.2h</span></td>
+                        <td>Aanand 60%→72%</td>
+                    </tr>
+                    <tr>
+                        <td>PDP Redesign sub box</td>
+                        <td>10h</td>
+                        <td>11.2h</td>
+                        <td><span class="badge danger">+1.2h</span></td>
+                        <td>Aanand 60%→72%</td>
+                    </tr>
+                    <tr>
+                        <td>LP Baseball-max</td>
+                        <td>8h</td>
+                        <td>9h</td>
+                        <td><span class="badge warning">+1h</span></td>
+                        <td>Aanand 60%→72%</td>
                     </tr>
                 </tbody>
             </table>
