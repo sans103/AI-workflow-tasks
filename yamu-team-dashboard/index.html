@@ -642,6 +642,37 @@
         .priority-badge.p-medium { background: #fef3c7; color: #92400e; }
         .priority-badge.p-low { background: #f3f4f6; color: #4b5563; }
         .priority-badge.p-prospect { background: #dbeafe; color: #1e40af; }
+
+        /* Tooltips */
+        .tip {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dotted var(--gray-400);
+        }
+        .tip::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--title);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 400;
+            white-space: normal;
+            width: 260px;
+            line-height: 1.5;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .tip:hover::after {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -654,7 +685,7 @@
 
         <!-- Status → Completion % Legend -->
         <section class="section" data-section-id="legend" style="margin-bottom: 24px;">
-            <h2 class="section-title">Status Completion Key</h2>
+            <h2 class="section-title">Status Completion Key <span class="tip" data-tip="Remaining hours = Estimate x (1 - completion%). Approval Needed = 70% done (30% of estimate remains). Client Approval = 80% done (20% remains). Completed = 0h.">?</span></h2>
             <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px;">
                 <span><span class="badge gray">To Do</span> 0% — full estimate remains</span>
                 <span><span class="badge warning">In Progress</span> started — full estimate counted</span>
@@ -663,8 +694,7 @@
                 <span><span class="badge success">Completed</span> 100% — 0h remaining</span>
             </div>
             <div style="margin-top: 16px;">
-                <strong style="font-size: 14px; color: var(--title);">Account Priority</strong>
-                <span style="font-size: 12px; color: var(--gray-600);"> (Impact on Revenue + Urgency from CRO sheet)</span>
+                <strong style="font-size: 14px; color: var(--title);">Account Priority <span class="tip" data-tip="Score = Impact on Revenue + Urgency (from CRO prioritization sheet). High=3, Medium=2, Low=1, N/A=0. Combined 5-6=High, 3-4=Medium, 0-2=Low. Prospects are audit-only accounts in CRO space.">?</span></strong>
                 <div style="display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; margin-top: 8px;">
                     <span><span class="priority-badge p-high">High</span> Bison Track, Lulu Liquor, Ancient Aura, Heather's Heroes, Araceli, Goody's, Thrive, EZ Process</span>
                     <span><span class="priority-badge p-medium">Medium</span> Gum of Gods, Strat-O-Matic, All Paws, The Wag</span>
@@ -676,7 +706,7 @@
 
         <!-- Team Capacity Cards -->
         <section class="section" data-section-id="capacity">
-            <h2 class="section-title">Team Capacity Overview</h2>
+            <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Utilization = Total remaining hours / (Execution capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev). Aanand has +20% revision buffer on all estimates.">?</span></h2>
             <div class="cards">
                 <div class="card">
                     <h3>Bhaskar Roy</h3>
@@ -797,7 +827,7 @@
 
         <!-- Ad-hoc Readiness -->
         <section class="section" data-section-id="adhoc">
-            <h2 class="section-title">Ad-hoc Readiness</h2>
+            <h2 class="section-title">Ad-hoc Readiness <span class="tip" data-tip="Ad-hoc room = Execution capacity - Weekly burn rate. Weekly burn = total remaining hours / weeks to clear. Gap = Typical ad-hoc demand minus team ad-hoc room.">?</span></h2>
             <div class="metric-cards">
                 <div class="metric-card red">
                     <div class="metric-number">1.5h</div>
@@ -901,7 +931,7 @@
 
         <!-- Weekly Utilization Forecast -->
         <section class="section" data-section-id="utilization">
-            <h2 class="section-title">Weekly Utilization Forecast</h2>
+            <h2 class="section-title">Weekly Utilization Forecast <span class="tip" data-tip="Bar % = Hours scheduled that week / Execution capacity. Tasks assigned to week based on ClickUp due dates. Tasks without due dates appear in Backlog, not in weekly forecast.">?</span></h2>
             <div class="utilization-chart">
                 <div class="week-row">
                     <div class="week-header">W10 (Mar 2-6, 2026)</div>
@@ -1440,7 +1470,7 @@
 
         <!-- Backlog -->
         <section class="section" data-section-id="backlog">
-            <h2 class="section-title">Backlog</h2>
+            <h2 class="section-title">Backlog <span class="tip" data-tip="Tasks without due dates or scheduled beyond current sprint. Suggested Due = earliest realistic date based on assignee capacity and account priority. High priority accounts scheduled first.">?</span></h2>
             <table>
                 <thead class="gray">
                     <tr>
@@ -1547,7 +1577,7 @@
 
         <!-- Estimate Evaluation -->
         <section class="section" data-section-id="estimates">
-            <h2 class="section-title">Estimate Evaluation Summary</h2>
+            <h2 class="section-title">Estimate Evaluation Summary <span class="tip" data-tip="Estimates compared against similar past tasks and complexity. Under-estimated = likely to take significantly longer. Over-estimated = can be done faster. Missing = no time estimate in ClickUp.">?</span></h2>
             <div class="metric-cards">
                 <div class="metric-card green">
                     <div class="metric-number">24</div>
@@ -1680,7 +1710,7 @@
 
         <!-- Shared Tasks -->
         <section class="section" data-section-id="shared">
-            <h2 class="section-title">Shared Tasks Overview</h2>
+            <h2 class="section-title">Shared Tasks Overview <span class="tip" data-tip="Hours split by role: PM+Dev = 40/60, CRO+Dev = 45/55, CRO+PM = 60/40. Each person's share appears in their individual task tables with the % shown.">?</span></h2>
             <table>
                 <thead>
                     <tr>
