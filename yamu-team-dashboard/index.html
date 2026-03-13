@@ -762,32 +762,33 @@
                         <div><span>Calls:</span><span>4h/week</span></div>
                         <div><span>Comms:</span><span>4h/week</span></div>
                         <div><span>Execution:</span><strong>32h/week</strong></div>
+                        <div style="color: var(--danger); font-size: 12px; margin-top: 4px;"><span>Revision buffer:</span><strong>+20% on all estimates</strong></div>
                     </div>
                     <div class="adhoc-buffer">
                         <div class="adhoc-label">
                             <span>Ad-hoc room:</span>
-                            <strong style="color: var(--warning);">2.5h/week</strong>
+                            <strong style="color: var(--danger);">0h/week</strong>
                         </div>
                         <div class="adhoc-bar-container">
-                            <div class="adhoc-bar-planned tight" style="width: 92%"></div>
+                            <div class="adhoc-bar-planned over" style="width: 100%"></div>
                         </div>
                         <div class="adhoc-note">
-                            <span class="adhoc-badge minimal">Below minimum</span>
-                            Burning 29.5h/wk on 32h capacity — under min 3h ad-hoc threshold
+                            <span class="adhoc-badge none">Over capacity</span>
+                            Burning 35.4h/wk (incl. 20% revisions) on 32h capacity
                         </div>
                     </div>
                     <div class="progress-ring-container">
-                        <div class="progress-ring">
+                        <div class="progress-ring overloaded">
                             <svg width="100" height="100">
                                 <circle class="bg" cx="50" cy="50" r="42"></circle>
                                 <circle class="fg" cx="50" cy="50" r="42"
-                                    stroke-dasharray="264" stroke-dashoffset="18"></circle>
+                                    stroke-dasharray="264" stroke-dashoffset="0"></circle>
                             </svg>
-                            <div class="progress-text">93%</div>
+                            <div class="progress-text">112%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>119h</strong> remaining / 128h capacity (4 wks)<br>
-                            Clears in: <strong>4 weeks</strong>
+                            <strong>143h</strong> remaining (119h + 20% revisions) / 128h capacity (4 wks)<br>
+                            Clears in: <strong>5 weeks</strong>
                         </div>
                     </div>
                 </div>
@@ -799,7 +800,7 @@
             <h2 class="section-title">Ad-hoc Readiness</h2>
             <div class="metric-cards">
                 <div class="metric-card red">
-                    <div class="metric-number">4h</div>
+                    <div class="metric-number">1.5h</div>
                     <div class="metric-label">Team Ad-hoc Room / Week</div>
                 </div>
                 <div class="metric-card yellow">
@@ -817,9 +818,10 @@
             </div>
             <div class="alert-card" style="background: #fffbeb; border-left-color: var(--warning);">
                 <strong style="color: #92400e;">Ad-hoc capacity gap</strong>
-                The team can absorb a maximum of <strong>4h/week</strong> in unplanned work (Aanand 2.5h + Sanskriti 1.5h).
-                Typical ad-hoc demand is 3–15h/week. At the minimum (3h), team barely copes. At the average (~9h),
-                tasks will slip by ~5h/week. At peak (15h), expect ~11h/week of planned work to be delayed.
+                The team can absorb a maximum of <strong>1.5h/week</strong> in unplanned work (Sanskriti only).
+                Bhaskar and Aanand (with 20% revision buffer) are both over capacity.
+                Typical ad-hoc demand is 3–15h/week. Even at minimum (3h), planned work will slip by ~1.5h/week.
+                At average (~9h), expect ~7.5h/week of delays. At peak (15h), expect ~13.5h/week of slippage.
             </div>
             <table style="margin-top: 16px;">
                 <thead>
@@ -849,16 +851,16 @@
                     <tr>
                         <td>Aanand Madhav</td>
                         <td>32h/week</td>
-                        <td>29.5h/week</td>
-                        <td>2.5h</td>
-                        <td><span class="badge danger">Below min</span></td>
+                        <td>35.4h/week <span style="font-size:11px;color:var(--danger);">(+20% rev)</span></td>
+                        <td>0h</td>
+                        <td><span class="badge danger">Over capacity</span></td>
                     </tr>
                     <tr style="font-weight: 600; background: var(--gray-100);">
                         <td>Team Total</td>
                         <td>68h/week</td>
-                        <td>64h/week</td>
-                        <td>4h</td>
-                        <td><span class="badge danger">Gap: 5–11h</span></td>
+                        <td>69.9h/week</td>
+                        <td>1.5h</td>
+                        <td><span class="badge danger">Gap: 1.5–13.5h</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -869,7 +871,7 @@
             <h2 class="section-title">Red Flags</h2>
             <div class="alert-card">
                 <strong>Team ad-hoc buffer critically low</strong>
-                Team has only 4h/week buffer (Aanand 2.5h + Sanskriti 1.5h). Any unplanned request over 4h will push planned deadlines.
+                Team has only 1.5h/week buffer (Sanskriti only). Bhaskar and Aanand (with 20% revision buffer) are both over capacity. Any unplanned request will push planned deadlines.
             </div>
             <div class="alert-card">
                 <strong>LL - New App (36h, due Mar 12)</strong>
@@ -1853,7 +1855,7 @@
 
             rings.forEach((ring, index) => {
                 const circle = ring.querySelector('.fg');
-                const percentages = [147, 93, 93]; // Bhaskar, Sanskriti, Aanand
+                const percentages = [147, 93, 112]; // Bhaskar, Sanskriti, Aanand (Aanand incl. 20% revision buffer)
                 const percent = percentages[index];
 
                 circle.style.strokeDasharray = circumference;
