@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deco Design Studio — Build Your Custom TV Frame</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ============================================
+   RESET & BASE
+   ============================================ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      color: #1a1a1a;
+      background: #FFFFFF;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid #9D8661;
+      outline-offset: 2px;
+    }
+
+    button:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    /* ============================================
+   DESIGN TOKENS
+   ============================================ */
+    :root {
+      --gold: #9D8661;
+      --gold-light: #B8A07A;
+      --gold-bg: #FFF9ED;
+      --dark: #212121;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --text-light: #999999;
+      --bg: #FFFFFF;
+      --surface-warm: #F5F4F0;
+      --surface-alt: #ECEAE3;
+      --border: #C8C4B7;
+      --success: #27AE60;
+      --shop-pay: #5A31F4;
+
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Roboto', sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --shadow-lift: 0 8px 24px rgba(0, 0, 0, 0.10);
+
+      --transition: 0.2s ease;
+      --nav-height: 64px;
+    }
+
+    /* ============================================
+   STICKY NAV
+   ============================================ */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: var(--bg);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      gap: 32px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .sticky-nav.scrolled {
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-steps {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      padding: 4px 8px;
+      background: none;
+      border: none;
+    }
+
+    .nav-step-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-step-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--border);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke var(--transition);
+    }
+
+    .nav-step.active .nav-step-icon {
+      border-color: var(--gold);
+      background: var(--bg);
+    }
+
+    .nav-step.active .nav-step-icon svg {
+      stroke: var(--gold);
+    }
+
+    .nav-step.completed .nav-step-icon {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .nav-step.completed .nav-step-icon svg {
+      stroke: #FFFFFF;
+    }
+
+    .nav-step-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: color var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-step.active .nav-step-label,
+    .nav-step.completed .nav-step-label {
+      color: var(--gold);
+    }
+
+    .nav-step-connector {
+      width: 24px;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 20px;
+    }
+
+    .nav-step.completed+.nav-step-connector {
+      background: var(--gold);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-price {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+
+    .nav-price span {
+      font-size: 12px;
+      color: var(--text-light);
+      display: block;
+      line-height: 1;
+    }
+
+    .nav-atc {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--gold);
+      background: transparent;
+      border: 2px solid var(--gold);
+      border-radius: var(--radius-sm);
+      padding: 10px 20px;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-atc:hover {
+      background: var(--gold);
+      color: #FFFFFF;
+    }
+
+    .nav-atc.ready {
+      background: var(--gold);
+      color: #FFFFFF;
+      border-color: var(--gold);
+    }
+
+    .nav-atc.ready:hover {
+      background: #8A7554;
+      border-color: #8A7554;
+    }
+
+    /* Mobile nav adjustments */
+    @media (max-width: 768px) {
+      .sticky-nav {
+        padding: 0 12px;
+        gap: 8px;
+      }
+
+      .nav-right {
+        display: none;
+      }
+
+      .nav-step-label {
+        display: none;
+      }
+
+      .nav-step-icon {
+        width: 28px;
+        height: 28px;
+      }
+
+      .nav-step-icon svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .nav-step-connector {
+        width: 12px;
+        margin-bottom: 0;
+      }
+
+      .nav-steps {
+        gap: 4px;
+      }
+    }
+
+    /* ============================================
+   MAIN CONTENT
+   ============================================ */
+    .main-content {
+      padding-top: var(--nav-height);
+    }
+
+    /* ============================================
+   HERO + STEP 1 COMBINED
+   ============================================ */
+    .hero {
+      background: var(--surface-warm);
+      padding: 88px 24px 56px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-top {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 44px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    .hero-subheadline {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin: 0 auto 4px;
+      line-height: 1.6;
+    }
+
+    .hero-step-label {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .hero-bg {
+      background: var(--surface-warm);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 45px 16px 40px;
+      }
+
+      .hero-top {
+        margin-bottom: 28px;
+      }
+
+      .hero-headline {
+        font-size: 30px;
+      }
+
+      .hero-subheadline {
+        font-size: 15px;
+      }
+    }
+
+    /* ============================================
+   SECTION COMMON
+   ============================================ */
+    .step-section {
+      padding: 80px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .step-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .step-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 32px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .step-subtitle {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    @media (max-width: 768px) {
+      .step-section {
+        padding: 56px 16px;
+      }
+
+      .step-title {
+        font-size: 26px;
+      }
+    }
+
+    /* ============================================
+   STEP 1: ROOM CARDS
+   ============================================ */
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .room-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      height: 280px;
+      border: 2px solid transparent;
+      transition: all var(--transition);
+    }
+
+    .room-card:hover {
+      transform: scale(1.02);
+      border-color: var(--gold);
+    }
+
+    .room-card.selected {
+      border-color: var(--gold);
+    }
+
+    .room-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .room-card-gradient-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 20px;
+      color: #FFFFFF;
+    }
+
+    .room-card-gradient-placeholder.office {
+      background: linear-gradient(135deg, #8B7D6B 0%, #A89880 50%, #C8C4B7 100%);
+    }
+
+    .room-card-gradient-placeholder.dining {
+      background: linear-gradient(135deg, #9D8661 0%, #B8A07A 50%, #D4C5A9 100%);
+    }
+
+    .room-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+    }
+
+    .room-card-name {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 18px;
+      color: #FFFFFF;
+    }
+
+    .room-card-check {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .room-card-check svg {
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .room-card.selected .room-card-check {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .room-card.selected .room-card-check svg {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .room-card {
+        height: 180px;
+      }
+
+      .room-card-name {
+        font-size: 15px;
+      }
+    }
+
+    /* ============================================
+   STEP 2: COLLECTION CARDS
+   ============================================ */
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .collection-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .collection-card:hover {
+      box-shadow: var(--shadow-lift);
+      transform: translateY(-2px);
+    }
+
+    .collection-card.selected {
+      border: 2px solid var(--gold);
+      background: linear-gradient(to bottom, var(--gold-bg) 0%, var(--bg) 40%);
+    }
+
+    /* Radio indicator */
+    .collection-card-radio {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .collection-card-radio::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--gold);
+      transition: all var(--transition);
+    }
+
+    .collection-card.selected .collection-card-radio {
+      border-color: var(--gold);
+    }
+
+    .collection-card.selected .collection-card-radio::after {
+      width: 12px;
+      height: 12px;
+    }
+
+    .collection-card-img-wrap {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .collection-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .collection-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 4px;
+      color: #FFFFFF;
+      z-index: 2;
+    }
+
+    .collection-badge.popular {
+      background: var(--gold);
+    }
+
+    .collection-badge.new {
+      background: var(--dark);
+    }
+
+    .collection-card-body {
+      padding: 20px;
+    }
+
+    .collection-card-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .collection-card-specs {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .collection-card-desc {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .collection-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .collection-card-body {
+        padding: 12px;
+      }
+
+      .collection-card-title {
+        font-size: 16px;
+      }
+
+      .collection-card-specs {
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+
+      .collection-card-desc {
+        font-size: 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .collection-card-img-wrap {
+        aspect-ratio: 4/3;
+      }
+    }
+
+    /* ============================================
+   STEP 3: FRAME STYLE
+   ============================================ */
+    .frame-layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .frame-preview {
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+    }
+
+    .frame-preview-img-wrap {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--surface-warm);
+      margin-bottom: 20px;
+    }
+
+    .frame-preview-img-wrap img {
+      width: 100%;
+      display: block;
+      transition: opacity 0.15s ease;
+    }
+
+    .frame-preview-name {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 24px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .frame-preview-collection {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+
+    .frame-preview-price {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 28px;
+      color: var(--text-primary);
+    }
+
+    .swatch-section {
+      padding-top: 8px;
+    }
+
+    .swatch-section-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+
+    .swatch-item:hover {
+      transform: scale(1.08);
+    }
+
+    .swatch-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .swatch-item.active .swatch-circle {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--gold);
+    }
+
+    .swatch-name {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.3;
+      max-width: 64px;
+    }
+
+    .show-all-btn {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--gold);
+      background: none;
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-full);
+      padding: 10px 24px;
+      width: 100%;
+      transition: all var(--transition);
+      margin-bottom: 32px;
+    }
+
+    .show-all-btn:hover {
+      background: var(--gold);
+      color: #FFFFFF;
+    }
+
+    .additional-swatches {
+      display: none;
+      margin-bottom: 32px;
+    }
+
+    .additional-swatches.open {
+      display: block;
+    }
+
+    .detail-thumbnails {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .detail-thumb {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .detail-thumb img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .detail-thumb-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: var(--surface-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .detail-thumb-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .frame-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .frame-preview {
+        position: sticky;
+        top: var(--nav-height);
+        z-index: 10;
+        background: var(--bg);
+        padding-bottom: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: end;
+      }
+
+      .frame-preview-img-wrap {
+        margin-bottom: 0;
+        max-height: 200px;
+      }
+
+      .frame-preview-name {
+        font-size: 18px;
+        margin-bottom: 2px;
+      }
+
+      .frame-preview-collection {
+        font-size: 12px;
+        margin-bottom: 4px;
+      }
+
+      .frame-preview-price {
+        font-size: 22px;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .swatch-circle {
+        width: 36px;
+        height: 36px;
+      }
+
+      .swatch-name {
+        font-size: 9px;
+        max-width: 56px;
+      }
+
+      .swatch-section-title {
+        margin-bottom: 10px;
+        font-size: 11px;
+      }
+
+      .swatch-item {
+        gap: 4px;
+        padding: 2px;
+      }
+
+      .show-all-btn {
+        margin-bottom: 16px;
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+    }
+
+    /* ============================================
+   STEP 4: TV SIZE — SPLIT LAYOUT
+   ============================================ */
+    .size-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .size-visual {
+      background: var(--surface-warm);
+      border-radius: var(--radius-md);
+      padding: 48px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+    }
+
+    .tv-frame-dynamic {
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tv-frame-outer {
+      border: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 8px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tv-frame-screen {
+      background: #FAFAFA;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tv-frame-label {
+      text-align: center;
+    }
+
+    .tv-frame-size {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 32px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .tv-frame-model {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .size-selector {
+      padding-top: 8px;
+    }
+
+    .size-selector-intro {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .size-selector-link {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--gold);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 32px;
+    }
+
+    .size-selector-link:hover {
+      text-decoration: underline;
+    }
+
+    .size-row {
+      display: flex;
+      align-items: center;
+      padding: 18px 8px;
+      border-bottom: 1px solid #F0EDE8;
+      cursor: pointer;
+      transition: all var(--transition);
+      border-radius: var(--radius-sm);
+      margin: 0 -8px;
+      gap: 4px;
+    }
+
+    .size-row-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+      transition: all var(--transition);
+    }
+
+    .size-row-radio::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--gold);
+      transition: all var(--transition);
+    }
+
+    .size-row.selected .size-row-radio {
+      border-color: var(--gold);
+    }
+
+    .size-row.selected .size-row-radio::after {
+      width: 10px;
+      height: 10px;
+    }
+
+    .size-row:hover {
+      background: var(--surface-warm);
+    }
+
+    .size-row.selected {
+      background: var(--gold-bg);
+    }
+
+    .size-row-inches {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 28px;
+      color: var(--text-primary);
+      min-width: 72px;
+      line-height: 1;
+    }
+
+    .size-row.selected .size-row-inches {
+      color: var(--gold);
+    }
+
+    .size-row-info {
+      flex: 1;
+      padding: 0 16px;
+    }
+
+    .size-row-compat {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .size-row-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .size-row-price {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .size-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .size-visual {
+        position: sticky;
+        top: var(--nav-height);
+        z-index: 10;
+        min-height: 200px;
+        padding: 24px 16px;
+        border-radius: 0;
+        margin: 0 -16px;
+        width: calc(100% + 32px);
+      }
+
+      .tv-frame-size {
+        font-size: 24px;
+      }
+
+      .size-selector {
+        padding-top: 16px;
+      }
+
+      .size-row-inches {
+        font-size: 26px;
+        min-width: 56px;
+      }
+    }
+
+    /* ============================================
+   STEP 5: REVIEW
+   ============================================ */
+    .review-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+
+    .review-image {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--surface-warm);
+    }
+
+    .review-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .review-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .review-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid #F0EDE8;
+    }
+
+    .review-line:last-child {
+      border-bottom: none;
+    }
+
+    .review-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .review-value {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+
+    .review-edit {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--gold);
+      text-decoration: none;
+      margin-left: 12px;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+
+    .review-edit:hover {
+      color: var(--gold-light);
+    }
+
+    /* Warranty upsell */
+    .warranty-card {
+      background: var(--gold-bg);
+      border: 1px solid #E8DFC7;
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .warranty-card:hover {
+      border-color: var(--gold);
+    }
+
+    .warranty-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      background: var(--bg);
+    }
+
+    .warranty-card.checked .warranty-checkbox {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .warranty-text {
+      flex: 1;
+    }
+
+    .warranty-title {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .warranty-desc {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .warranty-price {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-primary);
+      white-space: nowrap;
+    }
+
+    /* Price breakdown */
+    .price-breakdown {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    .price-line.total {
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      padding-top: 16px;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text-primary);
+    }
+
+    .price-shipping-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-top: 8px;
+    }
+
+    /* CTA Buttons */
+    .cta-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .cta-primary {
+      width: 100%;
+      height: 56px;
+      background: var(--gold);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-primary:hover {
+      background: #8A7554;
+    }
+
+    .cta-shoppay {
+      width: 100%;
+      height: 56px;
+      background: var(--shop-pay);
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .cta-shoppay:hover {
+      opacity: 0.92;
+    }
+
+    .shoppay-text {
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: -0.5px;
+    }
+
+    .shoppay-pay {
+      display: inline-block;
+      background: #FFFFFF;
+      color: var(--shop-pay);
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 2px;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 14px;
+      line-height: 1.2;
+      vertical-align: baseline;
+    }
+
+    /* Trust signals */
+    .trust-signals {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .trust-signal {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .trust-signal svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-light);
+      flex-shrink: 0;
+    }
+
+    .trust-bar {
+      background: var(--surface-warm);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-bar-item {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Compact Step 5 overrides */
+    #step5 {
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+
+    #step5 .step-title {
+      margin-bottom: 6px;
+    }
+
+    #step5 .step-subtitle {
+      margin-bottom: 20px;
+    }
+
+    #step5 .review-card {
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+
+    #step5 .review-image {
+      border-radius: var(--radius-sm);
+      max-height: 160px;
+    }
+
+    #step5 .review-line {
+      padding: 10px 0;
+    }
+
+    #step5 .warranty-card {
+      padding: 14px 20px;
+      margin-bottom: 12px;
+    }
+
+    #step5 .warranty-title {
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    #step5 .warranty-desc {
+      font-size: 12px;
+    }
+
+    #step5 .price-breakdown {
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+
+    #step5 .price-line {
+      padding: 5px 0;
+      font-size: 14px;
+    }
+
+    #step5 .price-line.total {
+      margin-top: 4px;
+      padding-top: 10px;
+      font-size: 18px;
+    }
+
+    #step5 .price-shipping-badge {
+      margin-top: 4px;
+    }
+
+    .price-cta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+
+    #step5 .price-breakdown {
+      margin-bottom: 0;
+    }
+
+    #step5 .cta-section {
+      gap: 10px;
+      margin-bottom: 0;
+      justify-content: flex-end;
+    }
+
+    #step5 .cta-primary {
+      height: 50px;
+      font-size: 16px;
+    }
+
+    #step5 .cta-shoppay {
+      height: 46px;
+      font-size: 15px;
+    }
+
+    #step5 .trust-signals {
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    #step5 .trust-signal {
+      font-size: 12px;
+      gap: 5px;
+    }
+
+    #step5 .trust-signal svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    #step5 .trust-bar {
+      padding: 12px 20px;
+      gap: 24px;
+    }
+
+    #step5 .trust-bar-item {
+      font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      #step5 {
+        padding-top: 36px;
+        padding-bottom: 36px;
+      }
+
+      .review-card {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      #step5 .review-card {
+        grid-template-columns: 120px 1fr;
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .review-image {
+        max-height: 240px;
+      }
+
+      #step5 .review-image {
+        max-height: 120px;
+      }
+
+      .trust-signals {
+        gap: 16px;
+      }
+
+      .trust-bar {
+        gap: 16px;
+        padding: 16px;
+      }
+
+      #step5 .trust-bar {
+        gap: 12px;
+        padding: 10px 16px;
+      }
+
+      .price-cta-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    /* ============================================
+   MOBILE BOTTOM BAR
+   ============================================ */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--bg);
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+      z-index: 999;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .mobile-bottom-bar.visible {
+      display: flex;
+    }
+
+    .mobile-bar-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-bar-name {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+
+    .mobile-bar-price {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .mobile-bar-atc {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px;
+      color: #FFFFFF;
+      background: var(--gold);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 20px;
+      white-space: nowrap;
+    }
+
+    @media (min-width: 769px) {
+      .mobile-bottom-bar {
+        display: none !important;
+      }
+    }
+
+    /* Pad bottom on mobile when bar is visible */
+    @media (max-width: 768px) {
+      body.has-mobile-bar {
+        padding-bottom: 72px;
+      }
+    }
+
+    /* ============================================
+   FADE-IN ANIMATION
+   ============================================ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================
+     STICKY NAV
+     ============================================ -->
+  <nav class="sticky-nav" id="stickyNav">
+    <div class="nav-steps">
+      <button class="nav-step active" data-step="1" onclick="scrollToStep(1)">
+        <span class="nav-step-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+        </span>
+        <span class="nav-step-label">Room</span>
+      </button>
+      <span class="nav-step-connector"></span>
+      <button class="nav-step" data-step="2" onclick="scrollToStep(2)">
+        <span class="nav-step-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+          </svg>
+        </span>
+        <span class="nav-step-label">Collection</span>
+      </button>
+      <span class="nav-step-connector"></span>
+      <button class="nav-step" data-step="3" onclick="scrollToStep(3)">
+        <span class="nav-step-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="1" />
+            <rect x="5" y="5" width="14" height="14" rx="0.5" />
+          </svg>
+        </span>
+        <span class="nav-step-label">Frame Style</span>
+      </button>
+      <span class="nav-step-connector"></span>
+      <button class="nav-step" data-step="4" onclick="scrollToStep(4)">
+        <span class="nav-step-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+        </span>
+        <span class="nav-step-label">TV Size</span>
+      </button>
+      <span class="nav-step-connector"></span>
+      <button class="nav-step" data-step="5" onclick="scrollToStep(5)">
+        <span class="nav-step-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 11l3 3L22 4" />
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+          </svg>
+        </span>
+        <span class="nav-step-label">Review</span>
+      </button>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-price">
+        <span>Starting</span>
+        <span id="navPriceDisplay">From $199</span>
+      </div>
+      <button class="nav-atc" id="navAtcBtn" onclick="handleNavCta()">Choose Your Room</button>
+    </div>
+  </nav>
+
+  <!-- ============================================
+     MAIN CONTENT
+     ============================================ -->
+  <main class="main-content">
+
+    <!-- HERO + STEP 1 COMBINED -->
+    <div class="hero-bg">
+      <section class="hero" id="step1">
+        <div class="hero-top">
+          <p class="hero-eyebrow">DECO DESIGN STUDIO</p>
+          <h1 class="hero-headline">Design Your Perfect Frame</h1>
+          <p class="hero-subheadline">Choose your room to get started</p>
+        </div>
+        <p class="hero-step-label">Step 1 — Where is your TV?</p>
+        <div class="room-grid">
+          <div class="room-card" data-room="Living Room" onclick="selectRoom(this)">
+            <img class="room-card-img" src="images/living-room-scene.png" alt="Living Room with Deco TV Frame">
+            <div class="room-card-overlay">
+              <span class="room-card-name">Living Room</span>
+            </div>
+            <div class="room-card-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4,12 9,17 20,6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <div class="room-card" data-room="Bedroom" onclick="selectRoom(this)">
+            <img class="room-card-img" src="images/bedroom-scene.png" alt="Bedroom with Deco TV Frame">
+            <div class="room-card-overlay">
+              <span class="room-card-name">Bedroom</span>
+            </div>
+            <div class="room-card-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4,12 9,17 20,6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <div class="room-card" data-room="Office" onclick="selectRoom(this)">
+            <img class="room-card-img" src="images/office-scene.png" alt="Office with Deco TV Frame">
+            <div class="room-card-overlay">
+              <span class="room-card-name">Office</span>
+            </div>
+            <div class="room-card-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4,12 9,17 20,6"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <div class="room-card" data-room="Dining Room" onclick="selectRoom(this)">
+            <img class="room-card-img" src="images/dining-room-scene.png" alt="Dining Room with Deco TV Frame">
+            <div class="room-card-overlay">
+              <span class="room-card-name">Dining Room</span>
+            </div>
+            <div class="room-card-check">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4,12 9,17 20,6"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================
+       STEP 2: CHOOSE YOUR COLLECTION
+       ============================================ -->
+    <section class="step-section" id="step2">
+      <p class="step-eyebrow">Step 2</p>
+      <h2 class="step-title">Choose Your Collection</h2>
+      <p class="step-subtitle">Each collection offers a distinct aesthetic. Find the one that fits your space.</p>
+
+      <div class="collection-grid">
+        <!-- Premiere -->
+        <div class="collection-card" data-collection="Premiere" data-base-price="299" onclick="selectCollection(this)">
+          <span class="collection-card-radio"></span>
+          <div class="collection-card-img-wrap">
+            <span class="collection-badge popular">MOST POPULAR</span>
+            <img src="https://decotvframes.com/cdn/shop/files/Premiere_Collection2_2000x.png?v=1699279191"
+              alt="Premiere Collection">
+          </div>
+          <div class="collection-card-body">
+            <h3 class="collection-card-title">Premiere</h3>
+            <p class="collection-card-specs">23 Styles &middot; 3" Width &middot; From $299</p>
+            <p class="collection-card-desc">Our signature collection. Handcrafted solid wood frames with rich finishes
+              and ornate details.</p>
+          </div>
+        </div>
+
+        <!-- Slim -->
+        <div class="collection-card" data-collection="Slim" data-base-price="299" onclick="selectCollection(this)">
+          <span class="collection-card-radio"></span>
+          <div class="collection-card-img-wrap">
+            <span class="collection-badge new">NEW</span>
+            <img src="https://decotvframes.com/cdn/shop/files/slim-menu-image_2000x.png?v=1767775339"
+              alt="Slim Collection">
+          </div>
+          <div class="collection-card-body">
+            <h3 class="collection-card-title">Slim</h3>
+            <p class="collection-card-specs">Modern Profiles &middot; 2" Width &middot; From $299</p>
+            <p class="collection-card-desc">Sleek, contemporary profiles for a modern aesthetic. Minimal depth, maximum
+              impact.</p>
+          </div>
+        </div>
+
+        <!-- Alloy -->
+        <div class="collection-card" data-collection="Alloy" data-base-price="199" onclick="selectCollection(this)">
+          <span class="collection-card-radio"></span>
+          <div class="collection-card-img-wrap">
+            <img src="https://decotvframes.com/cdn/shop/files/AlloyMenu_2000x.jpg?v=1629771073" alt="Alloy Collection">
+          </div>
+          <div class="collection-card-body">
+            <h3 class="collection-card-title">Alloy</h3>
+            <p class="collection-card-specs">7 Colors &middot; 1.5" Width &middot; From $199</p>
+            <p class="collection-card-desc">Lightweight aluminum frames in bold colors. Clean lines, effortless style.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+       STEP 3: FRAME STYLE
+       ============================================ -->
+    <section class="step-section" id="step3">
+      <p class="step-eyebrow">Step 3</p>
+      <h2 class="step-title">Choose Your Frame Style</h2>
+      <p class="step-subtitle">Browse finishes and textures. Click a swatch to preview.</p>
+
+      <div class="frame-layout">
+        <!-- LEFT: Preview -->
+        <div class="frame-preview">
+          <div class="frame-preview-img-wrap">
+            <img id="framePreviewImg"
+              src="https://decotvframes.com/cdn/shop/files/Antique-Gold-Main-New.jpg?v=1684994987"
+              alt="Antique Gold Frame Preview">
+          </div>
+          <h3 class="frame-preview-name" id="framePreviewName">Antique Gold</h3>
+          <p class="frame-preview-collection" id="framePreviewCollection">Premiere Collection</p>
+          <p class="frame-preview-price" id="framePreviewPrice">$299</p>
+        </div>
+
+        <!-- RIGHT: Swatches -->
+        <div class="swatch-section">
+          <h4 class="swatch-section-title">Best Sellers</h4>
+          <div class="swatch-grid" id="bestSellerSwatches">
+            <div class="swatch-item active" data-style="Antique Gold"
+              data-image="https://decotvframes.com/cdn/shop/files/Antique-Gold-Main-New.jpg?v=1684994987"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #B8860B;"></div>
+              <span class="swatch-name">Antique Gold</span>
+            </div>
+            <div class="swatch-item" data-style="Antique White"
+              data-image="https://decotvframes.com/cdn/shop/files/Antique-White-Main-new.jpg?v=1685004041"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #F5F5DC;"></div>
+              <span class="swatch-name">Antique White</span>
+            </div>
+            <div class="swatch-item" data-style="Ornate Gold"
+              data-image="https://decotvframes.com/cdn/shop/files/Ornate-Gold-Main-New.jpg?v=1684994448"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #C5A03F;"></div>
+              <span class="swatch-name">Ornate Gold</span>
+            </div>
+            <div class="swatch-item" data-style="Gloss White"
+              data-image="https://decotvframes.com/cdn/shop/files/Gloss-White-Main-New.jpg?v=1685004438"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #F0EDE8;"></div>
+              <span class="swatch-name">Gloss White</span>
+            </div>
+            <div class="swatch-item" data-style="Burlwood"
+              data-image="https://decotvframes.com/cdn/shop/files/Burlwood-Main-new.jpg?v=1684998613"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #8B6D4B;"></div>
+              <span class="swatch-name">Burlwood</span>
+            </div>
+            <div class="swatch-item" data-style="Black"
+              data-image="https://decotvframes.com/cdn/shop/files/Black-main-new.jpg?v=1684999211"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #2C2C2C;"></div>
+              <span class="swatch-name">Black</span>
+            </div>
+            <div class="swatch-item" data-style="Champagne"
+              data-image="https://decotvframes.com/cdn/shop/files/Warm-Silver-Main-New.jpg?v=1684996385"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #C4B8A8;"></div>
+              <span class="swatch-name">Champagne</span>
+            </div>
+            <div class="swatch-item" data-style="Contemporary Gold"
+              data-image="https://decotvframes.com/cdn/shop/files/Contemporary-Gold-Main-New.jpg?v=1685003120"
+              onclick="selectSwatch(this)">
+              <div class="swatch-circle" style="background: #D4A843;"></div>
+              <span class="swatch-name">Contemporary Gold</span>
+            </div>
+          </div>
+
+          <button class="show-all-btn" id="showAllBtn" onclick="toggleAllSwatches()">Show All 23 Styles</button>
+
+          <div class="additional-swatches" id="additionalSwatches">
+            <div class="swatch-grid">
+              <div class="swatch-item" data-style="Colonial Gold" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #C9A84C;"></div>
+                <span class="swatch-name">Colonial Gold</span>
+              </div>
+              <div class="swatch-item" data-style="Victorian Gold" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #D4A843;"></div>
+                <span class="swatch-name">Victorian Gold</span>
+              </div>
+              <div class="swatch-item" data-style="Aged Bronze" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #6E5B3A;"></div>
+                <span class="swatch-name">Aged Bronze</span>
+              </div>
+              <div class="swatch-item" data-style="Autumn Bronze" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #7D5A38;"></div>
+                <span class="swatch-name">Autumn Bronze</span>
+              </div>
+              <div class="swatch-item" data-style="Cherry" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #6D2B23;"></div>
+                <span class="swatch-name">Cherry</span>
+              </div>
+              <div class="swatch-item" data-style="Mahogany" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #4E2012;"></div>
+                <span class="swatch-name">Mahogany</span>
+              </div>
+              <div class="swatch-item" data-style="Lexington" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #5C4033;"></div>
+                <span class="swatch-name">Lexington</span>
+              </div>
+              <div class="swatch-item" data-style="Newport White" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #EDECE7;"></div>
+                <span class="swatch-name">Newport White</span>
+              </div>
+              <div class="swatch-item" data-style="Sterling" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #A8A098;"></div>
+                <span class="swatch-name">Sterling</span>
+              </div>
+              <div class="swatch-item" data-style="Tuscan Cream" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #E8DCC8;"></div>
+                <span class="swatch-name">Tuscan Cream</span>
+              </div>
+              <div class="swatch-item" data-style="Tuscan White" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #EDE8DC;"></div>
+                <span class="swatch-name">Tuscan White</span>
+              </div>
+              <div class="swatch-item" data-style="Vintage White" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #E5DFD3;"></div>
+                <span class="swatch-name">Vintage White</span>
+              </div>
+              <div class="swatch-item" data-style="Vintage Gold" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #BFA84F;"></div>
+                <span class="swatch-name">Vintage Gold</span>
+              </div>
+              <div class="swatch-item" data-style="Hampton" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #A09080;"></div>
+                <span class="swatch-name">Hampton</span>
+              </div>
+              <div class="swatch-item" data-style="Bordeaux" onclick="selectSwatch(this)">
+                <div class="swatch-circle" style="background: #5C2A2A;"></div>
+                <span class="swatch-name">Bordeaux</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detail thumbnails -->
+          <div class="detail-thumbnails">
+            <div class="detail-thumb">
+              <img src="images/frame-closeup.png" alt="Corner Detail — Antique Gold">
+              <p class="detail-thumb-label">Corner Detail</p>
+            </div>
+            <div class="detail-thumb">
+              <img src="images/frame-sideprofile.png" alt="Side Profile — Antique Gold Frame">
+              <p class="detail-thumb-label">Side Profile</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+       STEP 4: TV SIZE
+       ============================================ -->
+    <section class="step-section" id="step4">
+      <p class="step-eyebrow">Step 4</p>
+      <h2 class="step-title">Select Your TV Size</h2>
+
+      <div class="size-layout">
+        <!-- LEFT: Dynamic TV outline -->
+        <div class="size-visual">
+          <div class="tv-frame-dynamic" id="tvFrameDynamic">
+            <div class="tv-frame-outer" id="tvFrameOuter" style="width: 240px;">
+              <div class="tv-frame-screen" id="tvFrameScreen" style="width: 224px; height: 126px;">
+                <div class="tv-frame-label">
+                  <div class="tv-frame-size" id="tvSizeLabel">&mdash;"</div>
+                  <div class="tv-frame-model">Samsung The Frame</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Size rows -->
+        <div class="size-selector">
+          <p class="size-selector-intro">Deco frames are made to exact specifications for each Samsung The Frame TV
+            size.</p>
+          <a href="#" class="size-selector-link">Not sure? Check your TV model &rarr;</a>
+
+          <div class="size-rows">
+            <div class="size-row" data-size="32" data-price="299" data-scale="0.55" onclick="selectSize(this)">
+              <span class="size-row-radio"></span>
+              <span class="size-row-inches">32"</span>
+              <div class="size-row-info">
+                <div class="size-row-compat">The Frame (2022&ndash;2025)</div>
+                <div class="size-row-desc">Compact spaces, bedrooms, kitchens</div>
+              </div>
+              <span class="size-row-price">$299</span>
+            </div>
+            <div class="size-row" data-size="43" data-price="349" data-scale="0.65" onclick="selectSize(this)">
+              <span class="size-row-radio"></span>
+              <span class="size-row-inches">43"</span>
+              <div class="size-row-info">
+                <div class="size-row-compat">The Frame &amp; The Frame Pro</div>
+                <div class="size-row-desc">Bedrooms, offices, smaller living rooms</div>
+              </div>
+              <span class="size-row-price">$349</span>
+            </div>
+            <div class="size-row" data-size="50" data-price="399" data-scale="0.75" onclick="selectSize(this)">
+              <span class="size-row-radio"></span>
+              <span class="size-row-inches">50"</span>
+              <div class="size-row-info">
+                <div class="size-row-compat">The Frame &amp; The Frame Pro</div>
+                <div class="size-row-desc">Versatile mid-size for any room</div>
+              </div>
+              <span class="size-row-price">$399</span>
+            </div>
+            <div class="size-row" data-size="55" data-price="449" data-scale="0.85" onclick="selectSize(this)">
+              <span class="size-row-radio"></span>
+              <span class="size-row-inches">55"</span>
+              <div class="size-row-info">
+                <div class="size-row-compat">The Frame &amp; The Frame Pro</div>
+                <div class="size-row-desc">Most popular &mdash; living rooms, great rooms</div>
+              </div>
+              <span class="size-row-price">$449</span>
+            </div>
+            <div class="size-row" data-size="65" data-price="549" data-scale="0.92" onclick="selectSize(this)">
+              <span class="size-row-radio"></span>
+              <span class="size-row-inches">65"</span>
+              <div class="size-row-info">
+                <div class="size-row-compat">The Frame &amp; The Frame Pro</div>
+                <div class="size-row-desc">Large living spaces, open concept rooms</div>
+              </div>
+              <span class="size-row-price">$549</span>
+            </div>
+            <div class="size-row" data-size="75" data-price="749" data-scale="1.0" onclick="selectSize(this)">
+              <span class="size-row-radio"></span>
+              <span class="size-row-inches">75"</span>
+              <div class="size-row-info">
+                <div class="size-row-compat">The Frame &amp; The Frame Pro</div>
+                <div class="size-row-desc">Statement size for large walls</div>
+              </div>
+              <span class="size-row-price">$749</span>
+            </div>
+            <div class="size-row" data-size="85" data-price="999" data-scale="1.0" onclick="selectSize(this)">
+              <span class="size-row-radio"></span>
+              <span class="size-row-inches">85"</span>
+              <div class="size-row-info">
+                <div class="size-row-compat">The Frame &amp; The Frame Pro</div>
+                <div class="size-row-desc">Maximum impact, theater-like experience</div>
+              </div>
+              <span class="size-row-price">$999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+       STEP 5: REVIEW & ADD TO CART
+       ============================================ -->
+    <section class="step-section" id="step5">
+      <p class="step-eyebrow">Step 5</p>
+      <h2 class="step-title">Review & Add to Cart</h2>
+      <p class="step-subtitle">Confirm your selections below.</p>
+
+      <!-- Summary Card -->
+      <div class="review-card">
+        <div class="review-image">
+          <img id="reviewImg" src="https://decotvframes.com/cdn/shop/files/Antique-Gold-Main-New.jpg?v=1684994987"
+            alt="Selected Frame Preview">
+        </div>
+        <div class="review-details">
+          <div class="review-line">
+            <div>
+              <span class="review-label">Room</span>
+            </div>
+            <div>
+              <span class="review-value" id="reviewRoom">Living Room</span>
+              <a class="review-edit" onclick="scrollToStep(1)">Edit</a>
+            </div>
+          </div>
+          <div class="review-line">
+            <div>
+              <span class="review-label">Collection</span>
+            </div>
+            <div>
+              <span class="review-value" id="reviewCollection">Premiere</span>
+              <a class="review-edit" onclick="scrollToStep(2)">Edit</a>
+            </div>
+          </div>
+          <div class="review-line">
+            <div>
+              <span class="review-label">Frame Style</span>
+            </div>
+            <div>
+              <span class="review-value" id="reviewStyle">Antique Gold</span>
+              <a class="review-edit" onclick="scrollToStep(3)">Edit</a>
+            </div>
+          </div>
+          <div class="review-line">
+            <div>
+              <span class="review-label">TV Size</span>
+            </div>
+            <div>
+              <span class="review-value" id="reviewSize">55" Samsung The Frame</span>
+              <a class="review-edit" onclick="scrollToStep(4)">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warranty Upsell -->
+      <div class="warranty-card" id="warrantyCard" onclick="toggleWarranty()">
+        <div class="warranty-checkbox" id="warrantyCheckbox">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4,12 9,17 20,6"></polyline>
+          </svg>
+        </div>
+        <div class="warranty-text">
+          <p class="warranty-title">Add Lifetime Warranty Protection</p>
+          <p class="warranty-desc">Covers manufacturing defects, finish wear, and accidental damage. Forever.</p>
+        </div>
+        <span class="warranty-price">+$29</span>
+      </div>
+
+      <!-- Price + CTA Row -->
+      <div class="price-cta-row">
+        <div class="price-breakdown">
+          <div class="price-line">
+            <span id="priceFrameLabel">Antique Gold Frame (55")</span>
+            <span id="priceFrameValue">$449</span>
+          </div>
+          <div class="price-line">
+            <span>Lifetime Warranty</span>
+            <span id="priceWarrantyValue">&mdash;</span>
+          </div>
+          <div class="price-line total">
+            <span>Subtotal</span>
+            <span id="priceTotal">$449</span>
+          </div>
+          <div class="price-shipping-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+            Free Shipping
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <button class="cta-primary" id="ctaPrimary" onclick="addToCart()">Add to Cart &mdash; $449</button>
+          <button class="cta-shoppay">
+            Buy with <span class="shoppay-text">Shop</span><span class="shoppay-pay">Pay</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Trust Signals -->
+      <div class="trust-signals">
+        <div class="trust-signal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Secure Checkout
+        </div>
+        <div class="trust-signal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="1" y="3" width="15" height="13"></rect>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+          </svg>
+          Free Shipping $499+
+        </div>
+        <div class="trust-signal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          Free Returns
+        </div>
+        <div class="trust-signal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+            </polygon>
+          </svg>
+          4.8/5 (2,884 Reviews)
+        </div>
+      </div>
+
+      <!-- Trust Bar -->
+      <div class="trust-bar">
+        <span class="trust-bar-item">Proudly Made in Massachusetts</span>
+        <span class="trust-bar-item">2-Minute Installation &middot; No Tools Required</span>
+        <span class="trust-bar-item">Magnetic Assembly System</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+     MOBILE BOTTOM BAR
+     ============================================ -->
+  <div class="mobile-bottom-bar" id="mobileBottomBar">
+    <div class="mobile-bar-info">
+      <span class="mobile-bar-name" id="mobileBarName">Antique Gold</span>
+      <span class="mobile-bar-price" id="mobileBarPrice">From $199</span>
+    </div>
+    <button class="mobile-bar-atc" id="mobileBarAtc" onclick="handleNavCta()">Choose Your Room</button>
+  </div>
+
+  <!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ============================================
+      // STATE
+      // ============================================
+      const state = {
+        room: null,
+        collection: null,
+        collectionBasePrice: 299,
+        frameStyle: 'Antique Gold',
+        tvSize: null,
+        tvPrice: null,
+        warranty: false,
+        completedSteps: new Set()
+      };
+
+      // Size pricing map
+      const sizePricing = {
+        '32': 299, '43': 349, '50': 399,
+        '55': 449, '65': 549, '75': 749, '85': 999
+      };
+
+      // ============================================
+      // STEP COMPLETION
+      // ============================================
+      function markStepComplete(stepNum) {
+        state.completedSteps.add(stepNum);
+        updateNavDots();
+        updatePrice();
+        updateReview();
+        checkAllComplete();
+        showMobileBar();
+      }
+
+      function updateNavDots() {
+        const steps = document.querySelectorAll('.nav-step');
+        steps.forEach(step => {
+          const num = parseInt(step.dataset.step);
+          step.classList.remove('active', 'completed');
+          if (state.completedSteps.has(num)) {
+            step.classList.add('completed');
+          }
+        });
+        // Set active to the next incomplete step
+        for (let i = 1; i <= 5; i++) {
+          if (!state.completedSteps.has(i)) {
+            const el = document.querySelector(`.nav-step[data-step="${i}"]`);
+            if (el) el.classList.add('active');
+            break;
+          }
+        }
+        // If steps 1-4 done, mark 5 as active
+        if (state.completedSteps.has(1) && state.completedSteps.has(2) &&
+          state.completedSteps.has(3) && state.completedSteps.has(4) &&
+          !state.completedSteps.has(5)) {
+          const el5 = document.querySelector('.nav-step[data-step="5"]');
+          if (el5) el5.classList.add('active');
+        }
+      }
+
+      // Step guidance map: text + scroll target for each incomplete step
+      const stepGuide = [
+        { check: () => state.room, text: 'Choose Your Room', step: 1 },
+        { check: () => state.collection, text: 'Choose Collection', step: 2 },
+        { check: () => state.frameStyle, text: 'Pick a Frame Style', step: 3 },
+        { check: () => state.tvSize, text: 'Select TV Size', step: 4 }
+      ];
+
+      function getNextStep() {
+        for (const s of stepGuide) {
+          if (!s.check()) return s;
+        }
+        return null; // all done
+      }
+
+      function checkAllComplete() {
+        const next = getNextStep();
+        const navAtc = document.getElementById('navAtcBtn');
+        const mobileAtc = document.getElementById('mobileBarAtc');
+        const allDone = !next;
+
+        if (allDone) {
+          const total = getTotal();
+          navAtc.textContent = 'Add to Cart \u2014 $' + total;
+          navAtc.classList.add('ready');
+          mobileAtc.textContent = 'Add to Cart \u2014 $' + total;
+          mobileAtc.style.background = 'var(--gold)';
+        } else {
+          navAtc.textContent = next.text;
+          navAtc.classList.remove('ready');
+          mobileAtc.textContent = next.text;
+          mobileAtc.style.background = '';
+        }
+      }
+
+      window.handleNavCta = function () {
+        const next = getNextStep();
+        if (!next) {
+          addToCart();
+        } else {
+          scrollToStep(next.step);
+        }
+      };
+
+      // ============================================
+      // PRICE
+      // ============================================
+      function getCurrentPrice() {
+        if (state.tvPrice) return state.tvPrice;
+        if (state.collectionBasePrice) return state.collectionBasePrice;
+        return 199;
+      }
+
+      function getTotal() {
+        let total = getCurrentPrice();
+        if (state.warranty) total += 29;
+        return total;
+      }
+
+      function updatePrice() {
+        const price = getCurrentPrice();
+        const total = getTotal();
+        const navPrice = document.getElementById('navPriceDisplay');
+        const ctaBtn = document.getElementById('ctaPrimary');
+        const mobilePrice = document.getElementById('mobileBarPrice');
+
+        if (state.tvSize) {
+          navPrice.textContent = '$' + total;
+          ctaBtn.textContent = 'Add to Cart \u2014 $' + total;
+          mobilePrice.textContent = '$' + total;
+        } else if (state.collection) {
+          navPrice.textContent = 'From $' + price;
+          mobilePrice.textContent = 'From $' + price;
+        } else {
+          navPrice.textContent = 'From $199';
+          mobilePrice.textContent = 'From $199';
+        }
+
+        // Price breakdown
+        const frameLbl = document.getElementById('priceFrameLabel');
+        const frameVal = document.getElementById('priceFrameValue');
+        const warVal = document.getElementById('priceWarrantyValue');
+        const totalEl = document.getElementById('priceTotal');
+
+        frameLbl.textContent = (state.frameStyle || 'Frame') +
+          (state.tvSize ? ' (' + state.tvSize + '")' : '');
+        frameVal.textContent = '$' + price;
+        warVal.textContent = state.warranty ? '$29' : '\u2014';
+        totalEl.textContent = '$' + total;
+
+        // Frame preview price
+        document.getElementById('framePreviewPrice').textContent = '$' + price;
+      }
+
+      // ============================================
+      // ROOM SELECTION
+      // ============================================
+      window.selectRoom = function (card) {
+        document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.room = card.dataset.room;
+        markStepComplete(1);
+      };
+
+      // ============================================
+      // COLLECTION SELECTION
+      // ============================================
+      window.selectCollection = function (card) {
+        document.querySelectorAll('.collection-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.collection = card.dataset.collection;
+        state.collectionBasePrice = parseInt(card.dataset.basePrice);
+
+        document.getElementById('framePreviewCollection').textContent = state.collection + ' Collection';
+
+        // Update price if no size selected yet
+        if (!state.tvSize) {
+          updatePrice();
+        }
+        markStepComplete(2);
+      };
+
+      // ============================================
+      // SWATCH SELECTION
+      // ============================================
+      window.selectSwatch = function (item) {
+        document.querySelectorAll('.swatch-item').forEach(s => s.classList.remove('active'));
+        item.classList.add('active');
+        state.frameStyle = item.dataset.style;
+
+        document.getElementById('framePreviewName').textContent = state.frameStyle;
+        document.getElementById('mobileBarName').textContent = state.frameStyle;
+
+        // Swap preview image if swatch has a data-image
+        const imgUrl = item.dataset.image;
+        if (imgUrl) {
+          const previewImg = document.getElementById('framePreviewImg');
+          previewImg.style.opacity = '0';
+          setTimeout(function () {
+            previewImg.src = imgUrl;
+            previewImg.alt = state.frameStyle + ' Frame Preview';
+            previewImg.style.opacity = '1';
+          }, 150);
+          // Also update review image
+          document.getElementById('reviewImg').src = imgUrl;
+        }
+
+        markStepComplete(3);
+      };
+
+      // ============================================
+      // SHOW ALL SWATCHES
+      // ============================================
+      window.toggleAllSwatches = function () {
+        const panel = document.getElementById('additionalSwatches');
+        const btn = document.getElementById('showAllBtn');
+        if (panel.classList.contains('open')) {
+          panel.classList.remove('open');
+          btn.textContent = 'Show All 23 Styles';
+        } else {
+          panel.classList.add('open');
+          btn.textContent = 'Show Less';
+        }
+      };
+
+      // ============================================
+      // SIZE SELECTION
+      // ============================================
+      // Size → frame dimensions (proportional)
+      const sizeScales = {
+        '32': { w: 160, h: 90 },
+        '43': { w: 200, h: 112 },
+        '50': { w: 230, h: 130 },
+        '55': { w: 260, h: 146 },
+        '65': { w: 300, h: 169 },
+        '75': { w: 340, h: 191 },
+        '85': { w: 360, h: 202 }
+      };
+
+      window.selectSize = function (row) {
+        document.querySelectorAll('.size-row').forEach(r => r.classList.remove('selected'));
+        row.classList.add('selected');
+        state.tvSize = row.dataset.size;
+        state.tvPrice = parseInt(row.dataset.price);
+
+        // Scale the TV outline
+        const dims = sizeScales[state.tvSize] || { w: 240, h: 135 };
+        const outer = document.getElementById('tvFrameOuter');
+        const screen = document.getElementById('tvFrameScreen');
+        outer.style.width = (dims.w + 16) + 'px';
+        screen.style.width = dims.w + 'px';
+        screen.style.height = dims.h + 'px';
+
+        // Update size label
+        document.getElementById('tvSizeLabel').textContent = state.tvSize + '"';
+
+        markStepComplete(4);
+      };
+
+      // ============================================
+      // WARRANTY
+      // ============================================
+      window.toggleWarranty = function () {
+        state.warranty = !state.warranty;
+        const card = document.getElementById('warrantyCard');
+        card.classList.toggle('checked', state.warranty);
+        updatePrice();
+      };
+
+      // ============================================
+      // REVIEW UPDATES
+      // ============================================
+      function updateReview() {
+        if (state.room) document.getElementById('reviewRoom').textContent = state.room;
+        if (state.collection) document.getElementById('reviewCollection').textContent = state.collection;
+        if (state.frameStyle) document.getElementById('reviewStyle').textContent = state.frameStyle;
+        if (state.tvSize) document.getElementById('reviewSize').textContent = state.tvSize + '" Samsung The Frame';
+      }
+
+      // ============================================
+      // SCROLL TO STEP
+      // ============================================
+      window.scrollToStep = function (num) {
+        const el = document.getElementById('step' + num);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      };
+
+      // ============================================
+      // ADD TO CART
+      // ============================================
+      window.addToCart = function () {
+        if (!state.room || !state.collection || !state.frameStyle || !state.tvSize) {
+          alert('Please complete all 4 steps before adding to cart.');
+          return;
+        }
+        // Mark step 5 as complete
+        markStepComplete(5);
+        alert(
+          'Added to Cart!\n\n' +
+          'Room: ' + state.room + '\n' +
+          'Collection: ' + state.collection + '\n' +
+          'Frame: ' + state.frameStyle + '\n' +
+          'TV Size: ' + state.tvSize + '"\n' +
+          'Total: $' + getTotal()
+        );
+      };
+
+      // ============================================
+      // MOBILE BAR
+      // ============================================
+      function showMobileBar() {
+        if (window.innerWidth <= 768 && state.completedSteps.size >= 1) {
+          document.getElementById('mobileBottomBar').classList.add('visible');
+          document.body.classList.add('has-mobile-bar');
+        }
+      }
+
+      // ============================================
+      // STICKY NAV SHADOW
+      // ============================================
+      function handleScroll() {
+        const nav = document.getElementById('stickyNav');
+        if (window.scrollY > 10) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      // ============================================
+      // FADE-IN SECTIONS ON SCROLL
+      // ============================================
+      function initFadeIn() {
+        const sections = document.querySelectorAll('.step-section');
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        sections.forEach(function (section) {
+          observer.observe(section);
+        });
+      }
+
+      // ============================================
+      // INIT
+      // ============================================
+      // Default frame style is Antique Gold (already set)
+      markStepComplete(3); // Antique Gold pre-selected
+
+      initFadeIn();
+      handleScroll();
+
+      // Handle resize for mobile bar
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+          document.getElementById('mobileBottomBar').classList.remove('visible');
+          document.body.classList.remove('has-mobile-bar');
+        } else {
+          showMobileBar();
+        }
+      });
+
+    })();
+  </script>
+
+</body>
+
+</html>
