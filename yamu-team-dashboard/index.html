@@ -501,7 +501,7 @@
         }
 
         .rec-card li:before {
-            content: "→";
+            content: "\2192";
             position: absolute;
             left: 0;
             color: var(--accent);
@@ -587,7 +587,7 @@
         }
 
         .section-title::before {
-            content: "⠿";
+            content: "\2807";
             position: absolute;
             left: 0;
             top: 50%;
@@ -680,18 +680,18 @@
         <header>
             <h1>YAMU CRO Team Capacity</h1>
             <div class="subtitle">CRO, Design & Development Team</div>
-            <div class="meta">Last updated: March 16, 2026 (ClickUp refresh) | Drag section headers to reorder <button class="reset-order" onclick="resetSectionOrder()">Reset order</button></div>
+            <div class="meta">Last Updated: 18 Mar 2026 (ClickUp refresh) | Drag section headers to reorder <button class="reset-order" onclick="resetSectionOrder()">Reset order</button></div>
         </header>
 
-        <!-- Status → Completion % Legend -->
+        <!-- Status Completion Key Legend -->
         <section class="section" data-section-id="legend" style="margin-bottom: 24px;">
             <h2 class="section-title">Status Completion Key <span class="tip" data-tip="Remaining hours = Estimate x (1 - completion%). Approval Needed = 70% done (30% of estimate remains). Client Approval = 80% done (20% remains). Completed = 0h.">?</span></h2>
             <div style="display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px;">
-                <span><span class="badge gray">To Do</span> 0% — full estimate remains</span>
-                <span><span class="badge warning">In Progress</span> started — full estimate counted</span>
-                <span><span class="badge" style="background:#dbeafe;color:#1e40af;">Approval Needed</span> 70% done — 30% remains</span>
-                <span><span class="badge" style="background:#fef3c7;color:#92400e;">Client Approval</span> 80% done — 20% remains</span>
-                <span><span class="badge success">Completed</span> 100% — 0h remaining</span>
+                <span><span class="badge gray">To Do</span> 0% -- full estimate remains</span>
+                <span><span class="badge warning">In Progress</span> started -- full estimate counted</span>
+                <span><span class="badge" style="background:#dbeafe;color:#1e40af;">Approval Needed</span> 70% done -- 30% remains</span>
+                <span><span class="badge" style="background:#fef3c7;color:#92400e;">Client Approval</span> 80% done -- 20% remains</span>
+                <span><span class="badge success">Completed</span> 100% -- 0h remaining</span>
             </div>
             <div style="margin-top: 16px;">
                 <strong style="font-size: 14px; color: var(--title);">Account Priority <span class="tip" data-tip="Score = Impact on Revenue + Urgency (from CRO prioritization sheet). High=3, Medium=2, Low=1, N/A=0. Combined 5-6=High, 3-4=Medium, 0-2=Low. Prospects are audit-only accounts in CRO space.">?</span></strong>
@@ -706,7 +706,7 @@
 
         <!-- Team Capacity Cards -->
         <section class="section" data-section-id="capacity">
-            <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Utilization = Total remaining hours / (Execution capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev). Aanand's revision buffer adds 20% to his share %, making shared tasks under-estimated (total actual hours exceed original estimate).">?</span></h2>
+            <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Sanskriti's effective capacity = 20h - 10-15h ad-hoc = ~7.5h/week for planned work. Utilization = Total remaining hours / (Effective capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev). Aanand's revision buffer adds 20% to his share %.">?</span></h2>
             <div class="cards">
                 <div class="card">
                     <h3>Bhaskar Roy</h3>
@@ -726,8 +726,8 @@
                             <div class="adhoc-bar-planned over" style="width: 100%"></div>
                         </div>
                         <div class="adhoc-note">
-                            <span class="adhoc-badge none">No ad-hoc room</span>
-                            Burning 16h/wk on 16h capacity — at exact capacity
+                            <span class="adhoc-badge none">At capacity</span>
+                            Burning 16h/wk on 16h capacity -- 0h free
                         </div>
                     </div>
                     <div class="progress-ring-container">
@@ -737,10 +737,10 @@
                                 <circle class="fg" cx="50" cy="50" r="42"
                                     stroke-dasharray="264" stroke-dashoffset="0"></circle>
                             </svg>
-                            <div class="progress-text">147%</div>
+                            <div class="progress-text">143%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>94h</strong> remaining / 64h capacity (4 wks)<br>
+                            <strong>91.2h</strong> remaining / 64h capacity (4 wks)<br>
                             Clears in: <strong>6 weeks</strong>
                         </div>
                     </div>
@@ -754,32 +754,34 @@
                         <div><span>Calls:</span><span>12h/week</span></div>
                         <div><span>Comms:</span><span>8h/week</span></div>
                         <div><span>Execution:</span><strong>20h/week</strong></div>
+                        <div style="color: var(--danger); font-size: 12px; margin-top: 4px;"><span>Ad-hoc drain:</span><strong>10-15h/week (required, client-facing)</strong></div>
+                        <div style="color: var(--danger); font-size: 12px;"><span>Effective capacity:</span><strong>~7.5h/week</strong></div>
                     </div>
                     <div class="adhoc-buffer">
                         <div class="adhoc-label">
                             <span>Ad-hoc room:</span>
-                            <strong style="color: var(--warning);">1.5h/week</strong>
+                            <strong style="color: var(--danger);">0h/week</strong>
                         </div>
                         <div class="adhoc-bar-container">
-                            <div class="adhoc-bar-planned tight" style="width: 93%"></div>
+                            <div class="adhoc-bar-planned over" style="width: 100%"></div>
                         </div>
                         <div class="adhoc-note">
-                            <span class="adhoc-badge minimal">Minimal room</span>
-                            Burning 18.5h/wk on 20h capacity — 1.5h free
+                            <span class="adhoc-badge none">Over capacity</span>
+                            10-15h/wk ad-hoc + planned work far exceeds 20h capacity
                         </div>
                     </div>
                     <div class="progress-ring-container">
-                        <div class="progress-ring">
+                        <div class="progress-ring overloaded">
                             <svg width="100" height="100">
                                 <circle class="bg" cx="50" cy="50" r="42"></circle>
                                 <circle class="fg" cx="50" cy="50" r="42"
-                                    stroke-dasharray="264" stroke-dashoffset="18"></circle>
+                                    stroke-dasharray="264" stroke-dashoffset="0"></circle>
                             </svg>
-                            <div class="progress-text">93%</div>
+                            <div class="progress-text">261%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>74h</strong> remaining / 80h capacity (4 wks)<br>
-                            Clears in: <strong>4 weeks</strong>
+                            <strong>78.3h</strong> remaining / 30h effective capacity (4 wks @ 7.5h/wk)<br>
+                            Clears in: <strong>11 weeks</strong> (at 7.5h/week effective)
                         </div>
                     </div>
                 </div>
@@ -804,7 +806,7 @@
                         </div>
                         <div class="adhoc-note">
                             <span class="adhoc-badge none">Over capacity</span>
-                            Burning 35.4h/wk (incl. revision buffer) on 32h capacity
+                            Burning ~35.6h/wk (incl. revision buffer) on 32h capacity
                         </div>
                     </div>
                     <div class="progress-ring-container">
@@ -814,11 +816,11 @@
                                 <circle class="fg" cx="50" cy="50" r="42"
                                     stroke-dasharray="264" stroke-dashoffset="0"></circle>
                             </svg>
-                            <div class="progress-text">112%</div>
+                            <div class="progress-text">110%</div>
                         </div>
                         <div class="workload-summary">
-                            <strong>143h</strong> remaining (119h base + 24h revision buffer) / 128h capacity (4 wks)<br>
-                            Clears in: <strong>5 weeks</strong>
+                            <strong>~140h</strong> remaining (118.7h base + ~21h revision buffer) / 128h capacity (4 wks)<br>
+                            Clears in: <strong>4 weeks</strong>
                         </div>
                     </div>
                 </div>
@@ -830,11 +832,11 @@
             <h2 class="section-title">Ad-hoc Readiness <span class="tip" data-tip="Ad-hoc room = Execution capacity - Weekly burn rate. Weekly burn = total remaining hours / weeks to clear. Gap = Typical ad-hoc demand minus team ad-hoc room.">?</span></h2>
             <div class="metric-cards">
                 <div class="metric-card red">
-                    <div class="metric-number">1.5h</div>
+                    <div class="metric-number">0h</div>
                     <div class="metric-label">Team Ad-hoc Room / Week</div>
                 </div>
                 <div class="metric-card yellow">
-                    <div class="metric-number">3–15h</div>
+                    <div class="metric-number">3-15h</div>
                     <div class="metric-label">Typical Ad-hoc Demand / Week</div>
                 </div>
                 <div class="metric-card red">
@@ -847,11 +849,11 @@
                 </div>
             </div>
             <div class="alert-card" style="background: #fffbeb; border-left-color: var(--warning);">
-                <strong style="color: #92400e;">Ad-hoc capacity gap</strong>
-                The team can absorb a maximum of <strong>1.5h/week</strong> in unplanned work (Sanskriti only).
-                Bhaskar and Aanand (with 20% revision buffer) are both over capacity.
-                Typical ad-hoc demand is 3–15h/week. Even at minimum (3h), planned work will slip by ~1.5h/week.
-                At average (~9h), expect ~7.5h/week of delays. At peak (15h), expect ~13.5h/week of slippage.
+                <strong style="color: #92400e;">Ad-hoc capacity gap -- ZERO buffer</strong>
+                The team has <strong>0h/week</strong> available for unplanned work. Sanskriti's 10-15h/week ad-hoc client obligations consume her entire spare capacity.
+                Bhaskar is at exact capacity (16h/16h). Aanand (with 20% revision buffer) is over capacity.
+                Typical ad-hoc demand is 3-15h/week. With zero buffer, <strong>every ad-hoc request directly delays planned work</strong>.
+                At minimum (3h), expect 3h/week of delays. At average (~9h), expect 9h/week of delays. At peak (15h), expect 15h/week of slippage.
             </div>
             <table style="margin-top: 16px;">
                 <thead>
@@ -867,30 +869,30 @@
                     <tr>
                         <td>Bhaskar Roy</td>
                         <td>16h/week</td>
-                        <td>16h/week</td>
+                        <td>~16h/week</td>
                         <td>0h</td>
                         <td><span class="badge danger">At capacity</span></td>
                     </tr>
                     <tr>
                         <td>Sanskriti Prabhakar</td>
-                        <td>20h/week</td>
-                        <td>18.5h/week</td>
-                        <td>1.5h</td>
-                        <td><span class="badge warning">Minimal</span></td>
+                        <td>7.5h/week <span style="font-size:11px;color:var(--danger);">(effective)</span></td>
+                        <td>~7.5h/week + 10-15h ad-hoc</td>
+                        <td>0h</td>
+                        <td><span class="badge danger">Over capacity (ad-hoc)</span></td>
                     </tr>
                     <tr>
                         <td>Aanand Madhav</td>
                         <td>32h/week</td>
-                        <td>35.4h/week <span style="font-size:11px;color:var(--danger);">(+20% rev)</span></td>
+                        <td>~35.6h/week <span style="font-size:11px;color:var(--danger);">(+20% rev)</span></td>
                         <td>0h</td>
                         <td><span class="badge danger">Over capacity</span></td>
                     </tr>
                     <tr style="font-weight: 600; background: var(--gray-100);">
                         <td>Team Total</td>
                         <td>68h/week</td>
-                        <td>69.9h/week</td>
-                        <td>1.5h</td>
-                        <td><span class="badge danger">Gap: 1.5–13.5h</span></td>
+                        <td>~59.1h/week + 10-15h ad-hoc</td>
+                        <td>0h</td>
+                        <td><span class="badge danger">Gap: 3-15h</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -900,32 +902,36 @@
         <section class="section" data-section-id="redflags">
             <h2 class="section-title">Red Flags</h2>
             <div class="alert-card">
-                <strong>Team ad-hoc buffer critically low</strong>
-                Team has only 1.5h/week buffer (Sanskriti only). Bhaskar and Aanand (with 20% revision buffer) are both over capacity. Any unplanned request will push planned deadlines.
+                <strong>30 Overdue Tasks</strong>
+                Up from 22 last refresh. Bhaskar has 12, Sanskriti has 11, Aanand has 15. Many tasks from Mar 6-16 still unresolved. Legacy overdue tasks dating back to Sep-Dec 2025 remain open.
             </div>
             <div class="alert-card">
-                <strong>LL - New App (36h, due Mar 12 — 4 days overdue)</strong>
-                Deadline missed. Needs deadline push to Mar 28+ to be feasible
+                <strong>Team ad-hoc buffer is ZERO (0h/week)</strong>
+                Sanskriti's 10-15h/week required ad-hoc client work consumes her entire spare capacity (effective: 7.5h/week). Bhaskar is at exact capacity (16h/16h). Aanand is over capacity with revision buffer. Every unplanned request directly delays planned work.
             </div>
             <div class="alert-card">
-                <strong>Goodys Mobile App (36h, due Mar 23)</strong>
-                Feasible only with external dev support - internal team at capacity
+                <strong>Sanskriti at 261% utilization -- 11 weeks to clear</strong>
+                78.3h total remaining at only 7.5h/week effective capacity (after 10-15h/week required ad-hoc). Was reported as 98% (4 weeks) but ad-hoc reality makes her the most overloaded team member.
             </div>
             <div class="alert-card">
-                <strong>Bhaskar Overload</strong>
-                78h solo tasks + shared work at 16h/week execution capacity = 5 weeks backlog minimum
+                <strong>LL - New App (36h, due Mar 12 -- 6 days overdue)</strong>
+                Deadline missed. Sanskriti + Bhaskar shared task. Needs deadline push to Mar 28+ to be feasible.
             </div>
             <div class="alert-card">
-                <strong>22 Overdue Tasks</strong>
-                Up from 7 last refresh. The Wag LP overdue 42 days, LL New App 4d past deadline. Most Mar 10-14 tasks missed deadlines.
+                <strong>Bhaskar at 143% utilization -- 6 weeks to clear</strong>
+                91.2h total remaining at 16h/week execution capacity. 46.8h overdue alone. Zero realistic buffer for ad-hoc.
             </div>
             <div class="alert-card">
-                <strong>Missing Estimates</strong>
-                4 tasks with no time estimate - impossible to plan capacity accurately
+                <strong>W13 is loaded: Bhaskar 90%, Sanskriti 72%, Aanand 88%</strong>
+                Mobile App build (21.6h shared) + symbol collection pages dominate W13. All three members near ceiling with no flex.
             </div>
             <div class="alert-card">
-                <strong>Ad-Hoc Risk</strong>
-                Any new urgent requests will push all current deadlines further - no buffer capacity available
+                <strong>Aanand over capacity with revision buffer (~110%)</strong>
+                118.7h base + ~21h revision buffer = ~140h adjusted against 128h capacity (4 wks). No ad-hoc room.
+            </div>
+            <div class="alert-card">
+                <strong>Ad-Hoc Risk -- CRITICAL</strong>
+                Team ad-hoc room is 0h/week vs 3-15h typical demand. Sanskriti's 10-15h/week required ad-hoc already consumes her capacity. Any new urgent request directly delays planned work for all members.
             </div>
         </section>
 
@@ -935,13 +941,13 @@
 
             <div style="background: #f0f9ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 16px; margin-bottom: 24px; font-size: 13px; line-height: 1.6;">
                 <strong style="color: var(--title);">How this is prioritized</strong><br>
-                Not by urgency alone — by <strong>dollar impact of delay</strong>. A prospect audit that could close $6k MRR trumps a conversion dip that costs $100-150 over 2-3 days.
+                Not by urgency alone -- by <strong>dollar impact of delay</strong>. A prospect audit that could close $6k MRR trumps a conversion dip that costs $100-150 over 2-3 days.
                 Losing a High client (HH, Bison Track) hurts more than churning a Low client (Wonderlight, Puffin).
                 Tasks are stack-ranked so each person works top-down.
             </div>
 
             <h3 style="color: var(--danger); font-size: 18px; margin-bottom: 12px;">
-                Bhaskar Roy — Stack Rank
+                Bhaskar Roy -- Stack Rank (46.8h overdue + 20.8h scheduled + 23.6h backlog = 91.2h)
             </h3>
             <table>
                 <thead>
@@ -956,93 +962,100 @@
                 <tbody>
                     <tr style="background: #fef2f2;">
                         <td><strong>1</strong></td>
-                        <td>Omiana audit</td>
+                        <td>Lumara Systems audit</td>
                         <td>CRO <span class="priority-badge p-prospect">Prospect</span></td>
                         <td>3h</td>
-                        <td>$6k MRR if closed. Every day delayed = extended sales cycle</td>
+                        <td>$6k MRR. Due Mar 16, 2d overdue. Close fast to move to sales</td>
                     </tr>
                     <tr style="background: #fef2f2;">
                         <td><strong>2</strong></td>
                         <td>prosthocosmeticdentistry.com</td>
                         <td>CRO <span class="priority-badge p-prospect">Prospect</span></td>
                         <td>3h</td>
-                        <td>$6k MRR. Already in progress — finish fast to move to sales</td>
+                        <td>$6k MRR. Due Mar 13, 5d overdue. Already in progress</td>
                     </tr>
-                    <tr style="background: #fef2f2;">
+                    <tr>
                         <td><strong>3</strong></td>
-                        <td>Lumara Systems audit</td>
-                        <td>CRO <span class="priority-badge p-prospect">Prospect</span></td>
-                        <td>3h</td>
-                        <td>$6k MRR. 3 prospects = $18k/mo potential, even 1 close = $72k/yr</td>
+                        <td>LL - New App (40%)</td>
+                        <td>Lulu Liquor <span class="priority-badge p-high">High</span></td>
+                        <td>14.4h</td>
+                        <td>Strategic project, high-value client. 6d overdue (Mar 12)</td>
                     </tr>
                     <tr>
                         <td><strong>4</strong></td>
-                        <td>LL - New App (40%)</td>
-                        <td>Lulu Liquor <span class="priority-badge p-high">High</span></td>
-                        <td>14h</td>
-                        <td>Strategic project, high-value client. Already overdue Mar 12</td>
-                    </tr>
-                    <tr>
-                        <td><strong>5</strong></td>
                         <td>Thankyou page setup (shared w/ Aanand)</td>
                         <td>Thrive <span class="priority-badge p-high">High</span></td>
                         <td>1.2h (40%)</td>
-                        <td>7 days overdue. High-urgency client — thank-you page = conversion tracking broken</td>
+                        <td>12d overdue. High-urgency client -- thank-you page = conversion tracking broken</td>
                     </tr>
                     <tr>
-                        <td><strong>6</strong></td>
+                        <td><strong>5</strong></td>
                         <td>New Form Setup</td>
                         <td>Thrive <span class="priority-badge p-high">High</span></td>
                         <td>4h</td>
-                        <td>High-urgency client, form = lead capture, every day down = lost leads</td>
+                        <td>6d overdue. Form = lead capture, every day down = lost leads</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6</strong></td>
+                        <td>Shoppable UGC setup</td>
+                        <td>Araceli <span class="priority-badge p-high">High</span></td>
+                        <td>10h</td>
+                        <td>2d overdue (Mar 16). High client, revenue-driving feature</td>
                     </tr>
                     <tr>
                         <td><strong>7</strong></td>
-                        <td>PDPs updated BYT</td>
-                        <td>Goodys <span class="priority-badge p-high">High</span></td>
-                        <td>4h</td>
-                        <td>PDP conversion impact, in progress. High client, close out</td>
-                    </tr>
-                    <tr>
-                        <td><strong>8</strong></td>
                         <td>Copy changes brief</td>
                         <td>Araceli <span class="priority-badge p-high">High</span></td>
                         <td>6h</td>
-                        <td>Unlocks brand messaging; important but 1-2 day delay = minimal revenue impact</td>
+                        <td>8d overdue. Unlocks brand messaging for high client</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8</strong></td>
+                        <td>PDPs updated BYT</td>
+                        <td>Goodys <span class="priority-badge p-high">High</span></td>
+                        <td>1.6h</td>
+                        <td>8d overdue. PDP conversion impact, shared w/ Aanand</td>
                     </tr>
                     <tr>
                         <td><strong>9</strong></td>
                         <td>Cinnamon Bun PDPs</td>
                         <td>Goodys <span class="priority-badge p-high">High</span></td>
-                        <td>1h</td>
-                        <td>Quick win, 1h — slot between larger tasks</td>
+                        <td>0.4h</td>
+                        <td>8d overdue. Quick win -- slot between larger tasks</td>
                     </tr>
                     <tr>
                         <td><strong>10</strong></td>
-                        <td>LP Baseball-max (40%)</td>
-                        <td>Strat-O-Matic <span class="priority-badge p-medium">Medium</span></td>
-                        <td>3h</td>
-                        <td>Medium client, LP design. Can flex 2-3 days without revenue impact</td>
+                        <td>Collection page redesign (40%)</td>
+                        <td>Goodys <span class="priority-badge p-high">High</span></td>
+                        <td>6.4h</td>
+                        <td>W12 scheduled (Mar 20 due). Shared w/ Aanand</td>
                     </tr>
                     <tr>
                         <td><strong>11</strong></td>
+                        <td>LP Baseball-max (40%)</td>
+                        <td>Strat-O-Matic <span class="priority-badge p-medium">Medium</span></td>
+                        <td>3.2h</td>
+                        <td>6d overdue. Medium client, shared w/ Aanand</td>
+                    </tr>
+                    <tr>
+                        <td><strong>12</strong></td>
                         <td>Tracking Eventbrite</td>
                         <td>The Wag <span class="priority-badge p-medium">Medium</span></td>
-                        <td>2h</td>
-                        <td>Medium client, due Mar 16. Tracking setup — nice to have on time but flexible</td>
+                        <td>--</td>
+                        <td>2d overdue. Tracking setup -- nice to have on time but flexible</td>
                     </tr>
                     <tr style="opacity: 0.6;">
                         <td>--</td>
                         <td>Daytona Banner (80% done)</td>
                         <td>Bison Track <span class="priority-badge p-high">High</span></td>
                         <td>--</td>
-                        <td>Blocked: waiting on client approval. Not actionable</td>
+                        <td>9d overdue. Blocked: waiting on client approval. Not actionable</td>
                     </tr>
                 </tbody>
             </table>
 
             <h3 style="color: var(--danger); font-size: 18px; margin-bottom: 12px; margin-top: 32px;">
-                Sanskriti Prabhakar — Stack Rank
+                Sanskriti Prabhakar -- Stack Rank (38.2h overdue + 5.4h scheduled + 34.7h backlog = 78.3h) <span style="font-size: 13px; color: var(--danger); font-weight: 400;">(effective ~7.5h/week after 10-15h/week ad-hoc = 11 weeks to clear)</span>
             </h3>
             <table>
                 <thead>
@@ -1059,63 +1072,91 @@
                         <td><strong>1</strong></td>
                         <td>LL - New App (60%)</td>
                         <td>Lulu Liquor <span class="priority-badge p-high">High</span></td>
-                        <td>22h</td>
-                        <td>Strategic project, largest task, already overdue. Relationship risk if delayed further</td>
+                        <td>21.6h</td>
+                        <td>Strategic project, largest task, 6d overdue. Relationship risk if delayed further</td>
                     </tr>
                     <tr>
                         <td><strong>2</strong></td>
                         <td>BT Pasture CLP Hero</td>
                         <td>Bison Track <span class="priority-badge p-high">High</span></td>
                         <td>3h</td>
-                        <td>Due Mar 13 (today). High client, client-facing banner</td>
+                        <td>5d overdue (Mar 13). High client, client-facing banner</td>
                     </tr>
                     <tr>
                         <td><strong>3</strong></td>
                         <td>Canine & Camel sales page (45%)</td>
                         <td>Heather's <span class="priority-badge p-high">High</span></td>
-                        <td>2h</td>
-                        <td>Overdue Mar 9. Revenue page for top client. HH ~$50k/mo revenue</td>
+                        <td>2.3h</td>
+                        <td>9d overdue. Revenue page for top client. Shared w/ Aanand</td>
                     </tr>
                     <tr>
                         <td><strong>4</strong></td>
                         <td>BT Trackside Event LP (45%)</td>
                         <td>Bison Track <span class="priority-badge p-high">High</span></td>
-                        <td>1h</td>
-                        <td>Event-driven deadline, time-sensitive. Small task — close out</td>
+                        <td>0.9h</td>
+                        <td>9d overdue. Event-driven deadline, time-sensitive. Small task -- close out</td>
                     </tr>
                     <tr>
                         <td><strong>5</strong></td>
                         <td>AB test shoppable UGC</td>
                         <td>Ancient Aura <span class="priority-badge p-high">High</span></td>
                         <td>--</td>
-                        <td>High client, conversion test. Every day unshipped = missed conversion data</td>
+                        <td>9d overdue. High client, conversion test. Every day unshipped = missed data</td>
                     </tr>
                     <tr>
                         <td><strong>6</strong></td>
-                        <td>LL Easter banner</td>
-                        <td>Lulu Liquor <span class="priority-badge p-high">High</span></td>
-                        <td>3.5h</td>
-                        <td>Seasonal deadline but a few days flex won't lose sales</td>
+                        <td>BT Thor2.0 PDP Redesign (45%)</td>
+                        <td>Bison Track <span class="priority-badge p-high">High</span></td>
+                        <td>0.9h</td>
+                        <td>98d overdue (Dec 10). Test monitor -- close or update</td>
                     </tr>
-                    <tr style="opacity: 0.6;">
+                    <tr>
                         <td><strong>7</strong></td>
-                        <td>WL Beauty LP</td>
-                        <td>Wonderlight <span class="priority-badge p-low">Low</span></td>
-                        <td>4.5h</td>
-                        <td>Low client. Delay or deprioritize — minimal Yamu revenue impact</td>
+                        <td>Symbol collection pages (W13)</td>
+                        <td>Ancient Aura <span class="priority-badge p-high">High</span></td>
+                        <td>5.4h</td>
+                        <td>Scheduled W13. High client, shared w/ Aanand</td>
                     </tr>
                     <tr style="opacity: 0.6;">
                         <td><strong>8</strong></td>
+                        <td>WL Beauty LP</td>
+                        <td>Wonderlight <span class="priority-badge p-low">Low</span></td>
+                        <td>4.5h</td>
+                        <td>8d overdue. Low client. Delay or deprioritize</td>
+                    </tr>
+                    <tr style="opacity: 0.6;">
+                        <td><strong>9</strong></td>
                         <td>WL HP Hero banner</td>
                         <td>Wonderlight <span class="priority-badge p-low">Low</span></td>
                         <td>3h</td>
-                        <td>Low client, 10 days overdue. Deprioritize vs High client work</td>
+                        <td>12d overdue. Low client. Deprioritize vs High client work</td>
+                    </tr>
+                    <tr style="opacity: 0.6;">
+                        <td><strong>10</strong></td>
+                        <td>PD PDP 1st Fold</td>
+                        <td>Puffin <span class="priority-badge p-low">Low</span></td>
+                        <td>2h</td>
+                        <td>57d overdue (Jan 20). Test monitor. Low client</td>
+                    </tr>
+                    <tr style="opacity: 0.6;">
+                        <td><strong>11</strong></td>
+                        <td>Debunking LP</td>
+                        <td>Heather's <span class="priority-badge p-high">High</span></td>
+                        <td>--</td>
+                        <td>23d overdue (Feb 23). Test monitor -- close if test concluded</td>
+                    </tr>
+                    <tr style="opacity: 0.6;">
+                        <td><strong>12</strong></td>
+                        <td>Product page optimization design</td>
+                        <td>-- <span class="priority-badge p-low">Low</span></td>
+                        <td>--</td>
+                        <td>188d overdue (Sep 11). Legacy task -- close or update</td>
                     </tr>
                 </tbody>
             </table>
 
             <h3 style="color: var(--success); font-size: 18px; margin-bottom: 12px; margin-top: 32px;">
-                Aanand Madhav — Stack Rank <span style="font-size: 13px; color: var(--danger); font-weight: 400;">(+20% revision buffer on his share)</span>
+                Aanand Madhav -- Stack Rank (22.6h overdue + 37.8h scheduled + 58.3h backlog = 118.7h) <span style="font-size: 13px; color: var(--danger); font-weight: 400;">(+20% revision buffer on his share)</span>
             </h3>
             <table>
                 <thead>
@@ -1130,66 +1171,87 @@
                 <tbody>
                     <tr>
                         <td><strong>1</strong></td>
-                        <td>Updated product descriptions (70%)</td>
-                        <td>Goodys <span class="priority-badge p-high">High</span></td>
-                        <td>0.9h remaining</td>
-                        <td>Almost done (70%), high client. Close out — quick win</td>
+                        <td>Thrive Thankyou page (60%)</td>
+                        <td>Thrive <span class="priority-badge p-high">High</span></td>
+                        <td>1.8h</td>
+                        <td>12d overdue. High-urgency client, thank-you page = conversion tracking</td>
                     </tr>
                     <tr>
                         <td><strong>2</strong></td>
-                        <td>Thrive Thankyou page (60%)</td>
-                        <td>Thrive <span class="priority-badge p-high">High</span></td>
+                        <td>Updated product descriptions</td>
+                        <td>Goodys <span class="priority-badge p-high">High</span></td>
                         <td>3h</td>
-                        <td>High-urgency client, 7 days overdue. Thank-you page = conversion tracking</td>
+                        <td>8d overdue. High client -- close out</td>
                     </tr>
                     <tr>
                         <td><strong>3</strong></td>
                         <td>Canine & Camel sales page (55%)</td>
                         <td>Heather's <span class="priority-badge p-high">High</span></td>
-                        <td>5h</td>
-                        <td>Revenue page, 7d overdue. HH is top client — relationship risk</td>
+                        <td>2.8h</td>
+                        <td>9d overdue. Revenue page, top client -- relationship risk</td>
                     </tr>
                     <tr>
                         <td><strong>4</strong></td>
                         <td>BT Trackside Event LP (55%)</td>
                         <td>Bison Track <span class="priority-badge p-high">High</span></td>
-                        <td>2h</td>
-                        <td>Event deadline, 7d overdue. Small task — close out</td>
+                        <td>1.1h</td>
+                        <td>9d overdue. Event deadline. Small task -- close out</td>
                     </tr>
                     <tr>
                         <td><strong>5</strong></td>
                         <td>LP Baseball-max (60%)</td>
                         <td>Strat-O-Matic <span class="priority-badge p-medium">Medium</span></td>
-                        <td>8h</td>
-                        <td>Medium client, 4d overdue. In progress with Bhaskar</td>
+                        <td>4.8h</td>
+                        <td>6d overdue. In progress with Bhaskar</td>
                     </tr>
                     <tr>
                         <td><strong>6</strong></td>
-                        <td>AA Train Client Tolstoy</td>
-                        <td>Ancient Aura <span class="priority-badge p-high">High</span></td>
-                        <td>--</td>
-                        <td>High client but training task — not revenue-blocking</td>
+                        <td>Collection page redesign (60%)</td>
+                        <td>Goodys <span class="priority-badge p-high">High</span></td>
+                        <td>9.6h</td>
+                        <td>W12 scheduled (Mar 20). Shared w/ Bhaskar</td>
                     </tr>
                     <tr>
                         <td><strong>7</strong></td>
+                        <td>PDPs updated BYT</td>
+                        <td>Goodys <span class="priority-badge p-high">High</span></td>
+                        <td>2.4h</td>
+                        <td>8d overdue. PDP conversion, shared w/ Bhaskar</td>
+                    </tr>
+                    <tr>
+                        <td><strong>8</strong></td>
                         <td>Cinnamon Bun PDPs</td>
                         <td>Goodys <span class="priority-badge p-high">High</span></td>
-                        <td>1h</td>
-                        <td>Quick PDP update, 6d overdue. Slot between tasks</td>
+                        <td>0.6h</td>
+                        <td>8d overdue. Quick PDP update. Slot between tasks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>9</strong></td>
+                        <td>Mobile App build (W13)</td>
+                        <td>Goodys <span class="priority-badge p-high">High</span></td>
+                        <td>21.6h</td>
+                        <td>W13 scheduled. Shared w/ Bhaskar. Largest upcoming task</td>
                     </tr>
                     <tr style="opacity: 0.6;">
-                        <td><strong>8</strong></td>
+                        <td><strong>10</strong></td>
                         <td>All Paws training form</td>
                         <td>All Paws <span class="priority-badge p-medium">Medium</span></td>
                         <td>2h</td>
-                        <td>Medium client, 12 days overdue but form update = low revenue impact</td>
+                        <td>14d overdue. Medium client, form update = low revenue impact</td>
                     </tr>
                     <tr style="opacity: 0.6;">
-                        <td><strong>9</strong></td>
+                        <td><strong>11</strong></td>
                         <td>The Wag LP</td>
                         <td>The Wag <span class="priority-badge p-medium">Medium</span></td>
                         <td>3h</td>
-                        <td>42 days overdue but medium client. Losing The Wag = minimal Yamu impact</td>
+                        <td>44d overdue. Medium client. Losing The Wag = minimal Yamu impact</td>
+                    </tr>
+                    <tr style="opacity: 0.6;">
+                        <td><strong>12</strong></td>
+                        <td>BT Thor2.0 PDP Redesign (55%)</td>
+                        <td>Bison Track <span class="priority-badge p-high">High</span></td>
+                        <td>1.1h</td>
+                        <td>98d overdue. Test monitor -- close or update</td>
                     </tr>
                 </tbody>
             </table>
@@ -1200,20 +1262,20 @@
             <h2 class="section-title">Weekly Utilization Forecast <span class="tip" data-tip="Bar % = Hours scheduled that week / Execution capacity. Tasks assigned to week based on ClickUp due dates. Tasks without due dates appear in Backlog, not in weekly forecast.">?</span></h2>
             <div class="utilization-chart">
                 <div class="week-row">
-                    <div class="week-header" style="background: var(--accent); color: white;">W12 (Mar 16-20, 2026) — CURRENT</div>
+                    <div class="week-header" style="background: var(--accent); color: white; padding: 8px 12px; border-radius: 4px;">W12 (Mar 16-20, 2026) -- CURRENT</div>
                     <div class="person-bar">
                         <div class="person-label">
                             <span>Bhaskar Roy</span>
-                            <span>21.4h / 16h (134%)</span>
+                            <span>19.4h / 16h (121%) <span class="badge danger">OVER</span></span>
                         </div>
                         <div class="bar-container">
-                            <div class="bar-fill critical" style="width: 100%">134%</div>
+                            <div class="bar-fill critical" style="width: 100%">121%</div>
                         </div>
                     </div>
                     <div class="person-bar">
                         <div class="person-label">
                             <span>Sanskriti Prabhakar</span>
-                            <span>0h new / 20h (overdue backlog)</span>
+                            <span>0h new / 7.5h effective (overdue backlog)</span>
                         </div>
                         <div class="bar-container">
                             <div class="bar-fill low" style="width: 0%"></div>
@@ -1235,7 +1297,7 @@
                     <div class="person-bar">
                         <div class="person-label">
                             <span>Bhaskar Roy</span>
-                            <span>14.4h / 16h (90%)</span>
+                            <span>14.4h / 16h (90%) <span class="badge danger">HIGH</span></span>
                         </div>
                         <div class="bar-container">
                             <div class="bar-fill high" style="width: 90%">90%</div>
@@ -1244,16 +1306,16 @@
                     <div class="person-bar">
                         <div class="person-label">
                             <span>Sanskriti Prabhakar</span>
-                            <span>5.4h / 20h (27%)</span>
+                            <span>5.4h / 7.5h effective (72%) <span class="badge warning">HIGH</span></span>
                         </div>
                         <div class="bar-container">
-                            <div class="bar-fill low" style="width: 27%">27%</div>
+                            <div class="bar-fill high" style="width: 72%">72%</div>
                         </div>
                     </div>
                     <div class="person-bar">
                         <div class="person-label">
                             <span>Aanand Madhav</span>
-                            <span>28.2h / 32h (88%)</span>
+                            <span>28.2h / 32h (88%) <span class="badge danger">HIGH</span></span>
                         </div>
                         <div class="bar-container">
                             <div class="bar-fill high" style="width: 88%">88%</div>
@@ -1275,7 +1337,7 @@
                     <div class="person-bar">
                         <div class="person-label">
                             <span>Sanskriti Prabhakar</span>
-                            <span>Backlog / 20h</span>
+                            <span>Backlog / 7.5h effective</span>
                         </div>
                         <div class="bar-container">
                             <div class="bar-fill low" style="width: 0%"></div>
@@ -1306,7 +1368,7 @@
                     <div class="person-bar">
                         <div class="person-label">
                             <span>Sanskriti Prabhakar</span>
-                            <span>Backlog / 20h</span>
+                            <span>Backlog / 7.5h effective</span>
                         </div>
                         <div class="bar-container">
                             <div class="bar-fill low" style="width: 0%"></div>
@@ -1327,7 +1389,7 @@
 
         <!-- Overdue Tasks -->
         <section class="section" data-section-id="overdue">
-            <h2 class="section-title">Overdue Tasks</h2>
+            <h2 class="section-title">Overdue Tasks (30 total)</h2>
             <table>
                 <thead class="danger">
                     <tr>
@@ -1341,203 +1403,291 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Mar 16 overdue (2d) -->
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hrtgt7" target="_blank">LL - New App</a></td>
+                        <td>Tracking setup Eventbrite</td>
+                        <td>The Wag</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
+                        <td>Bhaskar</td>
+                        <td>--</td>
+                        <td>Mar 16</td>
+                        <td><span class="badge danger">2d</span></td>
+                    </tr>
+                    <tr>
+                        <td>Lumara Systems audit</td>
+                        <td>CRO</td>
+                        <td><span class="priority-badge p-prospect">Prospect</span></td>
+                        <td>Bhaskar</td>
+                        <td>3h</td>
+                        <td>Mar 16</td>
+                        <td><span class="badge danger">2d</span></td>
+                    </tr>
+                    <tr>
+                        <td>Shoppable UGC setup</td>
+                        <td>Araceli</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Bhaskar</td>
+                        <td>10h</td>
+                        <td>Mar 16</td>
+                        <td><span class="badge danger">2d</span></td>
+                    </tr>
+                    <!-- Mar 13 overdue (5d) -->
+                    <tr>
+                        <td>Prosthocosmeticdentistry</td>
+                        <td>CRO</td>
+                        <td><span class="priority-badge p-prospect">Prospect</span></td>
+                        <td>Bhaskar</td>
+                        <td>3h</td>
+                        <td>Mar 13</td>
+                        <td><span class="badge danger">5d</span></td>
+                    </tr>
+                    <tr>
+                        <td>BT Pasture CLP Hero</td>
+                        <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti</td>
+                        <td>3h</td>
+                        <td>Mar 13</td>
+                        <td><span class="badge danger">5d</span></td>
+                    </tr>
+                    <!-- Mar 12 overdue (6d) -->
+                    <tr>
+                        <td>LL - New App</td>
                         <td>Lulu Liquor</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti + Bhaskar</td>
                         <td>36h</td>
                         <td>Mar 12</td>
-                        <td><span class="badge danger">4d</span></td>
+                        <td><span class="badge danger">6d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hrtewv" target="_blank">LP Baseball-max</a></td>
+                        <td>LP Baseball-max</td>
                         <td>Strat-O-Matic</td>
                         <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>Bhaskar + Aanand</td>
                         <td>8h</td>
                         <td>Mar 12</td>
-                        <td><span class="badge danger">4d</span></td>
+                        <td><span class="badge danger">6d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hrtj6h" target="_blank">New Form Setup</a></td>
+                        <td>New Form Setup</td>
                         <td>Thrive Tutoring</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar</td>
                         <td>4h</td>
                         <td>Mar 12</td>
-                        <td><span class="badge danger">4d</span></td>
+                        <td><span class="badge danger">6d</span></td>
                     </tr>
+                    <!-- Mar 10 overdue (8d) -->
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hvfn1t" target="_blank">Omiana audit</a></td>
-                        <td>CRO</td>
-                        <td><span class="priority-badge p-prospect">Prospect</span></td>
-                        <td>Bhaskar</td>
-                        <td>3h</td>
-                        <td>Mar 12</td>
-                        <td><span class="badge danger">4d</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868hvfn72" target="_blank">Prosthocosmeticdentistry</a></td>
-                        <td>CRO</td>
-                        <td><span class="priority-badge p-prospect">Prospect</span></td>
-                        <td>Bhaskar</td>
-                        <td>3h</td>
-                        <td>Mar 13</td>
-                        <td><span class="badge danger">3d</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868hrtkbc" target="_blank">BT Pasture CLP Hero</a></td>
-                        <td>Bison Track</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Sanskriti</td>
-                        <td>3h</td>
-                        <td>Mar 13</td>
-                        <td><span class="badge danger">3d</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868hmk0zx" target="_blank">Copy changes brief</a></td>
+                        <td>Copy changes brief</td>
                         <td>Araceli</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar</td>
                         <td>6h</td>
                         <td>Mar 10</td>
-                        <td><span class="badge danger">6d</span></td>
+                        <td><span class="badge danger">8d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868gmmv7n" target="_blank">PDPs updated BYT page</a></td>
+                        <td>PDPs updated BYT page</td>
                         <td>Goodys</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar + Aanand</td>
                         <td>4h</td>
                         <td>Mar 10</td>
-                        <td><span class="badge danger">6d</span></td>
+                        <td><span class="badge danger">8d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868gv22kx" target="_blank">Cinnamon Bun Crunch PDPs</a></td>
+                        <td>Cinnamon Bun Crunch PDPs</td>
                         <td>Goodys</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar + Aanand</td>
                         <td>1h</td>
                         <td>Mar 10</td>
-                        <td><span class="badge danger">6d</span></td>
+                        <td><span class="badge danger">8d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hrt7wp" target="_blank">Updated product descriptions</a></td>
+                        <td>Updated product descriptions</td>
                         <td>Goodys</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Aanand</td>
                         <td>3h</td>
                         <td>Mar 10</td>
-                        <td><span class="badge" style="background:#dbeafe;color:#1e40af;">6d (approval needed)</span></td>
+                        <td><span class="badge danger">8d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hrtt40" target="_blank">WL Beauty LP</a></td>
+                        <td>WL Beauty LP</td>
                         <td>Wonderlight</td>
                         <td><span class="priority-badge p-low">Low</span></td>
                         <td>Sanskriti</td>
                         <td>4.5h</td>
                         <td>Mar 10</td>
-                        <td><span class="badge danger">6d</span></td>
+                        <td><span class="badge danger">8d</span></td>
                     </tr>
+                    <!-- Mar 9 overdue (9d) -->
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hqncd8" target="_blank">Canine & Camel sales page</a></td>
+                        <td>Canine & Camel sales page</td>
                         <td>Heather's Heroes</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti + Aanand</td>
                         <td>5h</td>
                         <td>Mar 9</td>
-                        <td><span class="badge danger">7d</span></td>
+                        <td><span class="badge danger">9d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hcepue" target="_blank">BT Trackside Event LP</a></td>
+                        <td>BT Trackside Event LP</td>
                         <td>Bison Track</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti + Aanand</td>
                         <td>2h</td>
                         <td>Mar 9</td>
-                        <td><span class="badge danger">7d</span></td>
+                        <td><span class="badge danger">9d</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hqm4jk" target="_blank">Daytona Banner</a></td>
+                        <td>Daytona Banner</td>
                         <td>Bison Track</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar</td>
                         <td>--</td>
                         <td>Mar 9</td>
-                        <td><span class="badge" style="background:#fef3c7;color:#92400e;">7d (client approval)</span></td>
+                        <td><span class="badge" style="background:#fef3c7;color:#92400e;">9d (client approval)</span></td>
                     </tr>
                     <tr>
-                        <td><a href="https://app.clickup.com/t/868hrtkcf" target="_blank">New Thankyou page setup</a></td>
-                        <td>Thrive Tutoring</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Aanand + Bhaskar</td>
-                        <td>3h</td>
-                        <td>Mar 6</td>
-                        <td><span class="badge danger">10d</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868hrtn83" target="_blank">WL HP Hero banner</a></td>
-                        <td>Wonderlight</td>
-                        <td><span class="priority-badge p-low">Low</span></td>
-                        <td>Sanskriti</td>
-                        <td>3h</td>
-                        <td>Mar 6</td>
-                        <td><span class="badge danger">10d</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868hqcy8f" target="_blank">All Paws training form</a></td>
-                        <td>All Paws</td>
-                        <td><span class="priority-badge p-medium">Medium</span></td>
-                        <td>Aanand</td>
-                        <td>2h</td>
-                        <td>Mar 4</td>
-                        <td><span class="badge danger">12d</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868ha1pqq" target="_blank">The Wag LP</a></td>
-                        <td>The Wag</td>
-                        <td><span class="priority-badge p-medium">Medium</span></td>
-                        <td>Aanand</td>
-                        <td>3h</td>
-                        <td>Feb 2</td>
-                        <td><span class="badge danger">42d</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868h653z5" target="_blank">Debunking LP</a></td>
-                        <td>Heather's Heroes</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Sanskriti</td>
-                        <td>--</td>
-                        <td>Feb 23</td>
-                        <td><span class="badge warning">21d (test monitor)</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868h2jmhv" target="_blank">PD PDP 1st Fold</a></td>
-                        <td>Puffin</td>
-                        <td><span class="priority-badge p-low">Low</span></td>
-                        <td>Sanskriti</td>
-                        <td>2h</td>
-                        <td>Jan 20</td>
-                        <td><span class="badge warning">55d (test monitor)</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868fykpfa" target="_blank">BT Thor2.0 PDP Redesign</a></td>
-                        <td>Bison Track</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Aanand + Sanskriti</td>
-                        <td>2h</td>
-                        <td>Dec 10</td>
-                        <td><span class="badge warning">96d (test monitor)</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://app.clickup.com/t/868gv5utb" target="_blank">AB test shoppable UGC</a></td>
+                        <td>AB test shoppable UGC</td>
                         <td>Ancient Aura</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Sanskriti</td>
                         <td>--</td>
                         <td>Mar 9</td>
-                        <td><span class="badge warning">7d (test monitor)</span></td>
+                        <td><span class="badge warning">9d (test monitor)</span></td>
+                    </tr>
+                    <!-- Mar 6 overdue (12d) -->
+                    <tr>
+                        <td>New Thankyou page setup</td>
+                        <td>Thrive Tutoring</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Aanand + Bhaskar</td>
+                        <td>3h</td>
+                        <td>Mar 6</td>
+                        <td><span class="badge danger">12d</span></td>
+                    </tr>
+                    <tr>
+                        <td>WL HP Hero banner</td>
+                        <td>Wonderlight</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Sanskriti</td>
+                        <td>3h</td>
+                        <td>Mar 6</td>
+                        <td><span class="badge danger">12d</span></td>
+                    </tr>
+                    <!-- Mar 4 overdue (14d) -->
+                    <tr>
+                        <td>All Paws training form</td>
+                        <td>All Paws</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
+                        <td>Aanand</td>
+                        <td>2h</td>
+                        <td>Mar 4</td>
+                        <td><span class="badge danger">14d</span></td>
+                    </tr>
+                    <!-- Feb 2 overdue (44d) -->
+                    <tr>
+                        <td>The Wag LP</td>
+                        <td>The Wag</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
+                        <td>Aanand</td>
+                        <td>3h</td>
+                        <td>Feb 2</td>
+                        <td><span class="badge danger">44d</span></td>
+                    </tr>
+                    <!-- Feb 23 overdue (23d) -->
+                    <tr>
+                        <td>Debunking LP</td>
+                        <td>Heather's Heroes</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti</td>
+                        <td>--</td>
+                        <td>Feb 23</td>
+                        <td><span class="badge warning">23d (test monitor)</span></td>
+                    </tr>
+                    <!-- Jan 20 overdue (57d) -->
+                    <tr>
+                        <td>PD PDP 1st Fold</td>
+                        <td>Puffin</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Sanskriti</td>
+                        <td>2h</td>
+                        <td>Jan 20</td>
+                        <td><span class="badge warning">57d (test monitor)</span></td>
+                    </tr>
+                    <!-- Dec 10 overdue (98d) -->
+                    <tr>
+                        <td>BT Thor2.0 PDP Redesign</td>
+                        <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Aanand + Sanskriti</td>
+                        <td>2h</td>
+                        <td>Dec 10</td>
+                        <td><span class="badge warning">98d (test monitor)</span></td>
+                    </tr>
+                    <!-- Nov 11 overdue (127d) -->
+                    <tr>
+                        <td>Dev completed</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>--</td>
+                        <td>Nov 11</td>
+                        <td><span class="badge warning">127d</span></td>
+                    </tr>
+                    <!-- Oct 22 overdue (147d) -->
+                    <tr>
+                        <td>Dev completed for cart offers</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>--</td>
+                        <td>Oct 22</td>
+                        <td><span class="badge warning">147d</span></td>
+                    </tr>
+                    <!-- Oct 9 overdue (160d) -->
+                    <tr>
+                        <td>Code sanitization</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>--</td>
+                        <td>Oct 9</td>
+                        <td><span class="badge warning">160d</span></td>
+                    </tr>
+                    <tr>
+                        <td>Landing page bucks dog training dev</td>
+                        <td>Bucks Dog Training</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>--</td>
+                        <td>Oct 9</td>
+                        <td><span class="badge warning">160d</span></td>
+                    </tr>
+                    <!-- Oct 8 overdue (161d) -->
+                    <tr>
+                        <td>Plugin removal</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>--</td>
+                        <td>Oct 8</td>
+                        <td><span class="badge warning">161d</span></td>
+                    </tr>
+                    <!-- Sep 11 overdue (188d) -->
+                    <tr>
+                        <td>Product page optimization design</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Sanskriti</td>
+                        <td>--</td>
+                        <td>Sep 11</td>
+                        <td><span class="badge warning">188d</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -1547,14 +1697,8 @@
         <section class="section" data-section-id="thisweek">
             <h2 class="section-title">This Week Tasks (Mar 16-20)</h2>
 
-            <div class="alert-card" style="background: #fef2f2; border-left-color: var(--danger); margin-bottom: 20px;">
-                <strong style="color: var(--danger);">Completed since last refresh</strong>
-                <span class="badge success">HH Add sticky ATC</span> (Aanand + Sanskriti) and
-                <span class="badge success">BT Correct Upsell products LPs</span> (Sanskriti, 4h) both completed Mar 13.
-            </div>
-
             <h3 style="color: var(--danger); font-size: 18px; margin-bottom: 12px; margin-top: 24px;">
-                Bhaskar Roy — 21.4h scheduled / 16h capacity = 134% OVERLOADED
+                Bhaskar Roy -- 19.4h / 16h capacity = 121% <span class="badge danger">OVER</span>
             </h3>
             <table>
                 <thead>
@@ -1568,14 +1712,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Shoppable UGC setup</td>
-                        <td>Araceli</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>10h</td>
-                        <td>Mar 16</td>
-                        <td>--</td>
-                    </tr>
                     <tr>
                         <td>Collection page redesign</td>
                         <td>Goodys</td>
@@ -1584,30 +1720,14 @@
                         <td>Mar 20</td>
                         <td>Aanand</td>
                     </tr>
-                    <tr>
-                        <td>Lumara Systems audit</td>
-                        <td>CRO</td>
-                        <td><span class="priority-badge p-prospect">Prospect</span></td>
-                        <td>3h</td>
-                        <td>Mar 16</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>Tracking setup Eventbrite</td>
-                        <td>The Wag</td>
-                        <td><span class="priority-badge p-medium">Medium</span></td>
-                        <td>2h</td>
-                        <td>Mar 16</td>
-                        <td>Nayan</td>
-                    </tr>
                 </tbody>
             </table>
             <div style="font-size: 13px; color: var(--danger); margin-top: 8px;">
-                + 22 overdue tasks competing for Bhaskar's time (see Overdue section)
+                + 12 overdue tasks competing for Bhaskar's time (46.8h): Lumara audit 3h, Prostho 3h, LL New App 14.4h, Shoppable UGC 10h, Form Setup 4h, Copy brief 6h, etc. (see Overdue section)
             </div>
 
-            <h3 style="color: var(--success); font-size: 18px; margin-bottom: 12px; margin-top: 32px;">
-                Sanskriti Prabhakar — 0h new this week / 20h capacity
+            <h3 style="color: var(--warning); font-size: 18px; margin-bottom: 12px; margin-top: 32px;">
+                Sanskriti Prabhakar -- 0h new this week / 7.5h effective capacity (10-15h consumed by ad-hoc)
             </h3>
             <table>
                 <thead>
@@ -1622,13 +1742,13 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="6" style="text-align: center; color: var(--gray-600); font-style: italic;">No new tasks due this week. Focus on overdue backlog (LL New App 36h, Canine & Camel 5h, BT Pasture 3h, Easter banner 3.5h, etc.)</td>
+                        <td colspan="6" style="text-align: center; color: var(--gray-600); font-style: italic;">No new tasks due this week. Focus on overdue backlog (LL New App 21.6h, Canine & Camel 2.3h, BT Pasture 3h, BT Trackside 0.9h, etc.)</td>
                     </tr>
                 </tbody>
             </table>
 
             <h3 style="color: var(--success); font-size: 18px; margin-bottom: 12px; margin-top: 32px;">
-                Aanand Madhav — 9.6h scheduled / 32h capacity = 30%
+                Aanand Madhav -- 9.6h scheduled / 32h capacity = 30%
             </h3>
             <table>
                 <thead>
@@ -1653,7 +1773,7 @@
                 </tbody>
             </table>
             <div style="font-size: 13px; color: var(--warning); margin-top: 8px;">
-                + overdue: Canine & Camel (3h), BT Trackside (1h), Thrive Thankyou (3h), All Paws form (2h), The Wag LP (3h)
+                + overdue: Thankyou page (1.8h), Product descriptions (3h), Canine & Camel (2.8h), BT Trackside (1.1h), LP Baseball-max (4.8h), All Paws form (2h), The Wag LP (3h)
             </div>
         </section>
 
@@ -1673,7 +1793,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Mobile App build</td>
+                        <td>Mobile App build <span class="badge warning">In Progress</span></td>
                         <td>Goodys</td>
                         <td><span class="priority-badge p-high">High</span></td>
                         <td>Bhaskar + Aanand</td>
@@ -1690,6 +1810,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div style="font-size: 13px; color: var(--danger); margin-top: 8px;">
+                W13 is heavily loaded: Bhaskar 14.4h/16h (90%), Sanskriti 5.4h/7.5h effective (72%), Aanand 28.2h/32h (88%). All three members at high utilization with no flex.
+            </div>
         </section>
 
         <!-- Backlog -->
@@ -1707,68 +1830,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Completed homepage redesign <span class="badge" style="background:#fef3c7;color:#92400e;">80% done</span></td>
-                        <td>Bison Track</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Sanskriti</td>
-                        <td>2h remaining</td>
-                        <td>Mar 20</td>
-                    </tr>
-                    <tr>
-                        <td>LL - AB - Lulu drawer cart</td>
-                        <td>Lulu Liquor</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Sanskriti + Aanand</td>
-                        <td>2h</td>
-                        <td>Mar 23</td>
-                    </tr>
-                    <tr>
-                        <td>Optimize Mobile Hamburger Menu</td>
-                        <td>Heather's Heroes</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Aanand + Sanskriti</td>
-                        <td>4h</td>
-                        <td>Mar 30</td>
-                    </tr>
-                    <tr>
-                        <td>AA - Redesign Drawer cart</td>
-                        <td>Ancient Aura</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Sanskriti + Aanand</td>
-                        <td>8h</td>
-                        <td>Mar 30</td>
-                    </tr>
-                    <tr>
-                        <td>Redesign Product Images</td>
-                        <td>Bison Track</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Bhaskar + Sanskriti</td>
-                        <td>6h</td>
-                        <td>Apr 7</td>
-                    </tr>
-                    <tr>
-                        <td>PDP redesign new look</td>
-                        <td>Lulu Liquor</td>
-                        <td><span class="priority-badge p-high">High</span></td>
-                        <td>Sanskriti + Aanand</td>
-                        <td>25h</td>
-                        <td>Apr 7</td>
-                    </tr>
+                    <!-- Bhaskar Backlog (5 tasks, 23.6h) -->
                     <tr>
                         <td>Shoppable UGC</td>
                         <td>Gum of Gods</td>
                         <td><span class="priority-badge p-medium">Medium</span></td>
                         <td>Bhaskar</td>
                         <td>10h</td>
-                        <td>Apr 14</td>
-                    </tr>
-                    <tr>
-                        <td>Design baseballmax game landing</td>
-                        <td>Strat-O-Matic</td>
-                        <td><span class="priority-badge p-medium">Medium</span></td>
-                        <td>Bhaskar + Aanand</td>
-                        <td>8h</td>
                         <td>Apr 14</td>
                     </tr>
                     <tr>
@@ -1788,6 +1856,88 @@
                         <td>Apr 28</td>
                     </tr>
                     <tr>
+                        <td>Design baseballmax game landing</td>
+                        <td>Strat-O-Matic</td>
+                        <td><span class="priority-badge p-medium">Medium</span></td>
+                        <td>Bhaskar + Aanand</td>
+                        <td>8h</td>
+                        <td>Apr 14</td>
+                    </tr>
+                    <tr>
+                        <td>Redesign Product Images</td>
+                        <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Bhaskar + Sanskriti</td>
+                        <td>6h</td>
+                        <td>Apr 7</td>
+                    </tr>
+                    <!-- Sanskriti Backlog (9 tasks, 34.7h) -->
+                    <tr>
+                        <td>Completed homepage redesign <span class="badge" style="background:#fef3c7;color:#92400e;">80% done</span></td>
+                        <td>Bison Track</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti</td>
+                        <td>10h</td>
+                        <td>Mar 24</td>
+                    </tr>
+                    <tr>
+                        <td>LL Easter banner</td>
+                        <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti</td>
+                        <td>3.5h</td>
+                        <td>Mar 24</td>
+                    </tr>
+                    <tr>
+                        <td>AA - Redesign Drawer cart</td>
+                        <td>Ancient Aura</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti + Aanand</td>
+                        <td>8h</td>
+                        <td>Mar 30</td>
+                    </tr>
+                    <tr>
+                        <td>LL - AB - Lulu drawer cart</td>
+                        <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti + Aanand</td>
+                        <td>2h</td>
+                        <td>Mar 23</td>
+                    </tr>
+                    <tr>
+                        <td>PDP redesign new look</td>
+                        <td>Lulu Liquor</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Sanskriti + Aanand</td>
+                        <td>25h</td>
+                        <td>Apr 7</td>
+                    </tr>
+                    <tr>
+                        <td>Optimize Mobile Hamburger Menu</td>
+                        <td>Heather's Heroes</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Aanand + Sanskriti</td>
+                        <td>4h</td>
+                        <td>Mar 30</td>
+                    </tr>
+                    <tr>
+                        <td>AA Train Client Tolstoy</td>
+                        <td>Ancient Aura</td>
+                        <td><span class="priority-badge p-high">High</span></td>
+                        <td>Aanand + Sanskriti</td>
+                        <td>--</td>
+                        <td>Apr 7</td>
+                    </tr>
+                    <tr>
+                        <td>Design</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Sanskriti</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <!-- Aanand Backlog (11 tasks, 58.3h) -->
+                    <tr>
                         <td>Custom App lead magnet</td>
                         <td>Pest Share</td>
                         <td><span class="priority-badge p-low">Low</span></td>
@@ -1795,13 +1945,29 @@
                         <td>20h</td>
                         <td>May 4</td>
                     </tr>
+                    <tr>
+                        <td>Dev completed</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>Dev LP Optimization done</td>
+                        <td>--</td>
+                        <td><span class="priority-badge p-low">Low</span></td>
+                        <td>Aanand</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
 
         <!-- Estimate Evaluation -->
         <section class="section" data-section-id="estimates">
-            <h2 class="section-title">Estimate Evaluation Summary <span class="tip" data-tip="Estimates vs actual complexity + Aanand's 20% revision buffer. Under-estimated = total actual hours exceed estimate (from complexity or buffer). Includes 7 shared tasks where Aanand's increased share makes the task exceed its estimate.">?</span></h2>
+            <h2 class="section-title">Estimate Evaluation Summary <span class="tip" data-tip="Estimates vs actual complexity + Aanand's 20% revision buffer. Under-estimated = total actual hours exceed estimate (from complexity or buffer). Includes shared tasks where Aanand's increased share makes the task exceed its estimate.">?</span></h2>
             <div class="metric-cards">
                 <div class="metric-card green">
                     <div class="metric-number">16</div>
@@ -1878,49 +2044,49 @@
                         <td>36h</td>
                         <td>40.3h</td>
                         <td><span class="badge danger">+4.3h</span></td>
-                        <td>Aanand 60%→72%</td>
+                        <td>Aanand 60%->72%</td>
                     </tr>
                     <tr>
                         <td>PDP redesign new look</td>
                         <td>25h</td>
                         <td>27.8h</td>
                         <td><span class="badge danger">+2.8h</span></td>
-                        <td>Aanand 55%→66%</td>
+                        <td>Aanand 55%->66%</td>
                     </tr>
                     <tr>
                         <td>Collection page redesign</td>
                         <td>16h</td>
                         <td>17.9h</td>
                         <td><span class="badge danger">+1.9h</span></td>
-                        <td>Aanand 60%→72%</td>
+                        <td>Aanand 60%->72%</td>
                     </tr>
                     <tr>
                         <td>Symbol collection pages</td>
                         <td>12h</td>
                         <td>13.3h</td>
                         <td><span class="badge danger">+1.3h</span></td>
-                        <td>Aanand 55%→66%</td>
+                        <td>Aanand 55%->66%</td>
                     </tr>
                     <tr>
                         <td>Bundle Redesign</td>
                         <td>10h</td>
                         <td>11.2h</td>
                         <td><span class="badge danger">+1.2h</span></td>
-                        <td>Aanand 60%→72%</td>
+                        <td>Aanand 60%->72%</td>
                     </tr>
                     <tr>
                         <td>PDP Redesign sub box</td>
                         <td>10h</td>
                         <td>11.2h</td>
                         <td><span class="badge danger">+1.2h</span></td>
-                        <td>Aanand 60%→72%</td>
+                        <td>Aanand 60%->72%</td>
                     </tr>
                     <tr>
                         <td>LP Baseball-max</td>
                         <td>8h</td>
                         <td>9h</td>
                         <td><span class="badge warning">+1h</span></td>
-                        <td>Aanand 60%→72%</td>
+                        <td>Aanand 60%->72%</td>
                     </tr>
                 </tbody>
             </table>
@@ -1963,22 +2129,22 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>The Wag LP (Grooming + General)</td>
-                        <td>Aanand</td>
-                        <td>16-24h</td>
-                        <td><span class="badge danger">High — full LP, no estimate</span></td>
+                        <td>Tracking setup Eventbrite</td>
+                        <td>Bhaskar</td>
+                        <td>2-3h</td>
+                        <td><span class="badge warning">Medium -- tracking setup</span></td>
                     </tr>
                     <tr>
                         <td>Daytona Banner on Homepage</td>
                         <td>Bhaskar</td>
                         <td>2-3h</td>
-                        <td><span class="badge gray">Low — may be waiting on client</span></td>
+                        <td><span class="badge gray">Low -- may be waiting on client</span></td>
                     </tr>
                     <tr>
                         <td>AB test shoppable UGC (Ancient Aura)</td>
                         <td>Sanskriti</td>
                         <td>3-5h</td>
-                        <td><span class="badge warning">Medium — A/B test setup</span></td>
+                        <td><span class="badge warning">Medium -- A/B test setup</span></td>
                     </tr>
                     <tr>
                         <td>Debunking LP (Heather's)</td>
@@ -1992,7 +2158,7 @@
 
         <!-- Shared Tasks -->
         <section class="section" data-section-id="shared">
-            <h2 class="section-title">Shared Tasks Overview <span class="tip" data-tip="Hours split by role: PM+Dev = 40/60, CRO+Dev = 45/55, CRO+PM = 60/40. Each person's share appears in their individual task tables with the % shown.">?</span></h2>
+            <h2 class="section-title">Shared Tasks Overview (20 total) <span class="tip" data-tip="Hours split by role: PM+Dev = 40/60, CRO+Dev = 45/55, CRO+PM = 60/40. Each person's share appears in their individual task tables with the % shown.">?</span></h2>
             <table>
                 <thead>
                     <tr>
@@ -2086,7 +2252,7 @@
                         <td>Sanskriti + Aanand</td>
                         <td>5h</td>
                         <td>Mar 9</td>
-                        <td><span class="badge warning">In Progress</span></td>
+                        <td><span class="badge" style="background:#dbeafe;color:#1e40af;">Approval Needed</span></td>
                     </tr>
                     <tr>
                         <td>Optimize Mobile Hamburger Menu</td>
@@ -2094,6 +2260,20 @@
                         <td>4h</td>
                         <td>--</td>
                         <td><span class="badge gray">To Do</span></td>
+                    </tr>
+                    <tr>
+                        <td>PDPs updated BYT page</td>
+                        <td>Bhaskar + Aanand</td>
+                        <td>4h</td>
+                        <td>Mar 10</td>
+                        <td><span class="badge warning">In Progress</span></td>
+                    </tr>
+                    <tr>
+                        <td>New Thankyou page setup</td>
+                        <td>Aanand + Bhaskar</td>
+                        <td>3h</td>
+                        <td>Mar 6</td>
+                        <td><span class="badge warning">In Progress</span></td>
                     </tr>
                     <tr>
                         <td>BT - Thor2.0 PDP Redesign</td>
@@ -2107,7 +2287,7 @@
                         <td>Sanskriti + Aanand</td>
                         <td>2h</td>
                         <td>--</td>
-                        <td><span class="badge warning">In Progress</span></td>
+                        <td><span class="badge warning">Waiting on Client</span></td>
                     </tr>
                     <tr>
                         <td>BT - Trackside Event LP</td>
@@ -2115,6 +2295,20 @@
                         <td>2h</td>
                         <td>Mar 9</td>
                         <td><span class="badge warning">In Progress</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cinnamon Bun Crunch PDPs</td>
+                        <td>Bhaskar + Aanand</td>
+                        <td>1h</td>
+                        <td>Mar 10</td>
+                        <td><span class="badge warning">In Progress</span></td>
+                    </tr>
+                    <tr>
+                        <td>AA Train Client Tolstoy</td>
+                        <td>Aanand + Sanskriti</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><span class="badge gray">To Do</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -2125,28 +2319,31 @@
             <h2 class="section-title">Recommendations</h2>
             <div class="recommendations">
                 <div class="rec-card">
-                    <h3>Immediate (This Weekend)</h3>
+                    <h3>Immediate (This Week)</h3>
                     <ul>
-                        <li>Close or update 3 "test monitor" tasks to clear overdue list</li>
-                        <li>Get status on The Wag LP (5 weeks overdue) - client communication needed</li>
-                        <li>Sanskriti + Aanand prioritize closing Mar 9 deadline tasks</li>
+                        <li>Close or update legacy overdue tasks (Oct-Nov 2025): Code sanitization, Plugin removal, Dev completed -- 6 tasks with no estimates clogging the backlog</li>
+                        <li>Get status on The Wag LP (44 days overdue) -- client communication needed</li>
+                        <li>Bhaskar: knock out prospect audits first (Lumara 3h, Prostho 3h) -- $18k MRR potential</li>
+                        <li>Aanand: close Thrive Thankyou page (1.8h, 12d overdue) and product descriptions (3h) -- quick wins to reduce overdue count</li>
                     </ul>
                 </div>
                 <div class="rec-card">
-                    <h3>Next Week Priorities</h3>
+                    <h3>Next Week (W13) Priorities</h3>
                     <ul>
-                        <li>Push LL New App deadline to Mar 21+ (impossible to hit Mar 12)</li>
-                        <li>Bhaskar: Focus on Copy brief (6h), PDPs (5h), Google Ads (3h) = 14h max</li>
-                        <li>Sanskriti: Beauty LP (4.5h), Pasture Hero (3h), plus LL App share</li>
-                        <li>Aanand: Descriptions (3h), Baseball-max (4h), overdue items (5h)</li>
+                        <li>W13 is loaded: Bhaskar 90%, Sanskriti 72%, Aanand 88% -- avoid adding any new tasks</li>
+                        <li>Push LL New App deadline to Mar 28+ (already 6d overdue, impossible to hit Mar 12)</li>
+                        <li>Sanskriti: Focus on symbol collection pages (5.4h) + closing BT Pasture (3h) and Trackside (0.9h) -- but ad-hoc will consume most of her week</li>
+                        <li>Aanand: Mobile App build (21.6h) + symbol collection (6.6h) = 28.2h -- leaves only 3.8h for overdue items</li>
                     </ul>
                 </div>
                 <div class="rec-card">
                     <h3>Structural Changes</h3>
                     <ul>
-                        <li>Build ad-hoc buffer: Target 5–8h/week team reserve by deferring low-priority backlog items (Gum of Gods 30h, Pest Share app 20h) to April</li>
-                        <li>Bhaskar needs to delegate more — 78h solo tasks at 16h/week capacity unsustainable and leaves zero ad-hoc room</li>
-                        <li>Add time estimates to 4 tasks missing them</li>
+                        <li>Sanskriti's ad-hoc reality (10-15h/week) makes her effectively a 7.5h/week resource for planned work. Adjust all sprint planning and deadlines accordingly. Her 78.3h backlog needs 11 weeks, not 4</li>
+                        <li>Build ad-hoc buffer: Target 5-8h/week team reserve by deferring low-priority backlog (Gum of Gods 30h, Pest Share app 20h) to May</li>
+                        <li>Bhaskar needs to delegate more -- 91.2h total at 16h/week = 6 weeks with zero ad-hoc room</li>
+                        <li>Add time estimates to tasks missing them (Tracking Eventbrite, Daytona Banner, AB test UGC, Debunking LP)</li>
+                        <li>Purge Aanand's legacy overdue (Oct-Nov 2025) -- 8 tasks with no estimates that distort capacity planning</li>
                         <li>Institute weekly Monday capacity check: planned hours + expected ad-hoc load vs. available execution hours</li>
                     </ul>
                 </div>
@@ -2154,7 +2351,7 @@
         </section>
 
         <footer>
-            Dashboard generated by YAMU PM System | Data source: ClickUp | Last synced: March 12, 2026 (6:15 PM IST)
+            Dashboard generated by YAMU PM System | Data source: ClickUp | Last synced: 18 Mar 2026
         </footer>
     </div>
 
@@ -2167,7 +2364,7 @@
 
             rings.forEach((ring, index) => {
                 const circle = ring.querySelector('.fg');
-                const percentages = [147, 93, 112]; // Bhaskar, Sanskriti, Aanand (Aanand incl. 20% revision buffer)
+                const percentages = [143, 261, 110]; // Bhaskar, Sanskriti (effective 7.5h/wk after ad-hoc), Aanand (incl. 20% revision buffer)
                 const percent = percentages[index];
 
                 circle.style.strokeDasharray = circumference;
