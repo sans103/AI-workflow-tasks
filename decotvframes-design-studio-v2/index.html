@@ -1682,24 +1682,20 @@
       // ============================================
       // VISUAL PANEL — Crossfade
       // ============================================
-      var isTransitioning = false;
-
       function updateVisual(src, label, isProduct) {
-        if (isTransitioning) return;
-
         var img1 = document.getElementById('visualImg1');
         var img2 = document.getElementById('visualImg2');
         var active = img1.classList.contains('active') ? img1 : img2;
         var next = active === img1 ? img2 : img1;
         var labelEl = document.getElementById('visualLabel');
 
-        // Skip if same image
-        if (active.src && active.src.indexOf(src) !== -1) {
+        // Skip if already showing this image (compare filename only)
+        var srcFile = src.split('/').pop();
+        var activeFile = (active.getAttribute('src') || '').split('/').pop();
+        if (srcFile && srcFile === activeFile) {
           if (labelEl && label) labelEl.textContent = label;
           return;
         }
-
-        isTransitioning = true;
 
         // Set product mode class
         if (isProduct) {
@@ -1708,30 +1704,21 @@
           next.classList.remove('product-mode');
         }
 
-        next.src = src;
-        next.onload = function () {
-          active.classList.remove('active');
-          next.classList.add('active');
-          if (labelEl) {
-            labelEl.textContent = label || '';
-            if (isProduct) {
-              labelEl.classList.add('product');
-            } else {
-              labelEl.classList.remove('product');
-            }
-          }
-          isTransitioning = false;
-        };
-
-        // Fallback if image already cached
-        if (next.complete && next.naturalWidth > 0) {
+        function doSwap() {
           active.classList.remove('active');
           next.classList.add('active');
           if (labelEl) {
             labelEl.textContent = label || '';
             labelEl.classList.toggle('product', !!isProduct);
           }
-          isTransitioning = false;
+        }
+
+        next.onload = doSwap;
+        next.src = src;
+
+        // Handle already-cached images
+        if (next.complete && next.naturalWidth > 0) {
+          doSwap();
         }
       }
 
@@ -1761,11 +1748,9 @@
         state.collectionPrice = parseInt(card.dataset.basePrice);
 
         // Update left panel to show this collection in the selected room
-        if (state.room && collectionRoomImages[state.room]) {
-          var collImg = collectionRoomImages[state.room][state.collection];
-          if (collImg) {
-            updateVisual(collImg, state.collection + ' \u2014 ' + state.room, false);
-          }
+        var room = state.room || 'Living Room';
+        if (collectionRoomImages[room] && collectionRoomImages[room][state.collection]) {
+          updateVisual(collectionRoomImages[room][state.collection], state.collection + ' — ' + room, false);
         }
 
         markStepComplete(2);
