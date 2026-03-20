@@ -183,65 +183,6 @@
             color: var(--gray-600);
         }
 
-        .adhoc-buffer {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px dashed var(--gray-300);
-        }
-
-        .adhoc-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 6px;
-        }
-
-        .adhoc-bar-container {
-            height: 8px;
-            background: var(--gray-100);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .adhoc-bar-planned {
-            height: 100%;
-            border-radius: 4px 0 0 4px;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        .adhoc-bar-planned.over { background: var(--danger); }
-        .adhoc-bar-planned.tight { background: var(--warning); }
-        .adhoc-bar-planned.ok { background: var(--success); }
-
-        .adhoc-range-marker {
-            position: absolute;
-            top: -2px;
-            height: 12px;
-            border-left: 2px dashed var(--gray-600);
-            opacity: 0.5;
-        }
-
-        .adhoc-note {
-            font-size: 11px;
-            color: var(--gray-600);
-            margin-top: 4px;
-        }
-
-        .adhoc-badge {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .adhoc-badge.none { background: #fee2e2; color: var(--danger); }
-        .adhoc-badge.minimal { background: #fef3c7; color: #92400e; }
-        .adhoc-badge.available { background: #d1fae5; color: #065f46; }
-
         .alert-card {
             background: #fef2f2;
             border-left: 4px solid var(--danger);
@@ -706,7 +647,7 @@
 
         <!-- Team Capacity Cards -->
         <section class="section" data-section-id="capacity">
-            <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Each member reserves 6h/week for ad-hoc tasks. Planned work = Execution - 6h ad-hoc. Utilization = Total remaining hours / (Planned capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev). ">?</span></h2>
+            <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Planned work capacity per week. Utilization = Total remaining hours / (Planned capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev).">?</span></h2>
             <div class="cards">
                 <div class="card">
                     <h3>Bhaskar Roy</h3>
@@ -716,21 +657,7 @@
                         <div><span>Calls:</span><span>12h/week</span></div>
                         <div><span>Comms:</span><span>8h/week</span></div>
                         <div><span>Execution:</span><strong>20h/week</strong></div>
-                        <div style="color: var(--warning); font-size: 12px; margin-top: 4px;"><span>Ad-hoc reserve:</span><strong>6h/week</strong></div>
                         <div style="color: var(--success); font-size: 12px;"><span>Planned work:</span><strong>14h/week</strong></div>
-                    </div>
-                    <div class="adhoc-buffer">
-                        <div class="adhoc-label">
-                            <span>Ad-hoc reserve:</span>
-                            <strong style="color: var(--warning);">6h/week</strong>
-                        </div>
-                        <div class="adhoc-bar-container">
-                            <div class="adhoc-bar-planned tight" style="width: 70%"></div>
-                        </div>
-                        <div class="adhoc-note">
-                            <span class="adhoc-badge minimal">Reserved</span>
-                            14h planned / 20h exec -- 6h reserved for ad-hoc
-                        </div>
                     </div>
                     <div class="progress-ring-container">
                         <div class="progress-ring overloaded">
@@ -756,21 +683,7 @@
                         <div><span>Calls:</span><span>12h/week</span></div>
                         <div><span>Comms:</span><span>8h/week</span></div>
                         <div><span>Execution:</span><strong>20h/week</strong></div>
-                        <div style="color: var(--warning); font-size: 12px; margin-top: 4px;"><span>Ad-hoc reserve:</span><strong>6h/week</strong></div>
                         <div style="color: var(--success); font-size: 12px;"><span>Planned work:</span><strong>14h/week</strong></div>
-                    </div>
-                    <div class="adhoc-buffer">
-                        <div class="adhoc-label">
-                            <span>Ad-hoc reserve:</span>
-                            <strong style="color: var(--warning);">6h/week</strong>
-                        </div>
-                        <div class="adhoc-bar-container">
-                            <div class="adhoc-bar-planned tight" style="width: 70%"></div>
-                        </div>
-                        <div class="adhoc-note">
-                            <span class="adhoc-badge minimal">Reserved</span>
-                            14h planned / 20h exec -- 6h reserved for ad-hoc
-                        </div>
                     </div>
                     <div class="progress-ring-container">
                         <div class="progress-ring overloaded">
@@ -796,21 +709,7 @@
                         <div><span>Calls:</span><span>4h/week</span></div>
                         <div><span>Comms:</span><span>4h/week</span></div>
                         <div><span>Execution:</span><strong>32h/week</strong></div>
-                        <div style="color: var(--warning); font-size: 12px; margin-top: 4px;"><span>Ad-hoc reserve:</span><strong>6h/week</strong></div>
                         <div style="color: var(--success); font-size: 12px;"><span>Planned work:</span><strong>26h/week</strong></div>
-                    </div>
-                    <div class="adhoc-buffer">
-                        <div class="adhoc-label">
-                            <span>Ad-hoc reserve:</span>
-                            <strong style="color: var(--warning);">6h/week</strong>
-                        </div>
-                        <div class="adhoc-bar-container">
-                            <div class="adhoc-bar-planned tight" style="width: 81%"></div>
-                        </div>
-                        <div class="adhoc-note">
-                            <span class="adhoc-badge minimal">Reserved</span>
-                            26h planned / 32h exec -- 6h reserved for ad-hoc
-                        </div>
                     </div>
                     <div class="progress-ring-container">
                         <div class="progress-ring overloaded">
@@ -1378,7 +1277,7 @@
 
         <!-- Weekly Utilization Forecast -->
         <section class="section" data-section-id="utilization">
-            <h2 class="section-title">Weekly Utilization Forecast <span class="tip" data-tip="Bar % = Hours scheduled that week / Planned capacity (not execution capacity). Planned capacity = Execution - 6h ad-hoc reserve per person. Bhaskar: 14h/wk, Sanskriti: 14h/wk, Aanand: 26h/wk.">?</span></h2>
+            <h2 class="section-title">Weekly Utilization Forecast <span class="tip" data-tip="Bar % = Hours scheduled that week / Planned capacity. Bhaskar: 14h/wk, Sanskriti: 14h/wk, Aanand: 26h/wk. Includes completed tasks, in-progress work, and backlog with suggested dates.">?</span></h2>
             <div class="utilization-chart">
                 <div class="week-row">
                     <div class="week-header" style="background: var(--accent); color: white; padding: 8px 12px; border-radius: 4px;">W12 (Mar 16-20, 2026) -- CURRENT</div>
@@ -2483,7 +2382,7 @@
                 <div class="rec-card">
                     <h3>Immediate (This Week)</h3>
                     <ul>
-                        <li>Bhaskar: at 266% this week -- must triage ruthlessly. Snyder Golf (2h) and Eventbrite (2h) are quick wins for today. Collection redesign and Baseballmax are in-progress shared tasks</li>
+                        <li>Bhaskar: at 190% this week -- must triage ruthlessly. Snyder Golf (2h) and Eventbrite (2h) are quick wins for today. Collection redesign and Baseballmax are in-progress shared tasks</li>
                         <li>Bhaskar: knock out prospect audits (Prosthocosmeticdentistry 3h, Lumara 3h) -- $18k MRR potential. Both are quick wins that move to sales</li>
                         <li>Aanand: Train Client Tolstoy moved to W13 (Mar 23). Focus on Collection redesign + Baseballmax today</li>
                         <li>Sanskriti: push LL New App past 70% approval milestone. Easter banner is seasonal -- don't miss the window</li>
@@ -2501,11 +2400,10 @@
                 <div class="rec-card">
                     <h3>Structural Changes</h3>
                     <ul>
-                        <li>NEW: 6h/person ad-hoc reserve (18h/week team total) now covers typical 3-15h demand. Major improvement from zero buffer</li>
-                        <li>Planned capacity: Bhaskar 14h, Sanskriti 14h, Aanand 26h = 54h/week team. Burn rates now realistic</li>
-                        <li>Bhaskar: 74.2h total at 14h/week = 5.3 weeks to clear. ICAP26 added (1.5h). Delegation still needed for prospect audits</li>
-                        <li>Aanand: 143h total at 26h/week = 5.5 weeks. Revision buffer removed. Lil Advents + OOS fix + BT PDP increase added</li>
-                        <li>Sanskriti: 63.2h at 14h/week = 4.5 weeks. Up from 58h. BT PDP template doubled (5h to 12h) adds 3.15h to her queue</li>
+                        <li>Planned capacity: Bhaskar 14h, Sanskriti 14h, Aanand 26h = 54h/week team</li>
+                        <li>Bhaskar: 74.2h total at 14h/week = 5.3 weeks to clear. Delegation needed for prospect audits</li>
+                        <li>Aanand: 143h total at 26h/week = 5.5 weeks. Lil Advents + OOS fix + BT PDP increase added</li>
+                        <li>Sanskriti: 63.2h at 14h/week = 4.5 weeks. BT PDP template doubled (5h to 12h) adds 3.15h to her queue</li>
                         <li>12 tasks completed this week (35.5h cleared) -- strong execution. Keep momentum on overdue reduction</li>
                     </ul>
                 </div>
@@ -2513,7 +2411,7 @@
         </section>
 
         <footer>
-            Dashboard generated by YAMU PM System | Data source: ClickUp | Last synced: 20 Mar 2026 (ClickUp refresh #2)
+            Dashboard generated by YAMU PM System | Data source: ClickUp | Last synced: 21 Mar 2026 (ClickUp refresh #3)
         </footer>
     </div>
 
