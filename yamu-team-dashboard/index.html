@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         :root {
             --title: #1a365d;
             --body: #374151;
@@ -67,6 +71,7 @@
 
         .section {
             margin-bottom: 48px;
+            scroll-margin-top: 52px;
         }
 
         .section-title {
@@ -614,6 +619,56 @@
         .tip:hover::after {
             opacity: 1;
         }
+
+        /* Sticky nav bar */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 8px;
+            margin: 0 -20px 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .sticky-nav::-webkit-scrollbar { display: none; }
+        .sticky-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            min-width: max-content;
+        }
+        .sticky-nav a {
+            display: block;
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .sticky-nav a:hover {
+            color: var(--accent);
+        }
+        .sticky-nav a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .sticky-nav {
+                margin: 0 -20px 16px;
+            }
+            .sticky-nav a {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -623,6 +678,26 @@
             <div class="subtitle">CRO, Design & Development Team</div>
             <div class="meta">Last Updated: March 23, 2026 (ClickUp refresh #5) | Drag section headers to reorder <button class="reset-order" onclick="resetSectionOrder()">Reset order</button></div>
         </header>
+
+        <nav class="sticky-nav" id="stickyNav">
+            <ul>
+                <li><a href="#sec-capacity">Capacity</a></li>
+                <li><a href="#sec-completed-this-week">Completed</a></li>
+                <li><a href="#sec-completed-last-week">Last Week</a></li>
+                <li><a href="#sec-pending-approval">Approval</a></li>
+                <li><a href="#sec-redflags">Red Flags</a></li>
+                <li><a href="#sec-priority-recs">Priorities</a></li>
+                <li><a href="#sec-utilization">Utilization</a></li>
+                <li><a href="#sec-overdue">Overdue</a></li>
+                <li><a href="#sec-thisweek">This Week</a></li>
+                <li><a href="#sec-upcoming">Upcoming</a></li>
+                <li><a href="#sec-backlog">Backlog</a></li>
+                <li><a href="#sec-estimates">Estimates</a></li>
+                <li><a href="#sec-shared">Shared Tasks</a></li>
+                <li><a href="#sec-recommendations">Recs</a></li>
+                <li><a href="#sec-client-view">Clients</a></li>
+            </ul>
+        </nav>
 
         <!-- Status Completion Key Legend -->
         <section class="section" data-section-id="legend" style="margin-bottom: 24px;">
@@ -646,7 +721,7 @@
         </section>
 
         <!-- Team Capacity Cards -->
-        <section class="section" data-section-id="capacity">
+        <section class="section" data-section-id="capacity" id="sec-capacity">
             <h2 class="section-title">Team Capacity Overview <span class="tip" data-tip="Execution = Contract - Calls - Comms. Planned work capacity per week. Utilization = Total remaining hours / (Planned capacity x 4 weeks). Shared tasks split by role ratio (e.g. 40/60 for PM+Dev).">?</span></h2>
             <div class="cards">
                 <div class="card">
@@ -730,7 +805,7 @@
         </section>
 
         <!-- Completed This Week -->
-        <section class="section" data-section-id="completed-this-week">
+        <section class="section" data-section-id="completed-this-week" id="sec-completed-this-week">
             <h2 class="section-title" style="border-bottom-color: var(--success);">Completed This Week (Mar 21-27)</h2>
             <div style="background: #d1fae5; border: 1px solid var(--success); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: 14px; line-height: 1.6;">
                 <strong style="color: #065f46;">2 tasks completed</strong>
@@ -759,7 +834,7 @@
         </section>
 
         <!-- Completed Last Week -->
-        <section class="section" data-section-id="completed-last-week">
+        <section class="section" data-section-id="completed-last-week" id="sec-completed-last-week">
             <h2 class="section-title" style="border-bottom-color: var(--gray-300);">Completed Last Week (Mar 14-20)</h2>
             <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: 14px; line-height: 1.6;">
                 <strong style="color: var(--gray-600);">12 tasks completed</strong>
@@ -838,7 +913,7 @@
         </section>
 
         <!-- Pending Approval -->
-        <section class="section" data-section-id="pending-approval">
+        <section class="section" data-section-id="pending-approval" id="sec-pending-approval">
             <h2 class="section-title" style="border-bottom-color: #f59e0b;">Pending Approval (7 tasks, ~27.3h total est.) <span class="tip" data-tip="Tasks awaiting internal approval (70% done, 30% remains) or client approval (80% done, 20% remains). These are nearly complete but blocked on sign-off. Remaining hours shown.">?</span></h2>
             <div style="background: #fef3c7; border: 1px solid var(--warning); border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: 14px; line-height: 1.6;">
                 <strong style="color: #92400e;">7 tasks nearly done but blocked on approval -- 27.3h remaining across all</strong>
@@ -930,7 +1005,7 @@
         </section>
 
         <!-- Red Flags -->
-        <section class="section" data-section-id="redflags">
+        <section class="section" data-section-id="redflags" id="sec-redflags">
             <h2 class="section-title">Red Flags</h2>
             <div class="alert-card">
                 <strong>14 Active Overdue Tasks (excluding test monitors)</strong>
@@ -971,7 +1046,7 @@
         </section>
 
         <!-- Priority Recommendations -->
-        <section class="section" data-section-id="priority-recs">
+        <section class="section" data-section-id="priority-recs" id="sec-priority-recs">
             <h2 class="section-title">Priority Recommendations <span class="tip" data-tip="Tasks ranked by dollar impact of delay, not just urgency. Framework: (1) New business/$6k MRR prospects first, (2) Revenue-blocking issues on top clients, (3) Strategic projects for high-retainer clients, (4) Optimization for high clients, (5) Medium clients, (6) Low clients where churn = minimal Yamu impact.">?</span></h2>
 
             <div style="background: #f0f9ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 16px; margin-bottom: 24px; font-size: 13px; line-height: 1.6;">
@@ -1286,7 +1361,7 @@
         </section>
 
         <!-- Weekly Utilization Forecast -->
-        <section class="section" data-section-id="utilization">
+        <section class="section" data-section-id="utilization" id="sec-utilization">
             <h2 class="section-title">Weekly Utilization Forecast <span class="tip" data-tip="Bar % = Hours scheduled that week / Planned capacity. Bhaskar: 14h/wk, Sanskriti: 14h/wk, Aanand: 26h/wk. Includes completed tasks, in-progress work, and backlog with suggested dates.">?</span></h2>
             <div class="utilization-chart">
                 <div class="week-row">
@@ -1431,7 +1506,7 @@
         </section>
 
         <!-- Overdue Tasks -->
-        <section class="section" data-section-id="overdue">
+        <section class="section" data-section-id="overdue" id="sec-overdue">
             <h2 class="section-title">Overdue Tasks (14 total, sorted by days overdue) <span class="tip" data-tip="Suggested new due dates are calculated based on each assignee's planned capacity (Bhaskar 14h/wk, Sanskriti 14h/wk, Aanand 26h/wk) and priority order. Dates account for current week load and existing commitments.">?</span></h2>
             <table>
                 <thead class="danger">
@@ -1598,7 +1673,7 @@
         </section>
 
         <!-- This Week Tasks -->
-        <section class="section" data-section-id="thisweek">
+        <section class="section" data-section-id="thisweek" id="sec-thisweek">
             <h2 class="section-title">This Week Tasks (W13: Mar 23-27)</h2>
 
             <h3 style="color: var(--danger); font-size: 18px; margin-bottom: 12px; margin-top: 24px;">
@@ -1785,7 +1860,7 @@
         </section>
 
         <!-- Upcoming Tasks -->
-        <section class="section" data-section-id="upcoming">
+        <section class="section" data-section-id="upcoming" id="sec-upcoming">
             <h2 class="section-title">Upcoming (Mar 28+)</h2>
 
             <h3 style="color: var(--title); font-size: 16px; margin-bottom: 12px;">W14 (Mar 28-Apr 3) -- B: 129%, S: 81%, A: 103%</h3>
@@ -1849,7 +1924,7 @@
         </section>
 
         <!-- Backlog -->
-        <section class="section" data-section-id="backlog">
+        <section class="section" data-section-id="backlog" id="sec-backlog">
             <h2 class="section-title">Backlog (no due date, suggested dates based on planned capacity) <span class="tip" data-tip="Planned capacity: Bhaskar 14h/wk, Sanskriti 14h/wk, Aanand 26h/wk. Suggested dates based on when capacity opens after scheduled and overdue tasks.">?</span></h2>
             <table>
                 <thead class="gray">
@@ -2048,7 +2123,7 @@
         </section>
 
         <!-- Estimate Evaluation -->
-        <section class="section" data-section-id="estimates">
+        <section class="section" data-section-id="estimates" id="sec-estimates">
             <h2 class="section-title">Estimate Evaluation Summary <span class="tip" data-tip="Estimates vs actual complexity. Under-estimated = total actual hours exceed estimate due to scope or complexity.">?</span></h2>
             <div class="metric-cards">
                 <div class="metric-card green">
@@ -2184,7 +2259,7 @@
         </section>
 
         <!-- Shared Tasks -->
-        <section class="section" data-section-id="shared">
+        <section class="section" data-section-id="shared" id="sec-shared">
             <h2 class="section-title">Shared Tasks Overview <span class="tip" data-tip="Hours split by role: PM+Dev = 40/60, CRO+Dev = 45/55, CRO+PM = 60/40. Each person's share appears in their individual task tables with the % shown.">?</span></h2>
             <table>
                 <thead>
@@ -2349,7 +2424,7 @@
         </section>
 
         <!-- Recommendations -->
-        <section class="section" data-section-id="recommendations">
+        <section class="section" data-section-id="recommendations" id="sec-recommendations">
             <h2 class="section-title">Recommendations</h2>
             <div class="recommendations">
                 <div class="rec-card">
@@ -2384,7 +2459,7 @@
         </section>
 
         <!-- Client Priority View -->
-        <section class="section" data-section-id="client-view">
+        <section class="section" data-section-id="client-view" id="sec-client-view">
             <h2 class="section-title">Client Priority View <span class="tip" data-tip="All active tasks grouped by client, sorted by account priority tier. Total hours = remaining hours across all tasks for that client. Helps identify which clients have the most work pending.">?</span></h2>
 
             <!-- HIGH PRIORITY CLIENTS -->
@@ -2776,6 +2851,32 @@
             localStorage.removeItem(STORAGE_KEY);
             location.reload();
         }
+
+        // Sticky nav scroll-spy
+        (function() {
+            const navLinks = document.querySelectorAll('.sticky-nav a');
+            const sections = [];
+            navLinks.forEach(function(link) {
+                const id = link.getAttribute('href').slice(1);
+                const el = document.getElementById(id);
+                if (el) sections.push({ id: id, el: el, link: link });
+            });
+
+            function updateActive() {
+                const scrollY = window.scrollY + 80;
+                let current = sections[0];
+                for (let i = 0; i < sections.length; i++) {
+                    if (sections[i].el.offsetTop <= scrollY) {
+                        current = sections[i];
+                    }
+                }
+                navLinks.forEach(function(l) { l.classList.remove('active'); });
+                if (current) current.link.classList.add('active');
+            }
+
+            window.addEventListener('scroll', updateActive, { passive: true });
+            updateActive();
+        })();
     </script>
 </body>
 </html>
