@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CastleFit guided stretching plans for CastleFlexx - relief, routines, and beginner programs.">
+  <title>CastleFit Upsell Section — Visual</title>
+  <style>
+    /* ========================================
+       CastleFit Upsell Section — Visual V2
+       Image-rich version with lifestyle photos
+       ======================================== */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #1a1a1a;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---- Section wrapper ---- */
+    .castlefit-upsell {
+      background: #1a1a1a;
+      padding: 88px 24px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Inter', Arial, sans-serif;
+      color: #ffffff;
+    }
+
+    .castlefit-upsell__inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    /* ---- Label chip ---- */
+    .castlefit-upsell__label {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .castlefit-upsell__label span {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #c8d8e4;
+      background: rgba(200, 216, 228, 0.1);
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    /* ---- Header ---- */
+    .castlefit-upsell__heading {
+      text-align: center;
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #ffffff;
+      margin-bottom: 16px;
+      letter-spacing: -0.025em;
+    }
+
+    .castlefit-upsell__subhead {
+      text-align: center;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #a0a0a0;
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+
+    /* ---- Cards grid ---- */
+    .castlefit-upsell__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .castlefit-upsell__card {
+      background: #222222;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .castlefit-upsell__card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Card image */
+    .castlefit-upsell__card-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+
+    .castlefit-upsell__card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .castlefit-upsell__card:hover .castlefit-upsell__card-img img {
+      transform: scale(1.04);
+    }
+
+    /* Gradient overlay on image bottom for smooth text transition */
+    .castlefit-upsell__card-img::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(to top, #222222 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Card body */
+    .castlefit-upsell__card-body {
+      padding: 24px 28px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .castlefit-upsell__card-number {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      background: #c8d8e4;
+      border-radius: 50%;
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+
+    .castlefit-upsell__card-title {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .castlefit-upsell__card-copy {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #a8a8a8;
+      flex: 1;
+    }
+
+    /* ---- Proof points ---- */
+    .castlefit-upsell__proof {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .castlefit-upsell__proof-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 20px;
+      font-size: 14px;
+      color: #888888;
+      line-height: 1.4;
+    }
+
+    .castlefit-upsell__proof-item:not(:last-child) {
+      border-right: 1px solid #333333;
+    }
+
+    .castlefit-upsell__proof-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    .castlefit-upsell__proof-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ---- CTA button ---- */
+    .castlefit-upsell__cta-wrap {
+      text-align: center;
+    }
+
+    .castlefit-upsell__cta {
+      display: inline-block;
+      background: #c8d8e4;
+      color: #1a1a1a;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 44px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .castlefit-upsell__cta:hover {
+      background: #dae6ee;
+      transform: translateY(-1px);
+    }
+
+    .castlefit-upsell__cta:active {
+      transform: translateY(0);
+    }
+
+    .castlefit-upsell__cta:focus-visible {
+      outline: 2px solid #c8d8e4;
+      outline-offset: 3px;
+    }
+
+    /* ---- Responsive: Tablet ---- */
+    @media (max-width: 960px) {
+      .castlefit-upsell {
+        padding: 64px 20px;
+      }
+
+      .castlefit-upsell__heading {
+        font-size: 32px;
+      }
+
+      .castlefit-upsell__cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .castlefit-upsell__card:last-child {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        justify-self: center;
+      }
+    }
+
+    /* ---- Responsive: Mobile ---- */
+    @media (max-width: 640px) {
+      .castlefit-upsell {
+        padding: 48px 16px;
+      }
+
+      .castlefit-upsell__heading {
+        font-size: 26px;
+        letter-spacing: -0.02em;
+      }
+
+      .castlefit-upsell__subhead {
+        font-size: 15px;
+        margin-bottom: 36px;
+      }
+
+      .castlefit-upsell__cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 36px;
+      }
+
+      .castlefit-upsell__card:last-child {
+        max-width: 100%;
+      }
+
+      .castlefit-upsell__card-img {
+        aspect-ratio: 16 / 10;
+      }
+
+      .castlefit-upsell__card-body {
+        padding: 20px 22px 24px;
+      }
+
+      .castlefit-upsell__card-title {
+        font-size: 18px;
+      }
+
+      .castlefit-upsell__card-copy {
+        font-size: 14px;
+      }
+
+      .castlefit-upsell__proof {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .castlefit-upsell__proof-item {
+        padding: 0;
+        border-right: none !important;
+        font-size: 13px;
+      }
+
+      .castlefit-upsell__cta {
+        width: 100%;
+        text-align: center;
+        padding: 16px 24px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="castlefit-upsell" aria-label="CastleFit guided stretching plans">
+    <div class="castlefit-upsell__inner">
+
+      <div class="castlefit-upsell__label">
+        <span>CastleFit Membership</span>
+      </div>
+
+      <h2 class="castlefit-upsell__heading">Get More Results From Your CastleFlexx</h2>
+      <p class="castlefit-upsell__subhead">Add guided stretching plans tailored to your goals, so you know exactly what to do and start feeling progress faster.</p>
+
+      <div class="castlefit-upsell__cards">
+
+        <article class="castlefit-upsell__card">
+          <div class="castlefit-upsell__card-img">
+            <img src="https://castleflexx.com/cdn/shop/files/CastleFlexx_Mint_Back-Stretch.jpg?v=1731692168&width=800" alt="Person using CastleFlexx for targeted back stretch relief" loading="lazy">
+          </div>
+          <div class="castlefit-upsell__card-body">
+            <span class="castlefit-upsell__card-number" aria-hidden="true">1</span>
+            <h3 class="castlefit-upsell__card-title">Relief for Your Tightest Areas</h3>
+            <p class="castlefit-upsell__card-copy">Got a stubborn area that won't loosen up? Choose a guided plan built around the spots that need the most attention — and start feeling the difference within your first week.</p>
+          </div>
+        </article>
+
+        <article class="castlefit-upsell__card">
+          <div class="castlefit-upsell__card-img">
+            <img src="https://castleflexx.com/cdn/shop/files/CastleFlexx_Mint_Stretch.jpg?v=1731692168&width=800" alt="Person doing a 10-minute CastleFlexx stretching routine" loading="lazy">
+          </div>
+          <div class="castlefit-upsell__card-body">
+            <span class="castlefit-upsell__card-number" aria-hidden="true">2</span>
+            <h3 class="castlefit-upsell__card-title">10-Minute Routines You'll Actually Stick To</h3>
+            <p class="castlefit-upsell__card-copy">Short, guided sessions make it easy to build a daily mobility habit with your CastleFlexx — so you stay consistent and keep improving.</p>
+          </div>
+        </article>
+
+        <article class="castlefit-upsell__card">
+          <div class="castlefit-upsell__card-img">
+            <img src="https://castleflexx.com/cdn/shop/files/img1.png?v=1727697161&width=800" alt="Beginner-friendly CastleFlexx stretching demonstration" loading="lazy">
+          </div>
+          <div class="castlefit-upsell__card-body">
+            <span class="castlefit-upsell__card-number" aria-hidden="true">3</span>
+            <h3 class="castlefit-upsell__card-title">New to Stretching? Start Here</h3>
+            <p class="castlefit-upsell__card-copy">Not sure what to do with your CastleFlexx yet? Follow a simple day-by-day plan that tells you exactly what to stretch, when, and for how long.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="castlefit-upsell__proof">
+        <div class="castlefit-upsell__proof-item">
+          <span class="castlefit-upsell__proof-icon">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 2L12.09 7.26L18 8.27L14 12.14L14.18 18.02L10 15.77L5.82 18.02L6 12.14L2 8.27L7.91 7.26L10 2Z" fill="#c8d8e4"/>
+            </svg>
+          </span>
+          200+ guided classes
+        </div>
+        <div class="castlefit-upsell__proof-item">
+          <span class="castlefit-upsell__proof-icon">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="#c8d8e4" stroke-width="1.5"/>
+              <path d="M10 5V10L13 13" stroke="#c8d8e4" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          Members stretch 3x/week on average
+        </div>
+        <div class="castlefit-upsell__proof-item">
+          <span class="castlefit-upsell__proof-icon">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.5 5L7.5 14L3.5 10" stroke="#c8d8e4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          Cancel anytime in 2 clicks
+        </div>
+      </div>
+
+      <div class="castlefit-upsell__cta-wrap">
+        <button type="button" class="castlefit-upsell__cta">Add CastleFit to Your Order</button>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
