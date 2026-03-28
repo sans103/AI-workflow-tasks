@@ -1,0 +1,2945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peter Hermann | CRO Audit</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #F5F5F3;
+    --bg-white: #FFFFFF;
+    --text: #2C2C2C;
+    --green: #1A3A2A;
+    --gold: #C4A265;
+    --steel: #8C8C8C;
+    --light-gray: #F8F8F6;
+    --border: #E0E0DC;
+    --green-light: rgba(26, 58, 42, 0.04);
+    --green-border: rgba(26, 58, 42, 0.12);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== SLIDE CONTAINER ===== */
+  .slide {
+    width: 100vw;
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 100px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-white);
+  }
+
+  .slide.bg-warm { background: var(--bg); }
+
+  .slide-inner {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1, h2, h3, h4, h5 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--green);
+  }
+
+  h1 { font-size: 52px; line-height: 1.15; margin-bottom: 16px; }
+  h2 { font-size: 36px; line-height: 1.2; margin-bottom: 20px; }
+  h3 { font-size: 24px; line-height: 1.3; margin-bottom: 14px; }
+  h4 { font-size: 18px; line-height: 1.35; margin-bottom: 10px; }
+  h5 { font-size: 15px; line-height: 1.4; margin-bottom: 8px; }
+
+  p { margin-bottom: 12px; font-size: 15px; line-height: 1.7; }
+  .text-steel { color: var(--steel); }
+  .text-gold { color: var(--gold); }
+  .text-green { color: var(--green); }
+  .text-sm { font-size: 13px; }
+  .text-xs { font-size: 11px; }
+  .text-lg { font-size: 17px; }
+  .font-serif { font-family: Georgia, 'Times New Roman', serif; }
+  .tracking-wide { letter-spacing: 0.12em; text-transform: uppercase; }
+  .mt-2 { margin-top: 8px; }
+  .mt-4 { margin-top: 16px; }
+  .mt-6 { margin-top: 24px; }
+  .mt-8 { margin-top: 32px; }
+  .mb-2 { margin-bottom: 8px; }
+  .mb-4 { margin-bottom: 16px; }
+  .mb-6 { margin-bottom: 24px; }
+  .mb-8 { margin-bottom: 32px; }
+
+  /* ===== GOLD RULE ===== */
+  .gold-rule {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px 0;
+  }
+  .gold-rule-wide {
+    width: 120px;
+    height: 1px;
+    background: var(--gold);
+    margin: 20px 0;
+  }
+  .gold-rule-center {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto;
+  }
+
+  /* ===== SECTION LABEL ===== */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  /* ===== TABLES ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin: 16px 0;
+  }
+
+  thead th {
+    background: var(--green);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  thead th:first-child { border-radius: 4px 0 0 0; }
+  thead th:last-child { border-radius: 0 4px 0 0; }
+
+  tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) { background: var(--light-gray); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:last-child td:first-child { border-radius: 0 0 0 4px; }
+  tbody tr:last-child td:last-child { border-radius: 0 0 4px 0; }
+
+  /* Compact table variant */
+  table.compact { font-size: 12.5px; }
+  table.compact th { padding: 8px 10px; font-size: 11px; }
+  table.compact td { padding: 7px 10px; }
+
+  /* ===== STAT CARDS ===== */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .stat-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-card .stat-value {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--green);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .stat-card .stat-label {
+    font-size: 12px;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .stat-card .stat-note {
+    font-size: 11px;
+    color: var(--steel);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  .stat-card.accent {
+    border-color: var(--gold);
+    border-width: 1px;
+  }
+
+  /* ===== INSIGHT BOX ===== */
+  .insight-box {
+    background: var(--light-gray);
+    border-left: 2px solid var(--green);
+    padding: 16px 20px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .insight-box strong {
+    color: var(--green);
+  }
+
+  /* ===== CALLOUT ===== */
+  .callout {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin: 12px 0;
+    font-size: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .callout.gold-accent {
+    border-left: 3px solid var(--gold);
+  }
+
+  .callout.green-accent {
+    border-left: 3px solid var(--green);
+  }
+
+  /* ===== FUNNEL ===== */
+  .funnel-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .funnel-step:last-child { border-bottom: none; }
+
+  .funnel-bar {
+    height: 28px;
+    background: var(--green);
+    border-radius: 3px;
+    opacity: 0.85;
+    transition: width 0.5s ease;
+  }
+
+  .funnel-label {
+    min-width: 140px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .funnel-value {
+    min-width: 90px;
+    font-size: 13px;
+    color: var(--steel);
+    text-align: right;
+  }
+
+  .funnel-drop {
+    font-size: 11px;
+    color: #B04A3A;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    min-width: 100px;
+    text-align: right;
+  }
+
+  /* ===== TWO COLUMN ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* ===== BADGE ===== */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-weight: 500;
+    margin-right: 6px;
+    margin-bottom: 4px;
+  }
+  .badge-critical { background: #B04A3A; color: #fff; }
+  .badge-high { background: var(--gold); color: #fff; }
+  .badge-medium { background: var(--steel); color: #fff; }
+  .badge-low { background: var(--border); color: var(--text); }
+  .badge-green { background: var(--green); color: #fff; }
+
+  /* ===== DIVIDER SLIDE ===== */
+  .slide.divider {
+    background: var(--green);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .slide.divider h2 {
+    color: #fff;
+    font-size: 48px;
+    letter-spacing: 0.03em;
+  }
+  .slide.divider .section-num {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .slide.divider .gold-rule-center {
+    background: var(--gold);
+    margin: 20px auto;
+  }
+  .slide.divider p {
+    color: rgba(255,255,255,0.65);
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ===== DOT NAVIGATION ===== */
+  .dot-nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dot-nav a {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    display: block;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+
+  .dot-nav a.active {
+    background: var(--green);
+    transform: scale(1.4);
+  }
+
+  .dot-nav a:hover {
+    background: var(--gold);
+    transform: scale(1.3);
+  }
+
+  .dot-nav a .dot-tooltip {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--green);
+    color: #fff;
+    font-size: 11px;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border-radius: 3px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .dot-nav a:hover .dot-tooltip {
+    opacity: 1;
+  }
+
+  /* ===== FOOTER ===== */
+  .slide-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+    right: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: var(--steel);
+    letter-spacing: 0.04em;
+  }
+
+  .slide-footer .cazyweb {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--steel);
+  }
+
+  /* ===== LIST ===== */
+  ul.clean { list-style: none; padding: 0; }
+  ul.clean li {
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    padding-left: 16px;
+    position: relative;
+  }
+  ul.clean li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  ol.clean { padding-left: 20px; }
+  ol.clean li {
+    padding: 5px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ===== PERSONA CARD ===== */
+  .persona-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .persona-card h4 {
+    margin-bottom: 6px;
+  }
+  .persona-card .persona-stat {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .persona-card blockquote {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--steel);
+    border-left: 2px solid var(--gold);
+    padding-left: 12px;
+    margin-top: 10px;
+    line-height: 1.55;
+  }
+
+  /* ===== ROADMAP CARDS ===== */
+  .roadmap-item {
+    display: flex;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    font-size: 13.5px;
+    align-items: baseline;
+  }
+  .roadmap-num {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    color: var(--green);
+    min-width: 28px;
+    font-weight: 400;
+  }
+  .roadmap-text { flex: 1; }
+  .roadmap-meta {
+    font-size: 11px;
+    color: var(--steel);
+    min-width: 120px;
+    text-align: right;
+  }
+
+  /* ===== QUOTE ===== */
+  blockquote.featured {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--green);
+    line-height: 1.5;
+    border-left: 3px solid var(--gold);
+    padding-left: 24px;
+    margin: 20px 0;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .comparison-row > div { padding: 8px 12px; }
+  .comparison-row.header { background: var(--green); color: #fff; font-weight: 500; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 4px 4px 0 0; }
+  .comparison-row:nth-child(even) { background: var(--light-gray); }
+
+  /* ===== SCROLL PROGRESS ===== */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 9999;
+    transition: width 0.15s ease;
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .slide { page-break-after: always; min-height: auto; padding: 40px; }
+    .dot-nav, .progress-bar { display: none; }
+    html { scroll-snap-type: none; }
+    .slide-footer { position: relative; margin-top: 40px; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1200px) {
+    .slide { padding: 40px 60px; }
+    h1 { font-size: 40px; }
+    h2 { font-size: 30px; }
+    .two-col { grid-template-columns: 1fr; gap: 24px; }
+    .three-col { grid-template-columns: 1fr; gap: 16px; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .slide { padding: 32px 24px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 26px; }
+    h3 { font-size: 20px; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .dot-nav { display: none; }
+    .slide-footer { left: 24px; right: 24px; }
+    table { font-size: 12px; }
+    table th, table td { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Dot Navigation -->
+<nav class="dot-nav" id="dotNav">
+  <a href="#cover"><span class="dot-tooltip">Cover</span></a>
+  <a href="#s1"><span class="dot-tooltip">Executive Summary</span></a>
+  <a href="#s2"><span class="dot-tooltip">Business Performance</span></a>
+  <a href="#s3"><span class="dot-tooltip">Funnel Analysis</span></a>
+  <a href="#s4"><span class="dot-tooltip">Traffic & Channels</span></a>
+  <a href="#s5"><span class="dot-tooltip">Meta Ad Library</span></a>
+  <a href="#s6"><span class="dot-tooltip">Site Performance</span></a>
+  <a href="#s7"><span class="dot-tooltip">Heuristic Analysis</span></a>
+  <a href="#s8"><span class="dot-tooltip">Competitor UX</span></a>
+  <a href="#s9"><span class="dot-tooltip">Customer Voice</span></a>
+  <a href="#s10"><span class="dot-tooltip">Product & Merch</span></a>
+  <a href="#s11"><span class="dot-tooltip">Copy & Messaging</span></a>
+  <a href="#s12"><span class="dot-tooltip">Offer & Pricing</span></a>
+  <a href="#s13"><span class="dot-tooltip">Rebrand Alignment</span></a>
+  <a href="#s14"><span class="dot-tooltip">CRO Roadmap</span></a>
+</nav>
+
+
+<!-- ============================================================ -->
+<!-- COVER SLIDE -->
+<!-- ============================================================ -->
+<section class="slide" id="cover" style="justify-content: center; align-items: center; text-align: center; background: var(--bg-white);">
+  <div style="max-width: 700px;">
+    <p class="tracking-wide text-steel text-xs" style="margin-bottom: 24px;">March 2026</p>
+    <h1 style="font-size: 64px; margin-bottom: 8px; letter-spacing: 0.04em;">CRO AUDIT</h1>
+    <div class="gold-rule-center" style="width: 100px; margin: 20px auto;"></div>
+    <p style="font-family: Georgia, 'Times New Roman', serif; font-size: 22px; color: var(--green); margin-bottom: 6px;">TheModWatches.com</p>
+    <p style="font-family: Georgia, 'Times New Roman', serif; font-size: 16px; color: var(--gold); margin-bottom: 40px; letter-spacing: 0.03em;">Peter Hermann Rebrand</p>
+    <p class="text-steel text-sm" style="margin-bottom: 4px;">Dec 21, 2025 &mdash; Mar 21, 2026 &nbsp;|&nbsp; 90 Days Analyzed</p>
+    <p class="text-steel text-sm" style="margin-bottom: 4px;">Data Sources: GA4, Shopify Sales, 451 Post-Purchase Surveys, PageSpeed, Competitor Research, Meta Ad Library</p>
+    <p class="text-steel text-sm" style="margin-bottom: 40px;">Prepared by Bhaskar Roy</p>
+    <p class="tracking-wide text-steel" style="font-size: 10px;">cazyweb</p>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s1">
+  <div>
+    <p class="section-num">Section 01</p>
+    <h2>Executive Summary</h2>
+    <div class="gold-rule-center"></div>
+    <p>The opportunity, top findings, and revenue impact model</p>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Executive Summary</p>
+    <h2>The Opportunity</h2>
+    <div class="gold-rule"></div>
+    <p class="text-lg" style="max-width: 900px;">TheModWatches has <strong>proven product-market fit</strong> generating $169K net revenue (Dec 21, 2025 &ndash; Mar 21, 2026) with a $315 AOV and passionate customers. But the site is leaking revenue at every funnel stage &mdash; particularly the <strong>94.6% drop from View Item to Add to Cart</strong>. Fixing this single bottleneck could unlock $50K&ndash;$100K+ in incremental quarterly revenue.</p>
+
+    <div class="stat-grid" style="margin-top: 28px;">
+      <div class="stat-card">
+        <div class="stat-value">$169K</div>
+        <div class="stat-label">Net Revenue (90d)</div>
+        <div class="stat-note">+73% vs prior period</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">$315</div>
+        <div class="stat-label">Average Order Value</div>
+        <div class="stat-note">From 451 survey responses</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-value">0.45%</div>
+        <div class="stat-label">Conversion Rate</div>
+        <div class="stat-note">Industry avg: 1.5&ndash;2.5%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">94.6%</div>
+        <div class="stat-label">View &rarr; ATC Drop</div>
+        <div class="stat-note">#1 revenue leak</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Executive Summary</p>
+    <h2>Top 6 Findings</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30px;">#</th>
+          <th>Finding</th>
+          <th style="width:80px;">Impact</th>
+          <th>Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>94.6% View &rarr; ATC drop</strong> &mdash; the #1 revenue leak. PDPs fail to convert browsers into buyers.</td>
+          <td><span class="badge badge-critical">Critical</span></td>
+          <td>GA4: 22,166 view_item &rarr; 1,189 add_to_cart (5.4% conversion)</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>43% of purchases are gifts</strong> &mdash; yet zero gift-specific UX, landing pages, or ad campaigns exist.</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td>451 survey responses: 43% bought "for someone else"</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Returning visitors generate 67% of revenue</strong> &mdash; but email drives only 60 sessions (Dec 21 &ndash; Mar 21).</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td>GA4: Returning users = 22% traffic, 67% revenue ($14.3K vs $7K)</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>ChatGPT drives 2,343 sessions with $130 revenue</strong> &mdash; a new channel with ~0% effective conversion.</td>
+          <td><span class="badge badge-medium">Medium</span></td>
+          <td>GA4: 9.2% of all traffic, 34.3% bounce rate, 1 purchase</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Mobile PageSpeed: 38/100</strong> &mdash; 7.1s LCP, 26.9s TTI. 66% of traffic is mobile. CommSlayer adds 950 KB.</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td>PageSpeed Insights: Performance 38 mobile, 59 desktop</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>Product recommendations have 0% conversion</strong> &mdash; Shopify's native cross-sell is completely broken.</td>
+          <td><span class="badge badge-medium">Medium</span></td>
+          <td>Dec 21 &ndash; Mar 21 recommendation data: clicks but zero completed checkouts</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Executive Summary</p>
+    <h2>Revenue Impact Model</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Current</th>
+          <th>Target</th>
+          <th>Quarterly Revenue Gain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Improve View&rarr;ATC from 5.4% to 8% (+2.6pp)</td>
+          <td>1,189 ATCs</td>
+          <td>1,773 ATCs</td>
+          <td><strong>+$27K&ndash;$55K</strong></td>
+        </tr>
+        <tr>
+          <td>Activate gift segment (dedicated landing page + ads)</td>
+          <td>0 gift-specific campaigns</td>
+          <td>10% gift traffic lift</td>
+          <td><strong>+$15K&ndash;$25K</strong></td>
+        </tr>
+        <tr>
+          <td>Fix email to industry avg (1% of total sessions)</td>
+          <td>60 email sessions</td>
+          <td>250 sessions</td>
+          <td><strong>+$8K&ndash;$15K</strong></td>
+        </tr>
+        <tr>
+          <td>Optimize returning visitor flow (better retargeting)</td>
+          <td>$14.3K from returning</td>
+          <td>$18K from returning</td>
+          <td><strong>+$3.7K</strong></td>
+        </tr>
+        <tr style="background: var(--green-light);">
+          <td><strong>Total estimated quarterly uplift</strong></td>
+          <td></td>
+          <td></td>
+          <td style="font-family: Georgia, serif; font-size: 18px; color: var(--green);"><strong>$54K&ndash;$99K</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 2: BUSINESS PERFORMANCE OVERVIEW -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s2">
+  <div>
+    <p class="section-num">Section 02</p>
+    <h2>Business Performance Overview</h2>
+    <div class="gold-rule-center"></div>
+    <p>Revenue, metrics, and patterns</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Business Performance</p>
+    <h2>Revenue Summary (Dec 21, 2025 &ndash; Mar 21, 2026)</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <p class="text-xs text-steel" style="margin-bottom: 8px;">Source: Shopify (90 days)</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Value</th>
+              <th>Trend vs Prior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Gross Sales</td><td><strong>$224,032</strong></td><td>+73% vs prior period (Sep 22 &ndash; Dec 20, 2025)</td></tr>
+            <tr><td>Discounts Given</td><td>-$52,431 (23.4% of gross)</td><td>Discount-heavy growth</td></tr>
+            <tr><td>Returns</td><td>-$2,919 (1.3% of gross)</td><td>Healthy &mdash; low return rate</td></tr>
+            <tr><td>Net Sales</td><td><strong>$168,682</strong></td><td>Strong growth trajectory</td></tr>
+            <tr><td>Monthly Average</td><td>$56,227</td><td>&mdash;</td></tr>
+            <tr><td>GA4 Revenue</td><td>$21,392</td><td>GA4 partial tracking only</td></tr>
+          </tbody>
+        </table>
+
+        <div class="insight-box" style="margin-top: 20px;">
+          <strong>Key observation:</strong> The 23.4% discount rate is a potential concern for the Peter Hermann rebrand which targets $600&ndash;$1,000 pricing. Current customers are conditioned to expect discounts.
+        </div>
+      </div>
+
+      <div>
+        <h3>Key Ecommerce Metrics</h3>
+        <p class="text-xs text-steel" style="margin-bottom: 8px;">Source: GA4 (28-day default reporting period)</p>
+        <table class="compact">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Value</th>
+              <th>Benchmark</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Sessions</td><td>25,336</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td>Unique Users</td><td>18,870</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td>Purchases</td><td>113 (GA4)</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td>Conversion Rate</td><td>0.45%</td><td>1.5&ndash;2.5%</td><td><span class="badge badge-critical">Below</span></td></tr>
+            <tr><td>AOV (Survey)</td><td>$315</td><td>&mdash;</td><td><span class="badge badge-green">Strong</span></td></tr>
+            <tr><td>Bounce Rate</td><td>43.6%</td><td>40&ndash;60%</td><td>OK</td></tr>
+            <tr><td>Avg Session Duration</td><td>2:53</td><td>&gt;2:00</td><td><span class="badge badge-green">Good</span></td></tr>
+            <tr><td>Pages/Session</td><td>2.8</td><td>&gt;3</td><td>Slightly low</td></tr>
+            <tr><td>Return Rate</td><td>1.3%</td><td>&lt;5%</td><td><span class="badge badge-green">Excellent</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Business Performance</p>
+    <h2>Daily &amp; Weekly Revenue Patterns</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Avg Daily Net Sales</th>
+              <th>% of Weekly Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Friday</strong></td><td>$2,365</td><td>Strongest</td></tr>
+            <tr><td><strong>Sunday</strong></td><td>$2,180</td><td>2nd strongest</td></tr>
+            <tr><td>Monday</td><td>$2,050</td><td>3rd strongest</td></tr>
+            <tr><td>Tuesday</td><td>$1,680</td><td>Weakest</td></tr>
+            <tr><td>Best single day</td><td>Dec 26: $4,114</td><td>Post-Christmas spike</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="insight-box">
+          <strong>Implication:</strong> Friday email sends and weekend retargeting should be prioritized. The post-Christmas spike (Dec 26) confirms gift-card redemption and holiday buying behavior.
+        </div>
+
+        <div class="stat-grid" style="grid-template-columns: 1fr 1fr; margin-top: 20px;">
+          <div class="stat-card">
+            <div class="stat-value">$56K</div>
+            <div class="stat-label">Monthly Average</div>
+          </div>
+          <div class="stat-card accent">
+            <div class="stat-value">+73%</div>
+            <div class="stat-label">Growth vs Prior</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 3: FUNNEL ANALYSIS & REVENUE LEAKS -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s3">
+  <div>
+    <p class="section-num">Section 03</p>
+    <h2>Funnel Analysis &amp; Revenue Leaks</h2>
+    <div class="gold-rule-center"></div>
+    <p>Where revenue is lost at each stage of the customer journey</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Funnel Analysis</p>
+    <h2>The Conversion Funnel</h2>
+    <div class="gold-rule"></div>
+
+    <div style="max-width: 900px;">
+      <div class="funnel-step">
+        <span class="funnel-label">Sessions</span>
+        <div style="flex:1;"><div class="funnel-bar" style="width:100%;"></div></div>
+        <span class="funnel-value">25,336 (100%)</span>
+        <span class="funnel-drop"></span>
+      </div>
+      <div class="funnel-step">
+        <span class="funnel-label">View Item</span>
+        <div style="flex:1;"><div class="funnel-bar" style="width:87.5%;"></div></div>
+        <span class="funnel-value">22,166 (87.5%)</span>
+        <span class="funnel-drop"></span>
+      </div>
+      <div class="funnel-step" style="background: rgba(176, 74, 58, 0.04);">
+        <span class="funnel-label">Add to Cart</span>
+        <div style="flex:1;"><div class="funnel-bar" style="width:4.7%; background: #B04A3A;"></div></div>
+        <span class="funnel-value">1,189 (5.4%)</span>
+        <span class="funnel-drop">94.6% DROP</span>
+      </div>
+      <div class="funnel-step">
+        <span class="funnel-label">Begin Checkout</span>
+        <div style="flex:1;"><div class="funnel-bar" style="width:1.6%;"></div></div>
+        <span class="funnel-value">412 (34.7%)</span>
+        <span class="funnel-drop">65.3% DROP</span>
+      </div>
+      <div class="funnel-step">
+        <span class="funnel-label">Add Payment</span>
+        <div style="flex:1;"><div class="funnel-bar" style="width:0.7%;"></div></div>
+        <span class="funnel-value">180 (43.7%)</span>
+        <span class="funnel-drop">56.3% DROP</span>
+      </div>
+      <div class="funnel-step">
+        <span class="funnel-label">Purchase</span>
+        <div style="flex:1;"><div class="funnel-bar" style="width:0.45%;"></div></div>
+        <span class="funnel-value">113 (62.8%)</span>
+        <span class="funnel-drop">37.2% DROP</span>
+      </div>
+    </div>
+
+    <div class="insight-box" style="margin-top: 24px;">
+      <strong>The #1 Revenue Leak:</strong> 94.6% of users who view a product never add to cart. This single bottleneck represents the biggest opportunity &mdash; improving View&rarr;ATC from 5.4% to 8% could unlock +$27K&ndash;$55K per quarter.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Funnel Analysis</p>
+    <h2>Leak 1: View Item &rarr; Add to Cart</h2>
+    <div class="gold-rule"></div>
+    <p><span class="badge badge-critical">Priority #1</span> 22,166 people view products but only 1,189 add to cart. That's a 5.4% View&rarr;ATC rate vs industry standard of 8&ndash;12%.</p>
+
+    <h3 class="mt-6">Root Causes Identified</h3>
+    <ol class="clean">
+      <li><strong>Loox star ratings hidden via CSS</strong> &mdash; UGC videos and customer photos exist on PDPs, but Loox star ratings and written reviews remain hidden (<code>display: none</code>). UGC builds trust; verified star ratings close the sale for $259&ndash;$500 products.</li>
+      <li><strong>No "Notify Me" for out-of-stock variants</strong> &mdash; When specific component variants sell out (e.g., popular bezel/dial combos), there's no email capture or waitlist. Demand is lost silently.</li>
+      <li><strong>Price without value justification</strong> &mdash; $421 displayed without explaining what's included, what you'd pay separately, or why it's worth it.</li>
+      <li><strong>No configurator preview</strong> &mdash; Customers choose components but can't see the finished watch. Survey data confirms this request.</li>
+      <li><strong>Missing sticky ATC on mobile</strong> &mdash; 66% of traffic is mobile, but no sticky add-to-cart button means users must scroll back up.</li>
+      <li><strong>No urgency beyond "low stock"</strong> &mdash; The static scarcity message doesn't feel genuine.</li>
+    </ol>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Funnel Analysis</p>
+    <h2>Leak 2 &amp; 3: Cart &rarr; Purchase</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Leak 2: ATC &rarr; Begin Checkout</h3>
+        <p><span class="badge badge-high">65.3% drop</span> 777 of 1,189 ATC events don't proceed to checkout.</p>
+        <ul class="clean">
+          <li><strong>No cart abandonment incentive</strong> &mdash; No exit-intent popup or "complete your build" reminder</li>
+          <li><strong>Shipping uncertainty</strong> &mdash; "Free worldwide shipping" not reinforced at cart</li>
+          <li><strong>Product recommendations have 0% conversion</strong> &mdash; PDP recommendations generate clicks (12% rate) but zero completed checkouts across 90 days. Engine may be surfacing low-relevance products.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Leak 3: Checkout &rarr; Purchase</h3>
+        <p><span class="badge badge-high">72.6% drop</span> 299 of 412 who start checkout don't complete.</p>
+        <ul class="clean">
+          <li><strong>International shipping concerns</strong> &mdash; "Taxes and duties included" may not be clear enough</li>
+          <li><strong>No express checkout options</strong> above the fold (Apple Pay, Shop Pay, Google Pay)</li>
+          <li><strong>Missing reassurance at checkout</strong> &mdash; No "30-day guarantee" badge during checkout</li>
+          <li><strong>Form length/complexity</strong> &mdash; Standard Shopify checkout can feel heavy for first-time buyers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 4: TRAFFIC & CHANNEL ANALYSIS -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s4">
+  <div>
+    <p class="section-num">Section 04</p>
+    <h2>Traffic &amp; Channel Analysis</h2>
+    <div class="gold-rule-center"></div>
+    <p>Channel performance, device breakdown, and new vs returning economics</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Traffic &amp; Channels</p>
+    <h2>Channel Performance Matrix</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Sessions</th>
+          <th>% Traffic</th>
+          <th>Purchases</th>
+          <th>Conv. Rate</th>
+          <th>Revenue</th>
+          <th>Rev/Session</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Google Organic</strong></td><td>10,077</td><td>39.8%</td><td>54</td><td>0.54%</td><td>$10,285</td><td>$1.02</td></tr>
+        <tr><td>Direct</td><td>7,487</td><td>29.5%</td><td>36</td><td>0.48%</td><td>$6,539</td><td>$0.87</td></tr>
+        <tr><td>Facebook Paid</td><td>2,819</td><td>11.1%</td><td>6</td><td>0.21%</td><td>$1,663</td><td>$0.59</td></tr>
+        <tr><td>ChatGPT (combined)</td><td>2,343</td><td>9.2%</td><td>1</td><td>0.04%</td><td>$130</td><td>$0.06</td></tr>
+        <tr><td>Bing Organic</td><td>425</td><td>1.7%</td><td>0</td><td>0%</td><td>$0</td><td>&mdash;</td></tr>
+        <tr><td>Instagram Social</td><td>268</td><td>1.1%</td><td>0</td><td>0%</td><td>$0</td><td>&mdash;</td></tr>
+        <tr><td><strong>Shopify Email</strong></td><td>60</td><td>0.2%</td><td>3</td><td>5.0%</td><td>$321</td><td><strong>$5.36</strong></td></tr>
+        <tr><td>DuckDuckGo</td><td>273</td><td>1.1%</td><td>1</td><td>0.37%</td><td>$195</td><td>$0.71</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Traffic &amp; Channels</p>
+    <h2>Critical Channel Insights</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h4>Google Organic &mdash; Strongest Channel</h4>
+        <p class="text-sm text-steel">39.8% traffic, 48% of purchases</p>
+        <ul class="clean">
+          <li>32% bounce rate (best of all channels)</li>
+          <li>Avg session 3:22 (highest engagement)</li>
+          <li>"Are Seiko Mod Watches Worth the Money?" &mdash; 953 sessions</li>
+          <li>"Seiko Nautilus Mods: 7 Shocking Truths" &mdash; 824 sessions</li>
+          <li><strong>Problem:</strong> Informational pages convert at ~0%. Need better blog&rarr;product conversion paths.</li>
+        </ul>
+
+        <h4 class="mt-6">Facebook Paid &mdash; Underperforming</h4>
+        <p class="text-sm text-steel">11.1% traffic, 5.3% of purchases</p>
+        <ul class="clean">
+          <li>0.21% conversion rate &mdash; very low</li>
+          <li>53% bounce rate &mdash; landing pages not matching ad promise</li>
+          <li>Only 6 purchases from 2,819 sessions</li>
+          <li><strong>Fix landing page experience before scaling ad spend</strong></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>ChatGPT Referral &mdash; Emerging, Zero Monetization</h4>
+        <p class="text-sm text-steel">9.2% traffic, ~0% conversion</p>
+        <ul class="clean">
+          <li>2,343 sessions &mdash; genuinely interested (34.3% bounce)</li>
+          <li>$130 total revenue from 2,343 sessions (1 purchase)</li>
+          <li>Users land with questions, not purchase intent</li>
+          <li><strong>Create an education&rarr;conversion pathway for AI-referred visitors</strong></li>
+        </ul>
+
+        <div class="callout gold-accent" style="margin-top: 20px;">
+          <h4 style="margin-bottom: 6px;">Email: The Biggest Low-Hanging Fruit</h4>
+          <p class="text-sm" style="margin:0;">Only 60 sessions (Dec 21 &ndash; Mar 21) &mdash; but <strong>5.0% conversion rate</strong> (highest of any channel) and <strong>$5.36 revenue/session</strong> vs $1.02 for organic. Email should be driving 5&ndash;10x more sessions. Build post-purchase flows, browse abandonment, cart abandonment, and a weekly "Build of the Week" newsletter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Traffic &amp; Channels</p>
+    <h2>New vs Returning &amp; Device Analysis</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>New vs Returning User Economics</h3>
+        <table>
+          <thead>
+            <tr><th>Segment</th><th>Sessions</th><th>% Traffic</th><th>Purchases</th><th>Conv. Rate</th><th>Revenue</th><th>Rev/Session</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>New Users</td><td>18,515</td><td>73%</td><td>37</td><td>0.20%</td><td>$6,984</td><td>$0.38</td></tr>
+            <tr><td><strong>Returning Users</strong></td><td>5,634</td><td>22%</td><td>75</td><td>1.33%</td><td>$14,347</td><td><strong>$2.55</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="insight-box mt-4">
+          <strong>Returning visitors convert at 6.6x the rate</strong> and generate 2x the revenue. The product requires consideration &mdash; retargeting and email nurture are critical.
+        </div>
+      </div>
+
+      <div>
+        <h3>Device Analysis</h3>
+        <table>
+          <thead>
+            <tr><th>Device</th><th>Sessions</th><th>Purchases</th><th>Conv. Rate</th><th>Revenue</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Mobile</strong></td><td>16,764 (66%)</td><td>85 (75%)</td><td>0.51%</td><td>$15,982 (75%)</td></tr>
+            <tr><td>Desktop</td><td>8,531 (34%)</td><td>27 (24%)</td><td>0.32%</td><td>$5,340 (25%)</td></tr>
+          </tbody>
+        </table>
+        <div class="insight-box mt-4">
+          <strong>Mobile dominates both traffic AND purchases</strong> &mdash; unusual for a $300+ product. Every recommendation must be mobile-first.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 5: META AD LIBRARY ANALYSIS (NEW) -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s5">
+  <div>
+    <p class="section-num">Section 05</p>
+    <h2>Meta Ad Library Analysis</h2>
+    <div class="gold-rule-center"></div>
+    <p>93 active ads, copy templates, and rebrand alignment gaps</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Meta Ad Library</p>
+    <h2>Ad Inventory Overview</h2>
+    <div class="gold-rule"></div>
+
+    <p class="text-sm text-steel mb-4">Source: Meta Ad Library, captured March 24, 2026. Page ID: 368793052986225.</p>
+
+    <div class="two-col">
+      <div>
+        <table>
+          <thead>
+            <tr><th>Metric</th><th>Value</th><th>Assessment</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Total Active Ads</td><td><strong>~93</strong></td><td>Excessive &mdash; budget fragmented</td></tr>
+            <tr><td>Platforms</td><td>FB, IG, Messenger, Audience Network</td><td>Full coverage</td></tr>
+            <tr><td>Dominant Format</td><td>Video (~70%)</td><td>UGC-style assembly footage</td></tr>
+            <tr><td>CTA (all ads)</td><td>"Shop Now"</td><td>Generic &mdash; no differentiation</td></tr>
+            <tr><td>Low Impression Count</td><td>~40%+</td><td>Many underperforming or in test</td></tr>
+            <tr><td>Oldest Running Ad</td><td>March 2024</td><td>Some running 2+ years</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3>Creative Style Assessment</h3>
+        <table class="compact">
+          <thead>
+            <tr><th>Element</th><th>Current</th><th>Assessment</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Video quality</td><td>UGC phone videos, casual</td><td>Low for $300+ product</td></tr>
+            <tr><td>Photography</td><td>Product-on-desk, dark moody</td><td>No editorial/lifestyle</td></tr>
+            <tr><td>Assembly footage</td><td>Hands building, workbench</td><td>DIY process, not premium</td></tr>
+            <tr><td>Unboxing content</td><td>None across all 93 ads</td><td>Major missed opportunity</td></tr>
+            <tr><td>Lifestyle/wearing</td><td>None visible</td><td>No "after" moments</td></tr>
+            <tr><td>Brand consistency</td><td>Inconsistent</td><td>No cohesive identity</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Meta Ad Library</p>
+    <h2>Ad Copy Templates (3 Recurring Patterns)</h2>
+    <div class="gold-rule"></div>
+
+    <div class="three-col">
+      <div class="callout green-accent">
+        <p class="text-xs tracking-wide text-steel mb-2">Template A &mdash; ~50% of ads</p>
+        <h4>"Most guys buy watches"</h4>
+        <blockquote class="featured" style="font-size: 14px; border-left-width: 2px; padding-left: 14px; margin: 12px 0;">
+          "Most guys buy watches. You'll build yours."<br><br>
+          "That deep satisfaction when you finish something with your own hands? That's why we created this kit."<br><br>
+          "German-curated 316L submarine steel, Japanese Seiko automatic movement, Sapphire crystal..."
+        </blockquote>
+      </div>
+
+      <div class="callout green-accent">
+        <p class="text-xs tracking-wide text-steel mb-2">Template B &mdash; ~30% of ads</p>
+        <h4>"Number one DIY"</h4>
+        <blockquote class="featured" style="font-size: 14px; border-left-width: 2px; padding-left: 14px; margin: 12px 0;">
+          "It's the number one DIY I got."<br><br>
+          "Simon, this looks incredible, but I can barely assemble IKEA furniture. Will I can it?"<br><br>
+          "Here's what I tell everyone: Is it a challenge? Yes."
+        </blockquote>
+      </div>
+
+      <div class="callout green-accent">
+        <p class="text-xs tracking-wide text-steel mb-2">Template C &mdash; ~20% of ads</p>
+        <h4>"Trevor" variant</h4>
+        <blockquote class="featured" style="font-size: 14px; border-left-width: 2px; padding-left: 14px; margin: 12px 0;">
+          "Trevor, the looks incredible but I can barely assemble IKEA furniture, Will I can it?"<br><br>
+          "Here's what I tell everyone..."
+        </blockquote>
+        <p class="text-xs text-steel mt-2">Variation of Template B with name personalization</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Meta Ad Library</p>
+    <h2>Peter Hermann Rebrand Alignment: Critical Gaps</h2>
+    <div class="gold-rule"></div>
+    <p class="mb-4">Every active ad contradicts the designer brief's direction:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Current Ads</th>
+          <th>Brief Requires</th>
+          <th>Gap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Positioning</td><td>"DIY kit" / "build yours"</td><td>"Premium maker experience" / "Handgemacht"</td><td><span class="badge badge-critical">Critical</span></td></tr>
+        <tr><td>Copy tone</td><td>Casual, hobbyist &mdash; "IKEA furniture" jokes</td><td>Refined, heritage, craftsmanship language</td><td><span class="badge badge-critical">Critical</span></td></tr>
+        <tr><td>Visual quality</td><td>UGC phone videos, inconsistent</td><td>Editorial, Maison Alc&eacute;e-level production</td><td><span class="badge badge-critical">Critical</span></td></tr>
+        <tr><td>Brand story</td><td>Zero mention of Peter, Hermann, Uwe</td><td>Three-generation founder narrative</td><td><span class="badge badge-critical">Critical</span></td></tr>
+        <tr><td>Unboxing</td><td>Not shown in any ad</td><td>8-layer premium experience = #1 price justifier</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>Gift angle</td><td>Zero gift-focused creative</td><td>43% of buyers are gift givers</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>Price framing</td><td>Product specs, discount signals</td><td>Experience-first, value-led</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>Ad volume</td><td>93 active (scatter-shot)</td><td>Fewer, higher-quality, intentional</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>CTA</td><td>Generic "Shop Now"</td><td>"Build Your Timepiece" / "Start Your Experience"</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>Competitive frame</td><td>Implies competition with DIY kits</td><td>Should position against Christopher Ward, Baltic</td><td><span class="badge badge-medium">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Meta Ad Library</p>
+    <h2>Specific Issues &amp; Recommended Strategy</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>5 Specific Issues</h3>
+        <ol class="clean">
+          <li><strong>"IKEA furniture" comparison kills premium</strong> &mdash; anchors the product as furniture assembly when the brief demands horological craftsmanship.</li>
+          <li><strong>No founder story in any ad</strong> &mdash; Peter, Hermann, Uwe narrative (the most powerful differentiator) is completely absent from all 93 ads.</li>
+          <li><strong>93 ads = budget fragmentation</strong> &mdash; ~40%+ show low impression warnings. A premium brand runs 5&ndash;10 high-conviction ads.</li>
+          <li><strong>No audience segmentation</strong> &mdash; All ads push the same generic message. No creative for gift buyers (43%), collectors, or first-time builders.</li>
+          <li><strong>Video content is only assembly-focused</strong> &mdash; No "after" content: wearing at dinner, pride moment, receiving compliments.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h3>Recommended Ad Strategy</h3>
+        <table class="compact">
+          <thead>
+            <tr><th>#</th><th>Action</th><th>Impact</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Pause 80+ low-performing ads</strong> &mdash; consolidate to top 10&ndash;15</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>2</td><td><strong>Create "Founder Story" video</strong> &mdash; Simon tells Peter/Hermann/Uwe story</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>3</td><td><strong>Create "Unboxing Experience" video</strong> &mdash; magnetic box reveal, wax seal</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>4</td><td><strong>Create "Gift Experience" ad set</strong> &mdash; targeting gift occasions</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>5</td><td><strong>Replace "IKEA" copy</strong> &mdash; "Not a kit. A maker experience."</td><td><span class="badge badge-critical">Critical</span></td></tr>
+            <tr><td>6</td><td><strong>Create lifestyle/wearing video</strong> &mdash; finished watch on wrist</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>7</td><td><strong>Curated "Community of Makers" UGC</strong></td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>8</td><td><strong>Segment audiences with tailored creative</strong></td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>9</td><td><strong>Update CTA</strong> to "Build Your Timepiece"</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>10</td><td><strong>Add Peter Hermann branding</strong> to all creative</td><td><span class="badge badge-critical">Critical</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Meta Ad Library</p>
+    <h2>Campaign Attribution &amp; Purchase Demographics</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Which Ads Actually Drive Purchases?</h3>
+        <p class="text-sm text-steel mb-2">Cross-referencing post-purchase survey UTM data with the Ad Library:</p>
+        <table class="compact">
+          <thead><tr><th>Campaign</th><th>Ad Variation</th><th>Converts?</th></tr></thead>
+          <tbody>
+            <tr><td>TM USA - Highest Volume - CBO - 16/10/25</td><td>0042-V1-1 &mdash; "3 Hooks - Watch building kits DIY style"</td><td><span class="badge badge-green">Yes</span></td></tr>
+            <tr><td>TM USA - Highest Volume - ABO - 17/11/25</td><td>0063 &mdash; "Do you think you could build this?"</td><td><span class="badge badge-green">Yes</span></td></tr>
+            <tr><td>02/02/26 - New Ads from ABO</td><td>Various</td><td><span class="badge badge-medium">Testing</span></td></tr>
+            <tr><td>Direct / Google</td><td>N/A (SEO/Direct)</td><td><span class="badge badge-green">Yes</span></td></tr>
+          </tbody>
+        </table>
+        <div class="insight-box mt-4">
+          <strong>Key finding:</strong> The campaigns that actually convert use "watch building kits" and "do you think you could build this?" hooks &mdash; exactly the DIY-framing messages that conflict with Peter Hermann positioning. The rebrand will need entirely new ad creative with premium hooks.
+        </div>
+      </div>
+
+      <div>
+        <h3>Facebook Purchase Demographics</h3>
+        <p class="text-sm text-steel mb-2">From Brand Discovery Questionnaire &mdash; who actually buys from Facebook ads:</p>
+        <table class="compact">
+          <thead><tr><th>Age Range</th><th>Purchases</th><th>% of Total</th></tr></thead>
+          <tbody>
+            <tr><td>18&ndash;24</td><td>1</td><td>4%</td></tr>
+            <tr><td>25&ndash;34</td><td>4</td><td>16%</td></tr>
+            <tr><td>35&ndash;44</td><td>6</td><td>24%</td></tr>
+            <tr style="background: rgba(196, 162, 101, 0.12);"><td><strong>45&ndash;54</strong></td><td><strong>7</strong></td><td><strong>28%</strong></td></tr>
+            <tr><td>55&ndash;64</td><td>4</td><td>16%</td></tr>
+            <tr><td>65+</td><td>2</td><td>8%</td></tr>
+          </tbody>
+        </table>
+        <div class="insight-box mt-4">
+          <strong>The peak buyer is 45&ndash;54, not 25&ndash;35.</strong> This aligns perfectly with Peter Hermann's target of "discerning craftsmen aged 35&ndash;55." Current ads are not deliberately targeting this demographic &mdash; and no ads target women (gift givers = 43% of purchases).
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 6: SITE PERFORMANCE -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s6">
+  <div>
+    <p class="section-num">Section 06</p>
+    <h2>Site Performance</h2>
+    <div class="gold-rule-center"></div>
+    <p>PageSpeed scores, Core Web Vitals, and top blockers</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Site Performance</p>
+    <h2>Lighthouse Scores &amp; Core Web Vitals</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Lighthouse Scores</h3>
+        <table>
+          <thead><tr><th>Category</th><th>Mobile</th><th>Desktop</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Performance</strong></td><td><strong>38</strong></td><td><strong>59</strong></td><td><span class="badge badge-critical">Poor</span></td></tr>
+            <tr><td>Accessibility</td><td>100</td><td>100</td><td><span class="badge badge-green">Excellent</span></td></tr>
+            <tr><td>Best Practices</td><td>54</td><td>54</td><td><span class="badge badge-medium">Below avg</span></td></tr>
+            <tr><td>SEO</td><td>92</td><td>92</td><td><span class="badge badge-green">Good</span></td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="mt-6">Core Web Vitals</h3>
+        <table class="compact">
+          <thead><tr><th>Metric</th><th>Mobile</th><th>Desktop</th><th>Threshold</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>LCP</td><td><strong>7.1s</strong></td><td>1.5s</td><td>&lt;2.5s</td><td><span class="badge badge-critical">Poor</span></td></tr>
+            <tr><td>TBT</td><td><strong>1,480ms</strong></td><td>1,240ms</td><td>&lt;200ms</td><td><span class="badge badge-critical">Poor</span></td></tr>
+            <tr><td>TTI</td><td><strong>26.9s</strong></td><td>5.6s</td><td>&lt;3.8s</td><td><span class="badge badge-critical">Critical</span></td></tr>
+            <tr><td>CLS</td><td>0.003</td><td>0.01</td><td>&lt;0.1</td><td><span class="badge badge-green">Good</span></td></tr>
+            <tr><td>Speed Index</td><td>5.6s</td><td>2.0s</td><td>&lt;3.4s</td><td><span class="badge badge-critical">Poor</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="insight-box">
+          <strong>Why this matters:</strong> With 66% of traffic on mobile and a 26.9-second TTI, users wait nearly half a minute before the page is fully interactive. Research shows every 1-second delay in mobile load time decreases conversions by 7%. At 7.1s LCP vs the 2.5s threshold, TheModWatches is losing an estimated <strong>10&ndash;15% of potential conversions</strong> just from speed.
+        </div>
+
+        <h3 class="mt-6">Top Performance Blockers</h3>
+        <table class="compact">
+          <thead><tr><th>Issue</th><th>Impact</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CommSlayer chat</strong></td><td>950 KB (351 KB unused JS)</td><td>Lazy-load or replace</td></tr>
+            <tr><td>Unused JavaScript</td><td>883 KB across 3+ scripts</td><td>Audit &amp; remove</td></tr>
+            <tr><td>JS execution time</td><td>4.5s on mobile</td><td>Defer non-critical</td></tr>
+            <tr><td>Main-thread work</td><td>8.7s on mobile</td><td>Code-split, lazy-load</td></tr>
+            <tr><td>Network payload</td><td>7.4 MB total</td><td>WebP images, trim scripts</td></tr>
+            <tr><td>Missing meta desc</td><td>SEO gap</td><td>Add to homepage</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="mt-6">Priority Order</h4>
+        <ol class="clean">
+          <li>Remove or lazy-load CommSlayer (~1 MB)</li>
+          <li>Defer all non-essential third-party scripts</li>
+          <li>Convert images to WebP with responsive sizing</li>
+          <li>Implement resource hints (preconnect, prefetch)</li>
+          <li>Add meta description</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 7: HEURISTIC ANALYSIS BY PAGE -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s7">
+  <div>
+    <p class="section-num">Section 07</p>
+    <h2>Heuristic Analysis by Page</h2>
+    <div class="gold-rule-center"></div>
+    <p>Homepage, collection, PDP, and cart &amp; checkout</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Heuristic Analysis</p>
+    <h2>Homepage</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h4 class="text-green">What's Working</h4>
+        <ul class="clean">
+          <li>Hero video autoplay creates aspirational mood</li>
+          <li>"Free Worldwide Shipping, Taxes and Duties Included" banner</li>
+          <li>High quality product imagery</li>
+          <li>Clear navigation with "Create Your Own Bundle" as primary CTA</li>
+          <li>Payment method badges in footer</li>
+        </ul>
+
+        <h4 class="text-green mt-6">Recommendations</h4>
+        <ol class="clean">
+          <li>Add a "How It Works" 3-step section with icons + 60-second build video</li>
+          <li>Add a "Gift for Him" section with dedicated CTA</li>
+          <li>Show 3&ndash;5 customer testimonials with photos of completed builds</li>
+          <li>Add founder story section</li>
+          <li>Fix the "Wordwide" typo immediately</li>
+          <li>Add email capture popup with lead magnet</li>
+        </ol>
+      </div>
+
+      <div>
+        <h4 style="color: #B04A3A;">Critical Issues Found</h4>
+        <table class="compact">
+          <thead><tr><th>Issue</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr><td>"Wordwide" typo in shipping banner</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>No reviews visible anywhere</td><td><span class="badge badge-critical">Critical</span></td></tr>
+            <tr><td>Gift messaging absent (43% are gift buyers)</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>No founder story visible</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>Scarcity message feels generic/fake</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>No "how it works" section</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>Blog content doesn't link to products</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>No email capture mechanism</td><td><span class="badge badge-high">High</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Heuristic Analysis</p>
+    <h2>Collection Page</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h4 class="text-green">What's Working</h4>
+        <ul class="clean">
+          <li>Clean grid layout with hover image effect</li>
+          <li>Filtering and sorting available</li>
+          <li>Sale badges on discounted items</li>
+          <li>Price display clear</li>
+        </ul>
+
+        <h4 style="color: #B04A3A;" class="mt-6">Critical Issues</h4>
+        <table class="compact">
+          <thead><tr><th>Issue</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Reviews hidden via CSS</strong> &mdash; Loox ratings set to <code>display: none</code></td><td><span class="badge badge-critical">Critical</span></td></tr>
+            <tr><td>Only 4 products displayed</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>No quick-add functionality</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>No comparison or "best for" labels</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>No gift-focused merchandising</td><td><span class="badge badge-high">High</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h4 class="text-green">Recommendations</h4>
+        <ol class="clean">
+          <li><strong>Unhide the Loox reviews</strong> &mdash; remove the CSS display:none rule immediately</li>
+          <li>Add "Best for" badges: "Best for Beginners," "Best Gift," "Most Popular," "Best Value"</li>
+          <li>Create a gift-specific collection at /collections/watch-building-kits-gifts</li>
+          <li>Add a comparison table above the grid: Kit vs Bundle vs Components</li>
+          <li>Show stock availability on collection cards</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Heuristic Analysis</p>
+    <h2>Product Detail Page (42MM Dive Watch Kit)</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h4 class="text-green">What's Working</h4>
+        <ul class="clean">
+          <li>13 high-quality images with zoom capability</li>
+          <li>"Your story, not ours" narrative copy is emotionally compelling</li>
+          <li>"1500+ successful builders" social proof claim</li>
+          <li>"30-day satisfaction guarantee" and "48-month warranty"</li>
+          <li>"What's inside" detailed breakdown</li>
+        </ul>
+
+        <h4 style="color: #B04A3A;" class="mt-6">Critical Issues</h4>
+        <table class="compact">
+          <thead><tr><th>Issue</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr><td>No "Notify Me" for out-of-stock variants</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>Zero customer reviews visible</td><td><span class="badge badge-critical">Critical</span></td></tr>
+            <tr><td>No configuration preview</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>Price without value anchor</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>No sticky ATC button (mobile)</td><td><span class="badge badge-high">High</span></td></tr>
+            <tr><td>"Simon's success guarantee" undefined</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>No urgency beyond static text</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>FAQ section incomplete</td><td><span class="badge badge-medium">Medium</span></td></tr>
+            <tr><td>No gift option at product level</td><td><span class="badge badge-high">High</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h4 class="text-green">PDP Recommendations</h4>
+        <ol class="clean">
+          <li><strong>Show reviews immediately</strong> &mdash; Enable Loox display with photos and star ratings</li>
+          <li><strong>Add "Notify Me"</strong> for sold-out items &mdash; Capture email + phone</li>
+          <li><strong>Add visual configuration preview</strong></li>
+          <li><strong>Add value anchoring:</strong> "Individually: $755 | Kit: $499 | Save: $256 (34%)"</li>
+          <li><strong>Implement sticky ATC for mobile</strong></li>
+          <li><strong>Add "Gift This Kit" button</strong> with gift wrapping option</li>
+          <li><strong>Expand Simon's guarantee</strong> with popup/tooltip</li>
+          <li><strong>Add UGC gallery</strong> &mdash; "Watches Built by Our Community"</li>
+          <li><strong>Payment installment messaging</strong> &mdash; "4 payments of $105 with Shop Pay"</li>
+        </ol>
+
+        <div class="callout gold-accent mt-6">
+          <h5>Cart &amp; Checkout (from funnel data)</h5>
+          <p class="text-sm" style="margin:0;">65.3% cart abandonment suggests: no exit-intent intervention, no saved cart email, trust signals dropping after PDP, and express checkout not prominent enough.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 8: COMPETITOR UX COMPARISON -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s8">
+  <div>
+    <p class="section-num">Section 08</p>
+    <h2>Competitor UX Comparison</h2>
+    <div class="gold-rule-center"></div>
+    <p>Feature matrix, advantages, and the Peter Hermann benchmark</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Competitor UX</p>
+    <h2>Feature Comparison Matrix</h2>
+    <div class="gold-rule"></div>
+
+    <table class="compact">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>TheModWatches</th>
+          <th>DIYwatch.club</th>
+          <th>Namokimods</th>
+          <th>Rotatewatches</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Price Range</strong></td><td>$259&ndash;$499</td><td>$230&ndash;$650</td><td>Parts only ($15&ndash;$300)</td><td>~$250&ndash;$400</td></tr>
+        <tr><td>Kits Available</td><td>4 kits + components</td><td>10+ kits</td><td>Components only</td><td>5+ kits</td></tr>
+        <tr><td>Video Instructions</td><td>Yes</td><td>Yes (HD, sectioned)</td><td>No (parts-only)</td><td>Yes</td></tr>
+        <tr><td>Reviews on PDPs</td><td><strong>Hidden (CSS)</strong></td><td>Not prominent</td><td>Judge.me integrated</td><td>Judge.me integrated</td></tr>
+        <tr><td>Gift Messaging</td><td>None</td><td>Father's Day promo</td><td>None</td><td>None</td></tr>
+        <tr><td>Trust Signals</td><td>"1500+ builders" (vague)</td><td>"Thousands of customers"</td><td>20% site-wide discount</td><td>US-based shipping</td></tr>
+        <tr><td>Configurator/Preview</td><td>None</td><td>None</td><td>None</td><td>None</td></tr>
+        <tr><td>Community/Forum</td><td>None</td><td>Active forum</td><td>None</td><td>None</td></tr>
+        <tr><td>Founder Story</td><td>Not on site</td><td>Present</td><td>Not present</td><td>Not present</td></tr>
+        <tr><td>Design Quality</td><td>Good</td><td>Very good (premium dark)</td><td>Functional/minimal</td><td>Professional</td></tr>
+        <tr><td>Mobile UX</td><td>Decent</td><td>Good</td><td>Decent</td><td>Good</td></tr>
+        <tr><td>Blog/Content</td><td><strong>Strong SEO</strong></td><td>Basic</td><td>None</td><td>Basic</td></tr>
+        <tr><td>Bundle Options</td><td>8-in-1 bundle</td><td>Starter bundles</td><td>Addon system</td><td>Not visible</td></tr>
+        <tr><td>Trustpilot Score</td><td>Not listed</td><td>Not listed</td><td>2.7/5 (61% 1-star)</td><td>Not listed</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Competitor UX</p>
+    <h2>Competitive Advantages &amp; Weaknesses</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Advantages TheModWatches Has</h3>
+        <ol class="clean">
+          <li><strong>German founder story</strong> &mdash; Only brand with a compelling heritage narrative (vs "Chinese suppliers")</li>
+          <li><strong>SEO dominance</strong> &mdash; Blog drives 2,000+ organic sessions/month</li>
+          <li><strong>8-in-1 bundle concept</strong> &mdash; "18 combinations from one kit" is unique</li>
+          <li><strong>Customer satisfaction</strong> &mdash; Survey data shows positive sentiment; Namokimods has terrible reviews</li>
+          <li><strong>Gift market awareness</strong> &mdash; 43% gift buyers = built-in demand competitors ignore</li>
+        </ol>
+      </div>
+
+      <div>
+        <h3>Weaknesses to Address</h3>
+        <ol class="clean">
+          <li><strong>DIYwatch.club has better design</strong> &mdash; Premium dark theme, polished photography, more aspirational</li>
+          <li><strong>DIYwatch.club has community</strong> &mdash; Active forum creates ecosystem stickiness</li>
+          <li><strong>Namokimods has broader selection</strong> &mdash; Parts-only = infinite customization</li>
+          <li><strong>Rotatewatches has US presence</strong> &mdash; Physical address builds trust</li>
+          <li><strong>All competitors show reviews</strong> &mdash; TheModWatches is the only one hiding them</li>
+        </ol>
+
+        <div class="insight-box mt-6">
+          <strong>Key Takeaway:</strong> DIYwatch.club's dark, premium aesthetic is closest to where Peter Hermann needs to go. But they lack the founder story, the gift market, and the bundle innovation. Peter Hermann should combine DIYwatch.club's design sophistication with TheModWatches' unique strengths.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 9: CUSTOMER VOICE & PERSONA INSIGHTS -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s9">
+  <div>
+    <p class="section-num">Section 09</p>
+    <h2>Customer Voice &amp; Persona Insights</h2>
+    <div class="gold-rule-center"></div>
+    <p>Three data-backed personas from 451 survey responses</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Customer Voice</p>
+    <h2>Three Data-Backed Personas</h2>
+    <div class="gold-rule"></div>
+
+    <div class="three-col">
+      <div class="persona-card">
+        <div class="persona-stat">57%</div>
+        <h4>Persona 1: "The Builder"</h4>
+        <p class="text-sm text-steel mb-2">Male, 35&ndash;65, working professional<br><span class="text-xs">(Facebook purchase data: peak age 45&ndash;54 with 7 purchases)</span></p>
+        <ul class="clean">
+          <li>Wants bragging rights of "I built this"</li>
+          <li>Key objection: "Is the quality real?"</li>
+          <li>Buying trigger: Video showing finished product quality</li>
+        </ul>
+        <blockquote>"I even showed it to my very wealthy watch collecting boss (he has APs, Pateks) and he said he is interested"</blockquote>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-stat">43%</div>
+        <h4>Persona 2: "The Gift Giver"</h4>
+        <p class="text-sm text-steel mb-2">Female, 25&ndash;55, wife/girlfriend/mother</p>
+        <ul class="clean">
+          <li>Needs reassurance the gift will work</li>
+          <li>Key objection: "Will he be able to build this?"</li>
+          <li>Buying trigger: Other gift success stories + Premium Gift Box</li>
+        </ul>
+        <blockquote>"This is such a cool idea! My husband will Love it."</blockquote>
+      </div>
+
+      <div class="persona-card">
+        <div class="persona-stat">Repeat</div>
+        <h4>Persona 3: "The Collector Upgrader"</h4>
+        <p class="text-sm text-steel mb-2">Male, 40&ndash;65, already owns luxury watches</p>
+        <ul class="clean">
+          <li>Wants more styles (GMT, Chrono, Dress)</li>
+          <li>Key objection: Limited variety</li>
+          <li>Buying trigger: New releases, exclusives</li>
+        </ul>
+        <blockquote>"Of all the watch building companies, yours is the only one who leaves the dial blank for customization."</blockquote>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Customer Voice</p>
+    <h2>Top Customer Requests (from 451 surveys)</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Request</th>
+          <th>Frequency</th>
+          <th>Actionability</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Custom logo/engraving on dial</td><td>9 mentions</td><td><span class="badge badge-high">High</span> &mdash; already have caseback engraving ($0 rev), expand to dial</td></tr>
+        <tr><td>More watch styles (GMT, Chrono)</td><td>8+ mentions</td><td><span class="badge badge-medium">Medium</span> &mdash; requires product development</td></tr>
+        <tr><td>Visual preview configurator</td><td>4 mentions</td><td><span class="badge badge-high">High</span> &mdash; UX improvement</td></tr>
+        <tr><td>More colors/designs</td><td>10+ mentions</td><td><span class="badge badge-medium">Medium</span> &mdash; product expansion</td></tr>
+        <tr><td>Optional tools (not forced)</td><td>3 mentions</td><td><span class="badge badge-high">High</span> &mdash; quick fix, make tools optional addon</td></tr>
+        <tr><td>Better instructions</td><td>4 mentions</td><td><span class="badge badge-medium">Medium</span> &mdash; printed guide + improved video</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 10: PRODUCT & MERCHANDISING ANALYSIS -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s10">
+  <div>
+    <p class="section-num">Section 10</p>
+    <h2>Product &amp; Merchandising Analysis</h2>
+    <div class="gold-rule-center"></div>
+    <p>Top products, insights, and the broken recommendation engine</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Product &amp; Merchandising</p>
+    <h2>Top Products by Revenue (Dec 21, 2025 &ndash; Mar 21, 2026)</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Units</th>
+          <th>Gross</th>
+          <th>Net Sales</th>
+          <th>Avg Price</th>
+          <th>Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>42MM Dive Kit &mdash; Create Your Own</strong></td><td>107</td><td>$41K</td><td>$32,340</td><td>$302</td><td>+102%</td></tr>
+        <tr><td>42mm Case &mdash; Diver &mdash; Open Caseback</td><td>379</td><td>$29K</td><td>$21,565</td><td>$57</td><td>+112%</td></tr>
+        <tr><td>Movements Diver &mdash; Seiko/TMI</td><td>390</td><td>$25K</td><td>$19,046</td><td>$49</td><td>+103%</td></tr>
+        <tr><td>Watch Strap &mdash; Stainless Steel</td><td>422</td><td>$22K</td><td>$16,670</td><td>$40</td><td>+61%</td></tr>
+        <tr><td>Professional Watch Tool Kit</td><td>348</td><td>$18K</td><td>$14,210</td><td>$41</td><td>+90%</td></tr>
+        <tr><td>Bezel &mdash; Sub-Style</td><td>656</td><td>$14K</td><td>$10,575</td><td>$16</td><td>+79%</td></tr>
+        <tr><td>Dial NL &mdash; NH70 &mdash; Skeleton</td><td>392</td><td>$12K</td><td>$9,601</td><td>$25</td><td>+124%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Product &amp; Merchandising</p>
+    <h2>Product Insights</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <ol class="clean">
+          <li><strong>"Create Your Own" kit is the hero</strong> &mdash; 107 units, $32K net ($302 avg). Available at $421. Note: a hidden duplicate listing exists at $319 &mdash; should be cleaned up to avoid price inconsistency.</li>
+          <li><strong>Components sell strongly alongside kits</strong> &mdash; Cases (379), Movements (390), Straps (422) show healthy build-your-own activity.</li>
+          <li><strong>Skeleton dial is fastest-growing</strong> &mdash; +124% YoY. Exhibition Bundle dropped 87% (pricing/positioning needs rework, not demand).</li>
+          <li><strong>Custom Engraving barely sells</strong> &mdash; 2 units ($154) despite being the #1 customer request (9 mentions). Merchandising failure.</li>
+        </ol>
+      </div>
+
+      <div>
+        <ol class="clean" start="5">
+          <li><strong>Pilot Watch kits declining</strong> &mdash; Emerald (-13%) and Obsidian (-12%). May need repositioning or sunset for Peter Hermann.</li>
+          <li><strong>"Custom Dive Watch Configurator Product"</strong> &mdash; 263 units at $0 revenue (tracking product). 263 users went through the flow.</li>
+          <li><strong>Free Gift Strap</strong> &mdash; 342 units (up 98%). Effective at driving conversions but costs margin.</li>
+        </ol>
+
+        <div class="callout green-accent mt-6">
+          <h4 style="color: #B04A3A; margin-bottom: 6px;">Product Recommendation Engine: BROKEN</h4>
+          <p class="text-sm" style="margin:0;">The Shopify recommendation widget has <strong>0% checkout conversion</strong> (Dec 21 &ndash; Mar 21). Users click (13.7% click rate) and occasionally ATC, but ZERO completed checkout. Replace with curated "Complete Your Build" upsells.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Product &amp; Merchandising</p>
+    <h2>Sell-Through Rate Analysis (Stock-Out Risk)</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr><th>Product</th><th>Units Sold</th><th>Sell-Through Rate</th><th>Risk</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background: rgba(176, 74, 58, 0.06);"><td><strong>Premium Gift Box</strong></td><td>210</td><td><strong>99.1%</strong></td><td><span class="badge badge-critical">Critical</span> &mdash; nearly zero inventory remaining</td></tr>
+        <tr><td>Free Gift Strap (NATO Green)</td><td>219</td><td>70.4%</td><td><span class="badge badge-high">Monitor</span> &mdash; high demand</td></tr>
+        <tr><td>Professional Watch Tool Kit</td><td>353</td><td>67.0%</td><td><span class="badge badge-high">Monitor</span> &mdash; selling faster than replenishment</td></tr>
+        <tr><td>Watch Hands Sub-Style (Silver)</td><td>405</td><td>64.8%</td><td><span class="badge badge-medium">OK</span> &mdash; highest volume component</td></tr>
+        <tr><td>Bezel Sub-Style (Black)</td><td>278</td><td>60.6%</td><td><span class="badge badge-medium">OK</span> &mdash; most popular bezel config</td></tr>
+        <tr><td>NH70 Skeleton Movement</td><td>246</td><td>57.6%</td><td><span class="badge badge-medium">OK</span> &mdash; fastest-growing movement</td></tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box mt-4">
+      <strong>Premium Gift Box is at 99% sell-through.</strong> If this is part of the premium unboxing experience for Peter Hermann, production needs to scale immediately. Most popular build configuration: Black Sub-Style Bezel + NH70 Skeleton Movement + Silver Hands + Stainless Steel Strap.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 11: COPY & MESSAGING RECOMMENDATIONS -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s11">
+  <div>
+    <p class="section-num">Section 11</p>
+    <h2>Copy &amp; Messaging Recommendations</h2>
+    <div class="gold-rule-center"></div>
+    <p>Current messaging audit, headline recommendations, and the Peter Hermann copy framework</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Copy &amp; Messaging</p>
+    <h2>Current Messaging Audit</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Current</th>
+          <th>Issue</th>
+          <th>Peter Hermann Direction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hero headline</td>
+          <td>"Watch Building Kits"</td>
+          <td>Generic, no experience/value</td>
+          <td>"Create Something Extraordinary. Wear It Every Day."</td>
+        </tr>
+        <tr>
+          <td>Subheadline</td>
+          <td>(varies)</td>
+          <td>No consistent value prop</td>
+          <td>"Premium DIY watchmaking kits &mdash; your story on your wrist"</td>
+        </tr>
+        <tr>
+          <td>CTA primary</td>
+          <td>"Add to cart"</td>
+          <td>Transactional, not experiential</td>
+          <td>"Start Building" or "Choose Your Components"</td>
+        </tr>
+        <tr>
+          <td>Social proof</td>
+          <td>"1500+ successful builders"</td>
+          <td>Vague, no evidence</td>
+          <td>"Join 1,500+ watchmakers. Read their stories &rarr;"</td>
+        </tr>
+        <tr>
+          <td>Trust badge</td>
+          <td>"Simon's success guarantee"</td>
+          <td>Undefined</td>
+          <td>"Zero-Failure Promise: We build it if you can't"</td>
+        </tr>
+        <tr>
+          <td>Scarcity</td>
+          <td>"Super low on stock"</td>
+          <td>Static, feels fake</td>
+          <td>Dynamic: "12 kits remaining" with real inventory</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Copy &amp; Messaging</p>
+    <h2>Headline Recommendations &amp; CTA Map</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Homepage Hero</h3>
+        <p class="text-sm text-steel">Current: "Watch Building Kits"</p>
+        <ul class="clean">
+          <li><strong>Option A:</strong> "Build Your Own Mechanical Watch. No Experience Needed."</li>
+          <li><strong>Option B:</strong> "The Watch You Build Is the Watch You'll Never Take Off."</li>
+          <li><strong>Option C (Peter Hermann):</strong> "Handgemacht. Your Hands. Your Watch. Your Story."</li>
+        </ul>
+
+        <h3 class="mt-6">Product Page (Kit)</h3>
+        <p class="text-sm text-steel">Current: "42MM DIVE WATCH BUILDING KIT - CREATE YOUR OWN"</p>
+        <p class="text-sm"><strong>Recommended:</strong> "42mm Dive Watch Building Kit &mdash; 18 Combinations, One Kit, Your Creation"</p>
+        <p class="text-sm">Supporting subhead: "Everything you need to build a mechanical dive watch in one evening. Seiko NH35/NH70 movement. German-designed. Zero experience required."</p>
+
+        <h3 class="mt-6">Gift Landing Page (NEW)</h3>
+        <p class="text-sm"><strong>Hero:</strong> "The Gift He'll Never Forget. Because He Built It Himself."</p>
+        <p class="text-sm"><strong>Subhead:</strong> "Premium watch building kits &mdash; the perfect gift for men who have everything."</p>
+        <p class="text-sm"><strong>Trust:</strong> "30-Day Guarantee | We'll Build It For Him | Premium Gift Box Included"</p>
+      </div>
+
+      <div>
+        <h3>CTA Recommendations</h3>
+        <table class="compact">
+          <thead><tr><th>Location</th><th>Current</th><th>Recommended</th></tr></thead>
+          <tbody>
+            <tr><td>PDP primary</td><td>"Add to cart"</td><td>"Start Building"</td></tr>
+            <tr><td>PDP gift</td><td>N/A</td><td>"Gift This Kit"</td></tr>
+            <tr><td>Collection card</td><td>(click to view)</td><td>"Configure Yours"</td></tr>
+            <tr><td>Cart page</td><td>"Check out"</td><td>"Complete Your Order"</td></tr>
+            <tr><td>Email signup</td><td>(none)</td><td>"Get the Build Guide Free"</td></tr>
+            <tr><td>Sold-out</td><td>"Sold out"</td><td>"Notify Me When Available"</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="mt-6">Copy Framework: Current vs Peter Hermann</h3>
+        <table class="compact">
+          <thead><tr><th>Attribute</th><th>Current</th><th>Peter Hermann</th></tr></thead>
+          <tbody>
+            <tr><td>Tone</td><td>Casual, enthusiast</td><td>Refined, confident</td></tr>
+            <tr><td>Language</td><td>"Build your own," "DIY kit"</td><td>"Create," "Craft," "Legacy"</td></tr>
+            <tr><td>Price framing</td><td>Discount-led, "Save 22%"</td><td>Value-led, "Investment"</td></tr>
+            <tr><td>Social proof</td><td>"1500+ builders"</td><td>"A community of makers"</td></tr>
+            <tr><td>Materials</td><td>"Seiko movement"</td><td>"Japanese mechanical movement"</td></tr>
+            <tr><td>Guarantee</td><td>"Simon's success guarantee"</td><td>"The Maker's Promise"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Copy &amp; Messaging</p>
+    <h2>Critical Language Constraint &amp; Three Trust Guarantees</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Critical Language Constraint</h3>
+        <div class="callout gold-accent mb-4" style="border-left-color: #B04A3A;">
+          <h5 style="color: #B04A3A;">"German-Curated" &mdash; NOT "German-made" or "Swiss-made"</h5>
+          <p class="text-sm" style="margin:0;">Simon explicitly notes: <em>"We are not swiss-made. We are not made in Germany. So let's say 'German-Curated' because our founder is from Germany and he curated the kits himself."</em></p>
+        </div>
+        <p class="text-sm">All copy must use <strong>"German-Curated"</strong> to remain truthful. The Peter Hermann name and heritage are authentic; the manufacturing origin claim is not.</p>
+        <p class="text-sm text-steel mt-4">Acceptable: "German-Curated," "Designed in Germany," "German heritage"</p>
+        <p class="text-sm" style="color: #B04A3A;">Not acceptable: "German-made," "Made in Germany," "Swiss-made," "Swiss-grade"</p>
+      </div>
+
+      <div>
+        <h3>Three Trust Guarantees (Currently Buried)</h3>
+        <p class="text-sm text-steel mb-4">These exist but are barely visible. Must be on every PDP, in cart, and in email flows:</p>
+
+        <div class="callout green-accent mb-4">
+          <h5>1. 30-Day Satisfaction Guarantee</h5>
+          <p class="text-sm" style="margin:0;">"Satisfied or refunded. Though once you feel the weight of submarine-grade steel, you'll understand why we're confident."</p>
+        </div>
+        <div class="callout green-accent mb-4">
+          <h5>2. 48-Month Precision Warranty</h5>
+          <p class="text-sm" style="margin:0;">"Your watch parts are covered against manufacturing defects. We'll repair or replace faulty parts. Because quality matters."</p>
+        </div>
+        <div class="callout green-accent">
+          <h5>3. Simon's Zero-Failure Promise</h5>
+          <p class="text-sm" style="margin:0;">"Can't get your watch ticking? Send us the parts. We'll assemble them professionally and return your finished watch. (Never happened in our entire history.)"</p>
+        </div>
+
+        <div class="insight-box mt-4">
+          <strong>CRO Impact:</strong> These guarantees are the #1 tool for objection handling. The Zero-Failure Promise alone could improve View&rarr;ATC by removing the "what if I can't do it?" barrier.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Copy &amp; Messaging</p>
+    <h2>Objection-Handling Copy (for PDP)</h2>
+    <div class="gold-rule"></div>
+    <p class="mb-4">Based on the top 6 objections from customer research:</p>
+
+    <div class="two-col">
+      <div>
+        <div class="callout green-accent mb-4">
+          <h5>"Can I actually do this?"</h5>
+          <p class="text-sm" style="margin:0;">"No experience? No problem. 94% of our builders had never assembled a watch before. Average build time: 2.5 hours. Full video guide included."</p>
+        </div>
+        <div class="callout green-accent mb-4">
+          <h5>"Is the quality real at this price?"</h5>
+          <p class="text-sm" style="margin:0;">"Every kit uses genuine Seiko NH35/NH70 movements &mdash; the same caliber trusted by watchmakers worldwide. 48-month precision warranty."</p>
+        </div>
+        <div class="callout green-accent mb-4">
+          <h5>"What if I break something?"</h5>
+          <p class="text-sm" style="margin:0;">"Our Zero-Failure Promise: If anything goes wrong, we'll build it for you. Free. That's how confident we are in our design."</p>
+        </div>
+      </div>
+      <div>
+        <div class="callout green-accent mb-4">
+          <h5>"It seems overpriced"</h5>
+          <p class="text-sm" style="margin:0;">"Individual components retail for $755+. Your kit: $499, including professional tools, premium case, Seiko movement, and 3 bezels for 18 different looks."</p>
+        </div>
+        <div class="callout green-accent mb-4">
+          <h5>"Will the instructions be clear enough?"</h5>
+          <p class="text-sm" style="margin:0;">"Step-by-step HD video guide broken into 12 manageable sections. Plus our WhatsApp builder support &mdash; real answers from real watchmakers."</p>
+        </div>
+        <div class="callout green-accent mb-4">
+          <h5>"Will he like it?" (gift buyer)</h5>
+          <p class="text-sm" style="margin:0;">"43% of our customers receive this as a gift. Here's what they say: 'This is the best gift I've ever received.' &mdash; Scott G."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 12: OFFER & PRICING STRATEGY -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s12">
+  <div>
+    <p class="section-num">Section 12</p>
+    <h2>Offer &amp; Pricing Strategy</h2>
+    <div class="gold-rule-center"></div>
+    <p>Current offers, tiered bundles, gift strategy, and discount reduction</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Offer &amp; Pricing</p>
+    <h2>Current Offer Analysis</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr><th>Offer</th><th>Type</th><th>Usage</th><th>Performance</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Site-wide discount codes</td><td>% off</td><td>Heavy (23.4% of gross)</td><td>Drives volume but trains discount-seeking</td></tr>
+        <tr><td>Free strap with order</td><td>Gift with purchase</td><td>342 units given</td><td>Effective add-on, low cost</td></tr>
+        <tr><td>Premium Gift Box</td><td>Upsell ($15.64 avg)</td><td>208 units</td><td>Good attachment rate</td></tr>
+        <tr><td>8-in-1 Bundle</td><td>Bundle discount</td><td>3 units (dropped 40%)</td><td>Underperforming &mdash; needs repositioning</td></tr>
+        <tr><td>Exhibition Bundle</td><td>Premium bundle</td><td>2 units (dropped 87%)</td><td>Nearly dead &mdash; reposition or sunset</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="mt-8">Recommended Tiered Bundle Architecture (Rebrand-Ready)</h3>
+    <table>
+      <thead>
+        <tr><th>Tier</th><th>Name</th><th>Contents</th><th>Price</th><th>Margin Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="badge badge-green">Starter</span></td><td>"The First Build"</td><td>Kit + 1 bezel + 1 strap + tools</td><td>$299</td><td>Entry point, accessible</td></tr>
+        <tr><td><span class="badge badge-green">Standard</span></td><td>"The Maker's Kit"</td><td>Kit + 2 bezels + 2 straps + tools</td><td>$449</td><td>Core product, best margin</td></tr>
+        <tr><td><span class="badge badge-high">Premium</span></td><td>"The Collection"</td><td>Kit + 3 bezels + 3 straps + skeleton dial + gift box + engraving</td><td>$599</td><td>Peter Hermann price point</td></tr>
+        <tr><td><span class="badge badge-high">Ultimate</span></td><td>"The Watchmaker's Edition"</td><td>2 kits (NH35+NH70) + 4 bezels + 4 straps + leather roll + gift box</td><td>$899</td><td>Aspirational, anchor price</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-box mt-4">
+      <strong>The "Ultimate" tier serves as a price anchor</strong> that makes the $599 "Collection" tier feel reasonable.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Offer &amp; Pricing</p>
+    <h2>Gift Offers, Discount Reduction &amp; Repeat Strategy</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Gift-Specific Offers (Untapped 43%)</h3>
+        <table class="compact">
+          <thead><tr><th>Offer</th><th>Details</th><th>When</th></tr></thead>
+          <tbody>
+            <tr style="background: rgba(196, 162, 101, 0.12);"><td><strong>"Couples Set"</strong></td><td><strong>2 watches (one women's) &mdash; build together as a date experience</strong></td><td><strong>Year-round</strong></td></tr>
+            <tr><td>"Build Together" Bundle</td><td>2 kits at $499 (vs $598)</td><td>Year-round</td></tr>
+            <tr><td>"Father &amp; Son" Kit</td><td>Kit + gift box + card + guide</td><td>Father's Day</td></tr>
+            <tr><td>Birthday Gift Package</td><td>Kit + gift wrap + engraving + expedited</td><td>Year-round</td></tr>
+            <tr><td>Christmas Gift Guide</td><td>Curated tiers: $299 / $449 / $599</td><td>Nov&ndash;Dec</td></tr>
+            <tr><td>Gift Card + Video</td><td>Digital card with unboxing preview</td><td>Year-round</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="mt-6">Reduce Discount Dependence</h3>
+        <p class="text-sm mb-2">23.4% discount rate is incompatible with $600&ndash;$1,000 positioning:</p>
+        <table class="compact">
+          <thead><tr><th>Phase</th><th>Timeline</th><th>Strategy</th></tr></thead>
+          <tbody>
+            <tr><td>Phase 1</td><td>Q2 2026</td><td>Replace % discounts with value-adds</td></tr>
+            <tr><td>Phase 2</td><td>Q3 2026</td><td>Eliminate site-wide discounts; founding member pricing for email only</td></tr>
+            <tr><td>Phase 3</td><td>Q4 2026</td><td>Full Peter Hermann pricing; discounts only for loyalty members</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3>Subscription &amp; Repeat Purchase</h3>
+        <p class="text-sm text-steel mb-2">CLV ~$300, 2/30 repeat purchases, 67% revenue from returning visitors.</p>
+        <ul class="clean">
+          <li><strong>"Builder's Club" membership:</strong> $49/year for 15% off all components, early access, exclusive colorways</li>
+          <li><strong>"Next Build" offer:</strong> Post-purchase email with 20% off a different kit within 90 days</li>
+          <li><strong>Component subscription:</strong> Monthly "Dial of the Month" or "Bezel of the Month" for collectors</li>
+        </ul>
+
+        <h3 class="mt-6">Urgency &amp; Scarcity (Authentic)</h3>
+        <p class="text-sm mb-2">Replace static "super low on stock" with:</p>
+        <table class="compact">
+          <thead><tr><th>Tactic</th><th>Implementation</th></tr></thead>
+          <tbody>
+            <tr><td>Real-time inventory</td><td>"Only 8 Skeleton Dials left in Black" (Shopify API)</td></tr>
+            <tr><td>Limited colorway releases</td><td>Monthly exclusive edition (100 units max)</td></tr>
+            <tr><td>Price increase countdown</td><td>"Peter Hermann pricing begins June 1"</td></tr>
+            <tr><td>Bundle deadline</td><td>"Exhibition Bundle available until April 30"</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 13: PETER HERMANN REBRAND ALIGNMENT -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s13">
+  <div>
+    <p class="section-num">Section 13</p>
+    <h2>Peter Hermann Rebrand Alignment</h2>
+    <div class="gold-rule-center"></div>
+    <p>Positioning paradox, brand architecture, success tests, and the path forward</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Rebrand Alignment</p>
+    <h2>The Core Strategic Challenge: The Positioning Paradox</h2>
+    <div class="gold-rule"></div>
+
+    <p class="text-lg" style="max-width: 900px; margin-bottom: 24px;">The brief identifies a critical tension: <strong>"DIY" signals budget, but Peter Hermann must signal craftsmanship.</strong> Every CRO recommendation must solve this paradox &mdash; elevating the perception from "affordable kit" to "premium maker experience" without losing the accessibility that makes it appealing.</p>
+
+    <div class="two-col">
+      <div>
+        <h4 style="color: #B04A3A;">Current Perception</h4>
+        <table class="compact">
+          <tbody>
+            <tr><td>"DIY watch kit" &rarr; hobbyist, cheap</td></tr>
+            <tr><td>Building to save money</td></tr>
+            <tr><td>Competing with kit sellers</td></tr>
+            <tr><td>Transaction: buy a product</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4 class="text-green">Target Perception</h4>
+        <table class="compact">
+          <tbody>
+            <tr><td>"Premium maker experience" &rarr; craftsman, valuable</td></tr>
+            <tr><td>Building to earn the right to wear it</td></tr>
+            <tr><td>Competing with microbrands (Brew, Baltic, Christopher Ward)</td></tr>
+            <tr><td>Experience: join a legacy of German makers</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Rebrand Alignment</p>
+    <h2>Current Brand vs Target Brand</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>The Mod Watches (Now)</th><th>Peter Hermann (Target)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Positioning</td><td>"DIY watch kits for enthusiasts"</td><td>"Premium maker experiences &mdash; Handgemacht"</td></tr>
+        <tr><td>Price Range</td><td>$259&ndash;$499</td><td>$600&ndash;$1,000</td></tr>
+        <tr><td>Revenue Target</td><td>$56K/month (current)</td><td>$450K/month (12-month target)</td></tr>
+        <tr><td>Target Audience</td><td>Watch hobbyists, 25&ndash;45</td><td>Discerning craftsmen and collectors, 35&ndash;55</td></tr>
+        <tr><td>Brand Feel</td><td>Casual, accessible</td><td>Premium but not pretentious; crafted, not corporate</td></tr>
+        <tr><td>Design Language</td><td>Green (#314334), clean</td><td>Deep PGA golf green (Rolex benchmark), editorial</td></tr>
+        <tr><td>Typography</td><td>Satoshi-Black, Archivo</td><td>Sophisticated, horological, German tradition</td></tr>
+        <tr><td>Brand Architecture</td><td>Single brand</td><td>Master (Peter Hermann) + sub-brand (UWE)</td></tr>
+        <tr><td>Competitor Frame</td><td>DIY kit sellers</td><td>Luxury microbrands (Christopher Ward, Baltic)</td></tr>
+        <tr><td>Tagline</td><td>"Watch Building Kits"</td><td>"Handgemacht"</td></tr>
+        <tr><td>Brand Personality</td><td>Friendly, accessible</td><td>Premium but not pretentious; personal, not mass-produced</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Rebrand Alignment</p>
+    <h2>Brand Architecture &amp; Success Tests</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Brand Architecture: Master + Sub-brand</h3>
+        <p class="text-sm mb-4">Maison Alc&eacute;e-style brand architecture:</p>
+
+        <div class="callout gold-accent mb-4">
+          <h5>Peter Hermann = Master Brand</h5>
+          <p class="text-sm" style="margin:0;">The umbrella. Named after Simon's two real grandfathers &mdash; authentic heritage, not manufactured. Works across product categories: watches now, knives next, other craft experiences in future.</p>
+        </div>
+        <div class="callout gold-accent mb-4">
+          <h5>UWE = "Unfinished Watch Experience"</h5>
+          <p class="text-sm" style="margin:0;">The watch product sub-brand. Named after Uwe, Simon's friend who passed at 40 &mdash; the genuine emotional story that drives the brand.</p>
+        </div>
+        <div class="callout gold-accent">
+          <h5>Letter-Named Models</h5>
+          <p class="text-sm" style="margin:0;">Future naming: "The U" (for Uwe), "The M", "The H", "The P". Site must support /collections/uwe &rarr; "The UWE Collection" with sub-collections by model letter.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3>Three Success Tests (from Designer Brief)</h3>
+        <p class="text-sm text-steel mb-4">Simon's explicit validation criteria for the rebrand:</p>
+
+        <div class="callout green-accent mb-4">
+          <h5>1. The Mirror Test (Personal Validation)</h5>
+          <p class="text-sm" style="margin:0;">Simon looks at the watch and thinks "this looks f***ing sick." He would wear it proudly. The dial branding makes him proud. Every PDP must create this visceral reaction.</p>
+        </div>
+        <div class="callout green-accent mb-4">
+          <h5>2. The Customer Test (Market Validation)</h5>
+          <p class="text-sm" style="margin:0;">95% of past customers should say "hell yeah" when asked "would you want this on your dial?" Run the customer test BEFORE full rebrand launch. Use email list to validate.</p>
+        </div>
+        <div class="callout green-accent">
+          <h5>3. The Price Test (Financial Validation)</h5>
+          <p class="text-sm" style="margin:0;">$600&ndash;$1,000 feels appropriate for the experience. Customers see it as accessible luxury ("I deserve this"), not expensive DIY. The website must justify this price through premium presentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Rebrand Alignment</p>
+    <h2>Expanded Competitive Frame &amp; Unboxing Experience</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Peter Hermann Competitive Frame</h3>
+        <p class="text-sm text-steel mb-2">Peter Hermann competes in a different arena than current kit competitors:</p>
+        <table class="compact">
+          <thead><tr><th>Competitor</th><th>Price Range</th><th>Peter Hermann Positioning</th></tr></thead>
+          <tbody>
+            <tr><td>DIYwatch, Namokimods</td><td>$230&ndash;$650</td><td>ABOVE these &mdash; not competing on kit features</td></tr>
+            <tr><td>Brew</td><td>$400&ndash;$600</td><td>Adjacent &mdash; adds build experience at similar price</td></tr>
+            <tr><td>Baltic</td><td>$500&ndash;$1,200</td><td>Adjacent &mdash; offers craftsmanship ownership</td></tr>
+            <tr><td>Christopher Ward</td><td>$500&ndash;$1,500</td><td>Aspirational peer &mdash; similar quality perception</td></tr>
+            <tr><td>Nomadic Watches</td><td>&euro;1K&ndash;&euro;2K</td><td>Higher-end reference &mdash; shared maker ethos</td></tr>
+            <tr><td>Initium Swiss</td><td>$2K&ndash;$3K</td><td>Ultra-premium build &mdash; proves market at higher price</td></tr>
+            <tr><td>Maison Alc&eacute;e</td><td>&euro;7,500+</td><td>Aesthetic benchmark &mdash; Peter Hermann at 1/10th price</td></tr>
+          </tbody>
+        </table>
+        <div class="insight-box mt-4">
+          <strong>CRO implication:</strong> The website must stop looking like a competitor to DIYwatch.club and start looking like a competitor to Christopher Ward and Baltic. Editorial photography, brand storytelling above the fold, price presented confidently.
+        </div>
+      </div>
+
+      <div>
+        <h3>The Unboxing Experience (8 Layers)</h3>
+        <p class="text-sm text-steel mb-2">A major untapped CRO asset. Currently NONE shown on the website:</p>
+        <ol class="clean">
+          <li>Outer shipping box (Peter Hermann branded)</li>
+          <li>Premium presentation box (magnetic lift-off, Maison Alc&eacute;e aesthetic)</li>
+          <li>Founder's letter (handwritten style, wax seal)</li>
+          <li>Sensory element (natural, meaningful &mdash; e.g. lavender twig)</li>
+          <li>Individual component boxes (craft paper, PH logo)</li>
+          <li>Inner pouches (paper, not plastic)</li>
+          <li>Toolkit presentation (premium quality)</li>
+          <li>Instructions (beautifully designed guide)</li>
+        </ol>
+
+        <div class="callout gold-accent mt-4">
+          <p class="text-sm" style="margin:0;"><strong>CRO implication:</strong> The unboxing justifies $600&ndash;$1,000 pricing. Feature prominently on PDPs, homepage, gift landing page, and ads. "Your experience begins before you build."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Rebrand Alignment</p>
+    <h2>Dial Branding, Post-Build Value &amp; CRO Recommendations</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Dial Branding: Most Urgent Design Priority</h3>
+        <p class="text-sm mb-4">The brief calls empty watch dials <strong>the #1 design problem</strong>: "Empty dial is killing premium feel. Current M logo is too basic."</p>
+        <ul class="clean">
+          <li>Dial appearance is the first thing customers evaluate on a PDP</li>
+          <li>Empty dials make the product look "unfinished" negatively (vs aspirational "Unfinished Watch Experience")</li>
+          <li>Competitor DIYwatch.club already has branded dials</li>
+          <li>Once new dial branding exists, update ALL product photography immediately</li>
+        </ul>
+
+        <h3 class="mt-6">Post-Build Experience as Value Justification</h3>
+        <ul class="clean">
+          <li>Peter Hermann collector's seal engraved on components</li>
+          <li>Certificate of craftsmanship with collector's seal</li>
+          <li>Serial numbers on each build (adds exclusivity)</li>
+          <li>Limited edition markers for special releases</li>
+          <li>Watches designed to be "worn and talked about &mdash; the trophy, the conversation piece"</li>
+        </ul>
+        <div class="insight-box mt-4">
+          <strong>CRO implication:</strong> Create a "What You Receive" section on PDPs showing the complete experience &mdash; not just kit components, but certificate, seal, serial number. Transforms purchase from "buying parts" to "joining a legacy."
+        </div>
+      </div>
+
+      <div>
+        <h3>CRO Recommendations Aligned with Rebrand</h3>
+        <ol class="clean">
+          <li><strong>Reviews and social proof:</strong> Curate premium-feeling testimonials. Show "CEO," "Architect," "Surgeon" in reviewer titles.</li>
+          <li><strong>Photography upgrade:</strong> Editorial lifestyle photography. Watches on wrists at dinner, boardrooms, outdoors.</li>
+          <li><strong>Gift positioning:</strong> Frame as "an experience, not a product." The gift is "3 hours of craftsmanship that results in a timepiece."</li>
+          <li><strong>Price anchoring:</strong> Stop leading with discounts. Lead with value and heritage.</li>
+          <li><strong>Community framing:</strong> "A community of makers" with curated, premium-presenting UGC.</li>
+          <li><strong>Founder story:</strong> Make three-generation German heritage central. The story is REAL &mdash; handle with authenticity.</li>
+          <li><strong>Copy language shift:</strong> Replace "DIY" and "kit." Use: "maker experience," "premium timepiece," "Handgemacht."</li>
+          <li><strong>Unboxing as selling point:</strong> Feature 8-layer premium unboxing on PDPs, homepage, and ads.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">Rebrand Alignment</p>
+    <h2>Simon's Brand Purpose &amp; Core Promise</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <blockquote class="featured" style="font-size: 18px; margin-bottom: 24px;">
+          "To create something that my dad (and dads like him) love and that he wears everyday and is proud of. And to build something that eternalizes Uwe."
+        </blockquote>
+        <p class="text-xs tracking-wide text-steel mb-6">Simon Gruhdorfer &mdash; Brand Purpose</p>
+
+        <h3>Core Promise</h3>
+        <p class="text-lg" style="color: var(--green); font-family: Georgia, 'Times New Roman', serif;"><em>"Wear something you're proud of &mdash; because you built it."</em></p>
+
+        <h3 class="mt-6">Emotional Driver</h3>
+        <p>Pride, satisfaction, craftsmanship, belonging.</p>
+      </div>
+
+      <div>
+        <h3>Brand Personality (as a Person)</h3>
+        <div class="callout gold-accent mb-4">
+          <p class="text-sm" style="margin:0;">"Calm, knowledgeable, expert. Well-dressed, understated luxury. Fun, exciting &mdash; not boring. Authentic with a story (Munich, craftsmanship, Uwe). Inspiring: makes me want to join the tribe and create."</p>
+        </div>
+
+        <h3>Tone of Voice</h3>
+        <p class="text-sm">Clear, purposeful, mature with a light touch of wit. Luxurious but approachable. Personal, authentic, enthusiastic yet respectful.</p>
+
+        <h3 class="mt-4">Customer Desired Feelings</h3>
+        <div class="stat-grid" style="grid-template-columns: repeat(2, 1fr); gap: 10px;">
+          <div class="stat-card" style="padding: 12px 16px; text-align: center;">
+            <div class="stat-label">Part of the Tribe</div>
+          </div>
+          <div class="stat-card" style="padding: 12px 16px; text-align: center;">
+            <div class="stat-label">Proud</div>
+          </div>
+          <div class="stat-card" style="padding: 12px 16px; text-align: center;">
+            <div class="stat-label">Supported ("I can do it")</div>
+          </div>
+          <div class="stat-card" style="padding: 12px 16px; text-align: center;">
+            <div class="stat-label">Important &amp; Valued</div>
+          </div>
+        </div>
+
+        <div class="insight-box mt-4">
+          <strong>CRO implication:</strong> Every page should make visitors feel these emotions. The current site feels transactional &mdash; Peter Hermann should feel like joining a community of makers, guided by a knowledgeable friend with German watchmaking heritage.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">Rebrand Alignment</p>
+    <h2>Website Transition Roadmap &amp; Design Requirements</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3>Website Transition Roadmap</h3>
+        <table>
+          <thead><tr><th>Phase</th><th>Actions</th><th>Timeline</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Phase 1: Quick Wins</strong></td>
+              <td>Fix typo, unhide reviews, sticky ATC, gift section, email capture, update copy language</td>
+              <td>Week 1&ndash;2</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 2: Conversion</strong></td>
+              <td>Gift landing page, value anchoring, fix recommendations, cart abandonment, unboxing + "What You Receive" sections</td>
+              <td>Week 3&ndash;6</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 3: Premium Shift</strong></td>
+              <td>Editorial photography (incl. unboxing shoot), Peter Hermann voice, tier pricing, founder story page, Customer Test</td>
+              <td>Week 6&ndash;10</td>
+            </tr>
+            <tr>
+              <td><strong>Phase 4: Full Rebrand</strong></td>
+              <td>New domain, design system (Maison Alc&eacute;e benchmark), PH + UWE architecture, Letter-Named Models, $600&ndash;$1K pricing, branded dials</td>
+              <td>Week 10&ndash;16</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3>Key Brief Requirements for Website (Phase 4)</h3>
+        <ul class="clean">
+          <li><strong>Aesthetic:</strong> Heritage/Vintage + Artistic/Crafted. Maison Alc&eacute;e level. Avoid sterile minimalism.</li>
+          <li><strong>Color:</strong> Deep dark PGA golf green (Rolex green benchmark).</li>
+          <li><strong>Typography:</strong> Sophisticated, horological, German typographic tradition.</li>
+          <li><strong>Photography:</strong> Editorial lifestyle, not product-on-white.</li>
+          <li><strong>Brand personality:</strong> Premium but not pretentious. Personal, not mass-produced.</li>
+          <li><strong>Logo suite:</strong> Master brand wordmark in header, sub-brand marks on collection/PDPs, collector's seal.</li>
+          <li><strong>"Handgemacht" tagline:</strong> Integrated into site design.</li>
+          <li><strong>Platform expandability:</strong> Must support future product categories (watches now, knives next).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- SECTION 14: PRIORITIZED CRO ROADMAP -->
+<!-- ============================================================ -->
+<section class="slide divider" id="s14">
+  <div>
+    <p class="section-num">Section 14</p>
+    <h2>Prioritized CRO Roadmap</h2>
+    <div class="gold-rule-center"></div>
+    <p>34 items across 4 tiers &mdash; from quick wins to full rebrand</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">CRO Roadmap</p>
+    <h2>Tier 1: Quick Wins (1&ndash;2 Weeks)</h2>
+    <div class="gold-rule"></div>
+    <p class="text-sm text-steel mb-4">Est. Revenue Impact: +$15K&ndash;$25K/quarter</p>
+
+    <table class="compact">
+      <thead>
+        <tr><th style="width:30px;">#</th><th>Action</th><th>Page</th><th>Effort</th><th>Impact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Unhide Loox reviews</strong> (remove CSS display:none)</td><td>Collection + PDP</td><td>5 min</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>2</td><td><strong>Fix "Wordwide" typo</strong> in shipping banner</td><td>Sitewide</td><td>1 min</td><td><span class="badge badge-low">Low</span></td></tr>
+        <tr><td>3</td><td><strong>Add "Notify Me"</strong> for sold-out products</td><td>PDP</td><td>1 hr</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>4</td><td><strong>Add sticky ATC button</strong> for mobile</td><td>PDP</td><td>2 hrs</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>5</td><td><strong>Show payment installment messaging</strong> ("4x $105 with Shop Pay")</td><td>PDP</td><td>30 min</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>6</td><td><strong>Add value anchoring</strong> on bundle pages ("Individual: $755; Kit: $499")</td><td>PDP</td><td>1 hr</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>7</td><td><strong>Enable express checkout</strong> (Apple Pay, Shop Pay) above fold</td><td>Cart</td><td>1 hr</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>8</td><td><strong>Replace "Add to cart"</strong> with "Start Building" on kit PDPs</td><td>PDP</td><td>15 min</td><td><span class="badge badge-low">Low-Med</span></td></tr>
+        <tr><td>9</td><td><strong>Remove or lazy-load CommSlayer</strong> (950 KB, #1 perf blocker)</td><td>Sitewide</td><td>1 hr</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>10</td><td><strong>Add meta description</strong> to homepage (SEO gap)</td><td>Homepage</td><td>5 min</td><td><span class="badge badge-low">Low</span></td></tr>
+        <tr><td>11</td><td><strong>Defer non-critical third-party scripts</strong></td><td>Sitewide</td><td>2 hrs</td><td><span class="badge badge-medium">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">CRO Roadmap</p>
+    <h2>Tier 2: High-Impact Projects (2&ndash;6 Weeks)</h2>
+    <div class="gold-rule"></div>
+    <p class="text-sm text-steel mb-4">Est. Revenue Impact: +$20K&ndash;$40K/quarter</p>
+
+    <table class="compact">
+      <thead>
+        <tr><th style="width:30px;">#</th><th>Action</th><th>Page</th><th>Effort</th><th>Impact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>12</td><td><strong>Build dedicated Gift Landing Page</strong> (/gifts or /gifts-for-him)</td><td>New Page</td><td>1 week</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>13</td><td><strong>Launch email capture popup</strong> with lead magnet</td><td>Sitewide</td><td>2 days</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>14</td><td><strong>Set up cart abandonment email flow</strong></td><td>Email</td><td>3 days</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>15</td><td><strong>Set up browse abandonment email flow</strong></td><td>Email</td><td>2 days</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>16</td><td><strong>Add "How It Works" 3-step section</strong> to homepage</td><td>Homepage</td><td>3 days</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>17</td><td><strong>Add founder story section</strong> to homepage</td><td>Homepage</td><td>2 days</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>18</td><td><strong>Create "Best For" badges</strong> on collection cards</td><td>Collection</td><td>1 day</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>19</td><td><strong>Fix product recommendations</strong> &mdash; curated "Complete Your Build"</td><td>PDP + Cart</td><td>3 days</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>20</td><td><strong>Add objection-handling FAQ</strong> on PDPs</td><td>PDP</td><td>2 days</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>21</td><td><strong>Add UGC gallery</strong> &mdash; customer photos of finished watches</td><td>PDP + Home</td><td>3 days</td><td><span class="badge badge-medium">Medium</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="slide-inner">
+    <p class="section-label">CRO Roadmap</p>
+    <h2>Tier 3: Strategic Initiatives (6&ndash;12 Weeks)</h2>
+    <div class="gold-rule"></div>
+    <p class="text-sm text-steel mb-4">Est. Revenue Impact: +$25K&ndash;$50K/quarter</p>
+
+    <table class="compact">
+      <thead>
+        <tr><th style="width:30px;">#</th><th>Action</th><th>Page</th><th>Effort</th><th>Impact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>22</td><td><strong>Build visual watch configurator</strong> (show component preview)</td><td>PDP</td><td>2&ndash;4 weeks</td><td><span class="badge badge-high">Very High</span></td></tr>
+        <tr><td>23</td><td><strong>Launch tiered bundle architecture</strong> (Starter/Maker/Collection/Ultimate)</td><td>Product + Collection</td><td>1 week</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>24</td><td><strong>Expand custom engraving</strong> to dials (not just casebacks)</td><td>Product</td><td>2 weeks</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>25</td><td><strong>Implement AI-referred visitor pathway</strong> (ChatGPT landing page)</td><td>New Page</td><td>1 week</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>26</td><td><strong>Build "Builder's Club"</strong> loyalty/subscription program</td><td>Account</td><td>3 weeks</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>27</td><td><strong>Create weekly "Build of the Week"</strong> email newsletter</td><td>Email</td><td>Ongoing</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>28</td><td><strong>Optimize blog content</strong> with product CTAs and conversion paths</td><td>Blog</td><td>2 weeks</td><td><span class="badge badge-medium">Medium</span></td></tr>
+        <tr><td>29</td><td><strong>Phase out percentage discounts</strong> &mdash; transition to value-add offers</td><td>Pricing</td><td>Ongoing</td><td><span class="badge badge-green">Strategic</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+<section class="slide bg-warm">
+  <div class="slide-inner">
+    <p class="section-label">CRO Roadmap</p>
+    <h2>Tier 4: Peter Hermann Rebrand (10&ndash;16 Weeks)</h2>
+    <div class="gold-rule"></div>
+
+    <table>
+      <thead>
+        <tr><th style="width:30px;">#</th><th>Action</th><th>Effort</th><th>Impact</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>30</td><td><strong>New design system</strong> &mdash; dark premium theme matching Maison Alc&eacute;e benchmark</td><td>3 weeks</td><td><span class="badge badge-green">Strategic</span></td></tr>
+        <tr><td>31</td><td><strong>Editorial photography shoot</strong> &mdash; lifestyle product photography</td><td>2 weeks</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>32</td><td><strong>New copy system</strong> &mdash; Peter Hermann voice across all pages</td><td>2 weeks</td><td><span class="badge badge-high">High</span></td></tr>
+        <tr><td>33</td><td><strong>Premium pricing launch</strong> &mdash; $600&ndash;$1,000 with new tier architecture</td><td>1 week</td><td><span class="badge badge-green">Strategic</span></td></tr>
+        <tr><td>34</td><td><strong>Domain/brand migration</strong> &mdash; DNS, redirects, Shopify theme swap</td><td>1 week</td><td><span class="badge badge-critical">Critical</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="stat-grid" style="margin-top: 32px; grid-template-columns: repeat(4, 1fr);">
+      <div class="stat-card">
+        <div class="stat-value" style="font-size: 24px;">$15K&ndash;$25K</div>
+        <div class="stat-label">Tier 1 Impact/Quarter</div>
+        <div class="stat-note">Quick Wins (1&ndash;2 wks)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="font-size: 24px;">$20K&ndash;$40K</div>
+        <div class="stat-label">Tier 2 Impact/Quarter</div>
+        <div class="stat-note">High-Impact (2&ndash;6 wks)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="font-size: 24px;">$25K&ndash;$50K</div>
+        <div class="stat-label">Tier 3 Impact/Quarter</div>
+        <div class="stat-note">Strategic (6&ndash;12 wks)</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-value" style="font-size: 24px;">$450K/mo</div>
+        <div class="stat-label">Tier 4 Target</div>
+        <div class="stat-note">Full Rebrand (10&ndash;16 wks)</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- APPENDIX: KEY METRICS REFERENCE -->
+<!-- ============================================================ -->
+<section class="slide">
+  <div class="slide-inner" style="text-align: center; max-width: 900px; margin: 0 auto;">
+    <p class="section-label">Appendix</p>
+    <h2>Key Metrics Reference</h2>
+    <div class="gold-rule-center"></div>
+
+    <table style="margin-top: 24px;">
+      <thead>
+        <tr><th>Metric</th><th>Current</th><th>Industry Benchmark</th><th>Gap</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Overall CVR</td><td>0.45%</td><td>1.5&ndash;2.5%</td><td>-1.05pp</td></tr>
+        <tr><td>View &rarr; ATC</td><td>5.4%</td><td>8&ndash;12%</td><td>-2.6pp min</td></tr>
+        <tr><td>ATC &rarr; Checkout</td><td>34.7%</td><td>50&ndash;60%</td><td>-15pp</td></tr>
+        <tr><td>Cart Abandonment</td><td>72.6%</td><td>65&ndash;70%</td><td>-2.6pp</td></tr>
+        <tr><td>Bounce Rate</td><td>43.6%</td><td>40&ndash;60%</td><td>Within range</td></tr>
+        <tr><td>Email % of Traffic</td><td>0.2%</td><td>5&ndash;15%</td><td>-4.8pp</td></tr>
+        <tr><td>Returning User Revenue %</td><td>67%</td><td>40&ndash;60%</td><td>Over-indexed (good)</td></tr>
+        <tr><td>Discount Rate</td><td>23.4%</td><td>5&ndash;15% (premium)</td><td>Over-discounting</td></tr>
+        <tr><td>Return Rate</td><td>1.3%</td><td>&lt;5%</td><td>Excellent</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top: 48px;">
+      <h3>Data Sources</h3>
+      <table class="compact" style="margin-top: 12px;">
+        <thead><tr><th>Source</th><th>Type</th><th>Period</th><th>Records</th></tr></thead>
+        <tbody>
+          <tr><td>GA4 (Property: nomods)</td><td>Web analytics</td><td>Dec 21, 2025 &ndash; Mar 21, 2026</td><td>25,336 sessions</td></tr>
+          <tr><td>Shopify Sales Breakdown</td><td>Revenue data</td><td>Dec 21, 2025 &ndash; Mar 21, 2026</td><td>90 days daily</td></tr>
+          <tr><td>Post-Purchase Surveys</td><td>Customer voice</td><td>Ongoing</td><td>451 responses</td></tr>
+          <tr><td>Peter Hermann Brand Brief</td><td>Rebrand direction</td><td>Oct&ndash;Nov 2025</td><td>21 pages</td></tr>
+          <tr><td>PageSpeed Insights</td><td>Performance audit</td><td>Mar 21, 2026</td><td>Mobile + Desktop</td></tr>
+          <tr><td>Meta Ad Library</td><td>Ad creative audit</td><td>Mar 24, 2026</td><td>~93 active ads</td></tr>
+          <tr><td>Competitor websites</td><td>UX analysis</td><td>Mar 21, 2026</td><td>3 competitors</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- CLOSING SLIDE -->
+<!-- ============================================================ -->
+<section class="slide" style="background: var(--green); justify-content: center; align-items: center; text-align: center;">
+  <div>
+    <p style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;">TheModWatches &rarr; Peter Hermann</p>
+    <h1 style="color: #fff; font-size: 48px; margin-bottom: 12px;">Ready to Build.</h1>
+    <div class="gold-rule-center" style="margin: 24px auto;"></div>
+    <p style="color: rgba(255,255,255,0.6); font-size: 16px; max-width: 500px; margin: 0 auto 40px;">34 actions. 4 tiers. One clear path from $56K/month to $450K/month.</p>
+    <p style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35);">Prepared by Bhaskar Roy &nbsp;|&nbsp; cazyweb</p>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================================ -->
+<script>
+  // ===== DOT NAVIGATION ACTIVE STATE =====
+  const slides = document.querySelectorAll('.slide[id]');
+  const dots = document.querySelectorAll('.dot-nav a');
+
+  function updateDots() {
+    let current = '';
+    slides.forEach(slide => {
+      const rect = slide.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+        current = slide.id;
+      }
+    });
+    dots.forEach(dot => {
+      dot.classList.toggle('active', dot.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', updateDots, { passive: true });
+  updateDots();
+
+  // ===== PROGRESS BAR =====
+  const progressBar = document.getElementById('progressBar');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // ===== KEYBOARD NAVIGATION =====
+  document.addEventListener('keydown', function(e) {
+    const allSlides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+
+    allSlides.forEach((slide, i) => {
+      const rect = slide.getBoundingClientRect();
+      if (rect.top >= -10 && rect.top <= window.innerHeight / 2) {
+        currentIndex = i;
+      }
+    });
+
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
+      e.preventDefault();
+      const next = Math.min(currentIndex + 1, allSlides.length - 1);
+      allSlides[next].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      const prev = Math.max(currentIndex - 1, 0);
+      allSlides[prev].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (e.key === 'Home') {
+      e.preventDefault();
+      allSlides[0].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    if (e.key === 'End') {
+      e.preventDefault();
+      allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>
+
+</body>
+</html>
