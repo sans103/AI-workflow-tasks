@@ -542,26 +542,194 @@
     h2 { font-size: 30px; }
     .two-col { grid-template-columns: 1fr; gap: 24px; }
     .three-col { grid-template-columns: 1fr; gap: 16px; }
-    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
   }
 
   @media (max-width: 768px) {
-    .slide { padding: 32px 24px; }
-    h1 { font-size: 32px; }
-    h2 { font-size: 26px; }
-    h3 { font-size: 20px; }
-    .stat-grid { grid-template-columns: 1fr; }
+    /* --- Slide layout: remove snap, allow natural scroll --- */
+    html { scroll-snap-type: none; }
+    .slide {
+      min-height: auto;
+      scroll-snap-align: unset;
+      padding: 32px 20px 48px;
+    }
+    .slide.divider { padding: 48px 20px; min-height: 40vh; }
+
+    /* --- Typography --- */
+    h1 { font-size: 26px; }
+    h2 { font-size: 22px; }
+    h3 { font-size: 18px; }
+    h4 { font-size: 16px; }
+    p { font-size: 14px; }
+    .text-lg { font-size: 15px; }
+    .text-sm { font-size: 12px; }
+    .text-xs { font-size: 10px; }
+    .slide.divider h2 { font-size: 30px; }
+    .slide.divider p { font-size: 14px; }
+
+    /* --- Stat cards (important to override inline grid-template-columns) --- */
+    .stat-grid { grid-template-columns: 1fr !important; }
+    .stat-card { padding: 16px 18px; }
+    .stat-card .stat-value { font-size: 24px; }
+    .stat-card .stat-label { font-size: 11px; }
+    .stat-card .stat-note { font-size: 10px; }
+
+    /* --- Tables: horizontal scroll wrapper --- */
+    .table-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 16px -4px;
+      padding: 0 4px;
+      position: relative;
+    }
+    .table-scroll-wrapper table { min-width: 420px; }
+    table { font-size: 11px; }
+    table th { padding: 7px 8px; font-size: 10px; }
+    table td { padding: 6px 8px; }
+    table.compact { font-size: 11px; }
+    table.compact th { padding: 6px 7px; font-size: 10px; }
+    table.compact td { padding: 5px 7px; }
+
+    /* --- Navigation: hide dots, show mobile indicator --- */
     .dot-nav { display: none; }
-    .slide-footer { left: 24px; right: 24px; }
-    table { font-size: 12px; }
-    table th, table td { padding: 6px 8px; }
+    .mobile-progress-indicator {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--green);
+      color: rgba(255,255,255,0.85);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      padding: 8px 20px;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 9998;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+    }
+    .mobile-progress-indicator .section-name {
+      color: var(--gold);
+      font-weight: 500;
+      max-width: 60%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* --- Slide footer: part of flow, not absolute --- */
+    .slide-footer {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* --- Gold rules --- */
+    .gold-rule { width: 40px; }
+    .gold-rule-wide { width: 60px; }
+    .gold-rule-center { width: 50px; }
+
+    /* --- Insight boxes & callouts --- */
+    .insight-box { padding: 12px 16px; font-size: 13px; }
+    .callout { padding: 14px 16px; font-size: 13px; }
+
+    /* --- Persona cards --- */
+    .persona-card { padding: 18px; }
+    .persona-card .persona-stat { font-size: 18px; }
+    .persona-card blockquote { font-size: 12px; padding-left: 10px; }
+
+    /* --- Funnel steps --- */
+    .funnel-step { flex-wrap: wrap; gap: 8px; }
+    .funnel-label { min-width: 100px; font-size: 12px; }
+    .funnel-value { min-width: 70px; font-size: 12px; }
+    .funnel-drop { min-width: 80px; font-size: 10px; }
+
+    /* --- Comparison rows --- */
+    .comparison-row { grid-template-columns: 100px 1fr 1fr; font-size: 11px; }
+    .comparison-row > div { padding: 6px 8px; }
+
+    /* --- Roadmap items --- */
+    .roadmap-item { flex-wrap: wrap; font-size: 12px; }
+    .roadmap-meta { min-width: unset; text-align: left; }
+
+    /* --- Badges --- */
+    .badge { font-size: 9px; padding: 2px 7px; }
+
+    /* --- Featured quotes --- */
+    blockquote.featured { font-size: 16px; padding-left: 16px; }
+
+    /* --- Cover & closing slide: override inline font-size --- */
+    #cover h1, .slide#cover h1 { font-size: 26px !important; }
+    .slide h1[style*="font-size"] { font-size: 26px !important; }
+    .slide h2[style*="font-size"] { font-size: 22px !important; }
+
+    /* --- Clean lists --- */
+    ul.clean li { font-size: 13px; padding: 5px 0 5px 14px; }
+    ol.clean li { font-size: 13px; }
+
+    /* --- Section label --- */
+    .section-label { font-size: 10px; }
   }
+
+  @media (max-width: 480px) {
+    .slide { padding: 24px 16px 44px; }
+    .slide.divider { padding: 36px 16px; }
+
+    h1 { font-size: 22px; }
+    h2 { font-size: 20px; }
+    h3 { font-size: 16px; }
+    h4 { font-size: 15px; }
+    p { font-size: 13px; }
+    .slide.divider h2 { font-size: 26px; }
+
+    .stat-card .stat-value { font-size: 22px; }
+    .stat-card { padding: 14px 16px; }
+
+    .insight-box { padding: 10px 14px; font-size: 12px; }
+    .callout { padding: 12px 14px; font-size: 12px; }
+
+    .persona-card { padding: 14px; }
+
+    .gold-rule { width: 30px; }
+    .gold-rule-wide { width: 40px; }
+    .gold-rule-center { width: 40px; }
+
+    .comparison-row { grid-template-columns: 80px 1fr 1fr; font-size: 10px; }
+
+    blockquote.featured { font-size: 14px; padding-left: 12px; }
+
+    #cover h1 { font-size: 22px !important; }
+    .slide h1[style*="font-size"] { font-size: 22px !important; }
+    .slide h2[style*="font-size"] { font-size: 20px !important; }
+    .slide.divider h2[style*="font-size"] { font-size: 22px !important; }
+
+    .mobile-progress-indicator { padding: 6px 16px; font-size: 10px; }
+
+    .funnel-label { min-width: 80px; font-size: 11px; }
+    .funnel-value { font-size: 11px; }
+    .funnel-drop { font-size: 9px; }
+
+    .slide-footer { font-size: 9px; }
+  }
+
+  /* --- Mobile progress indicator: hidden on desktop --- */
+  .mobile-progress-indicator { display: none; }
 </style>
 </head>
 <body>
 
 <!-- Progress Bar -->
 <div class="progress-bar" id="progressBar"></div>
+
+<!-- Mobile Progress Indicator (visible only on mobile via CSS) -->
+<div class="mobile-progress-indicator" id="mobileIndicator">
+  <span class="section-name" id="mobileSection">Cover</span>
+  <span id="mobileSlideCount">1 / 40</span>
+</div>
 
 <!-- Dot Navigation -->
 <nav class="dot-nav" id="dotNav">
@@ -2872,60 +3040,113 @@
 <!-- JAVASCRIPT -->
 <!-- ============================================================ -->
 <script>
+  // ===== WRAP TABLES FOR MOBILE SCROLL =====
+  (function() {
+    document.querySelectorAll('table').forEach(function(table) {
+      if (table.parentElement.classList.contains('table-scroll-wrapper')) return;
+      var wrapper = document.createElement('div');
+      wrapper.className = 'table-scroll-wrapper';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    });
+  })();
+
   // ===== DOT NAVIGATION ACTIVE STATE =====
   const slides = document.querySelectorAll('.slide[id]');
   const dots = document.querySelectorAll('.dot-nav a');
+  const allSlides = document.querySelectorAll('.slide');
+  const totalSlides = allSlides.length;
 
-  function updateDots() {
-    let current = '';
-    slides.forEach(slide => {
-      const rect = slide.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-        current = slide.id;
-      }
-    });
-    dots.forEach(dot => {
-      dot.classList.toggle('active', dot.getAttribute('href') === '#' + current);
-    });
-  }
+  // Map section IDs to readable names
+  const sectionNames = {
+    cover: 'Cover',
+    s1: 'Executive Summary',
+    s2: 'Business Performance',
+    s3: 'Funnel Analysis',
+    s4: 'Traffic & Channels',
+    s5: 'Meta Ad Library',
+    s6: 'Site Performance',
+    s7: 'Heuristic Analysis',
+    s8: 'Competitor UX',
+    s9: 'Customer Voice',
+    s10: 'Product & Merch',
+    s11: 'Copy & Messaging',
+    s12: 'Offer & Pricing',
+    s13: 'Rebrand Alignment',
+    s14: 'CRO Roadmap'
+  };
 
-  window.addEventListener('scroll', updateDots, { passive: true });
-  updateDots();
-
-  // ===== PROGRESS BAR =====
-  const progressBar = document.getElementById('progressBar');
-
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
-  }
-
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
-
-  // ===== KEYBOARD NAVIGATION =====
-  document.addEventListener('keydown', function(e) {
-    const allSlides = document.querySelectorAll('.slide');
+  function findCurrentSlide() {
     let currentIndex = 0;
-
-    allSlides.forEach((slide, i) => {
-      const rect = slide.getBoundingClientRect();
-      if (rect.top >= -10 && rect.top <= window.innerHeight / 2) {
+    let currentSectionId = 'cover';
+    allSlides.forEach(function(slide, i) {
+      var rect = slide.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2 && rect.bottom > 0) {
         currentIndex = i;
       }
     });
+    // Walk backwards from currentIndex to find the nearest section with an ID
+    for (var j = currentIndex; j >= 0; j--) {
+      if (allSlides[j].id) {
+        currentSectionId = allSlides[j].id;
+        break;
+      }
+    }
+    return { index: currentIndex, sectionId: currentSectionId };
+  }
+
+  function updateDots() {
+    var info = findCurrentSlide();
+    dots.forEach(function(dot) {
+      dot.classList.toggle('active', dot.getAttribute('href') === '#' + info.sectionId);
+    });
+  }
+
+  // ===== MOBILE PROGRESS INDICATOR =====
+  var mobileSection = document.getElementById('mobileSection');
+  var mobileSlideCount = document.getElementById('mobileSlideCount');
+
+  function updateMobileIndicator() {
+    var info = findCurrentSlide();
+    var name = sectionNames[info.sectionId] || info.sectionId;
+    if (mobileSection) mobileSection.textContent = name;
+    if (mobileSlideCount) mobileSlideCount.textContent = (info.index + 1) + ' / ' + totalSlides;
+  }
+
+  // ===== PROGRESS BAR =====
+  var progressBar = document.getElementById('progressBar');
+
+  function updateProgress() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }
+
+  // Unified scroll handler
+  function onScroll() {
+    updateDots();
+    updateProgress();
+    updateMobileIndicator();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ===== KEYBOARD NAVIGATION =====
+  document.addEventListener('keydown', function(e) {
+    var info = findCurrentSlide();
+    var currentIndex = info.index;
 
     if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') {
       e.preventDefault();
-      const next = Math.min(currentIndex + 1, allSlides.length - 1);
+      var next = Math.min(currentIndex + 1, totalSlides - 1);
       allSlides[next].scrollIntoView({ behavior: 'smooth' });
     }
 
     if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
       e.preventDefault();
-      const prev = Math.max(currentIndex - 1, 0);
+      var prev = Math.max(currentIndex - 1, 0);
       allSlides[prev].scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -2936,7 +3157,7 @@
 
     if (e.key === 'End') {
       e.preventDefault();
-      allSlides[allSlides.length - 1].scrollIntoView({ behavior: 'smooth' });
+      allSlides[totalSlides - 1].scrollIntoView({ behavior: 'smooth' });
     }
   });
 </script>
