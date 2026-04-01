@@ -734,6 +734,7 @@
 <!-- Dot Navigation -->
 <nav class="dot-nav" id="dotNav">
   <a href="#cover"><span class="dot-tooltip">Cover</span></a>
+  <a href="#data-quality"><span class="dot-tooltip">Data Limitations</span></a>
   <a href="#s1"><span class="dot-tooltip">Executive Summary</span></a>
   <a href="#s2"><span class="dot-tooltip">Business Performance</span></a>
   <a href="#s3"><span class="dot-tooltip">Funnel Analysis</span></a>
@@ -763,8 +764,54 @@
     <p style="font-family: Georgia, 'Times New Roman', serif; font-size: 16px; color: var(--gold); margin-bottom: 40px; letter-spacing: 0.03em;">Peter Hermann Rebrand</p>
     <p class="text-steel text-sm" style="margin-bottom: 4px;">Dec 21, 2025 &mdash; Mar 21, 2026 &nbsp;|&nbsp; 90 Days Analyzed</p>
     <p class="text-steel text-sm" style="margin-bottom: 4px;">Data Sources: GA4, Shopify Sales, 451 Post-Purchase Surveys, PageSpeed, Competitor Research, Meta Ad Library</p>
+    <p class="text-steel text-xs" style="margin-bottom: 4px;">Note: GA4 captures ~12% of Shopify revenue. GA4-derived metrics are directional, not absolute. See Section 2.</p>
     <p class="text-steel text-sm" style="margin-bottom: 40px;">Prepared by Bhaskar Roy</p>
     <p class="tracking-wide text-steel" style="font-size: 10px;">cazyweb</p>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- DATA LIMITATIONS SLIDE -->
+<!-- ============================================================ -->
+<section class="slide bg-warm" id="data-quality">
+  <div class="slide-inner">
+    <p class="section-label">Data Quality Note</p>
+    <h2>Data Limitations</h2>
+    <div class="gold-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3 class="text-green">What's Reliable</h3>
+        <ul class="clean">
+          <li><strong>Shopify revenue:</strong> $169K net, 554 orders, $399 AOV</li>
+          <li><strong>Post-purchase surveys:</strong> 451 responses, 43% gifts</li>
+          <li><strong>PageSpeed scores:</strong> Lighthouse mobile 38, desktop 59</li>
+          <li><strong>Heuristic analysis:</strong> Direct site inspection</li>
+          <li><strong>Meta Ad Library:</strong> ~93 active ads audited</li>
+          <li><strong>Product sell-through data:</strong> Shopify inventory</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 style="color: var(--gold);">What's Directional</h3>
+        <ul class="clean">
+          <li><strong>GA4 funnel:</strong> Captures ~20% of orders (113 vs 554)</li>
+          <li><strong>Channel attribution:</strong> Meta under-counted; GA4 revenue $21K vs Shopify $169K</li>
+          <li><strong>Returning visitor metrics:</strong> Legacy domain inflates "returning" counts</li>
+          <li><strong>Blog/ChatGPT traffic:</strong> Seiko mod residue, not current-brand intent</li>
+          <li><strong>Facebook demographics:</strong> n=25 purchases only</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-box mt-6">
+      <strong>How to read this audit:</strong> Shopify revenue, survey data, PageSpeed, and heuristic analysis are the foundation. GA4 data reveals patterns and relative proportions, but absolute numbers (conversion rates, channel revenue) are understated. Where GA4 is the primary source, we note this explicitly.
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>TheModWatches CRO Audit &mdash; March 2026</span>
+    <span class="cazyweb">cazyweb</span>
   </div>
 </section>
 
@@ -792,7 +839,7 @@
       <div class="stat-card">
         <div class="stat-value">$169K</div>
         <div class="stat-label">Net Revenue (90d)</div>
-        <div class="stat-note">+73% vs prior period</div>
+        <div class="stat-note">+73% vs prior period*</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">$399</div>
@@ -835,9 +882,9 @@
       <tbody>
         <tr>
           <td>1</td>
-          <td><strong>94.6% View &rarr; ATC drop</strong> &mdash; the #1 revenue leak. PDPs fail to convert browsers into buyers.</td>
+          <td><strong>View &rarr; ATC is the #1 revenue leak</strong> &mdash; PDPs fail to convert browsers into buyers.</td>
           <td><span class="badge badge-critical">Critical</span></td>
-          <td>GA4: 22,166 view_item &rarr; 1,189 add_to_cart (5.4% conversion)</td>
+          <td>GA4 funnel (partial data); confirmed by heuristic analysis</td>
         </tr>
         <tr>
           <td>2</td>
@@ -847,15 +894,15 @@
         </tr>
         <tr>
           <td>3</td>
-          <td><strong>Returning visitors generate 67% of revenue</strong> &mdash; but email drives only 60 sessions (Dec 21 &ndash; Mar 21).</td>
+          <td><strong>Email is criminally underutilized</strong> &mdash; highest-converting channel but drives only 60 sessions in 90 days.</td>
           <td><span class="badge badge-high">High</span></td>
-          <td>GA4: Returning users = 22% traffic, 67% revenue ($14.3K vs $7K)</td>
+          <td>GA4: 60 email sessions, 5.0% CVR, $5.36/session</td>
         </tr>
         <tr>
           <td>4</td>
-          <td><strong>ChatGPT drives 2,343 sessions with $130 revenue</strong> &mdash; a new channel with ~0% effective conversion.</td>
-          <td><span class="badge badge-medium">Medium</span></td>
-          <td>GA4: 9.2% of all traffic, 34.3% bounce rate, 1 purchase</td>
+          <td><strong>Meta is under-attributed in GA4</strong> &mdash; GA4 shows $21K total revenue vs $169K in Shopify. Facebook purchases are severely undercounted.</td>
+          <td><span class="badge badge-high">High</span></td>
+          <td>GA4 revenue: $21K vs Shopify: $169K (88% gap)</td>
         </tr>
         <tr>
           <td>5</td>
@@ -964,7 +1011,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Gross Sales</td><td><strong>$224,032</strong></td><td>+73% vs prior period (Sep 22 &ndash; Dec 20, 2025)</td></tr>
+            <tr><td>Gross Sales</td><td><strong>$224,032</strong></td><td>+73% vs prior period*</td></tr>
             <tr><td>Discounts Given</td><td>-$52,431 (23.4% of gross)</td><td>Discount-heavy growth</td></tr>
             <tr><td>Returns</td><td>-$2,919 (1.3% of gross)</td><td>Healthy &mdash; low return rate</td></tr>
             <tr><td>Net Sales</td><td><strong>$168,682</strong></td><td>Strong growth trajectory</td></tr>
@@ -976,11 +1023,12 @@
         <div class="insight-box" style="margin-top: 20px;">
           <strong>Key observation:</strong> Nearly 1 in 4 gross revenue dollars is given away as discounts. While discounts are driving volume growth (+73%), this level of discount dependency erodes margin and trains customers to wait for sales. <em>See Section 12 for transition strategy.</em>
         </div>
+        <p class="text-xs text-steel mt-2">*Prior period comparison context: TheModWatches transitioned from a Seiko mod store mid-2025. The +73% reflects business ramp-up, not like-for-like growth.</p>
       </div>
 
       <div>
         <h3>Key Ecommerce Metrics</h3>
-        <p class="text-xs text-steel" style="margin-bottom: 8px;">Source: GA4 (28-day default reporting period)</p>
+        <p class="text-xs text-steel" style="margin-bottom: 8px;">Source: GA4 (28-day default). GA4 captures only ~20% of Shopify orders (113 vs 554). Conversion rates below are understated.</p>
         <table class="compact">
           <thead>
             <tr>
@@ -1071,6 +1119,7 @@
     <h2>Funnel Analysis &amp; Revenue Leaks</h2>
     <div class="gold-rule-center"></div>
     <p>Where revenue is lost at each stage of the customer journey</p>
+    <p style="color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 8px;">Note: Funnel built from GA4 data (~20% of actual orders). Drop-off percentages are overstated but the pattern is validated by heuristic analysis.</p>
   </div>
 </section>
 
@@ -1205,6 +1254,7 @@
     <p class="section-label">Traffic &amp; Channels</p>
     <h2>Channel Performance Matrix</h2>
     <div class="gold-rule"></div>
+    <p class="text-sm" style="color: #B04A3A; margin-bottom: 12px;"><strong>Important:</strong> GA4 under-attributes Meta/Facebook because server-side conversions don't flow into GA4. Meta is likely the primary revenue driver. Facebook numbers below reflect GA4's incomplete view.</p>
 
     <table>
       <thead>
@@ -1244,34 +1294,35 @@
 
     <div class="two-col">
       <div>
-        <h4>Google Organic &mdash; Strongest Channel</h4>
-        <p class="text-sm text-steel">39.8% traffic, 48% of purchases</p>
+        <h4>Google Organic &mdash; Strongest in GA4 (partially inflated by Meta under-attribution)</h4>
+        <p class="text-sm text-steel">39.8% traffic, 48% of GA4 purchases</p>
         <ul class="clean">
           <li>32% bounce rate (best of all channels)</li>
           <li>Avg session 3:22 (highest engagement)</li>
           <li>"Are Seiko Mod Watches Worth the Money?" &mdash; 953 sessions</li>
           <li>"Seiko Nautilus Mods: 7 Shocking Truths" &mdash; 824 sessions</li>
-          <li><strong>Problem:</strong> Informational pages convert at ~0%. Need better blog&rarr;product conversion paths.</li>
+          <li><strong>Note:</strong> The top blog posts are <strong>legacy Seiko mod content</strong> attracting visitors with different purchase intent. The ~0% conversion is expected &mdash; intent mismatch, not a content problem.</li>
+          <li><strong>Problem:</strong> Need blog&rarr;product conversion paths, but acknowledge these Seiko mod readers aren't the target buyer for Peter Hermann kits.</li>
         </ul>
 
-        <h4 class="mt-6">Facebook Paid &mdash; Underperforming</h4>
-        <p class="text-sm text-steel">11.1% traffic, 5.3% of purchases</p>
+        <h4 class="mt-6">Facebook Paid &mdash; Under-attributed in GA4</h4>
+        <p class="text-sm text-steel">11.1% traffic, 5.3% of GA4 purchases</p>
         <ul class="clean">
-          <li>0.21% conversion rate &mdash; very low</li>
-          <li>53% bounce rate &mdash; landing pages not matching ad promise</li>
-          <li>Only 6 purchases from 2,819 sessions</li>
-          <li><strong>Fix landing page experience before scaling ad spend</strong></li>
+          <li>GA4 shows only 6 purchases, but Meta server-side tracking counts significantly more</li>
+          <li>53% bounce rate is a valid concern regardless of attribution</li>
+          <li>The channel is under-tracked in GA4, not underperforming</li>
+          <li><strong>Improve landing page experience to reduce bounce rate; verify true ROAS in Meta Ads Manager</strong></li>
         </ul>
       </div>
 
       <div>
-        <h4>ChatGPT Referral &mdash; Emerging, Zero Monetization</h4>
+        <h4>ChatGPT Referral &mdash; Likely Legacy Seiko Mod Residue</h4>
         <p class="text-sm text-steel">9.2% traffic, ~0% conversion</p>
         <ul class="clean">
-          <li>2,343 sessions &mdash; genuinely interested (34.3% bounce)</li>
+          <li>2,343 sessions &mdash; ChatGPT is likely referencing indexed Seiko mod content from the previous store era</li>
           <li>$130 total revenue from 2,343 sessions (1 purchase)</li>
-          <li>Users land with questions, not purchase intent</li>
-          <li><strong>Create an education&rarr;conversion pathway for AI-referred visitors</strong></li>
+          <li>Low conversion is expected &mdash; wrong-intent traffic, not a channel problem</li>
+          <li><strong>Monitor but don't invest: this traffic may decline naturally as indexed content changes post-rebrand</strong></li>
         </ul>
 
         <div class="callout gold-accent" style="margin-top: 20px;">
@@ -1307,6 +1358,7 @@
         </table>
         <div class="insight-box mt-4">
           <strong>Returning visitors convert at 6.6x the rate</strong> and generate 2x the revenue. The product requires consideration &mdash; retargeting and email nurture are critical.
+          <p class="text-xs text-steel mt-2" style="margin-bottom: 0;">Caveat: "Returning" in GA4 includes visitors from the old Seiko mod store on the same domain &mdash; this metric may be inflated.</p>
         </div>
       </div>
 
@@ -1557,6 +1609,7 @@
         </table>
         <div class="insight-box mt-4">
           <strong>The peak buyer is 45&ndash;54, not 25&ndash;35.</strong> This aligns perfectly with Peter Hermann's target of "discerning craftsmen aged 35&ndash;55." Current ads are not deliberately targeting this demographic &mdash; and no ads target women (gift givers = 43% of purchases).
+          <p class="text-xs text-steel mt-2" style="margin-bottom: 0;">Based on only 25 total Facebook purchases &mdash; treat as a directional signal, not statistically significant.</p>
         </div>
       </div>
     </div>
@@ -3055,6 +3108,7 @@
   // Map section IDs to readable names
   const sectionNames = {
     cover: 'Cover',
+    'data-quality': 'Data Limitations',
     s1: 'Executive Summary',
     s2: 'Business Performance',
     s3: 'Funnel Analysis',
