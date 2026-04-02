@@ -1815,56 +1815,92 @@
 <section class="slide">
   <div class="slide-inner">
     <p class="section-label">Heuristic Analysis</p>
-    <h2>Product Detail Page (42MM Dive Watch Kit)</h2>
+    <h2>Product Detail Page &mdash; Before vs After</h2>
     <div class="gold-rule"></div>
+    <p class="text-sm text-steel mb-6">Each row shows the current state and the recommended fix. Sorted by revenue impact.</p>
 
-    <div class="two-col">
-      <div>
-        <h4 class="text-green">What's Working</h4>
-        <ul class="clean">
-          <li>13 high-quality images with zoom capability</li>
-          <li>"Your story, not ours" narrative copy is emotionally compelling</li>
-          <li>"1500+ successful builders" social proof claim</li>
-          <li>"30-day satisfaction guarantee" and "48-month warranty"</li>
-          <li>"What's inside" detailed breakdown</li>
-        </ul>
+    <div style="display: flex; flex-direction: column; gap: 0;">
 
-        <h4 style="color: #B04A3A;" class="mt-6">Critical Issues</h4>
-        <table class="compact">
-          <thead><tr><th>Issue</th><th>Severity</th></tr></thead>
-          <tbody>
-            <tr><td>No "Notify Me" for out-of-stock variants</td><td><span class="badge badge-high">High</span></td></tr>
-            <tr><td>Zero customer reviews visible</td><td><span class="badge badge-critical">Critical</span></td></tr>
-            <tr><td>No configuration preview</td><td><span class="badge badge-high">High</span></td></tr>
-            <tr><td>Price without value anchor</td><td><span class="badge badge-high">High</span></td></tr>
-            <tr><td>No sticky ATC button (mobile)</td><td><span class="badge badge-high">High</span></td></tr>
-            <tr><td>"Simon's success guarantee" undefined</td><td><span class="badge badge-medium">Medium</span></td></tr>
-            <tr><td>No urgency beyond static text</td><td><span class="badge badge-medium">Medium</span></td></tr>
-            <tr><td>FAQ section incomplete</td><td><span class="badge badge-medium">Medium</span></td></tr>
-            <tr><td>No gift option at product level</td><td><span class="badge badge-high">High</span></td></tr>
-          </tbody>
-        </table>
+      <!-- Header Row -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; background: var(--green); border-radius: 6px 6px 0 0; color: #fff; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;">
+        <div style="padding: 10px 14px;">Element</div>
+        <div style="padding: 10px 14px; border-left: 1px solid rgba(255,255,255,0.15);">Current State</div>
+        <div style="padding: 10px 14px; border-left: 1px solid rgba(255,255,255,0.15);">Recommended</div>
+        <div style="padding: 10px 14px; border-left: 1px solid rgba(255,255,255,0.15);">Impact</div>
       </div>
 
-      <div>
-        <h4 class="text-green">PDP Recommendations</h4>
-        <ol class="clean">
-          <li><strong>Show reviews immediately</strong> &mdash; Enable Loox display with photos and star ratings</li>
-          <li><strong>Add "Notify Me"</strong> for sold-out items &mdash; Capture email + phone</li>
-          <li><strong>Add visual configuration preview</strong></li>
-          <li><strong>Add value anchoring:</strong> "Individually: $755 | Kit: $499 | Save: $256 (34%)"</li>
-          <li><strong>Implement sticky ATC for mobile</strong></li>
-          <li><strong>Add "Gift This Kit" button</strong> with gift wrapping option</li>
-          <li><strong>Expand Simon's guarantee</strong> with popup/tooltip</li>
-          <li><strong>Add UGC gallery</strong> &mdash; "Watches Built by Our Community"</li>
-          <li><strong>Payment installment messaging</strong> &mdash; "4 payments of $105 with Shop Pay"</li>
-        </ol>
-
-        <div class="callout gold-accent mt-6">
-          <h5>Cart &amp; Checkout (from funnel data)</h5>
-          <p class="text-sm" style="margin:0;">65.3% cart abandonment suggests: no exit-intent intervention, no saved cart email, trust signals dropping after PDP, and express checkout not prominent enough.</p>
-        </div>
+      <!-- Row 1 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Reviews</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.04); color: #B04A3A;">Loox installed but hidden via CSS <code style="font-size: 11px;">display: none</code>. Zero stars, zero reviews visible.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.04); color: var(--green);">Unhide Loox immediately. Show star rating + review count above fold. Add "Read reviews" anchor link. <strong>5 min fix.</strong></div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-critical">Critical</span></div>
       </div>
+
+      <!-- Row 2 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px; background: var(--light-gray);">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Price Display</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.03);">"$499" shown without context. No explanation of what's included or what you'd pay separately.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.03);">Value anchor bar: "Worth $755+ individually" with component-level pricing breakdown. <strong>"You save $256 (34%)"</strong></div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-high">High</span></div>
+      </div>
+
+      <!-- Row 3 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Mobile ATC</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.04);">No sticky button. 66% of traffic is mobile. Users must scroll back up to add to cart.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.04);">Persistent sticky bar at bottom: product name + price + "Start Building" CTA. Appears when hero ATC scrolls out of view.</div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-high">High</span></div>
+      </div>
+
+      <!-- Row 4 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px; background: var(--light-gray);">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Gift Experience</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.03);">Zero gift UX despite 43% of purchases being gifts. No "Gift This Kit" option, no gift wrapping, no gift message.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.03);">Gift toggle on hero with slide-down: message field + Premium Gift Box upsell (pre-checked) + gift wrap. CTA swaps to <strong>"Choose His Components."</strong></div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-high">High</span></div>
+      </div>
+
+      <!-- Row 5 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Sold-Out State</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.04);">Shows "Sold out" with no demand capture. Every visitor's interest is lost permanently.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.04);">Klaviyo back-in-stock form (email + SMS). <strong>"Join 247 others waiting for restock."</strong> Link to available kits.</div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-high">High</span></div>
+      </div>
+
+      <!-- Row 6 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px; background: var(--light-gray);">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Trust Guarantees</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.03);">"Simon's success guarantee" mentioned but undefined. 30-day and 48-month warranties buried in text.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.03);">Guarantee triptych: 3 visual cards with icons. <strong>Zero-Failure Promise</strong> front and center: "We'll build it if you can't."</div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-high">High</span></div>
+      </div>
+
+      <!-- Row 7 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Configurator</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.04);">Customers select components but never see the finished watch. #1 customer request from surveys.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.04);">Visual preview that updates as components are selected. "Most Popular Build" one-tap preset. <em>(Phase 3)</em></div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-high">High</span></div>
+      </div>
+
+      <!-- Row 8 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; border-bottom: 1px solid var(--border); font-size: 13px; background: var(--light-gray);">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">CTA Copy</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.03);">"Add to cart" &mdash; transactional, generic. Doesn't match the experience being sold.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.03);"><strong>"Start Building"</strong> (builder) / <strong>"Choose His Components"</strong> (gift). Action-oriented, experiential.</div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-medium">Medium</span></div>
+      </div>
+
+      <!-- Row 9 -->
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr 90px; gap: 0; font-size: 13px; border-radius: 0 0 6px 6px;">
+        <div style="padding: 10px 14px; font-weight: 600; color: var(--green);">Installments</div>
+        <div style="padding: 10px 14px; background: rgba(176,74,58,0.04);">No payment installment messaging. $499 feels like a large single payment.</div>
+        <div style="padding: 10px 14px; background: rgba(26,58,42,0.04);"><strong>"or 4 payments of $124.75 with Shop Pay"</strong> shown below price. Reduces perceived cost barrier.</div>
+        <div style="padding: 10px 14px; text-align: center;"><span class="badge badge-medium">Medium</span></div>
+      </div>
+
     </div>
   </div>
   <div class="slide-footer">
