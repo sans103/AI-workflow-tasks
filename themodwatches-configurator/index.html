@@ -240,6 +240,91 @@
       font-weight: 600;
     }
 
+    /* Active swatches panel — shows selected items near preview */
+    .preview-swatches {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .preview-swatch-group {
+      display: none;
+    }
+
+    .preview-swatch-group.has-items {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-swatch-group-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      min-width: 52px;
+    }
+
+    .preview-swatch-items {
+      display: flex;
+      gap: 6px;
+    }
+
+    .preview-swatch-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .preview-swatch-dot:hover {
+      transform: scale(1.12);
+    }
+
+    .preview-swatch-dot.active {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(212, 160, 70, 0.25), 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .preview-swatch-dot-label {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+    }
+
+    .preview-swatch-dot:hover .preview-swatch-dot-label,
+    .preview-swatch-dot.active .preview-swatch-dot-label {
+      opacity: 1;
+    }
+
+    /* Strap swatches are rounded rectangles instead of circles */
+    .preview-swatch-dot.strap-dot {
+      border-radius: 4px;
+      width: 28px;
+      height: 36px;
+    }
+
+    /* Dial swatches are slightly larger */
+    .preview-swatch-dot.dial-dot {
+      width: 30px;
+      height: 30px;
+    }
+
     .preview-note {
       margin-top: 12px;
       font-size: 11px;
@@ -1499,8 +1584,14 @@
       .watch-dial-text { font-size: 8px; }
       .watch-strap-bottom { width: 32px; height: 60px; }
       .watch-crown { width: 8px; height: 16px; right: 20px; }
-      .preview-selections { font-size: 11px; margin-top: 16px; }
+      .preview-selections { font-size: 11px; margin-top: 12px; }
       .preview-note { display: none; }
+      .preview-swatches { flex-direction: row; gap: 16px; margin-top: 12px; max-width: 100%; justify-content: center; flex-wrap: wrap; }
+      .preview-swatch-group-label { display: none; }
+      .preview-swatch-dot { width: 26px; height: 26px; }
+      .preview-swatch-dot.strap-dot { width: 22px; height: 30px; }
+      .preview-swatch-dot.dial-dot { width: 26px; height: 26px; }
+      .preview-swatch-dot-label { display: none; }
 
       .hero-config {
         padding: 24px 20px 40px;
@@ -1675,6 +1766,20 @@
           <div class="watch-crown"></div>
         </div>
         <div class="watch-strap-bottom" id="strap-preview-bottom"></div>
+      </div>
+      <div class="preview-swatches" id="preview-swatches">
+        <div class="preview-swatch-group" id="preview-bezel-group" data-type="bezel">
+          <span class="preview-swatch-group-label">Bezels</span>
+          <div class="preview-swatch-items" id="preview-bezel-items"></div>
+        </div>
+        <div class="preview-swatch-group" id="preview-dial-group" data-type="dial">
+          <span class="preview-swatch-group-label">Dials</span>
+          <div class="preview-swatch-items" id="preview-dial-items"></div>
+        </div>
+        <div class="preview-swatch-group" id="preview-strap-group" data-type="strap">
+          <span class="preview-swatch-group-label">Straps</span>
+          <div class="preview-swatch-items" id="preview-strap-items"></div>
+        </div>
       </div>
       <div class="preview-selections" id="preview-selections">
         <span id="sel-bezels">0/3 Bezels</span>
@@ -2495,47 +2600,118 @@
         }
       }
 
+      // Track which item is currently being previewed
+      let activePreview = { type: null, value: null };
+
+      function previewItem(type, value, color) {
+        activePreview = { type, value };
+        if (type === 'bezel') {
+          document.getElementById('bezel-preview').style.background = color;
+        } else if (type === 'dial') {
+          document.getElementById('dial-preview').style.background = color;
+        } else if (type === 'strap') {
+          document.getElementById('strap-preview-top').style.background = color;
+          document.getElementById('strap-preview-bottom').style.background = color;
+        }
+        // Update active state on preview swatches
+        document.querySelectorAll(`.preview-swatch-dot[data-type="${type}"]`).forEach(dot => {
+          dot.classList.toggle('active', dot.dataset.value === value);
+        });
+      }
+
       function updatePreview() {
-        // Bezel color — use first selected bezel
-        const bezelSel = state.steps[1].selected[0];
-        if (bezelSel) {
-          const bezelOpt = document.querySelector(`.swatch-option[data-value="${bezelSel}"]`);
-          if (bezelOpt) {
-            document.getElementById('bezel-preview').style.background = bezelOpt.dataset.bezelColor;
-          }
+        // Build preview swatch dots for each category
+
+        // BEZELS
+        const bezelItems = document.getElementById('preview-bezel-items');
+        const bezelGroup = document.getElementById('preview-bezel-group');
+        const bezelSelected = state.steps[1].selected;
+        if (bezelSelected.length > 0) {
+          bezelGroup.classList.add('has-items');
+          let bezelHtml = '';
+          bezelSelected.forEach((val, i) => {
+            const opt = document.querySelector(`.swatch-option[data-value="${val}"]`);
+            const color = opt ? opt.dataset.bezelColor : '#555';
+            const name = opt ? opt.querySelector('.swatch-name').textContent : val;
+            const isActive = (activePreview.type === 'bezel' && activePreview.value === val) || (activePreview.type !== 'bezel' && i === 0);
+            bezelHtml += `<div class="preview-swatch-dot${isActive ? ' active' : ''}" data-type="bezel" data-value="${val}" style="background:${color}" onclick="previewItem('bezel','${val}','${color}')"><span class="preview-swatch-dot-label">${name}</span></div>`;
+          });
+          bezelItems.innerHTML = bezelHtml;
         } else {
+          bezelGroup.classList.remove('has-items');
+          bezelItems.innerHTML = '';
+        }
+
+        // DIALS
+        const dialItems = document.getElementById('preview-dial-items');
+        const dialGroup = document.getElementById('preview-dial-group');
+        const dialSelected = state.steps[4].selected;
+        if (dialSelected.length > 0) {
+          dialGroup.classList.add('has-items');
+          let dialHtml = '';
+          dialSelected.forEach((val, i) => {
+            const opt = document.querySelector(`.card-option[data-value="${val}"]`);
+            const color = opt ? opt.dataset.dialColor : '#1a1a1a';
+            const name = val.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            const isActive = (activePreview.type === 'dial' && activePreview.value === val) || (activePreview.type !== 'dial' && i === 0);
+            dialHtml += `<div class="preview-swatch-dot dial-dot${isActive ? ' active' : ''}" data-type="dial" data-value="${val}" style="background:${color}" onclick="previewItem('dial','${val}','${color}')"><span class="preview-swatch-dot-label">${name}</span></div>`;
+          });
+          dialItems.innerHTML = dialHtml;
+        } else {
+          dialGroup.classList.remove('has-items');
+          dialItems.innerHTML = '';
+        }
+
+        // STRAPS (combine steel + additional)
+        const strapItems = document.getElementById('preview-strap-items');
+        const strapGroup = document.getElementById('preview-strap-group');
+        const allStraps = [...state.steps[2].selected, ...state.steps[3].selected];
+        if (allStraps.length > 0) {
+          strapGroup.classList.add('has-items');
+          let strapHtml = '';
+          allStraps.forEach((val, i) => {
+            const opt = document.querySelector(`.card-option[data-value="${val}"]`);
+            const color = opt ? opt.dataset.strapColor : '#888';
+            const name = val.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            const isActive = (activePreview.type === 'strap' && activePreview.value === val) || (activePreview.type !== 'strap' && i === 0);
+            strapHtml += `<div class="preview-swatch-dot strap-dot${isActive ? ' active' : ''}" data-type="strap" data-value="${val}" style="background:${color}" onclick="previewItem('strap','${val}','${color}')"><span class="preview-swatch-dot-label">${name}</span></div>`;
+          });
+          strapItems.innerHTML = strapHtml;
+        } else {
+          strapGroup.classList.remove('has-items');
+          strapItems.innerHTML = '';
+        }
+
+        // Default preview: show first selected item per category on the watch
+        if (activePreview.type !== 'bezel' && bezelSelected.length > 0) {
+          const firstBezelOpt = document.querySelector(`.swatch-option[data-value="${bezelSelected[0]}"]`);
+          if (firstBezelOpt) document.getElementById('bezel-preview').style.background = firstBezelOpt.dataset.bezelColor;
+        } else if (bezelSelected.length === 0) {
           document.getElementById('bezel-preview').style.background = '#555';
         }
 
-        // Dial color — use first selected dial
-        const dialSel = state.steps[4].selected[0];
-        if (dialSel) {
-          const dialOpt = document.querySelector(`.card-option[data-value="${dialSel}"]`);
-          if (dialOpt) {
-            document.getElementById('dial-preview').style.background = dialOpt.dataset.dialColor;
-          }
-        } else {
+        if (activePreview.type !== 'dial' && dialSelected.length > 0) {
+          const firstDialOpt = document.querySelector(`.card-option[data-value="${dialSelected[0]}"]`);
+          if (firstDialOpt) document.getElementById('dial-preview').style.background = firstDialOpt.dataset.dialColor;
+        } else if (dialSelected.length === 0) {
           document.getElementById('dial-preview').style.background = '#1a1a1a';
         }
 
-        // Strap color — use steel strap or first additional strap
-        const steelSel = state.steps[2].selected[0];
-        const strapSel = state.steps[3].selected[0];
-        let strapColor = '#888';
-        if (steelSel) {
-          const steelOpt = document.querySelector(`.card-option[data-value="${steelSel}"]`);
-          if (steelOpt) strapColor = steelOpt.dataset.strapColor;
-        } else if (strapSel) {
-          const strapOpt = document.querySelector(`.card-option[data-value="${strapSel}"]`);
-          if (strapOpt) strapColor = strapOpt.dataset.strapColor;
+        if (activePreview.type !== 'strap' && allStraps.length > 0) {
+          const firstStrapOpt = document.querySelector(`.card-option[data-value="${allStraps[0]}"]`);
+          if (firstStrapOpt) {
+            document.getElementById('strap-preview-top').style.background = firstStrapOpt.dataset.strapColor;
+            document.getElementById('strap-preview-bottom').style.background = firstStrapOpt.dataset.strapColor;
+          }
+        } else if (allStraps.length === 0) {
+          document.getElementById('strap-preview-top').style.background = '#888';
+          document.getElementById('strap-preview-bottom').style.background = '#888';
         }
-        document.getElementById('strap-preview-top').style.background = strapColor;
-        document.getElementById('strap-preview-bottom').style.background = strapColor;
 
-        // Selection text
-        const b = state.steps[1].selected.length;
-        const d = state.steps[4].selected.length;
-        const s = state.steps[2].selected.length + state.steps[3].selected.length;
+        // Selection counter text
+        const b = bezelSelected.length;
+        const d = dialSelected.length;
+        const s = allStraps.length;
         document.getElementById('sel-bezels').textContent = `${b}/3 Bezels`;
         document.getElementById('sel-bezels').classList.toggle('complete', b >= 3);
         document.getElementById('sel-dials').textContent = `${d}/2 Dials`;
