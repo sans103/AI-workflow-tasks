@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TheModWatches Watch Configurator Prototype - Build your own mechanical watch with custom bezel, dial, and strap selections.">
+  <title>Watch Configurator Prototype | TheModWatches</title>
+  <style>
+    /* ============================================
+       RESET & VARIABLES
+       ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #314334;
+      --green-dark: #263328;
+      --gold: #d4a046;
+      --gold-dark: #b8893a;
+      --gold-light: #e0b565;
+      --text-primary: #252525;
+      --text-secondary: rgba(37, 37, 37, 0.6);
+      --text-muted: rgba(37, 37, 37, 0.45);
+      --warm-bg: #f8f7f5;
+      --surface: #f5f4f0;
+      --border: #d9d6d0;
+      --border-light: #eae8e4;
+      --bg: #ffffff;
+      --radius: 6px;
+      --radius-lg: 12px;
+      --nav-height: 56px;
+      --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 300;
+      color: var(--text-primary);
+      background: var(--bg);
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============================================
+       PROTOTYPE BANNER
+       ============================================ */
+    .prototype-banner {
+      background: var(--text-primary);
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 200;
+    }
+
+    .prototype-banner strong {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ============================================
+       STICKY NAV (Step Indicators)
+       ============================================ */
+    .config-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--border-light);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .config-nav.scrolled {
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .config-nav-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .config-nav-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      padding: 4px 6px;
+      background: none;
+      border: none;
+    }
+
+    .config-nav-step-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+      flex-shrink: 0;
+    }
+
+    .config-nav-step-circle span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+
+    .config-nav-step-circle svg {
+      width: 12px;
+      height: 12px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: none;
+    }
+
+    .config-nav-step-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    .config-nav-connector {
+      width: 20px;
+      height: 2px;
+      background: var(--border);
+      flex-shrink: 0;
+      margin: 0 2px;
+      margin-bottom: 15px;
+      transition: background var(--transition);
+    }
+
+    /* Nav states */
+    .config-nav-step.active .config-nav-step-circle {
+      border-color: var(--gold);
+    }
+    .config-nav-step.active .config-nav-step-circle span {
+      color: var(--gold);
+    }
+    .config-nav-step.active .config-nav-step-label {
+      color: var(--gold);
+    }
+
+    .config-nav-step.completed .config-nav-step-circle {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+    .config-nav-step.completed .config-nav-step-circle span {
+      display: none;
+    }
+    .config-nav-step.completed .config-nav-step-circle svg {
+      display: block;
+    }
+    .config-nav-step.completed .config-nav-step-label {
+      color: var(--gold);
+    }
+
+    .config-nav-step.completed + .config-nav-connector {
+      background: var(--gold);
+    }
+
+    /* ============================================
+       SPLIT LAYOUT
+       ============================================ */
+    .config-layout {
+      display: flex;
+      min-height: calc(100vh - var(--nav-height));
+    }
+
+    /* LEFT: Sticky Visual Panel */
+    .visual-panel {
+      width: 55%;
+      flex-shrink: 0;
+      position: sticky;
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
+      background: var(--surface);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-panel-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Abstract watch preview */
+    .watch-preview {
+      position: relative;
+      width: 280px;
+      height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+    }
+
+    .watch-preview-shape {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+
+    /* Bezel ring */
+    .watch-bezel-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: #ccc;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 2px 4px rgba(255,255,255,0.2);
+    }
+
+    /* Dial inner */
+    .watch-dial-inner {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      width: 184px;
+      height: 184px;
+      border-radius: 50%;
+      background: #e0e0e0;
+      transition: background 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Dial pattern */
+    .dial-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.15;
+    }
+
+    .dial-pattern-skeleton {
+      background: repeating-conic-gradient(
+        from 0deg,
+        transparent 0deg 15deg,
+        rgba(255,255,255,0.3) 15deg 18deg
+      );
+    }
+
+    .dial-pattern-sub {
+      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.2) 0%, transparent 60%);
+    }
+
+    /* Hour markers */
+    .dial-markers {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .dial-marker {
+      position: absolute;
+      width: 2px;
+      height: 14px;
+      background: rgba(255,255,255,0.7);
+      top: 8px;
+      left: 50%;
+      transform-origin: 50% 84px;
+      transition: background 0.4s ease;
+    }
+
+    .dial-marker:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
+    .dial-marker:nth-child(2) { transform: translateX(-50%) rotate(30deg); }
+    .dial-marker:nth-child(3) { transform: translateX(-50%) rotate(60deg); }
+    .dial-marker:nth-child(4) { transform: translateX(-50%) rotate(90deg); }
+    .dial-marker:nth-child(5) { transform: translateX(-50%) rotate(120deg); }
+    .dial-marker:nth-child(6) { transform: translateX(-50%) rotate(150deg); }
+    .dial-marker:nth-child(7) { transform: translateX(-50%) rotate(180deg); }
+    .dial-marker:nth-child(8) { transform: translateX(-50%) rotate(210deg); }
+    .dial-marker:nth-child(9) { transform: translateX(-50%) rotate(240deg); }
+    .dial-marker:nth-child(10) { transform: translateX(-50%) rotate(270deg); }
+    .dial-marker:nth-child(11) { transform: translateX(-50%) rotate(300deg); }
+    .dial-marker:nth-child(12) { transform: translateX(-50%) rotate(330deg); }
+
+    /* Watch hands */
+    .dial-hands {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .dial-hand {
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      transform-origin: bottom center;
+      background: rgba(255,255,255,0.8);
+      border-radius: 1px;
+      transition: background 0.4s ease;
+    }
+
+    .dial-hand-hour {
+      width: 3px;
+      height: 50px;
+      transform: translateX(-50%) rotate(-30deg);
+    }
+
+    .dial-hand-minute {
+      width: 2px;
+      height: 68px;
+      transform: translateX(-50%) rotate(60deg);
+    }
+
+    .dial-hand-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      transform: translate(-50%, -50%);
+      transition: background 0.4s ease;
+    }
+
+    /* Crown (side knob) */
+    .watch-crown {
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 24px;
+      border-radius: 3px;
+      background: inherit;
+      transition: background 0.4s ease;
+    }
+
+    /* Strap */
+    .watch-strap-top {
+      width: 52px;
+      height: 60px;
+      background: #888;
+      border-radius: 4px 4px 0 0;
+      margin-bottom: -2px;
+      transition: background 0.4s ease;
+      position: relative;
+    }
+
+    .watch-strap-bottom {
+      width: 52px;
+      height: 80px;
+      background: #888;
+      border-radius: 0 0 4px 4px;
+      margin-top: -2px;
+      transition: background 0.4s ease;
+      position: relative;
+    }
+
+    .watch-strap-top::after,
+    .watch-strap-bottom::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 36px;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .watch-strap-top::after { bottom: 12px; }
+    .watch-strap-bottom::before { top: 12px; }
+
+    /* Lugs connecting strap to case */
+    .watch-lug-top,
+    .watch-lug-bottom {
+      width: 52px;
+      height: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .watch-lug-top span,
+    .watch-lug-bottom span {
+      width: 6px;
+      height: 8px;
+      background: inherit;
+      border-radius: 1px;
+      transition: background 0.4s ease;
+    }
+
+    /* Default label */
+    .watch-preview-default-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-align: center;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .watch-preview.has-selection .watch-preview-default-label {
+      opacity: 0;
+    }
+
+    /* Selection label overlay */
+    .visual-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.04));
+      text-align: center;
+    }
+
+    .visual-label-selection {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .visual-label-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* RIGHT: Config Panel */
+    .config-panel {
+      width: 45%;
+      padding: 48px 40px 140px;
+      min-height: 100vh;
+    }
+
+    /* ============================================
+       CONFIG HERO
+       ============================================ */
+    .config-hero {
+      margin-bottom: 48px;
+    }
+
+    .config-hero-eyebrow {
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .config-hero-headline {
+      font-weight: 800;
+      font-size: 36px;
+      color: var(--text-primary);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .config-hero-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-weight: 300;
+      max-width: 420px;
+    }
+
+    /* ============================================
+       STEP SECTIONS
+       ============================================ */
+    .config-step {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border-light);
+      scroll-margin-top: calc(var(--nav-height) + 24px);
+    }
+
+    .config-step:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .step-eyebrow {
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-weight: 800;
+      font-size: 24px;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .step-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* ============================================
+       BEZEL SWATCHES (Step 1)
+       ============================================ */
+    .bezel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .bezel-swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 12px 8px;
+      border-radius: var(--radius-lg);
+      border: 2px solid transparent;
+      background: none;
+      transition: all 0.2s ease;
+    }
+
+    .bezel-swatch:hover {
+      background: var(--warm-bg);
+    }
+
+    .bezel-swatch.selected {
+      border-color: var(--gold);
+      background: rgba(212, 160, 70, 0.04);
+    }
+
+    .bezel-swatch-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      position: relative;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .bezel-swatch.selected .bezel-swatch-circle {
+      border-color: var(--gold);
+    }
+
+    .bezel-swatch-check {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: all 0.2s ease;
+    }
+
+    .bezel-swatch.selected .bezel-swatch-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .bezel-swatch-check svg {
+      width: 10px;
+      height: 10px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bezel-swatch-name {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.3;
+      letter-spacing: 0.2px;
+    }
+
+    .bezel-swatch.selected .bezel-swatch-name {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Pepsi split color */
+    .bezel-pepsi {
+      background: linear-gradient(135deg, #8B2020 50%, #1B3A5C 50%) !important;
+    }
+
+    /* ============================================
+       DIAL CARDS (Step 2)
+       ============================================ */
+    .dial-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .dial-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--bg);
+    }
+
+    .dial-card:hover {
+      border-color: var(--border);
+      background: var(--warm-bg);
+    }
+
+    .dial-card.selected {
+      border-color: var(--gold);
+      background: rgba(212, 160, 70, 0.04);
+    }
+
+    .dial-card-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 50%;
+      background: var(--warm-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .dial-card.selected .dial-card-icon {
+      background: rgba(212, 160, 70, 0.12);
+    }
+
+    .dial-card-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-secondary);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s ease;
+    }
+
+    .dial-card.selected .dial-card-icon svg {
+      stroke: var(--gold);
+    }
+
+    .dial-card-text {
+      flex: 1;
+    }
+
+    .dial-card-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .dial-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .dial-card-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .dial-card.selected .dial-card-check {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .dial-card-check svg {
+      width: 11px;
+      height: 11px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .dial-card.selected .dial-card-check svg {
+      opacity: 1;
+    }
+
+    /* ============================================
+       STRAP CARDS (Step 3)
+       ============================================ */
+    .strap-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .strap-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--bg);
+    }
+
+    .strap-card:hover {
+      border-color: var(--border);
+      background: var(--warm-bg);
+    }
+
+    .strap-card.selected {
+      border-color: var(--gold);
+      background: rgba(212, 160, 70, 0.04);
+    }
+
+    .strap-card-swatch {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: var(--radius);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .strap-card.selected .strap-card-swatch {
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+
+    .strap-card-text {
+      flex: 1;
+    }
+
+    .strap-card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1px;
+    }
+
+    .strap-card-material {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .strap-card-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+
+    .strap-card-check {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .strap-card.selected .strap-card-check {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+
+    .strap-card-check svg {
+      width: 11px;
+      height: 11px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .strap-card.selected .strap-card-check svg {
+      opacity: 1;
+    }
+
+    /* ============================================
+       SUMMARY / REVIEW (Step 4)
+       ============================================ */
+    .summary-card {
+      background: var(--warm-bg);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-row-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .summary-row-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .summary-row-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .summary-row-value.empty {
+      color: var(--text-muted);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .summary-edit {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--gold);
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      padding: 4px 8px;
+    }
+
+    .summary-edit:hover {
+      color: var(--gold-dark);
+    }
+
+    /* Price section */
+    .price-section {
+      margin-bottom: 24px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 300;
+    }
+
+    .price-row.total {
+      padding: 12px 0 0;
+      margin-top: 8px;
+      border-top: 2px solid var(--text-primary);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .price-installment {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      margin-bottom: 16px;
+    }
+
+    .cta-button:hover {
+      background: var(--gold-dark);
+    }
+
+    .cta-button:active {
+      transform: scale(0.99);
+    }
+
+    .cta-button.disabled {
+      background: var(--border);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Trust signals */
+    .trust-signals {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .trust-signal {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 0.2px;
+    }
+
+    .trust-signal svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--green);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .config-footer {
+      background: var(--green);
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    .config-footer a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+    }
+
+    .config-footer a:hover {
+      color: #fff;
+    }
+
+    /* ============================================
+       MOBILE STICKY BOTTOM BAR
+       ============================================ */
+    .mobile-bottom-bar {
+      display: none;
+    }
+
+    /* ============================================
+       MOBILE RESPONSIVE (<768px)
+       ============================================ */
+    @media (max-width: 767px) {
+      .config-layout {
+        flex-direction: column;
+      }
+
+      .visual-panel {
+        width: 100%;
+        position: sticky;
+        top: var(--nav-height);
+        height: 35vh;
+        z-index: 50;
+      }
+
+      .watch-preview {
+        width: 180px;
+        height: 260px;
+        transform: scale(0.8);
+      }
+
+      .watch-preview-shape {
+        width: 160px;
+        height: 160px;
+      }
+
+      .watch-bezel-ring {
+        width: 160px;
+        height: 160px;
+      }
+
+      .watch-dial-inner {
+        width: 130px;
+        height: 130px;
+        top: 15px;
+        left: 15px;
+      }
+
+      .dial-marker {
+        height: 10px;
+        transform-origin: 50% 57px;
+      }
+
+      .dial-hand-hour { height: 36px; }
+      .dial-hand-minute { height: 48px; }
+
+      .watch-strap-top { height: 36px; width: 40px; }
+      .watch-strap-bottom { height: 48px; width: 40px; }
+
+      .visual-label {
+        padding: 10px 16px;
+      }
+
+      .visual-label-selection { font-size: 11px; }
+      .visual-label-note { font-size: 10px; }
+
+      .config-panel {
+        width: 100%;
+        padding: 32px 20px 120px;
+      }
+
+      .config-hero-headline {
+        font-size: 28px;
+      }
+
+      .step-title {
+        font-size: 20px;
+      }
+
+      .bezel-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .bezel-swatch {
+        padding: 8px 4px;
+      }
+
+      .bezel-swatch-circle {
+        width: 40px;
+        height: 40px;
+      }
+
+      .config-nav-step-label {
+        font-size: 9px;
+      }
+
+      .config-nav-connector {
+        width: 12px;
+      }
+
+      /* Mobile bottom bar */
+      .mobile-bottom-bar {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 150;
+        background: var(--bg);
+        border-top: 1px solid var(--border-light);
+        padding: 12px 16px;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+      }
+
+      .mobile-bottom-bar-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .mobile-bottom-bar-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .mobile-bottom-bar-price {
+        font-size: 12px;
+        color: var(--text-secondary);
+        font-weight: 300;
+      }
+
+      .mobile-bottom-bar-cta {
+        padding: 12px 24px;
+        background: var(--gold);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border: none;
+        border-radius: var(--radius);
+        cursor: pointer;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: background 0.2s ease;
+      }
+
+      .mobile-bottom-bar-cta:hover {
+        background: var(--gold-dark);
+      }
+    }
+
+    /* ============================================
+       SMALL MOBILE (<400px)
+       ============================================ */
+    @media (max-width: 399px) {
+      .bezel-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .config-hero-headline {
+        font-size: 24px;
+      }
+
+      .trust-signals {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .trust-divider {
+        display: none;
+      }
+    }
+
+    /* ============================================
+       LARGE DESKTOP (>1200px)
+       ============================================ */
+    @media (min-width: 1200px) {
+      .config-panel {
+        padding: 56px 56px 160px;
+      }
+
+      .config-hero-headline {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Prototype Banner -->
+  <div class="prototype-banner">
+    <strong>Prototype</strong> &mdash; This is a concept demonstration for TheModWatches PDP configurator
+  </div>
+
+  <!-- Sticky Step Nav -->
+  <nav class="config-nav" id="configNav" aria-label="Configuration steps">
+    <div class="config-nav-steps">
+      <button class="config-nav-step active" data-step="1" aria-label="Step 1: Bezel">
+        <div class="config-nav-step-circle">
+          <span>1</span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="config-nav-step-label">Bezel</div>
+      </button>
+      <div class="config-nav-connector"></div>
+      <button class="config-nav-step" data-step="2" aria-label="Step 2: Dial">
+        <div class="config-nav-step-circle">
+          <span>2</span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="config-nav-step-label">Dial</div>
+      </button>
+      <div class="config-nav-connector"></div>
+      <button class="config-nav-step" data-step="3" aria-label="Step 3: Strap">
+        <div class="config-nav-step-circle">
+          <span>3</span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="config-nav-step-label">Strap</div>
+      </button>
+      <div class="config-nav-connector"></div>
+      <button class="config-nav-step" data-step="4" aria-label="Step 4: Review">
+        <div class="config-nav-step-circle">
+          <span>4</span>
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="config-nav-step-label">Review</div>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Split Layout -->
+  <div class="config-layout">
+
+    <!-- LEFT: Sticky Visual Panel -->
+    <aside class="visual-panel" aria-label="Watch preview">
+      <div class="visual-panel-inner">
+        <div class="watch-preview" id="watchPreview">
+          <!-- Strap top -->
+          <div class="watch-strap-top" id="strapTop"></div>
+          <div class="watch-lug-top" id="lugTop">
+            <span></span><span></span>
+          </div>
+
+          <!-- Watch case/face -->
+          <div class="watch-preview-shape">
+            <div class="watch-bezel-ring" id="bezelRing">
+              <div class="watch-crown" id="watchCrown"></div>
+            </div>
+            <div class="watch-dial-inner" id="dialInner">
+              <div class="dial-pattern" id="dialPattern"></div>
+              <div class="dial-markers">
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+                <div class="dial-marker"></div>
+              </div>
+              <div class="dial-hands">
+                <div class="dial-hand dial-hand-hour"></div>
+                <div class="dial-hand dial-hand-minute"></div>
+                <div class="dial-hand-center"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="watch-preview-default-label" id="previewDefaultLabel">
+            Select your components<br>to see a live preview
+          </div>
+
+          <!-- Strap bottom -->
+          <div class="watch-lug-bottom" id="lugBottom">
+            <span></span><span></span>
+          </div>
+          <div class="watch-strap-bottom" id="strapBottom"></div>
+        </div>
+
+        <!-- Label overlay -->
+        <div class="visual-label">
+          <div class="visual-label-selection" id="selectionLabel">No selections yet</div>
+          <div class="visual-label-note">Actual product images will replace this preview</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT: Config Panel -->
+    <main class="config-panel">
+
+      <!-- Hero -->
+      <div class="config-hero">
+        <div class="config-hero-eyebrow">Watch Configurator</div>
+        <h1 class="config-hero-headline">Build Your Watch</h1>
+        <p class="config-hero-sub">Select your components below. The preview updates live.</p>
+      </div>
+
+      <!-- Step 1: Bezel -->
+      <section class="config-step" id="step1" aria-label="Step 1: Choose your bezel">
+        <div class="step-eyebrow">Step 1</div>
+        <h2 class="step-title">Choose Your Bezel</h2>
+        <p class="step-subtitle">Sets the character of your watch.</p>
+
+        <div class="bezel-grid">
+          <button class="bezel-swatch" data-bezel="black-sub" data-bezel-color="#2C2C2C" data-bezel-name="Black Sub-Style" aria-label="Black Sub-Style bezel">
+            <div class="bezel-swatch-circle" style="background: #2C2C2C;">
+              <div class="bezel-swatch-check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+            <span class="bezel-swatch-name">Black Sub-Style</span>
+          </button>
+
+          <button class="bezel-swatch" data-bezel="green-sub" data-bezel-color="#2D5A3D" data-bezel-name="Green Sub-Style" aria-label="Green Sub-Style bezel">
+            <div class="bezel-swatch-circle" style="background: #2D5A3D;">
+              <div class="bezel-swatch-check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+            <span class="bezel-swatch-name">Green Sub-Style</span>
+          </button>
+
+          <button class="bezel-swatch" data-bezel="blue-gmt" data-bezel-color="#1B3A5C" data-bezel-name="Blue GMT" aria-label="Blue GMT bezel">
+            <div class="bezel-swatch-circle" style="background: #1B3A5C;">
+              <div class="bezel-swatch-check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+            <span class="bezel-swatch-name">Blue GMT</span>
+          </button>
+
+          <button class="bezel-swatch" data-bezel="pepsi-gmt" data-bezel-color="pepsi" data-bezel-name="Pepsi GMT" aria-label="Pepsi GMT bezel">
+            <div class="bezel-swatch-circle bezel-pepsi">
+              <div class="bezel-swatch-check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+            <span class="bezel-swatch-name">Pepsi GMT</span>
+          </button>
+
+          <button class="bezel-swatch" data-bezel="silver-ym" data-bezel-color="#A8A8A8" data-bezel-name="Silver YM-Style" aria-label="Silver YM-Style bezel">
+            <div class="bezel-swatch-circle" style="background: #A8A8A8;">
+              <div class="bezel-swatch-check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+            <span class="bezel-swatch-name">Silver YM-Style</span>
+          </button>
+
+          <button class="bezel-swatch" data-bezel="black-ym" data-bezel-color="#333333" data-bezel-name="Black YM-Style" aria-label="Black YM-Style bezel">
+            <div class="bezel-swatch-circle" style="background: #333333;">
+              <div class="bezel-swatch-check">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+            </div>
+            <span class="bezel-swatch-name">Black YM-Style</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 2: Dial -->
+      <section class="config-step" id="step2" aria-label="Step 2: Choose your dial">
+        <div class="step-eyebrow">Step 2</div>
+        <h2 class="step-title">Choose Your Dial</h2>
+        <p class="step-subtitle">The face of your creation.</p>
+
+        <div class="dial-grid">
+          <button class="dial-card" data-dial="skeleton-black" data-dial-color="#1a1a1a" data-dial-name="Skeleton Black" data-dial-type="skeleton" aria-label="Skeleton Black dial">
+            <div class="dial-card-icon">
+              <!-- Eye icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <div class="dial-card-text">
+              <div class="dial-card-name">Skeleton Black</div>
+              <div class="dial-card-desc">See the movement through the face</div>
+            </div>
+            <div class="dial-card-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </button>
+
+          <button class="dial-card" data-dial="skeleton-blue" data-dial-color="#162d4a" data-dial-name="Skeleton Blue" data-dial-type="skeleton" aria-label="Skeleton Blue dial">
+            <div class="dial-card-icon">
+              <!-- Eye icon -->
+              <svg viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <div class="dial-card-text">
+              <div class="dial-card-name">Skeleton Blue</div>
+              <div class="dial-card-desc">Deep blue with visible mechanism</div>
+            </div>
+            <div class="dial-card-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </button>
+
+          <button class="dial-card" data-dial="sub-black" data-dial-color="#0d0d0d" data-dial-name="Sub-Style Black" data-dial-type="sub" aria-label="Sub-Style Black dial">
+            <div class="dial-card-icon">
+              <!-- Clock icon -->
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="dial-card-text">
+              <div class="dial-card-name">Sub-Style Black</div>
+              <div class="dial-card-desc">Classic dive watch face</div>
+            </div>
+            <div class="dial-card-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 3: Strap -->
+      <section class="config-step" id="step3" aria-label="Step 3: Choose your strap">
+        <div class="step-eyebrow">Step 3</div>
+        <h2 class="step-title">Choose Your Strap</h2>
+        <p class="step-subtitle">Swap anytime &mdash; no tools needed.</p>
+
+        <div class="strap-grid">
+          <button class="strap-card" data-strap="steel" data-strap-price="49" data-strap-color="#b8b8b8" data-strap-name="Stainless Steel" aria-label="Stainless Steel strap, $49">
+            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #d0d0d0 0%, #a0a0a0 50%, #c0c0c0 100%);"></div>
+            <div class="strap-card-text">
+              <div class="strap-card-name">Stainless Steel</div>
+              <div class="strap-card-material">Three-link bracelet</div>
+            </div>
+            <div class="strap-card-price">$49</div>
+            <div class="strap-card-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </button>
+
+          <button class="strap-card" data-strap="nato-green" data-strap-price="29" data-strap-color="#3a5a3a" data-strap-name="NATO Green" aria-label="NATO Green strap, $29">
+            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #4a6a4a 0%, #3a5a3a 50%, #2d4d2d 100%);"></div>
+            <div class="strap-card-text">
+              <div class="strap-card-name">NATO &mdash; Green</div>
+              <div class="strap-card-material">Woven nylon, quick-release</div>
+            </div>
+            <div class="strap-card-price">$29</div>
+            <div class="strap-card-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </button>
+
+          <button class="strap-card" data-strap="rubber-black" data-strap-price="29" data-strap-color="#2a2a2a" data-strap-name="Rubber Black" aria-label="Rubber Black strap, $29">
+            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);"></div>
+            <div class="strap-card-text">
+              <div class="strap-card-name">Rubber &mdash; Black</div>
+              <div class="strap-card-material">Silicone, water-resistant</div>
+            </div>
+            <div class="strap-card-price">$29</div>
+            <div class="strap-card-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </button>
+
+          <button class="strap-card" data-strap="leather-brown" data-strap-price="35" data-strap-color="#6b4226" data-strap-name="Leather Brown" aria-label="Leather Brown strap, $35">
+            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #8b5e3c 0%, #6b4226 50%, #5a3520 100%);"></div>
+            <div class="strap-card-text">
+              <div class="strap-card-name">Leather &mdash; Brown</div>
+              <div class="strap-card-material">Italian calfskin, padded</div>
+            </div>
+            <div class="strap-card-price">$35</div>
+            <div class="strap-card-check">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 4: Review -->
+      <section class="config-step" id="step4" aria-label="Step 4: Review your configuration">
+        <div class="step-eyebrow">Step 4</div>
+        <h2 class="step-title">Your Configuration</h2>
+        <p class="step-subtitle">Review your selections and add to cart.</p>
+
+        <!-- Summary card -->
+        <div class="summary-card">
+          <div class="summary-row">
+            <div class="summary-row-left">
+              <div class="summary-row-label">Bezel</div>
+              <div class="summary-row-value" id="summaryBezel"><span class="empty">Not selected</span></div>
+            </div>
+            <button class="summary-edit" data-scroll-to="step1" aria-label="Edit bezel selection">Edit</button>
+          </div>
+          <div class="summary-row">
+            <div class="summary-row-left">
+              <div class="summary-row-label">Dial</div>
+              <div class="summary-row-value" id="summaryDial"><span class="empty">Not selected</span></div>
+            </div>
+            <button class="summary-edit" data-scroll-to="step2" aria-label="Edit dial selection">Edit</button>
+          </div>
+          <div class="summary-row">
+            <div class="summary-row-left">
+              <div class="summary-row-label">Strap</div>
+              <div class="summary-row-value" id="summaryStrap"><span class="empty">Not selected</span></div>
+            </div>
+            <button class="summary-edit" data-scroll-to="step3" aria-label="Edit strap selection">Edit</button>
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="price-section">
+          <div class="price-row">
+            <span>Kit price</span>
+            <span>$499</span>
+          </div>
+          <div class="price-row">
+            <span>Your strap</span>
+            <span id="priceStrap">$0</span>
+          </div>
+          <div class="price-row total">
+            <span>Total</span>
+            <span id="priceTotal">$499</span>
+          </div>
+          <div class="price-installment" id="priceInstallment">or 4 payments of $124.75 with Shop Pay</div>
+        </div>
+
+        <!-- CTA -->
+        <button class="cta-button disabled" id="ctaButton" aria-label="Add to cart">
+          Complete All Steps to Continue
+        </button>
+
+        <!-- Trust signals -->
+        <div class="trust-signals">
+          <div class="trust-signal">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            30-Day Guarantee
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-signal">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            48-Month Warranty
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-signal">
+            <svg viewBox="0 0 24 24">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+            Free Shipping
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Bar -->
+  <div class="mobile-bottom-bar" id="mobileBottomBar">
+    <div class="mobile-bottom-bar-info">
+      <div class="mobile-bottom-bar-name" id="mobileBarName">Watch Kit</div>
+      <div class="mobile-bottom-bar-price" id="mobileBarPrice">$499</div>
+    </div>
+    <button class="mobile-bottom-bar-cta" id="mobileBarCta">Continue</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="config-footer">
+    Reference: <a href="https://undone.com" target="_blank" rel="noopener">undone.com</a> &nbsp;|&nbsp; Architecture: Deco Design Studio
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ========================================
+      // STATE
+      // ========================================
+      const state = {
+        bezel: null,
+        bezelName: null,
+        bezelColor: null,
+        dial: null,
+        dialName: null,
+        dialColor: null,
+        dialType: null,
+        strap: null,
+        strapName: null,
+        strapColor: null,
+        strapPrice: 0,
+        kitPrice: 499
+      };
+
+      // ========================================
+      // DOM REFS
+      // ========================================
+      const configNav = document.getElementById('configNav');
+      const navSteps = document.querySelectorAll('.config-nav-step');
+      const navConnectors = document.querySelectorAll('.config-nav-connector');
+      const watchPreview = document.getElementById('watchPreview');
+      const bezelRing = document.getElementById('bezelRing');
+      const watchCrown = document.getElementById('watchCrown');
+      const dialInner = document.getElementById('dialInner');
+      const dialPattern = document.getElementById('dialPattern');
+      const strapTop = document.getElementById('strapTop');
+      const strapBottom = document.getElementById('strapBottom');
+      const lugTop = document.getElementById('lugTop');
+      const lugBottom = document.getElementById('lugBottom');
+      const previewDefaultLabel = document.getElementById('previewDefaultLabel');
+      const selectionLabel = document.getElementById('selectionLabel');
+      const summaryBezel = document.getElementById('summaryBezel');
+      const summaryDial = document.getElementById('summaryDial');
+      const summaryStrap = document.getElementById('summaryStrap');
+      const priceStrap = document.getElementById('priceStrap');
+      const priceTotal = document.getElementById('priceTotal');
+      const priceInstallment = document.getElementById('priceInstallment');
+      const ctaButton = document.getElementById('ctaButton');
+      const mobileBarName = document.getElementById('mobileBarName');
+      const mobileBarPrice = document.getElementById('mobileBarPrice');
+      const mobileBarCta = document.getElementById('mobileBarCta');
+
+      // ========================================
+      // BEZEL SELECTION
+      // ========================================
+      document.querySelectorAll('.bezel-swatch').forEach(function(swatch) {
+        swatch.addEventListener('click', function() {
+          document.querySelectorAll('.bezel-swatch').forEach(function(s) { s.classList.remove('selected'); });
+          swatch.classList.add('selected');
+
+          state.bezel = swatch.dataset.bezel;
+          state.bezelName = swatch.dataset.bezelName;
+          state.bezelColor = swatch.dataset.bezelColor;
+
+          updatePreview();
+          updateSummary();
+          updateNav();
+
+          setTimeout(function() {
+            if (!state.dial) {
+              document.getElementById('step2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 300);
+        });
+      });
+
+      // ========================================
+      // DIAL SELECTION
+      // ========================================
+      document.querySelectorAll('.dial-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          document.querySelectorAll('.dial-card').forEach(function(c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+
+          state.dial = card.dataset.dial;
+          state.dialName = card.dataset.dialName;
+          state.dialColor = card.dataset.dialColor;
+          state.dialType = card.dataset.dialType;
+
+          updatePreview();
+          updateSummary();
+          updateNav();
+
+          setTimeout(function() {
+            if (!state.strap) {
+              document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 300);
+        });
+      });
+
+      // ========================================
+      // STRAP SELECTION
+      // ========================================
+      document.querySelectorAll('.strap-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          document.querySelectorAll('.strap-card').forEach(function(c) { c.classList.remove('selected'); });
+          card.classList.add('selected');
+
+          state.strap = card.dataset.strap;
+          state.strapName = card.dataset.strapName;
+          state.strapColor = card.dataset.strapColor;
+          state.strapPrice = parseInt(card.dataset.strapPrice, 10);
+
+          updatePreview();
+          updateSummary();
+          updateNav();
+
+          setTimeout(function() {
+            document.getElementById('step4').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 300);
+        });
+      });
+
+      // ========================================
+      // EDIT LINKS (Scroll back)
+      // ========================================
+      document.querySelectorAll('.summary-edit').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var target = document.getElementById(btn.dataset.scrollTo);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // ========================================
+      // NAV STEP CLICKS
+      // ========================================
+      navSteps.forEach(function(step) {
+        step.addEventListener('click', function() {
+          var stepNum = step.dataset.step;
+          var target = document.getElementById('step' + stepNum);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // ========================================
+      // UPDATE PREVIEW
+      // ========================================
+      function updatePreview() {
+        var hasSelection = state.bezel || state.dial || state.strap;
+
+        if (hasSelection) {
+          watchPreview.classList.add('has-selection');
+        }
+
+        // Bezel
+        if (state.bezelColor) {
+          if (state.bezelColor === 'pepsi') {
+            bezelRing.style.background = 'linear-gradient(180deg, #8B2020 50%, #1B3A5C 50%)';
+            watchCrown.style.background = '#8B2020';
+          } else {
+            bezelRing.style.background = state.bezelColor;
+            watchCrown.style.background = state.bezelColor;
+          }
+          lugTop.querySelectorAll('span').forEach(function(s) {
+            s.style.background = state.bezelColor === 'pepsi' ? '#555' : state.bezelColor;
+          });
+          lugBottom.querySelectorAll('span').forEach(function(s) {
+            s.style.background = state.bezelColor === 'pepsi' ? '#555' : state.bezelColor;
+          });
+        }
+
+        // Dial
+        if (state.dialColor) {
+          dialInner.style.background = state.dialColor;
+          dialPattern.className = 'dial-pattern';
+          if (state.dialType === 'skeleton') {
+            dialPattern.classList.add('dial-pattern-skeleton');
+          } else {
+            dialPattern.classList.add('dial-pattern-sub');
+          }
+        }
+
+        // Strap
+        if (state.strapColor) {
+          strapTop.style.background = state.strapColor;
+          strapBottom.style.background = state.strapColor;
+        }
+
+        // Selection label
+        var parts = [];
+        if (state.bezelName) parts.push(state.bezelName);
+        if (state.dialName) parts.push(state.dialName);
+        if (state.strapName) parts.push(state.strapName);
+
+        if (parts.length > 0) {
+          selectionLabel.textContent = parts.join(' + ');
+        } else {
+          selectionLabel.textContent = 'No selections yet';
+        }
+      }
+
+      // ========================================
+      // UPDATE SUMMARY
+      // ========================================
+      function updateSummary() {
+        summaryBezel.innerHTML = state.bezelName || '<span class="empty">Not selected</span>';
+        summaryDial.innerHTML = state.dialName || '<span class="empty">Not selected</span>';
+        summaryStrap.innerHTML = state.strapName ? state.strapName + ' <span style="color:var(--text-muted);font-weight:300;">($' + state.strapPrice + ')</span>' : '<span class="empty">Not selected</span>';
+
+        var total = state.kitPrice + state.strapPrice;
+        priceStrap.textContent = '$' + state.strapPrice;
+        priceTotal.textContent = '$' + total;
+        priceInstallment.textContent = 'or 4 payments of $' + (total / 4).toFixed(2) + ' with Shop Pay';
+
+        // Mobile bar
+        var nameParts = [];
+        if (state.bezelName) nameParts.push(state.bezelName.split(' ')[0]);
+        if (state.dialName) nameParts.push(state.dialName.split(' ')[0]);
+        mobileBarName.textContent = nameParts.length > 0 ? nameParts.join(' + ') + ' Kit' : 'Watch Kit';
+        mobileBarPrice.textContent = '$' + total;
+
+        // CTA state
+        var allSelected = state.bezel && state.dial && state.strap;
+        if (allSelected) {
+          ctaButton.classList.remove('disabled');
+          ctaButton.textContent = 'Add to Cart \u2014 $' + total;
+          mobileBarCta.textContent = 'Add to Cart';
+        } else {
+          ctaButton.classList.add('disabled');
+          ctaButton.textContent = 'Complete All Steps to Continue';
+
+          // Mobile: figure out next step
+          if (!state.bezel) {
+            mobileBarCta.textContent = 'Choose Bezel';
+          } else if (!state.dial) {
+            mobileBarCta.textContent = 'Choose Dial';
+          } else {
+            mobileBarCta.textContent = 'Choose Strap';
+          }
+        }
+      }
+
+      // ========================================
+      // UPDATE NAV
+      // ========================================
+      function updateNav() {
+        var steps = [
+          { num: 1, done: !!state.bezel },
+          { num: 2, done: !!state.dial },
+          { num: 3, done: !!state.strap },
+          { num: 4, done: !!(state.bezel && state.dial && state.strap) }
+        ];
+
+        // Find the first incomplete step
+        var activeStep = 4;
+        for (var i = 0; i < steps.length; i++) {
+          if (!steps[i].done) {
+            activeStep = steps[i].num;
+            break;
+          }
+        }
+
+        navSteps.forEach(function(navStep, idx) {
+          var stepNum = parseInt(navStep.dataset.step, 10);
+          navStep.classList.remove('active', 'completed');
+
+          if (steps[idx].done && stepNum !== activeStep) {
+            navStep.classList.add('completed');
+          } else if (stepNum === activeStep) {
+            navStep.classList.add('active');
+          }
+        });
+      }
+
+      // ========================================
+      // MOBILE CTA CLICK (scroll to next step)
+      // ========================================
+      mobileBarCta.addEventListener('click', function() {
+        if (state.bezel && state.dial && state.strap) {
+          // All done, scroll to review
+          document.getElementById('step4').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (!state.bezel) {
+          document.getElementById('step1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (!state.dial) {
+          document.getElementById('step2').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+
+      // ========================================
+      // CTA BUTTON CLICK
+      // ========================================
+      ctaButton.addEventListener('click', function() {
+        if (state.bezel && state.dial && state.strap) {
+          var total = state.kitPrice + state.strapPrice;
+          ctaButton.textContent = 'Added to Cart!';
+          ctaButton.style.background = '#314334';
+          setTimeout(function() {
+            ctaButton.textContent = 'Add to Cart \u2014 $' + total;
+            ctaButton.style.background = '';
+          }, 2000);
+        }
+      });
+
+      // ========================================
+      // STICKY NAV SHADOW ON SCROLL
+      // ========================================
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+          configNav.classList.add('scrolled');
+        } else {
+          configNav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+    })();
+  </script>
+</body>
+</html>
