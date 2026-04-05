@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TheModWatches Watch Configurator Prototype - Build your own mechanical watch with custom bezel, dial, and strap selections.">
-  <title>Watch Configurator Prototype | TheModWatches</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Skeleton Watch Building Kit — 18 different watch styles from one kit. Build your own mechanical watch with premium components. $499 (save $256).">
+  <title>Skeleton Watch Building Kit | TheModWatches PDP Prototype</title>
   <style>
     /* ============================================
        RESET & VARIABLES
@@ -18,7 +18,7 @@
       --gold-dark: #b8893a;
       --gold-light: #e0b565;
       --text-primary: #252525;
-      --text-secondary: rgba(37, 37, 37, 0.6);
+      --text-secondary: rgba(37, 37, 37, 0.65);
       --text-muted: rgba(37, 37, 37, 0.45);
       --warm-bg: #f8f7f5;
       --surface: #f5f4f0;
@@ -26,8 +26,7 @@
       --border-light: #eae8e4;
       --bg: #ffffff;
       --radius: 6px;
-      --radius-lg: 12px;
-      --nav-height: 56px;
+      --radius-lg: 10px;
       --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -47,6 +46,36 @@
     img { max-width: 100%; height: auto; display: block; }
     button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .section-heading {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+
+    .section-subhead {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
     /* ============================================
        PROTOTYPE BANNER
        ============================================ */
@@ -55,14 +84,11 @@
       color: #fff;
       text-align: center;
       padding: 10px 16px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.5px;
       line-height: 1.4;
-      position: relative;
-      z-index: 200;
     }
-
     .prototype-banner strong {
       font-weight: 600;
       text-transform: uppercase;
@@ -70,1885 +96,2731 @@
     }
 
     /* ============================================
-       STICKY NAV (Step Indicators)
+       S1: BREADCRUMB + TRUST MICRO-BAR
        ============================================ */
-    .config-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: var(--nav-height);
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 24px;
+    .breadcrumb-trust {
       border-bottom: 1px solid var(--border-light);
-      transition: box-shadow 0.3s ease;
+      padding: 10px 0;
     }
-
-    .config-nav.scrolled {
-      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
-    }
-
-    .config-nav-steps {
+    .breadcrumb-trust .container {
       display: flex;
       align-items: center;
-      gap: 0;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-
-    .config-nav-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      cursor: pointer;
-      padding: 4px 6px;
-      background: none;
-      border: none;
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--text-muted);
     }
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--text-primary); }
+    .breadcrumb .sep { margin: 0 6px; }
 
-    .config-nav-step-circle {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: var(--bg);
+    .trust-micro {
       display: flex;
       align-items: center;
-      justify-content: center;
-      transition: all var(--transition);
-      flex-shrink: 0;
-    }
-
-    .config-nav-step-circle span {
-      font-size: 11px;
-      font-weight: 600;
+      gap: 20px;
+      font-size: 13px;
       color: var(--text-secondary);
-      transition: all var(--transition);
     }
-
-    .config-nav-step-circle svg {
-      width: 12px;
-      height: 12px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      display: none;
+    .trust-micro-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
-
-    .config-nav-step-label {
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      letter-spacing: 0.3px;
-    }
-
-    .config-nav-connector {
-      width: 20px;
-      height: 2px;
-      background: var(--border);
+    .trust-micro-item svg {
+      width: 14px;
+      height: 14px;
       flex-shrink: 0;
-      margin: 0 2px;
-      margin-bottom: 15px;
-      transition: background var(--transition);
-    }
-
-    /* Nav states */
-    .config-nav-step.active .config-nav-step-circle {
-      border-color: var(--gold);
-    }
-    .config-nav-step.active .config-nav-step-circle span {
-      color: var(--gold);
-    }
-    .config-nav-step.active .config-nav-step-label {
-      color: var(--gold);
-    }
-
-    .config-nav-step.completed .config-nav-step-circle {
-      border-color: var(--gold);
-      background: var(--gold);
-    }
-    .config-nav-step.completed .config-nav-step-circle span {
-      display: none;
-    }
-    .config-nav-step.completed .config-nav-step-circle svg {
-      display: block;
-    }
-    .config-nav-step.completed .config-nav-step-label {
-      color: var(--gold);
-    }
-
-    .config-nav-step.completed + .config-nav-connector {
-      background: var(--gold);
     }
 
     /* ============================================
-       SPLIT LAYOUT
+       S2: PRODUCT HERO — SPLIT PANEL
        ============================================ */
-    .config-layout {
-      display: flex;
-      min-height: calc(100vh - var(--nav-height));
+    .product-hero {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      min-height: calc(100vh - 80px);
     }
 
-    /* LEFT: Sticky Visual Panel */
-    .visual-panel {
-      width: 55%;
-      flex-shrink: 0;
+    /* LEFT: Watch Preview */
+    .hero-preview {
       position: sticky;
-      top: var(--nav-height);
-      height: calc(100vh - var(--nav-height));
-      background: var(--surface);
-      overflow: hidden;
+      top: 0;
+      height: 100vh;
+      background: var(--warm-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 40px;
     }
 
-    .visual-panel-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Abstract watch preview */
-    .watch-preview {
+    .watch-visual {
       position: relative;
       width: 280px;
       height: 380px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.4s ease;
     }
 
-    .watch-preview-shape {
+    .watch-strap-top {
+      width: 50px;
+      height: 80px;
+      border-radius: 6px 6px 0 0;
+      background: #888;
+      margin: 0 auto;
+      transition: background var(--transition);
+    }
+    .watch-case-outer {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #555;
+      margin: -6px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
       position: relative;
-      width: 220px;
-      height: 220px;
+      z-index: 2;
     }
-
-    /* Bezel ring */
-    .watch-bezel-ring {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 220px;
-      height: 220px;
+    .watch-case-inner {
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      background: #ccc;
-      transition: background 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12), inset 0 2px 4px rgba(255,255,255,0.2);
-    }
-
-    /* Dial inner */
-    .watch-dial-inner {
-      position: absolute;
-      top: 18px;
-      left: 18px;
-      width: 184px;
-      height: 184px;
-      border-radius: 50%;
-      background: #e0e0e0;
-      transition: background 0.4s ease;
+      background: #1a1a1a;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      transition: background var(--transition);
+    }
+    .watch-dial-text {
+      color: rgba(255,255,255,0.3);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .watch-strap-bottom {
+      width: 50px;
+      height: 100px;
+      border-radius: 0 0 6px 6px;
+      background: #888;
+      margin: -6px auto 0;
+      transition: background var(--transition);
     }
 
-    /* Dial pattern */
-    .dial-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.15;
-    }
-
-    .dial-pattern-skeleton {
-      background: repeating-conic-gradient(
-        from 0deg,
-        transparent 0deg 15deg,
-        rgba(255,255,255,0.3) 15deg 18deg
-      );
-    }
-
-    .dial-pattern-sub {
-      background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.2) 0%, transparent 60%);
-    }
-
-    /* Hour markers */
-    .dial-markers {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    .dial-marker {
-      position: absolute;
-      width: 2px;
-      height: 14px;
-      background: rgba(255,255,255,0.7);
-      top: 8px;
-      left: 50%;
-      transform-origin: 50% 84px;
-      transition: background 0.4s ease;
-    }
-
-    .dial-marker:nth-child(1) { transform: translateX(-50%) rotate(0deg); }
-    .dial-marker:nth-child(2) { transform: translateX(-50%) rotate(30deg); }
-    .dial-marker:nth-child(3) { transform: translateX(-50%) rotate(60deg); }
-    .dial-marker:nth-child(4) { transform: translateX(-50%) rotate(90deg); }
-    .dial-marker:nth-child(5) { transform: translateX(-50%) rotate(120deg); }
-    .dial-marker:nth-child(6) { transform: translateX(-50%) rotate(150deg); }
-    .dial-marker:nth-child(7) { transform: translateX(-50%) rotate(180deg); }
-    .dial-marker:nth-child(8) { transform: translateX(-50%) rotate(210deg); }
-    .dial-marker:nth-child(9) { transform: translateX(-50%) rotate(240deg); }
-    .dial-marker:nth-child(10) { transform: translateX(-50%) rotate(270deg); }
-    .dial-marker:nth-child(11) { transform: translateX(-50%) rotate(300deg); }
-    .dial-marker:nth-child(12) { transform: translateX(-50%) rotate(330deg); }
-
-    /* Watch hands */
-    .dial-hands {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    .dial-hand {
-      position: absolute;
-      left: 50%;
-      bottom: 50%;
-      transform-origin: bottom center;
-      background: rgba(255,255,255,0.8);
-      border-radius: 1px;
-      transition: background 0.4s ease;
-    }
-
-    .dial-hand-hour {
-      width: 3px;
-      height: 50px;
-      transform: translateX(-50%) rotate(-30deg);
-    }
-
-    .dial-hand-minute {
-      width: 2px;
-      height: 68px;
-      transform: translateX(-50%) rotate(60deg);
-    }
-
-    .dial-hand-center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.9);
-      transform: translate(-50%, -50%);
-      transition: background 0.4s ease;
-    }
-
-    /* Crown (side knob) */
     .watch-crown {
       position: absolute;
-      right: -8px;
+      right: 42px;
       top: 50%;
       transform: translateY(-50%);
-      width: 10px;
+      width: 12px;
       height: 24px;
-      border-radius: 3px;
-      background: inherit;
-      transition: background 0.4s ease;
+      background: #777;
+      border-radius: 0 4px 4px 0;
+      z-index: 3;
     }
 
-    /* Strap */
-    .watch-strap-top {
-      width: 52px;
-      height: 60px;
-      background: #888;
-      border-radius: 4px 4px 0 0;
-      margin-bottom: -2px;
-      transition: background 0.4s ease;
-      position: relative;
-    }
-
-    .watch-strap-bottom {
-      width: 52px;
-      height: 80px;
-      background: #888;
-      border-radius: 0 0 4px 4px;
-      margin-top: -2px;
-      transition: background 0.4s ease;
-      position: relative;
-    }
-
-    .watch-strap-top::after,
-    .watch-strap-bottom::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px;
-      height: 1px;
-      background: rgba(255,255,255,0.15);
-    }
-
-    .watch-strap-top::after { bottom: 12px; }
-    .watch-strap-bottom::before { top: 12px; }
-
-    /* Lugs connecting strap to case */
-    .watch-lug-top,
-    .watch-lug-bottom {
-      width: 52px;
-      height: 8px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .watch-lug-top span,
-    .watch-lug-bottom span {
-      width: 6px;
-      height: 8px;
-      background: inherit;
-      border-radius: 1px;
-      transition: background 0.4s ease;
-    }
-
-    /* Default label */
-    .watch-preview-default-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 14px;
-      font-weight: 500;
+    .preview-selections {
+      margin-top: 32px;
+      font-size: 13px;
       color: var(--text-secondary);
       text-align: center;
       letter-spacing: 0.5px;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
+    }
+    .preview-selections span {
+      margin: 0 8px;
+    }
+    .preview-selections .complete {
+      color: var(--green);
+      font-weight: 600;
     }
 
-    .watch-preview.has-selection .watch-preview-default-label {
-      opacity: 0;
-    }
-
-    /* Selection label overlay */
-    .visual-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px 24px;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.04));
-      text-align: center;
-    }
-
-    .visual-label-selection {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-primary);
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .visual-label-note {
+    .preview-note {
+      margin-top: 12px;
       font-size: 11px;
       color: var(--text-muted);
       font-style: italic;
+      text-align: center;
     }
 
     /* RIGHT: Config Panel */
-    .config-panel {
-      width: 45%;
-      padding: 48px 40px 140px;
-      min-height: 100vh;
+    .hero-config {
+      padding: 40px 32px 60px;
+      overflow-y: auto;
     }
 
-    /* ============================================
-       CONFIG HERO
-       ============================================ */
-    .config-hero {
-      margin-bottom: 48px;
-    }
-
-    .config-hero-eyebrow {
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-
-    .config-hero-headline {
+    .product-title {
+      font-size: 28px;
       font-weight: 800;
-      font-size: 36px;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
       color: var(--text-primary);
-      line-height: 1.1;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
     }
-
-    .config-hero-sub {
+    .product-subtitle {
       font-size: 16px;
       color: var(--text-secondary);
-      line-height: 1.6;
+      margin-top: 6px;
       font-weight: 300;
-      max-width: 420px;
     }
 
-    /* ============================================
-       STEP SECTIONS
-       ============================================ */
-    .config-step {
-      margin-bottom: 56px;
-      padding-bottom: 56px;
-      border-bottom: 1px solid var(--border-light);
-      scroll-margin-top: calc(var(--nav-height) + 24px);
+    .product-stars {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .stars-row {
+      display: flex;
+      gap: 2px;
+    }
+    .stars-row svg { width: 16px; height: 16px; }
+    .product-stars .rating-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .product-stars .rating-text a {
+      color: var(--text-secondary);
+      text-decoration: underline;
     }
 
-    .config-step:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
+    .product-price-block {
+      margin-top: 16px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-
-    .step-eyebrow {
+    .price-current {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .price-compare {
+      font-size: 18px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+    .price-save {
+      font-size: 14px;
       font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-dark);
+      background: rgba(212, 160, 70, 0.12);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .afterpay-line {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    .gift-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: var(--warm-bg);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .gift-toggle:hover { background: #f0eeea; }
+    .gift-toggle svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; }
+    .gift-toggle-label {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+    .gift-toggle-switch {
+      margin-left: auto;
+      width: 40px;
+      height: 22px;
+      background: var(--border);
+      border-radius: 11px;
+      position: relative;
+      transition: background var(--transition);
+    }
+    .gift-toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform var(--transition);
+    }
+    .gift-toggle.active .gift-toggle-switch {
+      background: var(--gold);
+    }
+    .gift-toggle.active .gift-toggle-switch::after {
+      transform: translateX(18px);
+    }
+    .gift-slide-panel {
+      display: none;
+      padding: 16px;
+      background: var(--warm-bg);
+      border-radius: 0 0 var(--radius) var(--radius);
+      margin-top: -4px;
       margin-bottom: 8px;
+    }
+    .gift-slide-panel.open { display: block; }
+    .gift-slide-panel textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 60px;
+      background: #fff;
+    }
+    .gift-slide-panel label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .trust-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Bundle Builder Steps */
+    .bundle-steps {
+      margin-top: 28px;
+    }
+
+    .bundle-step {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .bundle-step.step-active {
+      border-color: var(--green);
+    }
+    .bundle-step.step-complete {
+      border-color: var(--gold);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--warm-bg);
+      cursor: pointer;
+      user-select: none;
+    }
+    .step-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .bundle-step.step-active .step-number {
+      background: var(--green);
+      color: #fff;
+    }
+    .bundle-step.step-complete .step-number {
+      background: var(--gold);
+      color: #fff;
     }
 
     .step-title {
-      font-weight: 800;
-      font-size: 24px;
-      color: var(--text-primary);
-      line-height: 1.2;
-      margin-bottom: 6px;
-      letter-spacing: -0.3px;
-    }
-
-    .step-subtitle {
       font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    .step-counter {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .step-counter .count-current {
+      font-weight: 600;
       color: var(--text-secondary);
-      margin-bottom: 24px;
-      line-height: 1.5;
-      font-weight: 300;
+    }
+    .bundle-step.step-complete .step-counter .count-current {
+      color: var(--gold-dark);
     }
 
-    /* ============================================
-       BEZEL SWATCHES (Step 1)
-       ============================================ */
-    .bezel-grid {
+    .step-body {
+      padding: 0 18px 18px;
+      display: none;
+    }
+    .bundle-step.step-open .step-body {
+      display: block;
+    }
+
+    /* Swatch Grid — Bezels */
+    .swatch-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 14px;
+      padding-top: 6px;
     }
-
-    .bezel-swatch {
+    .swatch-option {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      padding: 12px 8px;
-      border-radius: var(--radius-lg);
-      border: 2px solid transparent;
-      background: none;
-      transition: all 0.2s ease;
+      transition: opacity var(--transition);
     }
-
-    .bezel-swatch:hover {
-      background: var(--warm-bg);
+    .swatch-option.disabled {
+      opacity: 0.35;
+      pointer-events: none;
     }
-
-    .bezel-swatch.selected {
-      border-color: var(--gold);
-      background: rgba(212, 160, 70, 0.04);
-    }
-
-    .bezel-swatch-circle {
-      width: 48px;
-      height: 48px;
+    .swatch-circle {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      border: 3px solid transparent;
+      border: 3px solid var(--border);
       position: relative;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
+      transition: border-color var(--transition), box-shadow var(--transition);
     }
-
-    .bezel-swatch.selected .bezel-swatch-circle {
+    .swatch-circle-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .swatch-option.selected .swatch-circle {
       border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(212, 160, 70, 0.25);
     }
-
-    .bezel-swatch-check {
+    .swatch-check {
       position: absolute;
       top: -4px;
       right: -4px;
       width: 18px;
       height: 18px;
-      border-radius: 50%;
       background: var(--gold);
-      display: flex;
+      border-radius: 50%;
+      display: none;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      transform: scale(0.6);
-      transition: all 0.2s ease;
     }
-
-    .bezel-swatch.selected .bezel-swatch-check {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .bezel-swatch-check svg {
-      width: 10px;
-      height: 10px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .bezel-swatch-name {
-      font-size: 11px;
-      font-weight: 500;
+    .swatch-check svg { width: 10px; height: 10px; color: #fff; }
+    .swatch-option.selected .swatch-check { display: flex; }
+    .swatch-label {
+      font-size: 12px;
       color: var(--text-secondary);
       text-align: center;
       line-height: 1.3;
-      letter-spacing: 0.2px;
     }
 
-    .bezel-swatch.selected .bezel-swatch-name {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    /* Pepsi split color */
-    .bezel-pepsi {
-      background: linear-gradient(135deg, #8B2020 50%, #1B3A5C 50%) !important;
-    }
-
-    /* ============================================
-       DIAL CARDS (Step 2)
-       ============================================ */
-    .dial-grid {
+    /* Split swatch (Pepsi) */
+    .swatch-split {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      width: 100%;
+      height: 100%;
+    }
+    .swatch-split-left {
+      width: 50%;
+      height: 100%;
+      border-radius: 50% 0 0 50%;
+    }
+    .swatch-split-right {
+      width: 50%;
+      height: 100%;
+      border-radius: 0 50% 50% 0;
     }
 
-    .dial-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      border: 2px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background: var(--bg);
-    }
-
-    .dial-card:hover {
-      border-color: var(--border);
-      background: var(--warm-bg);
-    }
-
-    .dial-card.selected {
-      border-color: var(--gold);
-      background: rgba(212, 160, 70, 0.04);
-    }
-
-    .dial-card-icon {
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      border-radius: 50%;
-      background: var(--warm-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease;
-    }
-
-    .dial-card.selected .dial-card-icon {
-      background: rgba(212, 160, 70, 0.12);
-    }
-
-    .dial-card-icon svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--text-secondary);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: stroke 0.2s ease;
-    }
-
-    .dial-card.selected .dial-card-icon svg {
-      stroke: var(--gold);
-    }
-
-    .dial-card-text {
-      flex: 1;
-    }
-
-    .dial-card-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-
-    .dial-card-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      font-weight: 300;
-    }
-
-    .dial-card-check {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.2s ease;
-    }
-
-    .dial-card.selected .dial-card-check {
-      border-color: var(--gold);
-      background: var(--gold);
-    }
-
-    .dial-card-check svg {
-      width: 11px;
-      height: 11px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .dial-card.selected .dial-card-check svg {
-      opacity: 1;
-    }
-
-    /* ============================================
-       STRAP CARDS (Step 3)
-       ============================================ */
-    .strap-grid {
+    /* Card Options — Straps, Dials */
+    .card-options {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      padding-top: 6px;
     }
-
-    .strap-card {
+    .card-option {
       display: flex;
       align-items: center;
       gap: 14px;
       padding: 14px 16px;
       border: 2px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background: var(--bg);
-    }
-
-    .strap-card:hover {
-      border-color: var(--border);
-      background: var(--warm-bg);
-    }
-
-    .strap-card.selected {
-      border-color: var(--gold);
-      background: rgba(212, 160, 70, 0.04);
-    }
-
-    .strap-card-swatch {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
       border-radius: var(--radius);
-      transition: box-shadow 0.2s ease;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .card-option:hover { background: var(--warm-bg); }
+    .card-option.selected {
+      border-color: var(--gold);
+      background: rgba(212, 160, 70, 0.05);
+    }
+    .card-option.disabled {
+      opacity: 0.35;
+      pointer-events: none;
     }
 
-    .strap-card.selected .strap-card-swatch {
-      box-shadow: 0 0 0 2px var(--gold);
-    }
-
-    .strap-card-text {
-      flex: 1;
-    }
-
-    .strap-card-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 1px;
-    }
-
-    .strap-card-material {
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 300;
-    }
-
-    .strap-card-price {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-      flex-shrink: 0;
-    }
-
-    .strap-card-check {
-      width: 22px;
-      height: 22px;
+    .card-option-radio {
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       border: 2px solid var(--border);
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.2s ease;
+      transition: border-color var(--transition);
     }
-
-    .strap-card.selected .strap-card-check {
-      border-color: var(--gold);
+    .card-option-radio-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
       background: var(--gold);
+      transform: scale(0);
+      transition: transform var(--transition);
     }
-
-    .strap-card-check svg {
-      width: 11px;
-      height: 11px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .card-option.selected .card-option-radio {
+      border-color: var(--gold);
+    }
+    .card-option.selected .card-option-radio-inner {
+      transform: scale(1);
+    }
+    /* Multi-select uses checkbox style */
+    .card-option-checkbox {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+    .card-option.selected .card-option-checkbox {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .card-option-checkbox svg {
+      width: 12px;
+      height: 12px;
+      color: #fff;
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transition: opacity var(--transition);
     }
-
-    .strap-card.selected .strap-card-check svg {
+    .card-option.selected .card-option-checkbox svg {
       opacity: 1;
     }
 
-    /* ============================================
-       SUMMARY / REVIEW (Step 4)
-       ============================================ */
-    .summary-card {
-      background: var(--warm-bg);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      margin-bottom: 24px;
+    .card-option-info {
+      flex: 1;
     }
-
-    .summary-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .summary-row:last-child {
-      border-bottom: none;
-    }
-
-    .summary-row-left {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .summary-row-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-bottom: 2px;
-    }
-
-    .summary-row-value {
-      font-size: 15px;
+    .card-option-name {
+      font-size: 14px;
       font-weight: 500;
       color: var(--text-primary);
     }
-
-    .summary-row-value.empty {
-      color: var(--text-muted);
-      font-style: italic;
-      font-weight: 300;
-    }
-
-    .summary-edit {
+    .card-option-desc {
       font-size: 12px;
-      font-weight: 500;
-      color: var(--gold);
-      cursor: pointer;
-      background: none;
-      border: none;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      padding: 4px 8px;
-    }
-
-    .summary-edit:hover {
-      color: var(--gold-dark);
-    }
-
-    /* Price section */
-    .price-section {
-      margin-bottom: 24px;
-    }
-
-    .price-row {
+      color: var(--text-muted);
+      margin-top: 2px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 6px 0;
+      gap: 4px;
+    }
+    .card-option-desc svg { width: 12px; height: 12px; }
+    .card-option-price {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* Base components (collapsed) */
+    .base-components-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      cursor: pointer;
+      background: var(--warm-bg);
+      border-radius: var(--radius);
+    }
+    .base-components-toggle svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition);
+      color: var(--text-secondary);
+    }
+    .base-components-toggle.open svg {
+      transform: rotate(180deg);
+    }
+    .base-components-list {
+      display: none;
+      padding: 12px 18px 4px;
+    }
+    .base-components-list.open { display: block; }
+    .base-component-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
       font-size: 14px;
       color: var(--text-secondary);
-      font-weight: 300;
+    }
+    .base-component-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    .base-component-item .included-tag {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
 
-    .price-row.total {
-      padding: 12px 0 0;
-      margin-top: 8px;
-      border-top: 2px solid var(--text-primary);
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-primary);
+    /* ATC Area */
+    .atc-area {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+    }
+    .atc-progress {
+      margin-bottom: 14px;
+    }
+    .atc-progress-bar {
+      height: 4px;
+      background: var(--border-light);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .atc-progress-fill {
+      height: 100%;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+    .atc-progress-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      text-align: center;
     }
 
-    .price-installment {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-top: 8px;
-      font-weight: 300;
-    }
-
-    /* CTA Button */
-    .cta-button {
-      display: block;
+    .atc-button {
       width: 100%;
       padding: 16px 24px;
       background: var(--gold);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-align: center;
-      border: none;
+      color: #000;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
       border-radius: var(--radius);
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.1s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-      margin-bottom: 16px;
+      transition: all var(--transition);
+      text-transform: uppercase;
     }
-
-    .cta-button:hover {
+    .atc-button:hover:not(:disabled) {
       background: var(--gold-dark);
+      box-shadow: 0 2px 8px rgba(212, 160, 70, 0.4);
     }
-
-    .cta-button:active {
-      transform: scale(0.99);
-    }
-
-    .cta-button.disabled {
-      background: var(--border);
+    .atc-button:disabled {
+      opacity: 0.5;
       cursor: not-allowed;
-      box-shadow: none;
+    }
+    .atc-helper {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 10px;
+    }
+    .atc-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
     }
 
-    /* Trust signals */
-    .trust-signals {
+    /* ============================================
+       S3: VALUE ANCHOR BAR
+       ============================================ */
+    .value-anchor {
+      background: var(--warm-bg);
+      padding: 56px 0;
+    }
+    .value-anchor .section-heading {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .value-items {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .value-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .value-item:last-child { border-bottom: none; }
+    .value-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    .value-item-name {
+      flex: 1;
+      font-size: 15px;
+      color: var(--text-primary);
+    }
+    .value-item-price {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .value-summary {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 2px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .value-summary-item {
+      text-align: center;
+    }
+    .value-summary-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .value-summary-amount {
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .value-summary-amount.total { color: var(--text-muted); text-decoration: line-through; }
+    .value-summary-amount.yours { color: var(--text-primary); }
+    .value-summary-amount.save { color: var(--gold-dark); }
+
+    /* ============================================
+       S4: HOW IT WORKS
+       ============================================ */
+    .how-it-works {
+      padding: 72px 0;
+    }
+    .how-it-works .section-heading {
+      text-align: center;
+    }
+    .how-it-works .section-subhead {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hiw-step {
+      text-align: center;
+      position: relative;
+    }
+    .hiw-step-number {
+      font-size: 80px;
+      font-weight: 800;
+      color: rgba(212, 160, 70, 0.12);
+      line-height: 1;
+      margin-bottom: -16px;
+      position: relative;
+      z-index: 0;
+    }
+    .hiw-step-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      color: var(--green);
+      position: relative;
+      z-index: 1;
+    }
+    .hiw-step-title {
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .hiw-step-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .hiw-step-meta {
+      font-size: 12px;
+      color: var(--gold-dark);
+      font-weight: 500;
+      margin-top: 6px;
+    }
+
+    .hiw-video-placeholder {
+      max-width: 700px;
+      margin: 48px auto 0;
+      aspect-ratio: 16/9;
+      background: var(--warm-bg);
+      border-radius: var(--radius-lg);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .hiw-video-placeholder svg {
+      width: 48px;
+      height: 48px;
+      color: var(--text-muted);
     }
 
-    .trust-signal {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      font-weight: 400;
+    /* ============================================
+       S5: GUARANTEE TRIPTYCH
+       ============================================ */
+    .guarantees {
+      background: var(--warm-bg);
+      padding: 72px 0;
+    }
+    .guarantees .section-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .guarantee-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .guarantee-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .guarantee-card svg {
+      width: 36px;
+      height: 36px;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .guarantee-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .guarantee-card-desc {
+      font-size: 14px;
       color: var(--text-secondary);
-      letter-spacing: 0.2px;
+      line-height: 1.5;
+    }
+    .guarantee-card-note {
+      font-size: 12px;
+      color: var(--gold-dark);
+      font-style: italic;
+      margin-top: 10px;
     }
 
-    .trust-signal svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--green);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    /* ============================================
+       S6: SOCIAL PROOF RAIL
+       ============================================ */
+    .social-proof {
+      padding: 72px 0;
+    }
+    .social-proof .section-heading {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .social-proof .section-subhead {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .review-rail {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 4px 20px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .review-rail::-webkit-scrollbar { height: 0; }
+    .review-card {
+      min-width: 280px;
+      max-width: 280px;
+      background: var(--warm-bg);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      scroll-snap-align: start;
       flex-shrink: 0;
     }
+    .review-card-photo {
+      width: 100%;
+      height: 140px;
+      background: var(--border-light);
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .review-card-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+    .review-card-stars svg { width: 14px; height: 14px; }
+    .review-card-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .review-card-author {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .review-card-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
 
-    .trust-divider {
-      width: 1px;
-      height: 14px;
+    .see-all-reviews {
+      text-align: center;
+      margin-top: 24px;
+    }
+    .see-all-reviews a {
+      font-size: 14px;
+      color: var(--green);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--green);
+    }
+    .see-all-reviews a:hover { color: var(--green-dark); }
+
+    /* ============================================
+       S7: PERSONA TABS
+       ============================================ */
+    .persona-tabs-section {
+      background: var(--warm-bg);
+      padding: 72px 0;
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 40px;
+    }
+    .tab-btn {
+      padding: 14px 32px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: transparent;
+      border-bottom: 3px solid transparent;
+      transition: all var(--transition);
+    }
+    .tab-btn.active {
+      color: var(--text-primary);
+      border-bottom-color: var(--gold);
+    }
+    .tab-btn:hover:not(.active) {
+      color: var(--text-secondary);
+    }
+
+    .tab-panel {
+      display: none;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .tab-panel.active { display: block; }
+
+    .persona-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .persona-usps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .persona-usp {
+      display: flex;
+      gap: 14px;
+    }
+    .persona-usp svg {
+      width: 24px;
+      height: 24px;
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .persona-usp-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .persona-usp-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .persona-quote {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+    }
+    .persona-quote-text {
+      font-size: 16px;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .persona-quote-author {
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* ============================================
+       S8: WHAT'S INSIDE (Accordion)
+       ============================================ */
+    .whats-inside {
+      padding: 72px 0;
+    }
+    .whats-inside .section-heading {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .whats-inside-image {
+      max-width: 700px;
+      margin: 32px auto;
+      aspect-ratio: 16/9;
+      background: var(--warm-bg);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .component-accordion {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .accordion-item {
+      border-bottom: 1px solid var(--border-light);
+    }
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: left;
+    }
+    .accordion-trigger svg {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+    .accordion-item.open .accordion-trigger svg {
+      transform: rotate(180deg);
+    }
+    .accordion-content {
+      display: none;
+      padding: 0 0 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .accordion-item.open .accordion-content { display: block; }
+
+    /* ============================================
+       S9: FOUNDER STORY
+       ============================================ */
+    .founder-story {
+      background: var(--warm-bg);
+      padding: 72px 0;
+      text-align: center;
+    }
+    .founder-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
       background: var(--border);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .founder-quote {
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--green);
+      max-width: 600px;
+      margin: 0 auto 20px;
+      line-height: 1.5;
+    }
+    .founder-bio {
+      max-width: 560px;
+      margin: 0 auto 20px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .founder-link {
+      font-size: 14px;
+      color: var(--green);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--green);
+    }
+    .founder-link:hover { color: var(--green-dark); }
+
+    /* ============================================
+       S10: OBJECTION FAQ
+       ============================================ */
+    .objection-faq {
+      padding: 72px 0;
+    }
+    .objection-faq .section-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .faq-list {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border-light);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: left;
+      line-height: 1.4;
+    }
+    .faq-question svg {
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      display: none;
+      padding: 0 0 18px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* ============================================
+       S11: CROSS-SELL
+       ============================================ */
+    .cross-sell {
+      background: var(--warm-bg);
+      padding: 72px 0;
+    }
+    .cross-sell .section-heading {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .cross-sell-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .cross-sell-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .cross-sell-img {
+      aspect-ratio: 4/3;
+      background: var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .cross-sell-body {
+      padding: 18px;
+    }
+    .cross-sell-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .cross-sell-note {
+      font-size: 12px;
+      color: var(--gold-dark);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .cross-sell-price {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .cross-sell-btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border-radius: var(--radius);
+      transition: background var(--transition);
+    }
+    .cross-sell-btn:hover { background: var(--green-dark); }
+
+    /* ============================================
+       S12: FULL REVIEWS PLACEHOLDER
+       ============================================ */
+    .full-reviews {
+      padding: 72px 0;
+    }
+    .full-reviews .section-heading {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .review-full-list {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .review-full-card {
+      padding: 24px;
+      background: var(--warm-bg);
+      border-radius: var(--radius-lg);
+    }
+    .review-full-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .review-full-author {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .review-full-date {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .review-full-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+    .review-full-stars svg { width: 14px; height: 14px; }
+    .review-full-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
     }
 
     /* ============================================
        FOOTER
        ============================================ */
-    .config-footer {
+    .page-footer {
       background: var(--green);
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255,255,255,0.6);
+      padding: 32px 0;
       text-align: center;
-      padding: 24px 16px;
       font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 0.3px;
     }
-
-    .config-footer a {
-      color: rgba(255, 255, 255, 0.8);
+    .page-footer a {
+      color: rgba(255,255,255,0.8);
       text-decoration: none;
     }
 
-    .config-footer a:hover {
-      color: #fff;
+    /* ============================================
+       STICKY ATC BAR (Desktop — appears on scroll)
+       ============================================ */
+    .sticky-atc-desktop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 150;
+      background: #fff;
+      border-bottom: 1px solid var(--border-light);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      transform: translateY(-100%);
+      transition: transform 0.35s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
+    .sticky-atc-desktop.visible {
+      transform: translateY(0);
+    }
+    .sticky-atc-desktop .sticky-product-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .sticky-atc-desktop .sticky-price {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .sticky-atc-desktop .sticky-btn {
+      padding: 10px 28px;
+      background: var(--gold);
+      color: #000;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: var(--radius);
+      text-transform: uppercase;
+      transition: background var(--transition);
+    }
+    .sticky-atc-desktop .sticky-btn:hover { background: var(--gold-dark); }
 
     /* ============================================
-       MOBILE STICKY BOTTOM BAR
+       STICKY BOTTOM BAR (Mobile only)
        ============================================ */
-    .mobile-bottom-bar {
+    .sticky-mobile-bar {
       display: none;
     }
 
     /* ============================================
-       MOBILE RESPONSIVE (<768px)
+       RESPONSIVE
        ============================================ */
-    @media (max-width: 767px) {
-      .config-layout {
-        flex-direction: column;
+    @media (max-width: 989px) {
+      .product-hero {
+        display: block;
       }
-
-      .visual-panel {
-        width: 100%;
+      .hero-preview {
         position: sticky;
-        top: var(--nav-height);
+        top: 0;
         height: 35vh;
-        z-index: 50;
+        min-height: 280px;
+        padding: 20px;
+        z-index: 10;
       }
-
-      .watch-preview {
-        width: 180px;
-        height: 260px;
-        transform: scale(0.8);
-      }
-
-      .watch-preview-shape {
+      .watch-visual {
         width: 160px;
-        height: 160px;
+        height: 220px;
       }
+      .watch-strap-top { width: 32px; height: 48px; }
+      .watch-case-outer { width: 110px; height: 110px; }
+      .watch-case-inner { width: 85px; height: 85px; }
+      .watch-dial-text { font-size: 8px; }
+      .watch-strap-bottom { width: 32px; height: 60px; }
+      .watch-crown { width: 8px; height: 16px; right: 20px; }
+      .preview-selections { font-size: 11px; margin-top: 16px; }
+      .preview-note { display: none; }
 
-      .watch-bezel-ring {
-        width: 160px;
-        height: 160px;
+      .hero-config {
+        padding: 24px 20px 40px;
       }
+      .product-title { font-size: 24px; }
 
-      .watch-dial-inner {
-        width: 130px;
-        height: 130px;
-        top: 15px;
-        left: 15px;
-      }
-
-      .dial-marker {
-        height: 10px;
-        transform-origin: 50% 57px;
-      }
-
-      .dial-hand-hour { height: 36px; }
-      .dial-hand-minute { height: 48px; }
-
-      .watch-strap-top { height: 36px; width: 40px; }
-      .watch-strap-bottom { height: 48px; width: 40px; }
-
-      .visual-label {
-        padding: 10px 16px;
-      }
-
-      .visual-label-selection { font-size: 11px; }
-      .visual-label-note { font-size: 10px; }
-
-      .config-panel {
-        width: 100%;
-        padding: 32px 20px 120px;
-      }
-
-      .config-hero-headline {
-        font-size: 28px;
-      }
-
-      .step-title {
-        font-size: 20px;
-      }
-
-      .bezel-grid {
+      .swatch-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
       }
+      .swatch-circle { width: 44px; height: 44px; }
+      .swatch-label { font-size: 11px; }
 
-      .bezel-swatch {
-        padding: 8px 4px;
+      .hiw-steps {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        max-width: 400px;
       }
 
-      .bezel-swatch-circle {
-        width: 40px;
-        height: 40px;
+      .guarantee-cards {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 500px;
       }
 
-      .config-nav-step-label {
-        font-size: 9px;
+      .persona-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
       }
 
-      .config-nav-connector {
-        width: 12px;
+      .cross-sell-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
       }
 
-      /* Mobile bottom bar */
-      .mobile-bottom-bar {
+      .sticky-atc-desktop { display: none !important; }
+
+      .sticky-mobile-bar {
         display: flex;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
         z-index: 150;
-        background: var(--bg);
+        background: #fff;
         border-top: 1px solid var(--border-light);
-        padding: 12px 16px;
-        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        padding: 10px 16px;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+        box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
       }
-
-      .mobile-bottom-bar-info {
-        flex: 1;
-        min-width: 0;
+      .sticky-mobile-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
       }
-
-      .mobile-bottom-bar-name {
+      .sticky-mobile-name {
         font-size: 13px;
         font-weight: 600;
         color: var(--text-primary);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
       }
-
-      .mobile-bottom-bar-price {
-        font-size: 12px;
-        color: var(--text-secondary);
-        font-weight: 300;
+      .sticky-mobile-price {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
       }
-
-      .mobile-bottom-bar-cta {
+      .sticky-mobile-btn {
         padding: 12px 24px;
         background: var(--gold);
-        color: #fff;
-        font-size: 13px;
-        font-weight: 600;
+        color: #000;
+        font-size: 14px;
+        font-weight: 700;
         letter-spacing: 0.5px;
-        text-transform: uppercase;
-        border: none;
         border-radius: var(--radius);
-        cursor: pointer;
+        text-transform: uppercase;
+        transition: background var(--transition);
         white-space: nowrap;
-        flex-shrink: 0;
-        transition: background 0.2s ease;
       }
 
-      .mobile-bottom-bar-cta:hover {
-        background: var(--gold-dark);
-      }
+      .trust-micro { gap: 12px; }
+      .trust-micro-item span { display: none; }
+
+      /* Give body bottom padding for mobile sticky bar */
+      body { padding-bottom: 72px; }
     }
 
-    /* ============================================
-       SMALL MOBILE (<400px)
-       ============================================ */
-    @media (max-width: 399px) {
-      .bezel-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .config-hero-headline {
-        font-size: 24px;
-      }
-
-      .trust-signals {
+    @media (max-width: 767px) {
+      .breadcrumb-trust .container {
         flex-direction: column;
+        align-items: flex-start;
         gap: 6px;
       }
+      .trust-micro { flex-wrap: wrap; gap: 10px; }
+      .trust-micro-item span { display: inline; font-size: 12px; }
 
-      .trust-divider {
-        display: none;
+      .tab-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
       }
+      .tab-btn { padding: 12px 24px; }
+
+      .value-summary { gap: 16px; }
+      .value-summary-amount { font-size: 20px; }
     }
 
-    /* ============================================
-       LARGE DESKTOP (>1200px)
-       ============================================ */
-    @media (min-width: 1200px) {
-      .config-panel {
-        padding: 56px 56px 160px;
-      }
+    @media (min-width: 990px) {
+      .trust-micro-item span { display: inline; }
+    }
 
-      .config-hero-headline {
-        font-size: 40px;
-      }
+    /* Smooth scroll offset for anchor nav */
+    [id] { scroll-margin-top: 60px; }
+
+    /* Visually hidden for accessibility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- Prototype Banner -->
-  <div class="prototype-banner">
-    <strong>Prototype</strong> &mdash; This is a concept demonstration for TheModWatches PDP configurator
+  <!-- PROTOTYPE BANNER -->
+  <div class="prototype-banner" role="banner">
+    <strong>Prototype</strong> — TheModWatches PDP Redesign Concept | cazyweb
   </div>
 
-  <!-- Sticky Step Nav -->
-  <nav class="config-nav" id="configNav" aria-label="Configuration steps">
-    <div class="config-nav-steps">
-      <button class="config-nav-step active" data-step="1" aria-label="Step 1: Bezel">
-        <div class="config-nav-step-circle">
-          <span>1</span>
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <!-- S1: BREADCRUMB + TRUST MICRO-BAR -->
+  <nav class="breadcrumb-trust" aria-label="Breadcrumb and trust indicators">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="#">Home</a><span class="sep">/</span>
+        <a href="#">Watch Building Kits</a><span class="sep">/</span>
+        <span>Skeleton Bundle</span>
+      </div>
+      <div class="trust-micro">
+        <div class="trust-micro-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>1,500+ watches built</span>
         </div>
-        <div class="config-nav-step-label">Bezel</div>
-      </button>
-      <div class="config-nav-connector"></div>
-      <button class="config-nav-step" data-step="2" aria-label="Step 2: Dial">
-        <div class="config-nav-step-circle">
-          <span>2</span>
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <div class="trust-micro-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>4.8/5 rating</span>
         </div>
-        <div class="config-nav-step-label">Dial</div>
-      </button>
-      <div class="config-nav-connector"></div>
-      <button class="config-nav-step" data-step="3" aria-label="Step 3: Strap">
-        <div class="config-nav-step-circle">
-          <span>3</span>
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <div class="trust-micro-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>Free shipping</span>
         </div>
-        <div class="config-nav-step-label">Strap</div>
-      </button>
-      <div class="config-nav-connector"></div>
-      <button class="config-nav-step" data-step="4" aria-label="Step 4: Review">
-        <div class="config-nav-step-circle">
-          <span>4</span>
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        </div>
-        <div class="config-nav-step-label">Review</div>
-      </button>
+      </div>
     </div>
   </nav>
 
-  <!-- Split Layout -->
-  <div class="config-layout">
+  <!-- S2: PRODUCT HERO — SPLIT PANEL -->
+  <section class="product-hero" id="product-hero" aria-label="Product configurator">
 
-    <!-- LEFT: Sticky Visual Panel -->
-    <aside class="visual-panel" aria-label="Watch preview">
-      <div class="visual-panel-inner">
-        <div class="watch-preview" id="watchPreview">
-          <!-- Strap top -->
-          <div class="watch-strap-top" id="strapTop"></div>
-          <div class="watch-lug-top" id="lugTop">
-            <span></span><span></span>
+    <!-- LEFT: Watch Preview -->
+    <div class="hero-preview">
+      <div class="watch-visual" aria-hidden="true">
+        <div class="watch-strap-top" id="strap-preview-top"></div>
+        <div class="watch-case-outer" id="bezel-preview">
+          <div class="watch-case-inner" id="dial-preview">
+            <span class="watch-dial-text">PREVIEW</span>
           </div>
-
-          <!-- Watch case/face -->
-          <div class="watch-preview-shape">
-            <div class="watch-bezel-ring" id="bezelRing">
-              <div class="watch-crown" id="watchCrown"></div>
-            </div>
-            <div class="watch-dial-inner" id="dialInner">
-              <div class="dial-pattern" id="dialPattern"></div>
-              <div class="dial-markers">
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-                <div class="dial-marker"></div>
-              </div>
-              <div class="dial-hands">
-                <div class="dial-hand dial-hand-hour"></div>
-                <div class="dial-hand dial-hand-minute"></div>
-                <div class="dial-hand-center"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="watch-preview-default-label" id="previewDefaultLabel">
-            Select your components<br>to see a live preview
-          </div>
-
-          <!-- Strap bottom -->
-          <div class="watch-lug-bottom" id="lugBottom">
-            <span></span><span></span>
-          </div>
-          <div class="watch-strap-bottom" id="strapBottom"></div>
+          <div class="watch-crown"></div>
         </div>
-
-        <!-- Label overlay -->
-        <div class="visual-label">
-          <div class="visual-label-selection" id="selectionLabel">No selections yet</div>
-          <div class="visual-label-note">Actual product images will replace this preview</div>
-        </div>
+        <div class="watch-strap-bottom" id="strap-preview-bottom"></div>
       </div>
-    </aside>
+      <div class="preview-selections" id="preview-selections">
+        <span id="sel-bezels">0/3 Bezels</span>
+        <span id="sel-dials">0/2 Dials</span>
+        <span id="sel-straps">0/3 Straps</span>
+      </div>
+      <div class="preview-note">Product images will replace this preview</div>
+    </div>
 
     <!-- RIGHT: Config Panel -->
-    <main class="config-panel">
+    <div class="hero-config">
+      <h1 class="product-title">Skeleton Watch Building Kit</h1>
+      <p class="product-subtitle">18 Different Watch Styles from One Kit</p>
 
-      <!-- Hero -->
-      <div class="config-hero">
-        <div class="config-hero-eyebrow">Watch Configurator</div>
-        <h1 class="config-hero-headline">Build Your Watch</h1>
-        <p class="config-hero-sub">Select your components below. The preview updates live.</p>
+      <div class="product-stars">
+        <div class="stars-row" aria-label="4.8 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <span class="rating-text">4.8 (<a href="#full-reviews">47 reviews</a>)</span>
       </div>
 
-      <!-- Step 1: Bezel -->
-      <section class="config-step" id="step1" aria-label="Step 1: Choose your bezel">
-        <div class="step-eyebrow">Step 1</div>
-        <h2 class="step-title">Choose Your Bezel</h2>
-        <p class="step-subtitle">Sets the character of your watch.</p>
+      <div class="product-price-block">
+        <span class="price-current">$499</span>
+        <span class="price-compare">$755</span>
+        <span class="price-save">SAVE $256 (34%)</span>
+      </div>
+      <p class="afterpay-line">or 4 payments of $124.75 with Shop Pay</p>
 
-        <div class="bezel-grid">
-          <button class="bezel-swatch" data-bezel="black-sub" data-bezel-color="#2C2C2C" data-bezel-name="Black Sub-Style" aria-label="Black Sub-Style bezel">
-            <div class="bezel-swatch-circle" style="background: #2C2C2C;">
-              <div class="bezel-swatch-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-            </div>
-            <span class="bezel-swatch-name">Black Sub-Style</span>
-          </button>
+      <!-- Gift Toggle -->
+      <div class="gift-toggle" id="gift-toggle" role="switch" aria-checked="false" tabindex="0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <span class="gift-toggle-label">Buying as a gift?</span>
+        <div class="gift-toggle-switch" aria-hidden="true"></div>
+      </div>
+      <div class="gift-slide-panel" id="gift-panel">
+        <label for="gift-message">Gift message (optional)</label>
+        <textarea id="gift-message" placeholder="Write a personal message..."></textarea>
+      </div>
 
-          <button class="bezel-swatch" data-bezel="green-sub" data-bezel-color="#2D5A3D" data-bezel-name="Green Sub-Style" aria-label="Green Sub-Style bezel">
-            <div class="bezel-swatch-circle" style="background: #2D5A3D;">
-              <div class="bezel-swatch-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-            </div>
-            <span class="bezel-swatch-name">Green Sub-Style</span>
-          </button>
+      <p class="trust-line">30-Day Guarantee | 48-Month Warranty | Free Worldwide Shipping</p>
 
-          <button class="bezel-swatch" data-bezel="blue-gmt" data-bezel-color="#1B3A5C" data-bezel-name="Blue GMT" aria-label="Blue GMT bezel">
-            <div class="bezel-swatch-circle" style="background: #1B3A5C;">
-              <div class="bezel-swatch-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-            </div>
-            <span class="bezel-swatch-name">Blue GMT</span>
-          </button>
+      <!-- BUNDLE BUILDER STEPS -->
+      <div class="bundle-steps" id="bundle-steps">
 
-          <button class="bezel-swatch" data-bezel="pepsi-gmt" data-bezel-color="pepsi" data-bezel-name="Pepsi GMT" aria-label="Pepsi GMT bezel">
-            <div class="bezel-swatch-circle bezel-pepsi">
-              <div class="bezel-swatch-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
+        <!-- STEP 1: Bezels (multi-select, max 3) -->
+        <div class="bundle-step step-active step-open" data-step="1" data-type="multi" data-max="3">
+          <div class="step-header" role="button" tabindex="0" aria-expanded="true">
+            <div class="step-header-left">
+              <div class="step-number">1</div>
+              <span class="step-title">Choose 3 Bezels</span>
             </div>
-            <span class="bezel-swatch-name">Pepsi GMT</span>
-          </button>
-
-          <button class="bezel-swatch" data-bezel="silver-ym" data-bezel-color="#A8A8A8" data-bezel-name="Silver YM-Style" aria-label="Silver YM-Style bezel">
-            <div class="bezel-swatch-circle" style="background: #A8A8A8;">
-              <div class="bezel-swatch-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-            </div>
-            <span class="bezel-swatch-name">Silver YM-Style</span>
-          </button>
-
-          <button class="bezel-swatch" data-bezel="black-ym" data-bezel-color="#333333" data-bezel-name="Black YM-Style" aria-label="Black YM-Style bezel">
-            <div class="bezel-swatch-circle" style="background: #333333;">
-              <div class="bezel-swatch-check">
-                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-            </div>
-            <span class="bezel-swatch-name">Black YM-Style</span>
-          </button>
-        </div>
-      </section>
-
-      <!-- Step 2: Dial -->
-      <section class="config-step" id="step2" aria-label="Step 2: Choose your dial">
-        <div class="step-eyebrow">Step 2</div>
-        <h2 class="step-title">Choose Your Dial</h2>
-        <p class="step-subtitle">The face of your creation.</p>
-
-        <div class="dial-grid">
-          <button class="dial-card" data-dial="skeleton-black" data-dial-color="#1a1a1a" data-dial-name="Skeleton Black" data-dial-type="skeleton" aria-label="Skeleton Black dial">
-            <div class="dial-card-icon">
-              <!-- Eye icon -->
-              <svg viewBox="0 0 24 24">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
-            </div>
-            <div class="dial-card-text">
-              <div class="dial-card-name">Skeleton Black</div>
-              <div class="dial-card-desc">See the movement through the face</div>
-            </div>
-            <div class="dial-card-check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-          </button>
-
-          <button class="dial-card" data-dial="skeleton-blue" data-dial-color="#162d4a" data-dial-name="Skeleton Blue" data-dial-type="skeleton" aria-label="Skeleton Blue dial">
-            <div class="dial-card-icon">
-              <!-- Eye icon -->
-              <svg viewBox="0 0 24 24">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
-            </div>
-            <div class="dial-card-text">
-              <div class="dial-card-name">Skeleton Blue</div>
-              <div class="dial-card-desc">Deep blue with visible mechanism</div>
-            </div>
-            <div class="dial-card-check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-          </button>
-
-          <button class="dial-card" data-dial="sub-black" data-dial-color="#0d0d0d" data-dial-name="Sub-Style Black" data-dial-type="sub" aria-label="Sub-Style Black dial">
-            <div class="dial-card-icon">
-              <!-- Clock icon -->
-              <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-            </div>
-            <div class="dial-card-text">
-              <div class="dial-card-name">Sub-Style Black</div>
-              <div class="dial-card-desc">Classic dive watch face</div>
-            </div>
-            <div class="dial-card-check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-          </button>
-        </div>
-      </section>
-
-      <!-- Step 3: Strap -->
-      <section class="config-step" id="step3" aria-label="Step 3: Choose your strap">
-        <div class="step-eyebrow">Step 3</div>
-        <h2 class="step-title">Choose Your Strap</h2>
-        <p class="step-subtitle">Swap anytime &mdash; no tools needed.</p>
-
-        <div class="strap-grid">
-          <button class="strap-card" data-strap="steel" data-strap-price="49" data-strap-color="#b8b8b8" data-strap-name="Stainless Steel" aria-label="Stainless Steel strap, $49">
-            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #d0d0d0 0%, #a0a0a0 50%, #c0c0c0 100%);"></div>
-            <div class="strap-card-text">
-              <div class="strap-card-name">Stainless Steel</div>
-              <div class="strap-card-material">Three-link bracelet</div>
-            </div>
-            <div class="strap-card-price">$49</div>
-            <div class="strap-card-check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-          </button>
-
-          <button class="strap-card" data-strap="nato-green" data-strap-price="29" data-strap-color="#3a5a3a" data-strap-name="NATO Green" aria-label="NATO Green strap, $29">
-            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #4a6a4a 0%, #3a5a3a 50%, #2d4d2d 100%);"></div>
-            <div class="strap-card-text">
-              <div class="strap-card-name">NATO &mdash; Green</div>
-              <div class="strap-card-material">Woven nylon, quick-release</div>
-            </div>
-            <div class="strap-card-price">$29</div>
-            <div class="strap-card-check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-          </button>
-
-          <button class="strap-card" data-strap="rubber-black" data-strap-price="29" data-strap-color="#2a2a2a" data-strap-name="Rubber Black" aria-label="Rubber Black strap, $29">
-            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);"></div>
-            <div class="strap-card-text">
-              <div class="strap-card-name">Rubber &mdash; Black</div>
-              <div class="strap-card-material">Silicone, water-resistant</div>
-            </div>
-            <div class="strap-card-price">$29</div>
-            <div class="strap-card-check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-          </button>
-
-          <button class="strap-card" data-strap="leather-brown" data-strap-price="35" data-strap-color="#6b4226" data-strap-name="Leather Brown" aria-label="Leather Brown strap, $35">
-            <div class="strap-card-swatch" style="background: linear-gradient(145deg, #8b5e3c 0%, #6b4226 50%, #5a3520 100%);"></div>
-            <div class="strap-card-text">
-              <div class="strap-card-name">Leather &mdash; Brown</div>
-              <div class="strap-card-material">Italian calfskin, padded</div>
-            </div>
-            <div class="strap-card-price">$35</div>
-            <div class="strap-card-check">
-              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            </div>
-          </button>
-        </div>
-      </section>
-
-      <!-- Step 4: Review -->
-      <section class="config-step" id="step4" aria-label="Step 4: Review your configuration">
-        <div class="step-eyebrow">Step 4</div>
-        <h2 class="step-title">Your Configuration</h2>
-        <p class="step-subtitle">Review your selections and add to cart.</p>
-
-        <!-- Summary card -->
-        <div class="summary-card">
-          <div class="summary-row">
-            <div class="summary-row-left">
-              <div class="summary-row-label">Bezel</div>
-              <div class="summary-row-value" id="summaryBezel"><span class="empty">Not selected</span></div>
-            </div>
-            <button class="summary-edit" data-scroll-to="step1" aria-label="Edit bezel selection">Edit</button>
+            <span class="step-counter"><span class="count-current">0</span>/3 selected</span>
           </div>
-          <div class="summary-row">
-            <div class="summary-row-left">
-              <div class="summary-row-label">Dial</div>
-              <div class="summary-row-value" id="summaryDial"><span class="empty">Not selected</span></div>
+          <div class="step-body">
+            <div class="swatch-grid">
+              <div class="swatch-option" data-value="black-sub" data-bezel-color="#2C2C2C" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="swatch-circle">
+                  <div class="swatch-circle-inner" style="background: #2C2C2C;"></div>
+                  <div class="swatch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                </div>
+                <span class="swatch-label">Black Sub-Style</span>
+              </div>
+              <div class="swatch-option" data-value="green-sub" data-bezel-color="#2D5A3D" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="swatch-circle">
+                  <div class="swatch-circle-inner" style="background: #2D5A3D;"></div>
+                  <div class="swatch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                </div>
+                <span class="swatch-label">Green Sub-Style</span>
+              </div>
+              <div class="swatch-option" data-value="blue-gmt" data-bezel-color="#1B3A5C" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="swatch-circle">
+                  <div class="swatch-circle-inner" style="background: #1B3A5C;"></div>
+                  <div class="swatch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                </div>
+                <span class="swatch-label">Blue GMT</span>
+              </div>
+              <div class="swatch-option" data-value="pepsi-gmt" data-bezel-color="#C42127" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="swatch-circle">
+                  <div class="swatch-circle-inner">
+                    <div class="swatch-split">
+                      <div class="swatch-split-left" style="background: #C42127;"></div>
+                      <div class="swatch-split-right" style="background: #1B3A5C;"></div>
+                    </div>
+                  </div>
+                  <div class="swatch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                </div>
+                <span class="swatch-label">Pepsi GMT</span>
+              </div>
+              <div class="swatch-option" data-value="silver-ym" data-bezel-color="#A8A8A8" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="swatch-circle">
+                  <div class="swatch-circle-inner" style="background: #A8A8A8;"></div>
+                  <div class="swatch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                </div>
+                <span class="swatch-label">Silver YM</span>
+              </div>
+              <div class="swatch-option" data-value="black-ym" data-bezel-color="#333333" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="swatch-circle">
+                  <div class="swatch-circle-inner" style="background: #333333;"></div>
+                  <div class="swatch-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                </div>
+                <span class="swatch-label">Black YM</span>
+              </div>
             </div>
-            <button class="summary-edit" data-scroll-to="step2" aria-label="Edit dial selection">Edit</button>
-          </div>
-          <div class="summary-row">
-            <div class="summary-row-left">
-              <div class="summary-row-label">Strap</div>
-              <div class="summary-row-value" id="summaryStrap"><span class="empty">Not selected</span></div>
-            </div>
-            <button class="summary-edit" data-scroll-to="step3" aria-label="Edit strap selection">Edit</button>
           </div>
         </div>
 
-        <!-- Pricing -->
-        <div class="price-section">
-          <div class="price-row">
-            <span>Kit price</span>
-            <span>$499</span>
+        <!-- STEP 2: Steel Strap (single-select, max 1) -->
+        <div class="bundle-step" data-step="2" data-type="single" data-max="1">
+          <div class="step-header" role="button" tabindex="0" aria-expanded="false">
+            <div class="step-header-left">
+              <div class="step-number">2</div>
+              <span class="step-title">Choose Stainless Steel Strap</span>
+            </div>
+            <span class="step-counter"><span class="count-current">0</span>/1 selected</span>
           </div>
-          <div class="price-row">
-            <span>Your strap</span>
-            <span id="priceStrap">$0</span>
+          <div class="step-body">
+            <div class="card-options">
+              <div class="card-option" data-value="three-link" data-strap-color="#B8B8B8" tabindex="0" role="radio" aria-checked="false">
+                <div class="card-option-radio"><div class="card-option-radio-inner"></div></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">Three-Link Bracelet</div>
+                  <div class="card-option-desc">Classic oyster-style links</div>
+                </div>
+                <div class="card-option-price">$49</div>
+              </div>
+              <div class="card-option" data-value="five-link" data-strap-color="#C0C0C0" tabindex="0" role="radio" aria-checked="false">
+                <div class="card-option-radio"><div class="card-option-radio-inner"></div></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">Five-Link Bracelet</div>
+                  <div class="card-option-desc">Jubilee-style refinement</div>
+                </div>
+                <div class="card-option-price">$49</div>
+              </div>
+            </div>
           </div>
-          <div class="price-row total">
-            <span>Total</span>
-            <span id="priceTotal">$499</span>
-          </div>
-          <div class="price-installment" id="priceInstallment">or 4 payments of $124.75 with Shop Pay</div>
         </div>
 
-        <!-- CTA -->
-        <button class="cta-button disabled" id="ctaButton" aria-label="Add to cart">
-          Complete All Steps to Continue
+        <!-- STEP 3: 2 More Straps (multi-select, max 2) -->
+        <div class="bundle-step" data-step="3" data-type="multi" data-max="2">
+          <div class="step-header" role="button" tabindex="0" aria-expanded="false">
+            <div class="step-header-left">
+              <div class="step-number">3</div>
+              <span class="step-title">Choose 2 More Straps</span>
+            </div>
+            <span class="step-counter"><span class="count-current">0</span>/2 selected</span>
+          </div>
+          <div class="step-body">
+            <div class="card-options">
+              <div class="card-option" data-value="nato-green" data-strap-color="#3D5C3E" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="card-option-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">NATO - Green</div>
+                  <div class="card-option-desc">Woven nylon, brushed hardware</div>
+                </div>
+                <div class="card-option-price">$29</div>
+              </div>
+              <div class="card-option" data-value="nato-black" data-strap-color="#1A1A1A" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="card-option-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">NATO - Black</div>
+                  <div class="card-option-desc">Woven nylon, brushed hardware</div>
+                </div>
+                <div class="card-option-price">$29</div>
+              </div>
+              <div class="card-option" data-value="rubber-black" data-strap-color="#222222" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="card-option-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">Rubber - Black</div>
+                  <div class="card-option-desc">Waterproof, textured grip</div>
+                </div>
+                <div class="card-option-price">$29</div>
+              </div>
+              <div class="card-option" data-value="leather-brown" data-strap-color="#8B5E3C" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="card-option-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">Wild Leather - Brown</div>
+                  <div class="card-option-desc">Full-grain, develops patina</div>
+                </div>
+                <div class="card-option-price">$35</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: 2 Dials (multi-select, max 2) -->
+        <div class="bundle-step" data-step="4" data-type="multi" data-max="2">
+          <div class="step-header" role="button" tabindex="0" aria-expanded="false">
+            <div class="step-header-left">
+              <div class="step-number">4</div>
+              <span class="step-title">Your 2 Dials</span>
+            </div>
+            <span class="step-counter"><span class="count-current">0</span>/2 selected</span>
+          </div>
+          <div class="step-body">
+            <div class="card-options">
+              <div class="card-option" data-value="skeleton-black" data-dial-color="#0D0D0D" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="card-option-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">Skeleton Black</div>
+                  <div class="card-option-desc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> See the movement</div>
+                </div>
+              </div>
+              <div class="card-option" data-value="skeleton-blue" data-dial-color="#0F2847" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="card-option-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">Skeleton Blue</div>
+                  <div class="card-option-desc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Deep blue mechanism</div>
+                </div>
+              </div>
+              <div class="card-option" data-value="sub-black" data-dial-color="#1A1A1A" tabindex="0" role="checkbox" aria-checked="false">
+                <div class="card-option-checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="card-option-info">
+                  <div class="card-option-name">Sub-Style Black</div>
+                  <div class="card-option-desc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Classic dive watch</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: Base Components (info only, collapsed) -->
+        <div class="bundle-step step-complete" data-step="5" data-type="info">
+          <div class="base-components-toggle" id="base-toggle" role="button" tabindex="0" aria-expanded="false">
+            <div class="step-header-left">
+              <div class="step-number" style="background: var(--gold); color: #fff;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="step-title">Base Components (Included)</span>
+            </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="base-components-list" id="base-list">
+            <div class="base-component-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              NH70 Skeleton Movement
+              <span class="included-tag">Included</span>
+            </div>
+            <div class="base-component-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+              42mm Diver Case
+              <span class="included-tag">Included</span>
+            </div>
+            <div class="base-component-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+              Watch Hands (Silver)
+              <span class="included-tag">Included</span>
+            </div>
+            <div class="base-component-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              Professional Tool Kit
+              <span class="included-tag">Included</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ATC AREA -->
+      <div class="atc-area" id="atc-area">
+        <div class="atc-progress">
+          <div class="atc-progress-bar"><div class="atc-progress-fill" id="atc-progress-fill"></div></div>
+          <div class="atc-progress-text" id="atc-progress-text">0 of 4 steps complete</div>
+        </div>
+        <button class="atc-button" id="atc-button" disabled>
+          Select Components to Continue
         </button>
+        <p class="atc-helper" id="atc-helper">Select 3 bezels, 1 steel strap, 2 straps, 2 dials to continue</p>
+        <p class="atc-sub">Free worldwide shipping. 30-day guarantee.</p>
+      </div>
 
-        <!-- Trust signals -->
-        <div class="trust-signals">
-          <div class="trust-signal">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-            30-Day Guarantee
+    </div>
+  </section>
+
+  <!-- S3: VALUE ANCHOR BAR -->
+  <section class="value-anchor" id="value-anchor" aria-label="Value breakdown">
+    <div class="container">
+      <h2 class="section-heading">WHAT $499 GETS YOU (WORTH $755+ INDIVIDUALLY)</h2>
+      <div class="value-items">
+        <div class="value-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span class="value-item-name">NH70 Skeleton Movement</span>
+          <span class="value-item-price">$175</span>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+          <span class="value-item-name">3 Premium Bezels</span>
+          <span class="value-item-price">$147</span>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          <span class="value-item-name">3 Watch Straps (incl. steel)</span>
+          <span class="value-item-price">$138</span>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg>
+          <span class="value-item-name">2 Dials</span>
+          <span class="value-item-price">$89</span>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+          <span class="value-item-name">42mm Diver Case</span>
+          <span class="value-item-price">$89</span>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span class="value-item-name">Professional Tool Kit</span>
+          <span class="value-item-price">$59</span>
+        </div>
+        <div class="value-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span class="value-item-name">Sapphire Crystal</span>
+          <span class="value-item-price">$58</span>
+        </div>
+      </div>
+      <div class="value-summary">
+        <div class="value-summary-item">
+          <div class="value-summary-label">Total Value</div>
+          <div class="value-summary-amount total">$755</div>
+        </div>
+        <div class="value-summary-item">
+          <div class="value-summary-label">Your Price</div>
+          <div class="value-summary-amount yours">$499</div>
+        </div>
+        <div class="value-summary-item">
+          <div class="value-summary-label">You Save</div>
+          <div class="value-summary-amount save">$256 (34%)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4: HOW IT WORKS -->
+  <section class="how-it-works" id="how-it-works" aria-label="How it works">
+    <div class="container">
+      <h2 class="section-heading">HOW IT WORKS</h2>
+      <p class="section-subhead">From box to wrist in one evening.</p>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-step-number">1</div>
+          <div class="hiw-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
           </div>
-          <div class="trust-divider"></div>
-          <div class="trust-signal">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            48-Month Warranty
+          <div class="hiw-step-title">Unbox Your Kit</div>
+          <p class="hiw-step-desc">Everything you need arrives in one premium package: components, tools, and step-by-step guide.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-number">2</div>
+          <div class="hiw-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           </div>
-          <div class="trust-divider"></div>
-          <div class="trust-signal">
-            <svg viewBox="0 0 24 24">
-              <rect x="1" y="3" width="15" height="13"></rect>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-              <circle cx="5.5" cy="18.5" r="2.5"></circle>
-              <circle cx="18.5" cy="18.5" r="2.5"></circle>
-            </svg>
-            Free Shipping
+          <div class="hiw-step-title">Follow the Video Guide</div>
+          <p class="hiw-step-desc">Watch our HD video guide. Each step is clear, visual, and designed for complete beginners.</p>
+          <p class="hiw-step-meta">12 HD sections, 2.5 hours avg build time</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-number">3</div>
+          <div class="hiw-step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="hiw-step-title">Wear Your Creation</div>
+          <p class="hiw-step-desc">18 unique looks from one kit. Swap bezels, dials, and straps in 60 seconds flat.</p>
+          <p class="hiw-step-meta">18 styles, swap in 60 seconds</p>
+        </div>
+      </div>
+      <div class="hiw-video-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>Build guide video placeholder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5: GUARANTEE TRIPTYCH -->
+  <section class="guarantees" id="guarantees" aria-label="Our guarantees">
+    <div class="container">
+      <h2 class="section-heading">OUR THREE PROMISES</h2>
+      <div class="guarantee-cards">
+        <div class="guarantee-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="guarantee-card-title">30-Day Satisfaction Guarantee</div>
+          <p class="guarantee-card-desc">Not satisfied? Full refund. No questions asked. We want you to love the experience.</p>
+        </div>
+        <div class="guarantee-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="guarantee-card-title">48-Month Precision Warranty</div>
+          <p class="guarantee-card-desc">Every component covered against manufacturing defects. We repair or replace, free of charge.</p>
+        </div>
+        <div class="guarantee-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          <div class="guarantee-card-title">Simon's Zero-Failure Promise</div>
+          <p class="guarantee-card-desc">Can't get it ticking? Send us your parts. We'll build it for you and ship it back. Free.</p>
+          <p class="guarantee-card-note">(Never happened in our entire history.)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S6: SOCIAL PROOF RAIL -->
+  <section class="social-proof" id="social-proof" aria-label="Customer reviews">
+    <div class="container">
+      <h2 class="section-heading">BUILT BY OUR COMMUNITY</h2>
+      <p class="section-subhead">1,500+ watches assembled and counting.</p>
+    </div>
+    <div class="review-rail" aria-label="Scroll for more reviews">
+      <div class="review-card">
+        <div class="review-card-photo">Customer build photo</div>
+        <div class="review-card-stars">
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-card-text">"I showed it to my boss who has APs and Pateks and crazy Rolexes and he said he is interested in building his own watch."</p>
+        <p class="review-card-author">Austin C.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-photo">Customer build photo</div>
+        <div class="review-card-stars">
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-card-text">"Best gift I've ever given. My husband spent the entire weekend building it and hasn't stopped talking about it since."</p>
+        <p class="review-card-author">Julia K. <span class="review-card-tag">Gift buyer</span></p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-photo">Customer build photo</div>
+        <div class="review-card-stars">
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-card-text">"Of all watch building companies, yours is the only one who leaves the dial blank for customization. That's what sold me."</p>
+        <p class="review-card-author">Gordon W.</p>
+      </div>
+    </div>
+    <div class="see-all-reviews">
+      <a href="#full-reviews">See All 47 Reviews</a>
+    </div>
+  </section>
+
+  <!-- S7: PERSONA TABS -->
+  <section class="persona-tabs-section" id="persona-tabs" aria-label="Who is this for">
+    <div class="container">
+      <div class="tab-buttons" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-tab="builder">Building for Yourself</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="gift">Buying as a Gift</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-builder" role="tabpanel">
+        <div class="persona-content">
+          <div class="persona-usps">
+            <div class="persona-usp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <div>
+                <div class="persona-usp-title">Genuine Craftsmanship</div>
+                <p class="persona-usp-desc">Real Seiko NH70 movement. Sapphire crystal. 42mm diver case. These are not toy parts.</p>
+              </div>
+            </div>
+            <div class="persona-usp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div>
+                <div class="persona-usp-title">18 Unique Combinations</div>
+                <p class="persona-usp-desc">3 bezels, 3 straps, 2 dials. Swap any combination in 60 seconds. One kit, unlimited looks.</p>
+              </div>
+            </div>
+            <div class="persona-usp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              <div>
+                <div class="persona-usp-title">Earn What You Wear</div>
+                <p class="persona-usp-desc">When someone asks "nice watch," you get to say "I built it." There's no luxury brand that gives you that feeling.</p>
+              </div>
+            </div>
+          </div>
+          <div class="persona-quote">
+            <p class="persona-quote-text">"I showed it to my very wealthy watch-collecting boss — he has APs, Pateks, crazy Rolexes — and he said he is interested in building his own watch."</p>
+            <p class="persona-quote-author">— Austin C., $778 order</p>
           </div>
         </div>
-      </section>
+      </div>
 
-    </main>
-  </div>
-
-  <!-- Mobile Bottom Bar -->
-  <div class="mobile-bottom-bar" id="mobileBottomBar">
-    <div class="mobile-bottom-bar-info">
-      <div class="mobile-bottom-bar-name" id="mobileBarName">Watch Kit</div>
-      <div class="mobile-bottom-bar-price" id="mobileBarPrice">$499</div>
+      <div class="tab-panel" id="panel-gift" role="tabpanel">
+        <div class="persona-content">
+          <div class="persona-usps">
+            <div class="persona-usp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div>
+                <div class="persona-usp-title">Zero-Failure Promise</div>
+                <p class="persona-usp-desc">If he can't get it ticking, we build it for him. Free. No awkward "broken gift" moment — guaranteed.</p>
+              </div>
+            </div>
+            <div class="persona-usp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              <div>
+                <div class="persona-usp-title">Premium Gift Presentation</div>
+                <p class="persona-usp-desc">Arrives in a beautiful box, ready to unwrap. Add a personal message and optional premium gift wrapping.</p>
+              </div>
+            </div>
+            <div class="persona-usp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <div>
+                <div class="persona-usp-title">Perfect for Any Occasion</div>
+                <p class="persona-usp-desc">Birthdays, Christmas, Father's Day, graduation, wedding anniversaries. A gift he'll actually remember.</p>
+              </div>
+            </div>
+          </div>
+          <div class="persona-quote">
+            <p class="persona-quote-text">"Shopping experience was great! Can't wait to gift this to my husband. He's going to love it."</p>
+            <p class="persona-quote-author">— Verified Gift Buyer</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <button class="mobile-bottom-bar-cta" id="mobileBarCta">Continue</button>
+  </section>
+
+  <!-- S8: WHAT'S INSIDE -->
+  <section class="whats-inside" id="whats-inside" aria-label="What is included in the kit">
+    <div class="container">
+      <h2 class="section-heading">WHAT'S INSIDE YOUR KIT</h2>
+      <div class="whats-inside-image">All Components Arranged — Photo Placeholder</div>
+      <div class="component-accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            NH70 Skeleton Movement
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">The heart of your watch. The Seiko NH70 is a self-winding skeleton movement with a 41-hour power reserve. Visible from both sides through the sapphire crystal caseback. Hacking seconds hand for precise time-setting.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            42mm Diver Case
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">316L stainless steel case with brushed and polished finish. 42mm diameter, 13mm thickness. Screw-down crown and caseback. 100m water resistance rating.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            3 Premium Bezels
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">Your choice of 3 bezels from 6 options. Ceramic inserts with lume-filled markers. Snap-fit design for easy swapping. Sub-style, GMT, and Yacht-Master designs available.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            2 Watch Dials
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">Choose 2 dials: Skeleton Black and Blue let you see the movement in action. Sub-Style Black gives you a classic dive watch face with applied markers and SuperLuminova.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            3 Watch Straps
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">One stainless steel bracelet (three-link or five-link), plus 2 additional straps from NATO nylon, rubber, or wild leather options. Quick-release spring bars for tool-free strap changes.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            Sapphire Crystal
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">Double-domed sapphire crystal with anti-reflective coating. Scratch-resistant (9 on the Mohs scale). The same material used in watches costing thousands.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            Professional Tool Kit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">Spring bar tool, case opener, movement holder, screwdriver set, dust blower, and microfiber cloth. Everything you need to assemble and maintain your watch.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            Premium Gift Box
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">Your kit arrives in a presentation-grade box with individual compartments for each component. Designed for the unboxing experience to feel as premium as the build itself.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S9: FOUNDER STORY -->
+  <section class="founder-story" id="founder-story" aria-label="Founder story">
+    <div class="container">
+      <div class="founder-photo">Simon</div>
+      <blockquote class="founder-quote">"Wear something you're proud of — because you built it."</blockquote>
+      <p class="founder-bio">Simon Gruhdorfer grew up in Munich, raised by two grandfathers who gave him his first workbench at age seven. Peter was the inventor; Hermann was the fixer. Together they taught him that the things you build with your own hands carry a meaning that money can't buy. The Mod Watches was born from that same belief — and from a watch kit Simon made for a friend named Uwe, who showed him that craftsmanship is the deepest form of connection.</p>
+      <a href="#" class="founder-link">Read Our Full Story</a>
+    </div>
+  </section>
+
+  <!-- S10: OBJECTION FAQ -->
+  <section class="objection-faq" id="objection-faq" aria-label="Frequently asked questions">
+    <div class="container">
+      <h2 class="section-heading">FREQUENTLY ASKED QUESTIONS</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            I've never built a watch before. Can I really do this?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Yes. 1,500+ people have built our watches with zero prior experience. The average build takes 2.5 hours with our HD video guide. And if you get stuck, Simon's Zero-Failure Promise means we'll finish it for you, free. That promise has never been used in our entire history.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What if something breaks or doesn't work?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Every kit includes a 48-month precision warranty covering all manufacturing defects. If a component is defective, we replace it free of charge. You also have a 30-day satisfaction guarantee — full refund, no questions asked.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is this a "real" watch or a toy?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">This is a genuine mechanical timepiece. The NH70 movement is made by Seiko Instruments (TMI), the same manufacturer supplying movements to brands like Orient and Seiko themselves. Sapphire crystal, 316L stainless steel, 100m water resistance. These are the same specs you'll find on watches costing $800-$1,500.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is this a good gift for someone who isn't "into watches"?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">It's actually better for them. Watch enthusiasts already have watches. This is for the person who appreciates quality craftsmanship and doing things with their hands. 43% of our buyers are gifting to someone else, and "best gift I've ever given" is the most common feedback we receive.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How long does shipping take?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Free worldwide shipping is included with every order. US orders typically arrive in 5-8 business days. International orders in 7-14 business days. Every shipment includes tracking and insurance.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Can I buy extra parts later to change the look?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer">Absolutely. We sell individual bezels, dials, straps, and cases separately. Many of our customers start with a bundle and then expand their collection over time. With 18 combinations in this kit alone, you have plenty to explore first.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S11: CROSS-SELL -->
+  <section class="cross-sell" id="cross-sell" aria-label="Complete your experience">
+    <div class="container">
+      <h2 class="section-heading">COMPLETE YOUR EXPERIENCE</h2>
+      <div class="cross-sell-grid">
+        <div class="cross-sell-card">
+          <div class="cross-sell-img">Premium Gift Box</div>
+          <div class="cross-sell-body">
+            <div class="cross-sell-name">Premium Gift Box</div>
+            <div class="cross-sell-note">99% of buyers add this</div>
+            <div class="cross-sell-price">$19.99</div>
+            <button class="cross-sell-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="cross-sell-card">
+          <div class="cross-sell-img">Extra Bezel Set</div>
+          <div class="cross-sell-body">
+            <div class="cross-sell-name">Extra Bezel Set</div>
+            <div class="cross-sell-note">Expand your collection</div>
+            <div class="cross-sell-price">From $16</div>
+            <button class="cross-sell-btn">View Options</button>
+          </div>
+        </div>
+        <div class="cross-sell-card">
+          <div class="cross-sell-img">Watch Roll</div>
+          <div class="cross-sell-body">
+            <div class="cross-sell-name">Watch Roll</div>
+            <div class="cross-sell-note">Protect your build</div>
+            <div class="cross-sell-price">$39</div>
+            <button class="cross-sell-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S12: FULL REVIEWS PLACEHOLDER -->
+  <section class="full-reviews" id="full-reviews" aria-label="All customer reviews">
+    <div class="container">
+      <h2 class="section-heading">ALL REVIEWS</h2>
+      <div class="review-full-list">
+        <div class="review-full-card">
+          <div class="review-full-header">
+            <span class="review-full-author">Robert M.</span>
+            <span class="review-full-date">January 2026</span>
+          </div>
+          <div class="review-full-stars">
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-full-text">Third kit from TheModWatches. The skeleton movement is mesmerizing — watching the gears through the sapphire crystal is genuinely captivating. My son and I built this one together. He's 13 and already asking for his own kit.</p>
+        </div>
+        <div class="review-full-card">
+          <div class="review-full-header">
+            <span class="review-full-author">Marcus D.</span>
+            <span class="review-full-date">December 2025</span>
+          </div>
+          <div class="review-full-stars">
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-full-text">Bought this as a Father's Day gift. My dad spent the entire Sunday afternoon building it, then called me three times to talk about different strap combinations. He said it reminded him of building model cars as a kid. Worth every penny.</p>
+        </div>
+        <div class="review-full-card">
+          <div class="review-full-header">
+            <span class="review-full-author">Sarah T.</span>
+            <span class="review-full-date">November 2025</span>
+          </div>
+          <div class="review-full-stars">
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#d4a046" stroke="#d4a046" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="review-full-text">Got the skeleton bundle for my boyfriend's birthday. He was skeptical at first — "a DIY watch?" — but once he started building, he was completely absorbed. Now he wears it every single day and tells everyone he built it himself.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <div class="container">
+      Reference: <a href="https://undone.com" target="_blank" rel="noopener">undone.com</a> | Architecture: Deco Design Studio | cazyweb
+    </div>
+  </footer>
+
+  <!-- STICKY ATC BAR (Desktop) -->
+  <div class="sticky-atc-desktop" id="sticky-atc-desktop" role="complementary" aria-label="Quick add to cart">
+    <span class="sticky-product-name">Skeleton Watch Building Kit</span>
+    <span class="sticky-price">$499</span>
+    <button class="sticky-btn" id="sticky-desktop-btn">Select Components</button>
   </div>
 
-  <!-- Footer -->
-  <footer class="config-footer">
-    Reference: <a href="https://undone.com" target="_blank" rel="noopener">undone.com</a> &nbsp;|&nbsp; Architecture: Deco Design Studio
-  </footer>
+  <!-- STICKY MOBILE BAR -->
+  <div class="sticky-mobile-bar" role="complementary" aria-label="Quick add to cart">
+    <div class="sticky-mobile-info">
+      <span class="sticky-mobile-name">Skeleton Bundle</span>
+      <span class="sticky-mobile-price">$499</span>
+    </div>
+    <button class="sticky-mobile-btn" id="sticky-mobile-btn">Select Components</button>
+  </div>
 
   <script>
     (function() {
       'use strict';
 
-      // ========================================
-      // STATE
-      // ========================================
+      /* ===========================================
+         STATE
+         =========================================== */
       const state = {
-        bezel: null,
-        bezelName: null,
-        bezelColor: null,
-        dial: null,
-        dialName: null,
-        dialColor: null,
-        dialType: null,
-        strap: null,
-        strapName: null,
-        strapColor: null,
-        strapPrice: 0,
-        kitPrice: 499
+        steps: {
+          1: { selected: [], max: 3, type: 'multi', label: 'bezels' },
+          2: { selected: [], max: 1, type: 'single', label: 'steel strap' },
+          3: { selected: [], max: 2, type: 'multi', label: 'straps' },
+          4: { selected: [], max: 2, type: 'multi', label: 'dials' }
+        },
+        giftMode: false
       };
 
-      // ========================================
-      // DOM REFS
-      // ========================================
-      const configNav = document.getElementById('configNav');
-      const navSteps = document.querySelectorAll('.config-nav-step');
-      const navConnectors = document.querySelectorAll('.config-nav-connector');
-      const watchPreview = document.getElementById('watchPreview');
-      const bezelRing = document.getElementById('bezelRing');
-      const watchCrown = document.getElementById('watchCrown');
-      const dialInner = document.getElementById('dialInner');
-      const dialPattern = document.getElementById('dialPattern');
-      const strapTop = document.getElementById('strapTop');
-      const strapBottom = document.getElementById('strapBottom');
-      const lugTop = document.getElementById('lugTop');
-      const lugBottom = document.getElementById('lugBottom');
-      const previewDefaultLabel = document.getElementById('previewDefaultLabel');
-      const selectionLabel = document.getElementById('selectionLabel');
-      const summaryBezel = document.getElementById('summaryBezel');
-      const summaryDial = document.getElementById('summaryDial');
-      const summaryStrap = document.getElementById('summaryStrap');
-      const priceStrap = document.getElementById('priceStrap');
-      const priceTotal = document.getElementById('priceTotal');
-      const priceInstallment = document.getElementById('priceInstallment');
-      const ctaButton = document.getElementById('ctaButton');
-      const mobileBarName = document.getElementById('mobileBarName');
-      const mobileBarPrice = document.getElementById('mobileBarPrice');
-      const mobileBarCta = document.getElementById('mobileBarCta');
+      /* ===========================================
+         DOM REFS
+         =========================================== */
+      const bundleSteps = document.querySelectorAll('.bundle-step[data-type="multi"], .bundle-step[data-type="single"]');
+      const atcButton = document.getElementById('atc-button');
+      const atcHelper = document.getElementById('atc-helper');
+      const atcProgressFill = document.getElementById('atc-progress-fill');
+      const atcProgressText = document.getElementById('atc-progress-text');
+      const stickyDesktop = document.getElementById('sticky-atc-desktop');
+      const stickyDesktopBtn = document.getElementById('sticky-desktop-btn');
+      const stickyMobileBtn = document.getElementById('sticky-mobile-btn');
 
-      // ========================================
-      // BEZEL SELECTION
-      // ========================================
-      document.querySelectorAll('.bezel-swatch').forEach(function(swatch) {
-        swatch.addEventListener('click', function() {
-          document.querySelectorAll('.bezel-swatch').forEach(function(s) { s.classList.remove('selected'); });
-          swatch.classList.add('selected');
+      /* ===========================================
+         BUNDLE BUILDER LOGIC
+         =========================================== */
+      function getStepEl(stepNum) {
+        return document.querySelector(`.bundle-step[data-step="${stepNum}"]`);
+      }
 
-          state.bezel = swatch.dataset.bezel;
-          state.bezelName = swatch.dataset.bezelName;
-          state.bezelColor = swatch.dataset.bezelColor;
+      function updateStepUI(stepNum) {
+        const stepData = state.steps[stepNum];
+        const stepEl = getStepEl(stepNum);
+        if (!stepEl || !stepData) return;
 
-          updatePreview();
-          updateSummary();
-          updateNav();
+        const counter = stepEl.querySelector('.count-current');
+        if (counter) counter.textContent = stepData.selected.length;
 
-          setTimeout(function() {
-            if (!state.dial) {
-              document.getElementById('step2').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }, 300);
-        });
-      });
+        const isComplete = stepData.selected.length >= stepData.max;
 
-      // ========================================
-      // DIAL SELECTION
-      // ========================================
-      document.querySelectorAll('.dial-card').forEach(function(card) {
-        card.addEventListener('click', function() {
-          document.querySelectorAll('.dial-card').forEach(function(c) { c.classList.remove('selected'); });
-          card.classList.add('selected');
+        stepEl.classList.toggle('step-complete', isComplete);
+        stepEl.classList.toggle('step-active', !isComplete && stepEl.classList.contains('step-open'));
 
-          state.dial = card.dataset.dial;
-          state.dialName = card.dataset.dialName;
-          state.dialColor = card.dataset.dialColor;
-          state.dialType = card.dataset.dialType;
+        // Disable unselected options when max reached
+        if (stepData.type === 'multi') {
+          const options = stepEl.querySelectorAll('.swatch-option, .card-option');
+          options.forEach(opt => {
+            const val = opt.dataset.value;
+            const isSelected = stepData.selected.includes(val);
+            opt.classList.toggle('disabled', isComplete && !isSelected);
+          });
+        }
+      }
 
-          updatePreview();
-          updateSummary();
-          updateNav();
-
-          setTimeout(function() {
-            if (!state.strap) {
-              document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }, 300);
-        });
-      });
-
-      // ========================================
-      // STRAP SELECTION
-      // ========================================
-      document.querySelectorAll('.strap-card').forEach(function(card) {
-        card.addEventListener('click', function() {
-          document.querySelectorAll('.strap-card').forEach(function(c) { c.classList.remove('selected'); });
-          card.classList.add('selected');
-
-          state.strap = card.dataset.strap;
-          state.strapName = card.dataset.strapName;
-          state.strapColor = card.dataset.strapColor;
-          state.strapPrice = parseInt(card.dataset.strapPrice, 10);
-
-          updatePreview();
-          updateSummary();
-          updateNav();
-
-          setTimeout(function() {
-            document.getElementById('step4').scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 300);
-        });
-      });
-
-      // ========================================
-      // EDIT LINKS (Scroll back)
-      // ========================================
-      document.querySelectorAll('.summary-edit').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var target = document.getElementById(btn.dataset.scrollTo);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-
-      // ========================================
-      // NAV STEP CLICKS
-      // ========================================
-      navSteps.forEach(function(step) {
-        step.addEventListener('click', function() {
-          var stepNum = step.dataset.step;
-          var target = document.getElementById('step' + stepNum);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-
-      // ========================================
-      // UPDATE PREVIEW
-      // ========================================
       function updatePreview() {
-        var hasSelection = state.bezel || state.dial || state.strap;
-
-        if (hasSelection) {
-          watchPreview.classList.add('has-selection');
-        }
-
-        // Bezel
-        if (state.bezelColor) {
-          if (state.bezelColor === 'pepsi') {
-            bezelRing.style.background = 'linear-gradient(180deg, #8B2020 50%, #1B3A5C 50%)';
-            watchCrown.style.background = '#8B2020';
-          } else {
-            bezelRing.style.background = state.bezelColor;
-            watchCrown.style.background = state.bezelColor;
+        // Bezel color — use first selected bezel
+        const bezelSel = state.steps[1].selected[0];
+        if (bezelSel) {
+          const bezelOpt = document.querySelector(`.swatch-option[data-value="${bezelSel}"]`);
+          if (bezelOpt) {
+            document.getElementById('bezel-preview').style.background = bezelOpt.dataset.bezelColor;
           }
-          lugTop.querySelectorAll('span').forEach(function(s) {
-            s.style.background = state.bezelColor === 'pepsi' ? '#555' : state.bezelColor;
-          });
-          lugBottom.querySelectorAll('span').forEach(function(s) {
-            s.style.background = state.bezelColor === 'pepsi' ? '#555' : state.bezelColor;
-          });
-        }
-
-        // Dial
-        if (state.dialColor) {
-          dialInner.style.background = state.dialColor;
-          dialPattern.className = 'dial-pattern';
-          if (state.dialType === 'skeleton') {
-            dialPattern.classList.add('dial-pattern-skeleton');
-          } else {
-            dialPattern.classList.add('dial-pattern-sub');
-          }
-        }
-
-        // Strap
-        if (state.strapColor) {
-          strapTop.style.background = state.strapColor;
-          strapBottom.style.background = state.strapColor;
-        }
-
-        // Selection label
-        var parts = [];
-        if (state.bezelName) parts.push(state.bezelName);
-        if (state.dialName) parts.push(state.dialName);
-        if (state.strapName) parts.push(state.strapName);
-
-        if (parts.length > 0) {
-          selectionLabel.textContent = parts.join(' + ');
         } else {
-          selectionLabel.textContent = 'No selections yet';
+          document.getElementById('bezel-preview').style.background = '#555';
+        }
+
+        // Dial color — use first selected dial
+        const dialSel = state.steps[4].selected[0];
+        if (dialSel) {
+          const dialOpt = document.querySelector(`.card-option[data-value="${dialSel}"]`);
+          if (dialOpt) {
+            document.getElementById('dial-preview').style.background = dialOpt.dataset.dialColor;
+          }
+        } else {
+          document.getElementById('dial-preview').style.background = '#1a1a1a';
+        }
+
+        // Strap color — use steel strap or first additional strap
+        const steelSel = state.steps[2].selected[0];
+        const strapSel = state.steps[3].selected[0];
+        let strapColor = '#888';
+        if (steelSel) {
+          const steelOpt = document.querySelector(`.card-option[data-value="${steelSel}"]`);
+          if (steelOpt) strapColor = steelOpt.dataset.strapColor;
+        } else if (strapSel) {
+          const strapOpt = document.querySelector(`.card-option[data-value="${strapSel}"]`);
+          if (strapOpt) strapColor = strapOpt.dataset.strapColor;
+        }
+        document.getElementById('strap-preview-top').style.background = strapColor;
+        document.getElementById('strap-preview-bottom').style.background = strapColor;
+
+        // Selection text
+        const b = state.steps[1].selected.length;
+        const d = state.steps[4].selected.length;
+        const s = state.steps[2].selected.length + state.steps[3].selected.length;
+        document.getElementById('sel-bezels').textContent = `${b}/3 Bezels`;
+        document.getElementById('sel-bezels').classList.toggle('complete', b >= 3);
+        document.getElementById('sel-dials').textContent = `${d}/2 Dials`;
+        document.getElementById('sel-dials').classList.toggle('complete', d >= 2);
+        document.getElementById('sel-straps').textContent = `${s}/3 Straps`;
+        document.getElementById('sel-straps').classList.toggle('complete', s >= 3);
+      }
+
+      function updateATCButton() {
+        let completeSteps = 0;
+        const totalSteps = 4;
+        const missing = [];
+
+        for (let i = 1; i <= 4; i++) {
+          const sd = state.steps[i];
+          if (sd.selected.length >= sd.max) {
+            completeSteps++;
+          } else {
+            const remaining = sd.max - sd.selected.length;
+            missing.push(`${remaining} ${sd.label}`);
+          }
+        }
+
+        const allComplete = completeSteps === totalSteps;
+        atcButton.disabled = !allComplete;
+
+        if (allComplete) {
+          atcButton.textContent = 'Add to Cart \u2014 $499';
+          atcHelper.textContent = '';
+          stickyDesktopBtn.textContent = 'Add to Cart \u2014 $499';
+          stickyMobileBtn.textContent = 'Add to Cart';
+        } else {
+          atcButton.textContent = 'Select Components to Continue';
+          atcHelper.textContent = 'Select ' + missing.join(', ') + ' to continue';
+          stickyDesktopBtn.textContent = 'Select Components';
+          stickyMobileBtn.textContent = 'Select Components';
+        }
+
+        const pct = (completeSteps / totalSteps) * 100;
+        atcProgressFill.style.width = pct + '%';
+        atcProgressText.textContent = `${completeSteps} of ${totalSteps} steps complete`;
+      }
+
+      function handleSelection(stepNum, value) {
+        const sd = state.steps[stepNum];
+        if (!sd) return;
+
+        if (sd.type === 'single') {
+          // Single select — toggle or replace
+          if (sd.selected.includes(value)) {
+            sd.selected = [];
+          } else {
+            sd.selected = [value];
+          }
+          // Update all option elements in this step
+          const stepEl = getStepEl(stepNum);
+          stepEl.querySelectorAll('.card-option').forEach(opt => {
+            opt.classList.toggle('selected', sd.selected.includes(opt.dataset.value));
+            opt.setAttribute('aria-checked', sd.selected.includes(opt.dataset.value) ? 'true' : 'false');
+          });
+        } else {
+          // Multi-select
+          const idx = sd.selected.indexOf(value);
+          if (idx > -1) {
+            sd.selected.splice(idx, 1);
+          } else if (sd.selected.length < sd.max) {
+            sd.selected.push(value);
+          }
+          // Update all option elements
+          const stepEl = getStepEl(stepNum);
+          stepEl.querySelectorAll('.swatch-option, .card-option').forEach(opt => {
+            const isSelected = sd.selected.includes(opt.dataset.value);
+            opt.classList.toggle('selected', isSelected);
+            opt.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+          });
+        }
+
+        updateStepUI(stepNum);
+        updatePreview();
+        updateATCButton();
+
+        // Auto-advance: if step is complete, open next incomplete step
+        if (sd.selected.length >= sd.max) {
+          const nextIncomplete = findNextIncompleteStep(stepNum);
+          if (nextIncomplete) {
+            setTimeout(() => openStep(nextIncomplete), 400);
+          }
         }
       }
 
-      // ========================================
-      // UPDATE SUMMARY
-      // ========================================
-      function updateSummary() {
-        summaryBezel.innerHTML = state.bezelName || '<span class="empty">Not selected</span>';
-        summaryDial.innerHTML = state.dialName || '<span class="empty">Not selected</span>';
-        summaryStrap.innerHTML = state.strapName ? state.strapName + ' <span style="color:var(--text-muted);font-weight:300;">($' + state.strapPrice + ')</span>' : '<span class="empty">Not selected</span>';
+      function findNextIncompleteStep(afterStep) {
+        for (let i = afterStep + 1; i <= 4; i++) {
+          if (state.steps[i].selected.length < state.steps[i].max) return i;
+        }
+        for (let i = 1; i < afterStep; i++) {
+          if (state.steps[i].selected.length < state.steps[i].max) return i;
+        }
+        return null;
+      }
 
-        var total = state.kitPrice + state.strapPrice;
-        priceStrap.textContent = '$' + state.strapPrice;
-        priceTotal.textContent = '$' + total;
-        priceInstallment.textContent = 'or 4 payments of $' + (total / 4).toFixed(2) + ' with Shop Pay';
+      function openStep(stepNum) {
+        bundleSteps.forEach(el => {
+          const num = parseInt(el.dataset.step);
+          const isTarget = num === stepNum;
+          el.classList.toggle('step-open', isTarget);
+          el.classList.toggle('step-active', isTarget && !el.classList.contains('step-complete'));
+          const header = el.querySelector('.step-header');
+          if (header) header.setAttribute('aria-expanded', isTarget ? 'true' : 'false');
+        });
 
-        // Mobile bar
-        var nameParts = [];
-        if (state.bezelName) nameParts.push(state.bezelName.split(' ')[0]);
-        if (state.dialName) nameParts.push(state.dialName.split(' ')[0]);
-        mobileBarName.textContent = nameParts.length > 0 ? nameParts.join(' + ') + ' Kit' : 'Watch Kit';
-        mobileBarPrice.textContent = '$' + total;
-
-        // CTA state
-        var allSelected = state.bezel && state.dial && state.strap;
-        if (allSelected) {
-          ctaButton.classList.remove('disabled');
-          ctaButton.textContent = 'Add to Cart \u2014 $' + total;
-          mobileBarCta.textContent = 'Add to Cart';
-        } else {
-          ctaButton.classList.add('disabled');
-          ctaButton.textContent = 'Complete All Steps to Continue';
-
-          // Mobile: figure out next step
-          if (!state.bezel) {
-            mobileBarCta.textContent = 'Choose Bezel';
-          } else if (!state.dial) {
-            mobileBarCta.textContent = 'Choose Dial';
-          } else {
-            mobileBarCta.textContent = 'Choose Strap';
-          }
+        // Smooth scroll to the step
+        const targetEl = getStepEl(stepNum);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       }
 
-      // ========================================
-      // UPDATE NAV
-      // ========================================
-      function updateNav() {
-        var steps = [
-          { num: 1, done: !!state.bezel },
-          { num: 2, done: !!state.dial },
-          { num: 3, done: !!state.strap },
-          { num: 4, done: !!(state.bezel && state.dial && state.strap) }
-        ];
-
-        // Find the first incomplete step
-        var activeStep = 4;
-        for (var i = 0; i < steps.length; i++) {
-          if (!steps[i].done) {
-            activeStep = steps[i].num;
-            break;
-          }
+      /* ===========================================
+         EVENT LISTENERS — BUNDLE STEPS
+         =========================================== */
+      // Step header toggle
+      bundleSteps.forEach(stepEl => {
+        const header = stepEl.querySelector('.step-header');
+        if (header) {
+          header.addEventListener('click', () => {
+            const stepNum = parseInt(stepEl.dataset.step);
+            if (stepEl.classList.contains('step-open')) {
+              stepEl.classList.remove('step-open', 'step-active');
+              header.setAttribute('aria-expanded', 'false');
+            } else {
+              openStep(stepNum);
+            }
+          });
+          header.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); header.click(); }
+          });
         }
+      });
 
-        navSteps.forEach(function(navStep, idx) {
-          var stepNum = parseInt(navStep.dataset.step, 10);
-          navStep.classList.remove('active', 'completed');
+      // Swatch selections (Step 1 — Bezels)
+      document.querySelectorAll('.swatch-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          const step = opt.closest('.bundle-step');
+          const stepNum = parseInt(step.dataset.step);
+          handleSelection(stepNum, opt.dataset.value);
+        });
+        opt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
+        });
+      });
 
-          if (steps[idx].done && stepNum !== activeStep) {
-            navStep.classList.add('completed');
-          } else if (stepNum === activeStep) {
-            navStep.classList.add('active');
-          }
+      // Card selections (Steps 2, 3, 4)
+      document.querySelectorAll('.card-option').forEach(opt => {
+        opt.addEventListener('click', () => {
+          const step = opt.closest('.bundle-step');
+          const stepNum = parseInt(step.dataset.step);
+          handleSelection(stepNum, opt.dataset.value);
+        });
+        opt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
+        });
+      });
+
+      /* ===========================================
+         BASE COMPONENTS TOGGLE
+         =========================================== */
+      const baseToggle = document.getElementById('base-toggle');
+      const baseList = document.getElementById('base-list');
+      if (baseToggle && baseList) {
+        baseToggle.addEventListener('click', () => {
+          const isOpen = baseList.classList.toggle('open');
+          baseToggle.classList.toggle('open', isOpen);
+          baseToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        baseToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); baseToggle.click(); }
         });
       }
 
-      // ========================================
-      // MOBILE CTA CLICK (scroll to next step)
-      // ========================================
-      mobileBarCta.addEventListener('click', function() {
-        if (state.bezel && state.dial && state.strap) {
-          // All done, scroll to review
-          document.getElementById('step4').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else if (!state.bezel) {
-          document.getElementById('step1').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else if (!state.dial) {
-          document.getElementById('step2').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          document.getElementById('step3').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+      /* ===========================================
+         GIFT TOGGLE
+         =========================================== */
+      const giftToggle = document.getElementById('gift-toggle');
+      const giftPanel = document.getElementById('gift-panel');
+      if (giftToggle && giftPanel) {
+        giftToggle.addEventListener('click', () => {
+          state.giftMode = !state.giftMode;
+          giftToggle.classList.toggle('active', state.giftMode);
+          giftToggle.setAttribute('aria-checked', state.giftMode ? 'true' : 'false');
+          giftPanel.classList.toggle('open', state.giftMode);
+        });
+        giftToggle.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); giftToggle.click(); }
+        });
+      }
+
+      /* ===========================================
+         PERSONA TABS
+         =========================================== */
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = btn.dataset.tab;
+          tabBtns.forEach(b => {
+            b.classList.toggle('active', b === btn);
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+          });
+          document.querySelectorAll('.tab-panel').forEach(p => {
+            p.classList.toggle('active', p.id === 'panel-' + target);
+          });
+        });
       });
 
-      // ========================================
-      // CTA BUTTON CLICK
-      // ========================================
-      ctaButton.addEventListener('click', function() {
-        if (state.bezel && state.dial && state.strap) {
-          var total = state.kitPrice + state.strapPrice;
-          ctaButton.textContent = 'Added to Cart!';
-          ctaButton.style.background = '#314334';
-          setTimeout(function() {
-            ctaButton.textContent = 'Add to Cart \u2014 $' + total;
-            ctaButton.style.background = '';
-          }, 2000);
-        }
+      /* ===========================================
+         ACCORDION — WHAT'S INSIDE
+         =========================================== */
+      document.querySelectorAll('.accordion-item .accordion-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const item = trigger.closest('.accordion-item');
+          const wasOpen = item.classList.contains('open');
+          // Close all in this accordion
+          item.parentElement.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+          });
+          if (!wasOpen) {
+            item.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
       });
 
-      // ========================================
-      // STICKY NAV SHADOW ON SCROLL
-      // ========================================
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 10) {
-          configNav.classList.add('scrolled');
-        } else {
-          configNav.classList.remove('scrolled');
-        }
-      }, { passive: true });
+      /* ===========================================
+         FAQ ACCORDION
+         =========================================== */
+      document.querySelectorAll('.faq-item .faq-question').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const item = trigger.closest('.faq-item');
+          const wasOpen = item.classList.contains('open');
+          // Close all
+          document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+          if (!wasOpen) {
+            item.classList.add('open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      /* ===========================================
+         STICKY ATC BAR — IntersectionObserver
+         =========================================== */
+      const atcArea = document.getElementById('atc-area');
+      if (atcArea && stickyDesktop) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              // Show sticky bar when ATC area is NOT visible
+              stickyDesktop.classList.toggle('visible', !entry.isIntersecting);
+            });
+          },
+          { threshold: 0, rootMargin: '-60px 0px 0px 0px' }
+        );
+        observer.observe(atcArea);
+      }
+
+      // Sticky buttons scroll to hero
+      if (stickyDesktopBtn) {
+        stickyDesktopBtn.addEventListener('click', () => {
+          document.getElementById('product-hero').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+      if (stickyMobileBtn) {
+        stickyMobileBtn.addEventListener('click', () => {
+          document.getElementById('product-hero').scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      /* ===========================================
+         INIT
+         =========================================== */
+      updateATCButton();
+      updatePreview();
 
     })();
   </script>
