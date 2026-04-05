@@ -2630,7 +2630,7 @@
           bezelSelected.forEach((val, i) => {
             const opt = document.querySelector(`.swatch-option[data-value="${val}"]`);
             const color = opt ? opt.dataset.bezelColor : '#555';
-            const name = opt ? opt.querySelector('.swatch-name').textContent : val;
+            const name = opt ? opt.querySelector('.swatch-label').textContent : val;
             const isActive = (activePreview.type === 'bezel' && activePreview.value === val) || (activePreview.type !== 'bezel' && i === 0);
             bezelHtml += `<div class="preview-swatch-dot${isActive ? ' active' : ''}" data-type="bezel" data-value="${val}" style="background:${color}" onclick="previewItem('bezel','${val}','${color}')"><span class="preview-swatch-dot-label">${name}</span></div>`;
           });
