@@ -1830,9 +1830,9 @@
           <div class="step-header" role="button" tabindex="0" aria-expanded="true">
             <div class="step-header-left">
               <div class="step-number">1</div>
-              <span class="step-title">Choose 3 Bezels</span>
+              <span class="step-title">Choose Your Bezels (up to 3)</span>
             </div>
-            <span class="step-counter"><span class="count-current">0</span>/3 selected</span>
+            <span class="step-counter"><span class="count-current">0</span> selected</span>
           </div>
           <div class="step-body">
             <div class="swatch-grid">
@@ -1894,7 +1894,7 @@
               <div class="step-number">2</div>
               <span class="step-title">Choose Stainless Steel Strap</span>
             </div>
-            <span class="step-counter"><span class="count-current">0</span>/1 selected</span>
+            <span class="step-counter"><span class="count-current">0</span> selected</span>
           </div>
           <div class="step-body">
             <div class="card-options">
@@ -1923,9 +1923,9 @@
           <div class="step-header" role="button" tabindex="0" aria-expanded="false">
             <div class="step-header-left">
               <div class="step-number">3</div>
-              <span class="step-title">Choose 2 More Straps</span>
+              <span class="step-title">Choose More Straps (up to 2)</span>
             </div>
-            <span class="step-counter"><span class="count-current">0</span>/2 selected</span>
+            <span class="step-counter"><span class="count-current">0</span> selected</span>
           </div>
           <div class="step-body">
             <div class="card-options">
@@ -1970,9 +1970,9 @@
           <div class="step-header" role="button" tabindex="0" aria-expanded="false">
             <div class="step-header-left">
               <div class="step-number">4</div>
-              <span class="step-title">Your 2 Dials</span>
+              <span class="step-title">Choose Your Dials (up to 2)</span>
             </div>
-            <span class="step-counter"><span class="count-current">0</span>/2 selected</span>
+            <span class="step-counter"><span class="count-current">0</span> selected</span>
           </div>
           <div class="step-body">
             <div class="card-options">
@@ -2546,10 +2546,10 @@
          =========================================== */
       const state = {
         steps: {
-          1: { selected: [], max: 3, type: 'multi', label: 'bezels' },
-          2: { selected: [], max: 1, type: 'single', label: 'steel strap' },
-          3: { selected: [], max: 2, type: 'multi', label: 'straps' },
-          4: { selected: [], max: 2, type: 'multi', label: 'dials' }
+          1: { selected: [], min: 1, max: 3, type: 'multi', label: 'bezels' },
+          2: { selected: [], min: 1, max: 1, type: 'single', label: 'steel strap' },
+          3: { selected: [], min: 1, max: 2, type: 'multi', label: 'straps' },
+          4: { selected: [], min: 1, max: 2, type: 'multi', label: 'dials' }
         },
         giftMode: false
       };
@@ -2581,7 +2581,7 @@
         const counter = stepEl.querySelector('.count-current');
         if (counter) counter.textContent = stepData.selected.length;
 
-        const isComplete = stepData.selected.length >= stepData.max;
+        const isComplete = stepData.selected.length >= stepData.min;
 
         stepEl.classList.toggle('step-complete', isComplete);
         stepEl.classList.toggle('step-active', !isComplete && stepEl.classList.contains('step-open'));
@@ -2710,12 +2710,12 @@
         const b = bezelSelected.length;
         const d = dialSelected.length;
         const s = allStraps.length;
-        document.getElementById('sel-bezels').textContent = `${b}/3 Bezels`;
-        document.getElementById('sel-bezels').classList.toggle('complete', b >= 3);
-        document.getElementById('sel-dials').textContent = `${d}/2 Dials`;
-        document.getElementById('sel-dials').classList.toggle('complete', d >= 2);
-        document.getElementById('sel-straps').textContent = `${s}/3 Straps`;
-        document.getElementById('sel-straps').classList.toggle('complete', s >= 3);
+        document.getElementById('sel-bezels').textContent = `${b} Bezel${b !== 1 ? 's' : ''} (up to 3)`;
+        document.getElementById('sel-bezels').classList.toggle('complete', b >= 1);
+        document.getElementById('sel-dials').textContent = `${d} Dial${d !== 1 ? 's' : ''} (up to 2)`;
+        document.getElementById('sel-dials').classList.toggle('complete', d >= 1);
+        document.getElementById('sel-straps').textContent = `${s} Strap${s !== 1 ? 's' : ''} (up to 3)`;
+        document.getElementById('sel-straps').classList.toggle('complete', s >= 1);
       }
 
       function updateATCButton() {
@@ -2725,11 +2725,10 @@
 
         for (let i = 1; i <= 4; i++) {
           const sd = state.steps[i];
-          if (sd.selected.length >= sd.max) {
+          if (sd.selected.length >= sd.min) {
             completeSteps++;
           } else {
-            const remaining = sd.max - sd.selected.length;
-            missing.push(`${remaining} ${sd.label}`);
+            missing.push(`${sd.label}`);
           }
         }
 
