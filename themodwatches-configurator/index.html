@@ -2333,10 +2333,10 @@
           <div class="atc-progress-text" id="atc-progress-text">0 of 4 steps complete</div>
         </div>
         <button class="atc-button" id="atc-button" disabled>
-          Choose your components to start building
+          Select your components above
         </button>
-        <p class="atc-helper" id="atc-helper">Select 3 bezels, 1 steel strap, 2 straps, 2 dials to continue</p>
-        <p class="atc-sub">Free worldwide shipping. 30-day guarantee.</p>
+        <p class="atc-helper" id="atc-helper"></p>
+        <p class="atc-sub" id="atc-sub">Free worldwide shipping. 30-day guarantee.</p>
 
         <div class="sold-out-state" style="display:none">
           <div class="sold-out-badge">Currently Restocking</div>
@@ -2907,7 +2907,7 @@
   <div class="sticky-atc-desktop" id="sticky-atc-desktop" role="complementary" aria-label="Quick add to cart">
     <span class="sticky-product-name">Skeleton Watch Building Kit</span>
     <span class="sticky-price">$499</span>
-    <button class="sticky-btn" id="sticky-desktop-btn">Start Building — $499</button>
+    <button class="sticky-btn" id="sticky-desktop-btn">Select Components</button>
   </div>
 
   <!-- STICKY MOBILE BAR -->
@@ -2916,7 +2916,7 @@
       <span class="sticky-mobile-name">Skeleton Bundle</span>
       <span class="sticky-mobile-price">$499</span>
     </div>
-    <button class="sticky-mobile-btn" id="sticky-mobile-btn">Start Building — $499</button>
+    <button class="sticky-mobile-btn" id="sticky-mobile-btn">Select Components</button>
   </div>
 
   <script>
@@ -3119,15 +3119,15 @@
         atcButton.disabled = !allComplete;
 
         if (allComplete) {
-          atcButton.textContent = 'Start Building \u2014 $499';
-          atcHelper.textContent = '';
-          stickyDesktopBtn.textContent = 'Start Building \u2014 $499';
-          stickyMobileBtn.textContent = 'Start Building \u2014 $499';
+          atcButton.innerHTML = 'Add to Cart \u2014 <span style="text-decoration:line-through;opacity:0.6;font-weight:400;">$755</span> $499';
+          atcHelper.innerHTML = 'Your build is ready. Complete your order and start the experience.';
+          stickyDesktopBtn.innerHTML = 'Add to Cart \u2014 <span style="text-decoration:line-through;opacity:0.6;font-weight:400;">$755</span> $499';
+          stickyMobileBtn.innerHTML = 'Add to Cart \u2014 $499';
         } else {
-          atcButton.textContent = 'Choose your components to start building';
-          atcHelper.textContent = 'Select ' + missing.join(', ') + ' to continue';
+          atcButton.textContent = 'Select your components above';
+          atcHelper.textContent = 'Still need: ' + missing.join(', ');
           stickyDesktopBtn.textContent = 'Select Components';
-          stickyMobileBtn.textContent = 'Select Components';
+          stickyMobileBtn.textContent = 'Configure Your Kit';
         }
 
         const pct = (completeSteps / totalSteps) * 100;
