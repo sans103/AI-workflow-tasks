@@ -2042,25 +2042,22 @@
        STICKY ATC BAR (Desktop — appears on scroll)
        ============================================ */
     .sticky-atc-desktop {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
       z-index: 150;
       background: #fff;
       border-bottom: 1px solid var(--border-light);
-      padding: 10px 24px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 24px;
-      transform: translateY(-100%);
-      transition: transform 0.35s ease;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      box-shadow: none;
+      transition: box-shadow 0.3s ease;
     }
 
-    .sticky-atc-desktop.visible {
-      transform: translateY(0);
+    .sticky-atc-desktop.scrolled {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     }
 
     .sticky-atc-desktop .sticky-product-name {
@@ -2418,6 +2415,13 @@
       </div>
     </div>
   </nav>
+
+  <!-- STICKY ATC BAR (visible on load, sticks to top on scroll) -->
+  <div class="sticky-atc-desktop" id="sticky-atc-desktop" role="complementary" aria-label="Quick add to cart">
+    <span class="sticky-product-name">Skeleton Watch Building Kit</span>
+    <span class="sticky-price">$499</span>
+    <button class="sticky-btn" id="sticky-desktop-btn">Select Components</button>
+  </div>
 
   <!-- S2: PRODUCT HERO — SPLIT PANEL -->
   <section class="product-hero" id="product-hero" aria-label="Product configurator">
@@ -3644,12 +3648,6 @@
   </footer>
 
   <!-- STICKY ATC BAR (Desktop) -->
-  <div class="sticky-atc-desktop" id="sticky-atc-desktop" role="complementary" aria-label="Quick add to cart">
-    <span class="sticky-product-name">Skeleton Watch Building Kit</span>
-    <span class="sticky-price">$499</span>
-    <button class="sticky-btn" id="sticky-desktop-btn">Select Components</button>
-  </div>
-
   <!-- STICKY MOBILE BAR -->
   <div class="sticky-mobile-bar" role="complementary" aria-label="Quick add to cart">
     <div class="sticky-mobile-info">
@@ -4071,18 +4069,11 @@
       /* ===========================================
          STICKY ATC BAR — IntersectionObserver
          =========================================== */
-      const atcArea = document.getElementById('atc-area');
-      if (atcArea && stickyDesktop) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach(entry => {
-              // Show sticky bar when ATC area is NOT visible
-              stickyDesktop.classList.toggle('visible', !entry.isIntersecting);
-            });
-          },
-          { threshold: 0, rootMargin: '-60px 0px 0px 0px' }
-        );
-        observer.observe(atcArea);
+      // Add shadow to sticky bar when scrolled past its natural position
+      if (stickyDesktop) {
+        window.addEventListener('scroll', () => {
+          stickyDesktop.classList.toggle('scrolled', window.scrollY > 10);
+        }, { passive: true });
       }
 
       // Sticky buttons scroll to hero
