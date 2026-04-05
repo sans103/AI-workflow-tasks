@@ -373,6 +373,19 @@
       text-decoration: underline;
     }
 
+    .german-badge {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #314334;
+      border: 1px solid #314334;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
     .product-price-block {
       margin-top: 16px;
       display: flex;
@@ -402,6 +415,20 @@
       font-size: 14px;
       color: var(--text-secondary);
       margin-top: 8px;
+    }
+
+    .scarcity-line {
+      font-size: 13px;
+      color: #B04A3A;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .scarcity-line svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
     }
 
     .gift-toggle {
@@ -473,6 +500,36 @@
       font-size: 13px;
       color: var(--text-secondary);
       margin-bottom: 6px;
+    }
+
+    .gift-occasions {
+      margin-top: 16px;
+    }
+    .gift-occasions-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .gift-occasion-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .gift-occasion-tag {
+      font-size: 11px;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      background: #fff;
+    }
+    .gift-occasions-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
     .trust-line {
@@ -849,6 +906,65 @@
       margin-top: 12px;
     }
 
+    .sold-out-state {
+      margin-top: 20px;
+      padding: 24px;
+      background: var(--warm-bg);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .sold-out-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #B04A3A;
+      background: rgba(176, 74, 58, 0.1);
+      padding: 6px 16px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .sold-out-form {
+      display: flex;
+      gap: 8px;
+      max-width: 400px;
+      margin: 0 auto 12px;
+    }
+    .sold-out-form input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: inherit;
+      font-size: 14px;
+      background: #fff;
+    }
+    .sold-out-form button {
+      padding: 10px 18px;
+      background: var(--green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      transition: background var(--transition);
+    }
+    .sold-out-form button:hover {
+      background: var(--green-dark);
+    }
+    .sold-out-waitlist {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .sold-out-explore {
+      font-size: 13px;
+      color: var(--green);
+      text-decoration: underline;
+    }
+
     /* ============================================
        S3: VALUE ANCHOR BAR
        ============================================ */
@@ -918,6 +1034,119 @@
     .value-summary-amount.total { color: var(--text-muted); text-decoration: line-through; }
     .value-summary-amount.yours { color: var(--text-primary); }
     .value-summary-amount.save { color: var(--gold-dark); }
+
+    /* ============================================
+       S3B: TIERED BUNDLES
+       ============================================ */
+    .tiered-bundles {
+      padding: 72px 0;
+    }
+    .tiered-bundles .section-heading {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .tiered-bundles .section-subhead {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .tier-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+      background: #fff;
+    }
+    .tier-card.tier-popular {
+      border: 2px solid var(--gold);
+    }
+    .tier-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: var(--warm-bg);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .tier-card.tier-popular .tier-badge {
+      background: rgba(212, 160, 70, 0.15);
+      color: var(--gold-dark);
+    }
+    .tier-name {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .tier-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .tier-price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .tier-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      text-align: left;
+    }
+    .tier-features li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 5px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.4;
+    }
+    .tier-features li svg {
+      width: 14px;
+      height: 14px;
+      color: var(--green);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .tier-cta {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: var(--radius);
+      text-transform: uppercase;
+      background: var(--warm-bg);
+      color: var(--text-primary);
+      transition: all var(--transition);
+    }
+    .tier-cta:hover {
+      background: var(--border-light);
+    }
+    .tier-card.tier-popular .tier-cta {
+      background: var(--gold);
+      color: #000;
+    }
+    .tier-card.tier-popular .tier-cta:hover {
+      background: var(--gold-dark);
+    }
 
     /* ============================================
        S4: HOW IT WORKS
@@ -1624,6 +1853,12 @@
         max-width: 400px;
       }
 
+      .tier-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
       .sticky-atc-desktop { display: none !important; }
 
       .sticky-mobile-bar {
@@ -1674,6 +1909,14 @@
 
       /* Give body bottom padding for mobile sticky bar */
       body { padding-bottom: 72px; }
+    }
+
+    @media (min-width: 600px) and (max-width: 989px) {
+      .tier-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+        margin: 0 auto;
+      }
     }
 
     @media (max-width: 767px) {
@@ -1735,7 +1978,7 @@
       <div class="trust-micro">
         <div class="trust-micro-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>1,500+ watches built</span>
+          <span>1,500+ watchmakers and counting</span>
         </div>
         <div class="trust-micro-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1788,8 +2031,8 @@
 
     <!-- RIGHT: Config Panel -->
     <div class="hero-config">
-      <h1 class="product-title">Skeleton Watch Building Kit</h1>
-      <p class="product-subtitle">18 Different Watch Styles from One Kit</p>
+      <h1 class="product-title">Skeleton Watch Building Kit — 18 Combinations, One Kit, Your Creation</h1>
+      <p class="product-subtitle">Everything you need to build a mechanical dive watch in one evening. Japanese automatic movement. German-curated. Zero experience required.</p>
 
       <div class="product-stars">
         <div class="stars-row" aria-label="4.8 out of 5 stars">
@@ -1801,6 +2044,7 @@
         </div>
         <span class="rating-text">4.8 (<a href="#full-reviews">47 reviews</a>)</span>
       </div>
+      <div class="german-badge">German-Curated Quality</div>
 
       <div class="product-price-block">
         <span class="price-current">$499</span>
@@ -1808,6 +2052,11 @@
         <span class="price-save">SAVE $256 (34%)</span>
       </div>
       <p class="afterpay-line">or 4 payments of $124.75 with Shop Pay</p>
+
+      <div class="scarcity-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Only 14 kits remaining at this price
+      </div>
 
       <!-- Gift Toggle -->
       <div class="gift-toggle" id="gift-toggle" role="switch" aria-checked="false" tabindex="0">
@@ -1818,6 +2067,16 @@
       <div class="gift-slide-panel" id="gift-panel">
         <label for="gift-message">Gift message (optional)</label>
         <textarea id="gift-message" placeholder="Write a personal message..."></textarea>
+        <div class="gift-occasions">
+          <div class="gift-occasions-label">Gift Occasions</div>
+          <div class="gift-occasion-tags">
+            <span class="gift-occasion-tag">Birthday</span>
+            <span class="gift-occasion-tag">Father's Day</span>
+            <span class="gift-occasion-tag">Anniversary</span>
+            <span class="gift-occasion-tag">Christmas</span>
+          </div>
+          <p class="gift-occasions-note">43% of our customers buy this as a gift. Premium Gift Box included with every order.</p>
+        </div>
       </div>
 
       <p class="trust-line">30-Day Guarantee | 48-Month Warranty | Free Worldwide Shipping</p>
@@ -2015,7 +2274,7 @@
           <div class="base-components-list" id="base-list">
             <div class="base-component-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              NH70 Skeleton Movement
+              Japanese NH70 Automatic Movement
               <span class="included-tag">Included</span>
             </div>
             <div class="base-component-item">
@@ -2045,10 +2304,20 @@
           <div class="atc-progress-text" id="atc-progress-text">0 of 4 steps complete</div>
         </div>
         <button class="atc-button" id="atc-button" disabled>
-          Select Components to Continue
+          Choose your components to start building
         </button>
         <p class="atc-helper" id="atc-helper">Select 3 bezels, 1 steel strap, 2 straps, 2 dials to continue</p>
         <p class="atc-sub">Free worldwide shipping. 30-day guarantee.</p>
+
+        <div class="sold-out-state" style="display:none">
+          <div class="sold-out-badge">Currently Restocking</div>
+          <div class="sold-out-form">
+            <input type="email" placeholder="Enter your email address" aria-label="Email for restock notification">
+            <button type="button">Notify Me When Available</button>
+          </div>
+          <p class="sold-out-waitlist">Join 247 others waiting for restock</p>
+          <a href="#cross-sell" class="sold-out-explore">Explore available kits</a>
+        </div>
       </div>
 
     </div>
@@ -2061,7 +2330,7 @@
       <div class="value-items">
         <div class="value-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span class="value-item-name">NH70 Skeleton Movement</span>
+          <span class="value-item-name">Japanese NH70 Automatic Movement</span>
           <span class="value-item-price">$175</span>
         </div>
         <div class="value-item">
@@ -2107,6 +2376,69 @@
         <div class="value-summary-item">
           <div class="value-summary-label">You Save</div>
           <div class="value-summary-amount save">$256 (34%)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3B: TIERED BUNDLES -->
+  <section class="tiered-bundles" id="tiered-bundles" aria-label="Choose your tier">
+    <div class="container">
+      <div class="section-label">CHOOSE YOUR TIER</div>
+      <h2 class="section-heading">CHOOSE YOUR TIER</h2>
+      <p class="section-subhead">Every tier includes the full build experience. Pick your level of customization.</p>
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div class="tier-badge">Entry Point</div>
+          <div class="tier-name">Starter</div>
+          <div class="tier-title">The First Build</div>
+          <div class="tier-price">$299</div>
+          <ul class="tier-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Complete watch kit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 1 bezel + 1 strap</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Professional tool kit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> HD video build guide</li>
+          </ul>
+          <button class="tier-cta">Select Starter</button>
+        </div>
+        <div class="tier-card">
+          <div class="tier-badge">Best Value</div>
+          <div class="tier-name">Standard</div>
+          <div class="tier-title">The Maker's Kit</div>
+          <div class="tier-price">$449</div>
+          <ul class="tier-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Complete watch kit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 2 bezels + 2 straps</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Professional tool kit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> HD video build guide</li>
+          </ul>
+          <button class="tier-cta">Select Standard</button>
+        </div>
+        <div class="tier-card tier-popular">
+          <div class="tier-badge">Most Popular</div>
+          <div class="tier-name">Premium</div>
+          <div class="tier-title">The Collection</div>
+          <div class="tier-price">$599</div>
+          <ul class="tier-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Complete watch kit</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 3 bezels + 3 straps</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Skeleton dial included</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Premium gift box + engraving</li>
+          </ul>
+          <button class="tier-cta">Select Premium</button>
+        </div>
+        <div class="tier-card">
+          <div class="tier-badge">Aspirational</div>
+          <div class="tier-name">Ultimate</div>
+          <div class="tier-title">The Watchmaker's Edition</div>
+          <div class="tier-price">$899</div>
+          <ul class="tier-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 2 complete watch kits</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 4 bezels + 4 straps</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Leather watch roll</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Premium gift box included</li>
+          </ul>
+          <button class="tier-cta">Select Ultimate</button>
         </div>
       </div>
     </div>
@@ -2160,17 +2492,17 @@
         <div class="guarantee-card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div class="guarantee-card-title">30-Day Satisfaction Guarantee</div>
-          <p class="guarantee-card-desc">Not satisfied? Full refund. No questions asked. We want you to love the experience.</p>
+          <p class="guarantee-card-desc">Satisfied or refunded. Though once you feel the weight of submarine-grade steel, you'll understand why we're confident.</p>
         </div>
         <div class="guarantee-card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <div class="guarantee-card-title">48-Month Precision Warranty</div>
-          <p class="guarantee-card-desc">Every component covered against manufacturing defects. We repair or replace, free of charge.</p>
+          <p class="guarantee-card-desc">Your watch parts are covered against manufacturing defects. We'll repair or replace faulty parts. Because quality matters.</p>
         </div>
         <div class="guarantee-card">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           <div class="guarantee-card-title">Simon's Zero-Failure Promise</div>
-          <p class="guarantee-card-desc">Can't get it ticking? Send us your parts. We'll build it for you and ship it back. Free.</p>
+          <p class="guarantee-card-desc">Can't get your watch ticking? Send us the parts. We'll assemble it professionally and return your finished watch. Free.</p>
           <p class="guarantee-card-note">(Never happened in our entire history.)</p>
         </div>
       </div>
@@ -2180,8 +2512,8 @@
   <!-- S6: SOCIAL PROOF RAIL -->
   <section class="social-proof" id="social-proof" aria-label="Customer reviews">
     <div class="container">
-      <h2 class="section-heading">BUILT BY OUR COMMUNITY</h2>
-      <p class="section-subhead">1,500+ watches assembled and counting.</p>
+      <h2 class="section-heading">JOIN 1,500+ WATCHMAKERS</h2>
+      <p class="section-subhead">Read their stories. 94% had zero prior experience.</p>
     </div>
     <div class="review-rail" aria-label="Scroll for more reviews">
       <div class="review-card">
@@ -2241,7 +2573,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
               <div>
                 <div class="persona-usp-title">Genuine Craftsmanship</div>
-                <p class="persona-usp-desc">Real Seiko NH70 movement. Sapphire crystal. 42mm diver case. These are not toy parts.</p>
+                <p class="persona-usp-desc">Real Japanese NH70 automatic movement. Sapphire crystal. 42mm diver case. These are not toy parts.</p>
               </div>
             </div>
             <div class="persona-usp">
@@ -2308,10 +2640,10 @@
       <div class="component-accordion">
         <div class="accordion-item">
           <button class="accordion-trigger" aria-expanded="false">
-            NH70 Skeleton Movement
+            Japanese NH70 Automatic Movement
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="accordion-content">The heart of your watch. The Seiko NH70 is a self-winding skeleton movement with a 41-hour power reserve. Visible from both sides through the sapphire crystal caseback. Hacking seconds hand for precise time-setting.</div>
+          <div class="accordion-content">The heart of your watch. The Japanese NH70 automatic is a self-winding skeleton movement with a 41-hour power reserve. Visible from both sides through the sapphire crystal caseback. Hacking seconds hand for precise time-setting.</div>
         </div>
         <div class="accordion-item">
           <button class="accordion-trigger" aria-expanded="false">
@@ -2362,6 +2694,27 @@
           </button>
           <div class="accordion-content">Your kit arrives in a presentation-grade box with individual compartments for each component. Designed for the unboxing experience to feel as premium as the build itself.</div>
         </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            Certificate of Craftsmanship
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">Your personalized build certificate with serial number and completion date.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            Collector's Serial Number
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">Every build receives a unique serial number. You're part of the maker's lineage.</div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            HD Video Build Guide
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="accordion-content">12 step-by-step sections. Average build time: 2.5 hours. WhatsApp support if you get stuck.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2371,7 +2724,7 @@
     <div class="container">
       <div class="founder-photo">Simon</div>
       <blockquote class="founder-quote">"Wear something you're proud of — because you built it."</blockquote>
-      <p class="founder-bio">Simon Gruhdorfer grew up in Munich, raised by two grandfathers who gave him his first workbench at age seven. Peter was the inventor; Hermann was the fixer. Together they taught him that the things you build with your own hands carry a meaning that money can't buy. The Mod Watches was born from that same belief — and from a watch kit Simon made for a friend named Uwe, who showed him that craftsmanship is the deepest form of connection.</p>
+      <p class="founder-bio">Simon Gruhdorfer grew up in Munich, raised by two grandfathers who gave him his first workbench at age seven. Peter was the inventor; Hermann was the fixer. Together they taught him that the things you build with your own hands carry a meaning that money can't buy. The Mod Watches was born from that same belief — and from a watch kit Simon made for a friend named Uwe, who showed him that craftsmanship is the deepest form of connection. Every kit is German-curated: I personally select each component, test every movement, and design the build experience.</p>
       <a href="#" class="founder-link">Read Our Full Story</a>
     </div>
   </section>
@@ -2400,7 +2753,7 @@
             Is this a "real" watch or a toy?
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-answer">This is a genuine mechanical timepiece. The NH70 movement is made by Seiko Instruments (TMI), the same manufacturer supplying movements to brands like Orient and Seiko themselves. Sapphire crystal, 316L stainless steel, 100m water resistance. These are the same specs you'll find on watches costing $800-$1,500.</div>
+          <div class="faq-answer">This is a genuine Japanese mechanical movement. The NH70 is made by Seiko Instruments (TMI), the same manufacturer supplying movements to brands costing 3-5x more. Sapphire crystal, 316L stainless steel, 100m water resistance. These are the same specs you'll find on watches costing $800-$1,500.</div>
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
@@ -2525,7 +2878,7 @@
   <div class="sticky-atc-desktop" id="sticky-atc-desktop" role="complementary" aria-label="Quick add to cart">
     <span class="sticky-product-name">Skeleton Watch Building Kit</span>
     <span class="sticky-price">$499</span>
-    <button class="sticky-btn" id="sticky-desktop-btn">Select Components</button>
+    <button class="sticky-btn" id="sticky-desktop-btn">Start Building — $499</button>
   </div>
 
   <!-- STICKY MOBILE BAR -->
@@ -2534,7 +2887,7 @@
       <span class="sticky-mobile-name">Skeleton Bundle</span>
       <span class="sticky-mobile-price">$499</span>
     </div>
-    <button class="sticky-mobile-btn" id="sticky-mobile-btn">Select Components</button>
+    <button class="sticky-mobile-btn" id="sticky-mobile-btn">Start Building — $499</button>
   </div>
 
   <script>
@@ -2736,12 +3089,12 @@
         atcButton.disabled = !allComplete;
 
         if (allComplete) {
-          atcButton.textContent = 'Add to Cart \u2014 $499';
+          atcButton.textContent = 'Start Building \u2014 $499';
           atcHelper.textContent = '';
-          stickyDesktopBtn.textContent = 'Add to Cart \u2014 $499';
-          stickyMobileBtn.textContent = 'Add to Cart';
+          stickyDesktopBtn.textContent = 'Start Building \u2014 $499';
+          stickyMobileBtn.textContent = 'Start Building \u2014 $499';
         } else {
-          atcButton.textContent = 'Select Components to Continue';
+          atcButton.textContent = 'Choose your components to start building';
           atcHelper.textContent = 'Select ' + missing.join(', ') + ' to continue';
           stickyDesktopBtn.textContent = 'Select Components';
           stickyMobileBtn.textContent = 'Select Components';
