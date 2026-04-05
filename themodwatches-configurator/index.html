@@ -2939,13 +2939,14 @@
         stepEl.classList.toggle('step-complete', isComplete);
         stepEl.classList.toggle('step-active', !isComplete && stepEl.classList.contains('step-open'));
 
-        // Disable unselected options when max reached
+        // Disable unselected options when MAX reached (not min)
         if (stepData.type === 'multi') {
+          const isMaxed = stepData.selected.length >= stepData.max;
           const options = stepEl.querySelectorAll('.swatch-option, .card-option');
           options.forEach(opt => {
             const val = opt.dataset.value;
             const isSelected = stepData.selected.includes(val);
-            opt.classList.toggle('disabled', isComplete && !isSelected);
+            opt.classList.toggle('disabled', isMaxed && !isSelected);
           });
         }
       }
