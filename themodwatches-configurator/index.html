@@ -2603,7 +2603,8 @@
       // Track which item is currently being previewed
       let activePreview = { type: null, value: null };
 
-      function previewItem(type, value, color) {
+      // Expose to global scope for onclick in dynamic HTML
+      window.previewItem = function(type, value, color) {
         activePreview = { type, value };
         if (type === 'bezel') {
           document.getElementById('bezel-preview').style.background = color;
