@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's match you with the right advisor — Nurse Life Coach Academy</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================
+       NLCA Brand Tokens (mirrored from styles/nlca-tokens.css)
+       Source of truth: brand-guides/nurse-life-coach-academy/
+       ===================================================== */
+    :root {
+      /* Colors */
+      --nlca-text-default:        #384053;
+      --nlca-text-on-dark:        #d1e9f4;
+      --nlca-text-muted:          #647390;
+      --nlca-text-placeholder:    #7d8ca5;
+      --nlca-accent-rust:         #b36060;
+      --nlca-accent-rust-dark:    #8f4a4a;   /* redesign hover (replaces jarring #6854E8) */
+      --nlca-pastel-blue:         #d1e9f4;
+      --nlca-pastel-lavender:     #d6c9e3;
+      --nlca-dark-slate:          #384053;
+      --nlca-dark-navy:           #18233B;
+      --nlca-border-subtle:       #D3DAE4;
+      --nlca-border-light:        #ebf0f5;
+      --nlca-surface-white:       #FFFFFF;
+
+      /* Typography */
+      --nlca-font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+      --nlca-font-body:    "Lato", Helvetica, Arial, sans-serif;
+
+      /* Buttons */
+      --nlca-btn-primary-bg:    #b36060;
+      --nlca-btn-primary-color: #d1e9f4;
+      --nlca-btn-radius:        50px;
+
+      /* Forms */
+      --nlca-form-radius:       8px;
+      --nlca-form-focus-ring:   rgba(179, 96, 96, 0.18);
+    }
+
+    /* =====================================================
+       Base
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--nlca-font-body);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--nlca-text-default);
+      background: var(--nlca-surface-white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--nlca-accent-rust); text-decoration: none; }
+    a:hover { color: var(--nlca-accent-rust-dark); text-decoration: underline; }
+
+    /* =====================================================
+       Progress bar (sticky top, 2 steps)
+       ===================================================== */
+    .progress-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffff;
+      border-bottom: 1px solid var(--nlca-border-light);
+      padding: 14px 16px;
+    }
+    .progress-bar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .progress-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    .progress-step__num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .progress-step--active {
+      background: var(--nlca-accent-rust);
+      color: var(--nlca-pastel-blue);
+    }
+    .progress-step--active .progress-step__num {
+      background: var(--nlca-pastel-blue);
+      color: var(--nlca-accent-rust);
+    }
+    .progress-step--complete {
+      background: var(--nlca-pastel-blue);
+      color: var(--nlca-dark-slate);
+    }
+    .progress-step--complete .progress-step__num {
+      background: var(--nlca-accent-rust);
+      color: var(--nlca-pastel-blue);
+    }
+    .progress-step--locked {
+      background: #f1f4f7;
+      color: #8b95a8;
+    }
+    .progress-step--locked .progress-step__num {
+      background: #d3dae4;
+      color: #8b95a8;
+    }
+    .progress-connector {
+      flex: 0 1 80px;
+      height: 2px;
+      background: var(--nlca-border-subtle);
+      transition: background-color .25s ease;
+    }
+    .progress-connector--filled {
+      background: var(--nlca-accent-rust);
+    }
+    .progress-step__icon { width: 14px; height: 14px; flex-shrink: 0; }
+
+    @media (max-width: 480px) {
+      .progress-bar { padding: 12px 12px; }
+      .progress-step { padding: 6px 12px; font-size: 12px; gap: 6px; }
+      .progress-step__num { width: 20px; height: 20px; font-size: 11px; }
+      .progress-connector { flex: 0 1 32px; }
+    }
+
+    /* =====================================================
+       Header (logo)
+       ===================================================== */
+    .site-header {
+      background: linear-gradient(180deg, #ffffff 0%, var(--nlca-pastel-blue) 100%);
+      padding: 24px 16px 16px;
+      text-align: center;
+    }
+    .site-header__logo { display: inline-block; }
+    .site-header__logo img {
+      width: 130px;
+      height: auto;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .site-header { padding: 32px 24px 20px; }
+      .site-header__logo img { width: 140px; }
+    }
+
+    /* =====================================================
+       Hero
+       ===================================================== */
+    .hero {
+      background: var(--nlca-pastel-blue);
+      padding: 24px 16px 48px;
+      text-align: center;
+    }
+    .hero__inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero__trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px 18px;
+      margin: 0 auto 28px;
+      padding: 0;
+      list-style: none;
+      max-width: 640px;
+    }
+    .hero__trust-item {
+      font-family: var(--nlca-font-body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--nlca-dark-slate);
+      letter-spacing: 0.01em;
+      display: inline-flex;
+      align-items: center;
+    }
+    .hero__trust-item:not(:last-child)::after {
+      content: "•";
+      margin-left: 18px;
+      color: var(--nlca-accent-rust);
+      font-size: 18px;
+      line-height: 1;
+    }
+    .hero__title {
+      font-family: var(--nlca-font-display);
+      font-weight: 400;
+      font-size: 2rem;       /* 32px mobile */
+      line-height: 1.15;
+      color: var(--nlca-accent-rust);
+      margin: 0 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .hero__subtitle {
+      font-family: var(--nlca-font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--nlca-dark-slate);
+      margin: 0 auto;
+      max-width: 580px;
+    }
+    @media (min-width: 768px) {
+      .hero { padding: 32px 24px 64px; }
+      .hero__trust-bar { gap: 12px 24px; margin-bottom: 36px; }
+      .hero__trust-item { font-size: 15px; }
+      .hero__trust-item:not(:last-child)::after { margin-left: 24px; }
+      .hero__title { font-size: 2.75rem; } /* 44px desktop */
+      .hero__subtitle { font-size: 18px; }
+    }
+    @media (min-width: 1024px) {
+      .hero__title { font-size: 3rem; } /* 48px wide-desktop */
+    }
+
+    /* =====================================================
+       Form section
+       ===================================================== */
+    .form-section {
+      background: var(--nlca-pastel-blue);
+      padding: 0 16px 64px;
+    }
+    .form-card {
+      background: var(--nlca-surface-white);
+      border-radius: 16px;
+      border: 1px solid var(--nlca-border-subtle);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      box-shadow: 0 12px 36px rgba(56, 64, 83, 0.06);
+    }
+    @media (min-width: 768px) {
+      .form-section { padding: 0 24px 80px; }
+      .form-card { padding: 48px; }
+    }
+
+    .nlca-form-field { margin-bottom: 28px; }
+    .nlca-form-label {
+      display: block;
+      font-family: var(--nlca-font-display);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--nlca-dark-slate);
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+    @media (min-width: 768px) {
+      .nlca-form-label { font-size: 18px; }
+    }
+
+    /* Select / inputs */
+    .nlca-select,
+    .nlca-input {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      background-color: var(--nlca-surface-white);
+      color: var(--nlca-dark-slate);
+      font-family: var(--nlca-font-display);
+      font-size: 16px;
+      line-height: 1.4;
+      border: 1px solid var(--nlca-border-subtle);
+      border-radius: var(--nlca-form-radius);
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .nlca-select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23384053' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 44px;
+    }
+    .nlca-select:focus,
+    .nlca-input:focus {
+      outline: none;
+      border-color: var(--nlca-accent-rust);
+      box-shadow: 0 0 0 3px var(--nlca-form-focus-ring);
+    }
+    .nlca-select:invalid { color: var(--nlca-text-placeholder); }
+    .nlca-select option { color: var(--nlca-dark-slate); }
+    .nlca-select option[disabled] { color: var(--nlca-text-placeholder); }
+
+    /* Helper / microcopy */
+    .nlca-form-help {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--nlca-text-muted);
+      line-height: 1.45;
+    }
+
+    /* Q1 — horizontal 1-5 importance scale */
+    .scale-fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0;
+    }
+    .scale-options {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .scale-option {
+      position: relative;
+    }
+    .scale-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .scale-option label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 8px 4px;
+      background: var(--nlca-surface-white);
+      border: 1px solid var(--nlca-border-subtle);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s ease;
+      font-family: var(--nlca-font-body);
+    }
+    .scale-option label .scale-num {
+      font-family: var(--nlca-font-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--nlca-dark-slate);
+      line-height: 1;
+    }
+    .scale-option label .scale-text {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--nlca-text-muted);
+      margin-top: 4px;
+      line-height: 1.15;
+      min-height: 12px;
+    }
+    .scale-option label:hover {
+      border-color: var(--nlca-accent-rust);
+      background: #fff7f5;
+    }
+    .scale-option input[type="radio"]:focus-visible + label {
+      outline: none;
+      border-color: var(--nlca-accent-rust);
+      box-shadow: 0 0 0 3px var(--nlca-form-focus-ring);
+    }
+    .scale-option input[type="radio"]:checked + label {
+      background: var(--nlca-accent-rust);
+      border-color: var(--nlca-accent-rust);
+    }
+    .scale-option input[type="radio"]:checked + label .scale-num,
+    .scale-option input[type="radio"]:checked + label .scale-text {
+      color: var(--nlca-pastel-blue);
+    }
+    .scale-anchors {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--nlca-text-muted);
+    }
+    @media (min-width: 768px) {
+      .scale-options { gap: 10px; }
+      .scale-option label { min-height: 72px; padding: 10px 6px; }
+      .scale-option label .scale-num { font-size: 24px; }
+      .scale-option label .scale-text { font-size: 11px; }
+    }
+
+    /* Submit */
+    .form-submit-wrap {
+      margin-top: 8px;
+      text-align: center;
+    }
+    .nlca-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 100%;
+      min-height: 56px;
+      padding: 18px 32px;
+      font-family: var(--nlca-font-body);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      background-color: var(--nlca-btn-primary-bg);
+      color: var(--nlca-btn-primary-color);
+      border: 0;
+      border-radius: var(--nlca-btn-radius);
+      cursor: pointer;
+      transition: background-color .2s ease, transform .1s ease;
+      text-decoration: none;
+    }
+    .nlca-btn:hover {
+      background-color: var(--nlca-accent-rust-dark);
+      color: var(--nlca-pastel-blue);
+    }
+    .nlca-btn:active { transform: translateY(1px); }
+    .nlca-btn:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(179, 96, 96, 0.35);
+    }
+    .nlca-btn[disabled] {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+    @media (min-width: 768px) {
+      .nlca-btn { width: auto; min-width: 320px; }
+    }
+
+    .form-microcopy {
+      display: block;
+      margin: 14px auto 0;
+      max-width: 480px;
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(56, 64, 83, 0.7);
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       Calendar reveal section (post-submit)
+       ===================================================== */
+    .calendar-section {
+      background: var(--nlca-pastel-blue);
+      padding: 48px 16px 80px;
+      display: none;
+    }
+    .calendar-section.is-visible { display: block; }
+    .calendar-section__inner {
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .calendar-section__lede {
+      font-family: var(--nlca-font-display);
+      font-weight: 400;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      color: var(--nlca-accent-rust);
+      margin: 0 0 8px;
+    }
+    .calendar-section__sub {
+      font-family: var(--nlca-font-body);
+      font-size: 16px;
+      color: var(--nlca-dark-slate);
+      margin: 0 0 28px;
+    }
+    .calendar-embed {
+      background: var(--nlca-surface-white);
+      border-radius: 16px;
+      border: 1px solid var(--nlca-border-subtle);
+      padding: 24px;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--nlca-text-muted);
+      font-family: var(--nlca-font-body);
+      font-size: 14px;
+      text-align: center;
+    }
+    .calendar-embed__placeholder-icon {
+      width: 36px;
+      height: 36px;
+      color: var(--nlca-accent-rust);
+    }
+    @media (min-width: 768px) {
+      .calendar-section { padding: 64px 24px 96px; }
+      .calendar-section__lede { font-size: 2.25rem; }
+      .calendar-embed { padding: 32px; min-height: 640px; }
+    }
+
+    /* =====================================================
+       Footer
+       ===================================================== */
+    .site-footer {
+      background: var(--nlca-dark-slate);
+      color: var(--nlca-pastel-blue);
+      text-align: center;
+      padding: 56px 24px 48px;
+    }
+    .site-footer__est {
+      font-family: var(--nlca-font-body);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin: 0 0 16px;
+    }
+    .site-footer__logo {
+      width: 180px;
+      height: auto;
+      margin: 0 auto 20px;
+    }
+    .site-footer__tagline {
+      font-family: var(--nlca-font-body);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0 0 32px;
+    }
+    .site-footer__copy {
+      font-family: var(--nlca-font-body);
+      font-size: 14px;
+      opacity: 0.75;
+      margin: 0;
+    }
+    @media (min-width: 768px) {
+      .site-footer { padding: 64px 24px 56px; }
+      .site-footer__logo { width: 220px; }
+    }
+
+    /* =====================================================
+       Utility / a11y
+       ===================================================== */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       PROGRESS BAR (sticky, top of page)
+       ============================================ -->
+  <div class="progress-bar" role="navigation" aria-label="Booking progress">
+    <div class="progress-bar__inner">
+      <div class="progress-step progress-step--active" id="progress-step-1" aria-current="step">
+        <span class="progress-step__num" id="progress-step-1-num">1</span>
+        <span>Quick questions</span>
+      </div>
+      <div class="progress-connector" id="progress-connector" aria-hidden="true"></div>
+      <div class="progress-step progress-step--locked" id="progress-step-2">
+        <span class="progress-step__num" id="progress-step-2-num">
+          <!-- Heroicons / lock-closed (mini) -->
+          <svg class="progress-step__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <span>Book your call</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       HEADER (logo only, no nav on BANT)
+       ============================================ -->
+  <header class="site-header">
+    <a href="https://nurselifecoachacademy.com" class="site-header__logo" aria-label="Nurse Life Coach Academy — home">
+      <img
+        src="https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_PrimaryLogo_01a-05.png"
+        alt="Nurse Life Coach Academy"
+        width="280" height="111"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+  </header>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+
+      <!-- Trust bar -->
+      <ul class="hero__trust-bar" aria-label="Program highlights">
+        <li class="hero__trust-item">2,100+ nurses certified</li>
+        <li class="hero__trust-item">ICF + NBHWC accredited</li>
+        <li class="hero__trust-item">4.9/5 rating</li>
+      </ul>
+
+      <h1 class="hero__title">Let&rsquo;s match you with the right advisor</h1>
+      <p class="hero__subtitle">2 minutes to personalize your coaching plan &mdash; answer 4 quick questions and your free advisor call unlocks instantly.</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FORM
+       ============================================ -->
+  <section class="form-section" id="form-section" aria-labelledby="form-heading">
+    <h2 id="form-heading" class="visually-hidden">Application questions</h2>
+    <div class="form-card">
+      <form
+        id="bant-form"
+        action="/__bant_submit_placeholder"
+        method="POST"
+        novalidate
+      >
+        <!--
+          HUBSPOT FIELD MAPPING (port these in HubSpot form module):
+            Q1 → bant__need (or current Elevate equivalent — see README)
+            Q2 → bant__timing
+            Q3 → bant__authority
+            Q4 → bant__budget   ← see README; legacy field vs tsnc_bant__budget needs Jarrett confirmation
+        -->
+
+        <!-- Q1 — NEED (1-5 horizontal scale) -->
+        <fieldset class="nlca-form-field scale-fieldset">
+          <legend class="nlca-form-label">
+            How important is it to you to build a more fulfilling and financially rewarding nursing career?
+          </legend>
+
+          <div class="scale-options" role="radiogroup" aria-label="Importance scale, 1 to 5">
+            <div class="scale-option">
+              <input type="radio" id="need-1" name="bant__need" value="1" required />
+              <label for="need-1">
+                <span class="scale-num">1</span>
+                <span class="scale-text">Not important</span>
+              </label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-2" name="bant__need" value="2" />
+              <label for="need-2">
+                <span class="scale-num">2</span>
+                <span class="scale-text">&nbsp;</span>
+              </label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-3" name="bant__need" value="3" />
+              <label for="need-3">
+                <span class="scale-num">3</span>
+                <span class="scale-text">Neutral</span>
+              </label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-4" name="bant__need" value="4" />
+              <label for="need-4">
+                <span class="scale-num">4</span>
+                <span class="scale-text">&nbsp;</span>
+              </label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-5" name="bant__need" value="5" />
+              <label for="need-5">
+                <span class="scale-num">5</span>
+                <span class="scale-text">Extremely important</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Q2 — TIMING -->
+        <div class="nlca-form-field">
+          <label class="nlca-form-label" for="bant-timing">
+            When are you ready to start your Nurse Life Coach certification?
+          </label>
+          <select id="bant-timing" name="bant__timing" class="nlca-select" required>
+            <option value="" disabled selected>Choose your timeline&hellip;</option>
+            <!-- Final option list to be ported from current HubSpot field "bant__timing" -->
+            <option value="immediately">As soon as possible</option>
+            <option value="1-3-months">Within 1–3 months</option>
+            <option value="3-6-months">Within 3–6 months</option>
+            <option value="6-plus-months">6+ months from now</option>
+            <option value="just-exploring">Just exploring for now</option>
+          </select>
+        </div>
+
+        <!-- Q3 — AUTHORITY -->
+        <div class="nlca-form-field">
+          <label class="nlca-form-label" for="bant-authority">
+            Will anyone else be part of this decision with you?
+          </label>
+          <select id="bant-authority" name="bant__authority" class="nlca-select" required>
+            <option value="" disabled selected>Just me, or someone else too&hellip;</option>
+            <!-- Final option list to be ported from current HubSpot field "bant__authority" -->
+            <option value="just-me">Just me</option>
+            <option value="spouse-partner">My spouse/partner</option>
+            <option value="family-member">A family member</option>
+            <option value="other">Someone else</option>
+          </select>
+        </div>
+
+        <!-- Q4 — BUDGET (price moved out of label) -->
+        <div class="nlca-form-field">
+          <label class="nlca-form-label" for="bant-budget">
+            If this certification is the right fit, are you open to investing in your coaching practice?
+          </label>
+          <select id="bant-budget" name="bant__budget" class="nlca-select" required>
+            <option value="" disabled selected>Choose your situation&hellip;</option>
+            <option value="ready">Yes — I&rsquo;m ready to invest</option>
+            <option value="explore-payment">I&rsquo;d like to explore payment options</option>
+            <option value="not-now">Not at this time</option>
+          </select>
+          <small class="nlca-form-help">Program investment: from $625/month or $4,499 paid in full. Most graduates earn this back within their first 3 clients.</small>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="form-submit-wrap">
+          <button type="submit" class="nlca-btn" id="bant-submit">
+            <span>See if I qualify</span>
+            <!-- Heroicons / arrow-right (mini) -->
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+              <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <small class="form-microcopy">You&rsquo;ll find out right away &mdash; if it&rsquo;s a great fit, your advisor call link appears instantly.</small>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CALENDAR REVEAL (hidden until qualified submit)
+       ============================================ -->
+  <section class="calendar-section" id="calendar-section" aria-hidden="true">
+    <div class="calendar-section__inner">
+      <h2 class="calendar-section__lede">You&rsquo;re in &mdash; pick a time that works for you.</h2>
+      <p class="calendar-section__sub">Your call will be a relaxed, no-pressure conversation with our advisor team to make sure this certification is the right fit.</p>
+
+      <div class="calendar-embed" id="calendar-embed-target">
+        <!-- HubSpot meeting link iframe goes here -->
+        <!-- Example replacement (Sanskriti to swap in actual meeting URL):
+             <iframe src="https://meetings.hubspot.com/<advisor-handle>?embed=true"
+                     style="min-width:320px; min-height:600px; width:100%; border:0;"
+                     loading="lazy"
+                     title="Schedule your advisor call"></iframe>
+        -->
+        <svg class="calendar-embed__placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+          <rect x="3" y="5" width="18" height="16" rx="2" ry="2"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <line x1="8" y1="3" x2="8" y2="7"/>
+          <line x1="16" y1="3" x2="16" y2="7"/>
+        </svg>
+        <span>HubSpot meeting embed loads here.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER (matches live BANT footer)
+       ============================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="site-footer__est">Est. 2018</p>
+    <a href="https://nurselifecoachacademy.com" aria-label="Nurse Life Coach Academy — home">
+      <img
+        class="site-footer__logo"
+        src="https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_TertiaryLogo_01a-01.png"
+        alt="Nurse Life Coach Academy"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+    <p class="site-footer__tagline">Become Board Certified</p>
+    <p class="site-footer__copy">&copy; 2026. All rights reserved.</p>
+  </footer>
+
+  <!-- ============================================
+       Inline calendar reveal logic
+       Graceful: form still submits to action= URL when JS disabled.
+       ============================================ -->
+  <script>
+    (function () {
+      var form = document.getElementById('bant-form');
+      if (!form) return;
+
+      // ---- HubSpot port note: -----------------------------
+      // Replace this URL with the canonical NQ landing page once
+      // confirmed by Jarrett. Keep the v2-nq path here as a sane
+      // placeholder so the page still routes the user somewhere
+      // sensible if it ships before the URL is finalized.
+      var NQ_REDIRECT = 'https://discover.nurselifecoachacademy.com/v2-nq';
+
+      var step1 = document.getElementById('progress-step-1');
+      var step1Num = document.getElementById('progress-step-1-num');
+      var step2 = document.getElementById('progress-step-2');
+      var step2Num = document.getElementById('progress-step-2-num');
+      var connector = document.getElementById('progress-connector');
+      var formSection = document.getElementById('form-section');
+      var calendarSection = document.getElementById('calendar-section');
+      var hero = document.getElementById('hero');
+
+      var checkmarkSvg = '<svg class="progress-step__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 0 1 .006 1.06l-7.25 7.5a.75.75 0 0 1-1.07.012l-3.75-3.75a.75.75 0 1 1 1.06-1.06l3.207 3.207 6.717-6.969a.75.75 0 0 1 1.08 0z" clip-rule="evenodd"/></svg>';
+
+      function setQualifiedState() {
+        // Step 1 → completed (checkmark)
+        step1.classList.remove('progress-step--active');
+        step1.classList.add('progress-step--complete');
+        step1.removeAttribute('aria-current');
+        step1Num.innerHTML = checkmarkSvg;
+
+        // Connector → filled
+        connector.classList.add('progress-connector--filled');
+
+        // Step 2 → active (unlocked)
+        step2.classList.remove('progress-step--locked');
+        step2.classList.add('progress-step--active');
+        step2.setAttribute('aria-current', 'step');
+        step2Num.textContent = '2';
+
+        // Hide form + hero copy, reveal calendar
+        formSection.style.display = 'none';
+        hero.style.display = 'none';
+        calendarSection.classList.add('is-visible');
+        calendarSection.setAttribute('aria-hidden', 'false');
+
+        // Smooth scroll to calendar
+        var top = calendarSection.getBoundingClientRect().top + window.pageYOffset - 60;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+
+        // Move focus into calendar section for screen readers
+        calendarSection.setAttribute('tabindex', '-1');
+        calendarSection.focus({ preventScroll: true });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Native validation
+        var allValid = form.checkValidity();
+        if (!allValid) {
+          form.reportValidity();
+          return;
+        }
+
+        var budget = (form.querySelector('[name="bant__budget"]') || {}).value;
+
+        // BANT routing logic (mirror current Elevate logic):
+        // - "not-now" → not qualified → redirect
+        // - everything else → qualified → reveal calendar inline
+        if (budget === 'not-now') {
+          window.location.href = NQ_REDIRECT;
+          return;
+        }
+
+        setQualifiedState();
+      });
+    })();
+  </script>
+
+</body>
+</html>
