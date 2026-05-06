@@ -19,13 +19,10 @@
           cream: '#FBF7F0',
           charcoal: '#1A1A1A',
           'lulu-pink': '#E94B7B',
-          peach: '#FFB99A',
-          butter: '#FFE066',
-          blush: '#FFD1DC',
-          sage: '#B8D8C0',
-          caramel: '#C8954A',
-          plum: '#5A2A4D',
-          'lime-accent': '#BFFC33'
+          'lulu-pink-soft': '#FBE4ED',
+          'lulu-lavender': '#A593BF',
+          'lulu-lavender-soft': '#E8E2F0',
+          'lulu-purple': '#5A2A4D'
         },
         fontFamily: {
           display: ['Fraunces', 'serif'],
@@ -43,13 +40,10 @@
     --cream: #FBF7F0;
     --charcoal: #1A1A1A;
     --lulu-pink: #E94B7B;
-    --peach: #FFB99A;
-    --butter: #FFE066;
-    --blush: #FFD1DC;
-    --sage: #B8D8C0;
-    --caramel: #C8954A;
-    --plum: #5A2A4D;
-    --lime-accent: #BFFC33;
+    --lulu-pink-soft: #FBE4ED;
+    --lulu-lavender: #A593BF;
+    --lulu-lavender-soft: #E8E2F0;
+    --lulu-purple: #5A2A4D;
   }
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   html { scroll-behavior: smooth; }
@@ -160,7 +154,7 @@
   /* === Tagline-on-angle sticker === */
   .sticker-angle {
     display: inline-block;
-    background: var(--lime-accent);
+    background: var(--lulu-pink);
     color: var(--charcoal);
     padding: 8px 16px;
     border-radius: 8px;
@@ -313,7 +307,7 @@
     position: absolute;
     top: 14px;
     left: 14px;
-    background: var(--lime-accent);
+    background: var(--lulu-pink);
     color: var(--charcoal);
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
@@ -544,12 +538,84 @@
     }
   }
 
-  /* === Mobile tweaks === */
+  /* === Hero banner === */
+  .hero-banner {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 64px 24px 70px;
+  }
+  .hero-image img { transition: transform .5s ease; }
+  .hero-banner:hover .hero-image img { transform: rotate(-1deg) scale(1.02); }
+  .hero-sub { font-size: 17px; }
+
+  /* === Filter bar (sticky on mobile) === */
+  .filter-bar {
+    background: var(--cream);
+    border-bottom: 1px solid #ECE6D8;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+  .filter-bar .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 12px 0;
+  }
+  .filter-bar .filter-row::-webkit-scrollbar { display: none; }
+
+  /* === Mood tile palette variants === */
+  .mood-tile.tile-cream { background: var(--cream); border: 1px solid #ECE6D8; }
+  .mood-tile.tile-lavender { background: var(--lulu-lavender-soft); }
+  .mood-tile.tile-pink { background: var(--lulu-pink-soft); }
+  .mood-tile.tile-dark { background: var(--lulu-purple); color: var(--cream); }
+  .mood-tile.tile-dark .eyebrow,
+  .mood-tile.tile-dark p { color: rgba(251,247,240,.85) !important; }
+
+  /* === Mobile-first tweaks === */
   @media (max-width: 768px) {
     .section-pad { padding-top: 40px; padding-bottom: 40px; }
-    .h-hero { font-size: 44px; }
+    .h-hero { font-size: clamp(38px, 9vw, 52px) !important; line-height: 0.96; }
+    .h-section { font-size: clamp(30px, 7vw, 42px) !important; }
+    .h-display { font-size: clamp(34px, 8vw, 48px) !important; }
+    .hero-sub { font-size: 15px; }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 36px 20px 48px;
+      text-align: left;
+    }
+    .hero-image { order: -1; max-width: 280px; margin: 0 auto; }
+    .hero-image img { max-width: 280px !important; }
     .nav-desktop { display: none; }
+    /* Bigger touch targets */
+    .btn-pill { padding: 12px 20px !important; min-height: 44px; }
+    .filter-pill { padding: 11px 16px !important; min-height: 42px; }
+    .mood-tile { min-height: 220px; padding: 24px !important; }
+    /* Single-column mood tiles on small phones */
+    .mood-tile-grid { grid-template-columns: 1fr !important; }
+    /* Tighter card spacing */
+    .product-card { padding: 12px 12px 14px; }
+    .product-card .product-title { font-size: 15px; }
+    .product-card .product-tagline { font-size: 12px; }
+    .product-card .product-price { font-size: 15px; }
+    /* Container side gutter */
+    .container-x { padding-left: 16px; padding-right: 16px; }
   }
+
+  /* Mood tiles: 2-up on tablets, 3-up on desktop */
+  @media (min-width: 480px) and (max-width: 768px) {
+    .mood-tile-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+
   @media (min-width: 769px) {
     .mobile-menu-btn { display: none; }
   }
@@ -635,18 +701,18 @@
 </header>
 
 <!-- ============ 3. HERO ============ -->
-<section style="background:var(--peach);" class="relative overflow-hidden">
+<section class="hero-banner" style="background:var(--lulu-lavender-soft);" class="relative overflow-hidden">
   <!-- decorative squiggle SVG, top-left -->
-  <svg class="squiggle" style="position:absolute;top:30px;left:5%;width:120px;height:30px;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
+  <svg class="squiggle" style="position:absolute;top:24px;left:5%;width:120px;height:30px;color:var(--lulu-purple);opacity:.55;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
     <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
   </svg>
 
-  <div class="container-x grid md:grid-cols-2 gap-10 items-center" style="padding:80px 24px 90px;">
+  <div class="container-x hero-grid items-center">
     <!-- Copy column -->
     <div>
-      <div class="eyebrow mb-4" style="color:var(--charcoal);">SPIKED. JARRED. SHIPPED.</div>
+      <div class="eyebrow mb-3" style="color:var(--lulu-purple);">SPIKED. JARRED. SHIPPED.</div>
 
-      <h1 class="h-hero mb-6">
+      <h1 class="h-hero mb-5">
         <span class="stagger-word" style="animation-delay:.05s">Cake</span>
         <span class="stagger-word" style="animation-delay:.13s">With</span>
         <span class="stagger-word" style="animation-delay:.21s">A</span>
@@ -657,40 +723,112 @@
         <span class="stagger-word" style="animation-delay:.61s">Required.</span>
       </h1>
 
-      <p class="text-lg md:text-xl mb-8 max-w-xl" style="color:rgba(26,26,26,.82); line-height:1.5;">
+      <p class="hero-sub mb-7 max-w-xl" style="color:rgba(26,26,26,.82); line-height:1.5;">
         8 oz of scratch-made cake, ~3% booze, zero sharing required. Spoon goes in — manners go out.
       </p>
 
-      <div class="flex flex-wrap items-center gap-4">
+      <div class="flex flex-wrap items-center gap-3">
         <a href="#products" class="btn-pill btn-pink">Spoon Me One</a>
         <a href="#" class="btn-pill btn-outline">Build My Bundle</a>
       </div>
     </div>
 
     <!-- Image column -->
-    <div class="relative flex justify-center md:justify-end">
+    <div class="hero-image relative flex justify-center md:justify-end">
       <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/4tallwithbackground.png?v=1768594748"
            alt="Four Lulu Liquor Cake jars stacked — Favorites Pack"
            fetchpriority="high" decoding="async"
-           style="max-width:520px;width:100%;height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.18));" />
+           style="max-width:460px;width:100%;height:auto;filter:drop-shadow(0 18px 30px rgba(90,42,77,.22));" />
       <!-- Tagline-on-angle sticker -->
-      <span class="sticker-angle sticker-bounce" style="position:absolute;top:18px;right:0%;">
-        ⚠️ Warning: Dangerously Good 🥃
+      <span class="sticker-angle sticker-bounce" style="position:absolute;top:14px;right:0%;background:var(--lulu-pink);color:#fff;">
+        ⚠️ Dangerously Good 🥃
       </span>
-      <!-- Decorative arrow SVG -->
-      <svg style="position:absolute;bottom:5%;left:-20px;width:90px;height:60px;color:var(--charcoal);" viewBox="0 0 90 60" fill="none" aria-hidden="true">
-        <path d="M5 50 C 25 10, 55 10, 80 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="0"/>
-        <path d="M70 22 L 82 28 L 74 38" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-      <span class="hand" style="position:absolute;bottom:0;left:-40px;font-size:24px;transform:rotate(-6deg);">spoon goes here</span>
     </div>
   </div>
 </section>
 
-<!-- ============ 4. FILTER PILLS ============ -->
-<section style="background:var(--cream);border-bottom:1px solid #ECE6D8;">
-  <div class="container-x py-6 reveal">
-    <div class="flex items-center gap-4 overflow-x-auto pb-2 md:pb-0" style="scrollbar-width:none;">
+<!-- ============ 4. SHOP BY MOOD (Category tiles) ============ -->
+<section class="section-pad" style="background:var(--cream);">
+  <div class="container-x reveal">
+    <div class="mb-8 md:mb-10 text-center">
+      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">PICK YOUR VIBE</div>
+      <h2 class="h-section">Shop By Mood, <span class="accent-italic" style="color:var(--lulu-pink);">Not Just Flavor</span></h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 mood-tile-grid">
+      <!-- Tile 1: Brunch -->
+      <article class="mood-tile tile-cream">
+        <div>
+          <div class="eyebrow mb-3">🥂 BOOZY BRUNCH</div>
+          <h3>Boozy Brunch</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Mimosas left the chat. We've got cake.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Pour Me Brunch →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 2: Bachelorette -->
+      <article class="mood-tile tile-pink">
+        <div>
+          <div class="eyebrow mb-3">💍 PARTY MODE</div>
+          <h3>Bachelorette Bash</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">For the bride who'd rather have cake than chaos.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Bring The Party →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 3: Birthday -->
+      <article class="mood-tile tile-lavender">
+        <div>
+          <div class="eyebrow mb-3">🎂 ANOTHER YEAR</div>
+          <h3>Birthday Buzz</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Candles optional. Cake spike, mandatory.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Make A Wish →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 4: Date Night -->
+      <article class="mood-tile tile-cream">
+        <div>
+          <div class="eyebrow mb-3">💋 TWO SPOONS</div>
+          <h3>Date Night</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Two spoons. One jar. Excellent decisions.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Set The Mood →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 5: Mom's Day Off -->
+      <article class="mood-tile tile-dark">
+        <div>
+          <div class="eyebrow mb-3">👑 SHE EARNED IT</div>
+          <h3 style="color:var(--cream);">Mom's Day Off</h3>
+          <p class="mt-2 text-sm">She earned this. Don't argue.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill" style="background:var(--lulu-pink);color:#fff;"><span>Treat Mom →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 6: Just Because -->
+      <article class="mood-tile tile-lavender">
+        <div>
+          <div class="eyebrow mb-3">🤷 NO REASON</div>
+          <h3>Just Because</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Tuesday is a personality, not a problem.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Spoil Me →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="" class="mood-tile-img" />
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. FILTER PILLS (sticky on mobile) ============ -->
+<section class="filter-bar">
+  <div class="container-x reveal">
+    <div class="filter-row">
       <span class="eyebrow flex-shrink-0" style="color:rgba(26,26,26,.55);">FILTER:</span>
       <button class="filter-pill active">All Flavors</button>
       <button class="filter-pill">🥃 Bourbon-y</button>
@@ -703,111 +841,23 @@
   </div>
 </section>
 
-<!-- ============ 5. SHOP BY MOOD ============ -->
-<section class="section-pad" style="background:var(--cream);">
-  <div class="container-x reveal">
-    <div class="mb-10 text-center">
-      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">PICK YOUR VIBE</div>
-      <h2 class="h-section">Shop By Mood, <span class="accent-italic" style="color:var(--lulu-pink);">Not Just Flavor</span></h2>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
-      <!-- Tile 1: Brunch (peach) -->
-      <article class="mood-tile" style="background:var(--peach);">
-        <div>
-          <div class="eyebrow mb-3">🥂 BOOZY BRUNCH</div>
-          <h3>Boozy Brunch</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Mimosas left the chat. We've got cake.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Pour Me Brunch →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 2: Bachelorette (blush) -->
-      <article class="mood-tile" style="background:var(--blush);">
-        <div>
-          <div class="eyebrow mb-3">💍 PARTY MODE</div>
-          <h3>Bachelorette Bash</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">For the bride who'd rather have cake than chaos.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Bring The Party →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 3: Birthday (butter) -->
-      <article class="mood-tile" style="background:var(--butter);">
-        <div>
-          <div class="eyebrow mb-3">🎂 ANOTHER YEAR</div>
-          <h3>Birthday Buzz</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Candles optional. Cake spike, mandatory.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Make A Wish →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 4: Date Night (sage) -->
-      <article class="mood-tile" style="background:var(--sage);">
-        <div>
-          <div class="eyebrow mb-3">💋 TWO SPOONS</div>
-          <h3>Date Night</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Two spoons. One jar. Excellent decisions.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Set The Mood →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 5: Mom's Day Off (caramel) -->
-      <article class="mood-tile" style="background:var(--caramel);color:var(--cream);">
-        <div>
-          <div class="eyebrow mb-3" style="color:var(--cream);">👑 SHE EARNED IT</div>
-          <h3 style="color:var(--cream);">Mom's Day Off</h3>
-          <p class="mt-2 text-sm" style="color:rgba(251,247,240,.85);max-width:60%;">She earned this. Don't argue.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#" class="btn-pill" style="background:var(--cream);color:var(--charcoal);"><span>Treat Mom →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 6: Just Because (blush again w/ peach overlay vibe) -->
-      <article class="mood-tile" style="background:var(--blush);">
-        <div>
-          <div class="eyebrow mb-3">🤷 NO REASON</div>
-          <h3>Just Because</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Tuesday is a personality, not a problem.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Spoil Me →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="" class="mood-tile-img" />
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 6. TRENDING FLAVORS HEADER ============ -->
-<section style="background:var(--butter);" class="section-pad relative overflow-hidden">
-  <!-- decorative squiggle bottom-right -->
-  <svg class="squiggle" style="position:absolute;bottom:24px;right:6%;width:140px;height:30px;" viewBox="0 0 140 30" fill="none" aria-hidden="true">
-    <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 122 15 T 138 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  </svg>
-
-  <div class="container-x text-center reveal">
-    <div class="eyebrow mb-4" style="color:var(--charcoal);">THIS WEEK'S HEAVY POURS</div>
-    <h2 class="h-display mb-4">
-      Currently Flying<br>
-      <span class="accent-italic" style="color:var(--lulu-pink);">Off The Shelf</span>
-      <span class="sticker-angle" style="vertical-align:middle;margin-left:8px;font-size:11px;">🔥 hot</span>
-    </h2>
-    <p class="text-lg max-w-2xl mx-auto" style="color:rgba(26,26,26,.78);">
-      The flavors stealing every brunch table, baby shower, and "I deserve this" moment.
-    </p>
-  </div>
-</section>
-
-<!-- ============ 7. PRODUCT GRID 1 (12 cards) ============ -->
+<!-- ============ 6. PRODUCT GRID — All 24 Cake Jars ============ -->
 <section id="products" class="section-pad" style="background:var(--cream);">
   <div class="container-x reveal">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <div class="text-center mb-10 md:mb-12">
+      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">THIS WEEK'S HEAVY POURS</div>
+      <h2 class="h-section">All The <span class="accent-italic" style="color:var(--lulu-pink);">Cake Jars</span>
+        <span class="sticker-angle" style="vertical-align:middle;margin-left:8px;font-size:11px;background:var(--lulu-pink);color:#fff;">🔥 hot</span>
+      </h2>
+      <p class="text-base md:text-lg mt-3 max-w-2xl mx-auto" style="color:rgba(26,26,26,.7);">
+        24 flavors. 8 oz. ~3% booze. Every one made from scratch.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
 
       <!-- Card 1: Bourbon Vanilla -->
-      <article class="product-card" style="background:var(--peach);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-hot">⭐ TOP 10</div>
         <div class="img-panel">
           <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="Bourbon Vanilla Liquor Cake Jar — front view" />
@@ -834,7 +884,7 @@
       </article>
 
       <!-- Card 3: Pineapple Upside Down -->
-      <article class="product-card" style="background:var(--butter);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="Pineapple Upside Down Cake Liquor Cake Jar" />
         </div>
@@ -847,7 +897,7 @@
       </article>
 
       <!-- Card 4: Strawberry Margarita -->
-      <article class="product-card" style="background:var(--blush);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="Strawberry Margarita Liquor Cake Jar" />
         </div>
@@ -860,7 +910,7 @@
       </article>
 
       <!-- Card 5: Kid Cookies & Cream -->
-      <article class="product-card" style="background:var(--sage);">
+      <article class="product-card" style="background:var(--lulu-lavender-soft);">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/image_a392f246-a222-4609-b19f-a641db20178f.jpg?v=1762526886" alt="Kid Cookies and Cream Cake Jar" />
         </div>
@@ -886,7 +936,7 @@
       </article>
 
       <!-- Card 7: Luck of the Irish (SALE) -->
-      <article class="product-card" style="background:var(--peach);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-sale">On Sale, Spoons Up</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/LuckoftheIrish3_jpg.png?v=1771617084" alt="Luck of the Irish Liquor Cake Jar" />
@@ -900,7 +950,7 @@
       </article>
 
       <!-- Card 8: Irish Car Bomb -->
-      <article class="product-card" style="background:var(--butter);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IrishCarBomb.png?v=1770858723" alt="Irish Car Bomb Liquor Cake Jar" />
         </div>
@@ -913,7 +963,7 @@
       </article>
 
       <!-- Card 9: Salty Monster (SALE) -->
-      <article class="product-card" style="background:var(--blush);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-sale">Last Call Pricing</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/SaltyMonster.png?v=1770858341" alt="Salty Monster Liquor Cake Jar" />
@@ -941,7 +991,7 @@
       </article>
 
       <!-- Card 11: Amaretto Coffee -->
-      <article class="product-card" style="background:var(--peach);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/AmarettoCoffee.png?v=1770943072" alt="Amaretto Coffee Liquor Cake Jar" />
         </div>
@@ -954,7 +1004,7 @@
       </article>
 
       <!-- Card 12: Carrot Cake -->
-      <article class="product-card" style="background:var(--butter);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CarrotCake2.png?v=1772211466" alt="Carrot Cake Liquor Cake Jar" />
         </div>
@@ -966,48 +1016,8 @@
         </div>
       </article>
 
-    </div>
-  </div>
-</section>
-
-<!-- ============ 8. EDITORIAL MID-GRID BREAK (deep plum) ============ -->
-<section class="section-pad" style="background:var(--plum);color:var(--cream);">
-  <div class="container-x grid md:grid-cols-2 gap-12 items-center reveal">
-    <div>
-      <div class="eyebrow mb-4" style="color:var(--lulu-pink);">LIMITED POUR, MONTHLY DROP</div>
-      <h2 class="h-display mb-6" style="color:var(--cream);">
-        She's New.<br>
-        She's Boozy.<br>
-        <span class="accent-italic" style="color:var(--butter);">She's Almost Gone.</span>
-      </h2>
-      <p class="text-lg mb-8 max-w-md" style="color:rgba(251,247,240,.82); line-height:1.55;">
-        Every month a new flavor sneaks into the lineup — and ghosts just as fast. Snag her before she vanishes, or spend the next 30 days regretting it.
-      </p>
-      <a href="#" class="btn-pill btn-pink">Catch The Drop</a>
-    </div>
-    <div class="relative">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop"
-           alt="Editorial cake & cocktail moment, soft warm light"
-           style="width:100%;border-radius:20px;aspect-ratio:4/5;object-fit:cover;box-shadow:0 24px 40px rgba(0,0,0,.3);" />
-      <span class="sticker-angle" style="position:absolute;top:20px;right:20px;background:var(--butter);">
-        🆕 New Drop
-      </span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 9. PRODUCT GRID 2 (12 more cards) ============ -->
-<section class="section-pad" style="background:var(--cream);">
-  <div class="container-x reveal">
-    <div class="text-center mb-10">
-      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">MORE WHERE THAT CAME FROM</div>
-      <h2 class="h-section">The <span class="accent-italic" style="color:var(--lulu-pink);">Rest of the Lineup</span></h2>
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-
       <!-- Card 13: Orange Creamsicle -->
-      <article class="product-card" style="background:var(--peach);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/OrangeCream.png?v=1773349232" alt="Orange Creamsicle Liquor Cake Jar" />
         </div>
@@ -1033,7 +1043,7 @@
       </article>
 
       <!-- Card 15: Lemon Blueberry Cheesecake -->
-      <article class="product-card" style="background:var(--butter);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/LemonBBC2.png?v=1773349232" alt="Lemon Blueberry Cheesecake Liquor Cake Jar" />
         </div>
@@ -1046,7 +1056,7 @@
       </article>
 
       <!-- Card 16: Peanut Butter Pretzel -->
-      <article class="product-card" style="background:var(--blush);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/PeanutButterPretzel.png?v=1770859111" alt="Peanut Butter Pretzel Liquor Cake Jar" />
         </div>
@@ -1073,7 +1083,7 @@
       </article>
 
       <!-- Card 18: Butter Beer -->
-      <article class="product-card" style="background:var(--peach);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-hot">🔥 HOT</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Butterbeer_449a4361-d15b-46a3-b1f9-22c414817ac2.png?v=1771537308" alt="Butter Beer Liquor Cake Jar" />
@@ -1087,7 +1097,7 @@
       </article>
 
       <!-- Card 19: Chai Tea Latte -->
-      <article class="product-card" style="background:var(--butter);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="Chai Tea Latte Liquor Cake Jar" />
         </div>
@@ -1100,7 +1110,7 @@
       </article>
 
       <!-- Card 20: Coconut Mango -->
-      <article class="product-card" style="background:var(--sage);">
+      <article class="product-card" style="background:var(--lulu-lavender-soft);">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CoconutMango.png?v=1772210317" alt="Coconut Mango Liquor Cake Jar" />
         </div>
@@ -1113,7 +1123,7 @@
       </article>
 
       <!-- Card 21: Fruity Bam (SALE) -->
-      <article class="product-card" style="background:var(--blush);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-sale">Boozy Bargain</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/FruityBam3.png?v=1773349232" alt="Fruity Bam Liquor Cake Jar" />
@@ -1127,7 +1137,7 @@
       </article>
 
       <!-- Card 22: The Elvis -->
-      <article class="product-card" style="background:var(--peach);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-hot">⭐ TOP 10</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="The Elvis Liquor Cake Jar" />
@@ -1141,7 +1151,7 @@
       </article>
 
       <!-- Card 23: Cotton Candy Sprite -->
-      <article class="product-card" style="background:var(--butter);">
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="Cotton Candy Sprite Liquor Cake Jar" />
         </div>
@@ -1170,65 +1180,16 @@
   </div>
 </section>
 
-<!-- ============ 10. POLAROID LIFESTYLE STRIP ============ -->
-<section class="section-pad relative" style="background:var(--cream);">
-  <div class="container-x reveal">
-    <div class="text-center mb-12">
-      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">SPOTTED IN THE WILD</div>
-      <h2 class="h-section">Real Jars. <span class="accent-italic" style="color:var(--lulu-pink);">Real Spoons.</span></h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto relative">
-
-      <div class="polaroid" style="transform:rotate(-3deg);">
-        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/4tallwithbackground.png?v=1768594748" alt="Stack of four Lulu jars" />
-        <div class="cap">brunch crew assemble</div>
-      </div>
-
-      <!-- arrow between 1 & 2 (desktop only) -->
-      <svg class="hidden md:block" style="position:absolute;top:38%;left:31%;width:80px;height:60px;color:var(--lulu-pink);transform:rotate(8deg);" viewBox="0 0 80 60" fill="none" aria-hidden="true">
-        <path d="M5 30 Q 30 5, 60 35" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path d="M52 28 L 62 38 L 50 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-
-      <div class="polaroid" style="transform:rotate(5deg);">
-        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CherryAlmond.png?v=1775505833" alt="Cherry Almond Mother's Day cake jar" />
-        <div class="cap">she said yes (to seconds)</div>
-      </div>
-
-      <!-- arrow between 2 & 3 (desktop only) -->
-      <svg class="hidden md:block" style="position:absolute;top:38%;left:64%;width:80px;height:60px;color:var(--lulu-pink);transform:rotate(-8deg);" viewBox="0 0 80 60" fill="none" aria-hidden="true">
-        <path d="M5 30 Q 30 50, 60 25" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path d="M50 22 L 62 25 L 56 36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
-
-      <div class="polaroid" style="transform:rotate(-2deg);">
-        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Mystery_box_4.png?v=1776958812" alt="Mystery Box of four Lulu jars" />
-        <div class="cap">the mystery hits different</div>
-      </div>
-
-    </div>
+<!-- ============ A+ CONTENT DIVIDER ============ -->
+<section class="apl-divider" style="background:var(--lulu-purple);color:var(--cream);text-align:center;padding:32px 24px;">
+  <div class="container-x">
+    <div class="eyebrow" style="color:var(--cream);opacity:.85;">A LITTLE MORE LULU ↓</div>
+    <h3 class="mt-2" style="font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:clamp(24px,3.5vw,32px);color:var(--cream);">why we're worth a spoon</h3>
   </div>
 </section>
 
-<!-- ============ 11. CONFETTI BREAK ============ -->
-<section class="section-pad confetti-wrap" style="background:var(--blush);text-align:center;">
-  <!-- 30 confetti pieces -->
-  <div aria-hidden="true" id="confetti-container" style="position:absolute;inset:0;pointer-events:none;"></div>
-
-  <div class="container-x reveal relative" style="z-index:2;">
-    <div class="eyebrow mb-3" style="color:var(--lulu-pink);">THE OFFICIAL CALL</div>
-    <h2 class="h-display" style="font-size:clamp(48px,8vw,96px);">
-      🥄 <span class="accent-italic" style="color:var(--lulu-pink);">spoon's up</span>
-    </h2>
-    <p class="mt-4 text-lg max-w-xl mx-auto" style="color:rgba(26,26,26,.7);">
-      Pour, scoop, repeat. We'll handle the rest.
-    </p>
-  </div>
-</section>
-
-<!-- ============ 12. KID JARS CALLOUT (sage) ============ -->
-<section class="section-pad" style="background:var(--sage);">
+<!-- ============ A+ CONTENT — Kid Jars (lavender soft) ============ -->
+<section class="section-pad" style="background:var(--lulu-lavender-soft);">
   <div class="container-x reveal">
     <div class="grid md:grid-cols-2 gap-10 items-center">
       <div>
@@ -1270,13 +1231,13 @@
 </section>
 
 <!-- ============ 13. BOOZY BUTTER CROSS-SELL (caramel) ============ -->
-<section class="section-pad" style="background:var(--caramel);color:var(--cream);">
+<section class="section-pad" style="background:var(--lulu-purple);color:var(--cream);">
   <div class="container-x reveal grid md:grid-cols-2 gap-12 items-center">
     <div class="relative order-2 md:order-1">
       <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2550.jpg?v=1740507616"
            alt="Boozy Butter — spreadable boozy goodness"
            style="width:100%;border-radius:20px;aspect-ratio:1/1;object-fit:cover;box-shadow:0 24px 40px rgba(0,0,0,.3);" />
-      <span class="sticker-angle" style="position:absolute;bottom:20px;left:20px;background:var(--lime-accent);">
+      <span class="sticker-angle" style="position:absolute;bottom:20px;left:20px;background:var(--lulu-pink);">
         🧈 NEW SIDEKICK
       </span>
     </div>
@@ -1284,7 +1245,7 @@
       <div class="eyebrow mb-4" style="color:var(--cream);opacity:.85;">THE SIDEKICK</div>
       <h2 class="h-display mb-6" style="color:var(--cream);">
         Meet Boozy Butter.<br>
-        <span class="accent-italic" style="color:var(--butter);">Cake's Best Friend.</span>
+        <span class="accent-italic" style="color:var(--lulu-pink);">Cake's Best Friend.</span>
       </h2>
       <p class="text-lg mb-8 max-w-md" style="color:rgba(251,247,240,.88); line-height:1.55;">
         Spread it on toast, swirl it in coffee, eat it with a spoon at midnight — we won't tell. Made with the same love (and liquor) as the jars.
@@ -1306,19 +1267,19 @@
     </div>
 
     <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-      <article style="background:var(--peach);padding:28px;border-radius:16px;">
+      <article style="background:var(--cream); border:1px solid #ECE6D8;padding:28px;border-radius:16px;">
         <div style="color:var(--lulu-pink);font-size:20px;letter-spacing:2px;margin-bottom:10px;">★★★★★</div>
         <p class="display" style="font-size:22px;line-height:1.3;font-weight:600;margin-bottom:14px;">"I ordered for my mom. I ate hers. I ordered again."</p>
         <p style="font-size:13px;font-weight:600;color:rgba(26,26,26,.7);">— Sarah K., Verified Buyer</p>
       </article>
 
-      <article style="background:var(--butter);padding:28px;border-radius:16px;">
+      <article style="background:var(--cream); border:1px solid #ECE6D8;padding:28px;border-radius:16px;">
         <div style="color:var(--lulu-pink);font-size:20px;letter-spacing:2px;margin-bottom:10px;">★★★★★</div>
         <p class="display" style="font-size:22px;line-height:1.3;font-weight:600;margin-bottom:14px;">"The Bourbon Vanilla didn't make it past the front porch."</p>
         <p style="font-size:13px;font-weight:600;color:rgba(26,26,26,.7);">— Jenna M., Verified Buyer</p>
       </article>
 
-      <article style="background:var(--blush);padding:28px;border-radius:16px;">
+      <article style="background:var(--cream); border:1px solid #ECE6D8;padding:28px;border-radius:16px;">
         <div style="color:var(--lulu-pink);font-size:20px;letter-spacing:2px;margin-bottom:10px;">★★★★★</div>
         <p class="display" style="font-size:22px;line-height:1.3;font-weight:600;margin-bottom:14px;">"My book club has a problem. Her name is Lulu."</p>
         <p style="font-size:13px;font-weight:600;color:rgba(26,26,26,.7);">— Tasha R., Verified Buyer</p>
@@ -1328,7 +1289,7 @@
 </section>
 
 <!-- ============ 15. FOUNDER STRIP — LAURA (peach) ============ -->
-<section class="section-pad relative overflow-hidden" style="background:var(--peach);">
+<section class="section-pad relative overflow-hidden" style="background:var(--cream); border:1px solid #ECE6D8;">
   <!-- decorative squiggles -->
   <svg class="squiggle" style="position:absolute;top:40px;left:8%;width:120px;height:30px;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
     <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
@@ -1391,11 +1352,11 @@
 </section>
 
 <!-- ============ 17. NEWSLETTER (deep plum) ============ -->
-<section class="section-pad" style="background:var(--plum);color:var(--cream);">
+<section class="section-pad" style="background:var(--lulu-purple);color:var(--cream);">
   <div class="container-x reveal text-center max-w-2xl mx-auto">
-    <div class="eyebrow mb-4" style="color:var(--butter);">INSIDER LIST</div>
+    <div class="eyebrow mb-4" style="color:var(--lulu-pink);">INSIDER LIST</div>
     <h2 class="h-display mb-4" style="color:var(--cream);">
-      First Spoon <span class="accent-italic" style="color:var(--butter);">Privileges</span> 🥄
+      First Spoon <span class="accent-italic" style="color:var(--lulu-pink);">Privileges</span> 🥄
     </h2>
     <p class="text-lg mb-8" style="color:rgba(251,247,240,.85);">
       New flavors, secret drops, and Boozy Bucks — straight to your inbox.
@@ -1520,7 +1481,7 @@
     if (prefersReduced) return;
     var container = document.getElementById('confetti-container');
     if (!container) return;
-    var colors = ['#E94B7B', '#FFB99A', '#FFE066', '#B8D8C0', '#5A2A4D', '#BFFC33'];
+    var colors = ['#E94B7B', '#A593BF', '#5A2A4D', '#FBE4ED', '#1A1A1A'];
     var html = '';
     for (var i = 0; i < 30; i++) {
       var left = (Math.random() * 100).toFixed(1);
@@ -1553,7 +1514,7 @@
       spread: 65,
       startVelocity: 38,
       origin: origin,
-      colors: ['#E94B7B', '#FFB99A', '#FFE066', '#BFFC33', '#FFD1DC']
+      colors: ['#E94B7B', '#A593BF', '#5A2A4D', '#FBE4ED', '#FFFFFF']
     });
   }
   document.querySelectorAll('.add-cart').forEach(function(btn) {
