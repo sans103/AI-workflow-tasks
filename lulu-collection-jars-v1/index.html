@@ -199,41 +199,108 @@
     color: white;
   }
 
-  /* === Mood tile === */
+  /* === Mood tile (compact category thumbnail, dring-style) === */
   .mood-tile {
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    padding: 32px;
-    min-height: 320px;
+    border-radius: 14px;
+    aspect-ratio: 1 / 1.05;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     transition: transform .3s ease, box-shadow .3s ease;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
   }
   .mood-tile:hover {
-    transform: scale(1.04);
-    box-shadow: 0 18px 40px rgba(0,0,0,.12);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 28px rgba(0,0,0,.10);
   }
-  .mood-tile-img {
-    position: absolute;
-    right: -20px;
-    bottom: -20px;
-    width: 200px;
-    height: 200px;
-    opacity: 0.55;
+  .mood-tile .mood-img-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 14px 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mood-tile .mood-img-wrap img {
+    max-width: 88%;
+    max-height: 100%;
+    object-fit: contain;
     transition: transform .4s ease;
-    pointer-events: none;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,.08));
   }
-  .mood-tile:hover .mood-tile-img { transform: scale(1.05) rotate(-4deg); }
-  .mood-tile h3 {
-    transition: transform .3s ease;
-    font-size: 28px;
+  .mood-tile:hover .mood-img-wrap img { transform: scale(1.06) rotate(-3deg); }
+  .mood-tile .mood-meta {
+    padding: 10px 14px 16px;
+    text-align: center;
+  }
+  .mood-tile .mood-title {
+    font-family: 'Fraunces', serif;
     font-weight: 700;
-    line-height: 1.05;
+    font-size: 17px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
   }
-  .mood-tile:hover h3 { transform: translateY(-4px); }
+  .mood-tile .mood-emoji {
+    font-size: 14px;
+    margin-right: 4px;
+  }
+  .mood-tile.tile-dark .mood-title { color: var(--cream); }
+
+  /* === Flavor marquee (mid-page) === */
+  .flavor-marquee {
+    background: var(--lulu-purple);
+    color: var(--cream);
+    padding: 14px 0;
+    overflow: hidden;
+    border-top: 2px solid var(--lulu-pink);
+    border-bottom: 2px solid var(--lulu-pink);
+  }
+  .flavor-marquee-track {
+    display: flex;
+    gap: 36px;
+    white-space: nowrap;
+    animation: marquee 28s linear infinite;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .flavor-marquee:hover .flavor-marquee-track { animation-play-state: paused; }
+  .flavor-marquee-track span { display: inline-flex; align-items: center; gap: 12px; }
+
+  /* === Floating decorative stickers in product grid === */
+  .deco-sticker {
+    position: absolute;
+    font-size: 32px;
+    pointer-events: none;
+    opacity: .85;
+    z-index: 0;
+    animation: bounce-pulse 4s ease-in-out infinite;
+  }
+  .product-card .corner-sticker {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--lulu-pink);
+    color: #fff;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(233,75,123,.35);
+    transform: rotate(8deg);
+    z-index: 3;
+    border: 2px solid #fff;
+  }
+  .product-card:nth-child(7n+3) .corner-sticker { background: var(--lulu-lavender); transform: rotate(-6deg); box-shadow: 0 4px 10px rgba(165,147,191,.35); }
+  .product-card:nth-child(5n+2) .corner-sticker { background: var(--lulu-purple); transform: rotate(4deg); box-shadow: 0 4px 10px rgba(90,42,77,.35); }
 
   /* === Product card === */
   .product-card {
@@ -747,80 +814,45 @@
   </div>
 </section>
 
-<!-- ============ 4. SHOP BY MOOD (Category tiles) ============ -->
-<section class="section-pad" style="background:var(--cream);">
+<!-- ============ 4. SHOP BY MOOD (Compact category thumbnails, dring-style) ============ -->
+<section style="background:var(--cream);" class="py-10 md:py-12">
   <div class="container-x reveal">
-    <div class="mb-8 md:mb-10 text-center">
-      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">PICK YOUR VIBE</div>
-      <h2 class="h-section">Shop By Mood, <span class="accent-italic" style="color:var(--lulu-pink);">Not Just Flavor</span></h2>
+    <div class="flex items-end justify-between gap-4 mb-6 md:mb-8">
+      <div>
+        <div class="eyebrow mb-1" style="color:var(--lulu-pink);">PICK YOUR VIBE</div>
+        <h2 style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(28px,3.5vw,42px);line-height:1;letter-spacing:-0.01em;">
+          Shop By <span class="accent-italic" style="color:var(--lulu-pink);">Mood</span>
+        </h2>
+      </div>
+      <a href="#products" class="hidden md:inline-block" style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:rgba(26,26,26,.6);text-decoration:underline;text-underline-offset:4px;">view all flavors</a>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 mood-tile-grid">
-      <!-- Tile 1: Brunch -->
-      <article class="mood-tile tile-cream">
-        <div>
-          <div class="eyebrow mb-3">🥂 BOOZY BRUNCH</div>
-          <h3>Boozy Brunch</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Mimosas left the chat. We've got cake.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Pour Me Brunch →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" class="mood-tile-img" />
-      </article>
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
+      <a href="#products" class="mood-tile tile-cream">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🥂</span>Brunch</div></div>
+      </a>
 
-      <!-- Tile 2: Bachelorette -->
-      <article class="mood-tile tile-pink">
-        <div>
-          <div class="eyebrow mb-3">💍 PARTY MODE</div>
-          <h3>Bachelorette Bash</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">For the bride who'd rather have cake than chaos.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Bring The Party →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 3: Birthday -->
-      <article class="mood-tile tile-lavender">
-        <div>
-          <div class="eyebrow mb-3">🎂 ANOTHER YEAR</div>
-          <h3>Birthday Buzz</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Candles optional. Cake spike, mandatory.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Make A Wish →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 4: Date Night -->
-      <article class="mood-tile tile-cream">
-        <div>
-          <div class="eyebrow mb-3">💋 TWO SPOONS</div>
-          <h3>Date Night</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Two spoons. One jar. Excellent decisions.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Set The Mood →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 5: Mom's Day Off -->
-      <article class="mood-tile tile-dark">
-        <div>
-          <div class="eyebrow mb-3">👑 SHE EARNED IT</div>
-          <h3 style="color:var(--cream);">Mom's Day Off</h3>
-          <p class="mt-2 text-sm">She earned this. Don't argue.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill" style="background:var(--lulu-pink);color:#fff;"><span>Treat Mom →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="" class="mood-tile-img" />
-      </article>
-
-      <!-- Tile 6: Just Because -->
-      <article class="mood-tile tile-lavender">
-        <div>
-          <div class="eyebrow mb-3">🤷 NO REASON</div>
-          <h3>Just Because</h3>
-          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Tuesday is a personality, not a problem.</p>
-        </div>
-        <div class="relative z-10 mt-6"><a href="#products" class="btn-pill btn-dark"><span>Spoil Me →</span></a></div>
-        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="" class="mood-tile-img" />
-      </article>
+      <a href="#products" class="mood-tile tile-pink">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">💍</span>Bachelorette</div></div>
+      </a>
+      <a href="#products" class="mood-tile tile-lavender">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🎂</span>Birthday</div></div>
+      </a>
+      <a href="#products" class="mood-tile tile-cream">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">💋</span>Date Night</div></div>
+      </a>
+      <a href="#products" class="mood-tile tile-dark">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">👑</span>Mom's Day</div></div>
+      </a>
+      <a href="#products" class="mood-tile tile-lavender">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">✨</span>Just Because</div></div>
+      </a>
     </div>
   </div>
 </section>
@@ -841,9 +873,43 @@
   </div>
 </section>
 
+<!-- ============ 5b. FLAVOR MARQUEE ============ -->
+<div class="flavor-marquee" role="region" aria-label="Flavor list">
+  <div class="flavor-marquee-track" aria-hidden="false">
+    <span>BOURBON VANILLA</span><span>·</span>
+    <span>MUDSLIDE</span><span>·</span>
+    <span>STRAWBERRY MARGARITA</span><span>·</span>
+    <span>PINEAPPLE UPSIDE DOWN</span><span>·</span>
+    <span>IRISH CAR BOMB</span><span>·</span>
+    <span>SALTY MONSTER</span><span>·</span>
+    <span>BUTTER BEER</span><span>·</span>
+    <span>CHAI LATTE</span><span>·</span>
+    <span>CHOCOLATE MAPLE BACON</span><span>·</span>
+    <span>BOURBON VANILLA</span><span>·</span>
+    <span>MUDSLIDE</span><span>·</span>
+    <span>STRAWBERRY MARGARITA</span><span>·</span>
+    <span>PINEAPPLE UPSIDE DOWN</span><span>·</span>
+    <span>IRISH CAR BOMB</span><span>·</span>
+    <span>SALTY MONSTER</span><span>·</span>
+    <span>BUTTER BEER</span><span>·</span>
+    <span>CHAI LATTE</span><span>·</span>
+    <span>CHOCOLATE MAPLE BACON</span><span>·</span>
+  </div>
+</div>
+
 <!-- ============ 6. PRODUCT GRID — All 24 Cake Jars ============ -->
-<section id="products" class="section-pad" style="background:var(--cream);">
-  <div class="container-x reveal">
+<section id="products" class="section-pad relative overflow-hidden" style="background:var(--cream);">
+  <!-- Floating decorative stickers (background layer) -->
+  <span class="deco-sticker" style="top:140px;left:3%;animation-delay:0s;">🥃</span>
+  <span class="deco-sticker" style="top:300px;right:4%;animation-delay:.6s;">🍓</span>
+  <span class="deco-sticker" style="top:560px;left:6%;animation-delay:1.2s;">🍫</span>
+  <span class="deco-sticker" style="top:800px;right:3%;animation-delay:1.8s;">🍍</span>
+  <span class="deco-sticker" style="top:1100px;left:4%;animation-delay:2.4s;">🥄</span>
+  <span class="deco-sticker" style="top:1360px;right:5%;animation-delay:.3s;">🍪</span>
+  <span class="deco-sticker" style="top:1640px;left:2%;animation-delay:1.5s;">☕</span>
+  <span class="deco-sticker" style="top:1920px;right:6%;animation-delay:.9s;">🥥</span>
+
+  <div class="container-x reveal relative" style="z-index:1;">
     <div class="text-center mb-10 md:mb-12">
       <div class="eyebrow mb-3" style="color:var(--lulu-pink);">THIS WEEK'S HEAVY POURS</div>
       <h2 class="h-section">All The <span class="accent-italic" style="color:var(--lulu-pink);">Cake Jars</span>
@@ -859,6 +925,7 @@
       <!-- Card 1: Bourbon Vanilla -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-hot">⭐ TOP 10</div>
+        <div class="corner-sticker" aria-hidden="true">🥃</div>
         <div class="img-panel">
           <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="Bourbon Vanilla Liquor Cake Jar — front view" />
         </div>
@@ -872,6 +939,7 @@
 
       <!-- Card 2: Mudslide -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="corner-sticker" aria-hidden="true">🍫</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/MudslidewithOreo.png?v=1768594487" alt="Mudslide with Oreo Pieces Liquor Cake Jar" />
         </div>
@@ -885,6 +953,7 @@
 
       <!-- Card 3: Pineapple Upside Down -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="corner-sticker" aria-hidden="true">🍍</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="Pineapple Upside Down Cake Liquor Cake Jar" />
         </div>
@@ -898,6 +967,7 @@
 
       <!-- Card 4: Strawberry Margarita -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="corner-sticker" aria-hidden="true">🍓</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="Strawberry Margarita Liquor Cake Jar" />
         </div>
@@ -965,6 +1035,7 @@
       <!-- Card 9: Salty Monster (SALE) -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-sale">Last Call Pricing</div>
+        <div class="corner-sticker" aria-hidden="true">🥨</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/SaltyMonster.png?v=1770858341" alt="Salty Monster Liquor Cake Jar" />
         </div>
@@ -992,6 +1063,7 @@
 
       <!-- Card 11: Amaretto Coffee -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="corner-sticker" aria-hidden="true">☕</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/AmarettoCoffee.png?v=1770943072" alt="Amaretto Coffee Liquor Cake Jar" />
         </div>
@@ -1005,6 +1077,7 @@
 
       <!-- Card 12: Carrot Cake -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="corner-sticker" aria-hidden="true">🥕</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CarrotCake2.png?v=1772211466" alt="Carrot Cake Liquor Cake Jar" />
         </div>
@@ -1085,6 +1158,7 @@
       <!-- Card 18: Butter Beer -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-hot">🔥 HOT</div>
+        <div class="corner-sticker" aria-hidden="true">⚡</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Butterbeer_449a4361-d15b-46a3-b1f9-22c414817ac2.png?v=1771537308" alt="Butter Beer Liquor Cake Jar" />
         </div>
@@ -1098,6 +1172,7 @@
 
       <!-- Card 19: Chai Tea Latte -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="corner-sticker" aria-hidden="true">🍂</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="Chai Tea Latte Liquor Cake Jar" />
         </div>
@@ -1111,6 +1186,7 @@
 
       <!-- Card 20: Coconut Mango -->
       <article class="product-card" style="background:var(--lulu-lavender-soft);">
+        <div class="corner-sticker" aria-hidden="true">🥥</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CoconutMango.png?v=1772210317" alt="Coconut Mango Liquor Cake Jar" />
         </div>
@@ -1139,6 +1215,7 @@
       <!-- Card 22: The Elvis -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
         <div class="badge-hot">⭐ TOP 10</div>
+        <div class="corner-sticker" aria-hidden="true">👑</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="The Elvis Liquor Cake Jar" />
         </div>
@@ -1152,6 +1229,7 @@
 
       <!-- Card 23: Cotton Candy Sprite -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="corner-sticker" aria-hidden="true">🎡</div>
         <div class="img-panel">
           <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="Cotton Candy Sprite Liquor Cake Jar" />
         </div>
