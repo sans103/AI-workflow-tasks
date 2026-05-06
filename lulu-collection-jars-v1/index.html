@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Liquor Cake Jars — Cake With A Buzz | Lulu Liquor Cakes</title>
+<meta name="description" content="8 oz of scratch-made cake, ~3% booze, zero sharing required. Shop 24 liquor-infused cake jars + boozy butter. Spiked. Jarred. Shipped." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FBF7F0',
+          charcoal: '#1A1A1A',
+          'lulu-pink': '#E94B7B',
+          peach: '#FFB99A',
+          butter: '#FFE066',
+          blush: '#FFD1DC',
+          sage: '#B8D8C0',
+          caramel: '#C8954A',
+          plum: '#5A2A4D',
+          'lime-accent': '#BFFC33'
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          ui: ['DM Sans', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          hand: ['Caveat', 'cursive']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --cream: #FBF7F0;
+    --charcoal: #1A1A1A;
+    --lulu-pink: #E94B7B;
+    --peach: #FFB99A;
+    --butter: #FFE066;
+    --blush: #FFD1DC;
+    --sage: #B8D8C0;
+    --caramel: #C8954A;
+    --plum: #5A2A4D;
+    --lime-accent: #BFFC33;
+  }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .display { font-family: 'Fraunces', serif; }
+  .ui, button, nav, .eyebrow { font-family: 'DM Sans', sans-serif; }
+  .hand { font-family: 'Caveat', cursive; }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .container-x { max-width: 1280px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  .section-pad { padding-top: 50px; padding-bottom: 50px; }
+
+  /* === Marquee === */
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 10px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .marquee-track {
+    display: flex;
+    animation: marquee 40s linear infinite;
+    flex-shrink: 0;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track > span { padding: 0 24px; }
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* === Hero word stagger === */
+  .stagger-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: word-in 0.6s ease-out forwards;
+  }
+  @keyframes word-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === Pill button === */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-pink {
+    background: var(--lulu-pink);
+    color: white;
+  }
+  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(233,75,123,.35); }
+  .btn-outline {
+    background: white;
+    color: var(--charcoal);
+    border: 1.5px solid var(--charcoal);
+  }
+  .btn-outline:hover { background: var(--charcoal); color: white; }
+  .btn-dark {
+    background: var(--charcoal);
+    color: white;
+    padding: 11px 22px;
+    font-size: 13.5px;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--lulu-pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: 0;
+  }
+  .btn-dark:hover::before { transform: scaleX(1); }
+  .btn-dark > * { position: relative; z-index: 1; }
+
+  /* === Tagline-on-angle sticker === */
+  .sticker-angle {
+    display: inline-block;
+    background: var(--lime-accent);
+    color: var(--charcoal);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transform: rotate(-4deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  }
+  .sticker-bounce {
+    animation: bounce-pulse 3s ease-in-out infinite;
+  }
+  @keyframes bounce-pulse {
+    0%, 100% { transform: rotate(-4deg) scale(1); }
+    50% { transform: rotate(-4deg) scale(1.06); }
+  }
+
+  /* === Filter pills === */
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    background: white;
+    border: 1.5px solid var(--charcoal);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .filter-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,.08);
+  }
+  .filter-pill.active {
+    background: var(--charcoal);
+    color: white;
+  }
+
+  /* === Mood tile === */
+  .mood-tile {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 32px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform .3s ease, box-shadow .3s ease;
+    cursor: pointer;
+  }
+  .mood-tile:hover {
+    transform: scale(1.04);
+    box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  }
+  .mood-tile-img {
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    width: 200px;
+    height: 200px;
+    opacity: 0.55;
+    transition: transform .4s ease;
+    pointer-events: none;
+  }
+  .mood-tile:hover .mood-tile-img { transform: scale(1.05) rotate(-4deg); }
+  .mood-tile h3 {
+    transition: transform .3s ease;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  .mood-tile:hover h3 { transform: translateY(-4px); }
+
+  /* === Product card === */
+  .product-card {
+    position: relative;
+    border-radius: 16px;
+    padding: 16px 16px 18px;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-4px) rotate(1deg);
+    box-shadow: 0 14px 32px rgba(0,0,0,.10);
+  }
+  .product-card .img-panel {
+    background: white;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .product-card .img-panel img {
+    width: 88%;
+    height: 88%;
+    object-fit: contain;
+    transition: transform .5s ease;
+  }
+  .product-card:hover .img-panel img {
+    animation: jar-wiggle 0.6s ease-in-out;
+  }
+  @keyframes jar-wiggle {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-2deg); }
+    75%  { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+  }
+  .product-title {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .product-tagline {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 13.5px;
+    color: rgba(26,26,26,.72);
+    line-height: 1.35;
+    margin-bottom: 10px;
+    min-height: 36px;
+  }
+  .product-price {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--charcoal);
+  }
+  .price-strike {
+    text-decoration: line-through;
+    color: rgba(26,26,26,.5);
+    margin-right: 8px;
+    font-weight: 500;
+  }
+
+  /* Sale badge */
+  .badge-sale {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--lime-accent);
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transform: rotate(-6deg);
+    z-index: 2;
+    animation: bounce-pulse 3s ease-in-out infinite;
+  }
+  /* Sold-out sticker */
+  .badge-sold-out {
+    position: absolute;
+    top: 22px;
+    left: 14px;
+    background: var(--charcoal);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transform: rotate(-8deg);
+    z-index: 2;
+  }
+  .badge-hot {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--lulu-pink);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    z-index: 2;
+    animation: bounce-pulse 3s ease-in-out infinite;
+  }
+
+  /* === Section reveal === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === Confetti === */
+  .confetti-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+  .confetti-piece {
+    position: absolute;
+    top: -20px;
+    width: 10px;
+    height: 14px;
+    border-radius: 2px;
+    animation: confetti-fall linear infinite;
+  }
+  @keyframes confetti-fall {
+    0%   { transform: translate3d(var(--x, 0), -40px, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(calc(var(--x, 0) + 60px), 600px, 0) rotate(720deg); opacity: 0.85; }
+  }
+
+  /* === Polaroid === */
+  .polaroid {
+    background: var(--cream);
+    padding: 14px 14px 22px;
+    border-radius: 4px;
+    box-shadow: 0 14px 30px rgba(0,0,0,.12), 0 2px 6px rgba(0,0,0,.08);
+    transition: transform .3s ease;
+  }
+  .polaroid:hover { transform: scale(1.03) rotate(0deg) !important; }
+  .polaroid img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    display: block;
+    background: white;
+  }
+  .polaroid .cap {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 10px;
+    color: var(--charcoal);
+  }
+
+  /* === FAQ === */
+  details.faq {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+    border: 1px solid #ECE6D8;
+    transition: box-shadow .2s ease;
+  }
+  details.faq[open] {
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  }
+  details.faq summary {
+    cursor: pointer;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after {
+    content: '+';
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    color: var(--lulu-pink);
+    font-weight: 700;
+    transition: transform .2s ease;
+  }
+  details.faq[open] summary::after { transform: rotate(45deg); }
+  details.faq p {
+    margin-top: 10px;
+    color: rgba(26,26,26,.78);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* === Header === */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--cream);
+    border-bottom: 1px solid #ECE6D8;
+  }
+  .nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--charcoal);
+    position: relative;
+    padding: 6px 0;
+    white-space: nowrap;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2px;
+    background: var(--lulu-pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .nav-link:hover::after { transform: scaleX(1); }
+
+  .icon-btn {
+    width: 40px; height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    transition: background .2s ease;
+  }
+  .icon-btn:hover { background: rgba(0,0,0,.06); }
+  .icon-btn svg { width: 20px; height: 20px; stroke: var(--charcoal); fill: none; stroke-width: 1.6; }
+
+  /* === Editorial display sizes === */
+  .h-hero {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  .h-section {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+  }
+  .h-display {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.0;
+  }
+  .accent-italic {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* === Squiggle SVG container === */
+  .squiggle {
+    color: var(--lulu-pink);
+    opacity: 0.7;
+  }
+
+  /* === Reduce motion === */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .sticker-bounce,
+    .badge-sale,
+    .badge-hot,
+    .confetti-piece,
+    .stagger-word {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .product-card:hover {
+      transform: none;
+    }
+    .product-card:hover .img-panel img {
+      animation: none;
+    }
+  }
+
+  /* === Mobile tweaks === */
+  @media (max-width: 768px) {
+    .section-pad { padding-top: 40px; padding-bottom: 40px; }
+    .h-hero { font-size: 44px; }
+    .nav-desktop { display: none; }
+  }
+  @media (min-width: 769px) {
+    .mobile-menu-btn { display: none; }
+  }
+
+  /* Focus rings */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+    outline: 2px solid var(--lulu-pink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. MARQUEE UTILITY BAR ============ -->
+<div class="marquee" role="region" aria-label="Site announcements">
+  <div class="marquee-track" aria-hidden="false">
+    <span>🥃 Free US shipping over $100</span>
+    <span>·</span>
+    <span>🔞 Must be 21+ to order</span>
+    <span>·</span>
+    <span>📦 Baked, jarred, shipped fresh weekly</span>
+    <span>·</span>
+    <span>✨ Earn Boozy Bucks on every order</span>
+    <span>·</span>
+    <span>🎁 Boozy bundles? Yes please</span>
+    <span>·</span>
+    <span>🍰 New drops monthly — don't sleep</span>
+    <span>·</span>
+    <!-- duplicate set for seamless loop -->
+    <span>🥃 Free US shipping over $100</span>
+    <span>·</span>
+    <span>🔞 Must be 21+ to order</span>
+    <span>·</span>
+    <span>📦 Baked, jarred, shipped fresh weekly</span>
+    <span>·</span>
+    <span>✨ Earn Boozy Bucks on every order</span>
+    <span>·</span>
+    <span>🎁 Boozy bundles? Yes please</span>
+    <span>·</span>
+    <span>🍰 New drops monthly — don't sleep</span>
+    <span>·</span>
+  </div>
+</div>
+
+<!-- ============ 2. HEADER / NAV ============ -->
+<header class="site-header">
+  <div class="container-x flex items-center justify-between gap-6 py-4">
+    <!-- Mobile menu button -->
+    <button class="mobile-menu-btn icon-btn" aria-label="Open menu">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+
+    <!-- Logo (left) -->
+    <a href="#" aria-label="Lulu Liquor Cakes home" class="flex-shrink-0">
+      <img src="https://lululiquorcakes.com/cdn/shop/files/LuluLiquorCakes_LOGO-FINAL-01_f3cfd8f5-ff34-4858-ac13-a16f79925ef6.png" alt="Lulu Liquor Cakes" style="height:42px;width:auto;" />
+    </a>
+
+    <!-- Nav (center/right) -->
+    <nav class="nav-desktop flex items-center gap-7" aria-label="Primary">
+      <a href="#" class="nav-link">Shop Liquor Cake Jars</a>
+      <a href="#" class="nav-link">Shop Boozy Butter</a>
+      <a href="#" class="nav-link">Build My Bundle</a>
+      <a href="#" class="nav-link">Favorites Pack</a>
+      <a href="#" class="nav-link">FAQs</a>
+      <a href="#" class="nav-link">Shop Swag</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-1">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-linecap="round" stroke-linejoin="round"/><path d="m20 20-3.5-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </button>
+      <button class="icon-btn relative" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6h2l2.5 12.5a1 1 0 0 0 1 .8h9.5a1 1 0 0 0 1-.8L21 9H6"/><circle cx="9" cy="21" r="1.2"/><circle cx="18" cy="21" r="1.2"/></svg>
+        <span style="position:absolute;top:4px;right:4px;background:var(--lulu-pink);color:white;font-size:10px;font-weight:700;border-radius:999px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 3. HERO ============ -->
+<section style="background:var(--peach);" class="relative overflow-hidden">
+  <!-- decorative squiggle SVG, top-left -->
+  <svg class="squiggle" style="position:absolute;top:30px;left:5%;width:120px;height:30px;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
+    <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="container-x grid md:grid-cols-2 gap-10 items-center" style="padding:80px 24px 90px;">
+    <!-- Copy column -->
+    <div>
+      <div class="eyebrow mb-4" style="color:var(--charcoal);">SPIKED. JARRED. SHIPPED.</div>
+
+      <h1 class="h-hero mb-6">
+        <span class="stagger-word" style="animation-delay:.05s">Cake</span>
+        <span class="stagger-word" style="animation-delay:.13s">With</span>
+        <span class="stagger-word" style="animation-delay:.21s">A</span>
+        <span class="stagger-word accent-italic" style="animation-delay:.29s;color:var(--lulu-pink);">Buzz.</span>
+        <br>
+        <span class="stagger-word" style="animation-delay:.45s">No</span>
+        <span class="stagger-word" style="animation-delay:.53s">Bartender</span>
+        <span class="stagger-word" style="animation-delay:.61s">Required.</span>
+      </h1>
+
+      <p class="text-lg md:text-xl mb-8 max-w-xl" style="color:rgba(26,26,26,.82); line-height:1.5;">
+        8 oz of scratch-made cake, ~3% booze, zero sharing required. Spoon goes in — manners go out.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#products" class="btn-pill btn-pink">Spoon Me One</a>
+        <a href="#" class="btn-pill btn-outline">Build My Bundle</a>
+      </div>
+    </div>
+
+    <!-- Image column -->
+    <div class="relative flex justify-center md:justify-end">
+      <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/4tallwithbackground.png?v=1768594748"
+           alt="Four Lulu Liquor Cake jars stacked — Favorites Pack"
+           fetchpriority="high" decoding="async"
+           style="max-width:520px;width:100%;height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.18));" />
+      <!-- Tagline-on-angle sticker -->
+      <span class="sticker-angle sticker-bounce" style="position:absolute;top:18px;right:0%;">
+        ⚠️ Warning: Dangerously Good 🥃
+      </span>
+      <!-- Decorative arrow SVG -->
+      <svg style="position:absolute;bottom:5%;left:-20px;width:90px;height:60px;color:var(--charcoal);" viewBox="0 0 90 60" fill="none" aria-hidden="true">
+        <path d="M5 50 C 25 10, 55 10, 80 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="0"/>
+        <path d="M70 22 L 82 28 L 74 38" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="hand" style="position:absolute;bottom:0;left:-40px;font-size:24px;transform:rotate(-6deg);">spoon goes here</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. FILTER PILLS ============ -->
+<section style="background:var(--cream);border-bottom:1px solid #ECE6D8;">
+  <div class="container-x py-6 reveal">
+    <div class="flex items-center gap-4 overflow-x-auto pb-2 md:pb-0" style="scrollbar-width:none;">
+      <span class="eyebrow flex-shrink-0" style="color:rgba(26,26,26,.55);">FILTER:</span>
+      <button class="filter-pill active">All Flavors</button>
+      <button class="filter-pill">🥃 Bourbon-y</button>
+      <button class="filter-pill">🍓 Fruity</button>
+      <button class="filter-pill">🍫 Chocolate-y</button>
+      <button class="filter-pill">🍪 Kid-Safe</button>
+      <button class="filter-pill">⭐ Top Sellers</button>
+      <button class="filter-pill">🔥 Limited Drop</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. SHOP BY MOOD ============ -->
+<section class="section-pad" style="background:var(--cream);">
+  <div class="container-x reveal">
+    <div class="mb-10 text-center">
+      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">PICK YOUR VIBE</div>
+      <h2 class="h-section">Shop By Mood, <span class="accent-italic" style="color:var(--lulu-pink);">Not Just Flavor</span></h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+      <!-- Tile 1: Brunch (peach) -->
+      <article class="mood-tile" style="background:var(--peach);">
+        <div>
+          <div class="eyebrow mb-3">🥂 BOOZY BRUNCH</div>
+          <h3>Boozy Brunch</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Mimosas left the chat. We've got cake.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Pour Me Brunch →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 2: Bachelorette (blush) -->
+      <article class="mood-tile" style="background:var(--blush);">
+        <div>
+          <div class="eyebrow mb-3">💍 PARTY MODE</div>
+          <h3>Bachelorette Bash</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">For the bride who'd rather have cake than chaos.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Bring The Party →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 3: Birthday (butter) -->
+      <article class="mood-tile" style="background:var(--butter);">
+        <div>
+          <div class="eyebrow mb-3">🎂 ANOTHER YEAR</div>
+          <h3>Birthday Buzz</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Candles optional. Cake spike, mandatory.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Make A Wish →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 4: Date Night (sage) -->
+      <article class="mood-tile" style="background:var(--sage);">
+        <div>
+          <div class="eyebrow mb-3">💋 TWO SPOONS</div>
+          <h3>Date Night</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Two spoons. One jar. Excellent decisions.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Set The Mood →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 5: Mom's Day Off (caramel) -->
+      <article class="mood-tile" style="background:var(--caramel);color:var(--cream);">
+        <div>
+          <div class="eyebrow mb-3" style="color:var(--cream);">👑 SHE EARNED IT</div>
+          <h3 style="color:var(--cream);">Mom's Day Off</h3>
+          <p class="mt-2 text-sm" style="color:rgba(251,247,240,.85);max-width:60%;">She earned this. Don't argue.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#" class="btn-pill" style="background:var(--cream);color:var(--charcoal);"><span>Treat Mom →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="" class="mood-tile-img" />
+      </article>
+
+      <!-- Tile 6: Just Because (blush again w/ peach overlay vibe) -->
+      <article class="mood-tile" style="background:var(--blush);">
+        <div>
+          <div class="eyebrow mb-3">🤷 NO REASON</div>
+          <h3>Just Because</h3>
+          <p class="mt-2 text-sm" style="color:rgba(26,26,26,.78);max-width:60%;">Tuesday is a personality, not a problem.</p>
+        </div>
+        <div class="relative z-10 mt-6"><a href="#" class="btn-pill btn-dark"><span>Spoil Me →</span></a></div>
+        <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="" class="mood-tile-img" />
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. TRENDING FLAVORS HEADER ============ -->
+<section style="background:var(--butter);" class="section-pad relative overflow-hidden">
+  <!-- decorative squiggle bottom-right -->
+  <svg class="squiggle" style="position:absolute;bottom:24px;right:6%;width:140px;height:30px;" viewBox="0 0 140 30" fill="none" aria-hidden="true">
+    <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 122 15 T 138 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="container-x text-center reveal">
+    <div class="eyebrow mb-4" style="color:var(--charcoal);">THIS WEEK'S HEAVY POURS</div>
+    <h2 class="h-display mb-4">
+      Currently Flying<br>
+      <span class="accent-italic" style="color:var(--lulu-pink);">Off The Shelf</span>
+      <span class="sticker-angle" style="vertical-align:middle;margin-left:8px;font-size:11px;">🔥 hot</span>
+    </h2>
+    <p class="text-lg max-w-2xl mx-auto" style="color:rgba(26,26,26,.78);">
+      The flavors stealing every brunch table, baby shower, and "I deserve this" moment.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 7. PRODUCT GRID 1 (12 cards) ============ -->
+<section id="products" class="section-pad" style="background:var(--cream);">
+  <div class="container-x reveal">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+      <!-- Card 1: Bourbon Vanilla -->
+      <article class="product-card" style="background:var(--peach);">
+        <div class="badge-hot">⭐ TOP 10</div>
+        <div class="img-panel">
+          <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="Bourbon Vanilla Liquor Cake Jar — front view" />
+        </div>
+        <h3 class="product-title">Bourbon Vanilla Liquor Cake Jar</h3>
+        <p class="product-tagline">The James Bond of cake jars. 🥃</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 2: Mudslide -->
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/MudslidewithOreo.png?v=1768594487" alt="Mudslide with Oreo Pieces Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Mudslide with Oreo Pieces Liquor Cake Jar</h3>
+        <p class="product-tagline">Boozy milkshake's hotter cousin.</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Pour It In</span></button>
+        </div>
+      </article>
+
+      <!-- Card 3: Pineapple Upside Down -->
+      <article class="product-card" style="background:var(--butter);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="Pineapple Upside Down Cake Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Pineapple Upside Down Cake Liquor Cake Jar</h3>
+        <p class="product-tagline">Tropical vacation, no flight required. 🍍</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 4: Strawberry Margarita -->
+      <article class="product-card" style="background:var(--blush);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="Strawberry Margarita Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Strawberry Margarita Liquor Cake Jar</h3>
+        <p class="product-tagline">Salt the rim. Spoon the cake. 🍓</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>I'll Take One</span></button>
+        </div>
+      </article>
+
+      <!-- Card 5: Kid Cookies & Cream -->
+      <article class="product-card" style="background:var(--sage);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/image_a392f246-a222-4609-b19f-a641db20178f.jpg?v=1762526886" alt="Kid Cookies and Cream Cake Jar" />
+        </div>
+        <h3 class="product-title">Kid Cookies and Cream Cake Jar</h3>
+        <p class="product-tagline">Big-kid energy. Booze-free. 🍪</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$9.75</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 6: Kid Vanilla Confetti -->
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/image_12d8286a-5d03-4162-b319-ff6b8e01eb7b.jpg?v=1762526886" alt="Kid Vanilla Confetti Cake Jar" />
+        </div>
+        <h3 class="product-title">Kid Vanilla Confetti Cake Jar</h3>
+        <p class="product-tagline">A party in a jar. Fully PG. 🎉</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$9.75</span>
+          <button class="btn-pill btn-dark add-cart"><span>Yes, Please</span></button>
+        </div>
+      </article>
+
+      <!-- Card 7: Luck of the Irish (SALE) -->
+      <article class="product-card" style="background:var(--peach);">
+        <div class="badge-sale">On Sale, Spoons Up</div>
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/LuckoftheIrish3_jpg.png?v=1771617084" alt="Luck of the Irish Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Luck of the Irish Liquor Cake Jar</h3>
+        <p class="product-tagline">Kiss me, I'm cake. 🍀</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price"><span class="price-strike">$14.95</span>$11.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 8: Irish Car Bomb -->
+      <article class="product-card" style="background:var(--butter);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IrishCarBomb.png?v=1770858723" alt="Irish Car Bomb Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Irish Car Bomb Liquor Cake Jar</h3>
+        <p class="product-tagline">Dublin in a spoonful. Dangerously smooth.</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Spoon Me This</span></button>
+        </div>
+      </article>
+
+      <!-- Card 9: Salty Monster (SALE) -->
+      <article class="product-card" style="background:var(--blush);">
+        <div class="badge-sale">Last Call Pricing</div>
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/SaltyMonster.png?v=1770858341" alt="Salty Monster Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Salty Monster Liquor Cake Jar</h3>
+        <p class="product-tagline">Sweet, salty, slightly unhinged. 😈</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price"><span class="price-strike">$14.95</span>$12.50</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 10: Banana Pudding (SOLD OUT) -->
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8; opacity:.85;">
+        <div class="badge-sold-out">Out Of Cake</div>
+        <div class="img-panel" style="filter:grayscale(.4);">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BananaPudding2.png?v=1771536876" alt="Banana Pudding Liquor Cake Jar (sold out)" />
+        </div>
+        <h3 class="product-title">Banana Pudding Liquor Cake Jar</h3>
+        <p class="product-tagline">Grandma's recipe. Adults-only edit.</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill" style="background:#E5E5E5;color:#777;cursor:not-allowed;" disabled><span>Notify Me</span></button>
+        </div>
+      </article>
+
+      <!-- Card 11: Amaretto Coffee -->
+      <article class="product-card" style="background:var(--peach);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/AmarettoCoffee.png?v=1770943072" alt="Amaretto Coffee Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Amaretto Coffee Liquor Cake Jar</h3>
+        <p class="product-tagline">Espresso martini's dessert era. ☕</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Add The Buzz</span></button>
+        </div>
+      </article>
+
+      <!-- Card 12: Carrot Cake -->
+      <article class="product-card" style="background:var(--butter);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CarrotCake2.png?v=1772211466" alt="Carrot Cake Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Carrot Cake Liquor Cake Jar</h3>
+        <p class="product-tagline">Officially a vegetable. We checked. 🥕</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. EDITORIAL MID-GRID BREAK (deep plum) ============ -->
+<section class="section-pad" style="background:var(--plum);color:var(--cream);">
+  <div class="container-x grid md:grid-cols-2 gap-12 items-center reveal">
+    <div>
+      <div class="eyebrow mb-4" style="color:var(--lulu-pink);">LIMITED POUR, MONTHLY DROP</div>
+      <h2 class="h-display mb-6" style="color:var(--cream);">
+        She's New.<br>
+        She's Boozy.<br>
+        <span class="accent-italic" style="color:var(--butter);">She's Almost Gone.</span>
+      </h2>
+      <p class="text-lg mb-8 max-w-md" style="color:rgba(251,247,240,.82); line-height:1.55;">
+        Every month a new flavor sneaks into the lineup — and ghosts just as fast. Snag her before she vanishes, or spend the next 30 days regretting it.
+      </p>
+      <a href="#" class="btn-pill btn-pink">Catch The Drop</a>
+    </div>
+    <div class="relative">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop"
+           alt="Editorial cake & cocktail moment, soft warm light"
+           style="width:100%;border-radius:20px;aspect-ratio:4/5;object-fit:cover;box-shadow:0 24px 40px rgba(0,0,0,.3);" />
+      <span class="sticker-angle" style="position:absolute;top:20px;right:20px;background:var(--butter);">
+        🆕 New Drop
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. PRODUCT GRID 2 (12 more cards) ============ -->
+<section class="section-pad" style="background:var(--cream);">
+  <div class="container-x reveal">
+    <div class="text-center mb-10">
+      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">MORE WHERE THAT CAME FROM</div>
+      <h2 class="h-section">The <span class="accent-italic" style="color:var(--lulu-pink);">Rest of the Lineup</span></h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+      <!-- Card 13: Orange Creamsicle -->
+      <article class="product-card" style="background:var(--peach);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/OrangeCream.png?v=1773349232" alt="Orange Creamsicle Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Orange Creamsicle Liquor Cake Jar</h3>
+        <p class="product-tagline">Childhood, but make it 21+. 🧡</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 14: Milky Way -->
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/MilkyWay.png?v=1773349232" alt="Milky Way Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Milky Way Liquor Cake Jar</h3>
+        <p class="product-tagline">Candy bar with a license. ✨</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Jar It Up</span></button>
+        </div>
+      </article>
+
+      <!-- Card 15: Lemon Blueberry Cheesecake -->
+      <article class="product-card" style="background:var(--butter);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/LemonBBC2.png?v=1773349232" alt="Lemon Blueberry Cheesecake Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Lemon Blueberry Cheesecake Liquor Cake Jar</h3>
+        <p class="product-tagline">Sundress weather in a spoon. 🫐</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 16: Peanut Butter Pretzel -->
+      <article class="product-card" style="background:var(--blush);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/PeanutButterPretzel.png?v=1770859111" alt="Peanut Butter Pretzel Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Peanut Butter Pretzel Liquor Cake Jar</h3>
+        <p class="product-tagline">Salty. Sweet. Slightly addictive.</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Send It</span></button>
+        </div>
+      </article>
+
+      <!-- Card 17: Chocolate Maple Bacon (SOLD OUT) -->
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8; opacity:.85;">
+        <div class="badge-sold-out">Drained The Jar</div>
+        <div class="img-panel" style="filter:grayscale(.4);">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChocolateMapleBacon2.png?v=1771537505" alt="Chocolate Maple Bacon Liquor Cake Jar (sold out)" />
+        </div>
+        <h3 class="product-title">Chocolate Maple Bacon Liquor Cake Jar</h3>
+        <p class="product-tagline">Brunch dared us. We accepted. 🥓</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill" style="background:#E5E5E5;color:#777;cursor:not-allowed;" disabled><span>Notify Me</span></button>
+        </div>
+      </article>
+
+      <!-- Card 18: Butter Beer -->
+      <article class="product-card" style="background:var(--peach);">
+        <div class="badge-hot">🔥 HOT</div>
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Butterbeer_449a4361-d15b-46a3-b1f9-22c414817ac2.png?v=1771537308" alt="Butter Beer Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Butter Beer Liquor Cake Jar</h3>
+        <p class="product-tagline">Wand not included. Buzz is. ⚡</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 19: Chai Tea Latte -->
+      <article class="product-card" style="background:var(--butter);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="Chai Tea Latte Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Chai Tea Latte Liquor Cake Jar</h3>
+        <p class="product-tagline">Cozy season, spiked edition. 🍂</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Pour It In</span></button>
+        </div>
+      </article>
+
+      <!-- Card 20: Coconut Mango -->
+      <article class="product-card" style="background:var(--sage);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CoconutMango.png?v=1772210317" alt="Coconut Mango Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Coconut Mango Liquor Cake Jar</h3>
+        <p class="product-tagline">Beach vibes, beach calories. 🥥</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 21: Fruity Bam (SALE) -->
+      <article class="product-card" style="background:var(--blush);">
+        <div class="badge-sale">Boozy Bargain</div>
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/FruityBam3.png?v=1773349232" alt="Fruity Bam Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Fruity Bam Liquor Cake Jar</h3>
+        <p class="product-tagline">Fruit punch's wild adult era. 🍹</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price"><span class="price-strike">$14.95</span>$11.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 22: The Elvis -->
+      <article class="product-card" style="background:var(--peach);">
+        <div class="badge-hot">⭐ TOP 10</div>
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="The Elvis Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">The Elvis Liquor Cake Jar</h3>
+        <p class="product-tagline">Peanut butter. Banana. Bourbon. The King. 👑</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+      <!-- Card 23: Cotton Candy Sprite -->
+      <article class="product-card" style="background:var(--butter);">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="Cotton Candy Sprite Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Cotton Candy Sprite Liquor Cake</h3>
+        <p class="product-tagline">Carnival energy. Bartender approved. 🎡</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Add The Buzz</span></button>
+        </div>
+      </article>
+
+      <!-- Card 24: Oatmeal Cream Pie -->
+      <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/OatmealCreampie.png?v=1761769841" alt="Oatmeal Cream Pie Liquor Cake Jar" />
+        </div>
+        <h3 class="product-title">Oatmeal Cream Pie Liquor Cake Jar</h3>
+        <p class="product-tagline">Lunchbox legend, all grown up.</p>
+        <div class="flex items-center justify-between mt-2">
+          <span class="product-price">$14.95</span>
+          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. POLAROID LIFESTYLE STRIP ============ -->
+<section class="section-pad relative" style="background:var(--cream);">
+  <div class="container-x reveal">
+    <div class="text-center mb-12">
+      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">SPOTTED IN THE WILD</div>
+      <h2 class="h-section">Real Jars. <span class="accent-italic" style="color:var(--lulu-pink);">Real Spoons.</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto relative">
+
+      <div class="polaroid" style="transform:rotate(-3deg);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/4tallwithbackground.png?v=1768594748" alt="Stack of four Lulu jars" />
+        <div class="cap">brunch crew assemble</div>
+      </div>
+
+      <!-- arrow between 1 & 2 (desktop only) -->
+      <svg class="hidden md:block" style="position:absolute;top:38%;left:31%;width:80px;height:60px;color:var(--lulu-pink);transform:rotate(8deg);" viewBox="0 0 80 60" fill="none" aria-hidden="true">
+        <path d="M5 30 Q 30 5, 60 35" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M52 28 L 62 38 L 50 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+
+      <div class="polaroid" style="transform:rotate(5deg);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CherryAlmond.png?v=1775505833" alt="Cherry Almond Mother's Day cake jar" />
+        <div class="cap">she said yes (to seconds)</div>
+      </div>
+
+      <!-- arrow between 2 & 3 (desktop only) -->
+      <svg class="hidden md:block" style="position:absolute;top:38%;left:64%;width:80px;height:60px;color:var(--lulu-pink);transform:rotate(-8deg);" viewBox="0 0 80 60" fill="none" aria-hidden="true">
+        <path d="M5 30 Q 30 50, 60 25" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M50 22 L 62 25 L 56 36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+
+      <div class="polaroid" style="transform:rotate(-2deg);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Mystery_box_4.png?v=1776958812" alt="Mystery Box of four Lulu jars" />
+        <div class="cap">the mystery hits different</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. CONFETTI BREAK ============ -->
+<section class="section-pad confetti-wrap" style="background:var(--blush);text-align:center;">
+  <!-- 30 confetti pieces -->
+  <div aria-hidden="true" id="confetti-container" style="position:absolute;inset:0;pointer-events:none;"></div>
+
+  <div class="container-x reveal relative" style="z-index:2;">
+    <div class="eyebrow mb-3" style="color:var(--lulu-pink);">THE OFFICIAL CALL</div>
+    <h2 class="h-display" style="font-size:clamp(48px,8vw,96px);">
+      🥄 <span class="accent-italic" style="color:var(--lulu-pink);">spoon's up</span>
+    </h2>
+    <p class="mt-4 text-lg max-w-xl mx-auto" style="color:rgba(26,26,26,.7);">
+      Pour, scoop, repeat. We'll handle the rest.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 12. KID JARS CALLOUT (sage) ============ -->
+<section class="section-pad" style="background:var(--sage);">
+  <div class="container-x reveal">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="eyebrow mb-4" style="color:var(--charcoal);">ZERO PROOF, FULL JOY</div>
+        <h2 class="h-section mb-5">Cake Jars For The <span class="accent-italic">Tiny Humans</span> 🍪</h2>
+        <p class="text-lg mb-7 max-w-md" style="color:rgba(26,26,26,.78); line-height:1.55;">
+          Same scratch-made magic, none of the booze. Because the kids deserve a jar too — and frankly, so does your sober friend.
+        </p>
+        <a href="#" class="btn-pill btn-pink">Shop Kid Jars</a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <article class="product-card" style="background:var(--cream); border:1px solid rgba(0,0,0,.08);">
+          <div class="img-panel">
+            <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/image_a392f246-a222-4609-b19f-a641db20178f.jpg?v=1762526886" alt="Kid Cookies and Cream Cake Jar" />
+          </div>
+          <h3 class="product-title" style="font-size:16px;">Kid Cookies and Cream</h3>
+          <p class="product-tagline" style="font-size:12.5px;min-height:24px;">Big-kid energy. Booze-free. 🍪</p>
+          <div class="flex items-center justify-between mt-2">
+            <span class="product-price" style="font-size:14px;">$9.75</span>
+            <button class="btn-pill btn-dark add-cart" style="padding:8px 14px;font-size:12px;"><span>Add</span></button>
+          </div>
+        </article>
+
+        <article class="product-card" style="background:var(--cream); border:1px solid rgba(0,0,0,.08);">
+          <div class="img-panel">
+            <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/image_12d8286a-5d03-4162-b319-ff6b8e01eb7b.jpg?v=1762526886" alt="Kid Vanilla Confetti Cake Jar" />
+          </div>
+          <h3 class="product-title" style="font-size:16px;">Kid Vanilla Confetti</h3>
+          <p class="product-tagline" style="font-size:12.5px;min-height:24px;">A party in a jar. Fully PG. 🎉</p>
+          <div class="flex items-center justify-between mt-2">
+            <span class="product-price" style="font-size:14px;">$9.75</span>
+            <button class="btn-pill btn-dark add-cart" style="padding:8px 14px;font-size:12px;"><span>Add</span></button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. BOOZY BUTTER CROSS-SELL (caramel) ============ -->
+<section class="section-pad" style="background:var(--caramel);color:var(--cream);">
+  <div class="container-x reveal grid md:grid-cols-2 gap-12 items-center">
+    <div class="relative order-2 md:order-1">
+      <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2550.jpg?v=1740507616"
+           alt="Boozy Butter — spreadable boozy goodness"
+           style="width:100%;border-radius:20px;aspect-ratio:1/1;object-fit:cover;box-shadow:0 24px 40px rgba(0,0,0,.3);" />
+      <span class="sticker-angle" style="position:absolute;bottom:20px;left:20px;background:var(--lime-accent);">
+        🧈 NEW SIDEKICK
+      </span>
+    </div>
+    <div class="order-1 md:order-2">
+      <div class="eyebrow mb-4" style="color:var(--cream);opacity:.85;">THE SIDEKICK</div>
+      <h2 class="h-display mb-6" style="color:var(--cream);">
+        Meet Boozy Butter.<br>
+        <span class="accent-italic" style="color:var(--butter);">Cake's Best Friend.</span>
+      </h2>
+      <p class="text-lg mb-8 max-w-md" style="color:rgba(251,247,240,.88); line-height:1.55;">
+        Spread it on toast, swirl it in coffee, eat it with a spoon at midnight — we won't tell. Made with the same love (and liquor) as the jars.
+      </p>
+      <a href="#" class="btn-pill" style="background:var(--cream);color:var(--charcoal);">Add The Butter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14. REVIEWS ============ -->
+<section class="section-pad" style="background:var(--cream);">
+  <div class="container-x reveal">
+    <div class="text-center mb-10">
+      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">2,985 VERIFIED FANS</div>
+      <h2 class="h-section mb-3">The Jar Has <span class="accent-italic" style="color:var(--lulu-pink);">Spoken.</span></h2>
+      <p class="text-lg max-w-xl mx-auto" style="color:rgba(26,26,26,.7);">
+        Real moms. Real spoons. Real "where has this been all my life."
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+      <article style="background:var(--peach);padding:28px;border-radius:16px;">
+        <div style="color:var(--lulu-pink);font-size:20px;letter-spacing:2px;margin-bottom:10px;">★★★★★</div>
+        <p class="display" style="font-size:22px;line-height:1.3;font-weight:600;margin-bottom:14px;">"I ordered for my mom. I ate hers. I ordered again."</p>
+        <p style="font-size:13px;font-weight:600;color:rgba(26,26,26,.7);">— Sarah K., Verified Buyer</p>
+      </article>
+
+      <article style="background:var(--butter);padding:28px;border-radius:16px;">
+        <div style="color:var(--lulu-pink);font-size:20px;letter-spacing:2px;margin-bottom:10px;">★★★★★</div>
+        <p class="display" style="font-size:22px;line-height:1.3;font-weight:600;margin-bottom:14px;">"The Bourbon Vanilla didn't make it past the front porch."</p>
+        <p style="font-size:13px;font-weight:600;color:rgba(26,26,26,.7);">— Jenna M., Verified Buyer</p>
+      </article>
+
+      <article style="background:var(--blush);padding:28px;border-radius:16px;">
+        <div style="color:var(--lulu-pink);font-size:20px;letter-spacing:2px;margin-bottom:10px;">★★★★★</div>
+        <p class="display" style="font-size:22px;line-height:1.3;font-weight:600;margin-bottom:14px;">"My book club has a problem. Her name is Lulu."</p>
+        <p style="font-size:13px;font-weight:600;color:rgba(26,26,26,.7);">— Tasha R., Verified Buyer</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. FOUNDER STRIP — LAURA (peach) ============ -->
+<section class="section-pad relative overflow-hidden" style="background:var(--peach);">
+  <!-- decorative squiggles -->
+  <svg class="squiggle" style="position:absolute;top:40px;left:8%;width:120px;height:30px;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
+    <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+  <svg class="squiggle" style="position:absolute;bottom:40px;right:8%;width:120px;height:30px;color:var(--charcoal);opacity:.4;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
+    <path d="M2 15 Q 12 28, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <div class="container-x reveal">
+    <div style="background:var(--cream);border-radius:24px;padding:48px;box-shadow:0 24px 50px rgba(0,0,0,.08);position:relative;">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="text-center md:text-left">
+          <div class="eyebrow mb-4" style="color:var(--lulu-pink);">MEET YOUR DEALER 🥃</div>
+          <div class="hand" style="font-size:96px;line-height:1;color:var(--lulu-pink);font-weight:700;">
+            Laura <span style="font-size:60px;">✨</span>
+          </div>
+          <p class="hand mt-2" style="font-size:24px;color:var(--charcoal);">— founder &amp; chief spoon-er</p>
+        </div>
+        <div>
+          <h2 class="h-section mb-5" style="font-size:clamp(28px,4vw,44px);">
+            Hi, I'm Laura. <span class="accent-italic" style="color:var(--lulu-pink);">I Bake Cake With Booze In It.</span>
+          </h2>
+          <p class="text-base mb-6" style="color:rgba(26,26,26,.78); line-height:1.6;">
+            Started in my kitchen with a spoon, a jar, and a very specific kind of energy. Now we ship boozy joy nationwide — still scratch-made, still female-owned, still slightly unhinged.
+          </p>
+          <a href="#" class="btn-pill btn-pink">Read Our Story</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16. FAQ TEASER ============ -->
+<section class="section-pad" style="background:var(--cream);">
+  <div class="container-x reveal max-w-3xl mx-auto">
+    <div class="text-center mb-10">
+      <div class="eyebrow mb-3" style="color:var(--lulu-pink);">QUICK SIPS</div>
+      <h2 class="h-section">Stuff People Ask <span class="accent-italic" style="color:var(--lulu-pink);">Before Spooning In</span></h2>
+    </div>
+
+    <details class="faq" open>
+      <summary>Wait — is this actually boozy?</summary>
+      <p>Yep. Real liquor, baked in. About 3% ABV per jar. You'll feel it.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Will my mom approve?</summary>
+      <p>She'll approve so hard she'll order three more.</p>
+    </details>
+
+    <details class="faq">
+      <summary>Can I gift one?</summary>
+      <p>Built for gifting. Bundles, gift notes, fresh shipping — done.</p>
+    </details>
+
+    <div class="text-center mt-8">
+      <a href="#" class="btn-pill btn-outline">Read All FAQs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17. NEWSLETTER (deep plum) ============ -->
+<section class="section-pad" style="background:var(--plum);color:var(--cream);">
+  <div class="container-x reveal text-center max-w-2xl mx-auto">
+    <div class="eyebrow mb-4" style="color:var(--butter);">INSIDER LIST</div>
+    <h2 class="h-display mb-4" style="color:var(--cream);">
+      First Spoon <span class="accent-italic" style="color:var(--butter);">Privileges</span> 🥄
+    </h2>
+    <p class="text-lg mb-8" style="color:rgba(251,247,240,.85);">
+      New flavors, secret drops, and Boozy Bucks — straight to your inbox.
+    </p>
+
+    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); fireConfetti(event);">
+      <label class="sr-only" for="newsletter-email">Email address</label>
+      <input id="newsletter-email" type="email" required placeholder="your@favoritefriend.com"
+             style="flex:1;padding:14px 18px;border-radius:999px;border:none;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--charcoal);background:var(--cream);" />
+      <button type="submit" class="btn-pill btn-pink">Pour Me In</button>
+    </form>
+
+    <p class="mt-5 text-xs" style="color:rgba(251,247,240,.78);">
+      By signing up you confirm you're 21+ and cool with us emailing you about cake.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 18. FOOTER ============ -->
+<footer style="background:var(--cream);color:var(--charcoal);border-top:1px solid #ECE6D8;">
+  <div class="container-x" style="padding:60px 24px 30px;">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+      <!-- Logo + mission column -->
+      <div class="col-span-2 md:col-span-1">
+        <img src="https://lululiquorcakes.com/cdn/shop/files/LuluLiquorCakes_LOGO-FINAL-01_f3cfd8f5-ff34-4858-ac13-a16f79925ef6.png" alt="Lulu Liquor Cakes" style="height:48px;width:auto;margin-bottom:18px;" />
+        <p class="display" style="font-size:18px;line-height:1.4;font-style:italic;color:rgba(26,26,26,.78);max-width:280px;">
+          To celebrate life's greatest moments with a little bit of booze and a whole lot of cake.
+        </p>
+      </div>
+
+      <!-- Quick Shop -->
+      <div>
+        <h4 class="ui" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Quick Shop</h4>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;font-size:14px;color:rgba(26,26,26,.78);">
+          <li><a href="#" style="text-decoration:none;color:inherit;">Shop Liquor Cake Jars</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">Shop Boozy Butter</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">Build My Bundle</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">Favorites Pack</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">FAQs</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">Shop Swag</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact & Support -->
+      <div>
+        <h4 class="ui" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Contact &amp; Support</h4>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;font-size:14px;color:rgba(26,26,26,.78);">
+          <li><a href="#" style="text-decoration:none;color:inherit;">Our Story</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">Privacy Policy</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">Terms and Conditions</a></li>
+          <li><a href="#" style="text-decoration:none;color:inherit;">Shipping &amp; Returns</a></li>
+        </ul>
+      </div>
+
+      <!-- Mission / 21+ -->
+      <div>
+        <h4 class="ui" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;">Mission</h4>
+        <p style="font-size:14px;color:rgba(26,26,26,.78);line-height:1.5;margin-bottom:12px;">
+          Female-owned. Scratch-made. Shipped fresh nationwide.
+        </p>
+        <p style="font-size:13px;font-weight:600;color:var(--lulu-pink);">
+          🔞 Enjoy safely. Must be 21+ to order.
+        </p>
+      </div>
+    </div>
+
+    <!-- Payment icons row -->
+    <div class="flex flex-wrap items-center justify-between gap-6 pt-6" style="border-top:1px solid #ECE6D8;">
+      <div class="flex flex-wrap gap-2 items-center" aria-label="Accepted payment methods">
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#1A1F71;">VISA</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#EB001B;">MC</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#016FD0;">AMEX</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#0079BE;">DINERS</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#FF6000;">DISCOVER</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#000;">G PAY</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#000;">APPLE PAY</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#003087;">PAYPAL</span>
+        <span style="background:white;border:1px solid #E5E5E5;border-radius:6px;padding:5px 10px;font-size:11px;font-weight:700;color:#5A31F4;">SHOP PAY</span>
+      </div>
+
+      <ul class="flex flex-wrap gap-5" style="list-style:none;padding:0;margin:0;font-size:12px;color:rgba(26,26,26,.7);">
+        <li><a href="#" style="text-decoration:none;color:inherit;">Refund</a></li>
+        <li><a href="#" style="text-decoration:none;color:inherit;">Privacy</a></li>
+        <li><a href="#" style="text-decoration:none;color:inherit;">Terms</a></li>
+        <li><a href="#" style="text-decoration:none;color:inherit;">Shipping</a></li>
+        <li><a href="#" style="text-decoration:none;color:inherit;">Contact</a></li>
+        <li><a href="#" style="text-decoration:none;color:inherit;">Cancellation</a></li>
+      </ul>
+    </div>
+
+    <!-- Copyright -->
+    <p class="text-center mt-8" style="font-size:12px;color:rgba(26,26,26,.72);">
+      © 2026, Lulu Liquor Cakes LLC | Powered by Shopify
+    </p>
+  </div>
+</footer>
+
+<!-- ============ JS ============ -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  // === Section reveal on scroll ===
+  (function() {
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+  })();
+
+  // === Build CSS confetti pieces ===
+  (function() {
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+    var container = document.getElementById('confetti-container');
+    if (!container) return;
+    var colors = ['#E94B7B', '#FFB99A', '#FFE066', '#B8D8C0', '#5A2A4D', '#BFFC33'];
+    var html = '';
+    for (var i = 0; i < 30; i++) {
+      var left = (Math.random() * 100).toFixed(1);
+      var delay = (Math.random() * 4).toFixed(2);
+      var dur = (3 + Math.random() * 4).toFixed(2);
+      var x = (Math.random() * 80 - 40).toFixed(0);
+      var color = colors[i % colors.length];
+      var rot = (Math.random() * 360).toFixed(0);
+      html += '<span class="confetti-piece" style="left:' + left + '%;background:' + color +
+              ';animation-delay:' + delay + 's;animation-duration:' + dur +
+              's;--x:' + x + 'px;transform:rotate(' + rot + 'deg);"></span>';
+    }
+    container.innerHTML = html;
+  })();
+
+  // === Add to cart confetti burst ===
+  function fireConfetti(event) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (typeof confetti !== 'function') return;
+    var rect = event.currentTarget.getBoundingClientRect ? event.currentTarget.getBoundingClientRect() : null;
+    var origin = { x: 0.5, y: 0.6 };
+    if (rect) {
+      origin = {
+        x: (rect.left + rect.width / 2) / window.innerWidth,
+        y: (rect.top + rect.height / 2) / window.innerHeight
+      };
+    }
+    confetti({
+      particleCount: 60,
+      spread: 65,
+      startVelocity: 38,
+      origin: origin,
+      colors: ['#E94B7B', '#FFB99A', '#FFE066', '#BFFC33', '#FFD1DC']
+    });
+  }
+  document.querySelectorAll('.add-cart').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      fireConfetti({ currentTarget: btn });
+    });
+  });
+
+  // === Filter pill toggle (visual only) ===
+  document.querySelectorAll('.filter-pill').forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
