@@ -272,6 +272,117 @@
   .flavor-marquee:hover .flavor-marquee-track { animation-play-state: paused; }
   .flavor-marquee-track span { display: inline-flex; align-items: center; gap: 12px; }
 
+  /* === Liquid wave divider === */
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    line-height: 0;
+  }
+  .wave-divider svg { display: block; width: 100%; height: 100%; }
+  @media (max-width: 768px) { .wave-divider { height: 40px; } }
+
+  /* === Whimsical pattern: vertical lavender stripes === */
+  .bg-stripes {
+    background-color: var(--cream);
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--lulu-lavender-soft) 0px,
+      var(--lulu-lavender-soft) 28px,
+      #FFFFFF 28px,
+      #FFFFFF 56px
+    );
+  }
+
+  /* === Whimsical pattern: pink sunburst (radial rays) === */
+  .bg-sunburst {
+    background-color: var(--lulu-pink-soft);
+    background-image: repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      var(--lulu-pink-soft) 0deg,
+      var(--lulu-pink-soft) 6deg,
+      #FFD9E5 6deg,
+      #FFD9E5 12deg
+    );
+  }
+  .bg-sunburst-soft {
+    background-color: var(--cream);
+    background-image: repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      transparent 6deg,
+      rgba(233,75,123,.10) 6deg,
+      rgba(233,75,123,.10) 12deg
+    );
+  }
+
+  /* === Quantity stepper + ATC row === */
+  .atc-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    border: 1.5px solid var(--charcoal);
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .qty-stepper button {
+    width: 30px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .qty-stepper button:hover { background: var(--lulu-pink-soft); }
+  .qty-stepper .qty-val {
+    min-width: 24px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--charcoal);
+  }
+  .btn-atc {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--charcoal);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    transition: background .2s ease, transform .15s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 36px;
+  }
+  .btn-atc:hover { background: var(--lulu-pink); transform: translateY(-1px); }
+  .btn-atc:disabled { background: #E5E5E5; color: #888; cursor: not-allowed; transform: none; }
+  .btn-atc:disabled:hover { background: #E5E5E5; }
+  @media (max-width: 480px) {
+    .atc-row { flex-direction: column; gap: 8px; align-items: stretch; }
+    .qty-stepper { align-self: flex-start; }
+    .btn-atc { width: 100%; }
+  }
+
   /* === Floating decorative stickers in product grid === */
   .deco-sticker {
     position: absolute;
@@ -814,8 +925,18 @@
   </div>
 </section>
 
+<!-- ============ Liquid wave divider (lavender hero → striped section below) ============ -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--lulu-lavender-soft);position:relative;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
+    <path class="wave-path-1" d="M0 60 L0 24 C 240 0, 480 60, 720 30 C 960 0, 1200 60, 1440 24 L1440 60 Z" fill="#FBF7F0"/>
+  </svg>
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;opacity:.6;">
+    <path class="wave-path-2" d="M0 60 L0 36 C 240 18, 480 50, 720 38 C 960 18, 1200 56, 1440 36 L1440 60 Z" fill="var(--lulu-pink-soft)"/>
+  </svg>
+</div>
+
 <!-- ============ 4. SHOP BY MOOD (Compact category thumbnails, dring-style) ============ -->
-<section style="background:var(--cream);" class="py-10 md:py-12">
+<section class="bg-stripes py-10 md:py-12" style="position:relative;">
   <div class="container-x reveal">
     <div class="flex items-end justify-between gap-4 mb-6 md:mb-8">
       <div>
@@ -931,10 +1052,17 @@
         </div>
         <h3 class="product-title">Bourbon Vanilla Liquor Cake Jar</h3>
         <p class="product-tagline">The James Bond of cake jars. 🥃</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 2: Mudslide -->
@@ -945,10 +1073,17 @@
         </div>
         <h3 class="product-title">Mudslide with Oreo Pieces Liquor Cake Jar</h3>
         <p class="product-tagline">Boozy milkshake's hotter cousin.</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Pour It In</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Pour It In</button>
+          </div>
       </article>
 
       <!-- Card 3: Pineapple Upside Down -->
@@ -959,10 +1094,17 @@
         </div>
         <h3 class="product-title">Pineapple Upside Down Cake Liquor Cake Jar</h3>
         <p class="product-tagline">Tropical vacation, no flight required. 🍍</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 4: Strawberry Margarita -->
@@ -973,10 +1115,17 @@
         </div>
         <h3 class="product-title">Strawberry Margarita Liquor Cake Jar</h3>
         <p class="product-tagline">Salt the rim. Spoon the cake. 🍓</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>I'll Take One</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">I'll Take One</button>
+          </div>
       </article>
 
       <!-- Card 5: Kid Cookies & Cream -->
@@ -986,10 +1135,17 @@
         </div>
         <h3 class="product-title">Kid Cookies and Cream Cake Jar</h3>
         <p class="product-tagline">Big-kid energy. Booze-free. 🍪</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$9.75</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$9.75</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 6: Kid Vanilla Confetti -->
@@ -999,10 +1155,17 @@
         </div>
         <h3 class="product-title">Kid Vanilla Confetti Cake Jar</h3>
         <p class="product-tagline">A party in a jar. Fully PG. 🎉</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$9.75</span>
-          <button class="btn-pill btn-dark add-cart"><span>Yes, Please</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$9.75</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Yes, Please</button>
+          </div>
       </article>
 
       <!-- Card 7: Luck of the Irish (SALE) -->
@@ -1013,10 +1176,17 @@
         </div>
         <h3 class="product-title">Luck of the Irish Liquor Cake Jar</h3>
         <p class="product-tagline">Kiss me, I'm cake. 🍀</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price"><span class="price-strike">$14.95</span>$11.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price"><span class="price-strike">$14.95</span>$11.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 8: Irish Car Bomb -->
@@ -1026,10 +1196,17 @@
         </div>
         <h3 class="product-title">Irish Car Bomb Liquor Cake Jar</h3>
         <p class="product-tagline">Dublin in a spoonful. Dangerously smooth.</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Spoon Me This</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Spoon Me This</button>
+          </div>
       </article>
 
       <!-- Card 9: Salty Monster (SALE) -->
@@ -1041,10 +1218,17 @@
         </div>
         <h3 class="product-title">Salty Monster Liquor Cake Jar</h3>
         <p class="product-tagline">Sweet, salty, slightly unhinged. 😈</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price"><span class="price-strike">$14.95</span>$12.50</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price"><span class="price-strike">$14.95</span>$12.50</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 10: Banana Pudding (SOLD OUT) -->
@@ -1055,10 +1239,12 @@
         </div>
         <h3 class="product-title">Banana Pudding Liquor Cake Jar</h3>
         <p class="product-tagline">Grandma's recipe. Adults-only edit.</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill" style="background:#E5E5E5;color:#777;cursor:not-allowed;" disabled><span>Notify Me</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <button class="btn-atc" type="button" disabled style="flex:1;">Notify Me</button>
+          </div>
       </article>
 
       <!-- Card 11: Amaretto Coffee -->
@@ -1069,10 +1255,17 @@
         </div>
         <h3 class="product-title">Amaretto Coffee Liquor Cake Jar</h3>
         <p class="product-tagline">Espresso martini's dessert era. ☕</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Add The Buzz</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Add The Buzz</button>
+          </div>
       </article>
 
       <!-- Card 12: Carrot Cake -->
@@ -1083,10 +1276,17 @@
         </div>
         <h3 class="product-title">Carrot Cake Liquor Cake Jar</h3>
         <p class="product-tagline">Officially a vegetable. We checked. 🥕</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 13: Orange Creamsicle -->
@@ -1096,10 +1296,17 @@
         </div>
         <h3 class="product-title">Orange Creamsicle Liquor Cake Jar</h3>
         <p class="product-tagline">Childhood, but make it 21+. 🧡</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 14: Milky Way -->
@@ -1109,10 +1316,17 @@
         </div>
         <h3 class="product-title">Milky Way Liquor Cake Jar</h3>
         <p class="product-tagline">Candy bar with a license. ✨</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Jar It Up</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Jar It Up</button>
+          </div>
       </article>
 
       <!-- Card 15: Lemon Blueberry Cheesecake -->
@@ -1122,10 +1336,17 @@
         </div>
         <h3 class="product-title">Lemon Blueberry Cheesecake Liquor Cake Jar</h3>
         <p class="product-tagline">Sundress weather in a spoon. 🫐</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 16: Peanut Butter Pretzel -->
@@ -1135,10 +1356,17 @@
         </div>
         <h3 class="product-title">Peanut Butter Pretzel Liquor Cake Jar</h3>
         <p class="product-tagline">Salty. Sweet. Slightly addictive.</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Send It</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Send It</button>
+          </div>
       </article>
 
       <!-- Card 17: Chocolate Maple Bacon (SOLD OUT) -->
@@ -1149,10 +1377,12 @@
         </div>
         <h3 class="product-title">Chocolate Maple Bacon Liquor Cake Jar</h3>
         <p class="product-tagline">Brunch dared us. We accepted. 🥓</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill" style="background:#E5E5E5;color:#777;cursor:not-allowed;" disabled><span>Notify Me</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <button class="btn-atc" type="button" disabled style="flex:1;">Notify Me</button>
+          </div>
       </article>
 
       <!-- Card 18: Butter Beer -->
@@ -1164,10 +1394,17 @@
         </div>
         <h3 class="product-title">Butter Beer Liquor Cake Jar</h3>
         <p class="product-tagline">Wand not included. Buzz is. ⚡</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 19: Chai Tea Latte -->
@@ -1178,10 +1415,17 @@
         </div>
         <h3 class="product-title">Chai Tea Latte Liquor Cake Jar</h3>
         <p class="product-tagline">Cozy season, spiked edition. 🍂</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Pour It In</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Pour It In</button>
+          </div>
       </article>
 
       <!-- Card 20: Coconut Mango -->
@@ -1192,10 +1436,17 @@
         </div>
         <h3 class="product-title">Coconut Mango Liquor Cake Jar</h3>
         <p class="product-tagline">Beach vibes, beach calories. 🥥</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 21: Fruity Bam (SALE) -->
@@ -1206,10 +1457,17 @@
         </div>
         <h3 class="product-title">Fruity Bam Liquor Cake Jar</h3>
         <p class="product-tagline">Fruit punch's wild adult era. 🍹</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price"><span class="price-strike">$14.95</span>$11.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price"><span class="price-strike">$14.95</span>$11.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 22: The Elvis -->
@@ -1221,10 +1479,17 @@
         </div>
         <h3 class="product-title">The Elvis Liquor Cake Jar</h3>
         <p class="product-tagline">Peanut butter. Banana. Bourbon. The King. 👑</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
       <!-- Card 23: Cotton Candy Sprite -->
@@ -1235,10 +1500,17 @@
         </div>
         <h3 class="product-title">Cotton Candy Sprite Liquor Cake</h3>
         <p class="product-tagline">Carnival energy. Bartender approved. 🎡</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Add The Buzz</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Add The Buzz</button>
+          </div>
       </article>
 
       <!-- Card 24: Oatmeal Cream Pie -->
@@ -1248,10 +1520,17 @@
         </div>
         <h3 class="product-title">Oatmeal Cream Pie Liquor Cake Jar</h3>
         <p class="product-tagline">Lunchbox legend, all grown up.</p>
-        <div class="flex items-center justify-between mt-2">
-          <span class="product-price">$14.95</span>
-          <button class="btn-pill btn-dark add-cart"><span>Drop In Cart</span></button>
-        </div>
+        <div class="flex items-center justify-between mt-1 mb-1">
+            <span class="product-price">$14.95</span>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Drop In Cart</button>
+          </div>
       </article>
 
     </div>
@@ -1286,9 +1565,16 @@
           </div>
           <h3 class="product-title" style="font-size:16px;">Kid Cookies and Cream</h3>
           <p class="product-tagline" style="font-size:12.5px;min-height:24px;">Big-kid energy. Booze-free. 🍪</p>
-          <div class="flex items-center justify-between mt-2">
+          <div class="flex items-center justify-between mt-1 mb-1">
             <span class="product-price" style="font-size:14px;">$9.75</span>
-            <button class="btn-pill btn-dark add-cart" style="padding:8px 14px;font-size:12px;"><span>Add</span></button>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Add</button>
           </div>
         </article>
 
@@ -1298,9 +1584,16 @@
           </div>
           <h3 class="product-title" style="font-size:16px;">Kid Vanilla Confetti</h3>
           <p class="product-tagline" style="font-size:12.5px;min-height:24px;">A party in a jar. Fully PG. 🎉</p>
-          <div class="flex items-center justify-between mt-2">
+          <div class="flex items-center justify-between mt-1 mb-1">
             <span class="product-price" style="font-size:14px;">$9.75</span>
-            <button class="btn-pill btn-dark add-cart" style="padding:8px 14px;font-size:12px;"><span>Add</span></button>
+          </div>
+          <div class="atc-row">
+            <div class="qty-stepper" role="group" aria-label="Quantity">
+              <button type="button" class="qty-minus" aria-label="Decrease">−</button>
+              <span class="qty-val">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase">+</button>
+            </div>
+            <button class="btn-atc add-cart" type="button">Add</button>
           </div>
         </article>
       </div>
@@ -1366,8 +1659,8 @@
   </div>
 </section>
 
-<!-- ============ 15. FOUNDER STRIP — LAURA (peach) ============ -->
-<section class="section-pad relative overflow-hidden" style="background:var(--cream); border:1px solid #ECE6D8;">
+<!-- ============ 15. FOUNDER STRIP — LAURA (sunburst pattern) ============ -->
+<section class="section-pad bg-sunburst-soft relative overflow-hidden">
   <!-- decorative squiggles -->
   <svg class="squiggle" style="position:absolute;top:40px;left:8%;width:120px;height:30px;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
     <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
@@ -1599,6 +1892,24 @@
     btn.addEventListener('click', function(e) {
       e.preventDefault();
       fireConfetti({ currentTarget: btn });
+    });
+  });
+
+  // === Quantity steppers ===
+  document.querySelectorAll('.qty-stepper').forEach(function(stepper) {
+    var val = stepper.querySelector('.qty-val');
+    var minus = stepper.querySelector('.qty-minus');
+    var plus = stepper.querySelector('.qty-plus');
+    if (!val || !minus || !plus) return;
+    minus.addEventListener('click', function(e) {
+      e.preventDefault();
+      var n = parseInt(val.textContent, 10) || 1;
+      if (n > 1) val.textContent = n - 1;
+    });
+    plus.addEventListener('click', function(e) {
+      e.preventDefault();
+      var n = parseInt(val.textContent, 10) || 1;
+      if (n < 99) val.textContent = n + 1;
     });
   });
 
