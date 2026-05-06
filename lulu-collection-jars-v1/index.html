@@ -272,16 +272,74 @@
   .flavor-marquee:hover .flavor-marquee-track { animation-play-state: paused; }
   .flavor-marquee-track span { display: inline-flex; align-items: center; gap: 12px; }
 
-  /* === Liquid wave divider === */
+  /* === Liquid wave divider (animated) === */
   .wave-divider {
     display: block;
     width: 100%;
-    height: 60px;
+    height: 70px;
     margin: 0;
     line-height: 0;
+    position: relative;
+    overflow: hidden;
   }
-  .wave-divider svg { display: block; width: 100%; height: 100%; }
-  @media (max-width: 768px) { .wave-divider { height: 40px; } }
+  .wave-divider svg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 200%;   /* svg is 2x viewport — we slide by 50% to loop */
+    height: 100%;
+  }
+  .wave-divider .wave-1 { animation: wave-flow 14s linear infinite; }
+  .wave-divider .wave-2 { animation: wave-flow 22s linear infinite reverse; opacity:.6; }
+  .wave-divider .wave-3 { animation: wave-flow 30s linear infinite; opacity:.4; }
+  @keyframes wave-flow {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 768px) { .wave-divider { height: 50px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .wave-divider .wave-1, .wave-divider .wave-2, .wave-divider .wave-3 { animation: none; }
+  }
+
+  /* === Whimsical pattern: purple diagonal stripes === */
+  .bg-stripes-purple {
+    background-color: var(--lulu-purple);
+    background-image: repeating-linear-gradient(
+      135deg,
+      var(--lulu-purple) 0px,
+      var(--lulu-purple) 18px,
+      #6E3A5F 18px,
+      #6E3A5F 36px
+    );
+  }
+  /* === Whimsical pattern: polka dots === */
+  .bg-dots {
+    background-color: var(--cream);
+    background-image: radial-gradient(var(--lulu-pink) 2px, transparent 2.5px);
+    background-size: 28px 28px;
+  }
+  .bg-dots-lavender {
+    background-color: var(--cream);
+    background-image: radial-gradient(var(--lulu-lavender) 2px, transparent 2.5px);
+    background-size: 22px 22px;
+    opacity: 1;
+  }
+  /* Subtle sunburst overlay (for hero, behind image) */
+  .sunburst-spot {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    background: repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      transparent 8deg,
+      rgba(233,75,123,.18) 8deg,
+      rgba(233,75,123,.18) 16deg
+    );
+    mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 70%);
+    z-index: 0;
+  }
 
   /* === Whimsical pattern: vertical lavender stripes === */
   .bg-stripes {
@@ -726,6 +784,8 @@
     grid-template-columns: 1fr 1fr;
     gap: 32px;
     padding: 64px 24px 70px;
+    position: relative;
+    z-index: 2;
   }
   .hero-image img { transition: transform .5s ease; }
   .hero-banner:hover .hero-image img { transform: rotate(-1deg) scale(1.02); }
@@ -760,38 +820,66 @@
 
   /* === Mobile-first tweaks === */
   @media (max-width: 768px) {
-    .section-pad { padding-top: 40px; padding-bottom: 40px; }
-    .h-hero { font-size: clamp(38px, 9vw, 52px) !important; line-height: 0.96; }
-    .h-section { font-size: clamp(30px, 7vw, 42px) !important; }
-    .h-display { font-size: clamp(34px, 8vw, 48px) !important; }
-    .hero-sub { font-size: 15px; }
+    .section-pad { padding-top: 36px; padding-bottom: 36px; }
+    .h-hero { font-size: clamp(34px, 9vw, 48px) !important; line-height: 0.96; }
+    .h-section { font-size: clamp(26px, 7vw, 36px) !important; }
+    .h-display { font-size: clamp(30px, 8vw, 44px) !important; }
+    .hero-sub { font-size: 14.5px; }
+    .hero-banner { padding-top: 0; }
     .hero-grid {
       grid-template-columns: 1fr;
-      gap: 28px;
-      padding: 36px 20px 48px;
+      gap: 24px;
+      padding: 28px 16px 40px;
       text-align: left;
     }
-    .hero-image { order: -1; max-width: 280px; margin: 0 auto; }
-    .hero-image img { max-width: 280px !important; }
+    .hero-image { order: -1; max-width: 240px; margin: 0 auto; }
+    .hero-image img { max-width: 240px !important; }
+    .hero-image .sticker-angle { font-size: 11px !important; padding: 6px 11px !important; }
     .nav-desktop { display: none; }
     /* Bigger touch targets */
     .btn-pill { padding: 12px 20px !important; min-height: 44px; }
+    .btn-atc { min-height: 42px; padding: 9px 12px; }
+    .qty-stepper button { width: 32px; height: 38px; font-size: 18px; }
     .filter-pill { padding: 11px 16px !important; min-height: 42px; }
-    .mood-tile { min-height: 220px; padding: 24px !important; }
-    /* Single-column mood tiles on small phones */
-    .mood-tile-grid { grid-template-columns: 1fr !important; }
+    /* Mood tile compact 3-up on mobile */
+    .mood-tile { aspect-ratio: 1 / 1.15; }
+    .mood-tile .mood-title { font-size: 12px; }
+    .mood-tile .mood-emoji { font-size: 11px; margin-right: 3px; }
+    .mood-tile .mood-img-wrap { padding: 10px 8px 2px; }
+    .mood-tile .mood-meta { padding: 6px 6px 12px; }
     /* Tighter card spacing */
-    .product-card { padding: 12px 12px 14px; }
-    .product-card .product-title { font-size: 15px; }
-    .product-card .product-tagline { font-size: 12px; }
+    .product-card { padding: 10px 10px 12px; }
+    .product-card .product-title { font-size: 14.5px; }
+    .product-card .product-tagline { font-size: 11.5px; min-height: 32px; }
     .product-card .product-price { font-size: 15px; }
+    .product-card .corner-sticker { width: 32px; height: 32px; font-size: 14px; top: -8px; right: -8px; }
+    .product-card .img-panel { margin-bottom: 10px; }
+    /* Marquee slower on mobile (less visual chaos) */
+    .marquee-track, .flavor-marquee-track { animation-duration: 38s !important; }
+    .flavor-marquee-track { font-size: 16px !important; gap: 24px !important; }
+    .flavor-marquee { padding: 10px 0 !important; }
+    /* Section heads tighter */
+    .filter-row { padding: 10px 0 !important; gap: 8px !important; }
     /* Container side gutter */
-    .container-x { padding-left: 16px; padding-right: 16px; }
+    .container-x { padding-left: 14px; padding-right: 14px; }
+    /* Floating deco stickers smaller + further out so they don't overlap text on phones */
+    .deco-sticker { font-size: 22px !important; opacity: .65; }
+    /* Footer columns stack tighter */
+    .site-header { padding: 0 !important; }
   }
 
-  /* Mood tiles: 2-up on tablets, 3-up on desktop */
-  @media (min-width: 480px) and (max-width: 768px) {
-    .mood-tile-grid { grid-template-columns: 1fr 1fr !important; }
+  /* === Small phone tightening === */
+  @media (max-width: 420px) {
+    .h-hero { font-size: 32px !important; }
+    .hero-image { max-width: 200px; }
+    .hero-image img { max-width: 200px !important; }
+    .hero-grid { padding: 20px 14px 32px; }
+    .mood-tile .mood-title { font-size: 11px; }
+    /* ATC + qty stack on very small phones */
+    .atc-row { flex-direction: column; gap: 8px; align-items: stretch; }
+    .qty-stepper { align-self: stretch; justify-content: space-between; }
+    .qty-stepper .qty-val { flex: 1; }
+    .btn-atc { width: 100%; }
   }
 
   @media (min-width: 769px) {
@@ -878,12 +966,23 @@
   </div>
 </header>
 
-<!-- ============ 3. HERO ============ -->
-<section class="hero-banner" style="background:var(--lulu-lavender-soft);" class="relative overflow-hidden">
+<!-- ============ 3. HERO (with whimsical patterns) ============ -->
+<section class="hero-banner" style="background:var(--lulu-lavender-soft);position:relative;overflow:hidden;">
+  <!-- Hero whimsical pattern: diagonal lavender pin-stripes overlay (very subtle) -->
+  <div aria-hidden="true" style="position:absolute;inset:0;opacity:.35;pointer-events:none;background-image:repeating-linear-gradient(45deg, transparent 0 12px, rgba(165,147,191,.55) 12px 14px);"></div>
+  <!-- Sunburst spot behind hero image -->
+  <div class="sunburst-spot" aria-hidden="true" style="top:10%;right:-6%;width:520px;height:520px;"></div>
+  <!-- Polka dots accent corner -->
+  <div aria-hidden="true" style="position:absolute;bottom:-20px;left:-20px;width:200px;height:200px;background-image:radial-gradient(rgba(233,75,123,.4) 2px, transparent 2.5px);background-size:18px 18px;opacity:.5;border-radius:50%;mask-image:radial-gradient(circle at center, #000 30%, transparent 70%);-webkit-mask-image:radial-gradient(circle at center, #000 30%, transparent 70%);"></div>
+
   <!-- decorative squiggle SVG, top-left -->
-  <svg class="squiggle" style="position:absolute;top:24px;left:5%;width:120px;height:30px;color:var(--lulu-purple);opacity:.55;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
+  <svg class="squiggle" style="position:absolute;top:24px;left:5%;width:120px;height:30px;color:var(--lulu-purple);opacity:.55;z-index:2;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
     <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
   </svg>
+  <!-- Floating decorative emoji stickers -->
+  <span class="deco-sticker" aria-hidden="true" style="top:18%;left:46%;animation-delay:.3s;font-size:24px;">🥃</span>
+  <span class="deco-sticker" aria-hidden="true" style="top:60%;left:38%;animation-delay:.9s;font-size:22px;">✨</span>
+  <span class="deco-sticker" aria-hidden="true" style="top:30%;left:8%;animation-delay:1.4s;font-size:20px;">🥄</span>
 
   <div class="container-x hero-grid items-center">
     <!-- Copy column -->
@@ -925,54 +1024,65 @@
   </div>
 </section>
 
-<!-- ============ Liquid wave divider (lavender hero → striped section below) ============ -->
-<div class="wave-divider" aria-hidden="true" style="background:var(--lulu-lavender-soft);position:relative;">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;">
-    <path class="wave-path-1" d="M0 60 L0 24 C 240 0, 480 60, 720 30 C 960 0, 1200 60, 1440 24 L1440 60 Z" fill="#FBF7F0"/>
+<!-- ============ Animated liquid wave divider (lavender hero → next section) ============ -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--lulu-lavender-soft);">
+  <!-- Wave 1 (deepest, slowest): cream -->
+  <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
   </svg>
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;opacity:.6;">
-    <path class="wave-path-2" d="M0 60 L0 36 C 240 18, 480 50, 720 38 C 960 18, 1200 56, 1440 36 L1440 60 Z" fill="var(--lulu-pink-soft)"/>
+  <!-- Wave 2 (mid, mid-speed, reversed): pink overlay -->
+  <svg class="wave-2" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 42 C 200 25, 400 58, 600 44 C 800 25, 1000 60, 1200 42 C 1400 25, 1600 58, 1800 44 C 2000 25, 2200 60, 2400 42 C 2600 25, 2800 58, 2880 44 L2880 70 Z" fill="#FBE4ED"/>
+  </svg>
+  <!-- Wave 3 (top crest, fastest): pink accent crest -->
+  <svg class="wave-3" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#E94B7B"/>
   </svg>
 </div>
 
-<!-- ============ 4. SHOP BY MOOD (Compact category thumbnails, dring-style) ============ -->
+<!-- ============ 4. EVENT DROPS & BUNDLES (Compact thumbnail tiles) ============ -->
 <section class="bg-stripes py-10 md:py-12" style="position:relative;">
   <div class="container-x reveal">
     <div class="flex items-end justify-between gap-4 mb-6 md:mb-8">
       <div>
-        <div class="eyebrow mb-1" style="color:var(--lulu-pink);">PICK YOUR VIBE</div>
+        <div class="eyebrow mb-1" style="color:var(--lulu-pink);">FRESH POURS &amp; LIMITED DROPS</div>
         <h2 style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(28px,3.5vw,42px);line-height:1;letter-spacing:-0.01em;">
-          Shop By <span class="accent-italic" style="color:var(--lulu-pink);">Mood</span>
+          Event <span class="accent-italic" style="color:var(--lulu-pink);">Drops</span>
         </h2>
       </div>
       <a href="#products" class="hidden md:inline-block" style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:rgba(26,26,26,.6);text-decoration:underline;text-underline-offset:4px;">view all flavors</a>
     </div>
 
     <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
-      <a href="#products" class="mood-tile tile-cream">
-        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" loading="lazy" /></div>
-        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🥂</span>Brunch</div></div>
+      <!-- 1. Mother's Day Edition (Cherry Almond) -->
+      <a href="#" class="mood-tile tile-pink">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CherryAlmond.png?v=1775505833" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🌸</span>Mother's Day</div></div>
       </a>
-
-      <a href="#products" class="mood-tile tile-pink">
-        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="" loading="lazy" /></div>
-        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">💍</span>Bachelorette</div></div>
+      <!-- 2. Mystery Jar -->
+      <a href="#" class="mood-tile tile-lavender">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2550.jpg?v=1740507616" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🎁</span>Mystery Jar</div></div>
       </a>
-      <a href="#products" class="mood-tile tile-lavender">
-        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CottonCandy2.png?v=1773349232" alt="" loading="lazy" /></div>
-        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🎂</span>Birthday</div></div>
+      <!-- 3. Mystery Box of 4 -->
+      <a href="#" class="mood-tile tile-cream">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Mystery_box_4.png?v=1776958812" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">📦</span>Mystery Box</div></div>
       </a>
-      <a href="#products" class="mood-tile tile-cream">
-        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BourbonVanilla.png?v=1768594523" alt="" loading="lazy" /></div>
-        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">💋</span>Date Night</div></div>
+      <!-- 4. Favorites Pack -->
+      <a href="#" class="mood-tile tile-dark">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/4tallwithbackground.png?v=1768594748" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">⭐</span>Favorites Pack</div></div>
       </a>
-      <a href="#products" class="mood-tile tile-dark">
-        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/ChaiLatte.png?v=1771435482" alt="" loading="lazy" /></div>
-        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">👑</span>Mom's Day</div></div>
+      <!-- 5. Indulgence Pack (Buy 4 Get 2) -->
+      <a href="#" class="mood-tile tile-lavender">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Frame_2_ee143cc7-bf3a-4a80-b3de-7ef49319fb18.png?v=1756911725" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🥃</span>Buy 4 Get 2</div></div>
       </a>
-      <a href="#products" class="mood-tile tile-lavender">
-        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Elvis3.png?v=1773349232" alt="" loading="lazy" /></div>
-        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">✨</span>Just Because</div></div>
+      <!-- 6. New Drop (Lemon Blueberry as featured monthly) -->
+      <a href="#" class="mood-tile tile-pink">
+        <div class="mood-img-wrap"><img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/LemonBBC2.png?v=1773349232" alt="" loading="lazy" /></div>
+        <div class="mood-meta"><div class="mood-title"><span class="mood-emoji">🆕</span>New Drop</div></div>
       </a>
     </div>
   </div>
@@ -1626,8 +1736,8 @@
   </div>
 </section>
 
-<!-- ============ 14. REVIEWS ============ -->
-<section class="section-pad" style="background:var(--cream);">
+<!-- ============ 14. REVIEWS (lavender dot pattern) ============ -->
+<section class="section-pad bg-dots-lavender relative" style="--dot-opacity:.3;">
   <div class="container-x reveal">
     <div class="text-center mb-10">
       <div class="eyebrow mb-3" style="color:var(--lulu-pink);">2,985 VERIFIED FANS</div>
@@ -1722,8 +1832,8 @@
   </div>
 </section>
 
-<!-- ============ 17. NEWSLETTER (deep plum) ============ -->
-<section class="section-pad" style="background:var(--lulu-purple);color:var(--cream);">
+<!-- ============ 17. NEWSLETTER (deep plum diagonal stripes) ============ -->
+<section class="section-pad bg-stripes-purple" style="color:var(--cream);position:relative;">
   <div class="container-x reveal text-center max-w-2xl mx-auto">
     <div class="eyebrow mb-4" style="color:var(--lulu-pink);">INSIDER LIST</div>
     <h2 class="h-display mb-4" style="color:var(--cream);">
@@ -1746,8 +1856,21 @@
   </div>
 </section>
 
+<!-- ============ Animated liquid wave (newsletter → footer) ============ -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--lulu-purple);">
+  <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
+  </svg>
+  <svg class="wave-2" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 42 C 200 25, 400 58, 600 44 C 800 25, 1000 60, 1200 42 C 1400 25, 1600 58, 1800 44 C 2000 25, 2200 60, 2400 42 C 2600 25, 2800 58, 2880 44 L2880 70 Z" fill="#E8E2F0"/>
+  </svg>
+  <svg class="wave-3" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#E94B7B"/>
+  </svg>
+</div>
+
 <!-- ============ 18. FOOTER ============ -->
-<footer style="background:var(--cream);color:var(--charcoal);border-top:1px solid #ECE6D8;">
+<footer style="background:var(--cream);color:var(--charcoal);">
   <div class="container-x" style="padding:60px 24px 30px;">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
       <!-- Logo + mission column -->
