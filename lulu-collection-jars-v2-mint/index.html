@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Liquor Cake Jars — Cake With A Buzz | Lulu Liquor Cakes (Mint)</title>
+<title>Liquor Cake Jars — Cake With A Buzz | Lulu Liquor Cakes (Mint Blend)</title>
 <meta name="description" content="8 oz of scratch-made cake, ~3% booze, zero sharing required. Shop 24 liquor-infused cake jars + boozy butter. Spiked. Jarred. Shipped." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,11 +18,13 @@
         colors: {
           cream: '#FBF7F0',
           charcoal: '#1A1A1A',
-          'lulu-pink': '#12BF8F',
-          'lulu-pink-soft': '#D4F7EE',
+          'lulu-pink': '#E94B7B',
+          'lulu-pink-soft': '#FBE4ED',
           'lulu-lavender': '#A593BF',
           'lulu-lavender-soft': '#E8E2F0',
-          'lulu-purple': '#5A2A4D'
+          'lulu-purple': '#5A2A4D',
+          'lulu-mint': '#12BF8F',
+          'lulu-mint-soft': '#E0FAF4'
         },
         fontFamily: {
           display: ['Fraunces', 'serif'],
@@ -39,11 +41,13 @@
   :root {
     --cream: #FBF7F0;
     --charcoal: #1A1A1A;
-    --lulu-pink: #12BF8F;
-    --lulu-pink-soft: #D4F7EE;
+    --lulu-pink: #E94B7B;
+    --lulu-pink-soft: #FBE4ED;
     --lulu-lavender: #A593BF;
     --lulu-lavender-soft: #E8E2F0;
     --lulu-purple: #5A2A4D;
+    --lulu-mint: #12BF8F;
+    --lulu-mint-soft: #E0FAF4;
   }
   * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   html { scroll-behavior: smooth; }
@@ -123,7 +127,7 @@
     background: var(--lulu-pink);
     color: white;
   }
-  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(18,191,143,.35); }
+  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(233,75,123,.35); }
   .btn-outline {
     background: white;
     color: var(--charcoal);
@@ -257,7 +261,7 @@
     padding: 14px 0;
     overflow: hidden;
     border-top: 2px solid var(--lulu-pink);
-    border-bottom: 2px solid var(--lulu-pink);
+    border-bottom: 2px solid var(--lulu-mint);
   }
   .flavor-marquee-track {
     display: flex;
@@ -333,8 +337,8 @@
       from 0deg at 50% 50%,
       transparent 0deg,
       transparent 8deg,
-      rgba(18,191,143,.18) 8deg,
-      rgba(18,191,143,.18) 16deg
+      rgba(233,75,123,.18) 8deg,
+      rgba(233,75,123,.18) 16deg
     );
     mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 70%);
     -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 70%);
@@ -370,8 +374,8 @@
       from 0deg at 50% 50%,
       transparent 0deg,
       transparent 6deg,
-      rgba(18,191,143,.10) 6deg,
-      rgba(18,191,143,.10) 12deg
+      rgba(233,75,123,.10) 6deg,
+      rgba(233,75,123,.10) 12deg
     );
   }
 
@@ -464,12 +468,12 @@
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    box-shadow: 0 4px 10px rgba(18,191,143,.35);
+    box-shadow: 0 4px 10px rgba(233,75,123,.35);
     transform: rotate(8deg);
     z-index: 3;
     border: 2px solid #fff;
   }
-  .product-card:nth-child(7n+3) .corner-sticker { background: var(--lulu-lavender); transform: rotate(-6deg); box-shadow: 0 4px 10px rgba(165,147,191,.35); }
+  .product-card:nth-child(7n+3) .corner-sticker { background: var(--lulu-mint); transform: rotate(-6deg); box-shadow: 0 4px 10px rgba(18,191,143,.35); }
   .product-card:nth-child(5n+2) .corner-sticker { background: var(--lulu-purple); transform: rotate(4deg); box-shadow: 0 4px 10px rgba(90,42,77,.35); }
 
   /* === Product card === */
@@ -755,6 +759,23 @@
     opacity: 0.7;
   }
 
+
+
+  /* Mint accent on alternating product cards */
+  #products .grid > article:nth-child(6n+3) { background: linear-gradient(160deg,var(--cream) 60%,var(--lulu-mint-soft) 100%) !important; border-color: rgba(18,191,143,.2) !important; }
+  #products .grid > article:nth-child(6n+6) { background: linear-gradient(160deg,var(--lulu-mint-soft) 0%,var(--cream) 60%) !important; border-color: rgba(18,191,143,.2) !important; }
+
+  /* === Mint dot pattern === */
+  .bg-dots-mint {
+    background-color: var(--lulu-mint-soft);
+    background-image: radial-gradient(var(--lulu-mint) 1.5px, transparent 2px);
+    background-size: 22px 22px;
+  }
+  /* === Mint-lavender blend bg === */
+  .bg-mint-lavender {
+    background: linear-gradient(135deg, var(--lulu-lavender-soft) 0%, var(--lulu-mint-soft) 100%);
+  }
+
   /* === Reduce motion === */
   @media (prefers-reduced-motion: reduce) {
     .marquee-track,
@@ -923,6 +944,7 @@
     transition: transform .2s ease;
   }
   .event-chip:hover { transform: translateY(-2px); }
+.event-chip:hover .event-chip-label { color: var(--lulu-mint); }
   .event-chip-img {
     width: 100%;
     height: 120px;
@@ -1090,13 +1112,13 @@
 </div>
 
 <!-- ============ 3. HERO (with whimsical patterns) ============ -->
-<section class="hero-banner" style="background:#BEB0D1;position:relative;overflow:hidden;">
+<section class="hero-banner" style="background:linear-gradient(135deg,#BEB0D1 0%,#A8CCB8 100%);position:relative;overflow:hidden;">
   <!-- Hero whimsical pattern: diagonal lavender pin-stripes overlay (very subtle) -->
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.35;pointer-events:none;background-image:repeating-linear-gradient(45deg, transparent 0 12px, rgba(165,147,191,.55) 12px 14px);"></div>
   <!-- Sunburst spot behind hero image -->
   <div class="sunburst-spot" aria-hidden="true" style="top:10%;right:-6%;width:520px;height:520px;"></div>
   <!-- Polka dots accent corner -->
-  <div aria-hidden="true" style="position:absolute;bottom:-20px;left:-20px;width:200px;height:200px;background-image:radial-gradient(rgba(18,191,143,.4) 2px, transparent 2.5px);background-size:18px 18px;opacity:.5;border-radius:50%;mask-image:radial-gradient(circle at center, #000 30%, transparent 70%);-webkit-mask-image:radial-gradient(circle at center, #000 30%, transparent 70%);"></div>
+  <div aria-hidden="true" style="position:absolute;bottom:-20px;left:-20px;width:200px;height:200px;background-image:radial-gradient(rgba(233,75,123,.4) 2px, transparent 2.5px);background-size:18px 18px;opacity:.5;border-radius:50%;mask-image:radial-gradient(circle at center, #000 30%, transparent 70%);-webkit-mask-image:radial-gradient(circle at center, #000 30%, transparent 70%);"></div>
 
   <!-- decorative squiggle SVG, top-left -->
   <svg class="squiggle" style="position:absolute;top:24px;left:5%;width:120px;height:30px;color:var(--lulu-purple);opacity:.55;z-index:2;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
@@ -1148,18 +1170,18 @@
 </section>
 
 <!-- ============ Animated liquid wave divider (lavender hero → next section) ============ -->
-<div class="wave-divider" aria-hidden="true" style="background:#BEB0D1;">
+<div class="wave-divider" aria-hidden="true" style="background:linear-gradient(to right,#BEB0D1,#A8CCB8);">
   <!-- Wave 1 (deepest, slowest): cream -->
   <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
   </svg>
   <!-- Wave 2 (mid, mid-speed, reversed): pink overlay -->
   <svg class="wave-2" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 70 L0 42 C 200 25, 400 58, 600 44 C 800 25, 1000 60, 1200 42 C 1400 25, 1600 58, 1800 44 C 2000 25, 2200 60, 2400 42 C 2600 25, 2800 58, 2880 44 L2880 70 Z" fill="#D4F7EE"/>
+    <path d="M0 70 L0 42 C 200 25, 400 58, 600 44 C 800 25, 1000 60, 1200 42 C 1400 25, 1600 58, 1800 44 C 2000 25, 2200 60, 2400 42 C 2600 25, 2800 58, 2880 44 L2880 70 Z" fill="#FBE4ED"/>
   </svg>
   <!-- Wave 3 (top crest, fastest): pink accent crest -->
   <svg class="wave-3" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#12BF8F"/>
+    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#E94B7B"/>
   </svg>
 </div>
 
@@ -1779,7 +1801,7 @@
 </section>
 
 <!-- ============ A+ CONTENT — Kid Jars (lavender soft) ============ -->
-<section class="section-pad" style="background:var(--lulu-lavender-soft);">
+<section class="section-pad" style="background:linear-gradient(135deg,var(--lulu-lavender-soft) 0%,var(--lulu-mint-soft) 100%);">
   <div class="container-x reveal">
     <div class="grid md:grid-cols-2 gap-10 items-center">
       <div>
@@ -1860,7 +1882,7 @@
 </section>
 
 <!-- ============ 14. REVIEWS (lavender dot pattern) ============ -->
-<section class="section-pad bg-dots-lavender relative" style="--dot-opacity:.3;">
+<section class="section-pad relative" style="background:linear-gradient(160deg,var(--lulu-lavender-soft) 0%,var(--lulu-mint-soft) 100%);">
   <div class="container-x reveal">
     <div class="text-center mb-10">
       <div class="eyebrow mb-3" style="color:var(--lulu-pink);">2,985 VERIFIED FANS</div>
@@ -1893,7 +1915,7 @@
 </section>
 
 <!-- ============ 15. FOUNDER STRIP — LAURA (sunburst pattern) ============ -->
-<section class="section-pad bg-sunburst-soft relative overflow-hidden">
+<section class="section-pad relative overflow-hidden" style="background:linear-gradient(160deg,#FBF7F0 30%,var(--lulu-mint-soft) 100%);">
   <!-- decorative squiggles -->
   <svg class="squiggle" style="position:absolute;top:40px;left:8%;width:120px;height:30px;" viewBox="0 0 120 30" fill="none" aria-hidden="true">
     <path d="M2 15 Q 12 2, 22 15 T 42 15 T 62 15 T 82 15 T 102 15 T 118 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
@@ -1927,7 +1949,7 @@
 </section>
 
 <!-- ============ 16. FAQ TEASER ============ -->
-<section class="section-pad" style="background:var(--cream);">
+<section class="section-pad" style="background:linear-gradient(to bottom,var(--cream) 0%,#EEF9F5 100%);">
   <div class="container-x reveal max-w-3xl mx-auto">
     <div class="text-center mb-10">
       <div class="eyebrow mb-3" style="color:var(--lulu-pink);">QUICK SIPS</div>
@@ -1988,7 +2010,7 @@
     <path d="M0 70 L0 42 C 200 25, 400 58, 600 44 C 800 25, 1000 60, 1200 42 C 1400 25, 1600 58, 1800 44 C 2000 25, 2200 60, 2400 42 C 2600 25, 2800 58, 2880 44 L2880 70 Z" fill="#E8E2F0"/>
   </svg>
   <svg class="wave-3" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#12BF8F"/>
+    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#E94B7B"/>
   </svg>
 </div>
 
@@ -2098,7 +2120,7 @@
     if (prefersReduced) return;
     var container = document.getElementById('confetti-container');
     if (!container) return;
-    var colors = ['#12BF8F', '#A593BF', '#5A2A4D', '#D4F7EE', '#1A1A1A'];
+    var colors = ['#E94B7B', '#A593BF', '#5A2A4D', '#FBE4ED', '#1A1A1A'];
     var html = '';
     for (var i = 0; i < 30; i++) {
       var left = (Math.random() * 100).toFixed(1);
@@ -2131,7 +2153,7 @@
       spread: 65,
       startVelocity: 38,
       origin: origin,
-      colors: ['#12BF8F', '#A593BF', '#5A2A4D', '#D4F7EE', '#FFFFFF']
+      colors: ['#E94B7B', '#A593BF', '#5A2A4D', '#FBE4ED', '#FFFFFF']
     });
   }
   document.querySelectorAll('.add-cart').forEach(function(btn) {
