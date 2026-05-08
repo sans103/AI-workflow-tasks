@@ -435,9 +435,10 @@
   .btn-atc:hover { background: var(--lulu-pink); transform: translateY(-1px); }
   .btn-atc:disabled { background: #E5E5E5; color: #888; cursor: not-allowed; transform: none; }
   .btn-atc:disabled:hover { background: #E5E5E5; }
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     .atc-row { flex-direction: column; gap: 8px; align-items: stretch; }
-    .qty-stepper { align-self: flex-start; }
+    .qty-stepper { align-self: stretch; justify-content: space-between; }
+    .qty-stepper .qty-val { flex: 1; }
     .btn-atc { width: 100%; }
   }
 
@@ -791,13 +792,18 @@
   .hero-banner:hover .hero-image img { transform: rotate(-1deg) scale(1.02); }
   .hero-sub { font-size: 17px; }
 
-  /* === Filter bar (sticky on mobile) === */
+  /* === Filter bar (sticky on mobile only, relative on desktop) === */
   .filter-bar {
     background: var(--cream);
     border-bottom: 1px solid #ECE6D8;
     position: sticky;
-    top: 0;
-    z-index: 30;
+    z-index: 40;
+  }
+  @media (min-width: 769px) {
+    .filter-bar { position: relative; top: auto; }
+  }
+  @media (max-width: 768px) {
+    .filter-bar { top: 163px; } /* marquee ~37px + header ~73px + event strip mobile ~94px — 1px overlap */
   }
   .filter-bar .filter-row {
     display: flex;
@@ -828,44 +834,46 @@
     .hero-banner { padding-top: 0; }
     .hero-grid {
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 20px;
       padding: 28px 16px 40px;
       text-align: left;
     }
-    .hero-image { order: -1; max-width: 240px; margin: 0 auto; }
-    .hero-image img { max-width: 240px !important; }
+    /* Image at TOP, copy below on mobile (matches Figma) */
+    .hero-image { order: -1; max-width: 220px; margin: 0 auto; }
+    .hero-image img { max-width: 220px !important; }
     .hero-image .sticker-angle { font-size: 11px !important; padding: 6px 11px !important; }
     .nav-desktop { display: none; }
     /* Bigger touch targets */
     .btn-pill { padding: 12px 20px !important; min-height: 44px; }
-    .btn-atc { min-height: 42px; padding: 9px 12px; }
+    .btn-atc { min-height: 42px; padding: 10px 12px; font-size: 13px; }
     .qty-stepper button { width: 32px; height: 38px; font-size: 18px; }
     .filter-pill { padding: 11px 16px !important; min-height: 42px; }
-    /* Mood tile compact 3-up on mobile */
-    .mood-tile { aspect-ratio: 1 / 1.15; }
-    .mood-tile .mood-title { font-size: 12px; }
+    /* Mood tile compact 3-up on mobile — compact rectangular tiles like Figma */
+    .mood-tile { aspect-ratio: 113 / 129; border-radius: 10px; }
+    .mood-tile .mood-title { font-size: 11.5px; }
     .mood-tile .mood-emoji { font-size: 11px; margin-right: 3px; }
-    .mood-tile .mood-img-wrap { padding: 10px 8px 2px; }
-    .mood-tile .mood-meta { padding: 6px 6px 12px; }
-    /* Tighter card spacing */
-    .product-card { padding: 10px 10px 12px; }
-    .product-card .product-title { font-size: 14.5px; }
-    .product-card .product-tagline { font-size: 11.5px; min-height: 32px; }
+    .mood-tile .mood-img-wrap { padding: 8px 8px 2px; }
+    .mood-tile .mood-meta { padding: 5px 6px 10px; }
+    /* Tighter card spacing matching Figma 173px card */
+    .product-card { padding: 10px 10px 14px; border-radius: 12px; }
+    .product-card .product-title { font-size: 14.5px; line-height: 1.2; }
+    .product-card .product-tagline { font-size: 11.5px; min-height: 32px; line-height: 1.3; }
     .product-card .product-price { font-size: 15px; }
     .product-card .corner-sticker { width: 32px; height: 32px; font-size: 14px; top: -8px; right: -8px; }
-    .product-card .img-panel { margin-bottom: 10px; }
-    /* Marquee slower on mobile (less visual chaos) */
+    .product-card .img-panel { margin-bottom: 8px; }
+    /* Marquee slower on mobile */
     .marquee-track, .flavor-marquee-track { animation-duration: 38s !important; }
     .flavor-marquee-track { font-size: 16px !important; gap: 24px !important; }
-    .flavor-marquee { padding: 10px 0 !important; }
+    .flavor-marquee { padding: 8px 0 !important; }
     /* Section heads tighter */
     .filter-row { padding: 10px 0 !important; gap: 8px !important; }
-    /* Container side gutter */
+    /* Container side gutter — matches Figma 14px each side */
     .container-x { padding-left: 14px; padding-right: 14px; }
-    /* Floating deco stickers smaller + further out so they don't overlap text on phones */
+    /* Floating deco stickers smaller */
     .deco-sticker { font-size: 22px !important; opacity: .65; }
-    /* Footer columns stack tighter */
     .site-header { padding: 0 !important; }
+    /* Product grid tighter gap on mobile */
+    #products .grid { gap: 12px !important; }
   }
 
   /* === Small phone tightening === */
@@ -875,11 +883,6 @@
     .hero-image img { max-width: 200px !important; }
     .hero-grid { padding: 20px 14px 32px; }
     .mood-tile .mood-title { font-size: 11px; }
-    /* ATC + qty stack on very small phones */
-    .atc-row { flex-direction: column; gap: 8px; align-items: stretch; }
-    .qty-stepper { align-self: stretch; justify-content: space-between; }
-    .qty-stepper .qty-val { flex: 1; }
-    .btn-atc { width: 100%; }
   }
 
   @media (min-width: 769px) {
@@ -891,6 +894,78 @@
     outline: 2px solid var(--lulu-pink);
     outline-offset: 3px;
     border-radius: 4px;
+  }
+
+  /* === Frame 58 — Compact event strip below header === */
+  .event-strip {
+    background: var(--cream);
+    border-bottom: 1px solid #ECE6D8;
+    padding: 10px 0;
+    overflow: hidden;
+  }
+  .event-strip-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  .event-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: var(--charcoal);
+    flex: 0 0 auto;
+    width: 140px;
+    transition: transform .2s ease;
+  }
+  .event-chip:hover { transform: translateY(-2px); }
+  .event-chip-img {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .event-chip-img img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
+  .event-chip-label {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.2;
+    color: var(--charcoal);
+  }
+  @media (max-width: 768px) {
+    .event-strip-inner {
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 14px;
+      gap: 8px;
+    }
+    .event-strip-inner::-webkit-scrollbar { display: none; }
+    .event-chip { width: 80px; }
+    .event-chip-img { height: 72px; border-radius: 8px; }
+    .event-chip-label { font-size: 11px; }
+  }
+
+  /* === Product card title overflow clamp === */
+  .product-card .product-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>
 </head>
@@ -966,8 +1041,56 @@
   </div>
 </header>
 
+<!-- ============ FRAME 58: Compact Event Strip (header → hero) ============ -->
+<div class="event-strip" role="navigation" aria-label="Shop Events">
+  <div class="event-strip-inner">
+    <!-- 1. Mother's Day -->
+    <a href="#" class="event-chip">
+      <div class="event-chip-img" style="background:var(--lulu-pink-soft);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CherryAlmond.png?v=1775505833" alt="Mother's Day Edition" />
+      </div>
+      <span class="event-chip-label">🌸 Mother's Day</span>
+    </a>
+    <!-- 2. Favorites Pack -->
+    <a href="#" class="event-chip">
+      <div class="event-chip-img" style="background:var(--lulu-lavender-soft);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/4tallwithbackground.png?v=1768594748" alt="Favorites Pack" />
+      </div>
+      <span class="event-chip-label">⭐ Favorites Pack</span>
+    </a>
+    <!-- 3. Mystery Box -->
+    <a href="#" class="event-chip">
+      <div class="event-chip-img" style="background:var(--cream);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Mystery_box_4.png?v=1776958812" alt="Mystery Box of 4" />
+      </div>
+      <span class="event-chip-label">📦 Mystery Box</span>
+    </a>
+    <!-- 4. Buy 4 Get 2 -->
+    <a href="#" class="event-chip">
+      <div class="event-chip-img" style="background:var(--lulu-lavender-soft);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Frame_2_ee143cc7-bf3a-4a80-b3de-7ef49319fb18.png?v=1756911725" alt="Buy 4 Get 2" />
+      </div>
+      <span class="event-chip-label">🥃 Buy 4 Get 2</span>
+    </a>
+    <!-- 5. Mystery Jar -->
+    <a href="#" class="event-chip">
+      <div class="event-chip-img" style="background:var(--lulu-pink-soft);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2550.jpg?v=1740507616" alt="Mystery Jar" />
+      </div>
+      <span class="event-chip-label">🎁 Mystery Jar</span>
+    </a>
+    <!-- 6. View All -->
+    <a href="#products" class="event-chip">
+      <div class="event-chip-img" style="background:var(--lulu-purple);">
+        <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="View All Flavors" />
+      </div>
+      <span class="event-chip-label" style="color:var(--lulu-purple);font-weight:700;">View All →</span>
+    </a>
+  </div>
+</div>
+
 <!-- ============ 3. HERO (with whimsical patterns) ============ -->
-<section class="hero-banner" style="background:var(--lulu-lavender-soft);position:relative;overflow:hidden;">
+<section class="hero-banner" style="background:#BEB0D1;position:relative;overflow:hidden;">
   <!-- Hero whimsical pattern: diagonal lavender pin-stripes overlay (very subtle) -->
   <div aria-hidden="true" style="position:absolute;inset:0;opacity:.35;pointer-events:none;background-image:repeating-linear-gradient(45deg, transparent 0 12px, rgba(165,147,191,.55) 12px 14px);"></div>
   <!-- Sunburst spot behind hero image -->
@@ -1025,7 +1148,7 @@
 </section>
 
 <!-- ============ Animated liquid wave divider (lavender hero → next section) ============ -->
-<div class="wave-divider" aria-hidden="true" style="background:var(--lulu-lavender-soft);">
+<div class="wave-divider" aria-hidden="true" style="background:#BEB0D1;">
   <!-- Wave 1 (deepest, slowest): cream -->
   <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
@@ -1041,13 +1164,13 @@
 </div>
 
 <!-- ============ 4. EVENT DROPS & BUNDLES (Compact thumbnail tiles) ============ -->
-<section class="bg-stripes py-10 md:py-12" style="position:relative;">
+<section style="background:var(--lulu-lavender-soft);padding:32px 0 28px;position:relative;border-top:1px solid #ECE6D8;border-bottom:1px solid #ECE6D8;">
   <div class="container-x reveal">
     <div class="flex items-end justify-between gap-4 mb-6 md:mb-8">
       <div>
         <div class="eyebrow mb-1" style="color:var(--lulu-pink);">FRESH POURS &amp; LIMITED DROPS</div>
         <h2 style="font-family:'Fraunces',serif;font-weight:900;font-size:clamp(28px,3.5vw,42px);line-height:1;letter-spacing:-0.01em;">
-          Event <span class="accent-italic" style="color:var(--lulu-pink);">Drops</span>
+          Shop <span class="accent-italic" style="color:var(--lulu-pink);">The Drop</span>
         </h2>
       </div>
       <a href="#products" class="hidden md:inline-block" style="font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:rgba(26,26,26,.6);text-decoration:underline;text-underline-offset:4px;">view all flavors</a>
@@ -1151,7 +1274,7 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
 
       <!-- Card 1: Bourbon Vanilla -->
       <article class="product-card" style="background:var(--cream); border:1px solid #ECE6D8;">
