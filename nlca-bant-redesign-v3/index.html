@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's match you with the right advisor — Nurse Life Coach Academy (v3)</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+  <!-- Wistia player -->
+  <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+
+  <style>
+    :root {
+      --nlca-text-default:        #384053;
+      --nlca-text-on-dark:        #d1e9f4;
+      --nlca-text-muted:          #647390;
+      --nlca-text-placeholder:    #7d8ca5;
+      --nlca-accent-rust:         #b36060;
+      --nlca-accent-rust-dark:    #8f4a4a;
+      --nlca-pastel-blue:         #d1e9f4;
+      --nlca-pastel-lavender:     #d6c9e3;
+      --nlca-dark-slate:          #384053;
+      --nlca-dark-navy:           #18233B;
+      --nlca-border-subtle:       #D3DAE4;
+      --nlca-border-light:        #ebf0f5;
+      --nlca-surface-white:       #FFFFFF;
+      --nlca-font-display:        "Playfair Display", Georgia, "Times New Roman", serif;
+      --nlca-font-body:           "Lato", Helvetica, Arial, sans-serif;
+      --nlca-btn-primary-bg:      #b36060;
+      --nlca-btn-primary-color:   #d1e9f4;
+      --nlca-btn-radius:          50px;
+      --nlca-form-radius:         8px;
+      --nlca-form-focus-ring:     rgba(179, 96, 96, 0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--nlca-font-body);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--nlca-text-default);
+      background: var(--nlca-surface-white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--nlca-accent-rust); text-decoration: none; }
+    a:hover { color: var(--nlca-accent-rust-dark); text-decoration: underline; }
+
+    /* ── Progress bar ── */
+    .progress-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #ffffff;
+      border-bottom: 1px solid var(--nlca-border-light);
+      padding: 14px 16px;
+    }
+    .progress-bar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .progress-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: background-color .25s ease, color .25s ease;
+    }
+    .progress-step__num {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .progress-step--active { background: var(--nlca-accent-rust); color: var(--nlca-pastel-blue); }
+    .progress-step--active .progress-step__num { background: var(--nlca-pastel-blue); color: var(--nlca-accent-rust); }
+    .progress-step--complete { background: var(--nlca-pastel-blue); color: var(--nlca-dark-slate); }
+    .progress-step--complete .progress-step__num { background: var(--nlca-accent-rust); color: var(--nlca-pastel-blue); }
+    .progress-step--locked { background: #f1f4f7; color: #8b95a8; }
+    .progress-step--locked .progress-step__num { background: #d3dae4; color: #8b95a8; }
+    .progress-connector { flex: 0 1 80px; height: 2px; background: var(--nlca-border-subtle); transition: background-color .25s ease; }
+    .progress-connector--filled { background: var(--nlca-accent-rust); }
+    .progress-step__icon { width: 14px; height: 14px; flex-shrink: 0; }
+    @media (max-width: 480px) {
+      .progress-step { padding: 6px 12px; font-size: 12px; gap: 6px; }
+      .progress-step__num { width: 20px; height: 20px; font-size: 11px; }
+      .progress-connector { flex: 0 1 32px; }
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: linear-gradient(180deg, #ffffff 0%, var(--nlca-pastel-blue) 100%);
+      padding: 24px 16px 16px;
+      text-align: center;
+    }
+    .site-header__logo img { width: 130px; height: auto; margin: 0 auto; }
+    @media (min-width: 768px) {
+      .site-header { padding: 32px 24px 20px; }
+      .site-header__logo img { width: 140px; }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--nlca-pastel-blue);
+      padding: 24px 16px 48px;
+      text-align: center;
+    }
+    .hero__inner { max-width: 760px; margin: 0 auto; }
+    .hero__trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px 18px;
+      margin: 0 auto 28px;
+      padding: 0;
+      list-style: none;
+      max-width: 640px;
+    }
+    .hero__trust-item {
+      font-family: var(--nlca-font-body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--nlca-dark-slate);
+      letter-spacing: 0.01em;
+      display: inline-flex;
+      align-items: center;
+    }
+    .hero__trust-item:not(:last-child)::after {
+      content: "•";
+      margin-left: 18px;
+      color: var(--nlca-accent-rust);
+      font-size: 18px;
+      line-height: 1;
+    }
+    .hero__title {
+      font-family: var(--nlca-font-display);
+      font-weight: 400;
+      font-size: 2rem;
+      line-height: 1.15;
+      color: var(--nlca-accent-rust);
+      margin: 0 0 16px;
+      letter-spacing: -0.01em;
+    }
+    .hero__subtitle {
+      font-family: var(--nlca-font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--nlca-dark-slate);
+      margin: 0 auto;
+      max-width: 580px;
+    }
+    @media (min-width: 768px) {
+      .hero { padding: 32px 24px 64px; }
+      .hero__trust-bar { gap: 12px 24px; margin-bottom: 36px; }
+      .hero__trust-item { font-size: 15px; }
+      .hero__trust-item:not(:last-child)::after { margin-left: 24px; }
+      .hero__title { font-size: 2.75rem; }
+      .hero__subtitle { font-size: 18px; }
+    }
+    @media (min-width: 1024px) { .hero__title { font-size: 3rem; } }
+
+    /* ── Form section ── */
+    .form-section { background: var(--nlca-pastel-blue); padding: 0 16px 64px; }
+    .form-card {
+      background: var(--nlca-surface-white);
+      border-radius: 16px;
+      border: 1px solid var(--nlca-border-subtle);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      box-shadow: 0 12px 36px rgba(56, 64, 83, 0.06);
+    }
+    @media (min-width: 768px) { .form-section { padding: 0 24px 80px; } .form-card { padding: 48px; } }
+
+    .nlca-form-field { margin-bottom: 28px; }
+    .nlca-form-label {
+      display: block;
+      font-family: var(--nlca-font-display);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--nlca-dark-slate);
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+    @media (min-width: 768px) { .nlca-form-label { font-size: 18px; } }
+
+    .nlca-select, .nlca-input {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      background-color: var(--nlca-surface-white);
+      color: var(--nlca-dark-slate);
+      font-family: var(--nlca-font-display);
+      font-size: 16px;
+      line-height: 1.4;
+      border: 1px solid var(--nlca-border-subtle);
+      border-radius: var(--nlca-form-radius);
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .nlca-select {
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23384053' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 44px;
+    }
+    .nlca-select:focus, .nlca-input:focus {
+      outline: none;
+      border-color: var(--nlca-accent-rust);
+      box-shadow: 0 0 0 3px var(--nlca-form-focus-ring);
+    }
+    .nlca-select:invalid { color: var(--nlca-text-placeholder); }
+    .nlca-select option { color: var(--nlca-dark-slate); }
+    .nlca-select option[disabled] { color: var(--nlca-text-placeholder); }
+
+    .nlca-form-help {
+      display: block;
+      margin-top: 8px;
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--nlca-text-muted);
+      line-height: 1.45;
+    }
+
+    .scale-fieldset { border: 0; padding: 0; margin: 0; }
+    .scale-options { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 4px; }
+    .scale-option { position: relative; }
+    .scale-option input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+    .scale-option label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 8px 4px;
+      background: var(--nlca-surface-white);
+      border: 1px solid var(--nlca-border-subtle);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s ease;
+      font-family: var(--nlca-font-body);
+    }
+    .scale-option label .scale-num {
+      font-family: var(--nlca-font-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--nlca-dark-slate);
+      line-height: 1;
+    }
+    .scale-option label .scale-text {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--nlca-text-muted);
+      margin-top: 4px;
+      line-height: 1.15;
+      min-height: 12px;
+    }
+    .scale-option label:hover { border-color: var(--nlca-accent-rust); background: #fff7f5; }
+    .scale-option input[type="radio"]:focus-visible + label {
+      outline: none;
+      border-color: var(--nlca-accent-rust);
+      box-shadow: 0 0 0 3px var(--nlca-form-focus-ring);
+    }
+    .scale-option input[type="radio"]:checked + label {
+      background: var(--nlca-accent-rust);
+      border-color: var(--nlca-accent-rust);
+    }
+    .scale-option input[type="radio"]:checked + label .scale-num,
+    .scale-option input[type="radio"]:checked + label .scale-text { color: var(--nlca-pastel-blue); }
+    .scale-anchors {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--nlca-text-muted);
+    }
+    @media (min-width: 768px) {
+      .scale-options { gap: 10px; }
+      .scale-option label { min-height: 72px; padding: 10px 6px; }
+      .scale-option label .scale-num { font-size: 24px; }
+      .scale-option label .scale-text { font-size: 11px; }
+    }
+
+    .form-submit-wrap { margin-top: 8px; text-align: center; }
+    .nlca-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 100%;
+      min-height: 56px;
+      padding: 18px 32px;
+      font-family: var(--nlca-font-body);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      background-color: var(--nlca-btn-primary-bg);
+      color: var(--nlca-btn-primary-color);
+      border: 0;
+      border-radius: var(--nlca-btn-radius);
+      cursor: pointer;
+      transition: background-color .2s ease, transform .1s ease;
+      text-decoration: none;
+    }
+    .nlca-btn:hover { background-color: var(--nlca-accent-rust-dark); color: var(--nlca-pastel-blue); }
+    .nlca-btn:active { transform: translateY(1px); }
+    .nlca-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(179, 96, 96, 0.35); }
+    .nlca-btn[disabled] { opacity: .55; cursor: not-allowed; }
+    @media (min-width: 768px) { .nlca-btn { width: auto; min-width: 320px; } }
+
+    .form-microcopy {
+      display: block;
+      margin: 14px auto 0;
+      max-width: 480px;
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(56, 64, 83, 0.7);
+      line-height: 1.5;
+    }
+
+    /* ── Hook strip ── */
+    .hook-strip {
+      background: var(--nlca-pastel-blue);
+      padding: 0 16px 32px;
+    }
+    .hook-strip__inner {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--nlca-dark-navy);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+    }
+    .hook-strip__text {
+      font-family: var(--nlca-font-body);
+      font-size: 15px;
+      color: var(--nlca-pastel-blue);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .hook-strip__text strong {
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .hook-strip__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 22px;
+      background: transparent;
+      border: 1.5px solid var(--nlca-pastel-lavender);
+      border-radius: 999px;
+      color: var(--nlca-pastel-lavender);
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s ease, color .2s ease;
+      white-space: nowrap;
+    }
+    .hook-strip__btn:hover {
+      background: var(--nlca-pastel-lavender);
+      color: var(--nlca-dark-navy);
+      text-decoration: none;
+    }
+    .hook-strip__btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    @media (min-width: 600px) {
+      .hook-strip__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 18px 28px;
+      }
+      .hook-strip__text { font-size: 15px; }
+    }
+    @media (min-width: 768px) {
+      .hook-strip { padding: 0 24px 40px; }
+    }
+
+    /* ── VSL Section ── */
+    .vsl-section {
+      background: var(--nlca-dark-navy);
+      padding: 50px 16px;
+      text-align: center;
+    }
+    .vsl-section__inner { max-width: 900px; margin: 0 auto; }
+    .vsl-section__eyebrow {
+      font-family: var(--nlca-font-body);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--nlca-pastel-lavender);
+      margin: 0 0 12px;
+    }
+    .vsl-section__heading {
+      font-family: var(--nlca-font-display);
+      font-weight: 400;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      color: var(--nlca-pastel-blue);
+      margin: 0 0 8px;
+    }
+    .vsl-section__sub {
+      font-family: var(--nlca-font-body);
+      font-size: 15px;
+      color: rgba(209, 233, 244, 0.65);
+      margin: 0 0 28px;
+    }
+    .vsl-wrap {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+    /* Wistia videoFoam handles the aspect ratio, but we enforce it as a fallback */
+    .wistia_embed { width: 100%; }
+    /* Click-to-unmute overlay pill */
+    .vsl-unmute-btn {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: rgba(24, 35, 59, 0.88);
+      border: 1px solid rgba(209, 233, 244, 0.3);
+      border-radius: 999px;
+      color: var(--nlca-pastel-blue);
+      font-family: var(--nlca-font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background .2s ease;
+      backdrop-filter: blur(4px);
+    }
+    .vsl-unmute-btn:hover { background: rgba(179, 96, 96, 0.85); }
+    .vsl-unmute-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    @media (min-width: 768px) {
+      .vsl-section { padding: 50px 24px; }
+      .vsl-section__heading { font-size: 2.25rem; }
+    }
+
+    /* ── Program section ── */
+    .program-section {
+      background: var(--nlca-surface-white);
+      padding: 50px 16px;
+    }
+    .program-section__inner { max-width: 960px; margin: 0 auto; }
+    .section-eyebrow {
+      font-family: var(--nlca-font-body);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--nlca-accent-rust);
+      text-align: center;
+      margin: 0 0 12px;
+    }
+    .section-heading {
+      font-family: var(--nlca-font-display);
+      font-weight: 400;
+      font-size: 1.875rem;
+      line-height: 1.2;
+      color: var(--nlca-dark-slate);
+      text-align: center;
+      margin: 0 0 40px;
+    }
+    @media (min-width: 768px) { .section-heading { font-size: 2.25rem; } }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--nlca-border-subtle);
+      border: 1px solid var(--nlca-border-subtle);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .stat-item {
+      background: var(--nlca-surface-white);
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .stat-item__number {
+      font-family: var(--nlca-font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--nlca-accent-rust);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-item__label {
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--nlca-text-muted);
+      line-height: 1.4;
+    }
+    @media (min-width: 600px) {
+      .stats-row { grid-template-columns: repeat(4, 1fr); }
+      .stat-item__number { font-size: 2.25rem; }
+    }
+
+    /* Feature grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 540px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 860px) { .feature-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .feature-card {
+      border: 1px solid var(--nlca-border-subtle);
+      border-radius: 12px;
+      padding: 24px;
+      background: var(--nlca-surface-white);
+    }
+    .feature-card__icon {
+      width: 36px;
+      height: 36px;
+      background: var(--nlca-pastel-lavender);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .feature-card__icon svg { width: 18px; height: 18px; color: var(--nlca-accent-rust); }
+    .feature-card__title {
+      font-family: var(--nlca-font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--nlca-dark-slate);
+      margin: 0 0 8px;
+      line-height: 1.3;
+    }
+    .feature-card__body {
+      font-family: var(--nlca-font-body);
+      font-size: 14px;
+      color: var(--nlca-text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* ── Testimonials section ── */
+    .testimonials-section {
+      background: var(--nlca-pastel-blue);
+      padding: 50px 16px;
+    }
+    .testimonials-section__inner { max-width: 960px; margin: 0 auto; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    @media (min-width: 640px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .testimonials-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .testimonial-card {
+      background: var(--nlca-surface-white);
+      border: 1px solid var(--nlca-border-subtle);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .testimonial-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+    .testimonial-card__stars svg { width: 14px; height: 14px; color: var(--nlca-accent-rust); }
+    .testimonial-card__quote {
+      font-family: var(--nlca-font-display);
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--nlca-dark-slate);
+      line-height: 1.55;
+      margin: 0 0 16px;
+      flex: 1;
+    }
+    .testimonial-card__outcome {
+      font-family: var(--nlca-font-body);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--nlca-accent-rust);
+      margin-bottom: 10px;
+    }
+    .testimonial-card__name {
+      font-family: var(--nlca-font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--nlca-dark-slate);
+      margin: 0;
+    }
+    .testimonial-card__creds {
+      font-family: var(--nlca-font-body);
+      font-size: 12px;
+      color: var(--nlca-text-muted);
+      margin: 2px 0 0;
+    }
+    @media (min-width: 768px) { .testimonials-section { padding: 50px 24px; } }
+
+    /* ── Calendar reveal ── */
+    .calendar-section {
+      background: var(--nlca-pastel-blue);
+      padding: 48px 16px 80px;
+      display: none;
+    }
+    .calendar-section.is-visible { display: block; }
+    .calendar-section__inner { max-width: 880px; margin: 0 auto; text-align: center; }
+    .calendar-section__lede {
+      font-family: var(--nlca-font-display);
+      font-weight: 400;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      color: var(--nlca-accent-rust);
+      margin: 0 0 8px;
+    }
+    .calendar-section__sub { font-family: var(--nlca-font-body); font-size: 16px; color: var(--nlca-dark-slate); margin: 0 0 28px; }
+    .calendar-embed {
+      background: var(--nlca-surface-white);
+      border-radius: 16px;
+      border: 1px solid var(--nlca-border-subtle);
+      padding: 24px;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: var(--nlca-text-muted);
+      font-family: var(--nlca-font-body);
+      font-size: 14px;
+      text-align: center;
+    }
+    .calendar-embed__placeholder-icon { width: 36px; height: 36px; color: var(--nlca-accent-rust); }
+    @media (min-width: 768px) {
+      .calendar-section { padding: 64px 24px 96px; }
+      .calendar-section__lede { font-size: 2.25rem; }
+      .calendar-embed { padding: 32px; min-height: 640px; }
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      background: var(--nlca-dark-slate);
+      color: var(--nlca-pastel-blue);
+      text-align: center;
+      padding: 56px 24px 48px;
+    }
+    .site-footer__est { font-family: var(--nlca-font-body); font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.85; margin: 0 0 16px; }
+    .site-footer__logo { width: 180px; height: auto; margin: 0 auto 20px; }
+    .site-footer__tagline { font-family: var(--nlca-font-body); font-size: 12px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 32px; }
+    .site-footer__copy { font-family: var(--nlca-font-body); font-size: 14px; opacity: 0.75; margin: 0; }
+    @media (min-width: 768px) { .site-footer { padding: 64px 24px 56px; } .site-footer__logo { width: 220px; } }
+
+    /* ── Utility ── */
+    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar" role="navigation" aria-label="Booking progress">
+    <div class="progress-bar__inner">
+      <div class="progress-step progress-step--active" id="progress-step-1" aria-current="step">
+        <span class="progress-step__num" id="progress-step-1-num">1</span>
+        <span>Quick questions</span>
+      </div>
+      <div class="progress-connector" id="progress-connector" aria-hidden="true"></div>
+      <div class="progress-step progress-step--locked" id="progress-step-2">
+        <span class="progress-step__num" id="progress-step-2-num">
+          <svg class="progress-step__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+            <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <span>Book your call</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="https://nurselifecoachacademy.com" class="site-header__logo" aria-label="Nurse Life Coach Academy — home">
+      <img src="https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_PrimaryLogo_01a-05.png" alt="Nurse Life Coach Academy" width="280" height="111" loading="eager" decoding="async" />
+    </a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <ul class="hero__trust-bar" aria-label="Program highlights">
+        <li class="hero__trust-item">2,100+ nurses certified</li>
+        <li class="hero__trust-item">ICF + NBHWC accredited</li>
+        <li class="hero__trust-item">4.9/5 rating</li>
+      </ul>
+      <h1 class="hero__title">Let&rsquo;s match you with the right advisor</h1>
+      <p class="hero__subtitle">2 minutes to personalize your coaching plan &mdash; answer 4 quick questions and your free advisor call unlocks instantly.</p>
+    </div>
+  </section>
+
+  <!-- HOOK STRIP -->
+  <div class="hook-strip" id="hook-strip">
+    <div class="hook-strip__inner">
+      <p class="hook-strip__text"><strong>Not sure if nurse coaching is your next right step?</strong> Hear from Laura before you apply.</p>
+      <a href="#vsl-section" class="hook-strip__btn" aria-label="Watch the overview video">
+        <!-- Heroicons / play-circle -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        Watch the overview
+      </a>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <section class="form-section" id="form-section" aria-labelledby="form-heading">
+    <h2 id="form-heading" class="visually-hidden">Application questions</h2>
+    <div class="form-card">
+      <form id="bant-form" action="/__bant_submit_placeholder" method="POST" novalidate>
+
+        <!-- Q1 — NEED -->
+        <fieldset class="nlca-form-field scale-fieldset">
+          <legend class="nlca-form-label">How important is it to you to build a more fulfilling and financially rewarding nursing career?</legend>
+          <div class="scale-options" role="radiogroup" aria-label="Importance scale, 1 to 5">
+            <div class="scale-option">
+              <input type="radio" id="need-1" name="bant__need" value="1" required />
+              <label for="need-1"><span class="scale-num">1</span><span class="scale-text">Not important</span></label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-2" name="bant__need" value="2" />
+              <label for="need-2"><span class="scale-num">2</span><span class="scale-text">&nbsp;</span></label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-3" name="bant__need" value="3" />
+              <label for="need-3"><span class="scale-num">3</span><span class="scale-text">Neutral</span></label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-4" name="bant__need" value="4" />
+              <label for="need-4"><span class="scale-num">4</span><span class="scale-text">&nbsp;</span></label>
+            </div>
+            <div class="scale-option">
+              <input type="radio" id="need-5" name="bant__need" value="5" />
+              <label for="need-5"><span class="scale-num">5</span><span class="scale-text">Extremely important</span></label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Q2 — TIMING -->
+        <div class="nlca-form-field">
+          <label class="nlca-form-label" for="bant-timing">When are you ready to start your Nurse Life Coach certification?</label>
+          <select id="bant-timing" name="bant__timing" class="nlca-select" required>
+            <option value="" disabled selected>Choose your timeline&hellip;</option>
+            <option value="immediately">As soon as possible</option>
+            <option value="1-3-months">Within 1–3 months</option>
+            <option value="3-6-months">Within 3–6 months</option>
+            <option value="6-plus-months">6+ months from now</option>
+            <option value="just-exploring">Just exploring for now</option>
+          </select>
+        </div>
+
+        <!-- Q3 — AUTHORITY -->
+        <div class="nlca-form-field">
+          <label class="nlca-form-label" for="bant-authority">Will anyone else be part of this decision with you?</label>
+          <select id="bant-authority" name="bant__authority" class="nlca-select" required>
+            <option value="" disabled selected>Just me, or someone else too&hellip;</option>
+            <option value="just-me">Just me</option>
+            <option value="spouse-partner">My spouse / partner</option>
+            <option value="family-member">A family member</option>
+            <option value="other">Someone else</option>
+          </select>
+        </div>
+
+        <!-- Q4 — BUDGET -->
+        <div class="nlca-form-field">
+          <label class="nlca-form-label" for="bant-budget">If this certification is the right fit, are you open to investing in your coaching practice?</label>
+          <select id="bant-budget" name="bant__budget" class="nlca-select" required>
+            <option value="" disabled selected>Choose your situation&hellip;</option>
+            <option value="ready">Yes &mdash; I&rsquo;m ready to invest</option>
+            <option value="explore-payment">I&rsquo;d like to explore payment options</option>
+            <option value="not-now">Not at this time</option>
+          </select>
+          <small class="nlca-form-help">Program investment: from $625/month or $4,499 paid in full. Most graduates earn this back within their first 3 clients.</small>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="form-submit-wrap">
+          <button type="submit" class="nlca-btn" id="bant-submit">
+            <span>See if I qualify</span>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false">
+              <path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <small class="form-microcopy">You&rsquo;ll find out right away &mdash; if it&rsquo;s a great fit, your advisor call link appears instantly.</small>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- VSL — autoplay, muted, click to unmute -->
+  <section class="vsl-section" id="vsl-section">
+    <div class="vsl-section__inner">
+      <p class="vsl-section__eyebrow">Hear from Laura</p>
+      <h2 class="vsl-section__heading">What nurse coaching really is &mdash; and why it changes everything</h2>
+      <p class="vsl-section__sub">Watch while you consider &mdash; this is the clearest 5 minutes on what this program truly offers.</p>
+      <div class="vsl-wrap">
+        <div
+          class="wistia_embed wistia_async_w0mgz3aoi1 autoPlay=true muted=true playsinline=true videoFoam=true"
+          id="wistia-embed"
+          style="position:relative;"
+        >&nbsp;</div>
+        <button class="vsl-unmute-btn" id="vsl-unmute-btn" aria-label="Click to unmute video" type="button">
+          <!-- Heroicons speaker-x-mark -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          Click to unmute
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM BREAKDOWN -->
+  <section class="program-section" id="program-section">
+    <div class="program-section__inner">
+      <p class="section-eyebrow">The program</p>
+      <h2 class="section-heading">Everything you need to build your practice</h2>
+
+      <!-- Stats -->
+      <div class="stats-row" role="list" aria-label="Program outcomes">
+        <div class="stat-item" role="listitem">
+          <div class="stat-item__number">$5.3M</div>
+          <div class="stat-item__label">revenue generated by graduates</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-item__number">40%</div>
+          <div class="stat-item__label">earning income before graduation</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-item__number">98%</div>
+          <div class="stat-item__label">board exam pass rate</div>
+        </div>
+        <div class="stat-item" role="listitem">
+          <div class="stat-item__number">6 mo.</div>
+          <div class="stat-item__label">self-paced, 100% online</div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Board Exam Preparation</h3>
+          <p class="feature-card__body">Full prep for NC-BC and HN-BC board certifications. Our 98% pass rate speaks for itself.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Business Development Training</h3>
+          <p class="feature-card__body">Learn how to launch, price, and fill your private practice &mdash; fully included, not an add-on.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Nurse Coach Residency</h3>
+          <p class="feature-card__body">Ongoing mentorship program with a structured community &mdash; personal attention and real follow-through.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">121 Contact Hours</h3>
+          <p class="feature-card__body">200+ hours of optional curriculum, 32 hours live instruction &mdash; rigorous and evidence-based.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Professional Coaching Toolkit</h3>
+          <p class="feature-card__body">Client exercises, session frameworks, and done-for-you materials so you can start seeing clients immediately.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">Lifetime Access</h3>
+          <p class="feature-card__body">All learning materials, live event recordings, and curriculum updates &mdash; yours to keep after graduation.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="testimonials-section" aria-labelledby="testimonials-heading">
+    <div class="testimonials-section__inner">
+      <p class="section-eyebrow">Graduate stories</p>
+      <h2 class="section-heading" id="testimonials-heading" style="color: var(--nlca-dark-slate);">From nurses who made the leap</h2>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars" aria-label="5 stars" role="img">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testimonial-card__quote">&ldquo;I more than doubled my bedside nursing income last month.&rdquo;</p>
+          <p class="testimonial-card__outcome">Practice 2/3 full within 6 months</p>
+          <p class="testimonial-card__name">Taylor McGuire</p>
+          <p class="testimonial-card__creds">NLCA Graduate</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars" aria-label="5 stars" role="img">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testimonial-card__quote">&ldquo;I feel completely aligned with the work I do because it elevates me: mind, body, and spirit.&rdquo;</p>
+          <p class="testimonial-card__outcome">Signed 8 clients within first 6 months</p>
+          <p class="testimonial-card__name">Meghan Ruttan</p>
+          <p class="testimonial-card__creds">RN, BSN, NC-BC</p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars" aria-label="5 stars" role="img">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testimonial-card__quote">&ldquo;This was true mentorship and true servant leadership.&rdquo;</p>
+          <p class="testimonial-card__outcome">Structured community with personal follow-through</p>
+          <p class="testimonial-card__name">Linde Carter</p>
+          <p class="testimonial-card__creds">RN — Simplicity Nurse Coaching</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR REVEAL (hidden until qualified submit) -->
+  <section class="calendar-section" id="calendar-section" aria-hidden="true">
+    <div class="calendar-section__inner">
+      <h2 class="calendar-section__lede">You&rsquo;re in &mdash; pick a time that works for you.</h2>
+      <p class="calendar-section__sub">Your call will be a relaxed, no-pressure conversation with our advisor team to make sure this certification is the right fit.</p>
+      <div class="calendar-embed" id="calendar-embed-target">
+        <!-- HubSpot meeting link iframe goes here -->
+        <!-- <iframe src="https://meetings.hubspot.com/<advisor-handle>?embed=true"
+                 style="min-width:320px; min-height:600px; width:100%; border:0;"
+                 loading="lazy"
+                 title="Schedule your advisor call"></iframe> -->
+        <svg class="calendar-embed__placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+          <rect x="3" y="5" width="18" height="16" rx="2" ry="2"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <line x1="8" y1="3" x2="8" y2="7"/>
+          <line x1="16" y1="3" x2="16" y2="7"/>
+        </svg>
+        <span>HubSpot meeting embed loads here.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <p class="site-footer__est">Est. 2018</p>
+    <a href="https://nurselifecoachacademy.com" aria-label="Nurse Life Coach Academy — home">
+      <img class="site-footer__logo" src="https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_TertiaryLogo_01a-01.png" alt="Nurse Life Coach Academy" loading="lazy" decoding="async" />
+    </a>
+    <p class="site-footer__tagline">Become Board Certified</p>
+    <p class="site-footer__copy">&copy; 2026. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function () {
+      /* ── Form submit + calendar reveal ── */
+      var form = document.getElementById('bant-form');
+      if (!form) return;
+
+      var NQ_REDIRECT = 'https://discover.nurselifecoachacademy.com/v2-nq';
+
+      var step1 = document.getElementById('progress-step-1');
+      var step1Num = document.getElementById('progress-step-1-num');
+      var step2 = document.getElementById('progress-step-2');
+      var step2Num = document.getElementById('progress-step-2-num');
+      var connector = document.getElementById('progress-connector');
+      var formSection = document.getElementById('form-section');
+      var calendarSection = document.getElementById('calendar-section');
+      var hero = document.getElementById('hero');
+
+      var checkmarkSvg = '<svg class="progress-step__icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 0 1 .006 1.06l-7.25 7.5a.75.75 0 0 1-1.07.012l-3.75-3.75a.75.75 0 1 1 1.06-1.06l3.207 3.207 6.717-6.969a.75.75 0 0 1 1.08 0z" clip-rule="evenodd"/></svg>';
+
+      function setQualifiedState() {
+        step1.classList.remove('progress-step--active');
+        step1.classList.add('progress-step--complete');
+        step1.removeAttribute('aria-current');
+        step1Num.innerHTML = checkmarkSvg;
+        connector.classList.add('progress-connector--filled');
+        step2.classList.remove('progress-step--locked');
+        step2.classList.add('progress-step--active');
+        step2.setAttribute('aria-current', 'step');
+        step2Num.textContent = '2';
+
+        formSection.style.display = 'none';
+        hero.style.display = 'none';
+        calendarSection.classList.add('is-visible');
+        calendarSection.setAttribute('aria-hidden', 'false');
+
+        var top = calendarSection.getBoundingClientRect().top + window.pageYOffset - 60;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        calendarSection.setAttribute('tabindex', '-1');
+        calendarSection.focus({ preventScroll: true });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        var budget = (form.querySelector('[name="bant__budget"]') || {}).value;
+        if (budget === 'not-now') { window.location.href = NQ_REDIRECT; return; }
+        setQualifiedState();
+      });
+
+      /* ── Wistia click-to-unmute ── */
+      window._wq = window._wq || [];
+      _wq.push({
+        id: 'w0mgz3aoi1',
+        onReady: function (video) {
+          var btn = document.getElementById('vsl-unmute-btn');
+          if (!btn) return;
+          btn.addEventListener('click', function () {
+            video.unmute();
+            video.play();
+            btn.style.display = 'none';
+          });
+          /* Hide button automatically if user unmutes via Wistia controls */
+          video.bind('volumechange', function () {
+            if (!video.isMuted()) btn.style.display = 'none';
+          });
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
