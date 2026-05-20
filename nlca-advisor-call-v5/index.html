@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nurse Life Coach Academy — Book Your Free Advisor Call</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <script src="https://fast.wistia.net/player.js" async></script>
+  <style>
+
+    /* ══════════════════════════════
+       TOKENS
+    ══════════════════════════════ */
+    :root {
+      --rust:      #b36060;
+      --pale:      #d1e9f4;
+      --lav:       #d6c9e3;
+      --dark:      #384053;
+      --navy:      #18233B;
+      --white:     #ffffff;
+      --offwhite:  #f6f5f2;
+      --border:    #e3e8ef;
+      --hover:     #6854E8;
+      --F:         'Lato', sans-serif;
+      --S:         'Playfair Display', Georgia, serif;
+      --W:         1200px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--F);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: var(--rust); text-decoration: none; }
+    p { margin-bottom: 20px; }
+    p:last-child { margin-bottom: 0; }
+
+    .wrap { max-width: var(--W); margin: 0 auto; padding: 0 40px; }
+
+    /* EYEBROW */
+    .ey {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      color: var(--rust);
+      margin-bottom: 14px;
+    }
+    .ey--w  { color: rgba(255,255,255,0.5); }
+    .ey--pb { color: rgba(56,64,83,0.55); }
+
+    /* BUTTON */
+    .btn {
+      display: inline-block;
+      font-family: var(--F);
+      font-weight: 700;
+      font-size: 15px;
+      border: 0;
+      border-radius: 50px;
+      padding: 17px 42px;
+      cursor: pointer;
+      transition: background .22s, color .22s, transform .18s;
+      text-decoration: none;
+      line-height: 1;
+    }
+    .btn:hover { transform: translateY(-1px); text-decoration: none; }
+    .btn--rust { background: var(--rust); color: #fff; }
+    .btn--rust:hover { background: var(--hover); }
+    .btn--ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.45); }
+    .btn--ghost:hover { background: rgba(255,255,255,0.08); }
+    .btn--lg { font-size: 17px; padding: 20px 52px; }
+
+    /* SCROLL REVEAL */
+    .r {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .r.v { opacity: 1; transform: translateY(0); }
+    .r-d1 { transition-delay: .1s; }
+    .r-d2 { transition-delay: .2s; }
+    .r-d3 { transition-delay: .3s; }
+    .r-d4 { transition-delay: .4s; }
+    .r-d5 { transition-delay: .5s; }
+
+    /* ══════════════════════════════
+       HEADER — transparent, fills on scroll
+    ══════════════════════════════ */
+    .hdr {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background .3s, box-shadow .3s;
+    }
+    .hdr.solid {
+      background: var(--white);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .hdr__logo { height: 48px; width: auto; display: block; }
+    .hdr__cta { display: none; }
+    .hdr.solid .hdr__cta { display: inline-block; }
+
+    /* ══════════════════════════════
+       HERO — full-viewport, hard split
+    ══════════════════════════════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 56fr 44fr;
+      min-height: 100vh;
+    }
+    .hero__left {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 72px 80px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Decorative large watermark text */
+    .hero__left::before {
+      content: 'NLCA';
+      position: absolute;
+      bottom: -20px;
+      left: -10px;
+      font-family: var(--S);
+      font-size: 200px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.025);
+      pointer-events: none;
+      line-height: 1;
+      user-select: none;
+    }
+    .hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(179,96,96,0.15);
+      border: 1px solid rgba(179,96,96,0.3);
+      border-radius: 50px;
+      padding: 7px 16px;
+      width: fit-content;
+      margin-bottom: 32px;
+    }
+    .hero__tag span {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--rust);
+    }
+    .hero__tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rust); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.7)} }
+
+    .hero__h1 {
+      font-family: var(--F);
+      font-size: clamp(38px, 4.5vw, 66px);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+    .hero__h1 em {
+      font-family: var(--S);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--pale);
+    }
+    .hero__rule {
+      width: 48px;
+      height: 2px;
+      background: var(--rust);
+      margin-bottom: 40px;
+    }
+    .hero__cta-area { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+    .hero__micro {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+    }
+    .hero__creds {
+      margin-top: auto;
+      padding-top: 48px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hero__cred-item {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.28);
+    }
+
+    /* Hero right — full-height photo */
+    .hero__right {
+      position: relative;
+      overflow: hidden;
+      background: var(--pale);
+    }
+    .hero__photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .hero__photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(24,35,59,0.3) 100%);
+    }
+    /* Floating pills on photo */
+    .pill {
+      position: absolute;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 32px rgba(24,35,59,0.18);
+    }
+    .pill__num {
+      font-family: var(--S);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--rust);
+      line-height: 1;
+    }
+    .pill__lbl {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dark);
+      margin-top: 3px;
+    }
+    .pill--a { top: 18%; left: -16px; }
+    .pill--b { top: 42%; right: -16px; }
+    .pill--c { bottom: 22%; left: -16px; }
+
+    /* ══════════════════════════════
+       "NO MORE" ROWS — editorial typography
+    ══════════════════════════════ */
+    .nomorebar {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .nomore-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 40px;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      transition: background .2s;
+      max-width: var(--W);
+      margin: 0 auto;
+    }
+    .nomore-row:last-child { border-bottom: 0; }
+    .nomore-row:hover { background: var(--offwhite); }
+    .nomore-row__text {
+      font-family: var(--F);
+      font-size: clamp(20px, 2.5vw, 34px);
+      font-weight: 300;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .nomore-row__num {
+      font-family: var(--S);
+      font-size: 13px;
+      color: var(--rust);
+      opacity: 0.5;
+      flex-shrink: 0;
+      margin-left: 40px;
+    }
+
+    /* ══════════════════════════════
+       TRUST TICKER
+    ══════════════════════════════ */
+    .ticker {
+      background: var(--pale);
+      overflow: hidden;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(56,64,83,.1);
+    }
+    .ticker__track-wrap { overflow: hidden; white-space: nowrap; }
+    .ticker__track {
+      display: inline-flex;
+      animation: tick 36s linear infinite;
+    }
+    .ticker__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 40px;
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--dark);
+    }
+    .ticker__dot { width: 4px; height: 4px; border-radius: 50%; background: var(--rust); flex-shrink: 0; }
+    @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-33.333%)} }
+
+    /* ══════════════════════════════
+       PAS / STORY — pale-blue, editorial pull quote
+    ══════════════════════════════ */
+    .pas { background: var(--pale); padding: 100px 0; }
+    .pas__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .pas__left {}
+    .pas__pull {
+      font-family: var(--S);
+      font-style: italic;
+      font-size: clamp(24px, 2.8vw, 38px);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.35;
+      margin-bottom: 40px;
+      position: relative;
+      padding-top: 28px;
+    }
+    .pas__pull::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--rust);
+    }
+    .pas__body p { font-size: 17px; line-height: 1.75; color: var(--dark); opacity: .88; }
+    .pas__body p + p { margin-top: 18px; }
+
+    /* Photo right */
+    .pas__right {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pas__img-box {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--navy);
+      aspect-ratio: 4/5;
+    }
+    .pas__img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: .92;
+    }
+    .pas__badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 12px 40px rgba(56,64,83,.14);
+      border: 1px solid var(--border);
+    }
+    .pas__badge-num {
+      font-family: var(--S);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--rust);
+      line-height: 1;
+    }
+    .pas__badge-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      opacity: .6;
+      margin-top: 4px;
+    }
+
+    /* ══════════════════════════════
+       WALKAWAY — numbered, white
+    ══════════════════════════════ */
+    .walkaway { padding: 100px 0; background: var(--white); }
+    .walkaway__hd { margin-bottom: 64px; }
+    .walkaway__hd h2 {
+      font-family: var(--S);
+      font-size: clamp(28px,3vw,44px);
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+    .walkaway__hd p { font-size: 17px; max-width: 600px; opacity: .8; }
+
+    .walkaway__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    .walkaway__col-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--rust);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .walkaway__col-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .nlca-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .nlca-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 1.55; }
+    .nlca-list__i { width: 19px; height: 19px; flex-shrink: 0; margin-top: 2px; }
+    .i--rust { color:var(--rust); stroke:var(--rust); }
+    .i--lav  { color:#9b85b8; stroke:#9b85b8; }
+
+    /* ══════════════════════════════
+       PROGRAM — asymmetric card grid
+    ══════════════════════════════ */
+    .program { background: var(--offwhite); padding: 100px 0; }
+    .program__hd { margin-bottom: 56px; }
+    .program__hd h2 {
+      font-family: var(--S);
+      font-size: clamp(28px,3vw,44px);
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+    .program__hd p { font-size: 17px; max-width: 680px; opacity: .75; }
+
+    /* Asymmetric grid: row1 = [2fr | 1fr], row2 = [1fr | 2fr] */
+    .program__asym {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+    .pc {
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .pc--wide-left  { grid-column: 1; grid-row: 1; }
+    .pc--narrow-right { grid-column: 2; grid-row: 1; }
+    .pc--narrow-left { grid-column: 1; grid-row: 2; max-width: none; }
+    .pc--text { grid-column: 2; grid-row: 2; background: var(--navy); border-color: var(--navy); }
+
+    .pc__top {
+      background: var(--pale);
+      padding: 36px 36px 28px;
+      flex-shrink: 0;
+    }
+    .pc__num {
+      font-family: var(--S);
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .pc__unit { font-size: 24px; color: var(--rust); }
+    .pc__btm { padding: 24px 36px 32px; }
+    .pc__label {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .pc__sub { font-size: 13.5px; color: var(--dark); opacity: .6; line-height: 1.45; }
+
+    /* Dark text card */
+    .pc--text .pc__inner {
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+    .pc--text .pc__inner p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 16px;
+    }
+    .pc--text .pc__inner p:last-child { margin-bottom: 0; }
+
+    .program__body { max-width: 820px; margin: 0 auto; }
+    .program__body p { font-size: 17px; line-height: 1.75; opacity: .85; }
+
+    /* ══════════════════════════════
+       VIDEO
+    ══════════════════════════════ */
+    .video-sec { background: var(--offwhite); padding: 100px 0; border-top: 1px solid var(--border); }
+    .video-sec__hd { text-align: center; margin-bottom: 48px; }
+    .video-sec__hd h2 {
+      font-family: var(--S);
+      font-size: clamp(26px,2.8vw,40px);
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .video-sec__hd p { font-size: 17px; opacity: .7; max-width: 520px; margin: 0 auto; }
+    .video-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(24,35,59,0.16);
+    }
+    .video-resp { padding: 56.25% 0 0; position: relative; }
+    .video-resp iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* ══════════════════════════════
+       STATS — dark slate, huge numbers
+    ══════════════════════════════ */
+    .stats { background: var(--dark); padding: 96px 0; }
+    .stats__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+    .stat {
+      padding: 20px 40px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+    .stat:last-child { border-right: 0; }
+    .stat__num {
+      font-family: var(--S);
+      font-size: clamp(56px,7vw,88px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .stat__rule {
+      width: 32px;
+      height: 2px;
+      background: var(--rust);
+      margin: 0 auto 16px;
+    }
+    .stat__label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ══════════════════════════════
+       GUARANTEES — pale-blue bg
+    ══════════════════════════════ */
+    .guar { background: var(--pale); padding: 100px 0; }
+    .guar__hd { text-align: center; max-width: 580px; margin: 0 auto 56px; }
+    .guar__hd h2 {
+      font-family: var(--S);
+      font-size: clamp(26px,2.8vw,40px);
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .guar__hd .sub {
+      font-family: var(--S);
+      font-style: italic;
+      font-size: 19px;
+      color: var(--dark);
+      opacity: .65;
+    }
+    .guar__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .gc {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 38px;
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+      border: 1px solid rgba(255,255,255,.7);
+      transition: box-shadow .2s;
+    }
+    .gc:hover { box-shadow: 0 12px 40px rgba(56,64,83,0.1); }
+    .gc__icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(179,96,96,0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .gc__icon svg { width: 22px; height: 22px; color: var(--rust); stroke: var(--rust); }
+    .gc__title { font-family: var(--S); font-size: 19px; font-weight: 700; color: var(--dark); margin-bottom: 10px; line-height: 1.3; }
+    .gc__body { font-size: 15.5px; line-height: 1.65; color: var(--dark); opacity: .78; margin: 0; }
+
+    /* ══════════════════════════════
+       TESTIMONIALS — navy, asymmetric
+    ══════════════════════════════ */
+    .testi { background: var(--navy); padding: 100px 0; }
+    .testi__hd { margin-bottom: 56px; }
+    .testi__hd h2 {
+      font-family: var(--S);
+      font-size: clamp(28px,3.2vw,48px);
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .testi__hd p { font-size: 17px; color: rgba(209,233,244,0.55); }
+
+    /* Asymmetric: one large + two small */
+    .testi__layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+    .tc {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .tc--large {
+      grid-row: span 2;
+      padding: 52px;
+    }
+    .tc__qm {
+      font-family: var(--S);
+      font-size: 120px;
+      line-height: .7;
+      color: var(--lav);
+      opacity: .18;
+      position: absolute;
+      top: 28px; left: 36px;
+      pointer-events: none;
+      user-select: none;
+    }
+    .tc--large .tc__qm { font-size: 160px; }
+    .tc__body {
+      font-family: var(--S);
+      font-style: italic;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--white);
+      margin-bottom: 32px;
+      margin-top: 36px;
+      position: relative;
+      z-index: 1;
+    }
+    .tc--large .tc__body { font-size: 21px; margin-top: 44px; }
+    .tc__foot { margin-top: auto; }
+    .tc__name {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--pale);
+    }
+    .tc__cred { font-size: 12.5px; color: var(--lav); opacity: .7; margin-top: 4px; }
+
+    /* ══════════════════════════════
+       DELAY — white, big pull quote
+    ══════════════════════════════ */
+    .delay { background: var(--white); padding: 100px 0; }
+    .delay__inner { max-width: 800px; margin: 0 auto; }
+    .delay__inner h2 {
+      font-family: var(--S);
+      font-size: clamp(28px,3vw,46px);
+      color: var(--dark);
+      margin-bottom: 36px;
+    }
+    .delay__pull {
+      font-family: var(--S);
+      font-style: italic;
+      font-size: clamp(20px,2.4vw,30px);
+      color: var(--rust);
+      line-height: 1.5;
+      margin-bottom: 36px;
+      padding-left: 28px;
+      border-left: 3px solid var(--rust);
+    }
+    .delay__inner p { font-size: 17px; line-height: 1.75; opacity: .85; }
+
+    /* ══════════════════════════════
+       FAQ — off-white
+    ══════════════════════════════ */
+    .faq { background: var(--offwhite); padding: 100px 0; }
+    .faq__hd { margin-bottom: 52px; }
+    .faq__hd h2 {
+      font-family: var(--S);
+      font-size: clamp(26px,2.8vw,40px);
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .faq-list { max-width: 820px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px 0;
+      gap: 20px;
+      background: transparent;
+      border: 0;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+    }
+    .faq-btn h4 {
+      font-family: var(--S);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 0;
+      flex: 1;
+      line-height: 1.3;
+    }
+    .faq-chev {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      color: var(--rust); stroke: var(--rust);
+      transition: transform .25s;
+    }
+    .faq-item.open .faq-chev { transform: rotate(180deg); }
+    .faq-ans { display: none; padding: 0 0 28px; }
+    .faq-item.open .faq-ans { display: block; }
+    .faq-ans p { font-size: 16.5px; line-height: 1.7; opacity: .82; }
+
+    /* ══════════════════════════════
+       FINAL CTA — dark navy
+    ══════════════════════════════ */
+    .cta-final {
+      background: var(--navy);
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(209,233,244,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final h2 {
+      font-family: var(--S);
+      font-size: clamp(30px,4vw,56px);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .cta-final__body {
+      max-width: 560px;
+      margin: 0 auto 44px;
+      font-size: 18px;
+      line-height: 1.65;
+      color: rgba(209,233,244,0.7);
+    }
+    .cta-final__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-final__note {
+      margin-top: 24px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.3);
+      font-style: italic;
+    }
+
+    /* ══════════════════════════════
+       BOOK CALL
+    ══════════════════════════════ */
+    .book { background: var(--white); padding: 80px 0; }
+    .book__card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: rgba(209,233,244,0.2);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 56px 48px;
+      text-align: center;
+    }
+    .book__card h3 {
+      font-family: var(--S);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--dark);
+      margin: 10px 0 14px;
+    }
+    .book__card p { font-size: 15.5px; opacity: .55; line-height: 1.6; }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    .foot {
+      background: var(--navy);
+      padding: 64px 24px 48px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .foot p { margin: 0; }
+    .foot__est { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .15em; color: var(--lav); margin-bottom: 14px; }
+    .foot__logo { display: inline-block; width: 140px; margin: 0 auto 14px; }
+    .foot__tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--lav); margin-bottom: 28px; }
+    .foot__trust { font-size: 11.5px; color: var(--pale); opacity: .45; line-height: 2; margin-bottom: 22px; }
+    .foot__copy { font-size: 11px; color: var(--pale); opacity: .28; }
+
+    /* ══════════════════════════════
+       STICKY MOBILE BAR
+    ══════════════════════════════ */
+    .stickybar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--dark);
+      padding: 12px 18px;
+      z-index: 900;
+      box-shadow: 0 -4px 24px rgba(0,0,0,.22);
+    }
+    .stickybar a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--rust);
+      color: #fff;
+      font-family: var(--F);
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 50px;
+      padding: 16px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .stickybar a:hover { background: var(--hover); }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero__left { padding: 120px 32px 60px; }
+      .hero__left::before { display: none; }
+      .hero__right { height: 60vw; max-height: 520px; }
+      .pill--a, .pill--b, .pill--c { display: none; }
+      .pas__inner { grid-template-columns: 1fr; gap: 56px; }
+      .pas__img-box { aspect-ratio: 4/3; }
+      .walkaway__grid { grid-template-columns: 1fr; gap: 52px; }
+      .program__asym { grid-template-columns: 1fr; }
+      .pc--wide-left, .pc--narrow-right, .pc--narrow-left, .pc--text { grid-column: 1; grid-row: auto; }
+      .stats__grid { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.08); padding: 36px 20px; }
+      .stat:last-child { border-bottom: 0; }
+      .guar__grid { grid-template-columns: 1fr; }
+      .testi__layout { grid-template-columns: 1fr; }
+      .tc--large { grid-row: auto; }
+    }
+
+    @media (max-width: 767px) {
+      .hdr { padding: 14px 20px; }
+      .wrap { padding: 0 20px; }
+      .nomore-row { padding: 22px 20px; }
+      .pas, .walkaway, .program, .video-sec, .stats, .guar, .testi, .delay, .faq, .cta-final, .book { padding: 64px 0; }
+      .hero__left { padding: 100px 20px 52px; }
+      .book__card { padding: 36px 24px; }
+      .cta-final__btns { flex-direction: column; align-items: center; }
+      body { padding-bottom: 64px; }
+      .stickybar { display: block; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER — transparent, becomes solid on scroll -->
+  <header class="hdr" id="hdr">
+    <a href="#book-call">
+      <img class="hdr__logo" id="hdr-logo"
+        src="https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_TertiaryLogo_01a-01.png"
+        alt="Nurse Life Coach Academy">
+    </a>
+    <a href="#book-call" class="btn btn--rust hdr__cta">Book your free call</a>
+  </header>
+
+  <!-- HERO — full-viewport split -->
+  <section class="hero" aria-label="Hero">
+
+    <div class="hero__left">
+      <div class="hero__tag r">
+        <div class="hero__tag-dot"></div>
+        <span>Free 30-Minute Advisor Call</span>
+      </div>
+      <h1 class="hero__h1 r r-d1">
+        A nursing career that runs on <em>your time,</em> your terms, and your clinical authority.
+      </h1>
+      <div class="hero__rule r r-d2"></div>
+      <div class="hero__cta-area r r-d3">
+        <a href="#book-call" class="btn btn--rust btn--lg">Book my advisor call</a>
+        <span class="hero__micro">30 minutes with a former nurse who remembers what that first move felt like.</span>
+      </div>
+      <div class="hero__creds r r-d4">
+        <span class="hero__cred-item">AHNCC Accredited</span>
+        <span class="hero__cred-item">ANA Recognized</span>
+        <span class="hero__cred-item">Medicare Reimbursable</span>
+        <span class="hero__cred-item">Est. 2018</span>
+      </div>
+    </div>
+
+    <div class="hero__right">
+      <img
+        class="hero__photo"
+        src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2157409494/settings_images/Nurse_Coaches_1322.jpg"
+        alt="Laura Minard, Founder of Nurse Life Coach Academy"
+        onerror="this.src='https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2157409494/settings_images/Nurse_Coaches_1328_1_.jpg'"
+      >
+      <div class="hero__photo-overlay"></div>
+      <div class="pill pill--a">
+        <div class="pill__num">1,650+</div>
+        <div class="pill__lbl">Graduates</div>
+      </div>
+      <div class="pill pill--b">
+        <div class="pill__num">4.9/5</div>
+        <div class="pill__lbl">Rating</div>
+      </div>
+      <div class="pill pill--c">
+        <div class="pill__num">98%</div>
+        <div class="pill__lbl">Completion</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- "NO MORE" — editorial typographic rows -->
+  <div class="nomorebar" aria-label="What changes">
+    <div class="nomore-row r">
+      <span class="nomore-row__text">No more bracing for the next shift.</span>
+      <span class="nomore-row__num">01</span>
+    </div>
+    <div class="nomore-row r r-d1">
+      <span class="nomore-row__text">No more 12-hour days dispensing medication you do not believe in.</span>
+      <span class="nomore-row__num">02</span>
+    </div>
+    <div class="nomore-row r r-d2">
+      <span class="nomore-row__text">No more sitting in your driveway running through how much longer you can do this.</span>
+      <span class="nomore-row__num">03</span>
+    </div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track-wrap">
+      <div class="ticker__track">
+        <span class="ticker__item">AHNCC Accredited<span class="ticker__dot"></span></span>
+        <span class="ticker__item">ANA Recognized<span class="ticker__dot"></span></span>
+        <span class="ticker__item">Medicare CPT 0591T–0593T Reimbursable<span class="ticker__dot"></span></span>
+        <span class="ticker__item">1,650+ Graduates<span class="ticker__dot"></span></span>
+        <span class="ticker__item">4.9 / 5 Graduate Rating<span class="ticker__dot"></span></span>
+        <span class="ticker__item">American Nurse Coach Association Founding Partner<span class="ticker__dot"></span></span>
+        <span class="ticker__item">98% Completion Rate<span class="ticker__dot"></span></span>
+        <span class="ticker__item">AHNCC Accredited<span class="ticker__dot"></span></span>
+        <span class="ticker__item">ANA Recognized<span class="ticker__dot"></span></span>
+        <span class="ticker__item">Medicare CPT 0591T–0593T Reimbursable<span class="ticker__dot"></span></span>
+        <span class="ticker__item">1,650+ Graduates<span class="ticker__dot"></span></span>
+        <span class="ticker__item">4.9 / 5 Graduate Rating<span class="ticker__dot"></span></span>
+        <span class="ticker__item">American Nurse Coach Association Founding Partner<span class="ticker__dot"></span></span>
+        <span class="ticker__item">98% Completion Rate<span class="ticker__dot"></span></span>
+        <span class="ticker__item">AHNCC Accredited<span class="ticker__dot"></span></span>
+        <span class="ticker__item">ANA Recognized<span class="ticker__dot"></span></span>
+        <span class="ticker__item">Medicare CPT 0591T–0593T Reimbursable<span class="ticker__dot"></span></span>
+        <span class="ticker__item">1,650+ Graduates<span class="ticker__dot"></span></span>
+        <span class="ticker__item">4.9 / 5 Graduate Rating<span class="ticker__dot"></span></span>
+        <span class="ticker__item">American Nurse Coach Association Founding Partner<span class="ticker__dot"></span></span>
+        <span class="ticker__item">98% Completion Rate<span class="ticker__dot"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAS / STORY — pale-blue, pull quote + photo -->
+  <section class="pas" aria-labelledby="pas-h">
+    <div class="wrap">
+      <div class="pas__inner">
+
+        <div class="pas__left r">
+          <span class="ey ey--pb">Why This Works</span>
+          <p class="pas__pull">"Why this works where every path you have tried has not."</p>
+          <div class="pas__body">
+            <p>You went into nursing to heal people. The system handed you a 12-hour shift, a 4-to-1 patient ratio, and a charting workflow that ate the hour you used to spend at the bedside.</p>
+            <p>The clinical category for what you are feeling has a name: moral injury. It is what happens when the work asks you to do something your training, your conscience, and your reason for becoming a nurse all refuse to do.</p>
+            <p>You have tried what most nurses try first. Travel nursing fixed the schedule for a season, but the system inside the hospital was still the system. NP school has sat in another tab for months: three more years and another $60,000 to land back in the same hospital with a slightly different title. Every wellness coach lead magnet you have downloaded has read like the same pitch from someone trying to sell you a course.</p>
+            <p>There is one version of nursing that gives you back the schedule, the patients, and the clinical authority you trained for. It is board-certified through AHNCC, recognized by the American Holistic Nurse Association, reimbursable under Medicare since January 2024. It is called nurse coaching, and the advisor on the call has walked it.</p>
+          </div>
+        </div>
+
+        <div class="pas__right r r-d2">
+          <div class="pas__img-box">
+            <img
+              src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2157409494/settings_images/Nurse_Coaches_1328_1_.jpg"
+              alt="Laura Minard"
+              onerror="this.src='https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2157409494/settings_images/Nurse_Coaches_1322.jpg'"
+            >
+          </div>
+          <div class="pas__badge">
+            <div class="pas__badge-num">8</div>
+            <div class="pas__badge-label">Years in Practice</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WALKAWAY — numbered, white -->
+  <section class="walkaway" aria-labelledby="walkaway-h">
+    <div class="wrap">
+      <div class="walkaway__hd r">
+        <span class="ey">Your Free Advisor Call</span>
+        <h2 id="walkaway-h">What you walk away with after 30 minutes.</h2>
+        <p>30 minutes with a former nurse who remembers exactly what it feels like to be where you are right now. She left the floor herself, built her own path, and takes this call because she has not forgotten what that first move felt like.</p>
+      </div>
+      <div class="walkaway__grid">
+
+        <div class="r">
+          <div class="walkaway__col-label">In 30 minutes you will know</div>
+          <ul class="nlca-list">
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>The exact path from where you are now to a board-certified holistic health practice, mapped to your clinical background, family situation, and goals</span></li>
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>Which credential is real (NC-BC, AHNCC accredited, ANA recognized) and which is a $2,000 certificate dressed up to look like one</span></li>
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>The honest side-by-side of nurse coaching vs. NP school: 6 months vs. 3 years, the real cost difference, and where each path lands you at the end</span></li>
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>What a home-based holistic health practice actually earns</span></li>
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>Why the credential (NC-BC) gives you legal practice flexibility in all 50 states where NP licensure does not</span></li>
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>Whether your employer will fund the credential, and the exact language to use when you ask</span></li>
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>Whether this program is actually right for you. If it is not, what we recommend instead</span></li>
+            <li><svg class="nlca-list__i i--rust" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>A concrete next step you can take today, and what to tell your partner tonight</span></li>
+          </ul>
+        </div>
+
+        <div class="r r-d2">
+          <div class="walkaway__col-label">Plus, you walk away with</div>
+          <ul class="nlca-list">
+            <li><svg class="nlca-list__i i--lav" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>A 24-hour held spot in the next cohort</span></li>
+            <li><svg class="nlca-list__i i--lav" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>The tuition reimbursement guide in your inbox the same day</span></li>
+            <li><svg class="nlca-list__i i--lav" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>The advisor's direct number for follow-up questions</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM — asymmetric grid -->
+  <section class="program" aria-labelledby="prog-h">
+    <div class="wrap">
+      <div class="program__hd r">
+        <span class="ey">The Credential</span>
+        <h2 id="prog-h">Why this credential takes you somewhere a Master's in nursing does not.</h2>
+      </div>
+
+      <div class="program__asym r">
+
+        <!-- Wide: 121 CE -->
+        <div class="pc pc--wide-left">
+          <div class="pc__top">
+            <div class="pc__num">121<span class="pc__unit"> CE</span></div>
+          </div>
+          <div class="pc__btm">
+            <div class="pc__label">CE Credits</div>
+            <div class="pc__sub">Board-recognized continuing education included in tuition</div>
+          </div>
+        </div>
+
+        <!-- Narrow: 60 hrs -->
+        <div class="pc pc--narrow-right">
+          <div class="pc__top">
+            <div class="pc__num">60<span class="pc__unit"> hrs</span></div>
+          </div>
+          <div class="pc__btm">
+            <div class="pc__label">Supervised Hours</div>
+            <div class="pc__sub">1:1 with a Lead Learning Coach</div>
+          </div>
+        </div>
+
+        <!-- Narrow: 6 mo -->
+        <div class="pc pc--narrow-left">
+          <div class="pc__top">
+            <div class="pc__num">6<span class="pc__unit"> mo.</span></div>
+          </div>
+          <div class="pc__btm">
+            <div class="pc__label">To NC-BC</div>
+            <div class="pc__sub">30 months faster than NP school</div>
+          </div>
+        </div>
+
+        <!-- Wide dark: about the program -->
+        <div class="pc pc--text">
+          <div class="pc__inner">
+            <p>This dual-credential pathway is what makes the program unique. Graduates can integrate nurse coaching into healthcare settings or with private clients where their nursing license allows.</p>
+            <p>Every student is paired 1:1 with a Lead Learning Coach for the entire 6-month experience — a practicing nurse coach who has built a successful coaching practice herself.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="program__body r">
+        <p>In 6 months, you graduate prepared to sit for the NC-BC exam through American Holistic Nurses Credentialing Corporation while also earning a Nurse Life Coach Certification designed to support non-clinical coaching practice.</p>
+        <p>For many nurses, this creates a level of flexibility and autonomy that traditional nursing pathways often do not provide.</p>
+        <p>You graduate with 121 CE credits, 60 hours of supervised coaching practice, preparation for the NC-BC board exam, and the foundational business tools needed to begin building your practice — including pricing guidance, first-client frameworks, and marketing support. The alumni community is included as part of the experience, giving you ongoing connection and mentorship beyond certification.</p>
+        <p>Laura Minard built this program from the transition she once navigated herself after leaving her role as a Kaiser advice nurse. Eight years later, this is the program she wishes had existed when she first made the leap into coaching.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-sec" aria-labelledby="vid-h">
+    <div class="wrap">
+      <div class="video-sec__hd r">
+        <span class="ey">Hear from Graduates</span>
+        <h2 id="vid-h">The nurse who built this program was where you are now.</h2>
+        <p>Laura Minard was a Kaiser advice nurse in Northern California. On the day three women called in with the same symptoms and she could not help any of them, she walked off her last shift.</p>
+      </div>
+      <div class="video-wrap r r-d1">
+        <div class="video-resp">
+          <iframe src="https://fast.wistia.net/embed/iframe/w0mgz3aoi1?seo=true&videoFoam=true" title="Nurse Life Coach Academy — Graduate Stories" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS — dark slate, huge numbers -->
+  <div class="stats" role="complementary" aria-label="Program outcomes">
+    <div class="wrap">
+      <div class="stats__grid">
+        <div class="stat r">
+          <span class="stat__num">$5.4M</span>
+          <div class="stat__rule"></div>
+          <span class="stat__label">Earned by our graduates</span>
+        </div>
+        <div class="stat r r-d1">
+          <span class="stat__num">40%</span>
+          <div class="stat__rule"></div>
+          <span class="stat__label">Left the bedside within 6 months</span>
+        </div>
+        <div class="stat r r-d2">
+          <span class="stat__num">6 mo.</span>
+          <div class="stat__rule"></div>
+          <span class="stat__label">To board-certified nurse coach</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUARANTEES — pale-blue -->
+  <section class="guar" aria-labelledby="guar-h">
+    <div class="wrap">
+      <div class="guar__hd r">
+        <span class="ey ey--pb">Our Commitment</span>
+        <h2 id="guar-h">What backs the program.</h2>
+        <p class="sub">Four commitments. The first is a refund.</p>
+      </div>
+      <div class="guar__grid">
+
+        <article class="gc r">
+          <div class="gc__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <div>
+            <div class="gc__title">The 7-Day Fit Guarantee</div>
+            <p class="gc__body">If within the first 7 days of program access you decide this is not the right fit, you get a full refund. No exit interview, no committee, no asking you to prove you tried hard enough.</p>
+          </div>
+        </article>
+
+        <article class="gc r r-d1">
+          <div class="gc__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.601a.562.562 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+          </div>
+          <div>
+            <div class="gc__title">The 6-month transformation promise</div>
+            <p class="gc__body">A different, stronger version of yourself in 6 months, backed by 60 supervised coaching hours, 121 CE credits, AHNCC board exam prep, and the bundled business launch curriculum.</p>
+          </div>
+        </article>
+
+        <article class="gc r r-d2">
+          <div class="gc__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <div class="gc__title">Your spot is held for 24 hours</div>
+            <p class="gc__body">The cohort does not fill if you sleep on it.</p>
+          </div>
+        </article>
+
+        <article class="gc r r-d3">
+          <div class="gc__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
+          </div>
+          <div>
+            <div class="gc__title">You may not pay for this yourself</div>
+            <p class="gc__body">Hospital L&amp;D programs fund credentials like this one routinely, and most nurses never know to ask. After your call, the advisor sends you the exact language to use.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS — navy, asymmetric -->
+  <section class="testi" aria-labelledby="testi-h">
+    <div class="wrap">
+      <div class="testi__hd r">
+        <span class="ey ey--w">Graduate Voices</span>
+        <h2 id="testi-h">Nurses who made the move.</h2>
+        <p>Across specialties, across states. The same transition, the same result.</p>
+      </div>
+      <div class="testi__layout">
+
+        <!-- Large testimonial -->
+        <div class="tc tc--large r">
+          <div class="tc__qm" aria-hidden="true">&ldquo;</div>
+          <p class="tc__body">"I was sitting in my car after my third double shift in a row wondering how much longer I could do this. Six months later I have my own practice and a waiting list. I wish I had taken the call sooner."</p>
+          <div class="tc__foot">
+            <div class="tc__name">Taylor McGuire</div>
+            <div class="tc__cred">RN &middot; Former ICU &middot; Private practice coach</div>
+          </div>
+        </div>
+
+        <!-- Two small -->
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="tc r r-d1">
+            <div class="tc__qm" aria-hidden="true">&ldquo;</div>
+            <p class="tc__body">"The credential is real. My hospital reimbursed the full tuition and now I run a chronic disease coaching program inside the health system. The NC-BC opened doors I didn't know existed."</p>
+            <div class="tc__foot">
+              <div class="tc__name">Meghan Ruttan</div>
+              <div class="tc__cred">RN-BSN &middot; Former Oncology &middot; Health system coach</div>
+            </div>
+          </div>
+          <div class="tc r r-d2">
+            <div class="tc__qm" aria-hidden="true">&ldquo;</div>
+            <p class="tc__body">"I kept telling myself I would look into nurse coaching 'someday.' Laura's advisor call made it real. The 1:1 coaching throughout the program is unlike anything I experienced in nursing school."</p>
+            <div class="tc__foot">
+              <div class="tc__name">Linde Carter</div>
+              <div class="tc__cred">RN &middot; Former Med-Surg &middot; Holistic health coach</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DELAY — white, pull quote -->
+  <section class="delay" aria-labelledby="delay-h">
+    <div class="wrap">
+      <div class="delay__inner r">
+        <span class="ey">The Math of Waiting</span>
+        <h2 id="delay-h">The next 6 months are yours to write.</h2>
+        <p class="delay__pull">The version of yourself who is a board-certified nurse coach starts on the day you book the call.</p>
+        <p>The math of the next 6 months is the math you have been running in the driveway for months. You already know what another 6 months on the floor looks like, because you have lived through enough of them to know.</p>
+        <p>The nurses who took the call 6 months ago, 12 months ago, or 2 years ago are running their own practices now. They will tell you the same thing every time: they wish they had taken the call sooner.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — off-white -->
+  <section class="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="faq__hd r">
+        <span class="ey">Common Questions</span>
+        <h2 id="faq-h">Common questions.</h2>
+      </div>
+      <div class="faq-list" role="list">
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false" aria-controls="fa1">
+            <h4>Is this an MLM?</h4>
+            <svg class="faq-chev" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-ans" id="fa1">
+            <p>No. Nurse Life Coach Academy is accredited through American Holistic Nurses Credentialing Corporation, the organization associated with the NC-BC credential.</p>
+            <p>Health and wellness coaching continues to gain recognition within healthcare systems, including the introduction of Category III CPT codes (0591T&ndash;0593T) for coaching services in 2024.</p>
+            <p>Graduates apply their training in private practice, wellness programs, healthcare organizations, leadership, education, and non-clinical coaching businesses. Scope of practice and reimbursement eligibility vary by licensure, setting, payer, and state regulations.</p>
+            <p>Our founder has worked in the nurse coaching field for more than eight years. This is a professional education and certification program &mdash; not an MLM, recruitment model, or reselling opportunity.</p>
+            <p>Tuition is invested directly into curriculum, mentorship, supervision, coaching labs, CE infrastructure, and student support.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false" aria-controls="fa2">
+            <h4>If I leave the bedside, am I abandoning my patients?</h4>
+            <svg class="faq-chev" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-ans" id="fa2">
+            <p>You are not who has been failing your patients for the last five years. The system has. You went into nursing to heal, and the path of coaching lets you keep doing that, on terms that do not break you in the process. The clinical authority you have already earned does not stay on the unit. It travels with you into a private practice where the time you spend with a client is the time you actually get to use that authority.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false" aria-controls="fa3">
+            <h4>Why not just do NP school?</h4>
+            <svg class="faq-chev" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-ans" id="fa3">
+            <p>NP school is 3 years and 30,000 to 120,000 dollars in tuition, and the destination at the end is a hospital. The same hospital, the same system, the same constraints on what you are allowed to do clinically. Nurse coaching is 6 months, a fraction of the cost of a Master's, and the destination is a home-based practice you own. Both paths are real. They land in different places.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false" aria-controls="fa4">
+            <h4>Will this drain me the way the floor does?</h4>
+            <svg class="faq-chev" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-ans" id="fa4">
+            <p>Coaching operates as positive psychology. The premise of a session is helping the client move toward what she wants, which is a different category of work from absorbing what is wrong with her. Most of our practicing graduates say they end sessions more energized than when they started. And as a coach, you are no longer responsible for the patient's outcome the way you were on the floor. You are a partner in her work.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-btn" aria-expanded="false" aria-controls="fa5">
+            <h4>Will my employer reimburse this?</h4>
+            <svg class="faq-chev" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="faq-ans" id="fa5">
+            <p>Often, yes. About 10-20% of enrolled nurses get the credential funded by their employer. After the advisor call, you receive a tuition reimbursement guide in your inbox with the exact language and program documentation to submit to your hospital's learning and development or tuition reimbursement program. The program is completely tax deductible.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA — dark navy -->
+  <section class="cta-final" aria-labelledby="cta-h">
+    <div class="wrap" style="text-align:center;">
+      <span class="ey ey--w r">Book Your Call</span>
+      <h2 id="cta-h" class="r r-d1">You have done harder things than this call.</h2>
+      <p class="cta-final__body r r-d2">30 minutes on the phone with a former nurse who has been where you are. You leave with the path you have been looking for, even if our program is not the one you walk it with.</p>
+      <div class="cta-final__btns r r-d3">
+        <a href="#book-call" class="btn btn--rust btn--lg">Book my advisor call</a>
+        <a href="#book-call" class="btn btn--ghost btn--lg">Learn more first</a>
+      </div>
+      <p class="cta-final__note r r-d4">Bring your partner to the call if you want to. We will walk both of you through what the path actually looks like.</p>
+    </div>
+  </section>
+
+  <!-- BOOK CALL ANCHOR -->
+  <section id="book-call" class="book" aria-label="Book your advisor call">
+    <div class="wrap">
+      <div class="book__card">
+        <span class="ey">Schedule Your Call</span>
+        <h3>Book your free 30-minute advisor call</h3>
+        <p>Advisor call booking form — integration with HubSpot/Calendly to be embedded here.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot" role="contentinfo">
+    <p class="foot__est">EST. 2018</p>
+    <img class="foot__logo" src="https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_TertiaryLogo_01a-01.png" alt="Nurse Life Coach Academy" width="140">
+    <p class="foot__tag">Become Board Certified</p>
+    <p class="foot__trust">AHNCC Accredited &middot; ANA Recognized &middot; Medicare CPT 0591T-0593T Reimbursable &middot; ICF Certified Life Coach Credential &middot; 7-Day Fit Guarantee</p>
+    <p class="foot__copy">&copy; 2025. All rights reserved.</p>
+  </footer>
+
+  <!-- STICKY MOBILE BAR -->
+  <div class="stickybar" id="stickybar" aria-label="Mobile CTA" role="complementary">
+    <a href="#book-call">Book my advisor call</a>
+  </div>
+
+  <script>
+    // ── Scroll reveal via IntersectionObserver
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('v'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.r').forEach(function(el) { obs.observe(el); });
+
+    // ── Header becomes solid on scroll
+    var hdr = document.getElementById('hdr');
+    var hdrLogo = document.getElementById('hdr-logo');
+    function updateHeader() {
+      if (window.scrollY > 60) {
+        hdr.classList.add('solid');
+        hdrLogo.src = 'https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_PrimaryLogo_01a-05.png';
+      } else {
+        hdr.classList.remove('solid');
+        hdrLogo.src = 'https://calendar.nurselifecoachacademy.com/hs-fs/hubfs/NLCA_TertiaryLogo_01a-01.png';
+      }
+    }
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+
+    // ── FAQ accordion
+    document.querySelectorAll('.faq-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(o) {
+          o.classList.remove('open');
+          o.querySelector('.faq-btn').setAttribute('aria-expanded','false');
+        });
+        if (!open) { item.classList.add('open'); this.setAttribute('aria-expanded','true'); }
+      });
+    });
+
+    // ── Sticky mobile bar
+    (function() {
+      var bar = document.getElementById('stickybar');
+      var hero = document.querySelector('.hero');
+      if (!bar) return;
+      bar.style.cssText = 'transform:translateY(100%);opacity:0;transition:transform .3s ease,opacity .3s ease;';
+      function chk() {
+        if (!hero) return;
+        var below = hero.getBoundingClientRect().bottom < 0;
+        bar.style.transform = below ? 'translateY(0)' : 'translateY(100%)';
+        bar.style.opacity = below ? '1' : '0';
+      }
+      window.addEventListener('scroll', chk, { passive: true });
+      chk();
+    })();
+  </script>
+
+</body>
+</html>
