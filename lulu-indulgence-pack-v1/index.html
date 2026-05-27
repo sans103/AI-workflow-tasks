@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Boozy Gift They'll Never Forget — Lulu Liquor Cakes</title>
+<meta name="description" content="The Boozy Gift They'll Never Forget — 4 iconic liquor cake jars + 2 mystery flavors. Scratch-made with real spirits. Gift-ready packaging. Ships nationwide. Must be 21+." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #FBF7F0;
+    --charcoal: #1A1A1A;
+    --mint: #12BF8F;
+    --mint-soft: #E0FAF4;
+    --mint-dark: #0DA070;
+    --lulu-pink: #E94B7B;
+    --lulu-pink-soft: #FBE4ED;
+    --lulu-lavender: #A593BF;
+    --lulu-lavender-soft: #E8E2F0;
+    --lulu-purple: #5A2A4D;
+    --caramel: #C8954A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Chivo', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Chivo', sans-serif; }
+
+  .eyebrow {
+    font-family: 'Chivo', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mint);
+  }
+
+  .section-h2 {
+    font-family: 'Chivo', sans-serif;
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+
+  .container-x { max-width: 1280px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  .section-pad { padding-top: 50px; padding-bottom: 50px; }
+
+  /* ===========================
+     MARQUEE
+     =========================== */
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: flex;
+    animation: marquee 40s linear infinite;
+    flex-shrink: 0;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track > span { padding: 0 20px; }
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Announcement bar */
+  .announce-bar {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 10px 0;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ===========================
+     HEADER / NAV
+     =========================== */
+  .site-header {
+    background: var(--cream);
+    border-bottom: 1px solid rgba(26,26,26,0.10);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: box-shadow 0.2s ease;
+  }
+  .site-header.scrolled {
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+  }
+  .nav-left a {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--charcoal);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .nav-left a:hover { color: var(--mint); }
+  .logo-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  .logo-wrap img { height: 48px; width: auto; object-fit: contain; }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .nav-right a {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--charcoal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-right a:hover { color: var(--mint); }
+  .cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--charcoal);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .cart-btn:hover { background: var(--mint-dark); }
+  @media (max-width: 768px) {
+    .nav-left { display: none; }
+    .nav-right a { display: none; }
+    .logo-wrap img { height: 38px; }
+    .header-inner { padding: 12px 16px; }
+  }
+
+  /* ===========================
+     BUTTONS
+     =========================== */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 14px 28px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-mint {
+    background: var(--mint);
+    color: white;
+  }
+  .btn-mint:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(18,191,143,.35); background: var(--mint-dark); }
+  .btn-outline {
+    background: transparent;
+    color: var(--charcoal);
+    border: 1.5px solid var(--charcoal);
+  }
+  .btn-outline:hover { background: var(--charcoal); color: white; }
+  .btn-dark {
+    background: var(--charcoal);
+    color: white;
+  }
+  .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(26,26,26,.25); }
+  .btn-mint-outline {
+    background: transparent;
+    color: var(--mint);
+    border: 1.5px solid var(--mint);
+  }
+  .btn-mint-outline:hover { background: var(--mint); color: white; }
+
+  /* ===========================
+     STICKER
+     =========================== */
+  .sticker-angle {
+    display: inline-block;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transform: rotate(-4deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,.18);
+  }
+  .sticker-bounce {
+    animation: bounce-pulse 3s ease-in-out infinite;
+  }
+  @keyframes bounce-pulse {
+    0%, 100% { transform: rotate(-4deg) scale(1); }
+    50%       { transform: rotate(-4deg) scale(1.06); }
+  }
+
+  /* ===========================
+     HERO — BUNDLE PRODUCT
+     =========================== */
+  .hero-bundle {
+    background: var(--mint-soft);
+    padding: 70px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bundle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(from 200deg at 75% 50%, transparent 0deg, rgba(18,191,143,0.07) 60deg, transparent 120deg);
+    pointer-events: none;
+  }
+  .hero-bundle::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -150px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(18,191,143,.10) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-bundle-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 60fr 40fr;
+    gap: 60px;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-copy { padding-bottom: 70px; }
+  .hero-copy .eyebrow { margin-bottom: 18px; }
+  .hero-copy h1 {
+    font-family: 'Chivo', sans-serif;
+    font-size: clamp(44px, 5.5vw, 64px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--charcoal);
+    margin-bottom: 18px;
+  }
+  .hero-copy .subtitle {
+    font-family: 'Chivo', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 460px;
+  }
+  .hero-price-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .price-strike {
+    font-family: 'Chivo', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    text-decoration: line-through;
+  }
+  .price-save-note {
+    font-family: 'Chivo', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+  }
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .hero-img-wrap {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .hero-img-wrap img {
+    width: 100%;
+    max-width: 520px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 24px 48px rgba(0,0,0,.14));
+    animation: hero-float 6s ease-in-out infinite;
+  }
+  @keyframes hero-float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-12px); }
+  }
+  .hero-jar-badge {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    background: var(--charcoal);
+    color: var(--cream);
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    padding: 6px 16px;
+  }
+  .hero-sticker-wrap {
+    position: absolute;
+    top: 28px;
+    right: 8px;
+  }
+  @media (max-width: 900px) {
+    .hero-bundle-inner {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .hero-copy { padding-bottom: 36px; }
+    .hero-copy h1 { font-size: 40px; }
+    .hero-img-wrap { margin: 0 -24px; padding: 0 24px; }
+    .hero-img-wrap img { max-width: 320px; }
+  }
+
+  /* ===========================
+     WAVE DIVIDER
+     =========================== */
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    line-height: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .wave-divider svg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 200%;
+    height: 100%;
+  }
+  .wave-divider .wave-1 { animation: wave-flow 14s linear infinite; }
+  .wave-divider .wave-2 { animation: wave-flow 22s linear infinite reverse; opacity: .5; }
+  .wave-divider .wave-3 { animation: wave-flow 30s linear infinite; opacity: .35; }
+  @keyframes wave-flow {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @media (max-width: 768px) { .wave-divider { height: 48px; } }
+
+  /* ===========================
+     BUY BOX (Section 4)
+     =========================== */
+  .buybox-section {
+    background: var(--cream);
+    padding: 100px 0;
+  }
+  .buybox-inner {
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: 64px;
+    align-items: flex-start;
+  }
+  /* Gallery */
+  .gallery-main {
+    background: white;
+    border-radius: 16px;
+    border: 1.5px solid #e5e5e5;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .gallery-main img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .gallery-main:hover img { transform: scale(1.03); }
+  .gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .thumb {
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    border: 2px solid #e5e5e5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+  }
+  .thumb.active { border-color: var(--mint); }
+  .thumb img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+  }
+  .thumb:nth-child(2) img { filter: hue-rotate(20deg) saturate(1.1); }
+  .thumb:nth-child(3) img { filter: hue-rotate(320deg) saturate(1.1); }
+  .thumb:nth-child(4) img { filter: hue-rotate(180deg) saturate(0.9); }
+
+  /* Product details */
+  .pdp-breadcrumb {
+    font-size: 12px;
+    font-weight: 400;
+    color: #999;
+    margin-bottom: 14px;
+  }
+  .pdp-breadcrumb a { color: #999; text-decoration: none; }
+  .pdp-breadcrumb a:hover { color: var(--charcoal); }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+  .badge-mint { background: var(--mint); color: white; }
+  .badge-dark { background: var(--charcoal); color: var(--cream); }
+  .badge-pink { background: var(--lulu-pink); color: white; border-radius: 999px; }
+  .pdp-title {
+    font-family: 'Chivo', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .pdp-stars {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .stars-svg {
+    display: flex;
+    gap: 2px;
+  }
+  .pdp-review-count {
+    font-size: 13px;
+    font-weight: 400;
+    color: #777;
+  }
+  .pdp-review-count span { color: var(--charcoal); font-weight: 700; }
+  .pdp-price-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .pdp-price-strike {
+    font-size: 15px;
+    font-weight: 400;
+    color: #aaa;
+    text-decoration: line-through;
+  }
+  .pdp-price-sale {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .pdp-short-desc {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #555;
+    margin-bottom: 22px;
+  }
+  .pdp-includes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .pdp-includes-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .pdp-includes-list li .check-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .qty-atc-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .qty-stepper {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid var(--charcoal);
+    border-radius: 999px;
+    overflow: hidden;
+    height: 52px;
+    flex-shrink: 0;
+  }
+  .qty-stepper button {
+    background: none;
+    border: none;
+    width: 44px;
+    height: 100%;
+    cursor: pointer;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--charcoal);
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qty-stepper button:hover { background: rgba(26,26,26,0.06); }
+  .qty-display {
+    width: 36px;
+    text-align: center;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--charcoal);
+    user-select: none;
+  }
+  .atc-btn {
+    flex: 1;
+    background: var(--mint);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 0 28px;
+    height: 52px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .atc-btn:hover { background: var(--mint-dark); transform: translateY(-1px); }
+  .atc-btn.loading::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.25);
+    animation: btn-shimmer 0.8s linear infinite;
+  }
+  @keyframes btn-shimmer {
+    0% { transform: translateX(-100%) skewX(-20deg); }
+    100% { transform: translateX(200%) skewX(-20deg); }
+  }
+  .gift-btn {
+    width: 100%;
+    background: transparent;
+    border: 1.5px solid var(--charcoal);
+    border-radius: 999px;
+    padding: 13px 28px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--charcoal);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    margin-bottom: 24px;
+  }
+  .gift-btn:hover { background: var(--charcoal); color: white; }
+  .trust-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+  }
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    flex: 1;
+    min-width: 60px;
+  }
+  .trust-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--mint-soft);
+  }
+  .trust-item-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.3;
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    .buybox-section { padding: 50px 0; }
+    .buybox-inner {
+      display: block;
+    }
+    .pdp-details { margin-top: 32px; }
+    .qty-atc-row { flex-wrap: wrap; }
+  }
+
+  /* ===========================
+     DOTS BG
+     =========================== */
+  .bg-dots {
+    background-image: radial-gradient(circle, rgba(18,191,143,0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* ===========================
+     OCCASION CARDS (5a)
+     =========================== */
+  .occasions-section {
+    position: relative;
+    overflow: hidden;
+  }
+  .occasions-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 44px;
+  }
+  .occasions-intro .eyebrow { margin-bottom: 12px; }
+  .occasion-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .occasion-card {
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .occasion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0,0,0,.10);
+  }
+  .occ-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+    line-height: 1;
+  }
+  .occ-title {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .occ-tagline {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+  @media (max-width: 900px) {
+    .occasion-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .occasion-grid { grid-template-columns: 1fr; }
+    .occasion-card { padding: 22px 18px; }
+  }
+
+  /* ===========================
+     DARK MARQUEE STRIP (5b)
+     =========================== */
+  .dark-marquee {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 14px 0;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ===========================
+     WHAT'S INSIDE (5c)
+     =========================== */
+  .inside-section { background: var(--lulu-lavender-soft); }
+  .inside-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 44px;
+  }
+  .inside-intro .eyebrow { margin-bottom: 12px; }
+  .jar-top-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+  .jar-bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 18px;
+  }
+  .jar-card {
+    background: var(--cream);
+    border: 1.5px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+  }
+  .jar-card:hover { transform: translateY(-3px); }
+  .jar-img-panel {
+    background: white;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .jar-img-panel img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+  }
+  .jar-card:nth-child(2) .jar-img-panel img { filter: hue-rotate(20deg) saturate(1.2); }
+  .jar-card:nth-child(3) .jar-img-panel img { filter: hue-rotate(310deg) saturate(1.1); }
+  .jar-name {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .jar-spirit {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--mint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .jar-tagline {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 13px;
+    color: #777;
+    line-height: 1.4;
+  }
+  .mystery-card {
+    background: var(--lulu-purple);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .mystery-icon-big {
+    font-size: 52px;
+    flex-shrink: 0;
+  }
+  .mystery-copy {}
+  .mystery-title {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .mystery-subtitle {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--mint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .mystery-desc {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(251,247,240,0.80);
+    line-height: 1.6;
+  }
+  @media (max-width: 900px) {
+    .jar-top-row { grid-template-columns: 1fr 1fr; }
+    .jar-bottom-row { grid-template-columns: 1fr; }
+    .mystery-card { flex-direction: column; gap: 16px; }
+    .mystery-title { font-size: 20px; }
+  }
+  @media (max-width: 480px) {
+    .jar-top-row { grid-template-columns: 1fr; }
+  }
+
+  /* ===========================
+     FLAVOR MARQUEE (5d)
+     =========================== */
+  .flavor-marquee-strip {
+    background: var(--lulu-purple);
+    border-top: 2px solid var(--mint);
+    border-bottom: 2px solid var(--mint);
+    padding: 16px 0;
+    color: var(--cream);
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+  }
+
+  /* ===========================
+     GIFTING FEATURES (5e)
+     =========================== */
+  .gifting-features-section { background: var(--mint-soft); }
+  .features-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 44px;
+  }
+  .features-intro .eyebrow { margin-bottom: 12px; }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .feature-card {
+    background: white;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 28px 22px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.08);
+  }
+  .feature-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--mint-soft);
+    margin: 0 auto 16px;
+  }
+  .feature-title {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .feature-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    line-height: 1.55;
+  }
+  @media (max-width: 900px) {
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .features-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===========================
+     REVIEWS (Section 6)
+     =========================== */
+  .reviews-section { background: var(--cream); }
+  .reviews-intro {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 50px;
+  }
+  .reviews-intro .eyebrow { margin-bottom: 12px; }
+  .reviews-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 52px;
+    align-items: flex-start;
+  }
+  .review-summary-box {}
+  .summary-rating-big {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 900;
+    font-size: 60px;
+    line-height: 1;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+  .summary-based-on {
+    font-size: 13px;
+    font-weight: 400;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .star-bars { display: flex; flex-direction: column; gap: 8px; }
+  .star-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .star-bar-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #777;
+    white-space: nowrap;
+  }
+  .star-bar-track {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e5e5e5;
+    overflow: hidden;
+  }
+  .star-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--caramel);
+  }
+  .star-bar-pct {
+    font-size: 11px;
+    font-weight: 400;
+    color: #aaa;
+    width: 28px;
+    text-align: right;
+  }
+  .review-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .review-card {
+    background: white;
+    border: 1.5px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .review-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--mint);
+    color: white;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-radius: 4px;
+    padding: 3px 9px;
+    align-self: flex-start;
+  }
+  .review-quote {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: #444;
+    flex: 1;
+  }
+  .review-author {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+  .review-date {
+    font-size: 12px;
+    font-weight: 400;
+    color: #aaa;
+  }
+  @media (max-width: 1024px) {
+    .reviews-layout { grid-template-columns: 1fr; }
+    .review-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-layout .review-summary-box { max-width: 320px; }
+  }
+  @media (max-width: 640px) {
+    .review-cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===========================
+     YOU MAY ALSO LIKE (Section 7)
+     =========================== */
+  .upsell-section { background: var(--lulu-lavender-soft); }
+  .upsell-intro {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 40px;
+  }
+  .upsell-intro .eyebrow { margin-bottom: 12px; }
+  .upsell-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .upsell-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1.5px solid #e5e5e5;
+  }
+  .upsell-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0,0,0,.10);
+  }
+  .upsell-img-panel {
+    aspect-ratio: 1 / 1;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .upsell-img-panel img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+  .upsell-card:nth-child(2) .upsell-img-panel img { filter: hue-rotate(20deg); }
+  .upsell-card:nth-child(3) .upsell-img-panel img { filter: hue-rotate(310deg) saturate(1.1); }
+  .upsell-card:nth-child(4) .upsell-img-panel img { filter: hue-rotate(140deg) saturate(0.8); }
+  .upsell-card:hover .upsell-img-panel img { transform: scale(1.06); }
+  .upsell-card-body {
+    padding: 16px 18px 18px;
+  }
+  .upsell-name {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .upsell-tagline {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .upsell-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .upsell-price {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--charcoal);
+  }
+  @media (max-width: 900px) {
+    .upsell-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===========================
+     NEWSLETTER (Section 8)
+     =========================== */
+  .newsletter-section {
+    background: var(--charcoal);
+    padding: 70px 0;
+    text-align: center;
+  }
+  .newsletter-section .eyebrow { margin-bottom: 16px; color: var(--mint); }
+  .newsletter-h2 {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 900;
+    font-size: clamp(30px, 4vw, 40px);
+    color: white;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .newsletter-body {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(251,247,240,0.75);
+    line-height: 1.6;
+    max-width: 460px;
+    margin: 0 auto 28px;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .newsletter-input {
+    flex: 1;
+    min-width: 220px;
+    border: 1.5px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    padding: 13px 22px;
+    font-family: 'Chivo', sans-serif;
+    font-size: 14px;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .newsletter-input::placeholder { color: rgba(255,255,255,0.45); }
+  .newsletter-input:focus { border-color: var(--mint); }
+  .newsletter-fine {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* ===========================
+     FOOTER (Section 9)
+     =========================== */
+  .site-footer {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 56px 0 32px;
+    color: rgba(251,247,240,0.75);
+    font-size: 14px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  .footer-brand .logo-wrap { margin-bottom: 16px; }
+  .footer-brand .logo-wrap img { filter: brightness(0) invert(1); }
+  .footer-mission {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(251,247,240,0.65);
+    margin-bottom: 10px;
+    max-width: 280px;
+  }
+  .footer-age {
+    font-size: 12px;
+    color: rgba(251,247,240,0.45);
+    margin-bottom: 0;
+  }
+  .footer-col-title {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: white;
+    margin-bottom: 16px;
+  }
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-links a {
+    color: rgba(251,247,240,0.65);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--mint); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-copyright {
+    font-size: 12px;
+    color: rgba(251,247,240,0.4);
+  }
+  .payment-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .pay-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(251,247,240,0.6);
+    white-space: nowrap;
+  }
+  @media (max-width: 900px) {
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ===========================
+     MOBILE STICKY ATC BAR
+     =========================== */
+  .sticky-atc {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: white;
+    border-top: 1px solid #e5e5e5;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 -4px 16px rgba(0,0,0,.10);
+  }
+  .sticky-atc.visible { transform: translateY(0); }
+  .sticky-atc-info {}
+  .sticky-atc-name {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--charcoal);
+    line-height: 1.3;
+  }
+  .sticky-atc-price {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #777;
+  }
+  .sticky-atc-btn {
+    background: var(--mint);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .sticky-atc-btn:hover { background: var(--mint-dark); }
+  @media (min-width: 769px) { .sticky-atc { display: none; } }
+
+  /* ===========================
+     SCROLL REVEAL
+     =========================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===========================
+     REDUCED MOTION
+     =========================== */
+  @media (prefers-reduced-motion: reduce) {
+    .wave-divider .wave-1,
+    .wave-divider .wave-2,
+    .wave-divider .wave-3 { animation: none; }
+    .marquee-track { animation: none; }
+    .hero-img-wrap img { animation: none; }
+    .sticker-bounce { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============================
+     SECTION 1 — ANNOUNCEMENT BAR
+     ============================ -->
+<div class="announce-bar marquee" aria-label="Announcement">
+  <div class="marquee-track" aria-hidden="true">
+    <span>🎁 The Boozy Gift They'll Never Forget</span>
+    <span>·</span>
+    <span>Free US Shipping Over $100</span>
+    <span>·</span>
+    <span>6 Liquor Cake Jars</span>
+    <span>·</span>
+    <span>Ships Nationwide</span>
+    <span>·</span>
+    <span>Must Be 21+</span>
+    <span>·</span>
+    <span>🎁 The Boozy Gift They'll Never Forget</span>
+    <span>·</span>
+    <span>Free US Shipping Over $100</span>
+    <span>·</span>
+    <span>6 Liquor Cake Jars</span>
+    <span>·</span>
+    <span>Ships Nationwide</span>
+    <span>·</span>
+    <span>Must Be 21+</span>
+    <span>·</span>
+    <span>🎁 The Boozy Gift They'll Never Forget</span>
+    <span>·</span>
+    <span>Free US Shipping Over $100</span>
+    <span>·</span>
+    <span>6 Liquor Cake Jars</span>
+    <span>·</span>
+    <span>Ships Nationwide</span>
+    <span>·</span>
+    <span>Must Be 21+</span>
+    <span>·</span>
+  </div>
+</div>
+
+<!-- ============================
+     SECTION 2 — STICKY HEADER
+     ============================ -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <nav class="nav-left" aria-label="Primary navigation left">
+      <a href="#">Shop Liquor Cake Jars</a>
+      <a href="#">Boozy Butter</a>
+      <a href="#">Build My Bundle</a>
+    </nav>
+    <div class="logo-wrap">
+      <a href="#" aria-label="Lulu Liquor Cakes home">
+        <img
+          src="https://lululiquorcakes.com/cdn/shop/files/LuluLiquorCakes_LOGO-FINAL-01_f3cfd8f5-ff34-4858-ac13-a16f79925ef6.png"
+          alt="Lulu Liquor Cakes"
+          height="48"
+          width="auto"
+        />
+      </a>
+    </div>
+    <nav class="nav-right" aria-label="Primary navigation right">
+      <a href="#">Favorites Pack</a>
+      <a href="#">FAQs</a>
+      <a href="#">Shop Swag</a>
+      <button class="cart-btn" aria-label="Open cart, 0 items">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+        Cart
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================
+     SECTION 3 — HERO BANNER
+     ============================ -->
+<section class="hero-bundle" aria-label="Product hero">
+  <div class="hero-bundle-inner">
+    <!-- Left: copy -->
+    <div class="hero-copy">
+      <p class="eyebrow">The Gift That Changes the Game</p>
+      <h1>The Boozy Gift<br>They'll Never Forget.</h1>
+      <p class="subtitle">Six liquor-infused cake jars. Four guaranteed icons. Two mystery flavors. All gift-ready. Shipped to their door.</p>
+      <!-- Value pills — prominent above CTA -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        <span style="display:inline-flex;align-items:center;gap:6px;background:var(--mint);color:white;border-radius:999px;padding:7px 16px;font-family:'Chivo',sans-serif;font-weight:700;font-size:13px;letter-spacing:0.02em;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h6"/><path d="M16 2h6v6"/><line x1="21" y1="2" x2="10" y2="13"/></svg>
+          2 Jars FREE
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:white;color:var(--charcoal);border:1.5px solid var(--charcoal);border-radius:999px;padding:7px 16px;font-family:'Chivo',sans-serif;font-weight:700;font-size:13px;">
+          Save $29.90 · 33% Off
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:6px;background:white;color:var(--charcoal);border:1.5px solid rgba(26,26,26,.2);border-radius:999px;padding:7px 16px;font-family:'Chivo',sans-serif;font-weight:700;font-size:13px;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Free Shipping $100+
+        </span>
+      </div>
+      <div class="hero-cta-row">
+        <a href="#buybox" class="btn-pill btn-mint">🎁 Shop The Bundle — $59.80</a>
+      </div>
+      <div class="hero-price-line">
+        <span class="price-strike">$89.70</span>
+        <span class="price-save-note">· You pay $59.80 — that's $29.90 back in your pocket.</span>
+      </div>
+    </div>
+    <!-- Right: product image -->
+    <div class="hero-img-wrap">
+      <span class="hero-jar-badge">6 Jars · 2 FREE 🎁</span>
+      <img
+        src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg"
+        alt="The Boozy Gift Bundle — 6 liquor cake jars gift-ready"
+        loading="eager"
+      />
+      <div class="hero-sticker-wrap">
+        <span class="sticker-angle sticker-bounce" aria-hidden="true">Best. Gift. Ever.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave: mint-soft → cream -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--mint-soft);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-1" d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,70 L0,70 Z" fill="#FBF7F0"/>
+    <path class="wave-2" d="M0,40 C240,20 480,60 720,40 C960,20 1200,60 1440,40 L1440,70 L0,70 Z" fill="#FBF7F0" opacity="0.5"/>
+  </svg>
+</div>
+
+<!-- ============================
+     SECTION 4 — BUY BOX
+     ============================ -->
+<section class="buybox-section" id="buybox" aria-label="Product details and purchase">
+  <div class="container-x">
+    <div class="buybox-inner">
+
+      <!-- Left: Image Gallery -->
+      <div class="pdp-gallery">
+        <div class="gallery-main" id="main-gallery-img">
+          <img
+            src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg"
+            alt="The Boozy Gift Bundle — 6 liquor cake jars"
+            id="main-img"
+            loading="eager"
+          />
+        </div>
+        <div class="gallery-thumbs" role="list" aria-label="Product image thumbnails">
+          <button class="thumb active" data-src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" aria-label="Product image 1" role="listitem">
+            <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="" loading="lazy" />
+          </button>
+          <button class="thumb" data-src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" aria-label="Product image 2" role="listitem">
+            <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="" loading="lazy" style="filter:hue-rotate(20deg) saturate(1.1);" />
+          </button>
+          <button class="thumb" data-src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" aria-label="Product image 3" role="listitem">
+            <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="" loading="lazy" style="filter:hue-rotate(320deg) saturate(1.1);" />
+          </button>
+          <button class="thumb" data-src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" aria-label="Product image 4" role="listitem">
+            <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="" loading="lazy" style="filter:hue-rotate(180deg) saturate(0.9);" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Product Details -->
+      <div class="pdp-details">
+        <p class="pdp-breadcrumb">
+          <a href="#">Home</a> /
+          <a href="#">Shop</a> /
+          The Boozy Gift They'll Never Forget
+        </p>
+
+        <div class="badge-row">
+          <span class="badge-pill badge-mint">Best for Gifting</span>
+          <span class="badge-pill badge-dark">Buy 4 Get 2 Free</span>
+        </div>
+
+        <h1 class="pdp-title">The Boozy Gift They'll Never Forget</h1>
+
+        <div class="pdp-stars">
+          <div class="stars-svg" aria-label="4.2 out of 5 stars">
+            <!-- 4 filled stars -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <!-- 1 empty star -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8954A" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="pdp-review-count"><span>4.2</span> · 228 reviews</span>
+        </div>
+
+        <div class="pdp-price-block">
+          <span class="pdp-price-strike">$89.70</span>
+          <span class="pdp-price-sale">$59.80</span>
+          <span class="badge-pill badge-pink">Save 33%</span>
+        </div>
+        <p style="font-family:'Chivo',sans-serif;font-size:13px;font-weight:700;color:var(--mint);margin-top:4px;margin-bottom:0;">
+          You save $29.90 — two jars are completely on the house.
+        </p>
+
+        <p class="pdp-short-desc">
+          4 of our most-loved liquor cake jars + 2 mystery flavors handpicked by Laura herself. Scratch-made with real spirits. Gift-ready packaging. Ships fresh weekly to their door (or yours — we're not judging).
+        </p>
+
+        <ul class="pdp-includes-list" aria-label="What's included">
+          <li>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Pineapple Upside Down Cake — Rum
+          </li>
+          <li>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Mudslide with Oreos — Vodka + Irish Cream
+          </li>
+          <li>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Strawberry Margarita — Tequila
+          </li>
+          <li>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Bourbon Vanilla — Bourbon
+          </li>
+          <li>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            + 2 Mystery Flavors — <strong style="color:var(--mint);">FREE</strong> (Laura's picks)
+          </li>
+          <li>
+            <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Gift-ready packaging
+          </li>
+        </ul>
+
+        <!-- Value callout banner -->
+        <div style="background:var(--mint-soft);border:1.5px solid var(--mint);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <div style="flex-shrink:0;width:40px;height:40px;background:var(--mint);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h6"/><path d="M16 2h6v6"/><line x1="21" y1="2" x2="10" y2="13"/></svg>
+          </div>
+          <div>
+            <p style="font-family:'Chivo',sans-serif;font-weight:900;font-size:15px;color:var(--charcoal);margin:0 0 2px;">Buy 4, Get 2 FREE — You save $29.90</p>
+            <p style="font-family:'Chivo',sans-serif;font-weight:400;font-size:13px;color:rgba(26,26,26,.65);margin:0;">6 jars total. Two are completely on the house.</p>
+          </div>
+        </div>
+
+        <!-- Gift Note — Shopify line item property: name="properties[Gift Message]" -->
+        <div id="gift-note-wrap" style="border:1.5px solid #e5e5e5;border-radius:12px;overflow:hidden;margin-bottom:16px;transition:border-color .2s ease;">
+
+          <!-- Toggle row -->
+          <button id="gift-note-toggle" aria-expanded="false" aria-controls="gift-note-body"
+            style="width:100%;background:transparent;border:none;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Chivo',sans-serif;font-weight:700;font-size:14px;color:var(--charcoal);">
+            <span style="display:flex;align-items:center;gap:10px;">
+              <svg width="18" height="18" fill="none" stroke="var(--mint)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v6a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h6"/><line x1="12" y1="12" x2="12" y2="6"/><path d="M16 2a4 4 0 00-8 0"/><path d="M12 12h6"/></svg>
+              Add a gift message <span style="font-weight:400;color:rgba(26,26,26,.45);font-size:12px;">(optional)</span>
+            </span>
+            <svg id="gift-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true" style="transition:transform .25s ease;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+
+          <!-- Expandable body -->
+          <div id="gift-note-body" style="max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;">
+            <div style="padding:0 18px 18px;border-top:1px solid #f0f0f0;">
+              <p style="font-family:'Chivo',sans-serif;font-size:12px;color:rgba(26,26,26,.5);margin:12px 0 8px;">Your message will be printed on the gift card inside the box.</p>
+              <!-- Shopify: add name="properties[Gift Message]" to this textarea inside your product form -->
+              <textarea id="gift-message-input" name="properties[Gift Message]" maxlength="150" rows="3" placeholder="e.g. Happy Birthday Laura! 🎂 You deserve every jar."
+                style="width:100%;font-family:'Chivo',sans-serif;font-size:14px;color:var(--charcoal);background:#FAFAFA;border:1.5px solid #e5e5e5;border-radius:8px;padding:12px 14px;resize:none;outline:none;box-sizing:border-box;transition:border-color .2s ease;line-height:1.5;"
+                onfocus="this.style.borderColor='var(--mint)'" onblur="this.style.borderColor='#e5e5e5'"
+                oninput="document.getElementById('gift-char-count').textContent=this.value.length"></textarea>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+                <span style="font-family:'Chivo',sans-serif;font-size:11px;color:var(--mint);font-weight:700;">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="vertical-align:middle;" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  Included free with every order
+                </span>
+                <span style="font-family:'Chivo',sans-serif;font-size:11px;color:rgba(26,26,26,.4);"><span id="gift-char-count">0</span>/150</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qty-atc-row">
+          <div class="qty-stepper" aria-label="Quantity selector">
+            <button id="qty-minus" aria-label="Decrease quantity">−</button>
+            <span class="qty-display" id="qty-display" aria-live="polite">1</span>
+            <button id="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="atc-btn" id="main-add-to-cart" aria-label="Add to cart — $59.80">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Add to Cart — $59.80
+          </button>
+        </div>
+
+        <button class="gift-btn" aria-label="Send as a gift">
+          Send as a Gift →
+        </button>
+
+        <div class="trust-row" role="list" aria-label="Product trust signals">
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <span class="trust-item-label">Scratch-Made</span>
+          </div>
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <span class="trust-item-label">Female-Owned</span>
+          </div>
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <span class="trust-item-label">Ships Nationwide</span>
+          </div>
+          <div class="trust-item" role="listitem">
+            <div class="trust-item-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span class="trust-item-label">228 Reviews</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Wave: cream → cream (visible break) -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--cream);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-1" d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,70 L0,70 Z" fill="#FBF7F0"/>
+    <path class="wave-2" d="M0,44 C360,10 720,60 1080,20 C1260,0 1380,40 1440,44 L1440,70 L0,70 Z" fill="#FBF7F0" opacity="0.4"/>
+  </svg>
+</div>
+
+<!-- ============================
+     SECTION 5a — OCCASION CARDS
+     ============================ -->
+<section class="occasions-section section-pad bg-dots" aria-labelledby="occasions-heading">
+  <div class="container-x">
+    <div class="occasions-intro reveal">
+      <p class="eyebrow">Gifting Made Ridiculously Easy</p>
+      <h2 class="section-h2" id="occasions-heading">Pick the Occasion.<br>We'll Handle the Wow Factor.</h2>
+    </div>
+    <div class="occasion-grid">
+      <div class="occasion-card reveal" style="background:#E0FAF4; color:var(--charcoal);">
+        <span class="occ-icon" aria-hidden="true">🎂</span>
+        <p class="occ-title">Birthday</p>
+        <p class="occ-tagline">"Finally, a gift that doesn't end up regifted."</p>
+      </div>
+      <div class="occasion-card reveal" style="background:#E8E2F0; color:var(--charcoal);">
+        <span class="occ-icon" aria-hidden="true">💕</span>
+        <p class="occ-title">Anniversary</p>
+        <p class="occ-tagline">"More romantic than flowers. Way more boozy."</p>
+      </div>
+      <div class="occasion-card reveal" style="background:#FFF9EE; color:var(--charcoal);">
+        <span class="occ-icon" aria-hidden="true">🥂</span>
+        <p class="occ-title">Bachelorette</p>
+        <p class="occ-tagline">"The party favor that IS the party."</p>
+      </div>
+      <div class="occasion-card reveal" style="background:#E0FAF4; color:var(--charcoal);">
+        <span class="occ-icon" aria-hidden="true">🎓</span>
+        <p class="occ-title">Graduation</p>
+        <p class="occ-tagline">"They survived. They deserve cake. With booze."</p>
+      </div>
+      <div class="occasion-card reveal" style="background:#5A2A4D; color:white;">
+        <span class="occ-icon" aria-hidden="true">👨</span>
+        <p class="occ-title">Father's Day</p>
+        <p class="occ-tagline" style="opacity:0.8;">"Dad's been asking for something stronger than a tie."</p>
+      </div>
+      <div class="occasion-card reveal" style="background:#1A1A1A; color:var(--cream);">
+        <span class="occ-icon" aria-hidden="true">🌸</span>
+        <p class="occ-title">Just Because</p>
+        <p class="occ-tagline" style="opacity:0.75;">"'I saw this and thought of you' hits different with rum in it."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SECTION 5b — DARK MARQUEE STRIP
+     ============================ -->
+<div class="dark-marquee marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>🎁 THE GIFT THAT SAYS EVERYTHING</span>
+    <span>  ✦  </span>
+    <span>SCRATCH-MADE WITH REAL BOOZE</span>
+    <span>  ✦  </span>
+    <span>4 CLASSICS + 2 MYSTERY JARS</span>
+    <span>  ✦  </span>
+    <span>FREE SHIPPING $100+</span>
+    <span>  ✦  </span>
+    <span>SHIPS NATIONWIDE</span>
+    <span>  ✦  </span>
+    <span>228 FIVE-STAR REVIEWS</span>
+    <span>  ✦  </span>
+    <span>🎁 THE GIFT THAT SAYS EVERYTHING</span>
+    <span>  ✦  </span>
+    <span>SCRATCH-MADE WITH REAL BOOZE</span>
+    <span>  ✦  </span>
+    <span>4 CLASSICS + 2 MYSTERY JARS</span>
+    <span>  ✦  </span>
+    <span>FREE SHIPPING $100+</span>
+    <span>  ✦  </span>
+    <span>SHIPS NATIONWIDE</span>
+    <span>  ✦  </span>
+    <span>228 FIVE-STAR REVIEWS</span>
+    <span>  ✦  </span>
+  </div>
+</div>
+
+<!-- ============================
+     SECTION 5c — WHAT'S INSIDE
+     ============================ -->
+<section class="inside-section section-pad" aria-labelledby="inside-heading">
+  <div class="container-x">
+    <div class="inside-intro reveal">
+      <p class="eyebrow">The Bundle · 6 Jars</p>
+      <h2 class="section-h2" id="inside-heading">What's in the Box?</h2>
+    </div>
+    <div class="jar-top-row">
+      <div class="jar-card reveal">
+        <div class="jar-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Pineapple Upside Down Cake jar" loading="lazy" />
+        </div>
+        <p class="jar-spirit">Rum</p>
+        <p class="jar-name">Pineapple Upside Down Cake</p>
+        <p class="jar-tagline">"Tropical meets boozy. Nobody's complaining."</p>
+      </div>
+      <div class="jar-card reveal">
+        <div class="jar-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Mudslide with Oreos jar" loading="lazy" style="filter:hue-rotate(20deg) saturate(1.2);" />
+        </div>
+        <p class="jar-spirit">Vodka + Irish Cream</p>
+        <p class="jar-name">Mudslide with Oreos</p>
+        <p class="jar-tagline">"The one that disappears first."</p>
+      </div>
+      <div class="jar-card reveal">
+        <div class="jar-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Strawberry Margarita jar" loading="lazy" style="filter:hue-rotate(310deg) saturate(1.1);" />
+        </div>
+        <p class="jar-spirit">Tequila</p>
+        <p class="jar-name">Strawberry Margarita</p>
+        <p class="jar-tagline">"Party in a jar. No blender required."</p>
+      </div>
+    </div>
+    <div class="jar-bottom-row">
+      <div class="jar-card reveal">
+        <div class="jar-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Bourbon Vanilla jar" loading="lazy" style="filter:sepia(0.3) saturate(1.2);" />
+        </div>
+        <p class="jar-spirit">Bourbon</p>
+        <p class="jar-name">Bourbon Vanilla</p>
+        <p class="jar-tagline">"Smooth. Sophisticated. Has a license to thrill."</p>
+      </div>
+      <div class="mystery-card reveal">
+        <div class="mystery-icon-big" aria-hidden="true">🎁</div>
+        <div class="mystery-copy">
+          <p class="mystery-title">2 Mystery Flavors</p>
+          <p class="mystery-subtitle">Handpicked by Laura</p>
+          <p class="mystery-desc">Because the best gifts have a surprise moment. Laura personally picks two seasonal flavors that aren't on the menu — just for this bundle. Every order is a little different. That's kind of the whole point.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SECTION 5d — FLAVOR MARQUEE
+     ============================ -->
+<div class="flavor-marquee-strip marquee" aria-hidden="true">
+  <div class="marquee-track" style="animation-duration: 30s;">
+    <span>🍍 Pineapple Upside Down</span>
+    <span>  ·  </span>
+    <span>🍫 Mudslide With Oreos</span>
+    <span>  ·  </span>
+    <span>🍓 Strawberry Margarita</span>
+    <span>  ·  </span>
+    <span>🥃 Bourbon Vanilla</span>
+    <span>  ·  </span>
+    <span>🎁 Mystery Flavor</span>
+    <span>  ·  </span>
+    <span>🎂 The Boozy Gift Bundle</span>
+    <span>  ·  </span>
+    <span>🍍 Pineapple Upside Down</span>
+    <span>  ·  </span>
+    <span>🍫 Mudslide With Oreos</span>
+    <span>  ·  </span>
+    <span>🍓 Strawberry Margarita</span>
+    <span>  ·  </span>
+    <span>🥃 Bourbon Vanilla</span>
+    <span>  ·  </span>
+    <span>🎁 Mystery Flavor</span>
+    <span>  ·  </span>
+    <span>🎂 The Boozy Gift Bundle</span>
+    <span>  ·  </span>
+  </div>
+</div>
+
+<!-- Wave: lavender-soft → mint-soft -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--lulu-lavender-soft);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-1" d="M0,35 C320,70 640,0 960,40 C1120,60 1280,20 1440,35 L1440,70 L0,70 Z" fill="#E0FAF4"/>
+    <path class="wave-2" d="M0,50 C360,10 720,60 1080,20 C1260,0 1380,50 1440,50 L1440,70 L0,70 Z" fill="#E0FAF4" opacity="0.5"/>
+  </svg>
+</div>
+
+<!-- ============================
+     SECTION 5e — GIFTING FEATURES
+     ============================ -->
+<section class="gifting-features-section section-pad" aria-labelledby="features-heading">
+  <div class="container-x">
+    <div class="features-intro reveal">
+      <p class="eyebrow">Why It Works as a Gift</p>
+      <h2 class="section-h2" id="features-heading">The Gift That Does<br>the Heavy Lifting</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <p class="feature-title">Gift-Ready Packaging</p>
+        <p class="feature-desc">Arrives looking like you planned it for weeks. (We won't tell.)</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <p class="feature-title">Ships Nationwide</p>
+        <p class="feature-desc">Send it to anyone in the contiguous US. From coast to coast.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <p class="feature-title">Genuinely Surprising</p>
+        <p class="feature-desc">Two mystery flavors they won't see coming. Every bundle is one-of-a-kind.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12BF8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="feature-title">228 Five-Star Reviews</p>
+        <p class="feature-desc">Real people, real reactions. You can read them below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave: mint-soft → cream -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--mint-soft);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-1" d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,70 L0,70 Z" fill="#FBF7F0"/>
+    <path class="wave-2" d="M0,44 C360,10 720,60 1080,20 C1260,0 1380,40 1440,44 L1440,70 L0,70 Z" fill="#FBF7F0" opacity="0.4"/>
+  </svg>
+</div>
+
+<!-- ============================
+     SECTION 6 — REVIEWS
+     ============================ -->
+<section class="reviews-section section-pad" aria-labelledby="reviews-heading">
+  <div class="container-x">
+    <div class="reviews-intro reveal">
+      <p class="eyebrow">What People Are Saying</p>
+      <h2 class="section-h2" id="reviews-heading">228 Reasons<br>to Say Yes.</h2>
+    </div>
+    <div class="reviews-layout">
+      <!-- Summary bar -->
+      <div class="review-summary-box reveal" aria-label="Review summary">
+        <p class="summary-rating-big" aria-label="Rating: 4.2 out of 5">4.2</p>
+        <div class="stars-svg" style="margin-bottom:8px;" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C8954A" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="summary-based-on">Based on 228 reviews</p>
+        <div class="star-bars" role="list" aria-label="Star distribution">
+          <div class="star-bar-row" role="listitem">
+            <span class="star-bar-label">5 ★</span>
+            <div class="star-bar-track"><div class="star-bar-fill" style="width:60%;"></div></div>
+            <span class="star-bar-pct">60%</span>
+          </div>
+          <div class="star-bar-row" role="listitem">
+            <span class="star-bar-label">4 ★</span>
+            <div class="star-bar-track"><div class="star-bar-fill" style="width:18%;"></div></div>
+            <span class="star-bar-pct">18%</span>
+          </div>
+          <div class="star-bar-row" role="listitem">
+            <span class="star-bar-label">3 ★</span>
+            <div class="star-bar-track"><div class="star-bar-fill" style="width:10%;"></div></div>
+            <span class="star-bar-pct">10%</span>
+          </div>
+          <div class="star-bar-row" role="listitem">
+            <span class="star-bar-label">2 ★</span>
+            <div class="star-bar-track"><div class="star-bar-fill" style="width:5%;"></div></div>
+            <span class="star-bar-pct">5%</span>
+          </div>
+          <div class="star-bar-row" role="listitem">
+            <span class="star-bar-label">1 ★</span>
+            <div class="star-bar-track"><div class="star-bar-fill" style="width:7%;"></div></div>
+            <span class="star-bar-pct">7%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review cards -->
+      <div class="review-cards-grid">
+        <article class="review-card reveal" aria-label="Review by Jessica M.">
+          <span class="review-verified" aria-label="Verified buyer">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Verified Buyer
+          </span>
+          <div class="stars-svg" aria-label="5 out of 5 stars" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-quote">"I sent this for my best friend's birthday and she called me CRYING. Over cake jars. I'm never buying a candle again."</p>
+          <p class="review-author">Jessica M.</p>
+          <p class="review-date">3 days ago</p>
+        </article>
+
+        <article class="review-card reveal" aria-label="Review by Tyler K.">
+          <span class="review-verified">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Verified Buyer
+          </span>
+          <div class="stars-svg" aria-label="5 out of 5 stars" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-quote">"My mom got one for Mother's Day and now my whole family is fighting over who gets to be on gift duty next year."</p>
+          <p class="review-author">Tyler K.</p>
+          <p class="review-date">1 week ago</p>
+        </article>
+
+        <article class="review-card reveal" aria-label="Review by Ashley R.">
+          <span class="review-verified">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Verified Buyer
+          </span>
+          <div class="stars-svg" aria-label="5 out of 5 stars" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#C8954A" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-quote">"Bachelorette gift that actually made the bride forget the groom for 10 minutes. Priceless."</p>
+          <p class="review-author">Ashley R.</p>
+          <p class="review-date">2 weeks ago</p>
+        </article>
+      </div>
+    </div>
+    <!-- Judge.me Reviews Widget — dynamically loaded in Shopify theme -->
+  </div>
+</section>
+
+<!-- Wave: cream → lavender-soft -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--cream);">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-1" d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,70 L0,70 Z" fill="#E8E2F0"/>
+    <path class="wave-2" d="M0,44 C360,10 720,60 1080,20 C1260,0 1380,40 1440,44 L1440,70 L0,70 Z" fill="#E8E2F0" opacity="0.4"/>
+  </svg>
+</div>
+
+<!-- ============================
+     SECTION 7 — YOU MAY ALSO LIKE
+     ============================ -->
+<section class="upsell-section section-pad" aria-labelledby="upsell-heading">
+  <div class="container-x">
+    <div class="upsell-intro reveal">
+      <p class="eyebrow">You May Also Like</p>
+      <h2 class="section-h2" id="upsell-heading" style="font-size:36px;">More Boozy Bliss</h2>
+    </div>
+    <div class="upsell-grid">
+      <div class="upsell-card reveal">
+        <div class="upsell-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Pineapple Upside Down Cake Jar" loading="lazy" />
+        </div>
+        <div class="upsell-card-body">
+          <p class="upsell-name">Pineapple Upside Down Cake Jar</p>
+          <p class="upsell-tagline">Tropical meets boozy. Nobody's complaining.</p>
+          <div class="upsell-price-row">
+            <span class="upsell-price">$14.95</span>
+            <a href="#" class="btn-pill btn-mint-outline" style="padding:8px 16px;font-size:13px;">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+      <div class="upsell-card reveal">
+        <div class="upsell-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Mudslide with Oreos Jar" loading="lazy" />
+        </div>
+        <div class="upsell-card-body">
+          <p class="upsell-name">Mudslide with Oreos</p>
+          <p class="upsell-tagline">The one that disappears first.</p>
+          <div class="upsell-price-row">
+            <span class="upsell-price">$14.95</span>
+            <a href="#" class="btn-pill btn-mint-outline" style="padding:8px 16px;font-size:13px;">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+      <div class="upsell-card reveal">
+        <div class="upsell-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Strawberry Margarita Jar" loading="lazy" />
+        </div>
+        <div class="upsell-card-body">
+          <p class="upsell-name">Strawberry Margarita Jar</p>
+          <p class="upsell-tagline">Party in a jar. No blender required.</p>
+          <div class="upsell-price-row">
+            <span class="upsell-price">$14.95</span>
+            <a href="#" class="btn-pill btn-mint-outline" style="padding:8px 16px;font-size:13px;">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+      <div class="upsell-card reveal">
+        <div class="upsell-img-panel">
+          <img src="https://lululiquorcakes.com/cdn/shop/files/IMG_7695.jpg" alt="Build My Bundle" loading="lazy" />
+        </div>
+        <div class="upsell-card-body">
+          <p class="upsell-name">Build My Bundle</p>
+          <p class="upsell-tagline">Mix 4, get 2 free. Your rules.</p>
+          <div class="upsell-price-row">
+            <span class="upsell-price">From $49.95</span>
+            <a href="#" class="btn-pill btn-mint-outline" style="padding:8px 16px;font-size:13px;">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SECTION 8 — NEWSLETTER
+     ============================ -->
+<section class="newsletter-section" aria-labelledby="newsletter-heading">
+  <div class="container-x">
+    <p class="eyebrow" style="text-align:center;">Get the Inside Scoop</p>
+    <h2 class="newsletter-h2" id="newsletter-heading">First Spoon Privileges.</h2>
+    <p class="newsletter-body">New flavors, secret drops, bundle deals — straight to your inbox before everyone else.</p>
+    <form class="newsletter-form" action="#" method="POST" aria-label="Email newsletter signup">
+      <label for="newsletter-email" style="display:none;">Email address</label>
+      <input
+        class="newsletter-input"
+        type="email"
+        id="newsletter-email"
+        name="email"
+        placeholder="your@email.com"
+        required
+        autocomplete="email"
+      />
+      <button type="submit" class="btn-pill btn-mint" style="white-space:nowrap;">Pour Me In</button>
+    </form>
+    <p class="newsletter-fine">By signing up you confirm you're 21+ and cool with us emailing you about cake.</p>
+  </div>
+</section>
+
+<!-- ============================
+     SECTION 9 — FOOTER
+     ============================ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container-x">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-wrap" style="margin-bottom:16px;">
+          <img
+            src="https://lululiquorcakes.com/cdn/shop/files/LuluLiquorCakes_LOGO-FINAL-01_f3cfd8f5-ff34-4858-ac13-a16f79925ef6.png"
+            alt="Lulu Liquor Cakes"
+            height="42"
+            width="auto"
+            loading="lazy"
+            style="filter:brightness(0) invert(1);"
+          />
+        </div>
+        <p class="footer-mission">"To celebrate life's greatest moments with a little bit of booze and a whole lot of cake!"</p>
+        <p class="footer-age">Enjoy safely. Must be 21+ to order.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Quick Shop</p>
+        <ul class="footer-links">
+          <li><a href="#">Shop Liquor Cake Jars</a></li>
+          <li><a href="#">Shop Boozy Butter</a></li>
+          <li><a href="#">Build My Bundle</a></li>
+          <li><a href="#">Favorites Pack</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shop Swag</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Contact &amp; Support</p>
+        <ul class="footer-links">
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Social</p>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2026, Lulu Liquor Cakes LLC | Powered by Shopify</p>
+      <div class="payment-pills" aria-label="Accepted payment methods">
+        <span class="pay-pill">Amex</span>
+        <span class="pay-pill">Apple Pay</span>
+        <span class="pay-pill">Discover</span>
+        <span class="pay-pill">Google Pay</span>
+        <span class="pay-pill">Mastercard</span>
+        <span class="pay-pill">PayPal</span>
+        <span class="pay-pill">Shop Pay</span>
+        <span class="pay-pill">Visa</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================
+     MOBILE STICKY ATC BAR
+     ============================ -->
+<div class="sticky-atc" id="sticky-atc" aria-label="Mobile add to cart" role="complementary">
+  <div class="sticky-atc-info">
+    <p class="sticky-atc-name">The Boozy Gift Bundle</p>
+    <p class="sticky-atc-price">$59.80 · <strong style="color:var(--mint);">2 Jars FREE</strong> · Save $29.90</p>
+  </div>
+  <button class="sticky-atc-btn" aria-label="Add to cart">Add to Cart</button>
+</div>
+
+<!-- ============================
+     CONFETTI CANVAS (Final CTA burst)
+     ============================ -->
+<canvas id="confetti-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;display:none;" aria-hidden="true"></canvas>
+
+<script>
+  // ---- Header scroll class ----
+  (function() {
+    var header = document.querySelector('.site-header');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }, { passive: true });
+  })();
+
+  // ---- Gallery thumbnail click ----
+  (function() {
+    var mainImg = document.getElementById('main-img');
+    var thumbs = document.querySelectorAll('.thumb');
+    thumbs.forEach(function(thumb) {
+      thumb.addEventListener('click', function() {
+        thumbs.forEach(function(t) { t.classList.remove('active'); });
+        thumb.classList.add('active');
+        var src = thumb.getAttribute('data-src');
+        if (mainImg && src) {
+          mainImg.src = src;
+        }
+      });
+    });
+  })();
+
+  // ---- Quantity stepper ----
+  /* ---- Gift note toggle ---- */
+  (function() {
+    var toggle = document.getElementById('gift-note-toggle');
+    var body   = document.getElementById('gift-note-body');
+    var chevron = document.getElementById('gift-chevron');
+    var wrap   = document.getElementById('gift-note-wrap');
+    if (!toggle) return;
+    toggle.addEventListener('click', function() {
+      var open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !open);
+      body.style.maxHeight   = open ? '0' : body.scrollHeight + 'px';
+      chevron.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+      wrap.style.borderColor  = open ? '#e5e5e5' : 'var(--mint)';
+      if (!open) setTimeout(function(){ document.getElementById('gift-message-input').focus(); }, 310);
+    });
+  })();
+
+  (function() {
+    var qty = 1;
+    var display = document.getElementById('qty-display');
+    document.getElementById('qty-minus').addEventListener('click', function() {
+      if (qty > 1) { qty--; display.textContent = qty; }
+    });
+    document.getElementById('qty-plus').addEventListener('click', function() {
+      if (qty < 99) { qty++; display.textContent = qty; }
+    });
+  })();
+
+  // ---- ATC loading state + confetti ----
+  (function() {
+    var atcBtn = document.getElementById('main-add-to-cart');
+    var stickyBtn = document.querySelector('.sticky-atc-btn');
+    function triggerAdd(btn) {
+      btn.classList.add('loading');
+      btn.disabled = true;
+      var originalText = btn.innerHTML;
+      btn.innerHTML = 'Adding...';
+      setTimeout(function() {
+        btn.innerHTML = '&#10003; Added!';
+        btn.style.background = '#0DA070';
+        launchConfetti();
+        setTimeout(function() {
+          btn.innerHTML = originalText;
+          btn.style.background = '';
+          btn.classList.remove('loading');
+          btn.disabled = false;
+        }, 2200);
+      }, 700);
+    }
+    if (atcBtn) { atcBtn.addEventListener('click', function() { triggerAdd(atcBtn); }); }
+    if (stickyBtn) { stickyBtn.addEventListener('click', function() { triggerAdd(stickyBtn); }); }
+  })();
+
+  // ---- Sticky ATC bar (IntersectionObserver) ----
+  (function() {
+    var mainATC = document.getElementById('main-add-to-cart');
+    var stickyAtc = document.getElementById('sticky-atc');
+    if (!mainATC || !stickyAtc) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          stickyAtc.classList.remove('visible');
+        } else {
+          stickyAtc.classList.add('visible');
+        }
+      });
+    }, { threshold: 0 });
+    observer.observe(mainATC);
+  })();
+
+  // ---- Scroll reveal ----
+  (function() {
+    var reveals = document.querySelectorAll('.reveal');
+    if (!reveals.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el) { observer.observe(el); });
+  })();
+
+  // ---- Confetti burst ----
+  function launchConfetti() {
+    var canvas = document.getElementById('confetti-canvas');
+    if (!canvas) return;
+    canvas.style.display = 'block';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var colors = ['#12BF8F','#E94B7B','#5A2A4D','#C8954A','#FBF7F0','#A593BF'];
+    for (var i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height * 0.4,
+        r: Math.random() * 6 + 3,
+        d: Math.random() * 120 + 60,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.random() * 10 - 5,
+        tiltAngle: 0,
+        tiltAngleInc: (Math.random() * 0.07 + 0.05)
+      });
+    }
+    var angle = 0;
+    var tick = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      angle += 0.01;
+      tick++;
+      particles.forEach(function(p, i) {
+        p.tiltAngle += p.tiltAngleInc;
+        p.y += (Math.cos(angle + p.d) + 2) * 1.4;
+        p.x += Math.sin(angle) * 1.2;
+        p.tilt = Math.sin(p.tiltAngle - i / 3) * 12;
+        ctx.beginPath();
+        ctx.lineWidth = p.r;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 3, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 3);
+        ctx.stroke();
+      });
+      if (tick < 220) {
+        requestAnimationFrame(draw);
+      } else {
+        canvas.style.display = 'none';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    draw();
+  }
+</script>
+
+</body>
+</html>
