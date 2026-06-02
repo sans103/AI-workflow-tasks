@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lulu Liquor Cakes — Shipping Progress Bar (All States)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0ede8;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .state-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  /* ─── COMPONENT ─── */
+  .shipping-progress {
+    background: #FBF7F0;
+    border: 1.5px solid #f0e8dc;
+    border-radius: 12px;
+    padding: 16px 18px 14px;
+    width: 360px;
+  }
+
+  .sp-message {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.4;
+    margin-bottom: 18px;
+  }
+
+  .sp-message .highlight { color: #E94B7B; }
+  .sp-message .green     { color: #2D8A4E; }
+
+  /* ─── BAR + FLOATING LABELS ─── */
+  .sp-bar-wrapper {
+    position: relative;
+    padding-top: 30px; /* room for floating labels above */
+    margin-bottom: 4px;
+  }
+
+  .sp-track {
+    height: 8px;
+    background: #EDE5D8;
+    border-radius: 100px;
+    overflow: visible;
+    position: relative;
+  }
+
+  .sp-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, #E94B7B, #C8313F);
+  }
+
+  /* Dots sit on the track */
+  .sp-dot {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #EDE5D8;
+    border: 2px solid #ccc;
+  }
+
+  .sp-dot.reached { background: #E94B7B; border-color: #E94B7B; }
+  .sp-dot.free    { background: #2D8A4E; border-color: #2D8A4E; }
+
+  /* Floating label chips above each milestone dot */
+  .sp-label {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    pointer-events: none;
+  }
+
+  /* Label for $30 milestone */
+  .sp-label--30 { left: 30%; }
+  /* Label for $100 milestone */
+  .sp-label--100 { left: 100%; }
+
+  .sp-label-chip {
+    font-size: 10px;
+    font-weight: 700;
+    color: #bbb;
+    background: #EDE5D8;
+    border-radius: 20px;
+    padding: 2px 7px;
+    white-space: nowrap;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  /* Active = currently achieved tier */
+  .sp-label-chip.active {
+    background: #FCE8EE;
+    color: #E94B7B;
+  }
+
+  /* Unlocked = free shipping */
+  .sp-label-chip.unlocked {
+    background: #E6F4EC;
+    color: #2D8A4E;
+  }
+
+  /* Pending = not yet reached */
+  .sp-label-chip.pending {
+    background: #EDE5D8;
+    color: #aaa;
+  }
+
+  /* Connector tick from chip down to dot */
+  .sp-label-tick {
+    width: 1.5px;
+    height: 6px;
+    background: #ddd;
+    border-radius: 2px;
+  }
+  .sp-label-chip.active + .sp-label-tick  { background: #E94B7B; }
+  .sp-label-chip.unlocked + .sp-label-tick { background: #2D8A4E; }
+
+  /* ─── SUB COPY ─── */
+  .sp-sub {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #aaa;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .demo-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════
+     STATE 1 — Cart $18 (under $30)
+     ════════════════════════════════════ -->
+<div class="demo-state">
+  <div class="state-label">State 1 — Cart: $18 (under $30)</div>
+  <div class="shipping-progress">
+
+    <div class="sp-message">
+      Add <span class="highlight">$12 more</span> to drop shipping from $13 → $9 📦
+    </div>
+
+    <div class="sp-bar-wrapper">
+
+      <!-- Floating labels ABOVE the bar -->
+      <div class="sp-label sp-label--30">
+        <span class="sp-label-chip pending">$9 shipping at $30</span>
+        <div class="sp-label-tick"></div>
+      </div>
+      <div class="sp-label sp-label--100">
+        <span class="sp-label-chip pending">FREE at $100 🎉</span>
+        <div class="sp-label-tick"></div>
+      </div>
+
+      <!-- Bar -->
+      <div class="sp-track">
+        <div class="sp-fill" style="width: 18%;"></div>
+        <div class="sp-dot"        style="left: 30%;"></div>
+        <div class="sp-dot"        style="left: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="sp-sub">Spend more, pay less to ship. We love that math.</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     STATE 2 — Cart $55 ($30–$100)
+     ════════════════════════════════════ -->
+<div class="demo-state">
+  <div class="state-label">State 2 — Cart: $55 (between $30–$100)</div>
+  <div class="shipping-progress">
+
+    <div class="sp-message">
+      You're saving $4 on shipping! Add <span class="highlight">$45 more</span> for FREE delivery 🚚
+    </div>
+
+    <div class="sp-bar-wrapper">
+
+      <div class="sp-label sp-label--30">
+        <span class="sp-label-chip active">$9 shipping ✓</span>
+        <div class="sp-label-tick"></div>
+      </div>
+      <div class="sp-label sp-label--100">
+        <span class="sp-label-chip pending">FREE at $100 🎉</span>
+        <div class="sp-label-tick"></div>
+      </div>
+
+      <div class="sp-track">
+        <div class="sp-fill" style="width: 55%;"></div>
+        <div class="sp-dot reached" style="left: 30%;"></div>
+        <div class="sp-dot"         style="left: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="sp-sub">Almost there — free shipping is worth a few extra jars 😉</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════
+     STATE 3 — Cart $120 (FREE unlocked)
+     ════════════════════════════════════ -->
+<div class="demo-state">
+  <div class="state-label">State 3 — Cart: $120 (free shipping unlocked!)</div>
+  <div class="shipping-progress">
+
+    <div class="sp-message">
+      <span class="green">🎉 FREE shipping unlocked!</span> You're officially a legend.
+    </div>
+
+    <div class="sp-bar-wrapper">
+
+      <div class="sp-label sp-label--30">
+        <span class="sp-label-chip active">$9 shipping ✓</span>
+        <div class="sp-label-tick"></div>
+      </div>
+      <div class="sp-label sp-label--100">
+        <span class="sp-label-chip unlocked">FREE shipping ✓</span>
+        <div class="sp-label-tick"></div>
+      </div>
+
+      <div class="sp-track">
+        <div class="sp-fill" style="width: 100%; background: linear-gradient(90deg, #E94B7B, #2D8A4E);"></div>
+        <div class="sp-dot reached" style="left: 30%;"></div>
+        <div class="sp-dot free"    style="left: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="sp-sub">Shipping's on us. The cake is on you. 🍰🥃</div>
+  </div>
+</div>
+
+</body>
+</html>
