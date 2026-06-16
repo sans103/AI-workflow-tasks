@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cherry Jawline Gum by Gum of Gods — 100% Chios mastic gum for daily jaw training and airway support. Choose your pack, save up to 25%, and unlock up to $95 in free gifts.">
+  <meta name="description" content="Cherry Jawline Gum by Gum of Gods — 100% Chios mastic gum for daily jaw training and airway support. Choose your pack, choose how often, and unlock up to $95 in free gifts.">
   <title>Cherry Jawline Gum — Gum of Gods</title>
 
   <!-- Fonts: preconnect + display=swap to avoid render-blocking (per dev learnings) -->
@@ -15,7 +15,7 @@
   <style>
     /* ===== Design tokens (from Gum of Gods brand guide) ===== */
     :root {
-      --primary: #121212;               /* near-black text, CTA, toggle active */
+      --primary: #121212;               /* near-black text, CTA, selected */
       --body: rgba(18,18,18,0.78);      /* 78% body text */
       --muted: rgba(18,18,18,0.52);     /* 52% muted */
       --disabled: rgba(18,18,18,0.32);  /* 32% strikethrough */
@@ -46,7 +46,8 @@
     /* Accessible focus state for all interactive elements */
     button:focus-visible,
     .thumb:focus-visible,
-    .pack:focus-visible {
+    .pack:focus-visible,
+    .freqcard:focus-visible {
       outline: 2px solid var(--deep-gold);
       outline-offset: 2px;
     }
@@ -140,10 +141,10 @@
     }
     .benefits svg { width: 15px; height: 15px; flex: 0 0 auto; }
 
-    /* ===== Numbered step header ===== */
+    /* ===== Labeled section header (Neuro "clean labeled steps" pattern) ===== */
     .step {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: 10px;
       margin: 0 0 14px;
     }
@@ -160,40 +161,45 @@
       align-items: center;
       justify-content: center;
       line-height: 1;
+      align-self: center;
     }
+    /* Neuro-style labeled header: bold/semibold sentence-case label */
     .step__title {
       font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
     }
     .step__hint {
+      display: block;
       color: var(--muted);
       font-size: 13px;
       font-weight: 400;
       letter-spacing: 0;
-      text-transform: none;
+      margin-top: 2px;
     }
 
-    /* ===== Pack grid (2×2) ===== */
+    /* ===== Pack grid (3 columns, single row) ===== */
     .packs {
       display: grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr);  /* minmax(0,..) avoids overflow trap */
-      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0,1fr));  /* 3 packs in ONE row */
+      gap: 10px;
       margin: 0 0 16px;
     }
 
+    /* Compact vertical tile: box image at top, then name/meta/price/pill/gift */
     .pack {
       position: relative;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 6px;
       width: 100%;
-      text-align: left;
+      text-align: center;
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 16px 14px 14px;
+      padding: 20px 10px 14px;
       cursor: pointer;
       font-family: inherit;
       color: var(--primary);
@@ -204,78 +210,92 @@
       box-shadow: 0 0 0 1px var(--gold);   /* gold selection ring per brand guide */
     }
 
-    /* Top row: radio + name + popularity pill */
-    .pack__top { display: flex; align-items: center; gap: 8px; }
-    .pack__radio {
-      flex: 0 0 auto;
-      width: 18px;
-      height: 18px;
+    /* Selected checkmark — pinned top-right, replaces dot radio for compact tiles */
+    .pack__check {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       border: 1px solid var(--radio-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: border-color .15s ease;
+      transition: border-color .15s ease, background .15s ease;
     }
-    .pack[aria-checked="true"] .pack__radio { border-color: var(--deep-gold); }
-    .pack__radio::after {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
+    .pack__check svg { width: 12px; height: 12px; stroke: #fff; opacity: 0; transition: opacity .15s ease; }
+    .pack[aria-checked="true"] .pack__check {
+      border-color: var(--deep-gold);
       background: var(--deep-gold);
-      transform: scale(0);
-      transition: transform .15s ease;
     }
-    .pack[aria-checked="true"] .pack__radio::after { transform: scale(1); }
+    .pack[aria-checked="true"] .pack__check svg { opacity: 1; }
 
-    .pack__name { font-weight: 600; font-size: 15.5px; }
+    /* Product box visual — neutral gray rounded tile at TOP, centered */
+    .pack__box {
+      flex: 0 0 auto;
+      width: 56px;
+      height: 56px;
+      background: var(--gallery-bg);   /* #f5f5f4 neutral light gray */
+      border-radius: 8px;
+      padding: 5px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pack__box img { width: 100%; height: 100%; object-fit: contain; }
 
-    /* Popularity badge pill — overlaps the top border */
+    .pack__name { font-weight: 600; font-size: 15px; line-height: 1.1; }
+
+    /* Popularity badge pill — pinned to the card top, overlaps top border */
     .pack__flag {
       position: absolute;
       top: -9px;
-      left: 14px;
+      left: 50%;
+      transform: translateX(-50%);
       font-weight: 600;
-      font-size: 9.5px;
-      letter-spacing: 1.1px;
+      font-size: 9px;
+      letter-spacing: 0.9px;
       text-transform: uppercase;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 4px;
       white-space: nowrap;
     }
     .pack__flag--popular { background: var(--gold); color: var(--primary); }
     .pack__flag--value   { background: var(--primary); color: var(--gold); }
 
-    .pack__meta { color: var(--muted); font-size: 12px; }
+    .pack__meta { color: var(--muted); font-size: 11px; line-height: 1.2; }
 
-    .pack__priceRow { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-    .pack__price { font-weight: 600; font-size: 22px; line-height: 1; }
-    .pack__compare { color: var(--disabled); font-size: 12.5px; text-decoration: line-through; }
+    .pack__priceRow { display: flex; align-items: baseline; justify-content: center; gap: 6px; flex-wrap: wrap; }
+    .pack__price { font-weight: 600; font-size: 19px; line-height: 1; }
+    .pack__compare { color: var(--disabled); font-size: 11.5px; text-decoration: line-through; }
 
     /* Savings pill — $ AND % (required) */
     .pack__save {
-      align-self: flex-start;
       font-weight: 600;
-      font-size: 10.5px;
-      letter-spacing: 0.6px;
+      font-size: 9.5px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       color: var(--deep-gold);
       background: rgba(201,168,76,0.16);
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 4px;
+      line-height: 1.1;
     }
 
-    .pack__per { color: var(--muted); font-size: 11px; }
+    .pack__per { color: var(--muted); font-size: 10.5px; }
 
     .pack__gift {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 12px;
+      justify-content: center;
+      gap: 5px;
+      font-size: 11px;
+      line-height: 1.2;
       margin-top: 2px;
     }
-    .pack__gift svg { width: 14px; height: 14px; flex: 0 0 auto; }
+    .pack__gift svg { width: 13px; height: 13px; flex: 0 0 auto; }
     .pack__gift--has { color: var(--deep-gold); font-weight: 500; }
     .pack__gift--none { color: var(--muted); }
 
@@ -285,7 +305,7 @@
       border: 1px solid var(--gift-border);
       border-radius: var(--radius);
       padding: 16px 18px;
-      margin: 0 0 24px;
+      margin: 0 0 28px;
     }
     .ladder__head {
       display: flex;
@@ -362,114 +382,137 @@
     }
     .ladder__foot b { color: var(--deep-gold); font-weight: 600; }
 
-    /* ===== Toggle (subscribe vs one-time) ===== */
-    .toggle {
+    /* ===== Frequency: two stacked comparison cards (Neuro pattern) ===== */
+    .freqgroup {
       display: flex;
-      border: 1px solid var(--primary);
-      border-radius: 0;            /* sharp toggle per brand guide */
-      overflow: hidden;
-      margin-bottom: 14px;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0 0 16px;
     }
-    .toggle__seg {
-      flex: 1;
+    .freqcard {
+      position: relative;
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--primary);
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+    .freqcard[aria-checked="true"] {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+
+    .freqcard__main {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .freqcard__left { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
+
+    /* Radio */
+    .freqcard__radio {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      border-radius: 50%;
+      border: 1px solid var(--radio-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      padding: 14px 10px;
-      background: var(--surface);
-      color: var(--primary);
-      border: none;
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background .15s ease, color .15s ease;
+      transition: border-color .15s ease;
     }
-    .toggle__seg + .toggle__seg { border-left: 1px solid var(--primary); }
-    .toggle__seg[aria-pressed="true"] { background: var(--primary); color: #fff; }
-    .toggle__save {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      color: var(--gold);
-      background: rgba(201,168,76,0.14);
-      padding: 2px 6px;
-      border-radius: 3px;
+    .freqcard[aria-checked="true"] .freqcard__radio { border-color: var(--deep-gold); }
+    .freqcard__radio::after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--deep-gold);
+      transform: scale(0);
+      transition: transform .15s ease;
     }
-    .toggle__seg[aria-pressed="true"] .toggle__save { color: var(--gold); }
+    .freqcard[aria-checked="true"] .freqcard__radio::after { transform: scale(1); }
 
-    /* ===== Subscribe benefits panel ===== */
-    .subperks {
-      background: var(--gift-bg);
-      border: 1px solid var(--gift-border);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      transition: opacity .15s ease;
-    }
-    .subperks--muted { opacity: 0.5; }
-    .subperks__grid {
-      display: grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-      gap: 8px 16px;
-      margin: 0;
-      padding: 0;
+    .freqcard__label { font-weight: 600; font-size: 15.5px; line-height: 1.2; }
+    .freqcard__sub { color: var(--muted); font-size: 12.5px; margin-top: 3px; }
+
+    /* Subscribe benefit lines */
+    .freqcard__perks {
       list-style: none;
-    }
-    .subperks__grid li {
+      margin: 8px 0 0;
+      padding: 0;
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .freqcard__perks li {
+      display: flex;
+      align-items: center;
       gap: 7px;
       font-size: 12.5px;
       color: var(--body);
       line-height: 1.3;
     }
-    .subperks__grid svg { width: 14px; height: 14px; flex: 0 0 auto; margin-top: 2px; }
-    .subperks__grid b { font-weight: 600; color: var(--primary); }
+    .freqcard__perks svg { width: 14px; height: 14px; flex: 0 0 auto; stroke: var(--deep-gold); }
 
-    /* ===== Frequency block (subscribe only) — AUTO-MATCHED, READ-ONLY ===== */
-    .freq {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 12px 14px;
-      margin-bottom: 16px;
-    }
-    .freq[hidden] { display: none; }
-    .freq__row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .freq__row svg { width: 16px; height: 16px; flex: 0 0 auto; }
+    /* Right-side price block */
+    .freqcard__pricing { text-align: right; flex: 0 0 auto; }
+    .freqcard__bigprice { font-weight: 600; font-size: 24px; line-height: 1; }
+    .freqcard__per { color: var(--muted); font-size: 11.5px; margin-top: 4px; }
 
-    /* Read-only "pill" showing the auto-matched delivery value */
-    .freq__pill {
-      display: inline-flex;
-      align-items: baseline;
-      gap: 6px;
-      flex-wrap: wrap;
+    /* Subscribe savings panel (right side, highlighted) */
+    .freqcard__savepanel {
+      text-align: right;
+      flex: 0 0 auto;
       background: var(--gift-bg);
       border: 1px solid var(--gift-border);
-      border-radius: 6px;
-      padding: 7px 11px;
-      font-size: 13.5px;
-      color: var(--body);
+      border-radius: 8px;
+      padding: 10px 12px;
     }
-    .freq__pill b { font-weight: 600; color: var(--deep-gold); }
-    .freq__pill .freq__arrives { color: var(--muted); }
+    .freqcard__savedrow {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 7px;
+      margin-bottom: 6px;
+    }
+    .freqcard__saved { font-weight: 600; font-size: 12.5px; color: var(--deep-gold); }
+    .freqcard__offbadge {
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.6px;
+      color: var(--primary);
+      background: var(--gold);
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .freqcard__strike { display: block; color: var(--disabled); font-size: 12.5px; text-decoration: line-through; }
 
-    .freq__note {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 8px;
-      line-height: 1.4;
+    /* Auto-matched cadence line (revealed only when Subscribe is selected) */
+    .freqcadence {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--gift-bg);
+      border: 1px solid var(--gift-border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      margin: -2px 0 16px;
     }
-    .freq__note b { font-weight: 600; color: var(--body); }
+    .freqcadence[hidden] { display: none; }
+    .freqcadence svg { width: 16px; height: 16px; flex: 0 0 auto; stroke: var(--deep-gold); margin-top: 2px; }
+    .freqcadence__text { font-size: 12.5px; color: var(--body); line-height: 1.45; }
+    .freqcadence__text b { font-weight: 600; color: var(--deep-gold); }
+    .freqcadence__text .freqcadence__arrives { color: var(--muted); }
 
     /* ===== CTA ===== */
     .cta {
@@ -495,34 +538,41 @@
     .cta:hover { opacity: 0.9; }
     .cta svg { width: 18px; height: 18px; }
 
+    /* Disabled CTA (no pack selected yet) */
+    .cta:disabled,
+    .cta[aria-disabled="true"] {
+      background: var(--gallery-bg);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+    .cta:disabled:hover,
+    .cta[aria-disabled="true"]:hover { opacity: 1; }
+
+    /* ===== Progressive disclosure (reveal after pack selected) ===== */
+    .reveal { transition: opacity .25s ease; }
+    .reveal.is-hidden { display: none; }
+
     .cta__sub {
       text-align: center;
       font-size: 13px;
       font-weight: 500;
       color: var(--deep-gold);
-      margin: 0 0 6px;
+      margin: 0 0 10px;
     }
     .cta__sub[hidden] { display: none; }
 
-    /* Billing cadence helper line (subscribe only) */
-    .cta__cadence {
-      text-align: center;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--primary);
-      margin: 0 0 4px;
+    /* Free shipping line near CTA (Neuro shows this) */
+    .shipnote {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12.5px;
+      color: var(--body);
+      margin: 0 0 14px;
     }
-    .cta__cadence[hidden] { display: none; }
-    .cta__cadence b { font-weight: 600; }
-    .cta__cadence span { color: var(--muted); font-weight: 400; }
-
-    .cta__subnote {
-      text-align: center;
-      font-size: 12px;
-      color: var(--muted);
-      margin: 0 0 16px;
-    }
-    .cta__subnote[hidden] { display: none; }
+    .shipnote svg { width: 15px; height: 15px; flex: 0 0 auto; stroke: var(--deep-gold); }
+    .shipnote b { font-weight: 600; }
 
     /* ===== Trust row ===== */
     .trust {
@@ -558,10 +608,19 @@
       .thumb { width: calc((100% - 24px) / 3); }   /* 3 across, wraps on small phones */
       /* Gift ladder tiles fall to 2×2 on mobile */
       .ladder__tiles { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
-      .pack { padding: 15px 12px 13px; }
-      .pack__price { font-size: 20px; }
+      /* Keep all 3 packs in one row — tighten further so they stay legible */
+      .pack { padding: 18px 7px 12px; gap: 5px; }
+      .pack__box { width: 48px; height: 48px; }
+      .pack__price { font-size: 17px; }
+      .pack__name { font-size: 13.5px; }
+      .packs { gap: 7px; }
+      /* Frequency cards stack price below the label on tight screens */
+      .freqcard__main { flex-direction: column; }
+      .freqcard__pricing,
+      .freqcard__savepanel { text-align: left; align-self: stretch; }
+      .freqcard__savedrow { justify-content: flex-start; }
     }
-    /* Very tight phones: pack grid falls back to single column */
+    /* Very tight phones (<360px): only here may the pack row wrap */
     @media (max-width: 359px) {
       .packs { grid-template-columns: minmax(0,1fr); }
     }
@@ -620,7 +679,7 @@
       <!-- Title (unchanged) -->
       <h1>Cherry Jawline Gum</h1>
 
-      <!-- Subtitle (per spec) -->
+      <!-- Subtitle (unchanged) -->
       <p class="buybox__subtitle">Natural Cherry &middot; 15 pieces per box &middot; 100% Chios Mastic</p>
 
       <!-- Description (unchanged) -->
@@ -642,97 +701,83 @@
         </li>
       </ul>
 
-      <!-- ============ STEP 1 — CHOOSE YOUR PACK ============ -->
+      <!-- ============ SECTION 1 — CHOOSE YOUR PACK ============ -->
       <div class="step">
         <span class="step__num" aria-hidden="true">1</span>
         <span class="step__title">Choose your pack
-          <span class="step__hint">&middot; More gum, more savings, more free gifts.</span>
+          <span class="step__hint">More gum, more savings, more free gifts.</span>
         </span>
       </div>
 
-      <!-- 2×2 pack grid (radiogroup) -->
+      <!-- 3-column pack grid, single row (radiogroup) -->
       <div class="packs" id="packGrid" role="radiogroup" aria-label="Choose your pack size">
 
-        <!-- 4-Pack -->
-        <button type="button" class="pack" role="radio" aria-checked="false" tabindex="-1"
-                data-id="p4" data-name="4-Pack" data-pieces="60" data-supply-days="30" data-interval-months="1"
-                data-onetime="17.99" data-subscribe="16.19" data-compare="19.99" data-gift="0">
-          <span class="pack__top">
-            <span class="pack__radio" aria-hidden="true"></span>
-            <span class="pack__name">4-Pack</span>
-          </span>
-          <span class="pack__meta">60 pcs &middot; ~30 days</span>
-          <span class="pack__priceRow">
-            <span class="pack__price" data-price>$17.99</span>
-            <span class="pack__compare">$19.99</span>
-          </span>
-          <span class="pack__save">Save $2 &middot; 10%</span>
-          <span class="pack__per">$0.30/pc</span>
-          <span class="pack__gift pack__gift--none">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            No free gift yet
-          </span>
-        </button>
-
-        <!-- 8-Pack -->
-        <button type="button" class="pack" role="radio" aria-checked="false" tabindex="-1"
+        <!-- 8-Pack — full price, no discount, no gift -->
+        <button type="button" class="pack" role="radio" aria-checked="false" tabindex="0"
                 data-id="p8" data-name="8-Pack" data-pieces="120" data-supply-days="60" data-interval-months="2"
-                data-onetime="33.99" data-subscribe="30.59" data-compare="39.99" data-gift="15">
-          <span class="pack__top">
-            <span class="pack__radio" aria-hidden="true"></span>
-            <span class="pack__name">8-Pack</span>
+                data-onetime="39.99" data-compare="" data-gift="0">
+          <span class="pack__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
           </span>
+          <span class="pack__box" aria-hidden="true">
+            <img src="https://cdn.shopify.com/s/files/1/0628/2163/0184/files/1_d53590f1-9b16-4515-adf5-f7ac5afd1375.png?v=1770426484" alt="Cherry Jawline Gum 8-Pack">
+          </span>
+          <span class="pack__name">8-Pack</span>
           <span class="pack__meta">120 pcs &middot; ~60 days</span>
           <span class="pack__priceRow">
-            <span class="pack__price" data-price>$33.99</span>
-            <span class="pack__compare">$39.99</span>
+            <span class="pack__price" data-price>$39.99</span>
           </span>
-          <span class="pack__save">Save $6 &middot; 15%</span>
-          <span class="pack__per">$0.28/pc</span>
-          <span class="pack__gift pack__gift--has">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-            + $15 in free gifts
+          <span class="pack__per">$0.33/piece</span>
+          <span class="pack__gift pack__gift--none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            No free gift
           </span>
         </button>
 
-        <!-- 12-Pack (Most Popular, default selected) -->
-        <button type="button" class="pack" role="radio" aria-checked="true" tabindex="0"
+        <!-- 12-Pack — 15% off, Most Popular, $45 gifts -->
+        <button type="button" class="pack" role="radio" aria-checked="false" tabindex="-1"
                 data-id="p12" data-name="12-Pack" data-pieces="180" data-supply-days="90" data-interval-months="3"
-                data-onetime="47.99" data-subscribe="43.19" data-compare="59.99" data-gift="45">
+                data-onetime="50.99" data-compare="59.99" data-gift="45">
           <span class="pack__flag pack__flag--popular">Most Popular</span>
-          <span class="pack__top">
-            <span class="pack__radio" aria-hidden="true"></span>
-            <span class="pack__name">12-Pack</span>
+          <span class="pack__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
           </span>
+          <span class="pack__box" aria-hidden="true">
+            <img src="https://cdn.shopify.com/s/files/1/0628/2163/0184/files/1_d53590f1-9b16-4515-adf5-f7ac5afd1375.png?v=1770426484" alt="Cherry Jawline Gum 12-Pack">
+          </span>
+          <span class="pack__name">12-Pack</span>
           <span class="pack__meta">180 pcs &middot; ~90 days</span>
           <span class="pack__priceRow">
-            <span class="pack__price" data-price>$47.99</span>
+            <span class="pack__price" data-price>$50.99</span>
             <span class="pack__compare">$59.99</span>
           </span>
-          <span class="pack__save">Save $12 &middot; 20%</span>
-          <span class="pack__per">$0.27/pc</span>
+          <span class="pack__save">Save $9 &middot; 15%</span>
+          <span class="pack__per">$0.28/piece</span>
           <span class="pack__gift pack__gift--has">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
             + $45 in free gifts
           </span>
         </button>
 
-        <!-- 16-Pack (Best Value) -->
+        <!-- 16-Pack — 25% off, Best Value, $95 gifts -->
         <button type="button" class="pack" role="radio" aria-checked="false" tabindex="-1"
                 data-id="p16" data-name="16-Pack" data-pieces="240" data-supply-days="120" data-interval-months="4"
-                data-onetime="59.99" data-subscribe="53.99" data-compare="79.99" data-gift="95">
+                data-onetime="59.99" data-compare="79.99" data-gift="95">
           <span class="pack__flag pack__flag--value">Best Value</span>
-          <span class="pack__top">
-            <span class="pack__radio" aria-hidden="true"></span>
-            <span class="pack__name">16-Pack</span>
+          <span class="pack__check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
           </span>
+          <span class="pack__box" aria-hidden="true">
+            <img src="https://cdn.shopify.com/s/files/1/0628/2163/0184/files/1_d53590f1-9b16-4515-adf5-f7ac5afd1375.png?v=1770426484" alt="Cherry Jawline Gum 16-Pack">
+          </span>
+          <span class="pack__name">16-Pack</span>
           <span class="pack__meta">240 pcs &middot; ~120 days</span>
           <span class="pack__priceRow">
             <span class="pack__price" data-price>$59.99</span>
             <span class="pack__compare">$79.99</span>
           </span>
           <span class="pack__save">Save $20 &middot; 25%</span>
-          <span class="pack__per">$0.25/pc</span>
+          <span class="pack__per">$0.25/piece</span>
           <span class="pack__gift pack__gift--has">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
             + $95 in free gifts
@@ -740,20 +785,20 @@
         </button>
       </div>
 
-      <!-- ============ FREE GIFTS LADDER ============ -->
-      <div class="ladder" aria-live="polite">
+      <!-- ============ FREE GIFTS LADDER (revealed after pack select) ============ -->
+      <div class="ladder reveal is-hidden" id="ladderPanel" aria-live="polite">
         <div class="ladder__head">
           <span class="ladder__title">
             <svg viewBox="0 0 24 24" fill="none" stroke="#9a7a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
             Free Gifts Unlocked
           </span>
-          <span class="ladder__total"><b id="ladderTotal">$45</b> unlocked</span>
+          <span class="ladder__total"><b id="ladderTotal">$0</b> unlocked</span>
         </div>
 
         <div class="ladder__tiles">
-          <!-- Tier order = unlock order: Tin (8), Jaw Guide (12), Mouth Tape (16), Nasal Strips (16) -->
-          <!-- Tin — $15 (cup icon) -->
-          <div class="tile" data-threshold="15">
+          <!-- Gift count drives unlocks: 8-Pack=0 (none), 12-Pack=2 (Tin+Jaw Guide), 16-Pack=4 (all) -->
+          <!-- Reusable Tin — $15 (cup icon) -->
+          <div class="tile" data-tier="1">
             <span class="tile__status" aria-hidden="true"></span>
             <span class="tile__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
@@ -763,7 +808,7 @@
           </div>
 
           <!-- Jaw Guide — $30 (book icon) -->
-          <div class="tile" data-threshold="45">
+          <div class="tile" data-tier="2">
             <span class="tile__status" aria-hidden="true"></span>
             <span class="tile__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -773,7 +818,7 @@
           </div>
 
           <!-- Mouth Tape — $25 (shield icon) -->
-          <div class="tile" data-threshold="70">
+          <div class="tile" data-tier="3">
             <span class="tile__status" aria-hidden="true"></span>
             <span class="tile__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -783,7 +828,7 @@
           </div>
 
           <!-- Nasal Strips — $25 (leaf icon) -->
-          <div class="tile" data-threshold="95">
+          <div class="tile" data-tier="4">
             <span class="tile__status" aria-hidden="true"></span>
             <span class="tile__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
@@ -796,69 +841,92 @@
         <p class="ladder__foot" id="ladderFoot"></p>
       </div>
 
-      <!-- ============ STEP 2 — BUY ONCE OR SUBSCRIBE ============ -->
+      <!-- ============ SECTION 2 — CHOOSE HOW OFTEN (revealed after pack select) ============ -->
+      <div class="reveal is-hidden" id="freqSection">
       <div class="step">
         <span class="step__num" aria-hidden="true">2</span>
-        <span class="step__title">Buy once or subscribe &amp; save</span>
+        <span class="step__title">Choose how often</span>
       </div>
 
-      <!-- Segmented toggle -->
-      <div class="toggle" role="group" aria-label="Purchase type">
-        <button type="button" class="toggle__seg" id="toggleSub" data-mode="subscribe" aria-pressed="true">
-          Subscribe &amp; Save
-          <span class="toggle__save">Extra 10% Off</span>
-        </button>
-        <button type="button" class="toggle__seg" id="toggleOnce" data-mode="onetime" aria-pressed="false">
-          One-Time
-        </button>
-      </div>
+      <!-- Two stacked comparison cards (radiogroup) — both prices always visible -->
+      <div class="freqgroup" id="freqGroup" role="radiogroup" aria-label="Choose how often">
 
-      <!-- Subscribe benefits panel (always present, emphasized for subscribe) -->
-      <div class="subperks" id="subPerks">
-        <ul class="subperks__grid">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#9a7a2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            <span><b>Extra 10% off</b>, on top of pack savings</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#9a7a2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            <span><b>Free US shipping</b> on every order</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#9a7a2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            <span><b>Price locked</b> for life</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="#9a7a2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            <span><b>Skip, pause, or cancel</b> anytime</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Frequency block (subscribe only) — AUTO-MATCHED to selected pack, READ-ONLY -->
-      <div class="freq" id="freqLine" aria-live="polite">
-        <div class="freq__row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#9a7a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></svg>
-          <span class="freq__pill" id="freqPill">
-            Delivers every <b id="freqInterval">3 months</b>
-            <span class="freq__arrives" id="freqArrives">&middot; 180 pcs (~90 days)</span>
+        <!-- One-time purchase (SELECTED BY DEFAULT) -->
+        <button type="button" class="freqcard" role="radio" id="freqOnce" data-mode="onetime"
+                aria-checked="true" tabindex="0">
+          <span class="freqcard__main">
+            <span class="freqcard__left">
+              <span class="freqcard__radio" aria-hidden="true"></span>
+              <span>
+                <span class="freqcard__label">One-time purchase</span>
+                <span class="freqcard__sub">Buy once, no commitment.</span>
+              </span>
+            </span>
+            <span class="freqcard__pricing">
+              <span class="freqcard__bigprice" id="onceBig">$39.99</span>
+              <span class="freqcard__per" id="oncePer">$0.33/piece</span>
+            </span>
           </span>
-        </div>
-        <span class="freq__note" id="freqNote">Auto-matched to your <b>12-Pack</b> so a fresh supply arrives right as you finish. Skip, pause, or cancel anytime.</span>
+        </button>
+
+        <!-- Subscribe & Save -->
+        <button type="button" class="freqcard" role="radio" id="freqSub" data-mode="subscribe"
+                aria-checked="false" tabindex="-1">
+          <span class="freqcard__main">
+            <span class="freqcard__left">
+              <span class="freqcard__radio" aria-hidden="true"></span>
+              <span>
+                <span class="freqcard__label">Subscribe &amp; Save</span>
+                <ul class="freqcard__perks">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    Delivered on your schedule.
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                    Never run out.
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></svg>
+                    Change anytime. No pressure.
+                  </li>
+                </ul>
+              </span>
+            </span>
+            <span class="freqcard__savepanel">
+              <span class="freqcard__savedrow">
+                <span class="freqcard__saved" id="subSaved">$4.00 saved</span>
+                <span class="freqcard__offbadge">10% OFF</span>
+              </span>
+              <span class="freqcard__strike" id="subStrike">$39.99</span>
+              <span class="freqcard__bigprice" id="subBig">$35.99</span>
+              <span class="freqcard__per" id="subPer">$0.30/piece</span>
+            </span>
+          </span>
+        </button>
       </div>
 
-      <!-- CTA -->
-      <button type="button" class="cta" id="addToCart">
-        <span id="ctaLabel">Add to Cart &middot; $43.19</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <!-- Auto-matched cadence line (subscribe only, revealed on selection) -->
+      <div class="freqcadence" id="freqCadence" hidden aria-live="polite">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.5 9a9 9 0 0 1 14.9-3.4L23 10M1 14l4.6 4.4A9 9 0 0 0 20.5 15"/></svg>
+        <span class="freqcadence__text" id="freqCadenceText"></span>
+      </div>
+      </div><!-- /#freqSection -->
+
+      <!-- CTA — disabled until a pack is selected -->
+      <button type="button" class="cta" id="addToCart" disabled aria-disabled="true">
+        <span id="ctaLabel">SELECT YOUR PACK</span>
+        <svg id="ctaArrow" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
 
-      <!-- Billing cadence helper (subscribe only) -->
-      <p class="cta__cadence" id="ctaCadence" aria-live="polite"></p>
+      <!-- Gift sub-line (hidden until a pack is selected) -->
+      <p class="cta__sub" id="ctaGift" hidden></p>
 
-      <!-- Gift sub-line + subscribe note -->
-      <p class="cta__sub" id="ctaGift">+ $45 in free gifts included</p>
-      <p class="cta__subnote" id="ctaSubNote">Subscribe price — extra 10% off applied</p>
+      <!-- Free shipping line (Neuro shows this) -->
+      <p class="shipnote">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span><b>Free shipping</b> over $65</span>
+      </p>
 
       <!-- Trust row (unchanged) -->
       <ul class="trust">
@@ -884,38 +952,64 @@
       'use strict';
 
       /* ----- Element references ----- */
-      var packGrid   = document.getElementById('packGrid');
-      var packs      = Array.prototype.slice.call(packGrid.querySelectorAll('.pack'));
-      var tiles      = Array.prototype.slice.call(document.querySelectorAll('.tile'));
-      var ladderTotal= document.getElementById('ladderTotal');
-      var ladderFoot = document.getElementById('ladderFoot');
-      var toggleSub  = document.getElementById('toggleSub');
-      var toggleOnce = document.getElementById('toggleOnce');
-      var subPerks   = document.getElementById('subPerks');
-      var freqLine   = document.getElementById('freqLine');
-      var freqInterval = document.getElementById('freqInterval');
-      var freqArrives  = document.getElementById('freqArrives');
-      var freqNote     = document.getElementById('freqNote');
-      var ctaLabel   = document.getElementById('ctaLabel');
-      var ctaCadence = document.getElementById('ctaCadence');
-      var ctaGift    = document.getElementById('ctaGift');
-      var ctaSubNote = document.getElementById('ctaSubNote');
-      var mainImage  = document.getElementById('mainImage');
-      var thumbs     = document.querySelectorAll('.thumb');
+      var packGrid    = document.getElementById('packGrid');
+      var packs       = Array.prototype.slice.call(packGrid.querySelectorAll('.pack'));
+      var tiles       = Array.prototype.slice.call(document.querySelectorAll('.tile'));
+      var ladderTotal = document.getElementById('ladderTotal');
+      var ladderFoot  = document.getElementById('ladderFoot');
 
-      var mode = 'subscribe'; // 'subscribe' | 'onetime'
+      var freqGroup   = document.getElementById('freqGroup');
+      var freqCards   = Array.prototype.slice.call(freqGroup.querySelectorAll('.freqcard'));
+      var freqOnce    = document.getElementById('freqOnce');
+      var freqSub     = document.getElementById('freqSub');
+
+      var onceBig     = document.getElementById('onceBig');
+      var oncePer     = document.getElementById('oncePer');
+      var subSaved    = document.getElementById('subSaved');
+      var subStrike   = document.getElementById('subStrike');
+      var subBig      = document.getElementById('subBig');
+      var subPer      = document.getElementById('subPer');
+
+      var freqCadence     = document.getElementById('freqCadence');
+      var freqCadenceText = document.getElementById('freqCadenceText');
+
+      var ctaLabel    = document.getElementById('ctaLabel');
+      var ctaArrow    = document.getElementById('ctaArrow');
+      var ctaGift     = document.getElementById('ctaGift');
+      var addToCart   = document.getElementById('addToCart');
+      var mainImage   = document.getElementById('mainImage');
+      var thumbs      = document.querySelectorAll('.thumb');
+
+      var ladderPanel = document.getElementById('ladderPanel');
+      var freqSection = document.getElementById('freqSection');
+
+      var mode = 'onetime'; // DEFAULT frequency once a pack is chosen
 
       /* ----- Icons injected into tile status (check / lock) ----- */
       var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
       var LOCK_SVG  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
 
+      /* Each unlocked tier = $ value; cumulative ladder: Tin 15, Jaw Guide 30, Mouth Tape 25, Nasal Strips 25 */
+      var TIER_VALUES = { 1: 15, 2: 30, 3: 25, 4: 25 };
+
+      /* Map a pack's total free-gift $ to a number of unlocked tiers (in tier order) */
+      function tiersUnlockedFor(giftTotal) {
+        if (giftTotal >= 95) return 4;   // all four
+        if (giftTotal >= 45) return 2;   // Tin + Jaw Guide
+        return 0;                        // none
+      }
+
+      /* Returns the selected pack, or null when none is chosen yet */
       function selectedPack() {
-        return packGrid.querySelector('.pack[aria-checked="true"]') || packs[0];
+        return packGrid.querySelector('.pack[aria-checked="true"]');
       }
 
       function fmt(n) {
-        // Always 2 decimals
         return '$' + Number(n).toFixed(2);
+      }
+
+      function perPiece(price, pieces) {
+        return '$' + (Number(price) / pieces).toFixed(2) + '/piece';
       }
 
       function monthsLabel(m) {
@@ -925,41 +1019,63 @@
       /* ----- Core sync: reflect selected pack + mode across the UI ----- */
       function sync() {
         var pack = selectedPack();
-        var gift = parseInt(pack.getAttribute('data-gift'), 10) || 0;
-        var isSub = mode === 'subscribe';
-        var price = isSub
-          ? pack.getAttribute('data-subscribe')
-          : pack.getAttribute('data-onetime');
 
-        /* Pack-derived supply data (drives the auto-matched frequency) */
-        var name       = pack.getAttribute('data-name');
-        var pieces     = parseInt(pack.getAttribute('data-pieces'), 10);
+        /* No pack selected yet: keep ladder + frequency hidden, CTA disabled */
+        if (!pack) {
+          ladderPanel.classList.add('is-hidden');
+          freqSection.classList.add('is-hidden');
+          freqCadence.hidden = true;
+          ctaGift.hidden = true;
+          ctaArrow.hidden = true;
+          ctaLabel.textContent = 'SELECT YOUR PACK';
+          addToCart.disabled = true;
+          addToCart.setAttribute('aria-disabled', 'true');
+          return;
+        }
+
+        /* Pack selected: ensure ladder + frequency are revealed */
+        ladderPanel.classList.remove('is-hidden');
+        freqSection.classList.remove('is-hidden');
+        addToCart.disabled = false;
+        addToCart.setAttribute('aria-disabled', 'false');
+        ctaArrow.hidden = false;
+
+        var gift   = parseInt(pack.getAttribute('data-gift'), 10) || 0;
+        var pieces = parseInt(pack.getAttribute('data-pieces'), 10);
+        var name   = pack.getAttribute('data-name');
         var supplyDays = parseInt(pack.getAttribute('data-supply-days'), 10);
         var months     = parseInt(pack.getAttribute('data-interval-months'), 10);
 
-        /* CTA price (button label unchanged in format) */
-        ctaLabel.innerHTML = 'Add to Cart · ' + fmt(price);
+        var oneTime = Number(pack.getAttribute('data-onetime'));
+        var subPrice = oneTime * 0.9;          // subscribe = one-time × 0.9
+        var saved = oneTime - subPrice;        // saved = one-time − subscribe
 
-        /* ----- Subscribe-only frequency block (auto-matched, read-only) ----- */
-        freqLine.hidden = !isSub;
+        var isSub = mode === 'subscribe';
+
+        /* ----- Both frequency cards always show their prices ----- */
+        onceBig.textContent = fmt(oneTime);
+        oncePer.textContent = perPiece(oneTime, pieces);
+
+        subSaved.textContent  = fmt(saved) + ' saved';
+        subStrike.textContent = fmt(oneTime);
+        subBig.textContent    = fmt(subPrice);
+        subPer.textContent    = perPiece(subPrice, pieces);
+
+        /* ----- Auto-matched cadence line (subscribe only) ----- */
         if (isSub) {
-          freqInterval.textContent = monthsLabel(months);
-          freqArrives.innerHTML = '· ' + pieces + ' pcs (~' + supplyDays + ' days)';
-          freqNote.innerHTML =
-            'Auto-matched to your <b>' + name + '</b> so a fresh supply arrives right as you finish. ' +
+          freqCadence.hidden = false;
+          freqCadenceText.innerHTML =
+            'Ships every <b>' + monthsLabel(months) + '</b> ' +
+            '<span class="freqcadence__arrives">&middot; ' + pieces + ' pcs (~' + supplyDays + ' days)</span> — ' +
+            'matched to your <b>' + name + '</b> so a fresh supply arrives right as you finish. ' +
             'Skip, pause, or cancel anytime.';
+        } else {
+          freqCadence.hidden = true;
         }
 
-        /* ----- Billing cadence helper near CTA (subscribe only) ----- */
-        if (isSub) {
-          var perDay = Number(price) / supplyDays;
-          ctaCadence.hidden = false;
-          ctaCadence.innerHTML =
-            '<b>' + fmt(price) + ' billed every ' + monthsLabel(months) + '</b> ' +
-            '<span>($' + perDay.toFixed(2) + '/day)</span>';
-        } else {
-          ctaCadence.hidden = true;
-        }
+        /* ----- CTA reflects pack × frequency ----- */
+        var ctaPrice = isSub ? subPrice : oneTime;
+        ctaLabel.innerHTML = 'ADD TO CART &middot; ' + fmt(ctaPrice);
 
         /* Gift sub-line (hidden when $0) */
         if (gift > 0) {
@@ -969,30 +1085,29 @@
           ctaGift.hidden = true;
         }
 
-        /* Subscribe note under CTA */
-        ctaSubNote.hidden = !isSub;
-
-        /* Gift ladder: total + per-tile unlocked/locked (depends only on pack) */
+        /* ----- Gift ladder: total + per-tile unlocked/locked (depends only on pack) ----- */
         ladderTotal.textContent = '$' + gift;
+        var unlockedCount = tiersUnlockedFor(gift);
         tiles.forEach(function (tile) {
-          var threshold = parseInt(tile.getAttribute('data-threshold'), 10);
+          var tier = parseInt(tile.getAttribute('data-tier'), 10);
           var status = tile.querySelector('.tile__status');
-          var on = gift >= threshold;
+          var on = tier <= unlockedCount;
           tile.classList.toggle('tile--on', on);
           tile.classList.toggle('tile--off', !on);
           status.innerHTML = on ? CHECK_SVG : LOCK_SVG;
         });
 
-        /* Ladder footer microcopy */
-        var remaining = 95 - gift;
-        if (remaining > 0) {
-          ladderFoot.innerHTML = 'Size up to the <b>16-Pack</b> to unlock <b>$' + remaining + ' more</b> in gifts.';
-        } else {
+        /* Ladder footer microcopy — keyed to the selected pack */
+        if (gift >= 95) {
           ladderFoot.innerHTML = 'You’ve unlocked the full nightly ritual — <b>$95 in gifts</b>.';
+        } else if (gift >= 45) {
+          ladderFoot.innerHTML = 'Size up to the <b>16-Pack</b> to unlock <b>$50 more</b> in gifts.';
+        } else {
+          ladderFoot.innerHTML = 'Size up to the <b>12-Pack</b> to unlock <b>$45 in free gifts</b>.';
         }
       }
 
-      /* ----- Pack selection (roving tabindex) ----- */
+      /* ----- Pack selection (roving tabindex) — does NOT reset frequency ----- */
       function selectPack(card) {
         packs.forEach(function (p) {
           var isChecked = p === card;
@@ -1006,7 +1121,7 @@
         card.addEventListener('click', function () { selectPack(card); });
       });
 
-      /* Arrow-key navigation (ARIA radiogroup pattern, roving tabindex, wraps) */
+      /* Arrow-key navigation for pack grid (ARIA radiogroup, roving tabindex, wraps) */
       packGrid.addEventListener('keydown', function (e) {
         var key = e.key;
         var isPrev = key === 'ArrowUp' || key === 'ArrowLeft';
@@ -1016,6 +1131,7 @@
 
         var current = selectedPack();
         var idx = packs.indexOf(current);
+        if (idx === -1) { idx = isNext ? -1 : 0; }
         var nextIdx = isNext
           ? (idx + 1) % packs.length
           : (idx - 1 + packs.length) % packs.length;
@@ -1024,19 +1140,38 @@
         packs[nextIdx].focus();
       });
 
-      /* ----- Subscribe / one-time toggle (does NOT reset pack) ----- */
-      function setMode(next) {
-        mode = next;
-        var isSub = mode === 'subscribe';
-        toggleSub.setAttribute('aria-pressed', isSub ? 'true' : 'false');
-        toggleOnce.setAttribute('aria-pressed', isSub ? 'false' : 'true');
-
-        subPerks.classList.toggle('subperks--muted', !isSub);
-        sync();  // sync handles showing/hiding the frequency block + cadence
+      /* ----- Frequency card selection (radiogroup) — does NOT reset pack ----- */
+      function selectFreq(card) {
+        mode = card.getAttribute('data-mode');
+        freqCards.forEach(function (c) {
+          var isChecked = c === card;
+          c.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+          c.setAttribute('tabindex', isChecked ? '0' : '-1');
+        });
+        sync();
       }
 
-      toggleSub.addEventListener('click', function () { setMode('subscribe'); });
-      toggleOnce.addEventListener('click', function () { setMode('onetime'); });
+      freqCards.forEach(function (card) {
+        card.addEventListener('click', function () { selectFreq(card); });
+      });
+
+      /* Arrow-key navigation for frequency cards (consistent with pack grid) */
+      freqGroup.addEventListener('keydown', function (e) {
+        var key = e.key;
+        var isPrev = key === 'ArrowUp' || key === 'ArrowLeft';
+        var isNext = key === 'ArrowDown' || key === 'ArrowRight';
+        if (!isPrev && !isNext) return;
+        e.preventDefault();
+
+        var current = freqGroup.querySelector('.freqcard[aria-checked="true"]') || freqCards[0];
+        var idx = freqCards.indexOf(current);
+        var nextIdx = isNext
+          ? (idx + 1) % freqCards.length
+          : (idx - 1 + freqCards.length) % freqCards.length;
+
+        selectFreq(freqCards[nextIdx]);
+        freqCards[nextIdx].focus();
+      });
 
       /* ----- Gallery thumbnail swap ----- */
       thumbs.forEach(function (thumb) {
@@ -1046,7 +1181,7 @@
         });
       });
 
-      /* ----- Initial state: 12-Pack + Subscribe ----- */
+      /* ----- Initial state: NO pack selected — ladder + frequency hidden, CTA disabled ----- */
       sync();
     })();
   </script>
