@@ -1065,10 +1065,7 @@
         if (isSub) {
           freqCadence.hidden = false;
           freqCadenceText.innerHTML =
-            'Ships every <b>' + monthsLabel(months) + '</b> ' +
-            '<span class="freqcadence__arrives">&middot; ' + pieces + ' pcs (~' + supplyDays + ' days)</span> — ' +
-            'matched to your <b>' + name + '</b> so a fresh supply arrives right as you finish. ' +
-            'Skip, pause, or cancel anytime.';
+            'Ships every <b>' + monthsLabel(months) + '</b> — timed so you never run out. Cancel anytime.';
         } else {
           freqCadence.hidden = true;
         }
