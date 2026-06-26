@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bison Bright Future Colorway Thor.2 Motorcycle Racing Suit | Bison Track</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* =====================================================================
+     BISON TRACK - PDP RECREATION
+     Bison Bright Future Colorway Thor.2 Motorcycle Racing Suit
+     With Fourth of July free-gift qualifier tag (Variant A) below title.
+     ---------------------------------------------------------------------
+     CONDITIONAL RENDER (Shopify / Liquid implementation note):
+       The .gift-tag block must ONLY render on products whose price is
+       OVER $350 (qualifying threshold for the free Bison 1776 gift).
+       In Liquid this would be gated, e.g.:
+
+         {% if product.price > 35000 %}    {# price is in cents #}
+           ... gift-tag markup ...
+         {% endif %}
+
+       Optionally date-gate the active sale window to July 3-6:
+
+         {% assign now = 'now' | date: '%s' %}
+         {% assign start = '2026-07-03' | date: '%s' %}
+         {% assign end   = '2026-07-07' | date: '%s' %}
+         {% if product.price > 35000 and now >= start and now < end %}
+           ... gift-tag markup ...
+         {% endif %}
+
+       In this static recreation the tag always renders so it can be reviewed.
+
+     PALETTE (brand-guide + July 4 hero, no other hues):
+       charcoal #242424 · charcoal-2 #494949 · off-white #f9f9fb
+       white #ffffff · USA red #B22234 · USA navy #3C3B6E · cream tints
+     FONT: Montserrat only.  SVG icons only (no emoji).
+     ===================================================================== */
+
+  :root {
+    --dark:       #242424;
+    --dark-2:     #494949;
+    --off-white:  #f9f9fb;
+    --white:      #ffffff;
+    --usa-red:    #B22234;
+    --usa-red-hi: #c92a3e;
+    --usa-navy:   #3C3B6E;
+    --cream:      #fff3f4;
+    --cream-hi:   #ffd9de;
+    --line:       #e6e6ec;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { width: 100%; overflow-x: hidden; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--off-white);
+    color: var(--dark);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.4;
+  }
+
+  svg { display: block; }
+  img { display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* =====================================================================
+     SITE HEADER / NAV  (matches live Bison Track - white logo on dark)
+     ===================================================================== */
+  .site-header {
+    background: var(--dark);
+    color: var(--white);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .header-logo img { height: 38px; width: auto; }
+
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+  .header-nav a {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.88);
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .header-nav a:hover { color: var(--white); border-bottom-color: var(--usa-red); }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header-actions button {
+    background: none; border: none; cursor: pointer;
+    color: var(--white); position: relative;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .header-actions svg { width: 21px; height: 21px; color: var(--white); }
+  .header-actions .cart-count {
+    position: absolute; top: -7px; right: -8px;
+    background: var(--usa-red); color: var(--white);
+    font-size: 9px; font-weight: 800; line-height: 1;
+    min-width: 16px; height: 16px; border-radius: 9px;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 4px;
+  }
+  .mobile-toggle { display: none; }
+
+  /* announcement strip (brand uses sale messaging) */
+  .announce {
+    background: var(--usa-navy);
+    color: var(--cream-hi);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .announce::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg,
+      rgba(255,255,255,0.045) 0 12px, transparent 12px 24px);
+    pointer-events: none;
+  }
+  .announce span { position: relative; z-index: 1; }
+
+  /* =====================================================================
+     PRODUCT SECTION - two-column
+     ===================================================================== */
+  .pdp {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 36px 28px 72px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* ---- GALLERY (left) ---- */
+  .gallery { position: sticky; top: 24px; }
+  .gallery-main {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+  }
+  .gallery-main img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .gallery-thumbs button {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    aspect-ratio: 1 / 1;
+    transition: border-color .15s;
+  }
+  .gallery-thumbs button.active { border-color: var(--dark); border-width: 2px; }
+  .gallery-thumbs button:hover { border-color: var(--dark-2); }
+  .gallery-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---- BUY BOX (right) ---- */
+  .buybox { padding-top: 4px; }
+
+  .breadcrumb {
+    font-size: 11px;
+    color: var(--dark-2);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a:hover { color: var(--dark); }
+  .breadcrumb .sep { margin: 0 7px; color: #b9b9c2; }
+  .breadcrumb .current { color: var(--dark); }
+
+  .product-title {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+    color: var(--dark);
+    margin-bottom: 14px;
+  }
+
+  /* the gift-tag sits HERE - directly below the product title */
+  .buybox .gift-tag { margin-bottom: 20px; }
+
+  .price {
+    display: flex; align-items: baseline; gap: 12px;
+    margin-bottom: 26px;
+  }
+  .price .now { font-size: 28px; font-weight: 800; color: var(--dark); }
+  .price .note { font-size: 12px; color: var(--dark-2); font-weight: 500; }
+
+  .option-group { margin-bottom: 22px; }
+  .option-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--dark-2);
+    margin-bottom: 9px; display: block;
+  }
+  .option-label .val { color: var(--dark); }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-size: 12px; font-weight: 700;
+    color: var(--dark);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 9px 14px;
+    cursor: default;
+  }
+  .pill.selected { border-color: var(--dark); background: var(--dark); color: var(--white); }
+
+  /* size selector grid */
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .size-grid button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 700;
+    color: var(--dark);
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 11px 0;
+    cursor: pointer;
+    transition: border-color .12s, background .12s, color .12s;
+  }
+  .size-grid button:hover { border-color: var(--dark-2); }
+  .size-grid button.selected { border-color: var(--dark); background: var(--dark); color: var(--white); }
+
+  .atc {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 100%; gap: 10px;
+    background: var(--dark); color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 17px 24px; border-radius: 4px; border: none; cursor: pointer;
+    margin-top: 6px;
+    transition: background .15s;
+  }
+  .atc:hover { background: #000; }
+  .atc svg { width: 18px; height: 18px; }
+
+  .trustline {
+    display: flex; flex-wrap: wrap; gap: 18px 22px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+  .trust-item {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 600; color: var(--dark-2);
+  }
+  .trust-item svg { width: 16px; height: 16px; color: var(--usa-navy); flex-shrink: 0; }
+
+  .blurb {
+    margin-top: 22px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--dark-2);
+  }
+  .blurb strong { color: var(--dark); font-weight: 700; }
+
+  /* =====================================================================
+     THE GIFT TAG - Variant A (Dark Navy Pill)
+     Markup + styles reused verbatim from
+     bisontrack-pdp-freegift-tag-v1.html (em dash removed in copy).
+     ===================================================================== */
+  .gift-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 11px 16px;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gift-tag .gift-icon {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .gift-tag .gift-icon svg { width: 16px; height: 16px; }
+
+  .gift-tag .tag-copy {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+  }
+  .gift-tag .tag-copy .lead { font-weight: 700; }
+  .gift-tag .tag-copy .free { font-weight: 800; }
+  .gift-tag .tag-copy .pct  { font-weight: 800; }
+
+  .gift-tag .urgency {
+    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    white-space: nowrap;
+    padding-left: 14px;
+  }
+  .gift-tag .urgency svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+  /* VARIANT A - Dark navy-filled pill */
+  .tag-dark {
+    background: var(--usa-navy);
+    color: var(--white);
+    border-left: 4px solid var(--usa-red);
+  }
+  .tag-dark::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg,
+      rgba(255,255,255,0.045) 0 12px, transparent 12px 24px);
+    pointer-events: none;
+  }
+  .tag-dark > * { position: relative; z-index: 1; }
+  .tag-dark .gift-icon { background: var(--usa-red); }
+  .tag-dark .gift-icon svg { color: var(--white); }
+  .tag-dark .tag-copy { color: rgba(255,255,255,0.92); }
+  .tag-dark .tag-copy .lead,
+  .tag-dark .tag-copy .free { color: var(--white); }
+  .tag-dark .tag-copy .pct  { color: var(--cream-hi); }
+  .tag-dark .urgency {
+    color: var(--cream-hi);
+    border-left: 1px solid rgba(255,255,255,0.22);
+  }
+  .tag-dark .urgency .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--usa-red-hi);
+    box-shadow: 0 0 0 0 rgba(201,42,62,0.7);
+    animation: pulse 1.8s infinite;
+  }
+
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(201,42,62,0.55); }
+    70%  { box-shadow: 0 0 0 7px rgba(201,42,62,0); }
+    100% { box-shadow: 0 0 0 0 rgba(201,42,62,0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gift-tag .urgency .dot { animation: none; }
+  }
+
+  /* =====================================================================
+     SITE FOOTER (condensed, matches brand dark theme)
+     ===================================================================== */
+  .site-footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    padding: 40px 28px;
+    text-align: center;
+  }
+  .site-footer img { height: 30px; margin: 0 auto 16px; }
+  .footer-nav {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: 22px; margin-bottom: 18px;
+  }
+  .footer-nav a {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.8);
+  }
+  .footer-nav a:hover { color: var(--white); }
+  .footer-legal { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  /* =====================================================================
+     RESPONSIVE
+     ===================================================================== */
+  @media (max-width: 960px) {
+    .pdp {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 28px 20px 56px;
+    }
+    .gallery { position: static; }
+    .header-nav { display: none; }
+    .mobile-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: none; border: none; cursor: pointer; color: var(--white);
+    }
+    .mobile-toggle svg { width: 24px; height: 24px; color: var(--white); }
+  }
+
+  @media (max-width: 560px) {
+    .header-inner { padding: 0 16px; gap: 14px; }
+    .header-actions { gap: 16px; }
+    .pdp { padding: 22px 16px 48px; }
+    .product-title { font-size: 25px; }
+    .price .now { font-size: 25px; }
+    .size-grid { grid-template-columns: repeat(4, 1fr); }
+    .gallery-thumbs { gap: 8px; }
+
+    /* Tag: urgency cue drops to a second line, copy stays left (max 2 lines) */
+    .gift-tag {
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+    .gift-tag .tag-copy {
+      flex: 1 1 calc(100% - 42px);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .gift-tag .urgency {
+      flex: 1 1 100%;
+      padding-left: 42px;
+      padding-top: 2px;
+      border-left: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ ANNOUNCEMENT STRIP ============ -->
+  <div class="announce"><span>Fourth of July Event &nbsp;&middot;&nbsp; 15% Off + a Free Bison 1776 Gift &nbsp;&middot;&nbsp; Ends July 6</span></div>
+
+  <!-- ============ SITE HEADER / NAV ============ -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="header-logo" href="https://bisontrack.com" aria-label="Bison Track home">
+        <img src="https://bisontrack.com/cdn/shop/files/Bison_Logo_wht_w._blk.png?v=1704582570&width=1445" alt="Bison Track">
+      </a>
+      <nav class="header-nav" aria-label="Primary">
+        <a href="https://bisontrack.com/collections/custom-built">Custom Built</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-suits">Ready To Wear</a>
+        <a href="https://bisontrack.com/pages/community">Community</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button type="button" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button type="button" aria-label="Cart, 0 items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count">0</span>
+        </button>
+        <button type="button" class="mobile-toggle" aria-label="Menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ PRODUCT SECTION ============ -->
+  <main class="pdp">
+
+    <!-- ---- GALLERY ---- -->
+    <div class="gallery">
+      <div class="gallery-main">
+        <img id="mainImage"
+          src="https://bisontrack.com/cdn/shop/files/Untitled_design_c5b65782-992e-4ca3-983c-2cdb1b8605f5.png?v=1763584911&width=1445"
+          alt="Bison Bright Future Colorway Thor.2 Motorcycle Racing Suit">
+      </div>
+      <div class="gallery-thumbs">
+        <button type="button" class="active" aria-label="View image 1" data-src="https://bisontrack.com/cdn/shop/files/Untitled_design_c5b65782-992e-4ca3-983c-2cdb1b8605f5.png?v=1763584911&width=1445">
+          <img src="https://bisontrack.com/cdn/shop/files/Untitled_design_c5b65782-992e-4ca3-983c-2cdb1b8605f5.png?v=1763584911&width=1445" alt="Bright Future Thor.2 suit, front view">
+        </button>
+        <button type="button" aria-label="View image 2" data-src="https://bisontrack.com/cdn/shop/files/2_22c43ae6-09c2-4edc-bb34-faf40c8d6328.png?v=1763584911&width=1445">
+          <img src="https://bisontrack.com/cdn/shop/files/2_22c43ae6-09c2-4edc-bb34-faf40c8d6328.png?v=1763584911&width=1445" alt="Bright Future Thor.2 suit, detail view 2">
+        </button>
+        <button type="button" aria-label="View image 3" data-src="https://bisontrack.com/cdn/shop/files/3_ff6a0c6e-f98e-431d-964e-a2c67b0772be.png?v=1763584911&width=1445">
+          <img src="https://bisontrack.com/cdn/shop/files/3_ff6a0c6e-f98e-431d-964e-a2c67b0772be.png?v=1763584911&width=1445" alt="Bright Future Thor.2 suit, detail view 3">
+        </button>
+        <button type="button" aria-label="View image 4" data-src="https://bisontrack.com/cdn/shop/files/4_bb3663e3-ee2a-4390-81c8-d2a246670b26.png?v=1763584911&width=1445">
+          <img src="https://bisontrack.com/cdn/shop/files/4_bb3663e3-ee2a-4390-81c8-d2a246670b26.png?v=1763584911&width=1445" alt="Bright Future Thor.2 suit, detail view 4">
+        </button>
+      </div>
+    </div>
+
+    <!-- ---- BUY BOX ---- -->
+    <div class="buybox">
+
+      <!-- breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-suits">Ready to Wear</a>
+        <span class="sep">/</span>
+        <span class="current">Bright Future Colorway Thor.2 Suit</span>
+      </nav>
+
+      <!-- PRODUCT TITLE -->
+      <h1 class="product-title">Bison Bright Future Colorway Thor.2 Motorcycle Racing Suit</h1>
+
+      <!-- ============ THE GIFT TAG (Variant A) - directly below the title ============ -->
+      <!-- LIQUID GATE: render only when product.price > 35000 (i.e. over $350),
+           optionally date-gated July 3-6. See header comment for full snippet. -->
+      <div class="gift-tag tag-dark" role="note" aria-label="Fourth of July reward: buy now, get 15% off plus a free Bison 1776 gift. Ends July 6.">
+        <span class="gift-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+          </svg>
+        </span>
+        <span class="tag-copy">
+          <span class="lead">Buy now</span>, get <span class="pct">15% off</span> + a <span class="free">FREE Bison 1776 gift.</span>
+        </span>
+        <span class="urgency">
+          <span class="dot" aria-hidden="true"></span>
+          Ends July 6
+        </span>
+      </div>
+
+      <!-- price -->
+      <div class="price">
+        <span class="now">$1,600.00</span>
+        <span class="note">Taxes and shipping calculated at checkout</span>
+      </div>
+
+      <!-- model -->
+      <div class="option-group">
+        <span class="option-label">Suit Model: <span class="val">Thor.2</span></span>
+        <div class="pill-row">
+          <span class="pill selected">Thor.2</span>
+        </div>
+      </div>
+
+      <!-- material -->
+      <div class="option-group">
+        <span class="option-label">Material: <span class="val">Cowhide</span></span>
+        <div class="pill-row">
+          <span class="pill selected">Cowhide</span>
+        </div>
+      </div>
+
+      <!-- size selector -->
+      <div class="option-group">
+        <span class="option-label">Suit Size: <span class="val" id="sizeVal">US 44</span></span>
+        <div class="size-grid" role="group" aria-label="Suit size">
+          <button type="button">US 36</button>
+          <button type="button">US 38</button>
+          <button type="button">US 40</button>
+          <button type="button">US 42</button>
+          <button type="button" class="selected">US 44</button>
+          <button type="button">US 46</button>
+          <button type="button">US 48</button>
+          <button type="button">US 50</button>
+          <button type="button">US 52</button>
+          <button type="button">US 54</button>
+          <button type="button">US 56</button>
+          <button type="button">US 58</button>
+          <button type="button">US 60</button>
+        </div>
+      </div>
+
+      <!-- ATC -->
+      <button class="atc" type="button">
+        Add to Cart
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      </button>
+
+      <!-- trust line -->
+      <div class="trustline">
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          CE Level 2 protection
+        </span>
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/><polyline points="2 7 12 2 22 7"/><path d="M12 2v10"/></svg>
+          AirHide air-vest compatible
+        </span>
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Free shipping
+        </span>
+      </div>
+
+      <!-- blurb -->
+      <p class="blurb">
+        The <strong>Bright Future Colorway Thor.2</strong> is a one-piece cowhide racing suit
+        built for the track. Premium cowhide construction with <strong>CE Level 2</strong> impact
+        protection and full <strong>AirHide air-vest compatibility</strong>, finished in our
+        bold Bright Future colorway. Built to perform, made to be seen.
+      </p>
+
+    </div>
+  </main>
+
+  <!-- ============ SITE FOOTER ============ -->
+  <footer class="site-footer">
+    <img src="https://bisontrack.com/cdn/shop/files/Bison_Logo_wht_w._blk.png?v=1704582570&width=1445" alt="Bison Track">
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="https://bisontrack.com/collections/custom-built">Custom Built</a>
+      <a href="https://bisontrack.com/collections/bison-ready-to-wear-suits">Ready To Wear</a>
+      <a href="https://bisontrack.com/pages/community">Community</a>
+    </nav>
+    <p class="footer-legal">&copy; 2026 Bison Track. High-Quality Bespoke Motorcycle Leathers, Gloves &amp; Accessories.</p>
+  </footer>
+
+  <script>
+    // Gallery thumbnail swap
+    (function () {
+      var main = document.getElementById('mainImage');
+      var thumbs = document.querySelectorAll('.gallery-thumbs button');
+      thumbs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          main.src = btn.getAttribute('data-src');
+          thumbs.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+        });
+      });
+
+      // Size selection
+      var sizeVal = document.getElementById('sizeVal');
+      var sizes = document.querySelectorAll('.size-grid button');
+      sizes.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          sizes.forEach(function (b) { b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          if (sizeVal) sizeVal.textContent = btn.textContent;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
