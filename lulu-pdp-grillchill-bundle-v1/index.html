@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- Liquid: <title>Pineapple Upside Down Cake Liquor Cake Jar — Tropical Vacation, No Flight Required | Lulu Liquor Cakes</title> -->
+<!-- Liquid: <title>{{ product.title }} | {{ shop.name }}</title> -->
 <title>The Grill &amp; Chill Bundle — Eight Bold Flavors. One Unforgettable Summer | Lulu Liquor Cakes</title>
 <!-- Liquid: {{ product.description | strip_html | truncate: 160 }} -->
-<meta name="description" content="Golden, rum-soaked pineapple cake under a cloud of buttercream. 8 oz, ~3% ABV, scratch-made, ships nationwide. Must be 21+. $14.95." />
+<meta name="description" content="Eight exclusive summer liquor cake jar flavors in one limited-edition box. $89 (save 25%). ~3% ABV per jar, scratch-made, ships nationwide. 21+." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1502,30 +1502,31 @@
 /* ===== PRODUCT CONFIG START ===== */
 const PRODUCT = {
   // Liquid: {{ product.title }}
-  title: 'Pineapple Upside Down Cake Liquor Cake Jar',
+  title: 'The Grill & Chill Bundle',
   // Liquid: {{ product.metafields.custom.tagline }}
-  tagline: 'Tropical vacation, no flight required. \u{1F34D}',
+  tagline: 'Eight bold flavors. One unforgettable summer. ☀️',
   // Liquid: breadcrumb label — {{ product.title | truncate: 40 }}
-  breadcrumbLabel: 'Pineapple Upside Down Cake',
+  breadcrumbLabel: 'The Grill & Chill Bundle',
   // Liquid: {{ product.price | divided_by: 100.0 }}
-  price: 14.95,
+  price: 89.00,
   // Liquid: {{ product.compare_at_price | divided_by: 100.0 }} — null when none
-  compareAtPrice: null,
+  compareAtPrice: 119.60,
   // Per-unit value framing — Liquid: computed from price / metafields.custom.jar_count
-  valueNote: null,
+  valueNote: '$11.13/jar (reg. $14.95) — the math is delicious.',
   // Liquid: shop setting — free shipping threshold
   freeShipThreshold: 100,
   // Meta chips — Liquid: metafields.custom.facts (list)
-  metaChips: ['8 oz jar', '~3% ABV', 'Scratch-made'],
+  metaChips: ['8 × 8 oz jars', '~3% ABV', 'Limited drop'],
   // ATC button copy — Liquid: theme locale strings; {n} replaced with quantity
-  atcSingular: 'Spoon Me One',
-  atcPlural: 'Spoon Me {n}',
-  atcMicrocopy: 'Ships fresh in insulated packaging \u00b7 Must be 21+ to order \u{1F60F}',
-  // Honest urgency — null to hide. Liquid: {% if product.tags contains 'Limited Drop' %}
-  urgency: null,
+  atcSingular: 'Grab The Bundle',
+  atcPlural: 'Grab {n} Bundles',
+  atcMicrocopy: 'Ships fresh in insulated packaging · Must be 21+ to order 😏',
+  // Honest urgency (verbatim from live description) — null to hide.
+  // Liquid: {% if product.tags contains 'Limited Drop' %}
+  urgency: '☀️ Available for a limited time while summer flavors last. Once they’re gone, they’re gone.',
   // Secondary CTA under the ATC — null to hide.
-  // Liquid: render when product.metafields.custom.secondary_cta_url exists
-  secondaryCta: { label: 'Bundle and Save 25%', href: '/products/the-grill-chill-bundle' },
+  // NOTE: this page IS the bundle, so we route choice-seekers to Build My Bundle.
+  secondaryCta: { label: 'Build Your Own Bundle Instead', href: '/pages/build-my-bundle' },
   // Store pickup — Liquid: variant.store_availabilities; null to hide
   pickup: { note: 'Usually ready in 2-4 days' },
   // Loyalty — points = Math.round(price * 10). Liquid: {% render 'loyalty-points' %}
@@ -1536,56 +1537,71 @@ const PRODUCT = {
      'jar' (layer diagram — needs jarLayers), 'box' (bundle contents — needs bundleContents),
      'review' (quote card). Optional sticker: {text, tone:'pink'|'mint', pos:'top'|'bottom'}, pill. */
   gallery: [
-    { type: 'image', fit: 'contain', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449', alt: 'Pineapple Upside Down Cake Liquor Cake Jar \u2014 8 oz jar, front view', sticker: { text: 'Fan Favorite \u{1F34D}', tone: 'pink', pos: 'top' }, pill: '\u2B50 Top Seller' },
-    { type: 'jar', thumbLabel: 'What\u2019s Inside' },
-    { type: 'image', fit: 'cover', src: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&auto=format&fit=crop&q=80', alt: 'Fresh dessert jars topped with fruit, ready for spoons', sticker: { text: '\u{1F944} a spoon-first situation', tone: 'pink', pos: 'bottom' } },
-    { type: 'image', fit: 'cover', src: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=900&auto=format&fit=crop&q=80', alt: 'Golden syrup pouring over a warm dessert stack', sticker: { text: 'golden & caramelized \u{1F34D}', tone: 'mint', pos: 'bottom' } },
-    { type: 'review', quote: '\u201CVery moist delicious cake and the booziest was just the right amount me and my boyfriend love love loved it!\u201D', cite: '\u2014 Pamela P., Verified Buyer' }
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2908.png?v=1780103043', alt: 'Piña Colada liquor cake jar at a tiki hut bar — The Grill & Chill Bundle summer drop', sticker: { text: 'Limited Drop ☀️', tone: 'pink', pos: 'top' }, pill: '8 Jars Inside' },
+    { type: 'box', thumbLabel: '8 Flavors ☀️' },
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2905.png?v=1780103664', alt: 'Chocolate Dipped Pineapple liquor cake jar beside a chocolate fountain' },
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2902.png?v=1780103228', alt: 'Strawberry Cheesecake liquor cake jar at a summer picnic' },
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2907.png?v=1780103324', alt: 'Maple Bacon Donut liquor cake jar in a donut shop with bacon-topped donuts' },
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2901.png?v=1780103143', alt: 'Root Beer Float liquor cake jar at a retro soda fountain' },
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2909.png?v=1780102967', alt: 'Hummingbird liquor cake jar on the beach with pecans, banana and pineapple' },
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2903.png?v=1780102619', alt: 'Bubblegum liquor cake jar in a candy shop next to a gumball machine' },
+    { type: 'image', fit: 'cover', src: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/BEDA1E3E-2668-4F10-9DA6-3286F7CD771D.png?v=1782673552', alt: 'Poolside martini-style liquor cake jar from the limited summer drop' }
   ],
 
   /* Jar layer diagram — single jars only. Bundles leave this null (they get the 'box' slide).
      Liquid: product.metafields.custom.jar_layers (JSON list metafield / metaobject refs),
      guarded with {% if product.metafields.custom.jar_layers %}.
      Each layer: name, note, color (CSS background), dot (label dot), size (% of jar), texture. */
-  jarLayers: [
-    { name: 'Caramelized pineapple crown', note: 'the golden, flirty finish on top', color: 'linear-gradient(to bottom, #F6B347 0%, #EB9A2A 100%)', dot: '#F0A937', size: 26, texture: 'rings' },
-    { name: 'Cloud of buttercream', note: 'practically sinful. we checked.', color: '#FFF6E9', dot: '#FFF6E9', size: 32, texture: 'clouds' },
-    { name: 'Rum-soaked pineapple cake', note: 'moist, boozy, unapologetic', color: 'linear-gradient(to bottom, #E9B764 0%, #D89A45 62%, #B97F2E 100%)', dot: '#D18A2E', size: 42, texture: 'crumb' }
-  ],
+  jarLayers: null,
 
   /* Bundle contents — Liquid: product.metafields.custom.bundle_items (metaobject list).
      Null/empty for single jars (hides the box slide + box section). */
-  bundleContents: null,
-  boxSection: null,
+  bundleContents: [
+    { emoji: '🥥', name: 'Piña Colada', note: 'Coconut, juicy pineapple, coconut rum.' },
+    { emoji: '🌺', name: 'Hummingbird', note: 'Pineapple, banana, toasted pecans, spiced rum.' },
+    { emoji: '🥓', name: 'Maple Bacon Donut', note: 'Maple glaze, smoky bacon, whiskey.' },
+    { emoji: '🍒', name: 'Firecracker Cherry Limeade', note: 'Cherry, zesty lime, cherry limeade vodka.' },
+    { emoji: '🍬', name: 'Bubblegum', note: 'Bubblegum, silky buttercream, whipped vodka.' },
+    { emoji: '🍓', name: 'Strawberry Cheesecake', note: 'Cheesecake, strawberries, rum.' },
+    { emoji: '🍺', name: 'Root Beer Float', note: 'Root beer whiskey, whipped vodka, vanilla cake.' },
+    { emoji: '🍫', name: 'Chocolate Pineapple', note: 'Rich chocolate, pineapple rum.' }
+  ],
+  boxSection: {
+    eyebrow: 'EIGHT BOLD FLAVORS. ONE UNFORGETTABLE SUMMER.',
+    heading: 'What’s Inside <span class="accent-italic" style="color:var(--lulu-pink);">The Box.</span> ☀️',
+    sub: 'Eight exclusive summer flavors. One limited-edition box. Zero regrets.'
+  },
 
   /* Accordion — Liquid: The Vibe = {{ product.description }}; others from metafields. */
   accordionItems: [
     {
-      title: 'The Vibe \u{1F34D}',
+      title: 'The Vibe ☀️',
       open: true,
-      html: '<p>Imagine a cake jar that\u2019s the life of the party. This is the dessert that did a keg stand at the beach party and ended up in a buttercream bikini. Soaked in Pineapple Upside Down rum that whispers tales of tropical escapades, and layered with a frosting so divine it\u2019s practically sinful, this cake jar is your ticket to the naughty list. And trust us, <em>it\u2019s where you want to be</em>.</p>' +
-            '<p class="acc-fineprint">\u2014 Sorry not sorry, kids. You must be 21+ to enjoy a liquor cake jar.</p>'
+      html: '<p>Summer called... and it said boring desserts aren’t invited.</p>' +
+            '<p>Eight handcrafted liquor cake jars, eight exclusive summer flavors — from tiki-hut Piña Colada to chocolate-fountain Chocolate Pineapple. Every jar is scratch-made, spiked with real spirits, and built for golden-hour spoons.</p>' +
+            '<p>Available for a limited time while summer flavors last. Once they’re gone, they’re gone.</p>' +
+            '<p class="acc-fineprint">— Eight Bold Flavors. One Unforgettable Summer. Must be 21+ to enjoy a liquor cake jar.</p>'
     },
     {
-      title: 'What\u2019s Inside',
+      title: 'What’s Inside',
       html: '<ul>' +
-            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>8 oz jar of scratch-made pineapple upside down cake</li>' +
-            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Real rum, baked right in \u2014 about 3% ABV per jar</li>' +
-            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Buttercream made from scratch, never from a tub</li>' +
-            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Caramelized pineapple crown on top, because we\u2019re extra</li>' +
+            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>8 handcrafted liquor cake jars — 8 oz each</li>' +
+            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Real rum, whiskey and vodka, baked right in — about 3% ABV per jar</li>' +
+            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Eight exclusive summer flavors you won’t find in the year-round lineup</li>' +
+            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Scratch-made buttercream, never from a tub</li>' +
             '</ul>' +
             '<p class="acc-fineprint" style="margin-top:12px;">Contains alcohol. Must be 21+ to order. Enjoy safely.</p>'
     },
     {
       title: 'Shipping & Storage',
-      html: '<p>We ship nationwide, and your jars are totally safe to travel unrefrigerated \u2014 lab tested and science approved. \u{1F9EA} During warmer months we tuck ice packs into the box to keep everything cool and cozy in transit.</p>' +
-            '<p>Once it lands: enjoy within 90 days at room temp, pop it in the fridge to stretch the magic even further, or freeze it \u2014 jars stay fabulous for 12 whole months. Honestly, they usually disappear in under five minutes.</p>' +
+      html: '<p>We ship nationwide, and your jars are totally safe to travel unrefrigerated — lab tested and science approved. 🧪 During warmer months we tuck ice packs into the box to keep everything cool and cozy in transit.</p>' +
+            '<p>Once it lands: enjoy within 90 days at room temp, pop it in the fridge to stretch the magic even further, or freeze it — jars stay fabulous for 12 whole months. Honestly, they usually disappear in under five minutes.</p>' +
             '<p>FREE US shipping on orders over $100* (excluding Alaska &amp; Hawaii).</p>'
     },
     {
       title: 'How Boozy Is It?',
-      html: '<p>That depends \u2014 are you a lightweight or a legend? \u{1F60F}</p>' +
-            '<p>Each jar clocks in around ~3% ABV. Think dessert first, buzz second. Enough rum to know it\u2019s there, not enough to text your ex.</p>'
+      html: '<p>That depends — are you a lightweight or a legend? 😏</p>' +
+            '<p>Each jar clocks in around ~3% ABV. Think dessert first, buzz second. Enough booze to know it’s there, not enough to text your ex.</p>'
     }
   ],
 
@@ -1594,16 +1610,18 @@ const PRODUCT = {
   reviews: {
     storeRating: '4.1',
     storeCount: '1,200+',
-    productQuotes: [
-      { title: '\u201CBoozy explosion! Delicious delicious\u201D', quote: '\u201CVery moist delicious cake and the booziest was just the right amount me and my boyfriend love love loved it!\u201D', cite: '\u2014 Pamela P., Verified Buyer' },
-      { title: '\u201CFirst one that almost tasted boozy\u201D', quote: '\u201CThis flavor was the first one that actually tasted like it had some type of liquor in it... Cake is moist, frosting nice and light, not too sweet.\u201D', cite: '\u2014 Toni C., Verified Buyer' },
-      { title: '\u201CPineapple Upside Down Was Good\u201D', quote: '\u201CI like the pineapple upside down cake. It was delicious. I was very surprised.\u201D', cite: '\u2014 Tiffany M., Verified Buyer' }
+    productQuotes: [],
+    storeQuotes: [
+      {
+        title: '“Boozy explosion! Delicious delicious”',
+        quote: '“Very moist delicious cake and the booziest was just the right amount me and my boyfriend love love loved it!”',
+        cite: '— Pamela P., Verified Buyer · store-wide review'
+      }
     ],
-    storeQuotes: [],
     fallback: {
       eyebrow: 'THE LULU FAM SAYS',
       heading: 'New Drop. <span class="accent-italic" style="color:var(--lulu-pink);">Trusted Spoons.</span>',
-      note: 'This product just landed \u2014 no reviews for it yet. Here\u2019s the store-wide word on Lulu\u2019s jars:',
+      note: 'This limited drop just landed — no reviews for it yet. Here’s the store-wide word on Lulu’s jars:',
       countLine: '1,200+ reviews across the Lulu fam'
     },
     productHeader: {
@@ -1616,38 +1634,25 @@ const PRODUCT = {
   /* Cross-sell — Liquid: {% for rec in recommendations.products %} or metafield list.
      price optional (omit when unverified). ctaType: 'cart' (ATC button) | 'link'. */
   crossSell: {
-    eyebrow: 'PAIRS WELL WITH',
-    heading: 'Make It A <span class="accent-italic" style="color:var(--lulu-pink);">Flight.</span> \u{1F379}',
-    sub: 'The fruity crew that parties well with pineapple. Mix & match toward free shipping.',
+    eyebrow: 'STILL SNACKISH?',
+    heading: 'More Boxes Of <span class="accent-italic" style="color:var(--lulu-pink);">Boozy Bliss.</span> 🥄',
+    sub: 'Can’t commit to just one summer? These packs ship year-round.',
     items: [
-      { title: 'Strawberry Margarita Liquor Cake Jar', tagline: 'Salt the rim. Spoon the cake. \u{1F353}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
-      { title: 'Coconut Mango Liquor Cake Jar', tagline: 'Beach vibes, beach calories. \u{1F965}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CoconutMango.png?v=1772210317', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
-      { title: 'Orange Creamsicle Liquor Cake Jar', tagline: 'Childhood, but make it 21+. \u{1F9E1}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/OrangeCream.png?v=1773349232', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
-      { title: 'Fruity Bam Liquor Cake Jar', tagline: 'Fruit punch\u2019s wild adult era. \u{1F379}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/FruityBam3.png?v=1773349232', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' }
+      { title: 'Favorites Pack', tagline: 'Four fan favorites, zero decisions. ⭐', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/4tallwithbackground.png?v=1768594748', ctaType: 'link', cta: 'See The Pack', href: '#' },
+      { title: 'The Indulgence Pack', tagline: 'Buy 4, get 2 free. Math that tastes good.', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Frame_2_ee143cc7-bf3a-4a80-b3de-7ef49319fb18.png?v=1756911725', price: 59.80, ctaType: 'link', cta: 'See The Pack', href: '#' },
+      { title: 'Mystery Box of FOUR', tagline: 'Laura picks. You feast. 📦', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Mystery_box_4.png?v=1776958812', ctaType: 'link', cta: 'See The Pack', href: '#' }
     ]
   },
 
   /* Upsell band — null on bundle pages (the cross-sell row covers it). */
-  upsellBand: {
-    img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Frame_2_ee143cc7-bf3a-4a80-b3de-7ef49319fb18.png?v=1756911725',
-    imgAlt: 'The Indulgence Pack \u2014 6 liquor cake jars, buy 4 get 2 free',
-    sticker: '2 Jars FREE \u{1F973}',
-    eyebrow: 'MATH THAT TASTES GOOD',
-    heading: 'Buy 4. Get 2 <span class="accent-italic" style="color:var(--lulu-pink);">Free.</span> You\u2019re Welcome.',
-    body: 'The Indulgence Pack: six jars of boozy bliss \u2014 pick your four favorites (pineapple, obviously) and two more land completely on the house. Gift it, or don\u2019t. We\u2019re not judging.',
-    priceStrike: '$89.70',
-    price: '$59.80',
-    saveLine: 'You save $29.90 \u2014 two jars are completely on the house.',
-    ctaLabel: '\u{1F381} Build The Indulgence Pack',
-    ctaHref: '#'
-  },
+  upsellBand: null,
 
   /* Sticky bar */
   sticky: {
-    name: 'Pineapple Upside Down Cake Jar',
-    meta: '8 oz \u00b7 ~3% ABV',
-    thumb: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449',
-    thumbFit: 'contain'
+    name: 'The Grill & Chill Bundle',
+    meta: '8 jars · save 25%',
+    thumb: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/IMG-2908.png?v=1780103043',
+    thumbFit: 'cover'
   }
 };
 /* ===== PRODUCT CONFIG END ===== */
