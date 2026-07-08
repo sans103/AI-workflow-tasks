@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pineapple Upside Down Cake Liquor Cake Jar — Tropical Vacation, No Flight Required | Lulu Liquor Cakes</title>
+<meta name="description" content="Golden, rum-soaked pineapple cake under a cloud of buttercream. 8 oz, ~3% ABV, scratch-made, ships nationwide. Must be 21+. $14.95." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ==========================================================
+     LULU LIQUOR CAKES — PDP (Pineapple Upside Down) v1
+     Design tokens match approved CLP: lulu-collection-jars-v2-mint
+     Mobile-first: base = mobile, min-width media queries up
+     ========================================================== */
+  :root {
+    --cream: #FBF7F0;
+    --charcoal: #1A1A1A;
+    --lulu-pink: #E94B7B;
+    --lulu-pink-soft: #FBE4ED;
+    --lulu-lavender: #A593BF;
+    --lulu-lavender-soft: #E8E2F0;
+    --lulu-purple: #5A2A4D;
+    --lulu-mint: #12BF8F;
+    --lulu-mint-soft: #E0FAF4;
+    --line: #ECE6D8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button { font-family: 'DM Sans', sans-serif; cursor: pointer; }
+  h1, h2, h3, .display { font-family: 'Fraunces', serif; }
+  .ui { font-family: 'DM Sans', sans-serif; }
+  .hand { font-family: 'Caveat', cursive; }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .accent-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; }
+
+  .container-x { max-width: 1280px; margin: 0 auto; padding-left: 14px; padding-right: 14px; }
+  .section-pad { padding-top: 36px; padding-bottom: 36px; }
+
+  .h-section {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(26px, 7vw, 36px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+  }
+
+  /* Focus rings */
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+    outline: 2px solid var(--lulu-pink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ============ Marquee announcement bar ============ */
+  .marquee {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 10px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+  .marquee-track { display: flex; animation: marquee 40s linear infinite; flex-shrink: 0; }
+  .marquee:hover .marquee-track,
+  .marquee.paused .marquee-track { animation-play-state: paused; }
+  .marquee-track > span { padding: 0 24px; }
+  .marquee-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 26px;
+    height: 26px;
+    border-radius: 999px;
+    background: var(--charcoal);
+    border: 1px solid rgba(251,247,240,.6);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background .2s ease;
+  }
+  .marquee-toggle:hover { background: #333; }
+  .marquee-toggle svg { width: 11px; height: 11px; fill: var(--cream); }
+  .marquee-toggle .icon-play { display: none; }
+  .marquee.paused .marquee-toggle .icon-play { display: block; }
+  .marquee.paused .marquee-toggle .icon-pause { display: none; }
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ============ Header ============ */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; }
+  .nav-desktop { display: none; align-items: center; gap: 28px; }
+  .nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--charcoal);
+    position: relative;
+    padding: 6px 0;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 2px;
+    background: var(--lulu-pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .header-actions { display: flex; align-items: center; gap: 2px; }
+  .icon-btn {
+    width: 40px; height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+    transition: background .2s ease;
+    position: relative;
+  }
+  .icon-btn:hover { background: rgba(0,0,0,.06); }
+  .icon-btn svg { width: 20px; height: 20px; stroke: var(--charcoal); fill: none; stroke-width: 1.6; }
+
+  /* ============ Breadcrumb ============ */
+  .breadcrumb {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(26,26,26,.6);
+    padding: 14px 0 4px;
+  }
+  .breadcrumb a { text-decoration: none; }
+  .breadcrumb a:hover { color: var(--lulu-pink); }
+
+  /* ============ Buttons (CLP pill style) ============ */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 12px 20px;
+    min-height: 44px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-pink { background: var(--lulu-pink); color: #fff; font-size: 19px; }
+  .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(233,75,123,.35); }
+  .btn-outline { background: #fff; color: var(--charcoal); border: 1.5px solid var(--charcoal); }
+  .btn-outline:hover { background: var(--charcoal); color: #fff; }
+  .btn-mint { background: var(--lulu-mint); color: var(--charcoal); }
+  .btn-mint:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(18,191,143,.35); }
+
+  /* ============ Sticker angle (approved badge style) ============ */
+  .sticker-angle {
+    display: inline-block;
+    background: var(--lulu-pink);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transform: rotate(-4deg);
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  }
+  .sticker-bounce { animation: bounce-pulse 3s ease-in-out infinite; }
+  @keyframes bounce-pulse {
+    0%, 100% { transform: rotate(-4deg) scale(1); }
+    50% { transform: rotate(-4deg) scale(1.06); }
+  }
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .badge-mint { background: var(--lulu-mint); color: var(--charcoal); }
+  .badge-dark { background: var(--charcoal); color: var(--cream); }
+  .badge-pink-soft { background: var(--lulu-pink-soft); color: var(--lulu-purple); }
+
+  /* ============ PDP layout ============ */
+  .pdp { padding-bottom: 44px; }
+  .pdp-grid { display: block; }
+
+  /* ---- Gallery: mobile edge-to-edge snap carousel ---- */
+  .gallery { margin: 10px -14px 0; position: relative; }
+  .carousel-wrap { position: relative; }
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .carousel::-webkit-scrollbar { display: none; }
+  .slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Slide 1 — product on cream/mint radial */
+  .slide-product {
+    background: radial-gradient(circle at 50% 42%, #FFFFFF 0%, var(--cream) 46%, var(--lulu-mint-soft) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slide-product img {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 28px rgba(0,0,0,.14));
+  }
+  .slide-product .sticker-angle { position: absolute; top: 18px; left: 16px; z-index: 2; }
+  .slide-product .badge-topseller { position: absolute; top: 20px; right: 16px; z-index: 2; }
+
+  /* Slide 2 — "what's inside" layered-jar diagram (pure CSS) */
+  .slide-diagram {
+    background: var(--lulu-lavender-soft);
+    background-image: radial-gradient(rgba(165,147,191,.45) 1.5px, transparent 2px);
+    background-size: 22px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+  }
+  .diagram-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 14px 32px rgba(0,0,0,.10);
+    padding: 18px 20px 20px;
+    width: 100%;
+    max-width: 430px;
+  }
+  .diagram-title {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 27px;
+    color: var(--lulu-purple);
+    text-align: center;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+  .diagram-body { display: flex; align-items: center; gap: 16px; }
+  .jar { width: 108px; flex-shrink: 0; }
+  .jar-lid {
+    height: 16px;
+    background: var(--charcoal);
+    border-radius: 8px 8px 3px 3px;
+    margin: 0 6px 2px;
+  }
+  .jar-neck {
+    height: 7px;
+    background: #E8E0D2;
+    border: 2px solid rgba(26,26,26,.75);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    margin: 0 2px;
+  }
+  .jar-glass {
+    border: 2.5px solid rgba(26,26,26,.75);
+    border-radius: 6px 6px 22px 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 168px;
+    background: #fff;
+  }
+  .layer { position: relative; }
+  .layer-pineapple {
+    flex: 0 0 26%;
+    background: linear-gradient(to bottom, #F6B347 0%, #EB9A2A 100%);
+  }
+  .layer-pineapple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 25% 50%, transparent 5px, rgba(198,124,20,.55) 5.5px, rgba(198,124,20,.55) 7px, transparent 7.5px), radial-gradient(circle at 72% 45%, transparent 5px, rgba(198,124,20,.55) 5.5px, rgba(198,124,20,.55) 7px, transparent 7.5px);
+    background-size: 46px 100%, 50px 100%;
+    background-repeat: repeat-x;
+  }
+  .layer-cream {
+    flex: 0 0 32%;
+    background: #FFF6E9;
+    background-image: radial-gradient(circle at 20% 30%, #FFFFFF 12%, transparent 13%), radial-gradient(circle at 65% 60%, #FFFFFF 14%, transparent 15%), radial-gradient(circle at 85% 25%, #FFFFFF 10%, transparent 11%);
+    border-top: 2px dashed rgba(26,26,26,.15);
+    border-bottom: 2px dashed rgba(26,26,26,.15);
+  }
+  .layer-cake {
+    flex: 1;
+    background: linear-gradient(to bottom, #E9B764 0%, #D89A45 62%, #B97F2E 100%);
+  }
+  .layer-cake::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.32) 1.6px, transparent 2px);
+    background-size: 12px 12px;
+  }
+  .diagram-labels { list-style: none; display: flex; flex-direction: column; gap: 13px; min-width: 0; }
+  .diagram-labels li { display: flex; align-items: flex-start; gap: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; line-height: 1.3; }
+  .diagram-labels li span.sub { display: block; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(26,26,26,.65); }
+  .label-dot { width: 13px; height: 13px; border-radius: 999px; flex-shrink: 0; margin-top: 3px; border: 1.5px solid rgba(26,26,26,.35); }
+  .dot-pineapple { background: #F0A937; }
+  .dot-cream { background: #FFF6E9; }
+  .dot-cake { background: #D18A2E; }
+  .diagram-foot {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .diagram-foot .badge-pill { background: var(--lulu-mint-soft); color: var(--charcoal); border: 1px solid rgba(18,191,143,.35); }
+
+  /* Slides 3+4 — lifestyle */
+  .slide-lifestyle img { width: 100%; height: 100%; object-fit: cover; }
+  .slide-lifestyle .sticker-angle { position: absolute; bottom: 20px; left: 16px; }
+
+  /* Slide 5 — review card */
+  .slide-review {
+    background: var(--lulu-pink-soft);
+    background-image: radial-gradient(rgba(233,75,123,.28) 2px, transparent 2.5px);
+    background-size: 26px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .slide-review-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 14px 32px rgba(0,0,0,.10);
+    padding: 26px 26px 24px;
+    max-width: 420px;
+    text-align: center;
+  }
+  .stars-row { color: var(--lulu-pink); font-size: 19px; letter-spacing: 2.5px; }
+  .slide-review-card blockquote {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 1.32;
+    margin: 12px 0 14px;
+  }
+  .slide-review-card cite { font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.7); }
+
+  /* Dots (mobile) */
+  .car-dots {
+    position: absolute;
+    bottom: 12px;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    z-index: 3;
+  }
+  .car-dot {
+    width: 8px; height: 8px;
+    border-radius: 999px;
+    border: 1.5px solid var(--charcoal);
+    background: rgba(255,255,255,.85);
+    padding: 0;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .car-dot.active { background: var(--lulu-pink); border-color: var(--lulu-pink); transform: scale(1.25); }
+
+  /* Arrows (desktop) */
+  .car-arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 42px; height: 42px;
+    border-radius: 999px;
+    background: var(--cream);
+    border: 1.5px solid var(--charcoal);
+    align-items: center;
+    justify-content: center;
+    transition: background .2s ease, color .2s ease;
+  }
+  .car-arrow svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.2; }
+  .car-arrow:hover { background: var(--charcoal); color: var(--cream); }
+  .car-arrow:hover svg { stroke: var(--cream); }
+  .car-arrow.prev { left: 14px; }
+  .car-arrow.next { right: 14px; }
+
+  /* Thumbs (desktop) */
+  .gallery-thumbs { display: none; gap: 10px; margin-top: 12px; }
+  .thumb {
+    width: 72px; height: 72px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: #fff;
+    overflow: hidden;
+    padding: 0;
+    flex-shrink: 0;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .thumb:hover { transform: translateY(-2px); }
+  .thumb.active { border-color: var(--lulu-pink); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .thumb .thumb-fill {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .04em; text-transform: uppercase; text-align: center; line-height: 1.25;
+    padding: 4px;
+  }
+  .thumb .thumb-fill.lavender { background: var(--lulu-lavender-soft); color: var(--lulu-purple); }
+  .thumb .thumb-fill.pink { background: var(--lulu-pink-soft); color: var(--lulu-purple); }
+  .thumb img.contain { object-fit: contain; padding: 6px; background: radial-gradient(circle at 50% 45%, #fff 0%, var(--lulu-mint-soft) 100%); }
+
+  /* ---- Buy box ---- */
+  .buybox { padding-top: 20px; }
+  .rating-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    color: var(--charcoal);
+  }
+  .rating-link:hover .rating-text { text-decoration: underline; text-underline-offset: 3px; }
+  .stars-svg { display: inline-flex; gap: 1.5px; }
+  .stars-svg svg { width: 17px; height: 17px; }
+  .rating-text { color: rgba(26,26,26,.75); }
+
+  .pdp-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: clamp(28px, 7.4vw, 40px);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    margin: 10px 0 6px;
+  }
+  .pdp-tagline {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--lulu-pink);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .price-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  .pdp-price { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 26px; }
+  .meta-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .meta-chip {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    color: rgba(26,26,26,.78);
+    padding: 6px 11px;
+    border-radius: 999px;
+  }
+  .pdp-short-desc {
+    font-size: 14.5px;
+    color: rgba(26,26,26,.78);
+    line-height: 1.6;
+    margin: 10px 0 18px;
+    max-width: 480px;
+  }
+
+  /* Qty + ATC */
+  .qty-atc-row { display: flex; flex-direction: column; gap: 10px; }
+  .qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border: 1.5px solid var(--charcoal);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .qty-stepper button {
+    width: 46px; height: 46px;
+    background: transparent;
+    border: none;
+    color: var(--charcoal);
+    font-weight: 700;
+    font-size: 20px;
+    transition: background .15s ease;
+  }
+  .qty-stepper button:hover { background: var(--lulu-pink-soft); }
+  .qty-val { flex: 1; text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; }
+  .btn-atc-main {
+    width: 100%;
+    min-height: 52px;
+    font-size: 16px;
+    position: relative;
+  }
+  .btn-atc-main svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .atc-microcopy {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(26,26,26,.62);
+    margin-top: 8px;
+  }
+
+  /* Free shipping nudge */
+  .ship-nudge {
+    margin-top: 16px;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+  }
+  .ship-nudge-text { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .ship-nudge-text svg { width: 17px; height: 17px; stroke: var(--lulu-mint); fill: none; stroke-width: 2; flex-shrink: 0; }
+  .ship-track { height: 8px; background: var(--lulu-mint-soft); border-radius: 999px; overflow: hidden; }
+  .ship-fill { height: 100%; width: 15%; background: var(--lulu-mint); border-radius: 999px; transition: width .35s ease; }
+
+  /* Reassurance row */
+  .reassure-row { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+  .reassure-item { display: flex; align-items: center; gap: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: rgba(26,26,26,.8); }
+  .reassure-item svg { width: 17px; height: 17px; stroke: var(--lulu-mint); fill: none; stroke-width: 2; flex-shrink: 0; }
+
+  /* Trust stickers */
+  .trust-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .trust-item { display: flex; align-items: center; gap: 10px; }
+  .trust-icon {
+    width: 38px; height: 38px;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: var(--lulu-mint-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .trust-icon svg { width: 18px; height: 18px; stroke: var(--lulu-mint); fill: none; stroke-width: 2; }
+  .trust-label { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; line-height: 1.25; }
+
+  /* ---- Accordion ---- */
+  .accordion { margin-top: 22px; }
+  .acc-item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow .2s ease;
+  }
+  .acc-item.open { box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+  .acc-trigger {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 18px;
+    text-align: left;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--charcoal);
+  }
+  .acc-icon { flex-shrink: 0; width: 20px; height: 20px; position: relative; }
+  .acc-icon::before, .acc-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--lulu-pink);
+    border-radius: 2px;
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .acc-icon::before { top: 9px; left: 2px; width: 16px; height: 2.5px; }
+  .acc-icon::after { top: 2px; left: 9px; width: 2.5px; height: 16px; }
+  .acc-item.open .acc-icon::after { transform: rotate(90deg); opacity: 0; }
+  .acc-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .32s ease;
+  }
+  .acc-panel-inner {
+    padding: 0 18px 18px;
+    font-size: 14.5px;
+    color: rgba(26,26,26,.8);
+    line-height: 1.62;
+  }
+  .acc-panel-inner p + p { margin-top: 10px; }
+  .acc-panel-inner ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .acc-panel-inner ul li { display: flex; align-items: flex-start; gap: 9px; }
+  .acc-panel-inner ul li svg { width: 15px; height: 15px; stroke: var(--lulu-mint); fill: none; stroke-width: 2.5; flex-shrink: 0; margin-top: 3px; }
+  .acc-fineprint { font-size: 12.5px; font-style: italic; color: rgba(26,26,26,.6); }
+
+  /* ============ Wave divider ============ */
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .wave-divider svg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 200%;
+    height: 100%;
+  }
+  .wave-divider .wave-1 { animation: wave-flow 14s linear infinite; }
+  .wave-divider .wave-2 { animation: wave-flow 22s linear infinite reverse; opacity: .6; }
+  @keyframes wave-flow {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ============ Reviews section ============ */
+  .reviews-section { background: linear-gradient(160deg, var(--lulu-lavender-soft) 0%, var(--lulu-mint-soft) 100%); }
+  .reviews-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 14px 0 26px;
+    flex-wrap: wrap;
+  }
+  .reviews-big-num { font-family: 'Fraunces', serif; font-weight: 900; font-size: 52px; line-height: 1; }
+  .reviews-summary-meta { text-align: left; }
+  .reviews-summary-meta .stars-svg svg { width: 19px; height: 19px; }
+  .reviews-summary-meta p { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: rgba(26,26,26,.7); margin-top: 3px; }
+  .review-grid { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 1000px; margin: 0 auto; }
+  .review-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    padding: 24px;
+    border-radius: 16px;
+  }
+  .review-card .stars-row { font-size: 17px; margin-bottom: 8px; }
+  .review-card h3 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; line-height: 1.25; margin-bottom: 8px; }
+  .review-card p { font-size: 14px; color: rgba(26,26,26,.8); line-height: 1.55; margin-bottom: 12px; }
+  .review-card cite { font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.65); }
+
+  /* ============ Pairs Well With ============ */
+  .pairs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .product-card {
+    position: relative;
+    border-radius: 12px;
+    padding: 10px 10px 14px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    transition: transform .35s ease, box-shadow .35s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover { transform: translateY(-4px) rotate(1deg); box-shadow: 0 14px 32px rgba(0,0,0,.10); }
+  .product-card .img-panel {
+    background: #fff;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .product-card .img-panel img { width: 88%; height: 88%; object-fit: contain; transition: transform .5s ease; }
+  .product-card:hover .img-panel img { animation: jar-wiggle 0.6s ease-in-out; }
+  @keyframes jar-wiggle {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(-2deg); }
+    75%  { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+  }
+  .product-card .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .product-card .card-tagline {
+    font-style: italic;
+    font-size: 11.5px;
+    color: rgba(26,26,26,.72);
+    line-height: 1.3;
+    min-height: 30px;
+    margin-bottom: 8px;
+  }
+  .product-card .card-price { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .btn-atc-mini {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    min-height: 40px;
+    border-radius: 999px;
+    background: var(--charcoal);
+    color: #fff;
+    font-weight: 700;
+    font-size: 12.5px;
+    border: none;
+    transition: background .2s ease, transform .15s ease;
+  }
+  .btn-atc-mini:hover { background: var(--lulu-pink); transform: translateY(-1px); }
+
+  /* ============ Bundle band ============ */
+  .bundle-band {
+    background: linear-gradient(135deg, var(--lulu-pink-soft) 0%, var(--lulu-lavender-soft) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .bundle-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, transparent 0 14px, rgba(165,147,191,.25) 14px 16px);
+    pointer-events: none;
+  }
+  .bundle-grid { display: block; position: relative; z-index: 1; }
+  .bundle-img-wrap { position: relative; max-width: 380px; margin: 0 auto 20px; }
+  .bundle-img-wrap img { width: 100%; border-radius: 18px; box-shadow: 0 20px 40px rgba(90,42,77,.18); }
+  .bundle-img-wrap .sticker-angle { position: absolute; top: -12px; right: -4px; background: var(--lulu-mint); color: var(--charcoal); }
+  .bundle-copy { text-align: center; }
+  .bundle-price-line { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; margin: 12px 0 4px; }
+  .bundle-price-line .strike { text-decoration: line-through; color: rgba(26,26,26,.5); font-weight: 500; margin-right: 8px; }
+  .bundle-save { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--lulu-purple); margin-bottom: 16px; }
+
+  /* ============ Footer ============ */
+  footer { background: var(--cream); color: var(--charcoal); border-top: 1px solid var(--line); }
+  .footer-inner { padding: 48px 14px 30px; max-width: 1280px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 20px; margin-bottom: 40px; }
+  .footer-brand { grid-column: span 2; }
+  .footer-brand img { height: 44px; width: auto; margin-bottom: 16px; }
+  .footer-mission { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; line-height: 1.4; color: rgba(26,26,26,.78); max-width: 300px; }
+  .footer-col h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 14px; color: rgba(26,26,26,.78); }
+  .footer-col ul a { text-decoration: none; }
+  .footer-col ul a:hover { color: var(--lulu-pink); }
+  .footer-21 { font-size: 13px; font-weight: 600; color: var(--lulu-pink); margin-top: 10px; }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .pay-pills { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .pay-pill {
+    background: #fff;
+    border: 1px solid #E5E5E5;
+    border-radius: 6px;
+    padding: 5px 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+  .legal-links { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; font-size: 12px; color: rgba(26,26,26,.7); }
+  .legal-links a { text-decoration: none; }
+  .legal-links a:hover { color: var(--lulu-pink); }
+  .copyright { text-align: center; margin-top: 24px; font-size: 12px; color: rgba(26,26,26,.72); padding-bottom: 8px; }
+
+  /* ============ Sticky ATC bar ============ */
+  .sticky-atc {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 90;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 28px rgba(0,0,0,.10);
+    transform: translateY(110%);
+    transition: transform .3s ease;
+  }
+  .sticky-atc.visible { transform: translateY(0); }
+  .sticky-atc.suppressed { transform: translateY(110%); }
+  .sticky-atc-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  }
+  .sticky-thumb {
+    width: 46px; height: 46px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: radial-gradient(circle at 50% 45%, #fff 0%, var(--lulu-mint-soft) 100%);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .sticky-thumb img { width: 86%; height: 86%; object-fit: contain; }
+  .sticky-info { min-width: 0; flex: 1; }
+  .sticky-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sticky-price { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.7); }
+  .sticky-atc .btn-mint { min-height: 44px; padding: 10px 18px; font-size: 14px; flex-shrink: 0; }
+
+  /* ============ Reveal on scroll ============ */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ============ Reduced motion ============ */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track, .sticker-bounce, .wave-divider .wave-1, .wave-divider .wave-2 { animation: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    .product-card:hover, .product-card:hover .img-panel img { transform: none; animation: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ==========================================================
+     DESKTOP — min-width up
+     ========================================================== */
+  @media (min-width: 769px) {
+    .container-x { padding-left: 24px; padding-right: 24px; }
+    .section-pad { padding-top: 50px; padding-bottom: 50px; }
+    .mobile-menu-btn { display: none; }
+    .nav-desktop { display: flex; }
+    .header-inner { padding-top: 14px; padding-bottom: 14px; }
+    .breadcrumb { padding-top: 20px; }
+  }
+
+  @media (min-width: 900px) {
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 56px;
+      align-items: start;
+    }
+    .gallery { margin: 16px 0 0; position: sticky; top: 96px; }
+    .carousel { border-radius: 20px; }
+    .slide { border-radius: 20px; }
+    .car-dots { display: none; }
+    .car-arrow { display: inline-flex; }
+    .gallery-thumbs { display: flex; }
+    .buybox { padding-top: 16px; }
+    .qty-atc-row { flex-direction: row; }
+    .qty-stepper { width: 150px; flex-shrink: 0; }
+    .btn-atc-main { flex: 1; width: auto; }
+    .trust-row { grid-template-columns: repeat(4, 1fr); }
+    .trust-item { flex-direction: column; text-align: center; gap: 8px; }
+    .reassure-row { flex-direction: row; gap: 22px; }
+    .review-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .pairs-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .product-card { padding: 16px 16px 18px; border-radius: 16px; }
+    .product-card .img-panel { border-radius: 12px; margin-bottom: 12px; }
+    .product-card .card-title { font-size: 17px; }
+    .product-card .card-tagline { font-size: 13px; min-height: 34px; }
+    .bundle-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 48px;
+      align-items: center;
+    }
+    .bundle-img-wrap { margin: 0; max-width: 440px; }
+    .bundle-copy { text-align: left; }
+    .bundle-copy p { margin-left: 0 !important; margin-right: 0 !important; }
+    .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+    .footer-brand { grid-column: span 1; }
+    .footer-inner { padding: 60px 24px 30px; }
+    .wave-divider { height: 70px; }
+    .sticky-atc-inner { padding: 10px 24px; }
+    .sticky-name { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. ANNOUNCEMENT MARQUEE ============ -->
+<div class="marquee" id="marquee" role="region" aria-label="Site announcements">
+  <div class="marquee-track">
+    <span>🥳 FREE US shipping on all orders over $100* (excluding Alaska &amp; Hawaii)</span>
+    <span>·</span>
+    <span>🔞 Must be 21+ to order</span>
+    <span>·</span>
+    <span>📦 Baked, jarred, shipped fresh weekly</span>
+    <span>·</span>
+    <span>🥳 FREE US shipping on all orders over $100* (excluding Alaska &amp; Hawaii)</span>
+    <span>·</span>
+    <span>🔞 Must be 21+ to order</span>
+    <span>·</span>
+    <span>📦 Baked, jarred, shipped fresh weekly</span>
+    <span>·</span>
+    <span>🥳 FREE US shipping on all orders over $100* (excluding Alaska &amp; Hawaii)</span>
+    <span>·</span>
+    <span>🔞 Must be 21+ to order</span>
+    <span>·</span>
+    <span>📦 Baked, jarred, shipped fresh weekly</span>
+    <span>·</span>
+    <span>🥳 FREE US shipping on all orders over $100* (excluding Alaska &amp; Hawaii)</span>
+    <span>·</span>
+    <span>🔞 Must be 21+ to order</span>
+    <span>·</span>
+    <span>📦 Baked, jarred, shipped fresh weekly</span>
+    <span>·</span>
+  </div>
+  <button class="marquee-toggle" id="marquee-toggle" type="button" aria-pressed="false" aria-label="Pause announcements">
+    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 001.53.85l12-7.5a1 1 0 000-1.7l-12-7.5A1 1 0 007 4.5z"/></svg>
+  </button>
+</div>
+
+<!-- ============ 2. HEADER ============ -->
+<header class="site-header">
+  <div class="container-x header-inner">
+    <button class="mobile-menu-btn icon-btn" aria-label="Open menu">
+      <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+
+    <a href="#" aria-label="Lulu Liquor Cakes home" style="flex-shrink:0;">
+      <img src="https://lululiquorcakes.com/cdn/shop/files/LuluLiquorCakes_LOGO-FINAL-01_f3cfd8f5-ff34-4858-ac13-a16f79925ef6.png" alt="Lulu Liquor Cakes" style="height:42px;width:auto;" />
+    </a>
+
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="#" class="nav-link">Shop Liquor Cake Jars</a>
+      <a href="#" class="nav-link">Shop Boozy Butter</a>
+      <a href="#" class="nav-link">Build My Bundle</a>
+      <a href="#" class="nav-link">Favorites Pack</a>
+      <a href="#" class="nav-link">FAQs</a>
+      <a href="#" class="nav-link">Shop Swag</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-linecap="round" stroke-linejoin="round"/><path d="m20 20-3.5-3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6h2l2.5 12.5a1 1 0 0 0 1 .8h9.5a1 1 0 0 0 1-.8L21 9H6"/><circle cx="9" cy="21" r="1.2"/><circle cx="18" cy="21" r="1.2"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 3. PDP: GALLERY + BUY BOX ============ -->
+<main class="pdp">
+  <div class="container-x">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="#">Home</a> / <a href="#">Shop Liquor Cake Jars</a> / Pineapple Upside Down Cake
+    </nav>
+
+    <div class="pdp-grid">
+
+      <!-- ---- GALLERY ---- -->
+      <div class="gallery">
+        <div class="carousel-wrap">
+          <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Product images">
+
+            <!-- Slide 1: product -->
+            <div class="slide slide-product" role="group" aria-roledescription="slide" aria-label="1 of 5: Pineapple Upside Down Cake Liquor Cake Jar">
+              <span class="sticker-angle sticker-bounce">Fan Favorite 🍍</span>
+              <span class="badge-pill badge-dark badge-topseller">⭐ Top Seller</span>
+              <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449"
+                   alt="Pineapple Upside Down Cake Liquor Cake Jar — 8 oz jar, front view"
+                   fetchpriority="high" decoding="async" />
+            </div>
+
+            <!-- Slide 2: what's inside diagram -->
+            <div class="slide slide-diagram" role="group" aria-roledescription="slide" aria-label="2 of 5: What's inside the jar — layer breakdown">
+              <div class="diagram-card">
+                <p class="diagram-title">what's inside the jar 🥄</p>
+                <div class="diagram-body">
+                  <div class="jar" aria-hidden="true">
+                    <div class="jar-lid"></div>
+                    <div class="jar-neck"></div>
+                    <div class="jar-glass">
+                      <div class="layer layer-pineapple"></div>
+                      <div class="layer layer-cream"></div>
+                      <div class="layer layer-cake"></div>
+                    </div>
+                  </div>
+                  <ul class="diagram-labels">
+                    <li>
+                      <span class="label-dot dot-pineapple" aria-hidden="true"></span>
+                      <span>Caramelized pineapple crown<span class="sub">the golden, flirty finish on top</span></span>
+                    </li>
+                    <li>
+                      <span class="label-dot dot-cream" aria-hidden="true"></span>
+                      <span>Cloud of buttercream<span class="sub">practically sinful. we checked.</span></span>
+                    </li>
+                    <li>
+                      <span class="label-dot dot-cake" aria-hidden="true"></span>
+                      <span>Rum-soaked pineapple cake<span class="sub">moist, boozy, unapologetic</span></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="diagram-foot">
+                  <span class="badge-pill">8 oz jar</span>
+                  <span class="badge-pill">~3% ABV</span>
+                  <span class="badge-pill">Real rum</span>
+                  <span class="badge-pill">21+ only</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3: lifestyle — dessert jars -->
+            <div class="slide slide-lifestyle" role="group" aria-roledescription="slide" aria-label="3 of 5: Dessert jars, spoon-ready">
+              <img loading="lazy" decoding="async"
+                   src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&auto=format&fit=crop&q=80"
+                   alt="Fresh dessert jars topped with fruit, ready for spoons" />
+              <span class="sticker-angle">🥄 a spoon-first situation</span>
+            </div>
+
+            <!-- Slide 4: lifestyle — golden pour -->
+            <div class="slide slide-lifestyle" role="group" aria-roledescription="slide" aria-label="4 of 5: Golden caramelized dessert moment">
+              <img loading="lazy" decoding="async"
+                   src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=900&auto=format&fit=crop&q=80"
+                   alt="Golden syrup pouring over a warm dessert stack" />
+              <span class="sticker-angle" style="background:var(--lulu-mint);color:var(--charcoal);">golden &amp; caramelized 🍍</span>
+            </div>
+
+            <!-- Slide 5: review card -->
+            <div class="slide slide-review" role="group" aria-roledescription="slide" aria-label="5 of 5: Customer review">
+              <div class="slide-review-card">
+                <div class="stars-row" aria-hidden="true">★★★★★</div>
+                <blockquote>&ldquo;Very moist delicious cake and the booziest was just the right amount me and my boyfriend love love loved it!&rdquo;</blockquote>
+                <cite>— Pamela P., Verified Buyer</cite>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrows (desktop) -->
+          <button class="car-arrow prev" id="car-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button class="car-arrow next" id="car-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+
+          <!-- Dots (mobile) -->
+          <div class="car-dots" id="car-dots" aria-label="Choose image">
+            <button class="car-dot active" type="button" aria-label="Go to image 1" aria-current="true"></button>
+            <button class="car-dot" type="button" aria-label="Go to image 2"></button>
+            <button class="car-dot" type="button" aria-label="Go to image 3"></button>
+            <button class="car-dot" type="button" aria-label="Go to image 4"></button>
+            <button class="car-dot" type="button" aria-label="Go to image 5"></button>
+          </div>
+        </div>
+
+        <!-- Thumbs (desktop) -->
+        <div class="gallery-thumbs" id="gallery-thumbs">
+          <button class="thumb active" data-index="0" aria-label="Show image 1: product jar">
+            <img class="contain" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" loading="lazy" />
+          </button>
+          <button class="thumb" data-index="1" aria-label="Show image 2: what's inside the jar">
+            <span class="thumb-fill lavender">What's Inside</span>
+          </button>
+          <button class="thumb" data-index="2" aria-label="Show image 3: dessert jars lifestyle">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&auto=format&fit=crop&q=70" alt="" loading="lazy" />
+          </button>
+          <button class="thumb" data-index="3" aria-label="Show image 4: golden pour lifestyle">
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=200&auto=format&fit=crop&q=70" alt="" loading="lazy" />
+          </button>
+          <button class="thumb" data-index="4" aria-label="Show image 5: customer review">
+            <span class="thumb-fill pink">★★★★★ Review</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ---- BUY BOX ---- -->
+      <div class="buybox">
+        <a class="rating-link" href="#reviews">
+          <span class="stars-svg" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#E94B7B" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </span>
+          <span class="rating-text">4.1★ · 1,200+ reviews</span>
+        </a>
+
+        <h1 class="pdp-title">Pineapple Upside Down Cake Liquor Cake Jar</h1>
+        <p class="pdp-tagline">Tropical vacation, no flight required. 🍍</p>
+
+        <div class="price-row">
+          <span class="pdp-price" id="pdp-price">$14.95</span>
+          <div class="meta-chips" aria-label="Product facts">
+            <span class="meta-chip">8 oz jar</span>
+            <span class="meta-chip">~3% ABV</span>
+            <span class="meta-chip">Scratch-made</span>
+          </div>
+        </div>
+
+        <p class="pdp-short-desc">
+          Golden, rum-soaked pineapple cake with caramelized edges, layered under a cloud of buttercream and crowned with caramelized pineapple. It tastes like a beach day that got out of hand — in the best way.
+        </p>
+
+        <div class="qty-atc-row">
+          <div class="qty-stepper" role="group" aria-label="Quantity">
+            <button type="button" id="qty-minus" aria-label="Decrease quantity">−</button>
+            <span class="qty-val" id="qty-val" aria-live="polite">1</span>
+            <button type="button" id="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn-pill btn-mint btn-atc-main" id="main-atc" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 10a4 4 0 01-8 0"/></svg>
+            <span id="atc-label">Spoon Me One — $14.95</span>
+          </button>
+        </div>
+        <p class="atc-microcopy">Ships fresh in insulated packaging · Must be 21+ to order 😏</p>
+
+        <!-- Free shipping progress nudge -->
+        <div class="ship-nudge" aria-live="polite">
+          <p class="ship-nudge-text">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span id="ship-nudge-msg">Add 6 more jars to unlock FREE US shipping ($100+)</span>
+          </p>
+          <div class="ship-track"><div class="ship-fill" id="ship-fill" style="width:15%;"></div></div>
+        </div>
+
+        <!-- Honest reassurance row -->
+        <div class="reassure-row">
+          <div class="reassure-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Baked fresh in small batches
+          </div>
+          <div class="reassure-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path stroke-linecap="round" stroke-linejoin="round" d="M3.27 6.96L12 12.01l8.73-5.05"/><line x1="12" y1="22.08" x2="12" y2="12" stroke-linecap="round"/></svg>
+            Ships nationwide in insulated packaging
+          </div>
+        </div>
+
+        <!-- Trust stickers -->
+        <div class="trust-row" role="list" aria-label="Why shop with Lulu">
+          <div class="trust-item" role="listitem">
+            <span class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <span class="trust-label">Female Owned</span>
+          </div>
+          <div class="trust-item" role="listitem">
+            <span class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3a4 4 0 00-4 4c0 1.5.8 2.8 2 3.5V12h4v-1.5c1.2-.7 2-2 2-3.5a4 4 0 00-4-4z"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h8l1 9H7l1-9z"/></svg>
+            </span>
+            <span class="trust-label">Scratch Made</span>
+          </div>
+          <div class="trust-item" role="listitem">
+            <span class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 3v5h5"/></svg>
+            </span>
+            <span class="trust-label">7-Day Return</span>
+          </div>
+          <div class="trust-item" role="listitem">
+            <span class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </span>
+            <span class="trust-label">Safe &amp; Secure Packaging</span>
+          </div>
+        </div>
+
+        <!-- ---- ACCORDION ---- -->
+        <div class="accordion" id="accordion">
+
+          <div class="acc-item open">
+            <button class="acc-trigger" aria-expanded="true" aria-controls="acc-panel-1" id="acc-trigger-1">
+              The Vibe 🍍
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel" id="acc-panel-1" role="region" aria-labelledby="acc-trigger-1">
+              <div class="acc-panel-inner">
+                <p>Imagine a cake jar that's the life of the party. This is the dessert that did a keg stand at the beach party and ended up in a buttercream bikini. Soaked in Pineapple Upside Down rum that whispers tales of tropical escapades, and layered with a frosting so divine it's practically sinful, this cake jar is your ticket to the naughty list. And trust us, <em>it's where you want to be</em>.</p>
+                <p class="acc-fineprint">— Sorry not sorry, kids. You must be 21+ to enjoy a liquor cake jar.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false" aria-controls="acc-panel-2" id="acc-trigger-2">
+              What's Inside
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel" id="acc-panel-2" role="region" aria-labelledby="acc-trigger-2">
+              <div class="acc-panel-inner">
+                <ul>
+                  <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>8 oz jar of scratch-made pineapple upside down cake</li>
+                  <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Real rum, baked right in — about 3% ABV per jar</li>
+                  <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Buttercream made from scratch, never from a tub</li>
+                  <li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Caramelized pineapple crown on top, because we're extra</li>
+                </ul>
+                <p class="acc-fineprint" style="margin-top:12px;">Contains alcohol. Must be 21+ to order. Enjoy safely.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false" aria-controls="acc-panel-3" id="acc-trigger-3">
+              Shipping &amp; Storage
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel" id="acc-panel-3" role="region" aria-labelledby="acc-trigger-3">
+              <div class="acc-panel-inner">
+                <p>We ship nationwide, and your jars are totally safe to travel unrefrigerated — lab tested and science approved. 🧪 During warmer months we tuck ice packs into the box to keep everything cool and cozy in transit.</p>
+                <p>Once it lands: enjoy within 90 days at room temp, pop it in the fridge to stretch the magic even further, or freeze it — jars stay fabulous for 12 whole months. Honestly, they usually disappear in under five minutes.</p>
+                <p>FREE US shipping on orders over $100* (excluding Alaska &amp; Hawaii).</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-trigger" aria-expanded="false" aria-controls="acc-panel-4" id="acc-trigger-4">
+              How Boozy Is It?
+              <span class="acc-icon" aria-hidden="true"></span>
+            </button>
+            <div class="acc-panel" id="acc-panel-4" role="region" aria-labelledby="acc-trigger-4">
+              <div class="acc-panel-inner">
+                <p>That depends — are you a lightweight or a legend? 😏</p>
+                <p>Each jar clocks in around ~3% ABV. Think dessert first, buzz second. Enough rum to know it's there, not enough to text your ex.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Wave: cream → reviews gradient -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--cream);">
+  <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#E8E2F0"/>
+  </svg>
+  <svg class="wave-2" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#E94B7B"/>
+  </svg>
+</div>
+
+<!-- ============ 4. REVIEWS ============ -->
+<section class="section-pad reviews-section" id="reviews" aria-label="Customer reviews">
+  <div class="container-x reveal">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="color:var(--lulu-purple);margin-bottom:10px;">REAL SPOONS. REAL OPINIONS.</div>
+      <h2 class="h-section">The Jar Has <span class="accent-italic" style="color:var(--lulu-pink);">Spoken.</span></h2>
+    </div>
+
+    <div class="reviews-summary">
+      <span class="reviews-big-num">4.1</span>
+      <div class="reviews-summary-meta">
+        <span class="stars-svg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#E94B7B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E94B7B" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </span>
+        <p>1,200+ verified reviews across the shop</p>
+      </div>
+    </div>
+
+    <div class="review-grid">
+      <article class="review-card">
+        <div class="stars-row" aria-hidden="true">★★★★★</div>
+        <h3>&ldquo;Boozy explosion! Delicious delicious&rdquo;</h3>
+        <p>&ldquo;Very moist delicious cake and the booziest was just the right amount me and my boyfriend love love loved it!&rdquo;</p>
+        <cite>— Pamela P., Verified Buyer</cite>
+      </article>
+
+      <article class="review-card">
+        <div class="stars-row" aria-hidden="true">★★★★★</div>
+        <h3>&ldquo;First one that almost tasted boozy&rdquo;</h3>
+        <p>&ldquo;This flavor was the first one that actually tasted like it had some type of liquor in it... Cake is moist, frosting nice and light, not too sweet.&rdquo;</p>
+        <cite>— Toni C., Verified Buyer</cite>
+      </article>
+
+      <article class="review-card">
+        <div class="stars-row" aria-hidden="true">★★★★★</div>
+        <h3>&ldquo;Pineapple Upside Down Was Good&rdquo;</h3>
+        <p>&ldquo;I like the pineapple upside down cake. It was delicious. I was very surprised.&rdquo;</p>
+        <cite>— Tiffany M., Verified Buyer</cite>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Wave: reviews → cream -->
+<div class="wave-divider" aria-hidden="true" style="background:linear-gradient(160deg,#E8E2F0,#E0FAF4);">
+  <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
+  </svg>
+</div>
+
+<!-- ============ 5. PAIRS WELL WITH ============ -->
+<section class="section-pad" style="background:var(--cream);" aria-label="Recommended flavors">
+  <div class="container-x reveal">
+    <div style="text-align:center;margin-bottom:26px;">
+      <div class="eyebrow" style="color:var(--lulu-pink);margin-bottom:10px;">PAIRS WELL WITH</div>
+      <h2 class="h-section">Make It A <span class="accent-italic" style="color:var(--lulu-pink);">Flight.</span> 🍹</h2>
+      <p style="color:rgba(26,26,26,.7);margin-top:10px;max-width:520px;margin-left:auto;margin-right:auto;">
+        The fruity crew that parties well with pineapple. Mix &amp; match toward free shipping.
+      </p>
+    </div>
+
+    <div class="pairs-grid">
+      <!-- Strawberry Margarita -->
+      <article class="product-card">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412" alt="Strawberry Margarita Liquor Cake Jar" />
+        </div>
+        <h3 class="card-title">Strawberry Margarita Liquor Cake Jar</h3>
+        <p class="card-tagline">Salt the rim. Spoon the cake. 🍓</p>
+        <div class="card-price">$14.95</div>
+        <button class="btn-atc-mini add-cart" type="button">Drop In Cart</button>
+      </article>
+
+      <!-- Coconut Mango -->
+      <article class="product-card">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CoconutMango.png?v=1772210317" alt="Coconut Mango Liquor Cake Jar" />
+        </div>
+        <h3 class="card-title">Coconut Mango Liquor Cake Jar</h3>
+        <p class="card-tagline">Beach vibes, beach calories. 🥥</p>
+        <div class="card-price">$14.95</div>
+        <button class="btn-atc-mini add-cart" type="button">Drop In Cart</button>
+      </article>
+
+      <!-- Orange Creamsicle -->
+      <article class="product-card">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/OrangeCream.png?v=1773349232" alt="Orange Creamsicle Liquor Cake Jar" />
+        </div>
+        <h3 class="card-title">Orange Creamsicle Liquor Cake Jar</h3>
+        <p class="card-tagline">Childhood, but make it 21+. 🧡</p>
+        <div class="card-price">$14.95</div>
+        <button class="btn-atc-mini add-cart" type="button">Drop In Cart</button>
+      </article>
+
+      <!-- Fruity Bam -->
+      <article class="product-card">
+        <div class="img-panel">
+          <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/FruityBam3.png?v=1773349232" alt="Fruity Bam Liquor Cake Jar" />
+        </div>
+        <h3 class="card-title">Fruity Bam Liquor Cake Jar</h3>
+        <p class="card-tagline">Fruit punch's wild adult era. 🍹</p>
+        <div class="card-price">$14.95</div>
+        <button class="btn-atc-mini add-cart" type="button">Drop In Cart</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. BUNDLE UPSELL BAND ============ -->
+<section class="section-pad bundle-band" aria-label="The Indulgence Pack bundle offer">
+  <div class="container-x bundle-grid reveal">
+    <div class="bundle-img-wrap">
+      <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Frame_2_ee143cc7-bf3a-4a80-b3de-7ef49319fb18.png?v=1756911725"
+           alt="The Indulgence Pack — 6 liquor cake jars, buy 4 get 2 free" />
+      <span class="sticker-angle sticker-bounce">2 Jars FREE 🥳</span>
+    </div>
+    <div class="bundle-copy">
+      <div class="eyebrow" style="color:var(--lulu-purple);margin-bottom:10px;">MATH THAT TASTES GOOD</div>
+      <h2 class="h-section">Buy 4. Get 2 <span class="accent-italic" style="color:var(--lulu-pink);">Free.</span> You're Welcome.</h2>
+      <p style="color:rgba(26,26,26,.78);margin-top:12px;max-width:460px;margin-left:auto;margin-right:auto;">
+        The Indulgence Pack: six jars of boozy bliss — pick your four favorites (pineapple, obviously) and two more land completely on the house. Gift it, or don't. We're not judging.
+      </p>
+      <p class="bundle-price-line"><span class="strike">$89.70</span>$59.80</p>
+      <p class="bundle-save">You save $29.90 — two jars are completely on the house.</p>
+      <a href="#" class="btn-pill btn-pink">🎁 Build The Indulgence Pack</a>
+    </div>
+  </div>
+</section>
+
+<!-- Wave: bundle → footer -->
+<div class="wave-divider" aria-hidden="true" style="background:linear-gradient(135deg,#FBE4ED,#E8E2F0);">
+  <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
+  </svg>
+</div>
+
+<!-- ============ 7. FOOTER ============ -->
+<footer id="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="https://lululiquorcakes.com/cdn/shop/files/LuluLiquorCakes_LOGO-FINAL-01_f3cfd8f5-ff34-4858-ac13-a16f79925ef6.png" alt="Lulu Liquor Cakes" />
+        <p class="footer-mission">To celebrate life's greatest moments with a little bit of booze and a whole lot of cake!</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Shop</h4>
+        <ul>
+          <li><a href="#">Shop Liquor Cake Jars</a></li>
+          <li><a href="#">Shop Boozy Butter</a></li>
+          <li><a href="#">Build My Bundle</a></li>
+          <li><a href="#">Favorites Pack</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Shop Swag</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact &amp; Support</h4>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Mission</h4>
+        <p style="font-size:14px;color:rgba(26,26,26,.78);line-height:1.5;">Female-owned. Scratch-made. Shipped fresh nationwide.</p>
+        <p class="footer-21">🔞 Enjoy safely. Must be 21+ to order.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="pay-pills" aria-label="Accepted payment methods">
+        <span class="pay-pill" style="color:#016FD0;">AMEX</span>
+        <span class="pay-pill" style="color:#000;">APPLE PAY</span>
+        <span class="pay-pill" style="color:#0079BE;">DINERS</span>
+        <span class="pay-pill" style="color:#FF6000;">DISCOVER</span>
+        <span class="pay-pill" style="color:#000;">G PAY</span>
+        <span class="pay-pill" style="color:#EB001B;">MASTERCARD</span>
+        <span class="pay-pill" style="color:#003087;">PAYPAL</span>
+        <span class="pay-pill" style="color:#5A31F4;">SHOP PAY</span>
+        <span class="pay-pill" style="color:#1A1F71;">VISA</span>
+      </div>
+      <ul class="legal-links">
+        <li><a href="#">Refund</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Cancellation</a></li>
+      </ul>
+    </div>
+
+    <p class="copyright">© 2026, Lulu Liquor Cakes LLC | Powered by Shopify</p>
+  </div>
+</footer>
+
+<!-- ============ STICKY ATC BAR ============ -->
+<div class="sticky-atc" id="sticky-atc" role="complementary" aria-label="Quick add to cart">
+  <div class="sticky-atc-inner">
+    <span class="sticky-thumb" aria-hidden="true">
+      <img src="https://cdn.shopify.com/s/files/1/0413/7759/5556/files/Pineappleupsidedown.png?v=1768594449" alt="" />
+    </span>
+    <div class="sticky-info">
+      <p class="sticky-name">Pineapple Upside Down Cake Jar</p>
+      <p class="sticky-price" id="sticky-price">$14.95 · 8 oz · ~3% ABV</p>
+    </div>
+    <button class="btn-pill btn-mint" id="sticky-atc-btn" type="button">Add to Cart</button>
+  </div>
+</div>
+
+<!-- Confetti canvas (vanilla, no libraries) -->
+<canvas id="confetti-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:9999;display:none;" aria-hidden="true"></canvas>
+
+<script>
+(function () {
+  'use strict';
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var PRICE = 14.95;
+  var FREE_SHIP = 100;
+  var qty = 1;
+
+  /* ============ Carousel ============ */
+  var carousel = document.getElementById('carousel');
+  var slides = carousel.querySelectorAll('.slide');
+  var dots = document.querySelectorAll('#car-dots .car-dot');
+  var thumbs = document.querySelectorAll('#gallery-thumbs .thumb');
+  var current = 0;
+
+  function goTo(index) {
+    index = Math.max(0, Math.min(slides.length - 1, index));
+    carousel.scrollTo({ left: carousel.clientWidth * index, behavior: prefersReduced ? 'auto' : 'smooth' });
+  }
+
+  function setActive(index) {
+    if (index === current) return;
+    current = index;
+    dots.forEach(function (d, i) {
+      d.classList.toggle('active', i === index);
+      if (i === index) { d.setAttribute('aria-current', 'true'); }
+      else { d.removeAttribute('aria-current'); }
+    });
+    thumbs.forEach(function (t, i) { t.classList.toggle('active', i === index); });
+  }
+
+  // Sync active state on scroll
+  var scrollTimer = null;
+  carousel.addEventListener('scroll', function () {
+    if (scrollTimer) window.cancelAnimationFrame(scrollTimer);
+    scrollTimer = window.requestAnimationFrame(function () {
+      var index = Math.round(carousel.scrollLeft / carousel.clientWidth);
+      setActive(Math.max(0, Math.min(slides.length - 1, index)));
+    });
+  }, { passive: true });
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () { goTo(i); });
+  });
+  thumbs.forEach(function (thumb) {
+    thumb.addEventListener('click', function () { goTo(parseInt(thumb.getAttribute('data-index'), 10)); });
+  });
+  document.getElementById('car-prev').addEventListener('click', function () { goTo(current - 1); });
+  document.getElementById('car-next').addEventListener('click', function () { goTo(current + 1); });
+
+  // Keyboard support when carousel region is focused
+  carousel.setAttribute('tabindex', '0');
+  carousel.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+  });
+
+  /* ============ Quantity + price + free-ship nudge ============ */
+  var qtyVal = document.getElementById('qty-val');
+  var stickyPrice = document.getElementById('sticky-price');
+  var shipMsg = document.getElementById('ship-nudge-msg');
+  var shipFill = document.getElementById('ship-fill');
+
+  function money(n) { return '$' + n.toFixed(2); }
+
+  function updateAll() {
+    qtyVal.textContent = qty;
+    var subtotal = qty * PRICE;
+    // Re-query each time: the ATC button's innerHTML is swapped during the
+    // "Adding…" feedback state, which detaches any cached #atc-label node.
+    var atcLabel = document.getElementById('atc-label');
+    if (atcLabel) {
+      atcLabel.textContent = (qty === 1 ? 'Spoon Me One — ' : 'Spoon Me ' + qty + ' — ') + money(subtotal);
+    }
+    stickyPrice.textContent = money(subtotal) + ' · 8 oz · ~3% ABV';
+    var pct = Math.min(100, (subtotal / FREE_SHIP) * 100);
+    shipFill.style.width = Math.max(6, pct) + '%';
+    if (subtotal >= FREE_SHIP) {
+      shipMsg.textContent = "You've unlocked FREE US shipping! 🥳";
+    } else {
+      var jarsNeeded = Math.ceil((FREE_SHIP - subtotal) / PRICE);
+      shipMsg.textContent = 'Add ' + jarsNeeded + ' more jar' + (jarsNeeded === 1 ? '' : 's') + ' to unlock FREE US shipping ($100+)';
+    }
+  }
+
+  document.getElementById('qty-minus').addEventListener('click', function () {
+    if (qty > 1) { qty--; updateAll(); }
+  });
+  document.getElementById('qty-plus').addEventListener('click', function () {
+    if (qty < 99) { qty++; updateAll(); }
+  });
+  updateAll();
+
+  /* ============ Accordion ============ */
+  var accItems = document.querySelectorAll('.acc-item');
+  accItems.forEach(function (item) {
+    var trigger = item.querySelector('.acc-trigger');
+    var panel = item.querySelector('.acc-panel');
+    // Init open state
+    if (item.classList.contains('open')) {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+    trigger.addEventListener('click', function () {
+      var isOpen = item.classList.contains('open');
+      if (isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + 'px'; // set explicit before collapsing
+        window.requestAnimationFrame(function () { panel.style.maxHeight = '0px'; });
+        item.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+  // Keep open panels sized correctly on resize
+  function resizeOpenPanels() {
+    document.querySelectorAll('.acc-item.open .acc-panel').forEach(function (panel) {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    });
+  }
+  window.addEventListener('resize', resizeOpenPanels);
+  // Recalculate once web fonts finish loading (text metrics change panel height)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(resizeOpenPanels);
+  }
+
+  /* ============ Marquee pause/play (WCAG 2.2.2) ============ */
+  var marquee = document.getElementById('marquee');
+  var marqueeToggle = document.getElementById('marquee-toggle');
+  if (marquee && marqueeToggle) {
+    marqueeToggle.addEventListener('click', function () {
+      var paused = marquee.classList.toggle('paused');
+      marqueeToggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
+      marqueeToggle.setAttribute('aria-label', paused ? 'Play announcements' : 'Pause announcements');
+    });
+  }
+
+  /* ============ Sticky ATC bar ============ */
+  var stickyBar = document.getElementById('sticky-atc');
+  var mainAtc = document.getElementById('main-atc');
+  var footer = document.getElementById('site-footer');
+
+  var atcObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      // Show only after the main ATC has scrolled ABOVE the viewport
+      if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+        stickyBar.classList.add('visible');
+      } else {
+        stickyBar.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0 });
+  atcObserver.observe(mainAtc);
+
+  // Hide the bar while the footer is on screen so it never overlaps footer content
+  var footerObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      stickyBar.classList.toggle('suppressed', entry.isIntersecting);
+    });
+  }, { threshold: 0.05 });
+  footerObserver.observe(footer);
+
+  /* ============ ATC feedback + confetti (vanilla) ============ */
+  function launchConfetti() {
+    if (prefersReduced) return;
+    var canvas = document.getElementById('confetti-canvas');
+    if (!canvas) return;
+    canvas.style.display = 'block';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var ctx = canvas.getContext('2d');
+    var colors = ['#12BF8F', '#E94B7B', '#5A2A4D', '#FBE4ED', '#FBF7F0', '#A593BF'];
+    var particles = [];
+    for (var i = 0; i < 110; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height * 0.4,
+        r: Math.random() * 6 + 3,
+        d: Math.random() * 120 + 60,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.random() * 10 - 5,
+        tiltAngle: 0,
+        tiltAngleInc: Math.random() * 0.07 + 0.05
+      });
+    }
+    var angle = 0, tick = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      angle += 0.01;
+      tick++;
+      particles.forEach(function (p, i) {
+        p.tiltAngle += p.tiltAngleInc;
+        p.y += (Math.cos(angle + p.d) + 2) * 1.4;
+        p.x += Math.sin(angle) * 1.2;
+        p.tilt = Math.sin(p.tiltAngle - i / 3) * 12;
+        ctx.beginPath();
+        ctx.lineWidth = p.r;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 3, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 3);
+        ctx.stroke();
+      });
+      if (tick < 200) {
+        window.requestAnimationFrame(draw);
+      } else {
+        canvas.style.display = 'none';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    draw();
+  }
+
+  function triggerAdd(btn) {
+    if (btn.disabled) return;
+    var original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Adding…';
+    setTimeout(function () {
+      btn.innerHTML = '✓ In The Cart!';
+      launchConfetti();
+      setTimeout(function () {
+        btn.innerHTML = original;
+        btn.disabled = false;
+        updateAll();
+      }, 2000);
+    }, 550);
+  }
+
+  mainAtc.addEventListener('click', function () { triggerAdd(mainAtc); });
+  document.getElementById('sticky-atc-btn').addEventListener('click', function () {
+    triggerAdd(document.getElementById('sticky-atc-btn'));
+  });
+  document.querySelectorAll('.add-cart').forEach(function (btn) {
+    btn.addEventListener('click', function () { triggerAdd(btn); });
+  });
+
+  /* ============ Reveal on scroll ============ */
+  if (prefersReduced) {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+  } else {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+  }
+})();
+</script>
+
+</body>
+</html>
