@@ -28,11 +28,10 @@
             font-family: 'Poppins', sans-serif;
             background: #F2F1EF;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         /* ========================================
-       ANNOUNCEMENT BAR
+       ANNOUNCEMENT BAR — matches Puffin site
        ======================================== */
         .announcement-bar {
             background: #1A252B;
@@ -41,28 +40,30 @@
             font-size: 13px;
             font-weight: 600;
             color: #fff;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .announcement-bar span {
-            color: #F99E89;
+        .announcement-bar .highlight {
+            color: #FF5A3A;
+            font-weight: 700;
         }
 
         /* ========================================
-       HERO SECTION
+       HERO SECTION — matching Figma ad style
+       Bold red background with lifestyle photo
        ======================================== */
         .hero {
             position: relative;
             width: 100%;
-            min-height: 720px;
+            min-height: 700px;
             overflow: hidden;
             display: flex;
             align-items: center;
-            background: #212F37;
+            background: #C62828;
         }
 
-        /* Lifestyle background */
+        /* Lifestyle background image */
         .hero-bg {
             position: absolute;
             inset: 0;
@@ -74,32 +75,45 @@
             height: 100%;
             object-fit: cover;
             object-position: center 30%;
-            filter: brightness(0.7);
         }
 
-        /* Cinematic gradient overlay */
+        /* Red-dominant overlay — matching Figma ad creatives */
         .hero-overlay {
             position: absolute;
             inset: 0;
             z-index: 2;
             background:
-                linear-gradient(108deg,
-                    rgba(26, 37, 43, 0.97) 0%,
-                    rgba(33, 47, 55, 0.92) 30%,
-                    rgba(33, 47, 55, 0.75) 55%,
-                    rgba(255, 46, 0, 0.35) 80%,
-                    rgba(255, 55, 0, 0.55) 100%);
+                linear-gradient(110deg,
+                    rgba(198, 40, 40, 0.97) 0%,
+                    rgba(198, 40, 40, 0.93) 25%,
+                    rgba(211, 47, 47, 0.85) 45%,
+                    rgba(244, 67, 54, 0.65) 65%,
+                    rgba(0, 0, 0, 0.45) 100%);
         }
 
-        /* Ambient light effects */
+        /* Subtle texture/warm glow */
         .hero-overlay::after {
             content: '';
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(ellipse at 80% 50%, rgba(249, 158, 137, 0.15) 0%, transparent 45%),
-                radial-gradient(ellipse at 25% 90%, rgba(255, 219, 150, 0.06) 0%, transparent 35%),
-                radial-gradient(ellipse at 60% 20%, rgba(255, 46, 0, 0.08) 0%, transparent 30%);
+                radial-gradient(ellipse at 85% 40%, rgba(255, 255, 255, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 20% 80%, rgba(255, 152, 0, 0.08) 0%, transparent 35%);
+        }
+
+        /* ========================================
+       LOGO BAR — Puffin logo at top
+       ======================================== */
+        .hero-logo-bar {
+            position: absolute;
+            top: 20px;
+            left: 48px;
+            z-index: 20;
+        }
+
+        .hero-logo-bar img {
+            height: 40px;
+            filter: brightness(10);
         }
 
         /* ========================================
@@ -113,139 +127,98 @@
             margin: 0 auto;
             padding: 80px 56px;
             display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 56px;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 48px;
             align-items: center;
         }
 
         /* ========================================
-       LEFT COLUMN: COPY
+       LEFT COLUMN: COPY — white on red
        ======================================== */
         .hero-copy {
             color: #fff;
         }
 
-        /* Eyebrow tag */
-        .eyebrow {
+        /* Offer ribbon badge — matches Figma creative style */
+        .offer-ribbon {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3.5px;
-            text-transform: uppercase;
-            color: rgba(255, 219, 150, 0.85);
-            margin-bottom: 20px;
-        }
-
-        .eyebrow::before {
-            content: '';
-            width: 28px;
-            height: 2px;
-            background: rgba(255, 219, 150, 0.5);
-            border-radius: 1px;
-        }
-
-        /* Promotional pill badge */
-        .promo-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #FF2E00 0%, #E62800 100%);
-            color: #fff;
-            font-size: 13px;
+            gap: 10px;
+            background: #fff;
+            color: #C62828;
+            font-size: 14px;
             font-weight: 800;
-            letter-spacing: 1.8px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            padding: 11px 24px;
-            border-radius: 60px;
+            padding: 12px 28px;
+            border-radius: 6px;
             margin-bottom: 28px;
-            box-shadow:
-                0 4px 20px rgba(255, 46, 0, 0.45),
-                0 0 60px rgba(255, 46, 0, 0.12);
-            animation: badgeGlow 3s ease-in-out infinite;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
-        @keyframes badgeGlow {
-
-            0%,
-            100% {
-                box-shadow: 0 4px 20px rgba(255, 46, 0, 0.45), 0 0 60px rgba(255, 46, 0, 0.12);
-            }
-
-            50% {
-                box-shadow: 0 6px 28px rgba(255, 46, 0, 0.6), 0 0 80px rgba(255, 46, 0, 0.2);
-            }
-        }
-
-        .promo-badge svg {
-            width: 16px;
-            height: 16px;
+        .offer-ribbon svg {
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
         }
 
-        /* Main headline */
+        /* Main headline — big, bold, white */
         .hero-headline {
-            font-size: 58px;
+            font-size: 60px;
             font-weight: 900;
             line-height: 1.04;
             letter-spacing: -2px;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
             color: #fff;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .hero-headline .accent {
-            color: #F99E89;
-            position: relative;
-        }
-
-        .hero-headline .tiny {
-            font-size: 48px;
-            font-weight: 800;
+        .hero-headline .line-yellow {
+            color: #FFD54F;
         }
 
         /* Subheadline */
         .hero-subhead {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 400;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 36px;
-            max-width: 430px;
+            max-width: 440px;
         }
 
         .hero-subhead strong {
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 600;
+            font-weight: 700;
+            color: #fff;
         }
 
-        /* CTAs */
+        /* CTA buttons */
         .cta-group {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
             flex-wrap: wrap;
-            margin-bottom: 44px;
+            margin-bottom: 40px;
         }
 
         .cta-primary {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: linear-gradient(135deg, #FF2E00 0%, #E62800 100%);
-            color: #fff;
+            background: #fff;
+            color: #C62828;
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 800;
             text-decoration: none;
             padding: 17px 42px;
             border-radius: 60px;
             border: none;
             cursor: pointer;
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow:
-                0 6px 28px rgba(255, 46, 0, 0.4),
-                0 0 0 0 rgba(255, 46, 0, 0);
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
         }
@@ -257,7 +230,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            background: linear-gradient(90deg, transparent, rgba(198, 40, 40, 0.08), transparent);
             transition: left 0.6s ease;
         }
 
@@ -267,9 +240,7 @@
 
         .cta-primary:hover {
             transform: translateY(-3px);
-            box-shadow:
-                0 12px 40px rgba(255, 46, 0, 0.5),
-                0 0 0 4px rgba(255, 46, 0, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
         }
 
         .cta-primary svg {
@@ -283,7 +254,7 @@
         }
 
         .cta-secondary {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255, 255, 255, 0.75);
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
@@ -299,7 +270,7 @@
             left: 0;
             width: 100%;
             height: 1px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.35);
             transition: all 0.3s ease;
         }
 
@@ -308,14 +279,14 @@
         }
 
         .cta-secondary:hover::after {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.8);
         }
 
-        /* Trust signals */
+        /* Trust bar */
         .trust-row {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 22px;
             flex-wrap: wrap;
         }
 
@@ -324,19 +295,18 @@
             align-items: center;
             gap: 8px;
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 500;
         }
 
         .trust-item svg {
             width: 16px;
             height: 16px;
-            color: #FFDB96;
             flex-shrink: 0;
         }
 
         .trust-item strong {
-            color: #FFDB96;
+            color: #FFD54F;
             font-weight: 700;
         }
 
@@ -348,17 +318,18 @@
         .star-group svg {
             width: 14px;
             height: 14px;
-            fill: #FFDB96;
+            fill: #FFD54F;
         }
 
         .trust-divider {
             width: 1px;
             height: 16px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* ========================================
-       RIGHT COLUMN: PRODUCT VISUAL
+       RIGHT COLUMN: CREATIVE VISUAL
+       Figma ad creative embedded + product showcase
        ======================================== */
         .hero-visual {
             position: relative;
@@ -366,183 +337,145 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 540px;
         }
 
-        /* Ambient glow behind products */
-        .ambient-glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle,
-                    rgba(255, 46, 0, 0.14) 0%,
-                    rgba(249, 158, 137, 0.06) 35%,
-                    transparent 65%);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            animation: glowPulse 4s ease-in-out infinite;
+        /* Creative card frame — mimics the ad creative look */
+        .creative-frame {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
         }
 
-        @keyframes glowPulse {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: translate(-50%, -50%) scale(1.08);
-                opacity: 0.8;
-            }
-        }
-
-        /* Floating offer circle */
-        .offer-circle {
-            position: absolute;
-            top: 10px;
-            right: 0px;
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(145deg, #FF2E00 0%, #CC2400 100%);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 30;
+        /* Main product image — lifestyle shot matching Figma creative */
+        .creative-main {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
             box-shadow:
-                0 8px 36px rgba(255, 46, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            border: 3px solid rgba(255, 255, 255, 0.12);
-            animation: floatBadge 3s ease-in-out infinite;
+                0 24px 64px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.08);
         }
 
-        @keyframes floatBadge {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(-3deg);
-            }
-
-            50% {
-                transform: translateY(-8px) rotate(2deg);
-            }
+        .creative-main img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            display: block;
         }
 
-        .offer-circle .oc-top {
-            font-size: 12px;
-            font-weight: 800;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            line-height: 1.2;
+        /* Text overlay on creative image — matching the Figma ads */
+        .creative-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px 28px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
         }
 
-        .offer-circle .oc-mid {
-            font-size: 24px;
+        .creative-offer-text {
+            font-size: 28px;
             font-weight: 900;
             color: #fff;
-            line-height: 1.1;
+            line-height: 1.15;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
         }
 
-        .offer-circle .oc-bot {
-            font-size: 11px;
-            font-weight: 700;
+        .creative-offer-text .yellow {
+            color: #FFD54F;
+        }
+
+        .creative-sub {
+            font-size: 14px;
+            font-weight: 500;
             color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-top: 6px;
         }
 
-        /* Product showcase row */
-        .products-showcase {
-            position: relative;
-            z-index: 5;
+        /* Floating product cards strip beneath main creative */
+        .product-strip {
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
+            margin-top: -36px;
+            position: relative;
+            z-index: 10;
+            padding: 0 20px;
         }
 
-        .prd-item {
+        .mini-card {
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s ease;
         }
 
-        .prd-item:hover {
-            transform: translateY(-12px);
+        .mini-card:hover {
+            transform: translateY(-8px);
         }
 
-        .prd-img-wrap {
-            position: relative;
-            border-radius: 18px;
+        .mini-card-img {
+            width: 100px;
+            height: 120px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-            border: 2px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+            border: 2.5px solid rgba(255, 255, 255, 0.15);
+            background: #333;
         }
 
-        .prd-item.size-sm .prd-img-wrap {
-            width: 130px;
-            height: 170px;
-        }
-
-        .prd-item.size-lg .prd-img-wrap {
-            width: 158px;
-            height: 210px;
-            border: 2px solid rgba(249, 158, 137, 0.25);
-            box-shadow:
-                0 16px 48px rgba(0, 0, 0, 0.35),
-                0 0 40px rgba(255, 46, 0, 0.12);
-        }
-
-        .prd-img-wrap img {
+        .mini-card-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
 
-        /* Number indicator on each product */
-        .prd-number {
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            width: 30px;
-            height: 30px;
-            background: rgba(33, 47, 55, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 800;
-            color: #fff;
-            z-index: 10;
+        .mini-card.featured .mini-card-img {
+            width: 115px;
+            height: 140px;
+            border-color: #FFD54F;
+            box-shadow:
+                0 10px 32px rgba(0, 0, 0, 0.35),
+                0 0 20px rgba(255, 213, 79, 0.15);
         }
 
-        /* FREE sticker on 4th product */
-        .free-sticker {
-            position: absolute;
-            top: -12px;
-            right: -10px;
-            background: linear-gradient(135deg, #FF2E00 0%, #E62800 100%);
-            color: #fff;
-            font-size: 11px;
+        .mini-card-label {
+            margin-top: 8px;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.3px;
+            text-align: center;
+        }
+
+        /* Plus signs */
+        .strip-plus {
+            font-size: 18px;
             font-weight: 800;
-            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.3);
+            align-self: center;
+            margin-bottom: 20px;
+        }
+
+        /* FREE badge on 4th product */
+        .free-badge {
+            position: absolute;
+            top: -10px;
+            right: -8px;
+            background: #FFD54F;
+            color: #C62828;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            padding: 7px 16px;
-            border-radius: 60px;
+            padding: 5px 12px;
+            border-radius: 50px;
             z-index: 10;
-            box-shadow: 0 4px 18px rgba(255, 46, 0, 0.5);
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
             animation: pulseTag 2.5s ease-in-out infinite;
         }
 
@@ -550,72 +483,100 @@
 
             0%,
             100% {
-                transform: scale(1) rotate(0deg);
+                transform: scale(1);
             }
 
             50% {
-                transform: scale(1.08) rotate(-2deg);
+                transform: scale(1.08);
             }
         }
 
-        /* Plus / Equals signs */
-        .math-sign {
-            font-size: 22px;
+        /* Floating circular offer badge — matches Figma creative style */
+        .offer-float {
+            position: absolute;
+            top: -16px;
+            right: -16px;
+            width: 110px;
+            height: 110px;
+            background: #FFD54F;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+
+            50% {
+                transform: translateY(-6px) rotate(2deg);
+            }
+        }
+
+        .offer-float .of-top {
+            font-size: 12px;
             font-weight: 800;
-            color: rgba(255, 255, 255, 0.2);
-            align-self: center;
-            margin-bottom: 28px;
-            flex-shrink: 0;
+            color: #B71C1C;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
-        /* Product name label */
-        .prd-name {
-            margin-top: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.4px;
+        .offer-float .of-mid {
+            font-size: 24px;
+            font-weight: 900;
+            color: #B71C1C;
+            line-height: 1;
+        }
+
+        .offer-float .of-bot {
+            font-size: 13px;
+            font-weight: 800;
+            color: #C62828;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Tagline below strip */
+        .strip-tagline {
             text-align: center;
-        }
-
-        /* Tagline below products */
-        .showcase-tagline {
-            margin-top: 32px;
-            text-align: center;
-            position: relative;
-            z-index: 5;
-        }
-
-        .showcase-tagline p {
-            font-size: 14px;
+            margin-top: 16px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.35);
-            letter-spacing: 0.3px;
         }
 
-        .showcase-tagline p em {
-            color: #F99E89;
+        .strip-tagline em {
             font-style: normal;
+            color: #FFD54F;
             font-weight: 600;
         }
 
-        /* Tiny "no code needed" tag */
         .no-code-tag {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            margin-top: 10px;
+            margin-top: 8px;
             font-size: 11px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.3);
-            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 0.8px;
             text-transform: uppercase;
         }
 
         .no-code-tag svg {
             width: 14px;
             height: 14px;
-            color: #47D16C;
+            color: #81C784;
         }
 
         /* ========================================
@@ -623,11 +584,7 @@
        ======================================== */
         @media (max-width: 1100px) {
             .hero-headline {
-                font-size: 46px;
-            }
-
-            .hero-headline .tiny {
-                font-size: 38px;
+                font-size: 48px;
             }
 
             .hero-inner {
@@ -635,31 +592,35 @@
                 gap: 40px;
             }
 
-            .prd-item.size-sm .prd-img-wrap {
-                width: 110px;
-                height: 145px;
+            .creative-main img {
+                height: 360px;
             }
 
-            .prd-item.size-lg .prd-img-wrap {
-                width: 135px;
-                height: 180px;
-            }
-
-            .offer-circle {
-                width: 100px;
+            .mini-card-img {
+                width: 80px;
                 height: 100px;
             }
 
-            .offer-circle .oc-top {
+            .mini-card.featured .mini-card-img {
+                width: 95px;
+                height: 118px;
+            }
+
+            .offer-float {
+                width: 90px;
+                height: 90px;
+            }
+
+            .offer-float .of-top {
                 font-size: 10px;
             }
 
-            .offer-circle .oc-mid {
+            .offer-float .of-mid {
                 font-size: 20px;
             }
 
-            .offer-circle .oc-bot {
-                font-size: 9px;
+            .offer-float .of-bot {
+                font-size: 11px;
             }
         }
 
@@ -673,13 +634,17 @@
 
             .hero-inner {
                 grid-template-columns: 1fr;
-                padding: 48px 24px;
+                padding: 48px 20px;
                 text-align: center;
-                gap: 40px;
+                gap: 36px;
             }
 
-            .eyebrow {
-                justify-content: center;
+            .hero-logo-bar {
+                position: relative;
+                top: auto;
+                left: auto;
+                text-align: center;
+                margin-bottom: 8px;
             }
 
             .hero-headline {
@@ -687,15 +652,16 @@
                 letter-spacing: -1.5px;
             }
 
-            .hero-headline .tiny {
-                font-size: 33px;
-            }
-
             .hero-subhead {
                 margin-left: auto;
                 margin-right: auto;
                 font-size: 16px;
                 max-width: 100%;
+            }
+
+            .offer-ribbon {
+                font-size: 12px;
+                padding: 10px 22px;
             }
 
             .cta-group {
@@ -706,53 +672,49 @@
                 justify-content: center;
             }
 
-            .hero-visual {
-                min-height: 380px;
+            .creative-main img {
+                height: 300px;
             }
 
-            .prd-item.size-sm .prd-img-wrap {
-                width: 90px;
-                height: 120px;
+            .product-strip {
+                gap: 6px;
+                padding: 0 8px;
+                margin-top: -28px;
             }
 
-            .prd-item.size-lg .prd-img-wrap {
-                width: 110px;
-                height: 150px;
-            }
-
-            .offer-circle {
-                width: 85px;
+            .mini-card-img {
+                width: 68px;
                 height: 85px;
-                top: -8px;
-                right: -6px;
+                border-radius: 10px;
             }
 
-            .offer-circle .oc-top {
+            .mini-card.featured .mini-card-img {
+                width: 80px;
+                height: 100px;
+            }
+
+            .offer-float {
+                width: 78px;
+                height: 78px;
+                top: -10px;
+                right: -8px;
+            }
+
+            .offer-float .of-top {
                 font-size: 9px;
             }
 
-            .offer-circle .oc-mid {
+            .offer-float .of-mid {
                 font-size: 17px;
             }
 
-            .offer-circle .oc-bot {
-                font-size: 8px;
+            .offer-float .of-bot {
+                font-size: 9px;
             }
 
-            .math-sign {
-                font-size: 16px;
-                margin-bottom: 18px;
-            }
-
-            .prd-number {
-                width: 24px;
-                height: 24px;
-                font-size: 10px;
-            }
-
-            .ambient-glow {
-                width: 340px;
-                height: 340px;
+            .strip-plus {
+                font-size: 14px;
+                margin-bottom: 14px;
             }
         }
 
@@ -761,15 +723,11 @@
        ======================================== */
         @media (max-width: 480px) {
             .hero-inner {
-                padding: 36px 16px;
+                padding: 32px 14px;
             }
 
             .hero-headline {
                 font-size: 32px;
-            }
-
-            .hero-headline .tiny {
-                font-size: 27px;
             }
 
             .hero-subhead {
@@ -778,66 +736,80 @@
 
             .cta-primary {
                 padding: 14px 30px;
-                font-size: 15px;
+                font-size: 14px;
                 width: 100%;
                 justify-content: center;
             }
 
-            .products-showcase {
+            .creative-main img {
+                height: 240px;
+                border-radius: 14px;
+            }
+
+            .creative-main {
+                border-radius: 14px;
+            }
+
+            .creative-offer-text {
+                font-size: 20px;
+            }
+
+            .creative-overlay {
+                padding: 20px 18px;
+            }
+
+            .product-strip {
                 gap: 4px;
+                margin-top: -22px;
             }
 
-            .prd-item.size-sm .prd-img-wrap {
-                width: 68px;
-                height: 90px;
-                border-radius: 12px;
+            .mini-card-img {
+                width: 56px;
+                height: 72px;
+                border-radius: 8px;
             }
 
-            .prd-item.size-lg .prd-img-wrap {
-                width: 82px;
-                height: 110px;
-                border-radius: 12px;
+            .mini-card.featured .mini-card-img {
+                width: 66px;
+                height: 84px;
+                border-radius: 8px;
             }
 
-            .offer-circle {
-                width: 68px;
-                height: 68px;
-                top: -14px;
-                right: -10px;
+            .offer-float {
+                width: 64px;
+                height: 64px;
+                top: -12px;
+                right: -6px;
             }
 
-            .offer-circle .oc-top {
+            .offer-float .of-top {
                 font-size: 8px;
             }
 
-            .offer-circle .oc-mid {
+            .offer-float .of-mid {
                 font-size: 14px;
             }
 
-            .offer-circle .oc-bot {
-                font-size: 7px;
+            .offer-float .of-bot {
+                font-size: 8px;
             }
 
-            .math-sign {
-                font-size: 13px;
-                margin-bottom: 14px;
+            .mini-card-label {
+                font-size: 8px;
             }
 
-            .prd-name {
-                font-size: 9px;
-            }
-
-            .free-sticker {
-                font-size: 9px;
-                padding: 5px 12px;
+            .free-badge {
+                font-size: 8px;
+                padding: 4px 8px;
             }
 
             .trust-divider {
                 display: none;
             }
 
-            .trust-row {
-                gap: 14px;
+            .strip-plus {
+                font-size: 12px;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -847,19 +819,19 @@
 
     <!-- ====== ANNOUNCEMENT BAR ====== -->
     <div class="announcement-bar">
-        🔥 <span>Buy 3 Puffins, Get 1 FREE</span> — No code needed. Your can will thank you.
+        🔥 <span class="highlight">Buy 3 Puffins, Get 1 FREE</span> — No code needed. Your can will thank you.
     </div>
 
     <!-- ====== HERO ====== -->
     <section class="hero" id="hero-banner">
 
-        <!-- Lifestyle background -->
+        <!-- Lifestyle background image from Puffin CDN -->
         <div class="hero-bg">
             <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/Lights_and_Sirens_group_1-transformed.jpg?v=1765987742"
-                alt="Puffin coolers at the campfire" loading="eager">
+                alt="Puffin coolers in the wild" loading="eager">
         </div>
 
-        <!-- Cinematic overlay -->
+        <!-- Red-dominant overlay — matching Figma ad creatives -->
         <div class="hero-overlay"></div>
 
         <div class="hero-inner">
@@ -867,10 +839,9 @@
             <!-- ====== LEFT: COPY ====== -->
             <div class="hero-copy">
 
-                <div class="eyebrow">Puffin Drinkwear</div>
-
-                <!-- Promo badge -->
-                <div class="promo-badge">
+                <!-- Offer badge — white on red, like the Figma creative headers -->
+                <div class="offer-ribbon">
+                    <!-- Heroicon: fire -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path fill-rule="evenodd"
                             d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z"
@@ -879,31 +850,31 @@
                     Buy 3 Get 1 Free
                 </div>
 
-                <!-- Headline — witty, punchy -->
+                <!-- Headline — witty, punchy, white on red -->
                 <h1 class="hero-headline">
                     Three's a Party.<br>
-                    <span class="accent tiny">The Fourth Won't<br>Cost You a Dime.</span>
+                    <span class="line-yellow">The Fourth's on Us.</span>
                 </h1>
 
-                <!-- Subheadline — brand-voice fun -->
+                <!-- Subheadline -->
                 <p class="hero-subhead">
-                    Pick any 3 Puffin coolers and we'll throw in a 4th — <strong>absolutely free.</strong>
-                    Because naked cans are a party foul.
+                    Grab any 3 Puffin coolers and the 4th walks in <strong>free of charge.</strong>
+                    Because no can should ever go out underdressed.
                 </p>
 
-                <!-- CTAs -->
+                <!-- CTAs — white button on red, like the creatives -->
                 <div class="cta-group">
                     <a href="https://puffindrinkwear.com/collections/all-products" class="cta-primary"
-                        id="hero-cta-primary">
-                        Grab Your 4-Pack
+                        id="hero-cta-shop">
+                        Shop the Deal
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                             <path fill-rule="evenodd"
                                 d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z"
                                 clip-rule="evenodd" />
                         </svg>
                     </a>
-                    <a href="https://puffindrinkwear.com/collections/all-products" class="cta-secondary"
-                        id="hero-cta-secondary">Browse All Styles</a>
+                    <a href="https://puffindrinkwear.com/collections/all-products" class="cta-secondary">Browse All
+                        Styles</a>
                 </div>
 
                 <!-- Trust signals -->
@@ -935,8 +906,8 @@
                     </div>
                     <div class="trust-divider"></div>
                     <div class="trust-item">
-                        <!-- Heroicon: truck -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            style="color: #FFD54F;">
                             <path
                                 d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a3 3 0 1 1 6 0h.375c1.035 0 1.875-.84 1.875-1.875V16.5h-5.625c-.621 0-1.125-.504-1.125-1.125V15ZM8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v7.5c0 .414.336.75.75.75H21a.75.75 0 0 0 .53-.22l2.25-2.25a.75.75 0 0 0 .22-.53V7.5a.75.75 0 0 0-.75-.75h-7.5ZM19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
                         </svg>
@@ -945,82 +916,89 @@
                 </div>
             </div>
 
-            <!-- ====== RIGHT: PRODUCT VISUAL ====== -->
+            <!-- ====== RIGHT: CREATIVE VISUAL ====== -->
             <div class="hero-visual">
 
-                <!-- Ambient glow -->
-                <div class="ambient-glow"></div>
+                <div class="creative-frame">
 
-                <!-- Floating offer badge -->
-                <div class="offer-circle">
-                    <span class="oc-top">Buy 3</span>
-                    <span class="oc-mid">Get 1</span>
-                    <span class="oc-bot">Free</span>
-                </div>
+                    <!-- Floating offer circle — yellow on red, matching Figma -->
+                    <div class="offer-float">
+                        <span class="of-top">Buy 3</span>
+                        <span class="of-mid">Get 1</span>
+                        <span class="of-bot">Free</span>
+                    </div>
 
-                <!-- Product row: 3 + 1 free -->
-                <div class="products-showcase">
-
-                    <!-- Product 1 -->
-                    <div class="prd-item size-sm">
-                        <div class="prd-img-wrap">
-                            <span class="prd-number">1</span>
-                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/TheFeller-PuffinRed1_1c0ea140-e20c-498c-98d4-da72777fb396.jpg?v=1765403113"
-                                alt="The Feller — Puffin Red" loading="eager">
+                    <!-- Main lifestyle creative image — matching the Figma ad style -->
+                    <div class="creative-main">
+                        <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/DSC05340.jpg?v=1765990695"
+                            alt="Puffin Hoodie cooler styled on a drink outdoors" loading="eager">
+                        <!-- Text overlay on image — matching Figma ad creatives -->
+                        <div class="creative-overlay">
+                            <div class="creative-offer-text">
+                                Perfect Outfit<br>
+                                <span class="yellow">for your can.</span>
+                            </div>
+                            <div class="creative-sub">Premium insulated drinkwear — built for adventure.</div>
                         </div>
-                        <span class="prd-name">The Feller</span>
                     </div>
 
-                    <span class="math-sign">+</span>
+                    <!-- Product strip underneath — matching the 3+1 free concept from creatives -->
+                    <div class="product-strip">
 
-                    <!-- Product 2 (featured / centre) -->
-                    <div class="prd-item size-lg">
-                        <div class="prd-img-wrap">
-                            <span class="prd-number">2</span>
-                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/DSC05340.jpg?v=1765990695"
-                                alt="The Hoodie cooler on a drink" loading="eager">
+                        <div class="mini-card">
+                            <div class="mini-card-img">
+                                <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/TheFeller-PuffinRed1_1c0ea140-e20c-498c-98d4-da72777fb396.jpg?v=1765403113"
+                                    alt="The Feller">
+                            </div>
+                            <span class="mini-card-label">The Feller</span>
                         </div>
-                        <span class="prd-name">The Hoodie</span>
-                    </div>
 
-                    <span class="math-sign">+</span>
+                        <span class="strip-plus">+</span>
 
-                    <!-- Product 3 -->
-                    <div class="prd-item size-sm">
-                        <div class="prd-img-wrap">
-                            <span class="prd-number">3</span>
-                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/ThePuffy-VarsityBlue1_12cfa2d9-f379-4cba-b84f-ac43db4d8596.png?v=1764024327"
-                                alt="The Puffy — Varsity Blue" loading="eager">
+                        <div class="mini-card featured">
+                            <div class="mini-card-img">
+                                <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/ThePuffy-VarsityBlue1_12cfa2d9-f379-4cba-b84f-ac43db4d8596.png?v=1764024327"
+                                    alt="The Puffy Vest">
+                            </div>
+                            <span class="mini-card-label">The Puffy</span>
                         </div>
-                        <span class="prd-name">The Puffy</span>
-                    </div>
 
-                    <span class="math-sign">=</span>
+                        <span class="strip-plus">+</span>
 
-                    <!-- Product 4: FREE -->
-                    <div class="prd-item size-sm">
-                        <div class="prd-img-wrap">
-                            <span class="free-sticker">FREE!</span>
-                            <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/ThePahka-SandyWhite1_9fc4dfd1-5565-4f51-9b4a-19aca6a12311.png?v=1764022266"
-                                alt="The Pahka — Sandy White (FREE)" loading="eager">
+                        <div class="mini-card">
+                            <div class="mini-card-img">
+                                <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/TheLumberjack-FireRed1_2025-01-29-174547_xfcc.jpg?v=1765403155"
+                                    alt="The Lumberjack">
+                            </div>
+                            <span class="mini-card-label">The Lumberjack</span>
                         </div>
-                        <span class="prd-name">The Pahka</span>
+
+                        <span class="strip-plus">=</span>
+
+                        <div class="mini-card">
+                            <span class="free-badge">FREE!</span>
+                            <div class="mini-card-img">
+                                <img src="https://cdn.shopify.com/s/files/1/0014/4136/6119/files/ThePahka-SandyWhite1_9fc4dfd1-5565-4f51-9b4a-19aca6a12311.png?v=1764022266"
+                                    alt="The Pahka (FREE)">
+                            </div>
+                            <span class="mini-card-label">The Pahka</span>
+                        </div>
+
                     </div>
 
-                </div>
-
-                <!-- Tagline under products -->
-                <div class="showcase-tagline">
-                    <p>The coolest drinkwear on the planet. <em>Pick any 3, the 4th is yours.</em></p>
-                    <div class="no-code-tag">
-                        <!-- Heroicon: check-circle -->
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        No code required — auto-applied at cart
+                    <!-- Tagline under products -->
+                    <div class="strip-tagline">
+                        <p>The coolest drinkwear on the planet. <em>Pick any 3, the 4th is yours.</em></p>
+                        <div class="no-code-tag">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Auto-applied at cart — no code needed
+                        </div>
                     </div>
+
                 </div>
 
             </div>

@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<!-- Liquid: <title>Pineapple Upside Down Cake Liquor Cake Jar — Tropical Vacation, No Flight Required | Lulu Liquor Cakes</title> -->
-<title>The Grill &amp; Chill Bundle — Eight Bold Flavors. One Unforgettable Summer | Lulu Liquor Cakes</title>
+<!-- Liquid: <title>{{ product.title }} | {{ shop.name }}</title> -->
+<title>Pineapple Upside Down Cake Liquor Cake Jar — Impossibly Soft, Moist &amp; Rum-Soaked | Lulu Liquor Cakes</title>
 <!-- Liquid: {{ product.description | strip_html | truncate: 160 }} -->
-<meta name="description" content="Golden, rum-soaked pineapple cake under a cloud of buttercream. 8 oz, ~3% ABV, scratch-made, ships nationwide. Must be 21+. $14.95." />
+<meta name="description" content="Impossibly soft, moist, rum-soaked pineapple cake under a cloud of light buttercream. 8 oz, ~3% ABV, scratch-made, ships nationwide. Must be 21+. $14.95." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
 
 <style>
   /* ==========================================================
@@ -31,13 +31,14 @@
     --lulu-purple: #5A2A4D;
     --lulu-mint: #12BF8F;
     --lulu-mint-soft: #E0FAF4;
-    --line: #ECE6D8;
+    --mint-dark: #0DA070; /* gifting-LP token for small mint text on light bgs */
+    --line: #E5E5E5;      /* gifting-LP card border gray */
   }
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   [hidden] { display: none !important; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Chivo', sans-serif;
     background: var(--cream);
     color: var(--charcoal);
     overflow-x: hidden;
@@ -46,29 +47,48 @@
   }
   img { max-width: 100%; display: block; }
   a { color: inherit; }
-  button { font-family: 'DM Sans', sans-serif; cursor: pointer; }
-  h1, h2, h3, .display { font-family: 'Fraunces', serif; }
-  .ui { font-family: 'DM Sans', sans-serif; }
-  .hand { font-family: 'Caveat', cursive; }
+  button { font-family: 'Chivo', sans-serif; cursor: pointer; }
+  h1, h2, h3, .display { font-family: 'Chivo', sans-serif; }
+  .ui { font-family: 'Chivo', sans-serif; }
+  .hand { font-family: 'Chivo', sans-serif; font-style: italic; }
 
   .eyebrow {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    color: var(--lulu-purple);
   }
-  .accent-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 400; }
+  /* Gifting-LP heading treatment: mint highlight box behind the keyword */
+  .hl-mint {
+    font-style: normal;
+    background: var(--lulu-mint-soft);
+    padding: 2px 10px;
+    border-radius: 8px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  /* Gifting-LP card-type eyebrow (liquor type / pack size) */
+  .type-eyebrow {
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--mint-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
 
   .container-x { max-width: 1280px; margin: 0 auto; padding-left: 14px; padding-right: 14px; }
   .section-pad { padding-top: 36px; padding-bottom: 36px; }
 
   .h-section {
-    font-family: 'Fraunces', serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 900;
-    font-size: clamp(26px, 7vw, 36px);
-    line-height: 1.02;
-    letter-spacing: -0.01em;
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 
   /* Focus rings */
@@ -87,7 +107,7 @@
     background: var(--charcoal);
     color: var(--cream);
     padding: 10px 0;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 500;
     font-size: 13px;
     letter-spacing: 0.04em;
@@ -123,6 +143,16 @@
     100% { transform: translateX(-50%); }
   }
 
+  /* Gifting-LP dark strip: ✦-separated uppercase marquee between major sections */
+  .strip-marquee {
+    padding: 14px 0;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .strip-marquee .marquee-track > span { padding: 0 20px; }
+
   /* ============ Header ============ */
   .site-header {
     position: sticky;
@@ -134,7 +164,7 @@
   .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; }
   .nav-desktop { display: none; align-items: center; gap: 28px; }
   .nav-link {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 500;
     font-size: 14px;
     color: var(--charcoal);
@@ -171,7 +201,7 @@
 
   /* ============ Breadcrumb ============ */
   .breadcrumb {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 12px;
     color: rgba(26,26,26,.6);
     padding: 14px 0 4px;
@@ -188,7 +218,7 @@
     border-radius: 999px;
     padding: 12px 20px;
     min-height: 44px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 15px;
     letter-spacing: 0.01em;
@@ -197,7 +227,7 @@
     border: none;
     text-decoration: none;
   }
-  .btn-pink { background: var(--lulu-pink); color: #fff; font-size: 19px; }
+  .btn-pink { background: var(--lulu-pink); color: #fff; font-size: 19px; letter-spacing: 0.01em; }
   .btn-pink:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(233,75,123,.35); }
   .btn-outline { background: #fff; color: var(--charcoal); border: 1.5px solid var(--charcoal); }
   .btn-outline:hover { background: var(--charcoal); color: #fff; }
@@ -211,7 +241,7 @@
     color: #fff;
     padding: 8px 16px;
     border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 12px;
     text-transform: uppercase;
@@ -229,7 +259,7 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 10.5px;
     letter-spacing: 0.06em;
@@ -297,21 +327,23 @@
   }
   .diagram-card {
     background: var(--cream);
-    border: 1px solid var(--line);
-    border-radius: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 16px;
     box-shadow: 0 14px 32px rgba(0,0,0,.10);
     padding: 18px 20px 20px;
     width: 100%;
     max-width: 430px;
   }
   .diagram-title {
-    font-family: 'Caveat', cursive;
-    font-weight: 700;
-    font-size: 27px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--lulu-purple);
     text-align: center;
     margin-bottom: 12px;
-    line-height: 1.1;
+    line-height: 1.15;
   }
   .diagram-body { display: flex; align-items: center; gap: 16px; }
   .jar { width: 108px; flex-shrink: 0; }
@@ -368,8 +400,8 @@
     background-size: 13px 13px;
   }
   .diagram-labels { list-style: none; display: flex; flex-direction: column; gap: 13px; min-width: 0; }
-  .diagram-labels li { display: flex; align-items: flex-start; gap: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; line-height: 1.3; }
-  .diagram-labels li span.sub { display: block; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(26,26,26,.65); }
+  .diagram-labels li { display: flex; align-items: flex-start; gap: 9px; font-family: 'Chivo', sans-serif; font-size: 13px; font-weight: 700; line-height: 1.3; }
+  .diagram-labels li span.sub { display: block; font-family: 'Chivo', sans-serif; font-weight: 400; font-size: 11.5px; color: rgba(26,26,26,.65); }
   .label-dot { width: 13px; height: 13px; border-radius: 999px; flex-shrink: 0; margin-top: 3px; border: 1.5px solid rgba(26,26,26,.35); }
   .diagram-foot {
     margin-top: 14px;
@@ -383,7 +415,7 @@
   .diagram-foot .badge-pill { background: var(--lulu-mint-soft); color: var(--charcoal); border: 1px solid rgba(18,191,143,.35); }
   /* Bundle contents mini-list inside the diagram card (box slide) */
   .box-mini-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
-  .box-mini-list li { display: flex; align-items: center; gap: 7px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; line-height: 1.2; }
+  .box-mini-list li { display: flex; align-items: center; gap: 7px; font-family: 'Chivo', sans-serif; font-size: 12px; font-weight: 700; line-height: 1.2; }
   .box-mini-list .emoji { font-size: 16px; flex-shrink: 0; }
 
   /* Slide type: review card */
@@ -398,8 +430,8 @@
   }
   .slide-review-card {
     background: var(--cream);
-    border: 1px solid var(--line);
-    border-radius: 18px;
+    border: 1.5px solid var(--line);
+    border-radius: 16px;
     box-shadow: 0 14px 32px rgba(0,0,0,.10);
     padding: 26px 26px 24px;
     max-width: 420px;
@@ -407,13 +439,14 @@
   }
   .stars-row { color: var(--lulu-pink); font-size: 19px; letter-spacing: 2.5px; }
   .slide-review-card blockquote {
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 19px;
-    line-height: 1.32;
+    font-family: 'Chivo', sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.4;
     margin: 12px 0 14px;
   }
-  .slide-review-card cite { font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.7); }
+  .slide-review-card cite { font-style: normal; font-family: 'Chivo', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.7); }
 
   /* Dots (mobile) */
   .car-dots {
@@ -474,7 +507,7 @@
   .thumb .thumb-fill {
     width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+    font-family: 'Chivo', sans-serif; font-size: 11px; font-weight: 700;
     letter-spacing: .04em; text-transform: uppercase; text-align: center; line-height: 1.25;
     padding: 4px;
   }
@@ -489,7 +522,7 @@
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 13.5px;
     color: var(--charcoal);
@@ -500,32 +533,33 @@
   .rating-text { color: rgba(26,26,26,.75); }
 
   .pdp-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 900;
-    font-size: clamp(28px, 7.4vw, 40px);
-    line-height: 1.02;
-    letter-spacing: -0.015em;
+    font-size: clamp(26px, 6.6vw, 36px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     margin: 10px 0 6px;
   }
   .pdp-tagline {
-    font-family: 'Caveat', cursive;
+    font-family: 'Chivo', sans-serif;
+    font-style: italic;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 19px;
     color: var(--lulu-pink);
-    line-height: 1.15;
+    line-height: 1.4;
     margin-bottom: 14px;
   }
   .price-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
-  .pdp-price { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 26px; }
+  .pdp-price { font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 26px; }
   .pdp-compare {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 500;
     font-size: 18px;
     color: rgba(26,26,26,.5);
     text-decoration: line-through;
   }
   .value-note {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 13px;
     font-weight: 700;
     color: var(--lulu-purple);
@@ -533,7 +567,7 @@
   }
   .meta-chips { display: flex; gap: 6px; flex-wrap: wrap; }
   .meta-chip {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 11px;
     letter-spacing: .04em;
@@ -566,7 +600,7 @@
     transition: background .15s ease;
   }
   .qty-stepper button:hover { background: var(--lulu-pink-soft); }
-  .qty-val { flex: 1; text-align: center; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; }
+  .qty-val { flex: 1; text-align: center; font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 16px; }
   .btn-atc-main {
     width: 100%;
     min-height: 52px;
@@ -582,7 +616,7 @@
   }
   .atc-microcopy {
     text-align: center;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 12px;
     font-weight: 500;
     color: rgba(26,26,26,.62);
@@ -590,7 +624,7 @@
   }
   .urgency-line {
     text-align: center;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 12.5px;
     font-weight: 700;
     color: var(--lulu-purple);
@@ -600,7 +634,7 @@
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 12.5px;
     font-weight: 500;
     color: rgba(26,26,26,.78);
@@ -617,14 +651,14 @@
     border-radius: 14px;
     padding: 13px 16px;
   }
-  .ship-nudge-text { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .ship-nudge-text { font-family: 'Chivo', sans-serif; font-size: 12.5px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
   .ship-nudge-text svg { width: 17px; height: 17px; stroke: var(--lulu-mint); fill: none; stroke-width: 2; flex-shrink: 0; }
   .ship-track { height: 8px; background: var(--lulu-mint-soft); border-radius: 999px; overflow: hidden; }
   .ship-fill { height: 100%; width: 15%; background: var(--lulu-mint); border-radius: 999px; transition: width .35s ease; }
 
   /* Reassurance row */
   .reassure-row { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
-  .reassure-item { display: flex; align-items: center; gap: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: rgba(26,26,26,.8); }
+  .reassure-item { display: flex; align-items: center; gap: 9px; font-family: 'Chivo', sans-serif; font-size: 13px; font-weight: 500; color: rgba(26,26,26,.8); }
   .reassure-item svg { width: 17px; height: 17px; stroke: var(--lulu-mint); fill: none; stroke-width: 2; flex-shrink: 0; }
 
   /* Boozy Bucks loyalty band */
@@ -647,7 +681,7 @@
     justify-content: center;
   }
   .boozy-bucks-icon svg { width: 17px; height: 17px; stroke: var(--lulu-purple); fill: none; stroke-width: 2; }
-  .boozy-bucks p { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--lulu-purple); line-height: 1.4; }
+  .boozy-bucks p { font-family: 'Chivo', sans-serif; font-size: 13px; font-weight: 500; color: var(--lulu-purple); line-height: 1.4; }
   .boozy-bucks strong { font-weight: 700; }
   .boozy-bucks a { font-weight: 700; text-underline-offset: 3px; }
 
@@ -671,13 +705,13 @@
     justify-content: center;
   }
   .trust-icon svg { width: 18px; height: 18px; stroke: var(--lulu-mint); fill: none; stroke-width: 2; }
-  .trust-label { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700; line-height: 1.25; }
+  .trust-label { font-family: 'Chivo', sans-serif; font-size: 12px; font-weight: 700; line-height: 1.25; }
 
   /* ---- Accordion ---- */
   .accordion { margin-top: 22px; }
   .acc-item {
     background: #fff;
-    border: 1px solid var(--line);
+    border: 1.5px solid var(--line);
     border-radius: 12px;
     margin-bottom: 10px;
     overflow: hidden;
@@ -694,9 +728,9 @@
     gap: 14px;
     padding: 16px 18px;
     text-align: left;
-    font-family: 'Fraunces', serif;
-    font-weight: 600;
-    font-size: 17px;
+    font-family: 'Chivo', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
     color: var(--charcoal);
   }
   .acc-icon { flex-shrink: 0; width: 20px; height: 20px; position: relative; }
@@ -751,12 +785,12 @@
   }
 
   /* ============ Bundle contents section ("What's Inside The Box") ============ */
-  .box-section { background: var(--lulu-mint-soft); }
+  .box-section { background: var(--lulu-lavender-soft); }
   .flavor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .flavor-card {
     background: var(--cream);
-    border: 1px solid var(--line);
-    border-radius: 12px;
+    border: 1.5px solid var(--line);
+    border-radius: 16px;
     padding: 16px 14px;
     text-align: center;
     transition: transform .35s ease, box-shadow .35s ease;
@@ -776,7 +810,7 @@
   .flavor-card:nth-child(4n+3) .flavor-emoji { background: #FFF3D6; }
   .flavor-card:nth-child(4n+4) .flavor-emoji { background: var(--lulu-mint-soft); }
   .flavor-name {
-    font-family: 'Fraunces', serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 15.5px;
     line-height: 1.2;
@@ -790,10 +824,10 @@
   }
 
   /* ============ Reviews section ============ */
-  .reviews-section { background: linear-gradient(160deg, var(--lulu-lavender-soft) 0%, var(--lulu-mint-soft) 100%); }
+  .reviews-section { background: var(--cream); }
   .reviews-note {
     text-align: center;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 13.5px;
     font-weight: 500;
     color: rgba(26,26,26,.75);
@@ -808,22 +842,22 @@
     margin: 14px 0 26px;
     flex-wrap: wrap;
   }
-  .reviews-big-num { font-family: 'Fraunces', serif; font-weight: 900; font-size: 52px; line-height: 1; }
+  .reviews-big-num { font-family: 'Chivo', sans-serif; font-weight: 900; font-size: 52px; line-height: 1; }
   .reviews-summary-meta { text-align: left; }
   .reviews-summary-meta .stars-svg svg { width: 19px; height: 19px; }
-  .reviews-summary-meta p { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: rgba(26,26,26,.7); margin-top: 3px; }
+  .reviews-summary-meta p { font-family: 'Chivo', sans-serif; font-size: 13px; font-weight: 700; color: rgba(26,26,26,.7); margin-top: 3px; }
   .review-grid { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 1000px; margin: 0 auto; }
   .review-grid.single { max-width: 560px; }
   .review-card {
-    background: var(--cream);
-    border: 1px solid var(--line);
+    background: #fff;
+    border: 1.5px solid var(--line);
     padding: 24px;
     border-radius: 16px;
   }
   .review-card .stars-row { font-size: 17px; margin-bottom: 8px; }
-  .review-card h3 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; line-height: 1.25; margin-bottom: 8px; }
-  .review-card p { font-size: 14px; color: rgba(26,26,26,.8); line-height: 1.55; margin-bottom: 12px; }
-  .review-card cite { font-style: normal; font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.65); }
+  .review-card h3 { font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 16.5px; line-height: 1.3; margin-bottom: 8px; }
+  .review-card p { font-style: italic; font-size: 14.5px; color: rgba(26,26,26,.8); line-height: 1.6; margin-bottom: 12px; }
+  .review-card cite { font-style: normal; font-family: 'Chivo', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.65); }
 
   /* ============ Cross-sell ============ */
   .pairs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -832,7 +866,7 @@
     border-radius: 12px;
     padding: 10px 10px 14px;
     background: var(--cream);
-    border: 1px solid var(--line);
+    border: 1.5px solid var(--line);
     transition: transform .35s ease, box-shadow .35s ease;
     display: flex;
     flex-direction: column;
@@ -857,9 +891,9 @@
     100% { transform: rotate(0deg); }
   }
   .product-card .card-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 14.5px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
     margin-bottom: 4px;
     display: -webkit-box;
@@ -875,7 +909,7 @@
     min-height: 30px;
     margin-bottom: 8px;
   }
-  .product-card .card-price { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .product-card .card-price { font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 8px; }
   .btn-atc-mini {
     margin-top: auto;
     display: inline-flex;
@@ -891,14 +925,14 @@
     font-size: 12.5px;
     border: none;
     text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     transition: background .2s ease, transform .15s ease;
   }
   .btn-atc-mini:hover { background: var(--lulu-pink); transform: translateY(-1px); }
 
   /* ============ Upsell band (e.g. Indulgence Pack on single-jar PDPs) ============ */
   .bundle-band {
-    background: linear-gradient(135deg, var(--lulu-pink-soft) 0%, var(--lulu-lavender-soft) 100%);
+    background: var(--lulu-mint-soft);
     position: relative;
     overflow: hidden;
   }
@@ -906,7 +940,8 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: repeating-linear-gradient(45deg, transparent 0 14px, rgba(165,147,191,.25) 14px 16px);
+    background-image: radial-gradient(circle, rgba(18,191,143,0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
     pointer-events: none;
   }
   .bundle-grid { display: block; position: relative; z-index: 1; }
@@ -914,9 +949,9 @@
   .bundle-img-wrap img { width: 100%; border-radius: 18px; box-shadow: 0 20px 40px rgba(90,42,77,.18); }
   .bundle-img-wrap .sticker-angle { position: absolute; top: -12px; right: -4px; background: var(--lulu-mint); color: var(--charcoal); }
   .bundle-copy { text-align: center; }
-  .bundle-price-line { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; margin: 12px 0 4px; }
+  .bundle-price-line { font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 16px; margin: 12px 0 4px; }
   .bundle-price-line .strike { text-decoration: line-through; color: rgba(26,26,26,.5); font-weight: 500; margin-right: 8px; }
-  .bundle-save { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--lulu-purple); margin-bottom: 16px; }
+  .bundle-save { font-family: 'Chivo', sans-serif; font-size: 13px; font-weight: 700; color: var(--lulu-purple); margin-bottom: 16px; }
 
   /* ============ Footer ============ */
   footer { background: var(--cream); color: var(--charcoal); border-top: 1px solid var(--line); }
@@ -924,9 +959,9 @@
   .footer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 20px; margin-bottom: 40px; }
   .footer-brand { grid-column: span 2; }
   .footer-brand img { height: 44px; width: auto; margin-bottom: 16px; }
-  .footer-mission { font-family: 'Fraunces', serif; font-style: italic; font-size: 17px; line-height: 1.4; color: rgba(26,26,26,.78); max-width: 300px; }
+  .footer-mission { font-family: 'Chivo', sans-serif; font-style: italic; font-size: 16px; line-height: 1.5; color: rgba(26,26,26,.78); max-width: 300px; }
   .footer-col h4 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 13px;
     letter-spacing: .08em;
@@ -952,7 +987,7 @@
     border: 1px solid #E5E5E5;
     border-radius: 6px;
     padding: 5px 9px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Chivo', sans-serif;
     font-size: 10.5px;
     font-weight: 700;
   }
@@ -997,7 +1032,7 @@
   .sticky-thumb img.contain { width: 86%; height: 86%; object-fit: contain; }
   .sticky-info { min-width: 0; flex: 1; }
   .sticky-name {
-    font-family: 'Fraunces', serif;
+    font-family: 'Chivo', sans-serif;
     font-weight: 700;
     font-size: 13.5px;
     line-height: 1.15;
@@ -1005,7 +1040,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .sticky-price { font-family: 'DM Sans', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.7); }
+  .sticky-price { font-family: 'Chivo', sans-serif; font-size: 12.5px; font-weight: 700; color: rgba(26,26,26,.7); }
   .sticky-atc .btn-mint { min-height: 44px; padding: 10px 18px; font-size: 14px; flex-shrink: 0; }
 
   /* ============ Reveal on scroll ============ */
@@ -1308,7 +1343,7 @@
 <div id="box-wrap">
   <div class="wave-divider" aria-hidden="true" style="background:var(--cream);">
     <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#E0FAF4"/>
+      <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#E8E2F0"/>
     </svg>
   </div>
   <section class="section-pad box-section" aria-label="What's inside the bundle">
@@ -1321,21 +1356,21 @@
       <div class="flavor-grid" id="flavor-grid"></div>
     </div>
   </section>
-  <div class="wave-divider" aria-hidden="true" style="background:var(--lulu-mint-soft);">
+  <div class="wave-divider" aria-hidden="true" style="background:var(--lulu-lavender-soft);">
     <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
     </svg>
   </div>
 </div>
 
-<!-- Wave: cream → reviews gradient -->
-<div class="wave-divider" aria-hidden="true" style="background:var(--cream);">
-  <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#E8E2F0"/>
-  </svg>
-  <svg class="wave-2" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 70 L0 52 C 240 38, 480 62, 720 50 C 960 38, 1200 60, 1440 50 C 1680 38, 1920 62, 2160 50 C 2400 38, 2640 60, 2880 50 L2880 70 Z" fill="#E94B7B"/>
-  </svg>
+<!-- Dark ✦ marquee strip (gifting-LP pattern) — store-wide facts, static -->
+<div class="marquee strip-marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>SCRATCH-MADE WITH REAL BOOZE</span><span>✦</span><span>SOFT &amp; MOIST, EVERY JAR</span><span>✦</span><span>SHIPS NATIONWIDE</span><span>✦</span><span>FREE US SHIPPING OVER $100*</span><span>✦</span><span>MUST BE 21+</span><span>✦</span>
+    <span>SCRATCH-MADE WITH REAL BOOZE</span><span>✦</span><span>SOFT &amp; MOIST, EVERY JAR</span><span>✦</span><span>SHIPS NATIONWIDE</span><span>✦</span><span>FREE US SHIPPING OVER $100*</span><span>✦</span><span>MUST BE 21+</span><span>✦</span>
+    <span>SCRATCH-MADE WITH REAL BOOZE</span><span>✦</span><span>SOFT &amp; MOIST, EVERY JAR</span><span>✦</span><span>SHIPS NATIONWIDE</span><span>✦</span><span>FREE US SHIPPING OVER $100*</span><span>✦</span><span>MUST BE 21+</span><span>✦</span>
+    <span>SCRATCH-MADE WITH REAL BOOZE</span><span>✦</span><span>SOFT &amp; MOIST, EVERY JAR</span><span>✦</span><span>SHIPS NATIONWIDE</span><span>✦</span><span>FREE US SHIPPING OVER $100*</span><span>✦</span><span>MUST BE 21+</span><span>✦</span>
+  </div>
 </div>
 
 <!-- ============ 5. REVIEWS (product quotes OR clearly-labeled store-wide fallback) ============
@@ -1366,19 +1401,19 @@
   </div>
 </section>
 
-<!-- Wave: reviews → cream -->
-<div class="wave-divider" aria-hidden="true" style="background:linear-gradient(160deg,#E8E2F0,#E0FAF4);">
+<!-- Wave: reviews (cream) → cross-sell (lavender) -->
+<div class="wave-divider" aria-hidden="true" style="background:var(--cream);">
   <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
+    <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#E8E2F0"/>
   </svg>
 </div>
 
 <!-- ============ 6. CROSS-SELL (rendered from PRODUCT.crossSell) ============
      Liquid: {% for rec in recommendations.products %} or a metafield-driven list -->
-<section class="section-pad" style="background:var(--cream);" aria-label="Recommended products">
+<section class="section-pad" style="background:var(--lulu-lavender-soft);" aria-label="Recommended products">
   <div class="container-x reveal">
     <div style="text-align:center;margin-bottom:26px;">
-      <div class="eyebrow" style="color:var(--lulu-pink);margin-bottom:10px;" id="xsell-eyebrow"></div>
+      <div class="eyebrow" style="color:var(--lulu-purple);margin-bottom:10px;" id="xsell-eyebrow"></div>
       <h2 class="h-section" id="xsell-heading"></h2>
       <p style="color:rgba(26,26,26,.7);margin-top:10px;max-width:520px;margin-left:auto;margin-right:auto;" id="xsell-sub"></p>
     </div>
@@ -1389,6 +1424,11 @@
 <!-- ============ 7. UPSELL BAND (conditional; e.g. Indulgence Pack on single-jar PDPs) ============
      Removed by JS when PRODUCT.upsellBand is null (bundle pages skip it). -->
 <div id="upsell-wrap">
+  <div class="wave-divider" aria-hidden="true" style="background:var(--lulu-lavender-soft);">
+    <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#E0FAF4"/>
+    </svg>
+  </div>
   <section class="section-pad bundle-band" aria-label="Bundle offer">
     <div class="container-x bundle-grid reveal">
       <div class="bundle-img-wrap">
@@ -1405,7 +1445,7 @@
       </div>
     </div>
   </section>
-  <div class="wave-divider" aria-hidden="true" style="background:linear-gradient(135deg,#FBE4ED,#E8E2F0);">
+  <div class="wave-divider" aria-hidden="true" style="background:var(--lulu-mint-soft);">
     <svg class="wave-1" viewBox="0 0 2880 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 70 L0 30 C 180 5, 360 60, 540 35 C 720 10, 900 60, 1080 30 C 1260 5, 1440 55, 1440 30 C 1620 5, 1800 60, 1980 35 C 2160 10, 2340 60, 2520 30 C 2700 5, 2880 55, 2880 30 L2880 70 Z" fill="#FBF7F0"/>
     </svg>
@@ -1504,7 +1544,7 @@ const PRODUCT = {
   // Liquid: {{ product.title }}
   title: 'Pineapple Upside Down Cake Liquor Cake Jar',
   // Liquid: {{ product.metafields.custom.tagline }}
-  tagline: 'Tropical vacation, no flight required. \u{1F34D}',
+  tagline: 'Impossibly soft, moist, rum-soaked cake. Straight out of the jar. \u{1F34D}',
   // Liquid: breadcrumb label — {{ product.title | truncate: 40 }}
   breadcrumbLabel: 'Pineapple Upside Down Cake',
   // Liquid: {{ product.price | divided_by: 100.0 }}
@@ -1549,7 +1589,7 @@ const PRODUCT = {
      Each layer: name, note, color (CSS background), dot (label dot), size (% of jar), texture. */
   jarLayers: [
     { name: 'Caramelized pineapple crown', note: 'the golden, flirty finish on top', color: 'linear-gradient(to bottom, #F6B347 0%, #EB9A2A 100%)', dot: '#F0A937', size: 26, texture: 'rings' },
-    { name: 'Cloud of buttercream', note: 'practically sinful. we checked.', color: '#FFF6E9', dot: '#FFF6E9', size: 32, texture: 'clouds' },
+    { name: 'Cloud of buttercream', note: 'light, never too sweet', color: '#FFF6E9', dot: '#FFF6E9', size: 32, texture: 'clouds' },
     { name: 'Rum-soaked pineapple cake', note: 'moist, boozy, unapologetic', color: 'linear-gradient(to bottom, #E9B764 0%, #D89A45 62%, #B97F2E 100%)', dot: '#D18A2E', size: 42, texture: 'crumb' }
   ],
 
@@ -1569,9 +1609,9 @@ const PRODUCT = {
     {
       title: 'What\u2019s Inside',
       html: '<ul>' +
-            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>8 oz jar of scratch-made pineapple upside down cake</li>' +
-            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Real rum, baked right in \u2014 about 3% ABV per jar</li>' +
-            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Buttercream made from scratch, never from a tub</li>' +
+            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>8 oz of impossibly soft, moist, scratch-made pineapple cake</li>' +
+            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Real rum you can actually taste, baked right in \u2014 about 3% ABV</li>' +
+            '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Light, not-too-sweet buttercream \u2014 scratch-made, never from a tub</li>' +
             '<li><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg>Caramelized pineapple crown on top, because we\u2019re extra</li>' +
             '</ul>' +
             '<p class="acc-fineprint" style="margin-top:12px;">Contains alcohol. Must be 21+ to order. Enjoy safely.</p>'
@@ -1602,28 +1642,30 @@ const PRODUCT = {
     storeQuotes: [],
     fallback: {
       eyebrow: 'THE LULU FAM SAYS',
-      heading: 'New Drop. <span class="accent-italic" style="color:var(--lulu-pink);">Trusted Spoons.</span>',
+      heading: 'New Drop. <span class="hl-mint">Trusted Spoons.</span>',
       note: 'This product just landed \u2014 no reviews for it yet. Here\u2019s the store-wide word on Lulu\u2019s jars:',
       countLine: '1,200+ reviews across the Lulu fam'
     },
     productHeader: {
       eyebrow: 'REAL SPOONS. REAL OPINIONS.',
-      heading: 'The Jar Has <span class="accent-italic" style="color:var(--lulu-pink);">Spoken.</span>',
+      heading: 'The Jar Has <span class="hl-mint">Spoken.</span>',
       countLine: '1,200+ verified reviews across the shop'
     }
   },
 
   /* Cross-sell — Liquid: {% for rec in recommendations.products %} or metafield list.
-     price optional (omit when unverified). ctaType: 'cart' (ATC button) | 'link'. */
+     price optional (omit when unverified). ctaType: 'cart' (ATC button) | 'link'.
+     liquorType — Liquid: {{ rec.metafields.custom.liquor_type }} (verified from
+     product descriptions; rendered as the mint card eyebrow, gifting-LP pattern). */
   crossSell: {
     eyebrow: 'PAIRS WELL WITH',
-    heading: 'Make It A <span class="accent-italic" style="color:var(--lulu-pink);">Flight.</span> \u{1F379}',
+    heading: 'Make It A <span class="hl-mint">Flight.</span> \u{1F379}',
     sub: 'The fruity crew that parties well with pineapple. Mix & match toward free shipping.',
     items: [
-      { title: 'Strawberry Margarita Liquor Cake Jar', tagline: 'Salt the rim. Spoon the cake. \u{1F353}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
-      { title: 'Coconut Mango Liquor Cake Jar', tagline: 'Beach vibes, beach calories. \u{1F965}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CoconutMango.png?v=1772210317', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
-      { title: 'Orange Creamsicle Liquor Cake Jar', tagline: 'Childhood, but make it 21+. \u{1F9E1}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/OrangeCream.png?v=1773349232', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
-      { title: 'Fruity Bam Liquor Cake Jar', tagline: 'Fruit punch\u2019s wild adult era. \u{1F379}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/FruityBam3.png?v=1773349232', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' }
+      { title: 'Strawberry Margarita Liquor Cake Jar', liquorType: 'Tequila', tagline: 'Salt the rim. Spoon the cake. \u{1F353}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/StrawberryMargarita.png?v=1768594412', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
+      { title: 'Coconut Mango Liquor Cake Jar', liquorType: 'Coconut Rum', tagline: 'Beach vibes, beach calories. \u{1F965}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/CoconutMango.png?v=1772210317', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
+      { title: 'Orange Creamsicle Liquor Cake Jar', liquorType: 'Orange Vodka', tagline: 'Childhood, but make it 21+. \u{1F9E1}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/OrangeCream.png?v=1773349232', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' },
+      { title: 'Fruity Bam Liquor Cake Jar', liquorType: 'Vodka', tagline: 'Fruit punch\u2019s wild adult era. \u{1F379}', img: 'https://cdn.shopify.com/s/files/1/0413/7759/5556/files/FruityBam3.png?v=1773349232', price: 14.95, ctaType: 'cart', cta: 'Drop In Cart' }
     ]
   },
 
@@ -1633,7 +1675,7 @@ const PRODUCT = {
     imgAlt: 'The Indulgence Pack \u2014 6 liquor cake jars, buy 4 get 2 free',
     sticker: '2 Jars FREE \u{1F973}',
     eyebrow: 'MATH THAT TASTES GOOD',
-    heading: 'Buy 4. Get 2 <span class="accent-italic" style="color:var(--lulu-pink);">Free.</span> You\u2019re Welcome.',
+    heading: 'Buy 4. Get 2 <span class="hl-mint">Free.</span> You\u2019re Welcome.',
     body: 'The Indulgence Pack: six jars of boozy bliss \u2014 pick your four favorites (pineapple, obviously) and two more land completely on the house. Gift it, or don\u2019t. We\u2019re not judging.',
     priceStrike: '$89.70',
     price: '$59.80',
@@ -1828,6 +1870,7 @@ const PRODUCT = {
     document.getElementById('flavor-grid').innerHTML = PRODUCT.bundleContents.map(function (f) {
       return '<article class="flavor-card">' +
         '<div class="flavor-emoji" aria-hidden="true">' + f.emoji + '</div>' +
+        (f.liquorType ? '<p class="type-eyebrow">' + f.liquorType + '</p>' : '') +
         '<h3 class="flavor-name">' + f.name + '</h3>' +
         '<p class="flavor-note">' + f.note + '</p>' +
       '</article>';
@@ -1877,6 +1920,7 @@ const PRODUCT = {
         : '<a class="btn-atc-mini" href="' + (item.href || '#') + '">' + item.cta + '</a>';
       return '<article class="product-card">' +
         '<div class="img-panel"><img loading="lazy" src="' + item.img + '" alt="' + item.title + '" /></div>' +
+        (item.liquorType ? '<p class="type-eyebrow">' + item.liquorType + '</p>' : '') +
         '<h3 class="card-title">' + item.title + '</h3>' +
         '<p class="card-tagline">' + item.tagline + '</p>' +
         priceHTML + ctaHTML +
@@ -2036,6 +2080,7 @@ const PRODUCT = {
   if (marquee && marqueeToggle) {
     marqueeToggle.addEventListener('click', function () {
       var paused = marquee.classList.toggle('paused');
+      document.querySelectorAll('.marquee').forEach(function (m) { m.classList.toggle('paused', paused); });
       marqueeToggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
       marqueeToggle.setAttribute('aria-label', paused ? 'Play announcements' : 'Pause announcements');
     });
