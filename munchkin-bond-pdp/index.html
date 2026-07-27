@@ -149,6 +149,22 @@ h1 .lite{display:block;font-weight:400;font-size:18px;line-height:24px;letter-sp
 
 .intro p{font-size:15.5px;line-height:26px;color:var(--body);margin-top:var(--s5)}
 
+/* ---- proof carousel, sits directly above Add to Bag ---- */
+.proof{margin-top:var(--s6);background:var(--teal-100);border:1px solid var(--hair);border-radius:14px;padding:16px 18px}
+.proof-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.proof-top .stars svg{width:15px;height:15px}
+.proof-vrf{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;color:var(--teal-700)}
+.proof-vrf svg{width:12px;height:12px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.proof-nav{margin-left:auto;display:flex;align-items:center;gap:2px}
+.proof-count{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 6px}
+.proof-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--blue-900)}
+.proof-btn:hover{background:rgba(16,76,106,.08)}
+.proof-btn svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.proof blockquote{font-size:15px;line-height:23px;color:var(--ink);margin-top:10px}
+.proof figcaption{font-size:12.5px;line-height:18px;color:var(--muted);margin-top:8px}
+.proof figcaption b{color:var(--ink);font-weight:600}
+.proof-all{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:600;color:var(--blue-900);text-underline-offset:3px}
+
 /* ---- option groups ---- */
 fieldset{border:0;margin-top:var(--s6)}
 legend{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--blue-900);padding:0;margin-bottom:10px}
@@ -786,16 +802,37 @@ body.show-notes .bnote{display:block}
         </div>
       </div>
 
+      <!-- proof at the price: manual advance only, no autoplay (WCAG 2.2.2) -->
+      <figure class="proof" aria-labelledby="proof-h">
+        <h2 class="visually-hidden" id="proof-h">What buyers say</h2>
+        <div class="proof-top">
+          <span class="stars" id="proof-stars" role="img" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star" class="s-full"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star" class="s-full"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star" class="s-full"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star" class="s-full"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-star" class="s-full"/></svg>
+          </span>
+          <span class="proof-vrf"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-check"/></svg>Verified buyer</span>
+          <span class="proof-nav">
+            <button type="button" class="proof-btn" id="proof-prev" aria-label="Previous review"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19"/></svg></button>
+            <span class="proof-count" id="proof-count">1 / 3</span>
+            <button type="button" class="proof-btn" id="proof-next" aria-label="Next review"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19"/></svg></button>
+          </span>
+        </div>
+        <div id="proof-live" aria-live="polite" aria-atomic="true">
+          <blockquote id="proof-quote">"DUMMY quote one. Keep it under about 110 characters so the strip never pushes the button off screen."</blockquote>
+          <figcaption><b id="proof-name">DUMMY Name</b> <span id="proof-variant">&middot; Mint, 4 oz</span></figcaption>
+        </div>
+        <a class="proof-all" href="#reviews">Read all 225 reviews</a>
+      </figure>
+
       <button class="cta" id="main-cta">Add to Bag <span aria-hidden="true">&middot;</span> <span id="cta-price">$30.00</span></button>
       <button class="cta-2">Add to Registry</button>
       <p class="registry-note">Powered by Babylist</p>
 
-      <h2 class="visually-hidden">Why parents trust Bond</h2>
+      <h2 class="visually-hidden">Buying with confidence</h2>
       <ul class="trust-row">
-        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-shield"/></svg></span><p>Milk never touches plastic</p></li>
-        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-flask"/></svg></span><p>Borosilicate glass</p></li>
-        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-drop"/></svg></span><p>Silicone anti-colic valve</p></li>
-        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8.5 12.2 11 14.7 15.8 9.8"/></svg></span><p>Certified Microplastic-Free&trade;</p></li>
+        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-truck"/></svg></span><p>Free shipping over $50</p></li>
+        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-return"/></svg></span><p>Hassle-free returns</p></li>
+        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-shield"/></svg></span><p>Certified Microplastic-Free&trade;</p></li>
+        <li class="trust-item"><span class="ti-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg></span><p>2 Stage 1 nipples included</p></li>
       </ul>
 
       <div class="retailers">
@@ -1363,6 +1400,30 @@ body.show-notes .bnote{display:block}
   }
   wireDisclosure(".acc-q", null);
   wireDisclosure(".faq-q", null);
+
+  /* ---- proof carousel: manual advance only, never autoplays ---- */
+  var QUOTES = [
+    { stars:5, q:'"DUMMY quote one. Keep it under about 110 characters so the strip never pushes the button off screen."', n:'DUMMY Name', v:'Mint, 4 oz' },
+    { stars:5, q:'"DUMMY quote two. Pick one that answers the weight-of-glass worry, since this sits right at the decision."', n:'DUMMY Name', v:'White, 8 oz' },
+    { stars:4, q:'"DUMMY quote three. One honest 4 star review here reads far more credible than three perfect ones."', n:'DUMMY Name', v:'Blue, 4 oz' }
+  ];
+  var qi = 0;
+  function paintQuote(){
+    var d = QUOTES[qi], set = function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
+    set('proof-quote', d.q); set('proof-name', d.n); set('proof-variant', '\u00b7 ' + d.v);
+    set('proof-count', (qi+1) + ' / ' + QUOTES.length);
+    var st = document.getElementById('proof-stars');
+    if(st){
+      st.setAttribute('aria-label', d.stars + ' out of 5 stars');
+      Array.prototype.forEach.call(st.querySelectorAll('use'), function(u,i){
+        u.setAttribute('class', i < d.stars ? 's-full' : 's-part-bg');
+      });
+    }
+  }
+  var pv = document.getElementById('proof-prev'), nx = document.getElementById('proof-next');
+  if(pv) pv.addEventListener('click', function(){ qi = (qi - 1 + QUOTES.length) % QUOTES.length; paintQuote(); });
+  if(nx) nx.addEventListener('click', function(){ qi = (qi + 1) % QUOTES.length; paintQuote(); });
+  paintQuote();
 
   /* sticky bar */
   var bar = document.getElementById("sticky-bar"), cta = document.getElementById("main-cta");
