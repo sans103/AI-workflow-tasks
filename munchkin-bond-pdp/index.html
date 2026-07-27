@@ -135,12 +135,17 @@ h1 .lite{display:block;font-weight:400;font-size:18px;line-height:24px;letter-sp
 .t-aqua{background:var(--p-aqua);color:var(--p-aqua-ink)}
 .t-rose{background:var(--p-rose);color:var(--p-rose-ink)}
 
-.ben-quad{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin-top:var(--s5)}
-.ben-quad li{display:flex;gap:11px;align-items:flex-start;background:var(--blue-50);border:1px solid var(--hair);border-radius:12px;padding:13px 14px}
-.bq-ico{width:36px;height:36px;border-radius:9px;background:var(--teal-200);color:var(--blue-900);display:flex;align-items:center;justify-content:center;flex:none}
-.bq-ico svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.bq-txt b{display:block;font-size:13.5px;line-height:19px;font-weight:600;color:var(--blue-900)}
-.bq-txt span{display:block;font-size:12.5px;line-height:18px;color:var(--muted);margin-top:3px}
+/* short outcome strip, formula-PDP pattern: coloured icon + 2-3 word label + footnote */
+.ben-strip{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:var(--s5)}
+.ben-strip li{display:inline-flex;align-items:center;gap:9px;font-size:15.5px;line-height:22px;font-weight:600;color:var(--ink)}
+.bs-ico{display:flex;flex:none}
+.bs-ico svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.bs-blue{color:#104c6a}
+.bs-teal{color:#22717c}
+.bs-green{color:#3d6b1f}
+.bs-amber{color:#b3400a}
+.ben-strip sup{font-size:11px;line-height:1;margin-left:1px}
+.ben-foot{font-size:12.5px;line-height:19px;color:var(--gray);margin-top:14px}
 
 .intro p{font-size:15.5px;line-height:26px;color:var(--body);margin-top:var(--s5)}
 
@@ -504,7 +509,8 @@ body.show-notes .bnote{display:block}
   h1{font-size:28px;line-height:32px}
   h1 .lite{font-size:16px}
   .tagline{font-size:17px}
-  .ben-quad{grid-template-columns:1fr}
+  .ben-strip{gap:12px 20px}
+  .ben-strip li{font-size:14.5px}
   .trust-row{grid-template-columns:1fr 1fr;gap:var(--s5)}
   .opt-cards{flex-direction:column}
   .opt-card{min-width:0}
@@ -656,14 +662,17 @@ body.show-notes .bnote{display:block}
       </ul>
 
       <h2 class="visually-hidden">Key benefits</h2>
-      <ul class="ben-quad">
-        <li><span class="bq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-heart"/></svg></span><span class="bq-txt"><b>Soft-touch Finish</b><span>Silicone bonded glass mimics skin-to-skin contact.</span></span></li>
-        <li><span class="bq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-swap"/></svg></span><span class="bq-txt"><b>Easy Transitions</b><span>Natural-feel nipples move baby between breast and bottle.</span></span></li>
-        <li><span class="bq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-drop"/></svg></span><span class="bq-txt"><b>Ease Colic</b><span>All-silicone anti-colic valve controls flow during feeds.</span></span></li>
-        <li><span class="bq-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-flask"/></svg></span><span class="bq-txt"><b>Glass with Class</b><span>Borosilicate glass: durable, pure and heat resistant.</span></span></li>
+      <ul class="ben-strip">
+        <li><span class="bs-ico bs-blue" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-flask"/></svg></span><span>Real Glass Inside</span></li>
+        <li><span class="bs-ico bs-teal" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-heart"/></svg></span><span>Soft Silicone Outside</span></li>
+        <li><span class="bs-ico bs-green" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-drop"/></svg></span><span>Less Gas<sup aria-hidden="true">*</sup></span></li>
+        <li><span class="bs-ico bs-amber" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#ico-swap"/></svg></span><span>Easy Switching</span></li>
       </ul>
+      <p class="ben-foot"><span aria-hidden="true">*</span>Anti-colic valve claim. Munchkin substantiation pending.</p>
+      <div class="bnote"><b>Build note.</b> The asterisk mechanism is borrowed from the formula PDP, where the footnote reads "In a 16-week clinical trial of 260 babies". Bond has no equivalent published study, so the footnote text above is a placeholder. Supply the anti-colic substantiation, or drop the asterisked claim.</div>
+      <div class="bnote"><b>Build note.</b> The "4x more UV" claim was removed from this buy box. It is unsourced on the live site and this strip is above the fold. It still appears in the anatomy explorer and the comparison table, where it reads as a spec rather than a headline.</div>
 
-      <div class="intro"><p>Designed so milk never touches plastic, with a soft-touch silicone finish that mimics skin-to-skin contact. Bond bottles block 4x more UV than leading glass bottles, helping preserve nutrients in your milk.</p></div>
+      <div class="intro"><p>Designed so milk never touches plastic, with a soft-touch silicone finish that mimics skin-to-skin contact. The bonded silicone shell also shields milk from light.</p></div>
 
       <fieldset>
         <legend id="lg-color">Select a colour: <span class="sel" id="sel-color">Mint</span></legend>
