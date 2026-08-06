@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Your Subscription · Munchkin Infant Formula</title>
+<meta name="description" content="Before you cancel, see the options available for your Munchkin Formula subscription: skip a shipment, change quantity, reschedule delivery, or switch formulas.">
+<meta name="robots" content="noindex">
+
+<!-- Brand fonts: Adobe Typekit kit (Baskerville Display PT + Marselis) + self-hosted Matter -->
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://cdn.munchkin.com" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/hmn1xgt.css">
+
+<style>
+/* ============================================================
+   MUNCHKIN : SUBSCRIPTION CANCELLATION FLOW v1 (branded)
+   Tokens taken verbatim from brand-guides/munchkin/brand-guide.md
+   (formula green sub-brand). Same design system as the formula
+   PDP redesign: 5-size type scale, 8px grid, pill buttons
+   50/40/30, flat 16px cards with no shadows, warm cream canvas.
+   ------------------------------------------------------------
+   Dynamic values are marked with data-slot="..." attributes.
+   ============================================================ */
+
+@font-face{
+  font-family:"Matter";
+  src:url("https://cdn.shopify.com/s/files/1/0584/0257/0288/files/Matter-Regular.woff2") format("woff2");
+  font-weight:300;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Matter";
+  src:url("https://cdn.shopify.com/s/files/1/0584/0257/0288/files/Matter-Regular.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Matter";
+  src:url("https://cdn.shopify.com/s/files/1/0584/0257/0288/files/Matter-Regular.woff2") format("woff2");
+  font-weight:500;font-style:normal;font-display:swap;
+}
+
+:root{
+  /* Formula green sub-palette (exact brand scale) */
+  --green-900:#2d481f;
+  --green-800:#325420;   /* primary CTA */
+  --green-700:#3b6922;   /* CTA hover / display headlines */
+  --green-600:#4c8828;   /* section band green */
+  --green-400:#78c144;
+  --green-200:#c8e9ad;
+  --green-100:#e3f3d4;
+  --green-50:#f9fdf5;
+  /* Base / neutrals */
+  --bg:#fdfbf9;
+  --powder-50:#f7f6f3;
+  --powder-100:#eae8e1;
+  --amber-100:#fff2d3;
+  --amber-400:#faa31d;   /* review stars, per the live PDP review cards */
+  --gray-950:#252527;
+  --gray-700:#4e4f50;
+  --gray-600:#58595b;
+  --gray-200:#d0d1d1;
+  --gray-100:#f0f0ef;
+  --border-pill:rgba(10,49,71,0.3);
+  --line:rgba(50,84,32,0.14);
+  --white:#ffffff;
+  /* Fonts */
+  --font-matter:"Matter",ui-sans-serif,system-ui,sans-serif;
+  --font-baskerville:"baskerville-display-pt",Baskerville,"Baskerville Old Face",Georgia,serif;
+  --font-marselis:"Marselis","Iowan Old Style",Georgia,serif;
+  /* Type scale (5 sizes) */
+  --fs-1:clamp(30px,3.6vw,44px); --lh-1:1.08;
+  --fs-2:clamp(22px,2.3vw,28px); --lh-2:1.2;
+  --fs-3:18px;                   --lh-3:1.5;
+  --fs-4:15px;                   --lh-4:1.55;
+  --fs-5:12.5px;                 --lh-5:1.45;
+  /* Spacing (8px grid) */
+  --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:32px; --sp-5:48px; --sp-6:64px;
+  --sect:64px;
+  --pad-card:24px;
+  /* Radii */
+  --r-card:16px; --r-inner:10px; --r-chip:8px;
+  /* Motion */
+  --dur:.18s;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-matter);
+  font-size:var(--fs-4);line-height:var(--lh-4);font-weight:400;
+  color:var(--gray-700);background:var(--bg);
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:inherit}
+:focus-visible{outline:2px solid var(--green-900);outline-offset:2px;border-radius:4px}
+.reason:has(input:focus-visible),.qty-card:has(input:focus-visible){outline:2px solid var(--green-900);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.container{max-width:1080px;margin:0 auto;padding:0 var(--sp-3)}
+.narrow{max-width:720px;margin:0 auto}
+@media(max-width:640px){.container{padding:0 var(--sp-2)}}
+
+/* ---------- Type ---------- */
+.eyebrow{
+  display:block;font-size:var(--fs-5);font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--green-800);margin-bottom:var(--sp-2);
+}
+.h-display{
+  font-weight:300;letter-spacing:-0.8px;line-height:var(--lh-1);
+  color:var(--gray-950);font-size:var(--fs-1);
+}
+.h-2{
+  font-weight:300;letter-spacing:-0.5px;line-height:var(--lh-2);
+  color:var(--gray-950);font-size:var(--fs-2);
+}
+.accent{font-family:var(--font-baskerville);font-style:italic;font-weight:400;letter-spacing:0}
+.lead{max-width:600px;margin-top:var(--sp-2);font-size:var(--fs-3);line-height:var(--lh-3);color:var(--gray-700)}
+.center{text-align:center}
+.center .lead{margin-left:auto;margin-right:auto}
+.micro{font-size:var(--fs-5);line-height:var(--lh-5);color:var(--gray-600)}
+
+/* ---------- Bands ---------- */
+.band{padding:var(--sect) 0}
+.band-cream{background:var(--bg)}
+.band-tint{background:var(--green-50)}
+.band-mint{background:var(--green-100)}
+.band-powder{background:var(--powder-50)}
+
+/* ---------- Pill buttons (50 / 40 / 30) ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-1);
+  border-radius:9999px;font-weight:500;text-decoration:none;
+  border:1px solid transparent;text-align:center;
+  transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.btn-01{min-height:50px;padding:0 var(--sp-4);font-size:var(--fs-4);background:var(--green-800);color:var(--white)}
+.btn-01:hover{background:var(--green-700)}
+.btn-02{min-height:40px;padding:0 var(--sp-3);font-size:var(--fs-4);background:var(--white);border-color:var(--border-pill);color:var(--green-800)}
+.btn-02:hover{border-color:var(--green-800)}
+.btn-03{min-height:30px;padding:0 var(--sp-2);font-size:var(--fs-5);background:transparent;border-color:var(--border-pill);color:var(--gray-950)}
+.btn-03:hover{border-color:var(--green-800);color:var(--green-800)}
+.btn-neutral{min-height:50px;padding:0 var(--sp-4);font-size:var(--fs-4);background:var(--white);border-color:var(--gray-200);color:var(--gray-950)}
+.btn-neutral:hover{border-color:var(--gray-950)}
+.btn-block{width:100%}
+
+/* Quiet text action, used for the always-available cancel path */
+.quiet{
+  display:inline-block;background:none;border:0;padding:0;
+  font-size:var(--fs-4);font-weight:500;color:var(--gray-600);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.quiet:hover{color:var(--gray-950)}
+
+/* ---------- Badge / rating pill ---------- */
+.badge{
+  display:inline-flex;align-items:center;gap:6px;border-radius:9999px;
+  background:var(--green-100);color:var(--green-900);
+  font-size:var(--fs-5);font-weight:500;padding:5px 12px;
+}
+.stars{display:inline-flex;gap:3px}
+.stars svg{width:14px;height:14px;fill:var(--gray-950)}
+
+/* ---------- Preview scaffolding (REMOVE BEFORE PRODUCTION) ----------
+   Neutral on purpose: greys and a dashed edge so these annotations never
+   read as brand content. Delete .preview-bar and every .ph to ship. */
+.preview-bar{
+  background:var(--powder-100);color:var(--gray-700);
+  font-size:var(--fs-5);line-height:1.45;padding:9px 0;text-align:center;
+}
+.preview-bar b{font-weight:600;color:var(--gray-950)}
+.ph{
+  display:inline-flex;align-items:center;vertical-align:middle;
+  border:1px dashed var(--gray-200);border-radius:9999px;background:var(--white);
+  color:var(--gray-600);font-size:12px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;padding:2px 8px;white-space:nowrap;
+}
+
+/* ---------- Header ---------- */
+.site-header{background:var(--bg);border-bottom:1px solid var(--gray-100)}
+.header-inner{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  gap:var(--sp-2);padding:var(--sp-2) 0;
+}
+.header-logo{justify-self:center}
+.header-logo img{width:180px;height:auto}
+.header-back{
+  display:inline-flex;align-items:center;gap:6px;justify-self:start;
+  font-size:var(--fs-5);font-weight:500;color:var(--gray-700);text-decoration:none;
+}
+.header-back:hover{color:var(--green-800)}
+.header-back svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}
+.header-account{justify-self:end;font-size:var(--fs-5);font-weight:500;color:var(--gray-700);text-decoration:underline;text-underline-offset:3px}
+.header-account:hover{color:var(--green-800)}
+@media(max-width:600px){
+  .header-inner{grid-template-columns:auto 1fr;row-gap:var(--sp-1)}
+  .header-logo{justify-self:end}
+  .header-account{display:none}
+}
+
+/* ---------- Hero ---------- */
+.hero{padding:var(--sp-6) 0 var(--sp-5)}
+.hero .lead{margin-top:var(--sp-3)}
+
+/* ---------- Subscription summary card ---------- */
+.sub-card{
+  margin-top:var(--sp-5);background:var(--white);border:1px solid var(--line);
+  border-radius:var(--r-card);padding:var(--pad-card);
+  display:grid;grid-template-columns:180px 1fr;gap:var(--sp-4);align-items:start;
+}
+.sub-media{background:var(--powder-50);border-radius:var(--r-inner);overflow:hidden;aspect-ratio:1/1}
+.sub-media img{width:100%;height:100%;object-fit:cover}
+.sub-body h2{font-size:var(--fs-2);line-height:var(--lh-2);font-weight:300;letter-spacing:-0.5px;color:var(--gray-950)}
+.sub-body h2 .qty{color:var(--gray-600)}
+.sub-meta{margin-top:6px;font-size:var(--fs-4);color:var(--gray-600)}
+.sub-facts{
+  margin-top:var(--sp-3);padding-top:var(--sp-3);border-top:1px solid var(--gray-100);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);
+}
+.fact dt{font-size:var(--fs-5);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600)}
+.fact dd{margin-top:4px;font-size:var(--fs-4);font-weight:500;color:var(--gray-950)}
+.sub-actions{margin-top:var(--sp-3);display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3)}
+@media(max-width:720px){
+  .sub-card{grid-template-columns:1fr;gap:var(--sp-3)}
+  .sub-media{max-width:200px}
+  .sub-facts{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ---------- Video testimonial ---------- */
+.video-wrap{margin:var(--sp-5) auto 0;max-width:760px}
+.video{
+  position:relative;border-radius:var(--r-card);overflow:hidden;
+  background:var(--powder-100);aspect-ratio:16/9;
+}
+.video img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) sepia(.06)}
+.video-btn{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(2,18,27,.18);border:0;width:100%;
+  transition:background-color var(--dur) var(--ease);
+}
+.video-btn:hover{background:rgba(2,18,27,.3)}
+.video-btn span{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:66px;height:66px;border-radius:9999px;background:var(--white);
+}
+.video-btn svg{width:20px;height:20px;fill:var(--green-800);margin-left:3px}
+.video-cap{margin-top:var(--sp-2);font-size:var(--fs-5);color:var(--gray-600);text-align:center}
+
+/* ---------- Benefit chips (tick mark + label) ---------- */
+.benefit-grid{
+  margin-top:var(--sp-3);display:grid;grid-template-columns:repeat(6,1fr);gap:var(--sp-2);
+}
+.benefit{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--sp-3) var(--sp-2);text-align:center;
+}
+.benefit .tick{
+  width:32px;height:32px;margin:0 auto var(--sp-2);border-radius:9999px;
+  background:var(--green-100);display:flex;align-items:center;justify-content:center;
+}
+.benefit .tick svg{width:16px;height:16px;fill:none;stroke:var(--green-800);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.benefit p{font-size:var(--fs-4);font-weight:500;color:var(--gray-950);line-height:1.35}
+@media(max-width:900px){.benefit-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.benefit-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Reviews (matches the live PDP review card: green headline,
+   amber stars, Marselis body) ---------- */
+.review-grid{margin-top:var(--sp-3);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2)}
+.review{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--pad-card);display:flex;flex-direction:column;
+}
+.review-rating{display:flex;align-items:center;gap:var(--sp-1)}
+.review-rating .score{font-size:var(--fs-3);font-weight:500;color:var(--green-800)}
+.review-rating .stars svg{fill:var(--amber-400)}
+.review h3{margin-top:var(--sp-2);font-size:var(--fs-4);font-weight:500;color:var(--green-800)}
+/* blockquote takes the slack so the attribution always sits on the card floor */
+.review blockquote{flex:1;margin-top:6px;font-family:var(--font-marselis);font-size:var(--fs-4);line-height:1.5;color:var(--gray-700)}
+.review .who{
+  margin-top:var(--sp-3);padding-top:var(--sp-3);
+  border-top:1px solid var(--gray-100);font-size:var(--fs-5);color:var(--gray-600);
+}
+.review .who b{display:block;font-weight:500;color:var(--gray-950)}
+@media(max-width:900px){.review-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.review-grid{grid-template-columns:1fr}}
+
+/* ---------- Subscription benefit cards ---------- */
+.value-grid{margin-top:var(--sp-5);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2)}
+.value{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--pad-card);
+}
+.value h3{font-size:var(--fs-3);line-height:var(--lh-2);font-weight:500;color:var(--green-700)}
+.value p{margin-top:var(--sp-1);font-size:var(--fs-4);line-height:var(--lh-4);color:var(--gray-700)}
+@media(max-width:900px){.value-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.value-grid{grid-template-columns:1fr}}
+
+/* ---------- Reason form ---------- */
+.reason-panel{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--sp-5) var(--sp-4);
+}
+@media(max-width:560px){.reason-panel{padding:var(--sp-4) var(--sp-3)}}
+.reason-list{margin-top:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-1)}
+.reason{
+  display:flex;align-items:center;gap:var(--sp-2);
+  border:1px solid var(--border-pill);border-radius:var(--r-inner);
+  padding:14px var(--sp-2);cursor:pointer;background:var(--white);
+  transition:border-color var(--dur) var(--ease),background-color var(--dur) var(--ease);
+}
+.reason:hover{border-color:var(--green-800)}
+.reason input{position:absolute;opacity:0;width:0;height:0}
+.dot{
+  flex:0 0 auto;width:20px;height:20px;border-radius:9999px;
+  border:1px solid var(--border-pill);background:var(--white);position:relative;
+}
+.reason input:checked+.dot{border-color:var(--green-800);border-width:1.5px}
+.reason input:checked+.dot::after{
+  content:"";position:absolute;inset:4px;border-radius:9999px;background:var(--green-800);
+}
+/* Selected ring drawn with an inset shadow so selecting never reflows the row */
+.reason:has(input:checked){border-color:var(--green-800);box-shadow:inset 0 0 0 1px var(--green-800);background:var(--green-50)}
+.reason .label{font-size:var(--fs-4);color:var(--gray-950)}
+.reason-foot{margin-top:var(--sp-4);display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3)}
+.form-note{margin-top:var(--sp-2);font-size:var(--fs-5);color:#9c2810;display:none}
+.form-note.show{display:block}
+
+/* ---------- Offer (branch) panels ---------- */
+.offer-wrap{padding:var(--sp-6) 0 var(--sect)}
+.offer{
+  max-width:660px;margin:0 auto;background:var(--white);
+  border:1px solid var(--line);border-radius:var(--r-card);
+  padding:var(--sp-5) var(--sp-4);text-align:center;
+}
+@media(max-width:560px){.offer{padding:var(--sp-4) var(--sp-3)}}
+.offer .h-display{font-size:clamp(26px,3vw,36px)}
+.offer .lead{margin-left:auto;margin-right:auto;max-width:520px}
+.offer-rows{
+  margin:var(--sp-4) 0 0;text-align:left;border:1px solid var(--gray-100);
+  border-radius:var(--r-inner);background:var(--powder-50);padding:var(--sp-2) var(--sp-3);
+}
+.offer-row{
+  display:flex;justify-content:space-between;gap:var(--sp-2);
+  padding:10px 0;border-bottom:1px solid var(--gray-200);font-size:var(--fs-4);
+}
+.offer-row:last-child{border-bottom:0}
+.offer-row dt{color:var(--gray-600)}
+.offer-row dd{font-weight:500;color:var(--gray-950);text-align:right}
+.offer-row .was{color:var(--gray-600);text-decoration:line-through;font-weight:400;margin-right:6px}
+.offer-row.total dd{color:var(--green-800)}
+.offer-actions{margin-top:var(--sp-4);display:flex;flex-direction:column;align-items:center;gap:var(--sp-2)}
+.offer-actions .btn{width:100%;max-width:340px}
+.offer-sep{margin-top:var(--sp-3);padding-top:var(--sp-3);border-top:1px solid var(--gray-100);width:100%}
+.back-pill{margin:0 auto var(--sp-3);display:flex;justify-content:center}
+
+/* Quantity cards (branch 2) */
+.qty-grid{margin-top:var(--sp-4);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);text-align:left}
+.qty-card{
+  border:1px solid var(--border-pill);border-radius:var(--r-inner);
+  padding:var(--sp-2);cursor:pointer;background:var(--white);
+  transition:border-color var(--dur) var(--ease),background-color var(--dur) var(--ease);
+}
+.qty-card:hover{border-color:var(--green-800)}
+.qty-card input{position:absolute;opacity:0;width:0;height:0}
+.qty-card:has(input:checked){border-color:var(--green-800);box-shadow:inset 0 0 0 1px var(--green-800);background:var(--green-50)}
+.qty-card .n{display:block;font-size:var(--fs-3);font-weight:500;color:var(--gray-950)}
+.qty-card .mode{display:block;margin-top:6px;font-size:var(--fs-5);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-800)}
+.qty-card .desc{display:block;margin-top:6px;font-size:var(--fs-5);line-height:var(--lh-5);color:var(--gray-600)}
+@media(max-width:600px){.qty-grid{grid-template-columns:1fr}}
+
+/* Formula switch blocks (branch 5) */
+.switch-grid{margin-top:var(--sp-4);display:grid;grid-template-columns:1fr auto 1fr;gap:var(--sp-2);align-items:center;text-align:left}
+.switch-card{border:1px solid var(--gray-200);border-radius:var(--r-inner);padding:var(--sp-2);background:var(--powder-50)}
+.switch-card.to{border-color:var(--green-800);background:var(--green-50)}
+.switch-card .k{display:block;font-size:var(--fs-5);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600)}
+.switch-card.to .k{color:var(--green-800)}
+.switch-card .v{display:block;margin-top:6px;font-size:var(--fs-4);font-weight:500;color:var(--gray-950)}
+.switch-card .s{display:block;margin-top:2px;font-size:var(--fs-5);color:var(--gray-600)}
+.switch-arrow{color:var(--green-800)}
+.switch-arrow svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:600px){
+  .switch-grid{grid-template-columns:1fr}
+  .switch-arrow{transform:rotate(90deg);justify-self:center}
+}
+
+/* Option tiles (branch 8) */
+.opt-list{margin-top:var(--sp-4);display:flex;flex-direction:column;gap:var(--sp-1);text-align:left}
+.opt{
+  display:flex;align-items:flex-start;gap:var(--sp-2);
+  border:1px solid var(--border-pill);border-radius:var(--r-inner);
+  padding:14px var(--sp-2);background:var(--white);width:100%;text-align:left;
+  transition:border-color var(--dur) var(--ease),background-color var(--dur) var(--ease);
+}
+.opt:hover{border-color:var(--green-800);background:var(--green-50)}
+.opt .ic{
+  flex:0 0 auto;width:32px;height:32px;border-radius:var(--r-chip);background:var(--green-100);
+  display:flex;align-items:center;justify-content:center;
+}
+.opt .ic svg{width:18px;height:18px;fill:none;stroke:var(--green-800);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.opt .t{display:block;font-size:var(--fs-4);font-weight:500;color:var(--gray-950)}
+.opt .d{display:block;margin-top:3px;font-size:var(--fs-5);line-height:var(--lh-5);color:var(--gray-600)}
+
+/* Date field (branch 3) */
+.field{margin-top:var(--sp-3);text-align:left}
+.field label{display:block;font-size:var(--fs-5);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600);margin-bottom:6px}
+.field input{
+  width:100%;height:48px;padding:0 14px;border:1px solid var(--border-pill);
+  border-radius:5px;background:var(--white);font-size:var(--fs-4);color:var(--gray-950);
+}
+.field input:hover{border-color:var(--green-800)}
+
+/* ---------- Views ---------- */
+.view[hidden]{display:none}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--amber-100);padding:var(--sp-5) 0 0;margin-top:0}
+.footer-inner{display:flex;flex-wrap:wrap;gap:var(--sp-3);justify-content:space-between;align-items:center}
+.footer-links{display:flex;flex-wrap:wrap;gap:var(--sp-3);font-size:var(--fs-5)}
+.footer-links a{text-decoration:underline;text-underline-offset:3px;color:var(--gray-700)}
+.footer-links a:hover{color:var(--green-800)}
+.footer-help{font-size:var(--fs-5);color:var(--gray-600)}
+.footer-help a{font-weight:500;color:var(--green-800)}
+.footer-copy{margin-top:var(--sp-3);padding-top:var(--sp-3);border-top:1px solid rgba(37,37,39,.1);font-size:var(--fs-5);color:var(--gray-600)}
+/* Brand signature closer: wordmark bleeding off the bottom of the page */
+.giant-wordmark{margin-top:var(--sp-4);overflow:hidden;height:clamp(58px,15vw,164px)}
+.giant-wordmark img{width:100%;min-width:520px}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- PREVIEW SCAFFOLDING: remove this bar before production -->
+<div class="preview-bar">
+  <b>Design preview.</b> Customer name, prices, dates and anything tagged &ldquo;placeholder&rdquo; are sample values, not live data.
+</div>
+
+<!-- ============================================================
+     HEADER : account-context header (logo + back to account)
+     ============================================================ -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a class="header-back" href="/account/subscriptions">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>
+        My Subscriptions
+      </a>
+      <a class="header-logo" href="/" title="Munchkin Homepage" aria-label="Munchkin homepage">
+        <img src="https://www.munchkin.com/assets/Logo-C_WjjftE.svg" width="180" height="43" alt="Munchkin">
+      </a>
+      <a class="header-account" href="/account">Hi, Sarah</a><!-- data-slot: customer_first_name -->
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     VIEW 1 : RETENTION PAGE + REASON CAPTURE
+     ============================================================ -->
+<main id="view-main" class="view">
+
+  <!-- HERO + CURRENT SUBSCRIPTION -->
+  <section class="band band-cream hero">
+    <div class="container">
+      <span class="eyebrow">Manage your subscription</span>
+      <h1 class="h-display">Leaving so soon?</h1>
+      <p class="lead">Before you go, take a look at what your plan does for you and the ways it can flex around your family. You can still cancel at any point below.</p>
+
+      <!-- Current subscription summary -->
+      <div class="sub-card">
+        <div class="sub-media">
+          <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/organic-instant-formula.jpg?v=1778026745&width=480&height=480&crop=center"
+               width="480" height="480" alt="Munchkin Infant Formula with Organic Milk, 25.8 oz can">
+        </div>
+        <div class="sub-body">
+          <span class="badge">Active subscription</span>
+          <h2 style="margin-top:12px">
+            Munchkin Infant Formula with Organic Milk<!-- data-slot: product_name -->
+            <span class="qty">(<span data-slot="cans_per_month">4</span> cans/mo.)</span>
+          </h2>
+          <p class="sub-meta">Subscribed since <span data-slot="subscription_start">March 2026</span>, <span data-slot="subscription_duration">5 months</span> in.</p>
+
+          <dl class="sub-facts">
+            <div class="fact">
+              <dt>Servings</dt>
+              <!-- VERIFY: confirm servings per 25.8 oz can against the nutrition panel before launch -->
+              <dd><span data-slot="servings">95 servings</span> per can <span class="ph">Verify</span></dd>
+            </div>
+            <div class="fact">
+              <dt>Price</dt>
+              <dd><span data-slot="price_per_month">$159.96</span>/mo.</dd>
+            </div>
+            <div class="fact">
+              <dt>Next order</dt>
+              <dd data-slot="next_order_date">August 22, 2026</dd>
+            </div>
+          </dl>
+
+          <div class="sub-actions">
+            <a class="btn btn-01" href="/account/subscriptions">Keep The Subscription</a>
+            <a class="quiet" href="#why">I still want to cancel</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO TESTIMONIAL -->
+      <!-- DUMMY: replace poster + embed with the real parent testimonial video -->
+      <div class="video-wrap">
+        <div class="video">
+          <img src="https://cdn.munchkin.com/uploads/2026/04/Formula-Review-1.png"
+               width="1200" height="675" alt="A parent bottle feeding their baby beside a window" loading="lazy">
+          <button class="video-btn" type="button" aria-label="Play parent testimonial video">
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </span>
+          </button>
+        </div>
+        <p class="video-cap"><span class="ph">Placeholder</span> Parent testimonial, 0:47</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="band band-tint">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">What your baby keeps getting</span>
+        <h2 class="h-2">Ten breastmilk ingredients, <span class="accent">every single feed.</span></h2>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Fewer Tummy Troubles*</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Softer, Easier Stools*</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Gentle Digestion</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Designed for Sleep</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Brain Development</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Immunity Support</p>
+        </div>
+      </div>
+      <p class="micro" style="margin-top:var(--sp-3);text-align:center">*Structure and levels differ from those in breastmilk. Based on a 16 week clinical trial in 260 infants. <span class="ph">Needs legal sign off</span></p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="band band-cream">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Testimonials</span>
+        <h2 class="h-2">Loved by parents <span class="accent">like you.</span></h2>
+      </div>
+      <!-- Real 5 star reviews from the live munchkin.com formula PDP review drawer.
+           SLOT: pull the current top 4 five star reviews at render time. -->
+      <div class="review-grid">
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Picky Baby Approved x3!</h3>
+          <blockquote>My family is a huge fan of everything Munchkin puts out! This formula was a hit in my household with my triplet newborns. I&rsquo;ve got pretty picky babies and they took right to this formula. No gas or colic!</blockquote>
+          <p class="who"><b>Angelica F.</b>22 Feb, 2026</p>
+        </div>
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Where has this been ?!?!</h3>
+          <blockquote>Okay, I absolutely LOVED this formula. My son has GI problems and this is the first milk that he hasn&rsquo;t gotten sick from! And the best part is, this is no smell to it! The powder is really fine so you don&rsquo;t need to worry about clumps.</blockquote>
+          <p class="who"><b>Juliana T.</b>19 Feb, 2026</p>
+        </div>
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Easy on the tummy.</h3>
+          <blockquote>I am really liking this formula for my baby. It has done everything it claims. It instantly made her stool softer and she&rsquo;s been going a lot more often.</blockquote>
+          <p class="who"><b>Donna C.</b>27 Feb, 2026</p>
+        </div>
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Finally, a Formula I Completely Trust</h3>
+          <blockquote>Since switching 100% over to Munchkin Organic, I could not be happier. My babies have done so well on it, and as a mom, that peace of mind is everything. I&rsquo;m so grateful to have found a formula that checks all the boxes for our family.</blockquote>
+          <p class="who"><b>Brittany F.</b>18 Jun, 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTION BENEFITS -->
+  <section class="band band-mint">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Subscription benefits</span>
+        <h2 class="h-display">One Less Thing To Worry About&hellip;</h2>
+        <p class="lead">Your subscription keeps your baby&rsquo;s formula stocked and delivered around your family&rsquo;s routine, with the flexibility to make changes anytime.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value">
+          <h3>Reliable formula delivered before you need it</h3>
+          <p>No last minute store runs, no empty shelves, and no realizing you are nearly out during a 2am feeding.</p>
+        </div>
+        <div class="value">
+          <h3>A plan matched to your feeding routine</h3>
+          <p>Choose 2 cans for supplementing, 4 for combination feeding, or 6 if formula covers most or all of baby&rsquo;s feeds.</p>
+        </div>
+        <div class="value">
+          <h3>Flexibility as your baby&rsquo;s needs change</h3>
+          <p>Change quantities, switch between Organic and Original, skip a shipment, pause, or reschedule instead of canceling and starting over.</p>
+        </div>
+        <div class="value">
+          <h3>Less mental load</h3>
+          <p>Formula becomes one fewer recurring task to remember. That matters most in the months when everything else already needs your attention.</p>
+        </div>
+        <div class="value">
+          <h3>Consistency for baby</h3>
+          <p>Regular deliveries keep the formula your baby is already used to on the shelf, so you are never scrambling for a substitute.</p>
+        </div>
+        <div class="value">
+          <h3>Ongoing savings and subscriber value</h3>
+          <p>Free shipping, subscriber pricing, and member perks stay with the plan. They stop the moment it does.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASON CAPTURE -->
+  <section class="band band-cream" id="why">
+    <div class="container">
+      <div class="narrow">
+        <div class="reason-panel">
+          <div class="center">
+            <h2 class="h-2">Tell Us: <span class="accent">Why Do You Want To Cancel?</span></h2>
+            <p class="lead" style="font-size:var(--fs-4)">Feeding routines change, and your subscription can change with them. Tell us what is going on and we will help you find the best option for your family.</p>
+          </div>
+
+          <form id="reason-form" novalidate>
+            <fieldset style="border:0">
+              <legend class="sr-only">Reason for canceling</legend>
+              <div class="reason-list">
+                <label class="reason"><input type="radio" name="reason" value="1"><span class="dot" aria-hidden="true"></span><span class="label">I have more formula than I need</span></label>
+                <label class="reason"><input type="radio" name="reason" value="2"><span class="dot" aria-hidden="true"></span><span class="label">I need fewer cans</span></label>
+                <label class="reason"><input type="radio" name="reason" value="3"><span class="dot" aria-hidden="true"></span><span class="label">My next delivery date doesn&rsquo;t work</span></label>
+                <label class="reason"><input type="radio" name="reason" value="4"><span class="dot" aria-hidden="true"></span><span class="label">It&rsquo;s getting too expensive</span></label>
+                <label class="reason"><input type="radio" name="reason" value="5"><span class="dot" aria-hidden="true"></span><span class="label">I&rsquo;d like to try the other formula</span></label>
+                <label class="reason"><input type="radio" name="reason" value="6"><span class="dot" aria-hidden="true"></span><span class="label">The formula isn&rsquo;t working for my baby</span></label>
+                <label class="reason"><input type="radio" name="reason" value="7"><span class="dot" aria-hidden="true"></span><span class="label">I no longer need formula</span></label>
+                <label class="reason"><input type="radio" name="reason" value="8"><span class="dot" aria-hidden="true"></span><span class="label">Something else</span></label>
+              </div>
+            </fieldset>
+
+            <p class="form-note" id="reason-error" role="status">Please choose a reason so we can show you the right options.</p>
+
+            <div class="reason-foot">
+              <button class="btn btn-01" type="submit">Continue</button>
+              <span class="micro">Don&rsquo;t want to cancel? <a href="/account" style="font-weight:500;color:var(--green-800)">Continue with your account</a></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================
+     VIEW 2 : BRANCH OFFERS (one panel per reason)
+     ============================================================ -->
+<main id="view-offer" class="view" hidden>
+  <div class="offer-wrap">
+    <div class="container">
+      <div class="back-pill">
+        <button class="btn btn-03" type="button" data-action="back">Back to reasons</button>
+      </div>
+
+      <!-- BRANCH 1 : I have more formula than I need -->
+      <section class="offer" data-branch="1" hidden>
+        <span class="eyebrow">Let&rsquo;s give you a little breathing room</span>
+        <h2 class="h-display">Skip Your Next Shipment</h2>
+        <p class="lead">Already stocked up? Skip your next delivery and keep your subscription active. No box arrives and nothing is charged right now.</p>
+        <dl class="offer-rows">
+          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
+          <div class="offer-row"><dt>Next scheduled delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
+          <div class="offer-row total"><dt>Upcoming total</dt><dd data-slot="price_per_month">$159.96</dd></div>
+        </dl>
+        <div class="offer-actions">
+          <button class="btn btn-01" type="button">Skip My Next Shipment</button>
+          <button class="btn btn-02" type="button">Pause My Subscription Instead</button>
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 2 : I need fewer cans -->
+      <section class="offer" data-branch="2" hidden>
+        <span class="eyebrow">Get the right amount for your routine</span>
+        <h2 class="h-display">Choose a Better Fit</h2>
+        <p class="lead">You don&rsquo;t have to cancel just because your feeding routine has changed. Select the quantity that works better for your family.</p>
+
+        <div class="qty-grid">
+          <label class="qty-card">
+            <input type="radio" name="qty" value="2">
+            <span class="qty-top"><span class="n">2 Cans</span></span>
+            <span class="mode">Supplementing</span>
+            <span class="desc">For occasional formula feeds alongside breast milk.</span>
+          </label>
+          <label class="qty-card">
+            <input type="radio" name="qty" value="4" checked>
+            <span class="qty-top"><span class="n">4 Cans</span></span>
+            <span class="mode">Combination feeding</span>
+            <span class="desc">For regularly alternating between breast milk and formula.</span>
+          </label>
+          <label class="qty-card">
+            <input type="radio" name="qty" value="6">
+            <span class="qty-top"><span class="n">6 Cans</span></span>
+            <span class="mode">Full formula feeding</span>
+            <span class="desc">For most or all of baby&rsquo;s feeds.</span>
+          </label>
+        </div>
+
+        <dl class="offer-rows">
+          <div class="offer-row"><dt>Your new subscription</dt><dd><span data-slot="selected_quantity">4</span> cans</dd></div>
+          <div class="offer-row total"><dt>Your new shipment total</dt><dd data-slot="new_price">$159.96</dd></div>
+          <div class="offer-row"><dt>Next delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
+        </dl>
+        <div class="offer-actions">
+          <button class="btn btn-01" type="button">Update My Subscription</button>
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 3 : My next delivery date doesn't work -->
+      <section class="offer" data-branch="3" hidden>
+        <span class="eyebrow">Let&rsquo;s find a better date</span>
+        <h2 class="h-display">Reschedule Your Next Delivery</h2>
+        <p class="lead">Move your upcoming shipment to a date that works better for your family, without canceling your subscription.</p>
+        <dl class="offer-rows">
+          <div class="offer-row"><dt>Current delivery date</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
+        </dl>
+        <div class="field">
+          <label for="new-date">Choose a new delivery date</label>
+          <input id="new-date" type="date" value="2026-09-05" min="2026-08-07">
+        </div>
+        <div class="offer-actions">
+          <button class="btn btn-01" type="button">Update My Delivery Date</button>
+          <button class="btn btn-02" type="button">Skip This Shipment Instead</button>
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 4 : It's getting too expensive -->
+      <section class="offer" data-branch="4" hidden>
+        <span class="eyebrow">A little savings can go a long way</span>
+        <h2 class="h-display">Stay and Save <span data-slot="discount_percent">15</span>%</h2>
+        <p style="margin-top:var(--sp-2)"><span class="ph">Placeholder discount rate</span></p>
+        <p class="lead">Keep your Munchkin Formula subscription and receive <span data-slot="discount_percent">15</span>% off your next <span data-slot="discount_shipments">3</span> shipments.</p>
+        <dl class="offer-rows">
+          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
+          <div class="offer-row"><dt>Regular price</dt><dd data-slot="price_per_month">$159.96</dd></div>
+          <div class="offer-row total"><dt>Your discounted price</dt><dd><span class="was" data-slot="price_per_month">$159.96</span><span data-slot="discounted_price">$135.97</span></dd></div>
+        </dl>
+        <div class="offer-actions">
+          <button class="btn btn-01" type="button">Apply My Discount</button>
+          <button class="btn btn-02" type="button">Reduce My Can Quantity</button>
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 5 : I'd like to try the other formula -->
+      <section class="offer" data-branch="5" hidden>
+        <span class="eyebrow">Try a different Munchkin formula</span>
+        <h2 class="h-display">Switch Without <span class="accent">Starting Over</span></h2>
+        <p class="lead">You can switch between Munchkin Organic and Munchkin Original without canceling your subscription.</p>
+
+        <div class="switch-grid">
+          <div class="switch-card">
+            <span class="k">Current formula</span>
+            <span class="v">Munchkin <span data-slot="formula_variant">Organic</span></span>
+            <span class="s"><span data-slot="cans_per_month">4</span> cans per shipment</span>
+            <span class="s" data-slot="price_per_month">$159.96</span>
+          </div>
+          <span class="switch-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg>
+          </span>
+          <div class="switch-card to">
+            <span class="k">Switch to</span>
+            <span class="v">Munchkin <span data-slot="formula_variant_alt">Original</span></span>
+            <span class="s"><span data-slot="cans_per_month">4</span> cans per shipment</span>
+            <span class="s" data-slot="new_price">$143.96</span>
+          </div>
+        </div>
+
+        <dl class="offer-rows">
+          <div class="offer-row"><dt>Your next shipment</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
+        </dl>
+        <div class="offer-actions">
+          <button class="btn btn-01" type="button">Switch My Formula</button>
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 6 : The formula isn't working for my baby -->
+      <section class="offer" data-branch="6" hidden>
+        <span class="eyebrow">We&rsquo;re sorry it hasn&rsquo;t been the right fit</span>
+        <h2 class="h-display">Every Baby <span class="accent">Is Different</span></h2>
+        <p class="lead">Our Customer Satisfaction team is here to help with any questions or concerns about your Munchkin Formula experience.</p>
+        <p class="lead" style="font-size:var(--fs-4)">If you are concerned about your baby&rsquo;s feeding, digestion, or health, please contact your pediatrician.</p>
+        <div class="offer-actions">
+          <a class="btn btn-01" href="/contact">Contact Customer Satisfaction</a>
+          <p class="micro">helpinfantformula@munchkin.com or 833.949.6673</p>
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 7 / FINAL CANCEL : I no longer need formula -->
+      <section class="offer" data-branch="7" hidden>
+        <span class="eyebrow">We understand</span>
+        <h2 class="h-display">Feeding Needs Change</h2>
+        <p class="lead">If your family no longer needs formula, you can cancel your subscription below. Nothing will ship or be charged after that.</p>
+        <dl class="offer-rows">
+          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
+          <div class="offer-row"><dt>Next scheduled delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
+        </dl>
+        <div class="offer-actions">
+          <button class="btn btn-neutral" type="button" data-action="confirm-cancel">Cancel My Subscription</button>
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="back">Go Back</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 8 : Something else -->
+      <section class="offer" data-branch="8" hidden>
+        <span class="eyebrow">Would one of these options help?</span>
+        <h2 class="h-display">Choose What Works <span class="accent">Best for You</span></h2>
+        <div class="opt-list">
+          <button class="opt" type="button">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></span>
+            <span><span class="t">Pause My Subscription</span><span class="d">Stop deliveries temporarily and restart when you&rsquo;re ready.</span></span>
+          </button>
+          <button class="opt" type="button" data-goto="1">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h9"/><path d="m14 7 5 5-5 5"/></svg></span>
+            <span><span class="t">Skip My Next Shipment</span><span class="d">Keep your subscription without receiving or paying for the next delivery.</span></span>
+          </button>
+          <button class="opt" type="button" data-goto="3">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 6h14v14H5z"/><path d="M5 10h14M9 4v4M15 4v4"/></svg></span>
+            <span><span class="t">Change My Delivery Date</span><span class="d">Move your next shipment to a more convenient date.</span></span>
+          </button>
+          <button class="opt" type="button" data-goto="2">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 8h10M7 12h10M7 16h6"/></svg></span>
+            <span><span class="t">Change My Can Quantity</span><span class="d">Increase or reduce the number of cans in each shipment.</span></span>
+          </button>
+          <button class="opt" type="button" data-goto="5">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></span>
+            <span><span class="t">Switch My Formula</span><span class="d">Switch between Munchkin Organic and Munchkin Original.</span></span>
+          </button>
+          <button class="opt" type="button" data-goto="6">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.3-6.5"/><path d="M4 19v-4h4"/></svg></span>
+            <span><span class="t">Contact Customer Satisfaction</span><span class="d">Talk to a person about your plan or your baby&rsquo;s feeding.</span></span>
+          </button>
+        </div>
+        <div class="offer-actions">
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================
+     VIEW 3 : CANCELLATION CONFIRMED
+     ============================================================ -->
+<main id="view-done" class="view" hidden>
+  <div class="offer-wrap">
+    <div class="container">
+      <!-- This confirmation screen is not in the supplied content doc. It exists so the flow
+           has a terminal state. Confirm wording before launch. -->
+      <section class="offer">
+        <p style="margin-bottom:var(--sp-2)"><span class="ph">Placeholder screen, not in content doc</span></p>
+        <span class="eyebrow">Subscription canceled</span>
+        <h2 class="h-display">Thank you for <span class="accent">feeding with us.</span></h2>
+        <p class="lead">Your Munchkin Formula subscription is canceled and no further shipments will be sent. A confirmation is on its way to <span data-slot="customer_email">your email</span>.</p>
+        <dl class="offer-rows">
+          <div class="offer-row"><dt>Canceled plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
+          <div class="offer-row"><dt>Canceled on</dt><dd data-slot="cancel_date">August 6, 2026</dd></div>
+        </dl>
+        <div class="offer-actions">
+          <a class="btn btn-01" href="/infant-formula-organic">Restart Anytime</a>
+          <a class="btn btn-02" href="/account">Back To My Account</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ============================================================
+     FOOTER : condensed account footer (brand cream #fff2d3)
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="Support">
+        <a href="/shipping-information">Shipping</a>
+        <a href="/returns">Returns</a>
+        <a href="/contact">Contact Us</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-conditions">Terms &amp; Conditions</a>
+        <a href="/accessibility">Accessibility Statement</a>
+      </nav>
+      <p class="footer-help">Formula questions? <a href="mailto:helpinfantformula@munchkin.com">helpinfantformula@munchkin.com</a> or 833.949.6673</p>
+    </div>
+    <p class="footer-copy">Copyright &copy; 2026 Munchkin, a Why Brands Inc. company. All rights reserved.</p>
+    <div class="giant-wordmark">
+      <img src="https://www.munchkin.com/assets/Logo-C_WjjftE.svg" alt="" aria-hidden="true">
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var views  = {main:document.getElementById('view-main'), offer:document.getElementById('view-offer'), done:document.getElementById('view-done')};
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[data-branch]'));
+  var form   = document.getElementById('reason-form');
+  var note   = document.getElementById('reason-error');
+
+  function show(name){
+    Object.keys(views).forEach(function(k){ views[k].hidden = (k !== name); });
+    window.scrollTo({top:0, behavior:'auto'});
+  }
+
+  function openBranch(value){
+    var active = null;
+    panels.forEach(function(p){
+      var match = p.getAttribute('data-branch') === String(value);
+      p.hidden = !match;
+      if(match) active = p;
+    });
+    show('offer');
+    // Move focus to the panel so screen reader and keyboard users land on the new content
+    if(active){ active.setAttribute('tabindex','-1'); active.focus({preventScroll:true}); }
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var picked = form.querySelector('input[name="reason"]:checked');
+    if(!picked){ note.classList.add('show'); return; }
+    note.classList.remove('show');
+    openBranch(picked.value);
+  });
+
+  form.addEventListener('change', function(){ note.classList.remove('show'); });
+
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-action],[data-goto]');
+    if(!el) return;
+    var goto = el.getAttribute('data-goto');
+    if(goto){ openBranch(goto); return; }
+    var action = el.getAttribute('data-action');
+    if(action === 'back'){ show('main'); }
+    if(action === 'cancel'){ openBranch(7); }          // last-step confirmation panel
+    if(action === 'confirm-cancel'){ show('done'); }   // wire to the subscription API
+  });
+
+  // Keep the "new shipment total" row in step with the selected quantity (branch 2).
+  var PRICE_PER_CAN = 39.99; // data-slot: price_per_can
+  var qtyInputs = document.querySelectorAll('input[name="qty"]');
+  Array.prototype.forEach.call(qtyInputs, function(input){
+    input.addEventListener('change', function(){
+      var n = parseInt(input.value, 10);
+      var panel = document.querySelector('[data-branch="2"]');
+      panel.querySelector('[data-slot="selected_quantity"]').textContent = n;
+      panel.querySelector('[data-slot="new_price"]').textContent = '$' + (n * PRICE_PER_CAN).toFixed(2);
+    });
+  });
+})();
+</script>
+</body>
+</html>
