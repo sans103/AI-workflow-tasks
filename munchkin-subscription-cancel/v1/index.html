@@ -202,7 +202,7 @@ input,select{font-family:inherit}
 }
 
 /* ---------- Hero ---------- */
-.hero{padding:var(--sp-6) 0 var(--sect)}
+.hero{padding:var(--sp-6) 0 var(--sp-5)}
 .hero .lead{margin-top:var(--sp-3)}
 
 /* ---------- Subscription summary card ---------- */
@@ -227,51 +227,6 @@ input,select{font-family:inherit}
   .sub-card{grid-template-columns:1fr;gap:var(--sp-3)}
   .sub-media{max-width:200px}
   .sub-facts{grid-template-columns:repeat(2,1fr)}
-}
-
-/* ---------- Member value strip inside the plan card (v2) ----------
-   Drew Pion, Figma comment 1876543138: remind subscribers what the
-   membership is worth at the moment they are deciding to leave. */
-.sub-perks{
-  grid-column:1/-1;margin-top:var(--sp-1);padding-top:var(--sp-3);
-  border-top:1px solid var(--gray-100);
-  display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);
-}
-.perk{display:flex;align-items:flex-start;gap:10px}
-.perk .tick{
-  flex:0 0 auto;width:22px;height:22px;margin-top:1px;border-radius:9999px;
-  background:var(--green-100);display:flex;align-items:center;justify-content:center;
-}
-.perk .tick svg{width:12px;height:12px;fill:none;stroke:var(--green-800);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.perk b{display:block;font-size:var(--fs-4);font-weight:500;color:var(--gray-950)}
-.perk span.d{display:block;margin-top:2px;font-size:var(--fs-5);line-height:var(--lh-5);color:var(--gray-600)}
-@media(max-width:720px){.sub-perks{grid-template-columns:1fr;gap:var(--sp-2)}}
-
-/* ---------- Service contact card (v2) ---------- */
-.help-card{
-  margin-top:var(--sp-4);background:var(--white);border:1px solid var(--line);
-  border-radius:var(--r-card);padding:var(--pad-card);
-  display:grid;grid-template-columns:1fr 1fr auto;gap:var(--sp-3);align-items:center;
-}
-.help-route{
-  display:flex;align-items:center;gap:var(--sp-2);text-decoration:none;
-  border:1px solid var(--gray-100);border-radius:var(--r-inner);
-  padding:14px var(--sp-2);background:var(--powder-50);
-  transition:border-color var(--dur) var(--ease),background-color var(--dur) var(--ease);
-}
-.help-route:hover{border-color:var(--green-800);background:var(--green-50)}
-.help-route .ic{
-  flex:0 0 auto;width:36px;height:36px;border-radius:var(--r-chip);background:var(--green-100);
-  display:flex;align-items:center;justify-content:center;
-}
-.help-route .ic svg{width:18px;height:18px;fill:none;stroke:var(--green-800);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.help-route .t{display:block;font-size:var(--fs-5);font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--gray-600)}
-.help-route .d{display:block;margin-top:3px;font-size:var(--fs-4);font-weight:500;color:var(--gray-950)}
-.help-cta{display:flex;justify-content:flex-end}
-@media(max-width:900px){
-  .help-card{grid-template-columns:1fr}
-  .help-cta{justify-content:stretch}
-  .help-cta .btn{width:100%}
 }
 
 /* ---------- Video testimonial ---------- */
@@ -416,17 +371,6 @@ input,select{font-family:inherit}
 .qty-card .desc{display:block;margin-top:6px;font-size:var(--fs-5);line-height:var(--lh-5);color:var(--gray-600)}
 @media(max-width:600px){.qty-grid{grid-template-columns:1fr}}
 
-/* Alternate offer card inside a branch panel (v2, branch 4) */
-.alt-offer{
-  margin-top:var(--sp-4);text-align:left;border:1px solid var(--green-800);
-  border-radius:var(--r-inner);background:var(--green-50);padding:var(--sp-3);
-}
-.alt-offer .k{display:block;font-size:var(--fs-5);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--green-800)}
-.alt-offer h3{margin-top:6px;font-size:var(--fs-3);line-height:var(--lh-2);font-weight:500;color:var(--gray-950)}
-.alt-offer p{margin-top:var(--sp-1);font-size:var(--fs-4);line-height:var(--lh-4);color:var(--gray-700)}
-.alt-offer .offer-rows{background:var(--white);margin-top:var(--sp-3)}
-.alt-offer .btn{margin-top:var(--sp-3);width:100%}
-
 /* Formula switch blocks (branch 5) */
 .switch-grid{margin-top:var(--sp-4);display:grid;grid-template-columns:1fr auto 1fr;gap:var(--sp-2);align-items:center;text-align:left}
 .switch-card{border:1px solid var(--gray-200);border-radius:var(--r-inner);padding:var(--sp-2);background:var(--powder-50)}
@@ -523,7 +467,7 @@ input,select{font-family:inherit}
   <section class="band band-cream hero">
     <div class="container">
       <span class="eyebrow">Manage your subscription</span>
-      <h1 class="h-display">Leaving so soon, <span data-slot="customer_first_name">Sarah</span>?</h1>
+      <h1 class="h-display">Leaving so soon?</h1>
       <p class="lead">Before you go, take a look at what your plan does for you and the ways it can flex around your family. You can still cancel at any point below.</p>
 
       <!-- Current subscription summary -->
@@ -561,35 +505,133 @@ input,select{font-family:inherit}
             <a class="quiet" href="#why">I still want to cancel</a>
           </div>
         </div>
-
-        <!-- Member value reminder. CONFIRM: the 10% site wide member discount was proposed in
-             review. The live site currently advertises 10% off Build Your Own Bundle and 10%
-             off a first order via email signup, which are different offers. -->
-        <div class="sub-perks">
-          <div class="perk">
-            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-            <span>
-              <b>10% off site wide <span class="ph">Confirm</span></b>
-              <span class="d">Your member discount on everything Munchkin makes, not just formula.</span>
-            </span>
-          </div>
-          <div class="perk">
-            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-            <span>
-              <b>Free shipping</b>
-              <span class="d">Included on every subscription delivery.</span>
-            </span>
-          </div>
-          <div class="perk">
-            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-            <span>
-              <b>Subscriber pricing</b>
-              <span class="d">Locked in for as long as the plan stays active.</span>
-            </span>
-          </div>
-        </div>
       </div>
 
+      <!-- VIDEO TESTIMONIAL -->
+      <!-- DUMMY: replace poster + embed with the real parent testimonial video -->
+      <div class="video-wrap">
+        <div class="video">
+          <img src="https://cdn.munchkin.com/uploads/2026/04/Formula-Review-1.png"
+               width="1200" height="675" alt="A parent bottle feeding their baby beside a window" loading="lazy">
+          <button class="video-btn" type="button" aria-label="Play parent testimonial video">
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </span>
+          </button>
+        </div>
+        <p class="video-cap"><span class="ph">Placeholder</span> Parent testimonial, 0:47</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="band band-tint">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">What your baby keeps getting</span>
+        <h2 class="h-2">Ten breastmilk ingredients, <span class="accent">every single feed.</span></h2>
+      </div>
+      <div class="benefit-grid">
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Fewer Tummy Troubles*</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Softer, Easier Stools*</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Gentle Digestion</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Designed for Sleep</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Brain Development</p>
+        </div>
+        <div class="benefit">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <p>Immunity Support</p>
+        </div>
+      </div>
+      <p class="micro" style="margin-top:var(--sp-3);text-align:center">*Structure and levels differ from those in breastmilk. Based on a 16 week clinical trial in 260 infants. <span class="ph">Needs legal sign off</span></p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="band band-cream">
+    <div class="container">
+      <div class="center">
+        <span class="eyebrow">Testimonials</span>
+        <h2 class="h-2">Loved by parents <span class="accent">like you.</span></h2>
+      </div>
+      <!-- Real 5 star reviews from the live munchkin.com formula PDP review drawer.
+           SLOT: pull the current top 4 five star reviews at render time. -->
+      <div class="review-grid">
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Picky Baby Approved x3!</h3>
+          <blockquote>My family is a huge fan of everything Munchkin puts out! This formula was a hit in my household with my triplet newborns. I&rsquo;ve got pretty picky babies and they took right to this formula. No gas or colic!</blockquote>
+          <p class="who"><b>Angelica F.</b>22 Feb, 2026</p>
+        </div>
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Where has this been ?!?!</h3>
+          <blockquote>Okay, I absolutely LOVED this formula. My son has GI problems and this is the first milk that he hasn&rsquo;t gotten sick from! And the best part is, this is no smell to it! The powder is really fine so you don&rsquo;t need to worry about clumps.</blockquote>
+          <p class="who"><b>Juliana T.</b>19 Feb, 2026</p>
+        </div>
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Easy on the tummy.</h3>
+          <blockquote>I am really liking this formula for my baby. It has done everything it claims. It instantly made her stool softer and she&rsquo;s been going a lot more often.</blockquote>
+          <p class="who"><b>Donna C.</b>27 Feb, 2026</p>
+        </div>
+        <div class="review">
+          <div class="review-rating">
+            <span class="score">5.0</span>
+            <span class="stars" role="img" aria-label="Rated 5 out of 5">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+            </span>
+          </div>
+          <h3>Finally, a Formula I Completely Trust</h3>
+          <blockquote>Since switching 100% over to Munchkin Organic, I could not be happier. My babies have done so well on it, and as a mom, that peace of mind is everything. I&rsquo;m so grateful to have found a formula that checks all the boxes for our family.</blockquote>
+          <p class="who"><b>Brittany F.</b>18 Jun, 2026</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -630,83 +672,6 @@ input,select{font-family:inherit}
     </div>
   </section>
 
-  <!-- BENEFITS -->
-  <section class="band band-cream">
-    <div class="container">
-      <div class="center">
-        <span class="eyebrow">What your baby keeps getting</span>
-        <h2 class="h-2">Ten breastmilk ingredients, <span class="accent">every single feed.</span></h2>
-      </div>
-      <div class="benefit-grid">
-        <div class="benefit">
-          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-          <p>Fewer Tummy Troubles*</p>
-        </div>
-        <div class="benefit">
-          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-          <p>Softer, Easier Stools*</p>
-        </div>
-        <div class="benefit">
-          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-          <p>Gentle Digestion</p>
-        </div>
-        <div class="benefit">
-          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-          <p>Designed for Sleep</p>
-        </div>
-        <div class="benefit">
-          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-          <p>Brain Development</p>
-        </div>
-        <div class="benefit">
-          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-          <p>Immunity Support</p>
-        </div>
-      </div>
-      <p class="micro" style="margin-top:var(--sp-3);text-align:center">*Structure and levels differ from those in breastmilk. Based on a 16 week clinical trial in 260 infants. <span class="ph">Needs legal sign off</span></p>
-
-      <!-- v2: video sits inside this section so there is no phantom band change -->
-      <div class="video-wrap">
-        <div class="video">
-          <img src="https://cdn.munchkin.com/uploads/2026/04/Formula-Review-1.png"
-               width="1200" height="675" alt="A parent bottle feeding their baby beside a window" loading="lazy">
-          <button class="video-btn" type="button" aria-label="Play parent testimonial video">
-            <span aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>
-            </span>
-          </button>
-        </div>
-        <p class="video-cap"><span class="ph">Placeholder</span> Parent testimonial, 0:47</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICE CONTACT (v2: replaces the reviews band. Drew Pion, Figma comment 1876552419:
-       reviews read as acquisition messaging to someone who is already a subscriber. A service
-       route lets the Customer Satisfaction team try to retain instead.) -->
-  <section class="band band-powder">
-    <div class="container">
-      <div class="center">
-        <span class="eyebrow">We&rsquo;re here to help</span>
-        <h2 class="h-2">Talk to us <span class="accent">before you go.</span></h2>
-        <p class="lead">If something isn&rsquo;t working, our Customer Satisfaction team can look at your plan with you. Most things get sorted without canceling.</p>
-      </div>
-      <div class="help-card">
-        <a class="help-route" href="mailto:helpinfantformula@munchkin.com">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg></span>
-          <span><span class="t">Email us</span><span class="d">helpinfantformula@munchkin.com</span></span>
-        </a>
-        <a class="help-route" href="tel:8339496673">
-          <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 3H4v4c0 7.2 5.8 13 13 13h4v-4l-4.5-1.5-2 2.5a15 15 0 0 1-5.5-5.5l2.5-2z"/></svg></span>
-          <span><span class="t">Call us</span><span class="d">833.949.6673</span></span>
-        </a>
-        <div class="help-cta">
-          <a class="btn btn-01" href="/contact">Contact Customer Satisfaction</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- REASON CAPTURE -->
   <section class="band band-cream" id="why">
     <div class="container">
@@ -721,14 +686,14 @@ input,select{font-family:inherit}
             <fieldset style="border:0">
               <legend class="sr-only">Reason for canceling</legend>
               <div class="reason-list">
-                <label class="reason"><input type="radio" name="reason" value="1" data-reason="overstocked"><span class="dot" aria-hidden="true"></span><span class="label">I have more formula than I need</span></label>
-                <label class="reason"><input type="radio" name="reason" value="2" data-reason="fewer_cans"><span class="dot" aria-hidden="true"></span><span class="label">I need fewer cans</span></label>
-                <label class="reason"><input type="radio" name="reason" value="3" data-reason="delivery_date"><span class="dot" aria-hidden="true"></span><span class="label">My next delivery date doesn&rsquo;t work</span></label>
-                <label class="reason"><input type="radio" name="reason" value="4" data-reason="price"><span class="dot" aria-hidden="true"></span><span class="label">It&rsquo;s getting too expensive</span></label>
-                <label class="reason"><input type="radio" name="reason" value="5" data-reason="formula_switch"><span class="dot" aria-hidden="true"></span><span class="label">I&rsquo;d like to try the other formula</span></label>
-                <label class="reason"><input type="radio" name="reason" value="6" data-reason="product_fit"><span class="dot" aria-hidden="true"></span><span class="label">The formula isn&rsquo;t working for my baby</span></label>
-                <label class="reason"><input type="radio" name="reason" value="7" data-reason="no_longer_needed"><span class="dot" aria-hidden="true"></span><span class="label">I no longer need formula</span></label>
-                <label class="reason"><input type="radio" name="reason" value="8" data-reason="other"><span class="dot" aria-hidden="true"></span><span class="label">Something else</span></label>
+                <label class="reason"><input type="radio" name="reason" value="1"><span class="dot" aria-hidden="true"></span><span class="label">I have more formula than I need</span></label>
+                <label class="reason"><input type="radio" name="reason" value="2"><span class="dot" aria-hidden="true"></span><span class="label">I need fewer cans</span></label>
+                <label class="reason"><input type="radio" name="reason" value="3"><span class="dot" aria-hidden="true"></span><span class="label">My next delivery date doesn&rsquo;t work</span></label>
+                <label class="reason"><input type="radio" name="reason" value="4"><span class="dot" aria-hidden="true"></span><span class="label">It&rsquo;s getting too expensive</span></label>
+                <label class="reason"><input type="radio" name="reason" value="5"><span class="dot" aria-hidden="true"></span><span class="label">I&rsquo;d like to try the other formula</span></label>
+                <label class="reason"><input type="radio" name="reason" value="6"><span class="dot" aria-hidden="true"></span><span class="label">The formula isn&rsquo;t working for my baby</span></label>
+                <label class="reason"><input type="radio" name="reason" value="7"><span class="dot" aria-hidden="true"></span><span class="label">I no longer need formula</span></label>
+                <label class="reason"><input type="radio" name="reason" value="8"><span class="dot" aria-hidden="true"></span><span class="label">Something else</span></label>
               </div>
             </fieldset>
 
@@ -843,23 +808,6 @@ input,select{font-family:inherit}
           <div class="offer-row"><dt>Regular price</dt><dd data-slot="price_per_month">$159.96</dd></div>
           <div class="offer-row total"><dt>Your discounted price</dt><dd><span class="was" data-slot="price_per_month">$159.96</span><span data-slot="discounted_price">$135.97</span></dd></div>
         </dl>
-        <!-- v2: Drew Pion, Figma comment 1876565651. For Organic subscribers, pair the discount
-             with a switch to Original so cost comes down without leaving. Framed to keep Original
-             reading as a premium product, not a downgrade.
-             CONDITIONAL: render only when formula_variant is Organic.
-             CONFIRM: Original price delta and any product parity claims. -->
-        <div class="alt-offer">
-          <span class="k">Another way to lower the cost</span>
-          <p style="margin-top:var(--sp-1)"><span class="ph">Shown to Organic subscribers only</span></p>
-          <h3>Move to Munchkin Original and keep your <span data-slot="discount_percent">15</span>%</h3>
-          <p>Original holds the same Munchkin safety and quality standards, at a lower price per can. Take the discount on top and your monthly cost drops further. <span class="ph">Confirm product claims</span></p>
-          <dl class="offer-rows">
-            <div class="offer-row"><dt>Munchkin <span data-slot="formula_variant_alt">Original</span>, <span data-slot="cans_per_month">4</span> cans</dt><dd data-slot="alt_price">$143.96</dd></div>
-            <div class="offer-row total"><dt>With your <span data-slot="discount_percent">15</span>% applied</dt><dd><span class="was" data-slot="alt_price">$143.96</span><span data-slot="alt_discounted_price">$122.37</span></dd></div>
-          </dl>
-          <button class="btn btn-02" type="button">Switch To Original And Save</button>
-        </div>
-
         <div class="offer-actions">
           <button class="btn btn-01" type="button">Apply My Discount</button>
           <button class="btn btn-02" type="button">Reduce My Can Quantity</button>
