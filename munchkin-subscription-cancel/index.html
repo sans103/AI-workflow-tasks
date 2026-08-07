@@ -223,6 +223,7 @@ input,select{font-family:inherit}
 .fact dt{font-size:var(--fs-5);font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-600)}
 .fact dd{margin-top:4px;font-size:var(--fs-4);font-weight:500;color:var(--gray-950)}
 .sub-actions{margin-top:var(--sp-3);display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3)}
+.sub-card .sub-body>.sub-actions{margin-bottom:0}
 @media(max-width:720px){
   .sub-card{grid-template-columns:1fr;gap:var(--sp-3)}
   .sub-media{max-width:200px}
@@ -232,9 +233,8 @@ input,select{font-family:inherit}
 /* ---------- Member value strip inside the plan card (v2) ----------
    Drew Pion, Figma comment 1876543138: remind subscribers what the
    membership is worth at the moment they are deciding to leave. */
-.sub-perks{
-  grid-column:1/-1;margin-top:var(--sp-1);padding-top:var(--sp-3);
-  border-top:1px solid var(--gray-100);
+.hero-perks{
+  margin-top:var(--sp-4);max-width:1032px;
   display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);
 }
 .perk{display:flex;align-items:flex-start;gap:10px}
@@ -245,7 +245,7 @@ input,select{font-family:inherit}
 .perk .tick svg{width:12px;height:12px;fill:none;stroke:var(--green-800);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .perk b{display:block;font-size:var(--fs-4);font-weight:500;color:var(--gray-950)}
 .perk span.d{display:block;margin-top:2px;font-size:var(--fs-5);line-height:var(--lh-5);color:var(--gray-600)}
-@media(max-width:720px){.sub-perks{grid-template-columns:1fr;gap:var(--sp-2)}}
+@media(max-width:720px){.hero-perks{grid-template-columns:1fr;gap:var(--sp-2)}}
 
 /* ---------- Service contact card (v2) ---------- */
 .help-card{
@@ -526,6 +526,35 @@ input,select{font-family:inherit}
       <h1 class="h-display">Leaving so soon, <span data-slot="customer_first_name">Sarah</span>?</h1>
       <p class="lead">Before you go, take a look at what your plan does for you and the ways it can flex around your family. You can still cancel at any point below.</p>
 
+      <!-- Member value reminder, sits above the plan card so it reads as the answer to
+           "what your plan does for you" in the line above.
+           CONFIRM: the 10% site wide member discount was proposed in review. The live site
+           currently advertises 10% off Build Your Own Bundle and 10% off a first order via
+           email signup, which are different offers. -->
+      <div class="hero-perks">
+        <div class="perk">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <span>
+            <b>10% off site wide <span class="ph">Confirm</span></b>
+            <span class="d">Your member discount on everything Munchkin makes, not just formula.</span>
+          </span>
+        </div>
+        <div class="perk">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <span>
+            <b>Free shipping</b>
+            <span class="d">Included on every subscription delivery.</span>
+          </span>
+        </div>
+        <div class="perk">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
+          <span>
+            <b>Subscriber pricing</b>
+            <span class="d">Locked in for as long as the plan stays active.</span>
+          </span>
+        </div>
+      </div>
+
       <!-- Current subscription summary -->
       <div class="sub-card">
         <div class="sub-media">
@@ -559,33 +588,6 @@ input,select{font-family:inherit}
           <div class="sub-actions">
             <a class="btn btn-01" href="/account/subscriptions">Keep The Subscription</a>
             <a class="quiet" href="#why">I still want to cancel</a>
-          </div>
-        </div>
-
-        <!-- Member value reminder. CONFIRM: the 10% site wide member discount was proposed in
-             review. The live site currently advertises 10% off Build Your Own Bundle and 10%
-             off a first order via email signup, which are different offers. -->
-        <div class="sub-perks">
-          <div class="perk">
-            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-            <span>
-              <b>10% off site wide <span class="ph">Confirm</span></b>
-              <span class="d">Your member discount on everything Munchkin makes, not just formula.</span>
-            </span>
-          </div>
-          <div class="perk">
-            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-            <span>
-              <b>Free shipping</b>
-              <span class="d">Included on every subscription delivery.</span>
-            </span>
-          </div>
-          <div class="perk">
-            <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-            <span>
-              <b>Subscriber pricing</b>
-              <span class="d">Locked in for as long as the plan stays active.</span>
-            </span>
           </div>
         </div>
       </div>
