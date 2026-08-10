@@ -465,7 +465,9 @@ input,select{font-family:inherit}
 .field input{
   width:100%;height:48px;padding:0 14px;border:1px solid var(--border-pill);
   border-radius:5px;background:var(--white);font-size:var(--fs-4);color:var(--gray-950);
+  cursor:pointer;   /* Jee Shin, Slack 2026-08-10: date picker showed a text caret, not a pointer */
 }
+.field input::-webkit-calendar-picker-indicator{cursor:pointer}
 .field input:hover{border-color:var(--green-800)}
 
 /* ---------- Views ---------- */
@@ -524,7 +526,7 @@ input,select{font-family:inherit}
     <div class="container">
       <span class="eyebrow">Manage your subscription</span>
       <h1 class="h-display">Leaving so soon, <span data-slot="customer_first_name">Sarah</span>?</h1>
-      <p class="lead">Before you go, take a look at what your plan does for you and the ways it can flex around your family. You can still cancel at any point below.</p>
+      <p class="lead">Worth one more look. Your plan can bend to fit your family&rsquo;s needs.</p>
 
       <!-- Member value reminder, sits above the plan card so it reads as the answer to
            "what your plan does for you" in the line above.
@@ -564,7 +566,7 @@ input,select{font-family:inherit}
         <div class="sub-body">
           <span class="badge">Active subscription</span>
           <h2 style="margin-top:12px">
-            Munchkin Infant Formula with Organic Milk<!-- data-slot: product_name -->
+            Munchkin Infant Formula Made with Organic Milk<!-- data-slot: product_name -->
             <span class="qty">(<span data-slot="cans_per_month">4</span> cans/mo.)</span>
           </h2>
           <p class="sub-meta">Subscribed since <span data-slot="subscription_start">March 2026</span>, <span data-slot="subscription_duration">5 months</span> in.</p>
@@ -577,7 +579,7 @@ input,select{font-family:inherit}
             </div>
             <div class="fact">
               <dt>Price</dt>
-              <dd><span data-slot="price_per_month">$159.96</span>/mo.</dd>
+              <dd><span class="was" data-slot="full_price">$159.96</span><span data-slot="price_per_month">$143.96</span>/mo.<br><span class="micro">Your 10% subscriber saving, applied to every order.</span></dd>
             </div>
             <div class="fact">
               <dt>Next order</dt>
@@ -614,7 +616,7 @@ input,select{font-family:inherit}
         </div>
         <div class="value">
           <h3>Flexibility as your baby&rsquo;s needs change</h3>
-          <p>Change quantities, switch between Organic and Original, skip a shipment, pause, or reschedule instead of canceling and starting over.</p>
+          <p>Change quantities, switch between Formula Made with Organic Milk and Formula Made with Original Milk, skip a shipment, pause, or reschedule instead of canceling and starting over.</p>
         </div>
         <div class="value">
           <h3>Less mental load</h3>
@@ -646,7 +648,7 @@ input,select{font-family:inherit}
         </div>
         <div class="benefit">
           <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
-          <p>Softer, Easier Stools*</p>
+          <p>Soft, easy stools*</p>
         </div>
         <div class="benefit">
           <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
@@ -691,7 +693,7 @@ input,select{font-family:inherit}
       <div class="center">
         <span class="eyebrow">We&rsquo;re here to help</span>
         <h2 class="h-2">Talk to us <span class="accent">before you go.</span></h2>
-        <p class="lead">If something isn&rsquo;t working, our Customer Satisfaction team can look at your plan with you. Most things get sorted without canceling.</p>
+        <p class="lead">If something isn&rsquo;t working, our Customer Satisfaction team would be happy to look at your plan with you and find the right adjustments.</p>
       </div>
       <div class="help-card">
         <a class="help-route" href="mailto:helpinfantformula@munchkin.com">
@@ -763,13 +765,16 @@ input,select{font-family:inherit}
         <h2 class="h-display">Skip Your Next Shipment</h2>
         <p class="lead">Already stocked up? Skip your next delivery and keep your subscription active. No box arrives and nothing is charged right now.</p>
         <dl class="offer-rows">
-          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
+          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of <span data-slot="formula_variant">Munchkin Formula Made with Organic Milk</span></dd></div>
           <div class="offer-row"><dt>Next scheduled delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
-          <div class="offer-row total"><dt>Upcoming total</dt><dd data-slot="price_per_month">$159.96</dd></div>
+          <div class="offer-row total"><dt>Upcoming total</dt><dd data-slot="price_per_month">$143.96</dd></div>
         </dl>
         <div class="offer-actions">
           <button class="btn btn-01" type="button">Skip My Next Shipment</button>
           <button class="btn btn-02" type="button">Pause My Subscription Instead</button>
+          <!-- Jee Shin, Slack 2026-08-10: overstocked subscribers could skip or pause but had no
+               way to permanently reduce quantity. Routes into the quantity panel. -->
+          <button class="btn btn-02" type="button" data-goto="2">Reduce My Number Of Cans</button>
           <span class="offer-sep"></span>
           <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
         </div>
@@ -804,7 +809,7 @@ input,select{font-family:inherit}
 
         <dl class="offer-rows">
           <div class="offer-row"><dt>Your new subscription</dt><dd><span data-slot="selected_quantity">4</span> cans</dd></div>
-          <div class="offer-row total"><dt>Your new shipment total</dt><dd data-slot="new_price">$159.96</dd></div>
+          <div class="offer-row total"><dt>Your new shipment total</dt><dd data-slot="new_price">$143.96</dd></div>
           <div class="offer-row"><dt>Next delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
         </dl>
         <div class="offer-actions">
@@ -840,9 +845,10 @@ input,select{font-family:inherit}
         <h2 class="h-display">Stay and Save <span data-slot="discount_percent">20</span>%</h2>
         <p class="lead">Keep your Munchkin Formula subscription and receive <span data-slot="discount_percent">20</span>% off your next <span data-slot="discount_months">2</span> months.</p>
         <dl class="offer-rows">
-          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
-          <div class="offer-row"><dt>Regular price</dt><dd data-slot="price_per_month">$159.96</dd></div>
-          <div class="offer-row total"><dt>Your discounted price</dt><dd><span class="was" data-slot="price_per_month">$159.96</span><span data-slot="discounted_price">$127.97</span></dd></div>
+          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of <span data-slot="formula_variant">Munchkin Formula Made with Organic Milk</span></dd></div>
+          <div class="offer-row"><dt>Regular price</dt><dd data-slot="full_price">$159.96</dd></div>
+          <div class="offer-row"><dt>Your subscriber price</dt><dd data-slot="price_per_month">$143.96</dd></div>
+          <div class="offer-row total"><dt>With your <span data-slot="discount_percent">20</span>% applied</dt><dd><span class="was" data-slot="price_per_month">$143.96</span><span data-slot="discounted_price">$115.17</span></dd></div>
         </dl>
         <!-- v2: Drew Pion, Figma comment 1876565651. For Organic subscribers, pair the discount
              with a switch to Original so cost comes down without leaving. Framed to keep Original
@@ -852,13 +858,13 @@ input,select{font-family:inherit}
         <div class="alt-offer">
           <span class="k">Another way to lower the cost</span>
           <p style="margin-top:var(--sp-1)"><span class="ph">Shown to Organic subscribers only</span></p>
-          <h3>Move to Munchkin Original and keep your <span data-slot="discount_percent">20</span>%</h3>
-          <p>Original holds the same Munchkin safety and quality standards, at a lower price per can. Take the discount on top and your monthly cost drops further. <span class="ph">Confirm product claims</span></p>
+          <h3>Move to Munchkin Formula Made with Original Milk and keep your <span data-slot="discount_percent">20</span>%</h3>
+          <p>Formula Made with Original Milk holds the same Munchkin safety and quality standards, at a lower price per can. Take the discount on top and your monthly cost drops further. <span class="ph">Confirm product claims</span></p>
           <dl class="offer-rows">
-            <div class="offer-row"><dt>Munchkin <span data-slot="formula_variant_alt">Original</span>, <span data-slot="cans_per_month">4</span> cans</dt><dd data-slot="alt_price">$143.96</dd></div>
-            <div class="offer-row total"><dt>With your <span data-slot="discount_percent">20</span>% applied</dt><dd><span class="was" data-slot="alt_price">$143.96</span><span data-slot="alt_discounted_price">$115.17</span></dd></div>
+            <div class="offer-row"><dt><span data-slot="formula_variant_alt">Munchkin Formula Made with Original Milk</span>, <span data-slot="cans_per_month">4</span> cans</dt><dd data-slot="alt_price">$116.60 <span class="ph">Confirm</span></dd></div>
+            <div class="offer-row total"><dt>With your <span data-slot="discount_percent">20</span>% applied</dt><dd><span class="was" data-slot="alt_price">$116.60</span><span data-slot="alt_discounted_price">$93.28</span></dd></div>
           </dl>
-          <button class="btn btn-02" type="button">Switch To Original And Save</button>
+          <button class="btn btn-02" type="button">Switch To Original Milk And Save</button>
         </div>
 
         <div class="offer-actions">
@@ -873,29 +879,46 @@ input,select{font-family:inherit}
       <section class="offer" data-branch="5" hidden>
         <span class="eyebrow">Try a different Munchkin formula</span>
         <h2 class="h-display">Switch Without <span class="accent">Starting Over</span></h2>
-        <p class="lead">You can switch between Munchkin Organic and Munchkin Original without canceling your subscription.</p>
+        <p class="lead">You can switch between Munchkin Formula Made with Organic Milk and Munchkin Formula Made with Original Milk without canceling your subscription.</p>
 
         <div class="switch-grid">
           <div class="switch-card">
             <span class="k">Current formula</span>
-            <span class="v">Munchkin <span data-slot="formula_variant">Organic</span></span>
+            <span class="v"><span data-slot="formula_variant">Munchkin Formula Made with Organic Milk</span></span>
             <span class="s"><span data-slot="cans_per_month">4</span> cans per shipment</span>
-            <span class="s" data-slot="price_per_month">$159.96</span>
+            <span class="s" data-slot="price_per_month">$143.96</span>
           </div>
           <span class="switch-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg>
           </span>
           <div class="switch-card to">
             <span class="k">Switch to</span>
-            <span class="v">Munchkin <span data-slot="formula_variant_alt">Original</span></span>
+            <span class="v"><span data-slot="formula_variant_alt">Munchkin Formula Made with Original Milk</span></span>
             <span class="s"><span data-slot="cans_per_month">4</span> cans per shipment</span>
-            <span class="s" data-slot="new_price">$143.96</span>
+            <span class="s"><span data-slot="alt_price">$116.60</span> <span class="ph">Confirm</span></span>
           </div>
         </div>
 
         <dl class="offer-rows">
           <div class="offer-row"><dt>Your next shipment</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
         </dl>
+
+        <!-- Reverse direction. Jee Shin, Slack 2026-08-10: the panel only argued cost, so an
+             Original Milk subscriber had no reason to move up. Premium positioning only, no
+             discount attached, per direction 2026-08-11.
+             CONDITIONAL: render only when formula_variant is Original Milk. -->
+        <div class="alt-offer">
+          <span class="k">Or move up instead</span>
+          <p style="margin-top:var(--sp-1)"><span class="ph">Shown to Original Milk subscribers only</span></p>
+          <h3>Step up to Munchkin Formula Made with Organic Milk</h3>
+          <p>USDA Organic milk from grass fed New Zealand cows, with the same patented Nurture 10 Blend. If the reason you are looking around is that you want something more premium, this is the step up rather than a reason to leave.</p>
+          <dl class="offer-rows">
+            <div class="offer-row"><dt>Your plan today</dt><dd><span data-slot="cans_per_month">4</span> cans of Formula Made with Original Milk, <span data-slot="alt_price">$116.60</span></dd></div>
+            <div class="offer-row total"><dt>Moving up to Organic Milk</dt><dd><span data-slot="price_per_month">$143.96</span>/mo.</dd></div>
+          </dl>
+          <button class="btn btn-02" type="button">Step Up To Organic Milk</button>
+        </div>
+
         <div class="offer-actions">
           <button class="btn btn-01" type="button">Switch My Formula</button>
           <span class="offer-sep"></span>
@@ -923,7 +946,7 @@ input,select{font-family:inherit}
         <h2 class="h-display">Feeding Needs Change</h2>
         <p class="lead">If your family no longer needs formula, you can cancel your subscription below. Nothing will ship or be charged after that.</p>
         <dl class="offer-rows">
-          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
+          <div class="offer-row"><dt>Your current plan</dt><dd><span data-slot="cans_per_month">4</span> cans of <span data-slot="formula_variant">Munchkin Formula Made with Organic Milk</span></dd></div>
           <div class="offer-row"><dt>Next scheduled delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
         </dl>
         <div class="offer-actions">
@@ -956,7 +979,7 @@ input,select{font-family:inherit}
           </button>
           <button class="opt" type="button" data-goto="5">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg></span>
-            <span><span class="t">Switch My Formula</span><span class="d">Switch between Munchkin Organic and Munchkin Original.</span></span>
+            <span><span class="t">Switch My Formula</span><span class="d">Switch between Munchkin Formula Made with Organic Milk and Munchkin Formula Made with Original Milk.</span></span>
           </button>
           <button class="opt" type="button" data-goto="6">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.3-6.5"/><path d="M4 19v-4h4"/></svg></span>
@@ -986,7 +1009,7 @@ input,select{font-family:inherit}
         <h2 class="h-display">Thank you for <span class="accent">feeding with us.</span></h2>
         <p class="lead">Your Munchkin Formula subscription is canceled and no further shipments will be sent. A confirmation is on its way to <span data-slot="customer_email">your email</span>.</p>
         <dl class="offer-rows">
-          <div class="offer-row"><dt>Canceled plan</dt><dd><span data-slot="cans_per_month">4</span> cans of Munchkin <span data-slot="formula_variant">Organic</span></dd></div>
+          <div class="offer-row"><dt>Canceled plan</dt><dd><span data-slot="cans_per_month">4</span> cans of <span data-slot="formula_variant">Munchkin Formula Made with Organic Milk</span></dd></div>
           <div class="offer-row"><dt>Canceled on</dt><dd data-slot="cancel_date">August 6, 2026</dd></div>
         </dl>
         <div class="offer-actions">
@@ -1045,12 +1068,41 @@ input,select{font-family:inherit}
     if(active){ active.setAttribute('tabindex','-1'); active.focus({preventScroll:true}); }
   }
 
+  /* ------------------------------------------------------------------
+     History. Jee Shin, Slack 2026-08-10: each step looks like a new page
+     but browser Back did nothing. Every step now pushes a history entry,
+     so Back and Forward walk the flow and a step can be linked directly.
+     render() is the single place that maps a state to what is on screen.
+     ------------------------------------------------------------------ */
+  function render(state){
+    if(!state || state.view === 'main'){ show('main'); return; }
+    if(state.view === 'offer'){ openBranch(state.branch); return; }
+    if(state.view === 'done'){ show('done'); }
+  }
+
+  function go(state){
+    history.pushState(state, '', state.view === 'offer' ? '#reason-' + state.branch
+                                : state.view === 'done' ? '#canceled' : '#why');
+    render(state);
+  }
+
+  window.addEventListener('popstate', function(e){ render(e.state); });
+
+  // Someone editing the hash on an already open page is a same document change, so no
+  // reload and no popstate. Only act on hashes we own, otherwise leave in page anchors
+  // like #why alone so they still just scroll.
+  window.addEventListener('hashchange', function(){
+    var m = /^#reason-([1-8])$/.exec(location.hash);
+    if(m){ render({view:'offer', branch:m[1]}); return; }
+    if(location.hash === '#canceled'){ render({view:'done'}); }
+  });
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var picked = form.querySelector('input[name="reason"]:checked');
     if(!picked){ note.classList.add('show'); return; }
     note.classList.remove('show');
-    openBranch(picked.value);
+    go({view:'offer', branch:picked.value});
   });
 
   form.addEventListener('change', function(){ note.classList.remove('show'); });
@@ -1059,22 +1111,33 @@ input,select{font-family:inherit}
     var el = e.target.closest('[data-action],[data-goto]');
     if(!el) return;
     var goto = el.getAttribute('data-goto');
-    if(goto){ openBranch(goto); return; }
+    if(goto){ go({view:'offer', branch:goto}); return; }
     var action = el.getAttribute('data-action');
-    if(action === 'back'){ show('main'); }
-    if(action === 'cancel'){ openBranch(7); }          // last-step confirmation panel
-    if(action === 'confirm-cancel'){ show('done'); }   // wire to the subscription API
+    if(action === 'back'){ history.back(); }           // matches the browser control
+    if(action === 'cancel'){ go({view:'offer', branch:'7'}); }   // last-step confirmation panel
+    if(action === 'confirm-cancel'){ go({view:'done'}); }        // wire to the subscription API
   });
 
+  // Deep link support, so #reason-4 opens that panel on load
+  (function restore(){
+    var m = /^#reason-([1-8])$/.exec(location.hash);
+    if(m){ history.replaceState({view:'offer', branch:m[1]}, '', location.hash); openBranch(m[1]); return; }
+    history.replaceState({view:'main'}, '', location.hash || '');
+  })();
+
   // Keep the "new shipment total" row in step with the selected quantity (branch 2).
-  var PRICE_PER_CAN = 39.99; // data-slot: price_per_can
+  // Full list price per can. Subscribers pay 10% less on every order, which is the
+  // figure the page shows (Pauline, Figma 1878733551). Verified against the PDP buy
+  // box: 2 cans renews at $71.98, which is 79.98 x 0.90.
+  var PRICE_PER_CAN = 39.99;      // data-slot: price_per_can
+  var SUBSCRIBER_RATE = 0.90;     // data-slot: subscriber_discount_rate
   var qtyInputs = document.querySelectorAll('input[name="qty"]');
   Array.prototype.forEach.call(qtyInputs, function(input){
     input.addEventListener('change', function(){
       var n = parseInt(input.value, 10);
       var panel = document.querySelector('[data-branch="2"]');
       panel.querySelector('[data-slot="selected_quantity"]').textContent = n;
-      panel.querySelector('[data-slot="new_price"]').textContent = '$' + (n * PRICE_PER_CAN).toFixed(2);
+      panel.querySelector('[data-slot="new_price"]').textContent = '$' + (n * PRICE_PER_CAN * SUBSCRIBER_RATE).toFixed(2);
     });
   });
 })();
