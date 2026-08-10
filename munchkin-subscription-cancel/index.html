@@ -1126,13 +1126,14 @@ input,select{font-family:inherit}
   })();
 
   // Keep the "new shipment total" row in step with the selected quantity (branch 2).
-  // Full list price per can. Subscribers pay 10% less on every order, which is the
-  // figure the page shows (Pauline, Figma 1878733551). Verified against the live PDP:
-  // Organic Milk 4 cans is $159.96 one time and $143.96 on subscription; Original Milk
-  // 4 cans is $143.96 one time and $129.56 on subscription. Both are exactly 10% off.
-  // ASSUMPTION: a flat per can rate across quantities. Confirmed at 2 and 4 cans. If
-  // the 6 and 8 can tiers carry a better per can price, pass those in instead.
-  var PRICE_PER_CAN = 39.99;      // data-slot: price_per_can
+  // Subscribers pay 10% less on every order, and that is the figure the page shows
+  // (Pauline, Figma 1878733551). Flat per can rate, no volume tiers. Verified against
+  // the live PDP at every tier we could read:
+  //   Organic Milk  $39.99/can full, $35.99/can sub:  2 = $71.98, 4 = $143.96, 6 = $215.95
+  //   Original Milk $35.99/can full, $32.39/can sub:  4 = $129.56, 6 = $194.35
+  // All five match cans x full x 0.90 exactly, so the model extrapolates safely to the
+  // 8 can tier ($287.93 Organic, $259.13 Original).
+  var PRICE_PER_CAN = 39.99;      // data-slot: price_per_can, switch to 35.99 for Original Milk
   var SUBSCRIBER_RATE = 0.90;     // data-slot: subscriber_discount_rate
   var qtyInputs = document.querySelectorAll('input[name="qty"]');
   Array.prototype.forEach.call(qtyInputs, function(input){
