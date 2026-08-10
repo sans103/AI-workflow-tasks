@@ -537,8 +537,8 @@ input,select{font-family:inherit}
         <div class="perk">
           <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></span>
           <span>
-            <b>10% off site wide <span class="ph">Confirm</span></b>
-            <span class="d">Your member discount on everything Munchkin makes, not just formula.</span>
+            <b>10% off site wide</b>
+            <span class="d">10% off all Munchkin.com orders while your subscription is active, not just formula.</span>
           </span>
         </div>
         <div class="perk">
@@ -861,8 +861,8 @@ input,select{font-family:inherit}
           <h3>Move to Munchkin Formula Made with Original Milk and keep your <span data-slot="discount_percent">20</span>%</h3>
           <p>Formula Made with Original Milk holds the same Munchkin safety and quality standards, at a lower price per can. Take the discount on top and your monthly cost drops further. <span class="ph">Confirm product claims</span></p>
           <dl class="offer-rows">
-            <div class="offer-row"><dt><span data-slot="formula_variant_alt">Munchkin Formula Made with Original Milk</span>, <span data-slot="cans_per_month">4</span> cans</dt><dd data-slot="alt_price">$116.60 <span class="ph">Confirm</span></dd></div>
-            <div class="offer-row total"><dt>With your <span data-slot="discount_percent">20</span>% applied</dt><dd><span class="was" data-slot="alt_price">$116.60</span><span data-slot="alt_discounted_price">$93.28</span></dd></div>
+            <div class="offer-row"><dt><span data-slot="formula_variant_alt">Munchkin Formula Made with Original Milk</span>, <span data-slot="cans_per_month">4</span> cans</dt><dd data-slot="alt_price">$129.56</dd></div>
+            <div class="offer-row total"><dt>With your <span data-slot="discount_percent">20</span>% applied</dt><dd><span class="was" data-slot="alt_price">$129.56</span><span data-slot="alt_discounted_price">$103.65</span></dd></div>
           </dl>
           <button class="btn btn-02" type="button">Switch To Original Milk And Save</button>
         </div>
@@ -895,7 +895,7 @@ input,select{font-family:inherit}
             <span class="k">Switch to</span>
             <span class="v"><span data-slot="formula_variant_alt">Munchkin Formula Made with Original Milk</span></span>
             <span class="s"><span data-slot="cans_per_month">4</span> cans per shipment</span>
-            <span class="s"><span data-slot="alt_price">$116.60</span> <span class="ph">Confirm</span></span>
+            <span class="s" data-slot="alt_price">$129.56</span>
           </div>
         </div>
 
@@ -913,7 +913,7 @@ input,select{font-family:inherit}
           <h3>Step up to Munchkin Formula Made with Organic Milk</h3>
           <p>USDA Organic milk from grass fed New Zealand cows, with the same patented Nurture 10 Blend. If the reason you are looking around is that you want something more premium, this is the step up rather than a reason to leave.</p>
           <dl class="offer-rows">
-            <div class="offer-row"><dt>Your plan today</dt><dd><span data-slot="cans_per_month">4</span> cans of Formula Made with Original Milk, <span data-slot="alt_price">$116.60</span></dd></div>
+            <div class="offer-row"><dt>Your plan today</dt><dd><span data-slot="cans_per_month">4</span> cans of Formula Made with Original Milk, <span data-slot="alt_price">$129.56</span></dd></div>
             <div class="offer-row total"><dt>Moving up to Organic Milk</dt><dd><span data-slot="price_per_month">$143.96</span>/mo.</dd></div>
           </dl>
           <button class="btn btn-02" type="button">Step Up To Organic Milk</button>
@@ -1127,8 +1127,11 @@ input,select{font-family:inherit}
 
   // Keep the "new shipment total" row in step with the selected quantity (branch 2).
   // Full list price per can. Subscribers pay 10% less on every order, which is the
-  // figure the page shows (Pauline, Figma 1878733551). Verified against the PDP buy
-  // box: 2 cans renews at $71.98, which is 79.98 x 0.90.
+  // figure the page shows (Pauline, Figma 1878733551). Verified against the live PDP:
+  // Organic Milk 4 cans is $159.96 one time and $143.96 on subscription; Original Milk
+  // 4 cans is $143.96 one time and $129.56 on subscription. Both are exactly 10% off.
+  // ASSUMPTION: a flat per can rate across quantities. Confirmed at 2 and 4 cans. If
+  // the 6 and 8 can tiers carry a better per can price, pass those in instead.
   var PRICE_PER_CAN = 39.99;      // data-slot: price_per_can
   var SUBSCRIBER_RATE = 0.90;     // data-slot: subscriber_discount_rate
   var qtyInputs = document.querySelectorAll('input[name="qty"]');
