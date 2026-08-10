@@ -574,8 +574,9 @@ input,select{font-family:inherit}
           <dl class="sub-facts">
             <div class="fact">
               <dt>Servings</dt>
-              <!-- VERIFY: confirm servings per 25.8 oz can against the nutrition panel before launch -->
-              <dd><span data-slot="servings">95 servings</span> per can <span class="ph">Verify</span></dd>
+              <!-- Verified 2026-08-04 via Pauline Ponce: 730g can / 4.4g scoop = ~166 fl oz
+                   = ~41.5 four ounce bottles per can. Same figures as the formula PDP. -->
+              <dd>About <span data-slot="bottles">166</span> bottles at 4 oz each</dd>
             </div>
             <div class="fact">
               <dt>Price</dt>
@@ -791,24 +792,24 @@ input,select{font-family:inherit}
             <input type="radio" name="qty" value="2">
             <span class="qty-top"><span class="n">2 Cans</span></span>
             <span class="mode">Supplementing</span>
-            <span class="desc">For occasional formula feeds alongside breast milk.</span>
+            <span class="desc">About 83 bottles. For occasional formula feeds alongside breast milk.</span>
           </label>
           <label class="qty-card">
             <input type="radio" name="qty" value="4" checked>
             <span class="qty-top"><span class="n">4 Cans</span></span>
             <span class="mode">Combination feeding</span>
-            <span class="desc">For regularly alternating between breast milk and formula.</span>
+            <span class="desc">About 166 bottles. For regularly alternating between breast milk and formula.</span>
           </label>
           <label class="qty-card">
             <input type="radio" name="qty" value="6">
             <span class="qty-top"><span class="n">6 Cans</span></span>
             <span class="mode">Full formula feeding</span>
-            <span class="desc">For most or all of baby&rsquo;s feeds.</span>
+            <span class="desc">About 249 bottles. For most or all of baby&rsquo;s feeds.</span>
           </label>
         </div>
 
         <dl class="offer-rows">
-          <div class="offer-row"><dt>Your new subscription</dt><dd><span data-slot="selected_quantity">4</span> cans</dd></div>
+          <div class="offer-row"><dt>Your new subscription</dt><dd><span data-slot="selected_quantity">4</span> cans, about <span data-slot="selected_bottles">166</span> bottles</dd></div>
           <div class="offer-row total"><dt>Your new shipment total</dt><dd data-slot="new_price">$143.96</dd></div>
           <div class="offer-row"><dt>Next delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
         </dl>
@@ -1135,12 +1136,16 @@ input,select{font-family:inherit}
   // 8 can tier ($287.93 Organic, $259.13 Original).
   var PRICE_PER_CAN = 39.99;      // data-slot: price_per_can, switch to 35.99 for Original Milk
   var SUBSCRIBER_RATE = 0.90;     // data-slot: subscriber_discount_rate
+  // Verified 2026-08-04 via Pauline Ponce: 730g can / 4.4g scoop = ~166 fl oz per can,
+  // so ~41.5 bottles at 4 oz. Gives 83 / 166 / 249 for 2 / 4 / 6 cans.
+  var BOTTLES_PER_CAN = 41.5;     // data-slot: bottles_per_can
   var qtyInputs = document.querySelectorAll('input[name="qty"]');
   Array.prototype.forEach.call(qtyInputs, function(input){
     input.addEventListener('change', function(){
       var n = parseInt(input.value, 10);
       var panel = document.querySelector('[data-branch="2"]');
       panel.querySelector('[data-slot="selected_quantity"]').textContent = n;
+      panel.querySelector('[data-slot="selected_bottles"]').textContent = Math.round(n * BOTTLES_PER_CAN);
       panel.querySelector('[data-slot="new_price"]').textContent = '$' + (n * PRICE_PER_CAN * SUBSCRIBER_RATE).toFixed(2);
     });
   });
