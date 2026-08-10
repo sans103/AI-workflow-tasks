@@ -394,7 +394,9 @@ input,select{font-family:inherit}
 .offer-row:last-child{border-bottom:0}
 .offer-row dt{color:var(--gray-600)}
 .offer-row dd{font-weight:500;color:var(--gray-950);text-align:right}
-.offer-row .was{color:var(--gray-600);text-decoration:line-through;font-weight:400;margin-right:6px}
+/* Struck through list price. Not scoped to .offer-row: it is also used in the hero
+   plan card, where scoping it left the two prices running together unstyled. */
+.was{color:var(--gray-600);text-decoration:line-through;font-weight:400;margin-right:6px}
 .offer-row.total dd{color:var(--green-800)}
 .offer-actions{margin-top:var(--sp-4);display:flex;flex-direction:column;align-items:center;gap:var(--sp-2)}
 .offer-actions .btn{width:100%;max-width:340px}
