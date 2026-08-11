@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Bison Track | Nav Redesign v3 (Feedback Round)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lime: #BFFC33;
+    --ink: #1A1A1A;
+    --panel: #242424;
+    --panel-2: #2E2E2E;
+    --line: rgba(255,255,255,.10);
+    --txt-dim: #AAAAAA;
+    --txt-mid: #CFCFCF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #101010; color: #fff; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; }
+
+  /* ============ ANNOUNCEMENT ============ */
+  .announce {
+    background: var(--ink); color: #fff; text-align: center;
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: .3px; padding: 9px 16px;
+  }
+  .announce a { color: var(--lime); font-weight: 700; }
+
+  /* ============ HEADER ============ */
+  header.site {
+    background: #fff; color: var(--ink); position: relative; z-index: 60;
+    box-shadow: 0 3px 0 0 var(--lime);
+  }
+  .head-row {
+    max-width: 1440px; margin: 0 auto; height: 66px;
+    display: flex; align-items: center; gap: 8px; padding: 0 24px;
+  }
+  .logo img { height: 30px; display: block; }
+  nav.desk { display: flex; align-items: stretch; height: 100%; margin-left: 28px; }
+  .nav-item { display: flex; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 6px; padding: 0 18px;
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink);
+    background: none; border: none; cursor: pointer; position: relative; height: 100%;
+  }
+  .nav-btn .car { width: 10px; height: 10px; background: #888; clip-path: polygon(50% 72%, 8% 30%, 20% 18%, 50% 48%, 80% 18%, 92% 30%); transition: transform .2s; }
+  .nav-item.open .nav-btn::after {
+    content: ""; position: absolute; left: 12px; right: 12px; bottom: 0; height: 3px; background: var(--lime);
+  }
+  .nav-item.open .nav-btn .car { transform: rotate(180deg); background: var(--ink); }
+  .head-right { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+  .country {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .8px;
+    color: #444; display: flex; align-items: center; gap: 6px; cursor: pointer;
+  }
+  .hicon { width: 20px; height: 20px; color: var(--ink); cursor: pointer; }
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; }
+
+  /* ============ DESKTOP MEGA ============ */
+  .mega {
+    display: none; position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--ink); color: #fff; border-top: 1px solid #000;
+    box-shadow: 0 30px 60px rgba(0,0,0,.45);
+  }
+  .nav-item.open .mega { display: block; }
+  .mega-grid {
+    max-width: 1440px; margin: 0 auto; padding: 34px 40px 44px;
+    display: grid; gap: 0;
+  }
+  .grid-cb, .grid-rtw { grid-template-columns: 1.15fr 1fr 1fr 1.15fr; }
+  .grid-2 { grid-template-columns: 1.1fr 1fr 1.6fr; }
+  .grid-comm { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .col { padding: 0 34px; box-shadow: inset 1px 0 0 0 var(--line); }
+  .col:first-child { box-shadow: none; padding-left: 0; }
+  .col-label {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.8px; text-transform: uppercase; color: var(--txt-dim);
+    padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 18px;
+  }
+  .all-link {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--panel-2); border-radius: 6px; padding: 12px 16px;
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #fff;
+    margin-bottom: 14px; transition: background .15s;
+  }
+  .all-link:hover { background: #3A3A3A; }
+  .all-link svg { width: 14px; height: 14px; color: var(--txt-dim); }
+  .col ul li a {
+    display: block; padding: 8px 0; font-family: 'Montserrat', sans-serif;
+    font-size: 14px; font-weight: 500; color: var(--txt-mid); transition: color .15s;
+  }
+  .col ul li a:hover { color: var(--lime); }
+
+  /* featured card */
+  .feat {
+    display: block; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; overflow: hidden; transition: border-color .15s;
+  }
+  .feat:hover { border-color: rgba(191,252,51,.5); }
+  .feat-img {
+    aspect-ratio: 1 / 1; background: #F4F4F4;
+    display: flex; align-items: center; justify-content: center; padding: 14px;
+  }
+  .feat-img img { width: 100%; height: 100%; object-fit: contain; }
+  .feat-body { padding: 14px 16px 16px; }
+  .feat-name { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.35; }
+  .feat-sub { font-size: 12.5px; color: var(--txt-dim); margin-top: 5px; }
+  .feat-cta {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 12px;
+    font-family: 'Montserrat', sans-serif; font-size: 11.5px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--lime);
+  }
+  .feat-cta svg { width: 12px; height: 12px; }
+
+  /* build column */
+  .build-cta {
+    display: block; background: var(--lime); color: var(--ink); text-align: center;
+    border-radius: 6px; padding: 14px 18px; margin-bottom: 24px;
+  }
+  .build-cta .t1 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+  .build-cta .t2 { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; margin-top: 3px; opacity: .75; }
+  .sub-label {
+    font-family: 'Montserrat', sans-serif; font-size: 10.5px; font-weight: 700;
+    letter-spacing: 1.6px; text-transform: uppercase; color: var(--lime); margin: 18px 0 6px;
+  }
+  .sub-label:first-of-type { margin-top: 0; }
+
+  /* pasture explainer */
+  .explain {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 20px; margin-top: 14px;
+  }
+  .explain h4 {
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.4px; text-transform: uppercase; color: var(--lime); margin-bottom: 10px;
+  }
+  .explain p { font-size: 13px; line-height: 1.55; color: var(--txt-mid); }
+  .explain p + p { margin-top: 8px; }
+  .explain strong { color: #fff; }
+
+  /* ============ MOBILE DRAWER ============ */
+  .scrim { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 70; }
+  .drawer {
+    position: fixed; top: 0; left: -340px; width: 320px; height: 100dvh; z-index: 80;
+    background: var(--ink); transition: left .28s ease; display: flex; flex-direction: column;
+  }
+  body.drawer-open .drawer { left: 0; }
+  body.drawer-open .scrim { display: block; }
+  .drawer-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; border-bottom: 1px solid var(--line); flex: 0 0 auto;
+  }
+  .drawer-head img { height: 26px; }
+  .drawer-close { background: none; border: none; color: #fff; cursor: pointer; padding: 4px; }
+  .drawer-close svg { width: 20px; height: 20px; }
+  .drawer-body { overflow-y: auto; flex: 1; }
+  .l1 {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 17px 20px; background: none; border: none; border-bottom: 1px solid var(--line);
+    color: #fff; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 1.3px; text-transform: uppercase; cursor: pointer; text-align: left;
+  }
+  .l1 svg { width: 14px; height: 14px; color: var(--txt-dim); transition: transform .2s; flex: 0 0 auto; }
+  .l1[aria-expanded="true"] { color: var(--lime); }
+  .l1[aria-expanded="true"] svg { transform: rotate(90deg); color: var(--lime); }
+  .l1-panel { display: none; border-bottom: 1px solid var(--line); }
+  .l1-panel.open { display: block; }
+
+  .m-feat { display: flex; gap: 12px; padding: 14px 20px; background: #202020; align-items: center; }
+  .m-feat-img {
+    flex: 0 0 64px; width: 64px; height: 64px; background: #F4F4F4; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; padding: 5px;
+  }
+  .m-feat-img img { width: 100%; height: 100%; object-fit: contain; }
+  .m-feat-name { font-family: 'Montserrat', sans-serif; font-size: 12.5px; font-weight: 700; line-height: 1.3; }
+  .m-feat-cta {
+    display: inline-block; margin-top: 5px; font-family: 'Montserrat', sans-serif;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--lime);
+  }
+  .l2 {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 13px 20px 13px 20px; background: none; border: none; border-top: 1px solid var(--line);
+    color: #fff; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 1.6px; text-transform: uppercase; cursor: pointer; text-align: left;
+  }
+  .l2 svg { width: 12px; height: 12px; color: var(--txt-dim); transition: transform .2s; }
+  .l2[aria-expanded="true"] { color: var(--lime); }
+  .l2[aria-expanded="true"] svg { transform: rotate(90deg); color: var(--lime); }
+  .l2-panel { display: none; }
+  .l2-panel.open { display: block; }
+  .l2-panel a {
+    display: block; padding: 11px 20px 11px 34px; font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 500; color: var(--txt-mid); border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .m-sub-label {
+    padding: 12px 20px 4px 34px; font-family: 'Montserrat', sans-serif; font-size: 10px;
+    font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--lime);
+  }
+  .m-build-cta {
+    display: block; margin: 12px 20px; background: var(--lime); color: var(--ink);
+    text-align: center; border-radius: 6px; padding: 13px;
+    font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .m-explain { margin: 12px 20px; }
+  .login-row { border-bottom: none; }
+
+  /* ============ DEMO BODY ============ */
+  .demo {
+    min-height: 78vh; display: flex; align-items: center; justify-content: center;
+    background:
+      radial-gradient(60% 80% at 70% 40%, rgba(234,90,35,.28), transparent 60%),
+      linear-gradient(180deg, #151515, #0D0D0D);
+    text-align: center; padding: 60px 24px;
+  }
+  .demo h1 { font-family: 'Montserrat', sans-serif; font-size: 44px; font-weight: 800; letter-spacing: -.5px; line-height: 1.1; }
+  .demo p { color: var(--txt-dim); margin-top: 14px; font-size: 15px; }
+  .demo .hint {
+    display: inline-block; margin-top: 26px; border: 1px solid var(--line); border-radius: 6px;
+    padding: 10px 18px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--txt-mid);
+  }
+
+  /* ============ CHANGE NOTES ============ */
+  .notes-toggle {
+    position: fixed; right: 18px; bottom: 18px; z-index: 90;
+    background: var(--lime); color: var(--ink); border: none; border-radius: 6px;
+    font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase; padding: 12px 16px; cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  }
+  .notes {
+    display: none; position: fixed; right: 18px; bottom: 66px; z-index: 90;
+    width: min(430px, calc(100vw - 36px)); max-height: 70vh; overflow-y: auto;
+    background: #fff; color: var(--ink); border-radius: 8px; padding: 22px 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  .notes.open { display: block; }
+  .notes h3 { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+  .notes .meta { font-size: 12px; color: #777; margin-bottom: 14px; }
+  .notes h4 { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; margin: 14px 0 5px; }
+  .notes p, .notes li { font-size: 13px; line-height: 1.55; color: #333; }
+  .notes ul { padding-left: 18px; list-style: disc; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1023px) {
+    nav.desk, .country { display: none; }
+    .hamburger { display: block; }
+    .head-row { height: 58px; padding: 0 16px; }
+    .demo h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <span style="background:var(--lime);color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.5px;padding:3px 8px;border-radius:3px;margin-right:8px;">PASTURE</span>
+  In-stock suits &amp; gloves at 40% off retail. Limited sizes, while stock lasts. <a href="https://bisontrack.com/collections/the-pasture">Shop Pasture &rarr;</a>
+</div>
+
+<header class="site">
+  <div class="head-row">
+    <button class="hamburger" aria-label="Menu" onclick="openDrawer()"><span></span><span></span><span></span></button>
+    <a class="logo" href="https://bisontrack.com/"><img src="https://bisontrack.com/cdn/shop/t/29/assets/bison-logo-dark_400x.png?v=109645684372395801951783970096" alt="Bison Track"></a>
+
+    <nav class="desk" id="desknav">
+
+      <!-- CUSTOM BUILT -->
+      <div class="nav-item" data-menu>
+        <button class="nav-btn">Custom Built <span class="car"></span></button>
+        <div class="mega">
+          <div class="mega-grid grid-cb">
+            <div class="col">
+              <div class="col-label">Custom Suits</div>
+              <a class="feat" href="https://bisontrack.com/products/thor2-airhide-airvest-prepared-custom-suit">
+                <div class="feat-img"><img src="https://bisontrack.com/cdn/shop/files/BisonThor.2CustomMotorcycleRacingSuit_OnePiece.jpg?v=1763585070&width=800" alt="Bison Thor.2 Custom Motorcycle Racing Suit"></div>
+                <div class="feat-body">
+                  <div class="feat-name">Bison Thor.2 Custom Motorcycle Racing Suit</div>
+                  <div class="feat-sub">Made to your measurements</div>
+                  <span class="feat-cta">Shop Custom Suits <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></span>
+                </div>
+              </a>
+            </div>
+            <div class="col">
+              <div class="col-label">Gear</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-custom-built-gear">All Custom Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <ul>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-suits">Suits</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-gear-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-gloves">Gloves</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-boots">Boots</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-chest-protectors">Chest Protectors</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-accessories">Accessories</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Style</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-custom-built-style">All Custom Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <ul>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-style-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-powered-by-vnm">Bison x VnM</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-crew-shirts-and-jerseys">Crew Shirts &amp; Jerseys</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-hoodies">Hoodies</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-prints">Prints</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-t-shirts">T-Shirts</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <a class="build-cta" href="https://bisontrack.com/pages/design-central">
+                <div class="t1">Start Your Build &rarr;</div>
+                <div class="t2">Custom to your spec</div>
+              </a>
+              <div class="sub-label">Design Central</div>
+              <ul>
+                <li><a href="https://bisontrack.com/pages/design-central">Start Here</a></li>
+                <li><a href="#">2021 Catalog</a></li>
+                <li><a href="#">Leather Colors</a></li>
+                <li><a href="#">Sample Patterns</a></li>
+                <li><a href="#">Templates</a></li>
+              </ul>
+              <div class="sub-label">Measurement Central</div>
+              <ul>
+                <li><a href="https://bisontrack.com/pages/measurement-central">Start Here</a></li>
+                <li><a href="#">Fitment Guarantee</a></li>
+                <li><a href="#">How To Videos</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- READY TO WEAR -->
+      <div class="nav-item" data-menu>
+        <button class="nav-btn">Ready To Wear <span class="car"></span></button>
+        <div class="mega">
+          <div class="mega-grid grid-rtw">
+            <div class="col">
+              <div class="col-label">Top Picks</div>
+              <a class="feat" href="https://bisontrack.com/collections/maverick">
+                <div class="feat-img"><img src="https://bisontrack.com/cdn/shop/files/bison-suit-thor-2-mav-main.jpg?v=1778094893&width=800" alt="Bison Maverick Colorway Thor.2 Motorcycle Racing Suit"></div>
+                <div class="feat-body">
+                  <div class="feat-name">The Maverick Collection</div>
+                  <div class="feat-sub">Advanced safety tech, natural hide character</div>
+                  <span class="feat-cta">Shop The Maverick Collection <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></span>
+                </div>
+              </a>
+            </div>
+            <div class="col">
+              <div class="col-label">Gear</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-ready-to-wear-gear">All Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <ul>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-suits">Suits</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-undersuits">Undersuits</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-gloves">Gloves</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-air-vests-and-armor">Air Vests &amp; Armor</a></li>
+                <li><a href="https://bisontrack.com/collections/helmets-and-helmet-accessories">Helmets &amp; Accessories</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-knee-pucks">Knee Pucks &amp; Sliders</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-pit-mats">Pit Mats</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Style</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-ready-to-wear-style">All Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <ul>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-style-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-t-shirts">T-Shirts</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-hoodies">Hoodies</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-hats">Hats</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-tank-tops">Tank Tops</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-long-sleeve-t-shirts">Long Sleeve Tees</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-accessories">Accessories</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-baby">Baby</a></li>
+                <li><a href="https://bisontrack.com/collections/the-herd-collection">The Herd Collection</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Why Ready To Wear</div>
+              <div class="explain" style="margin-top:0;">
+                <h4>In Stock. Ships Now.</h4>
+                <p>Off-the-rack Bison gear built with the same leather and safety spec as our custom program, sized to standard fits and ready to ship.</p>
+                <p><strong>Looking for deals?</strong> Discounted in-stock gear lives in <a href="https://bisontrack.com/collections/the-pasture" style="color:var(--lime);">The Pasture</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PASTURE SALE -->
+      <div class="nav-item" data-menu>
+        <button class="nav-btn">Pasture Sale <span class="car"></span></button>
+        <div class="mega">
+          <div class="mega-grid grid-2">
+            <div class="col">
+              <div class="col-label">One of a Kind. Final Sale.</div>
+              <a class="feat" href="https://bisontrack.com/collections/pasture-sale">
+                <div class="feat-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png" alt="Vintage Rebirth Two-Piece"></div>
+                <div class="feat-body">
+                  <div class="feat-name">Vintage Rebirth Two-Piece</div>
+                  <div class="feat-sub">Final sale. Limited stock.</div>
+                  <span class="feat-cta">Shop Now <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></span>
+                </div>
+              </a>
+            </div>
+            <div class="col">
+              <div class="col-label">Browse</div>
+              <a class="all-link" href="https://bisontrack.com/collections/pasture-sale">All Pasture Sale Items <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <ul>
+                <li><a href="https://bisontrack.com/collections/the-pasture">The Pasture</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">What's the difference?</div>
+              <div class="explain" style="margin-top:0;">
+                <h4>Pasture Sale</h4>
+                <p>One-of-a-kind custom suits that didn't find their original riders. Same Bison craftsmanship, deep discounts. Final sale, limited time.</p>
+                <h4 style="margin-top:14px;">The Pasture</h4>
+                <p>Our standing outlet for in-stock suits and gloves at 40% off retail. Limited sizes, restocked as gear becomes available.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMUNITY -->
+      <div class="nav-item" data-menu>
+        <button class="nav-btn">Community <span class="car"></span></button>
+        <div class="mega">
+          <div class="mega-grid grid-comm">
+            <div class="col">
+              <div class="col-label">Riders</div>
+              <a class="all-link" href="https://bisontrack.com/pages/riders">All Riders <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <ul>
+                <li><a href="#">Ambassadors</a></li>
+                <li><a href="#">Sponsored Riders</a></li>
+                <li><a href="#">Youth Program</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Partners</div>
+              <a class="all-link" href="https://bisontrack.com/pages/partners">All Partners <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <ul>
+                <li><a href="#">Authorized Alterations</a></li>
+                <li><a href="#">Authorized Measurement</a></li>
+                <li><a href="#">Dealers</a></li>
+                <li><a href="#">Support Programs</a></li>
+                <li><a href="#">Trackside Partners</a></li>
+                <li><a href="#">Partner Pricing</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Team &amp; Learn</div>
+              <ul style="margin-top:-4px;">
+                <li><a href="#">About Us</a></li>
+                <li><a href="https://bisontrack.com/pages/internal-team">Internal Team</a></li>
+                <li><a href="#">Education</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Videos</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Find Us</div>
+              <ul style="margin-top:-4px;">
+                <li><a href="https://bisontrack.com/pages/trackside-schedule">Where To Find Us</a></li>
+                <li><a href="https://bisontrack.com/pages/trackside-schedule">Trackside Schedule</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="head-right">
+      <div class="country">UNITED STATES (USD $) <svg style="width:10px;height:10px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+      <svg class="hicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      <svg class="hicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <svg class="hicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="scrim" onclick="closeDrawer()"></div>
+<aside class="drawer" aria-label="Menu">
+  <div class="drawer-head">
+    <img src="https://bisontrack.com/cdn/shop/t/29/assets/bison-logo-light_300x.png?v=145503390030689983341783970096" alt="Bison Track">
+    <button class="drawer-close" aria-label="Close" onclick="closeDrawer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="drawer-body">
+
+    <button class="l1" aria-expanded="false" data-acc>Custom Built <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="l1-panel">
+      <a class="m-feat" href="https://bisontrack.com/products/thor2-airhide-airvest-prepared-custom-suit">
+        <div class="m-feat-img"><img src="https://bisontrack.com/cdn/shop/files/BisonThor.2CustomMotorcycleRacingSuit_OnePiece.jpg?v=1763585070&width=200" alt="Thor.2 Custom Suit"></div>
+        <div>
+          <div class="m-feat-name">Bison Thor.2 Custom Motorcycle Racing Suit</div>
+          <span class="m-feat-cta">Shop Custom Suits &rsaquo;</span>
+        </div>
+      </a>
+      <button class="l2" aria-expanded="false" data-acc>Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/collections/bison-custom-built-gear">All Custom Gear</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-suits">Suits</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-gear-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-gloves">Gloves</a>
+        <a href="https://bisontrack.com/collections/bison-boots">Boots</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-chest-protectors">Chest Protectors</a>
+        <a href="https://bisontrack.com/collections/bison-custom-accessories">Accessories</a>
+      </div>
+      <button class="l2" aria-expanded="false" data-acc>Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/collections/bison-custom-built-style">All Custom Style</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-style-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-powered-by-vnm">Bison x VnM</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-crew-shirts-and-jerseys">Crew Shirts &amp; Jerseys</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-hoodies">Hoodies</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-prints">Prints</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-t-shirts">T-Shirts</a>
+      </div>
+      <button class="l2" aria-expanded="false" data-acc>Build Process <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a class="m-build-cta" href="https://bisontrack.com/pages/design-central">Start Your Build &rarr;</a>
+        <div class="m-sub-label">Design Central</div>
+        <a href="https://bisontrack.com/pages/design-central">Start Here</a>
+        <a href="#">2021 Catalog</a>
+        <a href="#">Leather Colors</a>
+        <a href="#">Sample Patterns</a>
+        <a href="#">Templates</a>
+        <div class="m-sub-label">Measurement Central</div>
+        <a href="https://bisontrack.com/pages/measurement-central">Start Here</a>
+        <a href="#">Fitment Guarantee</a>
+        <a href="#">How To Videos</a>
+      </div>
+    </div>
+
+    <button class="l1" aria-expanded="false" data-acc>Ready To Wear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="l1-panel">
+      <a class="m-feat" href="https://bisontrack.com/collections/maverick">
+        <div class="m-feat-img"><img src="https://bisontrack.com/cdn/shop/files/bison-suit-thor-2-mav-main.jpg?v=1778094893&width=200" alt="The Maverick Collection"></div>
+        <div>
+          <div class="m-feat-name">The Maverick Collection</div>
+          <span class="m-feat-cta">Shop Maverick &rsaquo;</span>
+        </div>
+      </a>
+      <button class="l2" aria-expanded="false" data-acc>Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-gear">All Gear</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-suits">Suits</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-undersuits">Undersuits</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-gloves">Gloves</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-air-vests-and-armor">Air Vests &amp; Armor</a>
+        <a href="https://bisontrack.com/collections/helmets-and-helmet-accessories">Helmets &amp; Accessories</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-knee-pucks">Knee Pucks &amp; Sliders</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-pit-mats">Pit Mats</a>
+      </div>
+      <button class="l2" aria-expanded="false" data-acc>Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-style">All Style</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-style-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-t-shirts">T-Shirts</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-hoodies">Hoodies</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-hats">Hats</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-tank-tops">Tank Tops</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-long-sleeve-t-shirts">Long Sleeve Tees</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-accessories">Accessories</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-baby">Baby</a>
+        <a href="https://bisontrack.com/collections/the-herd-collection">The Herd Collection</a>
+      </div>
+    </div>
+
+    <button class="l1" aria-expanded="false" data-acc>Pasture Sale <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="l1-panel">
+      <a class="m-feat" href="https://bisontrack.com/collections/pasture-sale">
+        <div class="m-feat-img"><img src="https://cdn.shopify.com/s/files/1/0257/6705/1360/files/BisonVintageRebirthTwoPieceCowhideMotorcycleRacingSuit_dac570a7-05b9-4db9-af05-4585b89e1201.png" alt="Vintage Rebirth Two-Piece"></div>
+        <div>
+          <div class="m-feat-name">Vintage Rebirth Two-Piece</div>
+          <span class="m-feat-cta">Shop Now &rsaquo;</span>
+        </div>
+      </a>
+      <a style="display:block;padding:12px 20px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;color:var(--txt-mid);border-top:1px solid rgba(255,255,255,.06);" href="https://bisontrack.com/collections/pasture-sale">All Pasture Sale Items</a>
+      <a style="display:block;padding:12px 20px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;color:var(--txt-mid);border-top:1px solid rgba(255,255,255,.06);" href="https://bisontrack.com/collections/the-pasture">The Pasture</a>
+      <div class="explain m-explain">
+        <h4>Pasture Sale vs The Pasture</h4>
+        <p><strong>Pasture Sale:</strong> one-of-a-kind custom suits that didn't find their original riders. Final sale.</p>
+        <p><strong>The Pasture:</strong> in-stock suits and gloves at 40% off retail.</p>
+      </div>
+    </div>
+
+    <button class="l1" aria-expanded="false" data-acc>Community <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+    <div class="l1-panel">
+      <button class="l2" aria-expanded="false" data-acc>Riders <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/pages/riders">All Riders</a>
+        <a href="#">Ambassadors</a>
+        <a href="#">Sponsored Riders</a>
+        <a href="#">Youth Program</a>
+      </div>
+      <button class="l2" aria-expanded="false" data-acc>Partners <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/pages/partners">All Partners</a>
+        <a href="#">Authorized Alterations</a>
+        <a href="#">Authorized Measurement</a>
+        <a href="#">Dealers</a>
+        <a href="#">Support Programs</a>
+        <a href="#">Trackside Partners</a>
+        <a href="#">Partner Pricing</a>
+      </div>
+      <button class="l2" aria-expanded="false" data-acc>Team &amp; Learn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="#">About Us</a>
+        <a href="https://bisontrack.com/pages/internal-team">Internal Team</a>
+        <a href="#">Education</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Blog</a>
+        <a href="#">Videos</a>
+        <a href="https://bisontrack.com/pages/trackside-schedule">Where To Find Us</a>
+      </div>
+    </div>
+
+    <button class="l1 login-row" onclick="location.href='https://bisontrack.com/account/login'">Login</button>
+  </div>
+</aside>
+
+<main class="demo">
+  <div>
+    <h1>Built For The Ones<br>Who Lead The Pack.</h1>
+    <p>Interactive nav prototype. Hover the menu on desktop, use the hamburger on mobile.</p>
+    <span class="hint">Nav Redesign v3, feedback round applied</span>
+  </div>
+</main>
+
+<button class="notes-toggle" onclick="document.querySelector('.notes').classList.toggle('open')">Change Notes</button>
+<div class="notes">
+  <h3>Nav v3: what changed and why</h3>
+  <div class="meta">Responds to feedback in Slack, Aug 5. Core layout unchanged from the approved dark mega menu design.</div>
+
+  <h4>1. Race / track / pit terminology removed</h4>
+  <ul>
+    <li>"Race Gear" and "Track Gear" are now "Gear". "Pit Wear &amp; Lifestyle" and "Lifestyle" are now "Style". This mirrors the live site's own "Shop Gear / Shop Style" grouping, so no collection URLs change.</li>
+    <li>"Racing Gloves" is now "Gloves". "Race Suits" is now "Custom Suits".</li>
+    <li>Product titles (e.g. "Thor.2 Custom Motorcycle Racing Suit") keep their real names.</li>
+    <li>SEO note: nav labels carry little ranking weight compared to collection page titles and URLs, which are untouched. No measurable SEO loss expected.</li>
+  </ul>
+
+  <h4>2. Product card images fixed</h4>
+  <ul>
+    <li>Featured cards now use a square image area with the full product visible (object-fit: contain on a light background). Nothing is cropped.</li>
+  </ul>
+
+  <h4>3. Badges and icons stripped</h4>
+  <ul>
+    <li>All colored chips removed: "High Value", "Hot", "Ships Fast", "Best Seller", "Ships Now", and the "SALE" chip next to Pasture Sale.</li>
+    <li>Column header icon chips removed. Columns are now clean uppercase labels with a hairline underline, closer to the Tavi Active reference, while keeping Bison's dark theme.</li>
+    <li>The only remaining color block is the "Start Your Build" CTA, which is functional, not promotional.</li>
+  </ul>
+
+  <h4>4. Pasture confusion resolved</h4>
+  <ul>
+    <li>"The Pasture" and "Pasture Sale" links removed from Ready To Wear. RTW now focuses on in-line Bison gear, with a one-line pointer to The Pasture for deals.</li>
+    <li>The Pasture Sale menu now includes a plain-language explainer of Pasture Sale vs The Pasture.</li>
+    <li>"SALE" badge removed from the Pasture Sale nav item.</li>
+  </ul>
+
+  <h4>5. Maverick jacket journey fixed</h4>
+  <ul>
+    <li>Before: Ready To Wear's "Track Gear" column had no Jackets link at all, so a Maverick jacket was unreachable. Jackets is now in RTW &gt; Gear (2 clicks: Ready To Wear, then Jackets).</li>
+    <li>The RTW featured card now links to the full Maverick Collection instead of a single suit.</li>
+  </ul>
+
+  <h4>Also folded in from the live site</h4>
+  <ul>
+    <li>Community updated to current pages: Internal Team and Education added; Trackside Schedule grouped under "Find Us" with Where To Find Us.</li>
+  </ul>
+</div>
+
+<script>
+  // Desktop: open on hover, close on leave
+  document.querySelectorAll('[data-menu]').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      document.querySelectorAll('[data-menu].open').forEach(o => o.classList.remove('open'));
+      item.classList.add('open');
+    });
+    item.addEventListener('mouseleave', () => item.classList.remove('open'));
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('[data-menu].open').forEach(o => o.classList.remove('open'));
+      closeDrawer();
+    }
+  });
+
+  // Mobile drawer
+  function openDrawer() { document.body.classList.add('drawer-open'); }
+  function closeDrawer() { document.body.classList.remove('drawer-open'); }
+
+  // Accordions (L1 + L2): one open per level within the same parent
+  document.querySelectorAll('[data-acc]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling;
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const siblings = [...btn.parentElement.children].filter(el => el.matches('[data-acc]') && el !== btn);
+      siblings.forEach(s => { s.setAttribute('aria-expanded', 'false'); s.nextElementSibling?.classList.remove('open'); });
+      btn.setAttribute('aria-expanded', String(!expanded));
+      panel.classList.toggle('open', !expanded);
+    });
+  });
+</script>
+</body>
+</html>
