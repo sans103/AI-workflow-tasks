@@ -333,7 +333,7 @@ input,select{font-family:inherit}
 @media(max-width:520px){.review-grid{grid-template-columns:1fr}}
 
 /* ---------- Subscription benefit cards ---------- */
-.value-grid{margin-top:var(--sp-5);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2)}
+.value-grid{margin-top:var(--sp-5);display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2)}
 .value{
   background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);
   padding:var(--pad-card);
@@ -578,7 +578,7 @@ input,select{font-family:inherit}
               <dt>Servings</dt>
               <!-- Verified 2026-08-04 via Pauline Ponce: 730g can / 4.4g scoop = ~166 fl oz
                    = ~41.5 four ounce bottles per can. Same figures as the formula PDP. -->
-              <dd>About <span data-slot="bottles">166</span> bottles at 4 oz each</dd>
+              <dd>About <span data-slot="bottles">166</span> bottles at 4 oz each across your <span data-slot="cans_per_month">4</span> cans.</dd>
             </div>
             <div class="fact">
               <dt>Price</dt>
@@ -608,31 +608,27 @@ input,select{font-family:inherit}
         <h2 class="h-display">One Less Thing To Worry About&hellip;</h2>
         <p class="lead">Your subscription keeps your baby&rsquo;s formula stocked and delivered around your family&rsquo;s routine, with the flexibility to make changes anytime.</p>
       </div>
+      <!-- Trimmed 6 verbose cards to 4 short ones per Pauline, Figma 1878736188:
+           "a lot of information to take in ... this person is already considering
+           walking away". Copy matches the Aug 11 Figma design verbatim. -->
       <div class="value-grid">
         <div class="value">
-          <h3>Reliable formula delivered before you need it</h3>
-          <p>No last minute store runs, no empty shelves, and no realizing you are nearly out during a 2am feeding.</p>
+          <h3>Always Stocked</h3>
+          <p>Baby&rsquo;s formula arrives before you run low.</p>
         </div>
         <div class="value">
-          <h3>A plan matched to your feeding routine</h3>
-          <p>Choose 2 cans for supplementing, 4 for combination feeding, or 6 if formula covers most or all of baby&rsquo;s feeds.</p>
+          <h3>Made For Your Routine</h3>
+          <p>Choose 2, 4, or 6 cans per delivery.</p>
         </div>
         <div class="value">
-          <h3>Flexibility as your baby&rsquo;s needs change</h3>
-          <p>Change quantities, switch between Formula Made with Organic Milk and Formula Made with Original Milk, skip a shipment, pause, or reschedule instead of canceling and starting over.</p>
+          <h3>Change It Anytime</h3>
+          <p>Skip, pause, switch, or reschedule in a snap.</p>
         </div>
         <div class="value">
-          <h3>Less mental load</h3>
-          <p>Formula becomes one fewer recurring task to remember. That matters most in the months when everything else already needs your attention.</p>
+          <h3>Subscribe &amp; Save</h3>
+          <p>Keep the formula coming (and the savings growing.)</p>
         </div>
-        <div class="value">
-          <h3>Consistency for baby</h3>
-          <p>Regular deliveries keep the formula your baby is already used to on the shelf, so you are never scrambling for a substitute.</p>
-        </div>
-        <div class="value">
-          <h3>Ongoing savings and subscriber value</h3>
-          <p>Free shipping, subscriber pricing, and member perks stay with the plan. They stop the moment it does.</p>
-        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -794,24 +790,24 @@ input,select{font-family:inherit}
             <input type="radio" name="qty" value="2">
             <span class="qty-top"><span class="n">2 Cans</span></span>
             <span class="mode">Supplementing</span>
-            <span class="desc">About 83 bottles. For occasional formula feeds alongside breast milk.</span>
+            <span class="desc">About 83 bottles at 4oz each. For occasional formula feeds alongside breast milk.</span>
           </label>
           <label class="qty-card">
             <input type="radio" name="qty" value="4" checked>
             <span class="qty-top"><span class="n">4 Cans</span></span>
             <span class="mode">Combination feeding</span>
-            <span class="desc">About 166 bottles. For regularly alternating between breast milk and formula.</span>
+            <span class="desc">About 166 bottles at 4oz each. For regularly alternating between breast milk and formula.</span>
           </label>
           <label class="qty-card">
             <input type="radio" name="qty" value="6">
             <span class="qty-top"><span class="n">6 Cans</span></span>
             <span class="mode">Full formula feeding</span>
-            <span class="desc">About 249 bottles. For most or all of baby&rsquo;s feeds.</span>
+            <span class="desc">About 249 bottles at 4oz each. For most or all of baby&rsquo;s feeds.</span>
           </label>
         </div>
 
         <dl class="offer-rows">
-          <div class="offer-row"><dt>Your new subscription</dt><dd><span data-slot="selected_quantity">4</span> cans, about <span data-slot="selected_bottles">166</span> bottles</dd></div>
+          <div class="offer-row"><dt>Your new subscription</dt><dd><span data-slot="selected_quantity">4</span> cans, about <span data-slot="selected_bottles">166</span> bottles at 4 oz each</dd></div>
           <div class="offer-row total"><dt>Your new shipment total</dt><dd data-slot="new_price">$143.96</dd></div>
           <div class="offer-row"><dt>Next delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
         </dl>
@@ -867,7 +863,7 @@ input,select{font-family:inherit}
             <div class="offer-row"><dt><span data-slot="formula_variant_alt">Munchkin Formula Made with Original Milk</span>, <span data-slot="cans_per_month">4</span> cans</dt><dd data-slot="alt_price">$129.56</dd></div>
             <div class="offer-row total"><dt>With your <span data-slot="discount_percent">20</span>% applied</dt><dd><span class="was" data-slot="alt_price">$129.56</span><span data-slot="alt_discounted_price">$103.65</span></dd></div>
           </dl>
-          <button class="btn btn-02" type="button">Switch To Original Milk And Save</button>
+          <button class="btn btn-02" type="button">Switch Now And Save</button>
         </div>
 
         <div class="offer-actions">
