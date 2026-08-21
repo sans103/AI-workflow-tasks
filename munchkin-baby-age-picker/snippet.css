@@ -1,0 +1,106 @@
+/* ============================================================
+   MUNCHKIN FORMULA V2 :: Baby's age month picker
+   Values measured off the live buy box:
+   green-800 #325420, border green-800/60, radius 8px,
+   control 40px h / 0 16px pad, Matter 14px w500.
+   ============================================================ */
+#mkap { position: relative; width: 100%; }
+
+.mkap-sr {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- trigger: pixel match of the select it replaces ---- */
+.mkap-trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: 5px;
+  width: 100%; height: 40px; padding: 0 16px; margin-top: 2px;
+  border: 1px solid rgba(50, 84, 32, .6); border-radius: 8px; background: #fff;
+  font-family: "Matter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px; font-weight: 500; line-height: 20px; color: #325420;
+  text-align: left; cursor: pointer;
+  transition: border-color .18s cubic-bezier(.4, 0, .2, 1);
+}
+.mkap-trigger:hover,
+.mkap-trigger[aria-expanded="true"] { border-color: #325420; }
+.mkap-val { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mkap-caret { flex: 0 0 auto; width: 12px; height: 12px; transition: transform .18s cubic-bezier(.4, 0, .2, 1); }
+.mkap-trigger[aria-expanded="true"] .mkap-caret { transform: rotate(180deg); }
+
+/* ---- panel ---- */
+.mkap-panel {
+  position: absolute; z-index: 60; top: calc(100% + 6px); left: 0;
+  width: 100%; min-width: 268px; max-width: 340px; padding: 12px;
+  background: #fff; border: 1px solid rgba(18, 18, 18, .12); border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(30, 39, 33, .14);
+}
+.mkap-panel[hidden] { display: none; }
+.mkap-panel.mkap-above { top: auto; bottom: calc(100% + 6px); }
+
+/* ---- born / expecting toggle (page's secondary pill pattern) ---- */
+.mkap-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.mkap-mode {
+  height: 32px; padding: 0 8px; border: 1px solid rgba(50, 84, 32, .6); border-radius: 999px;
+  background: #fff; color: #325420;
+  font-family: "Matter", ui-sans-serif, system-ui, sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: background-color .18s cubic-bezier(.4, 0, .2, 1), border-color .18s cubic-bezier(.4, 0, .2, 1), color .18s cubic-bezier(.4, 0, .2, 1);
+}
+.mkap-mode:hover { border-color: #325420; }
+.mkap-mode[aria-pressed="true"] { background: #325420; border-color: #325420; color: #fff; }
+.mkap-mode-help {
+  margin: 8px 0 10px; font-family: "Matter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px; font-weight: 400; line-height: 18px; color: #565e57;
+}
+
+/* ---- year row ---- */
+.mkap-yr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.mkap-nav {
+  display: flex; align-items: center; justify-content: center; width: 28px; height: 28px;
+  border: 0; border-radius: 999px; background: transparent; cursor: pointer;
+  transition: background-color .18s cubic-bezier(.4, 0, .2, 1);
+}
+.mkap-nav:hover:not(:disabled) { background: #f6f7f4; }
+.mkap-nav:disabled { opacity: .28; cursor: not-allowed; }
+.mkap-nav svg { width: 14px; height: 14px; fill: none; stroke: #325420; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.mkap-yr-label {
+  font-family: "Matter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 14px; font-weight: 600; line-height: 20px; color: #1e2721;
+}
+
+/* ---- month grid ---- */
+.mkap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.mkap-m {
+  height: 38px; border: 1px solid transparent; border-radius: 8px; background: #fff; color: #1e2721;
+  font-family: "Matter", ui-sans-serif, system-ui, sans-serif; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: background-color .18s cubic-bezier(.4, 0, .2, 1), color .18s cubic-bezier(.4, 0, .2, 1);
+}
+.mkap-m:hover:not(:disabled):not([aria-selected="true"]) { background: #e3f3d4; }
+.mkap-m[aria-selected="true"] { background: #325420; color: #fff; }
+.mkap-m:disabled { color: rgba(30, 39, 33, .25); cursor: not-allowed; }
+
+/* ---- footer ---- */
+.mkap-foot {
+  display: flex; justify-content: flex-end; gap: 14px;
+  margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(18, 18, 18, .12);
+}
+.mkap-link {
+  padding: 0; border: 0; background: none; color: #325420;
+  font-family: "Matter", ui-sans-serif, system-ui, sans-serif; font-size: 13px; font-weight: 500; line-height: 18px;
+  text-decoration: underline; text-underline-offset: 2px; cursor: pointer;
+}
+.mkap-link:hover { color: #3b6922; }
+
+/* ---- resolved selection hint ---- */
+.mkap-hint {
+  margin-top: 6px; font-family: "Matter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px; font-weight: 400; line-height: 18px; color: #565e57;
+}
+.mkap-hint[hidden] { display: none; }
+
+#mkap :focus-visible { outline: 2px solid #325420; outline-offset: 2px; border-radius: 8px; }
+
+@media (max-width: 420px) {
+  .mkap-panel { max-width: none; }
+  .mkap-m { height: 40px; }
+}
+.mkap-ph { color: #325420; }

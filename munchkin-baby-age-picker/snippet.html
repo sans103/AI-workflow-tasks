@@ -1,0 +1,60 @@
+<!-- ============================================================
+     MUNCHKIN FORMULA V2 :: Baby's age month picker
+     Replaces the "0 months ... 11 months" <select> in the
+     Subscription buy box with a month grid picker, plus an
+     "Expecting" mode for a due date.
+     The original <select> stays in the DOM (visually hidden) as
+     the data carrier, so existing app state, validation, and the
+     cart attribute keep working untouched.
+     ============================================================ -->
+<div class="w-full" id="mkap" data-mode="born">
+  <select id="mkap-native" class="mkap-sr" aria-hidden="true" tabindex="-1" aria-label="Baby's age">
+    <option value="" disabled selected>Select age</option>
+    <option value="0 months">0 months</option>
+    <option value="1 month">1 month</option>
+    <option value="2 months">2 months</option>
+    <option value="3 months">3 months</option>
+    <option value="4 months">4 months</option>
+    <option value="5 months">5 months</option>
+    <option value="6 months">6 months</option>
+    <option value="7 months">7 months</option>
+    <option value="8 months">8 months</option>
+    <option value="9 months">9 months</option>
+    <option value="10 months">10 months</option>
+    <option value="11 months">11 months</option>
+    <option value="Expecting">Expecting</option>
+  </select>
+
+  <button type="button" id="mkap-trigger" class="mkap-trigger" aria-haspopup="dialog" aria-expanded="false" aria-describedby="mkap-hint">
+    <span id="mkap-val" class="mkap-val mkap-ph">Select birth month or due date</span>
+    <img class="mkap-caret" src="https://cdn.shopify.com/oxygen-v2/27134/35028/73506/4266734/assets/arrowDown-6SdvHRV0.svg" alt="" width="12" height="12" aria-hidden="true">
+  </button>
+
+  <div id="mkap-panel" class="mkap-panel" role="dialog" aria-label="Choose your baby's birth month or your due date" hidden>
+    <div class="mkap-modes" role="group" aria-label="Is your baby born yet?">
+      <button type="button" class="mkap-mode" data-mode="born" aria-pressed="true">Already born</button>
+      <button type="button" class="mkap-mode" data-mode="expecting" aria-pressed="false">Expecting</button>
+    </div>
+    <p id="mkap-mode-help" class="mkap-mode-help">Pick the month your baby was born.</p>
+
+    <div class="mkap-yr">
+      <button type="button" class="mkap-nav" data-nav="prev" aria-label="Previous year">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <span id="mkap-yr" class="mkap-yr-label" aria-live="polite">&nbsp;</span>
+      <button type="button" class="mkap-nav" data-nav="next" aria-label="Next year">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <div id="mkap-grid" class="mkap-grid" role="group" aria-labelledby="mkap-yr"></div>
+
+    <div class="mkap-foot">
+      <button type="button" class="mkap-link" data-act="this">This month</button>
+      <button type="button" class="mkap-link" data-act="clear">Clear</button>
+    </div>
+  </div>
+
+  <p id="mkap-hint" class="mkap-hint" hidden></p>
+  <p id="mkap-err" role="alert" aria-live="polite" class="text-red-700 details uppercase mt-2"></p>
+</div>
