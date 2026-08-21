@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Munchkin Infant Formula · Find It At Target</title>
+<meta name="description" content="730g of complete infant nutrition. Minus the tummy troubles. Find Munchkin Infant Formula at your nearest Target store.">
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://use.typekit.net" crossorigin>
+<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel="preconnect" href="https://cdn.munchkin.com" crossorigin>
+<link rel="stylesheet" href="https://use.typekit.net/hmn1xgt.css">
+
+<style>
+/* ============================================================
+   MUNCHKIN INFANT FORMULA : YOUTUBE LANDING PAGE v3 (branded)
+   ------------------------------------------------------------
+   v3: client wireframe copy restored verbatim, including its Title
+   Case and hyphenation, at the client's explicit direction. Every
+   sourceable DUMMY image swapped for the real Munchkin CDN asset
+   found on munchkin.com/formula. Retained from v2:
+   1. PRIMARY OBJECTIVE IS TARGET RETAIL. Every primary CTA opens
+      the store locator dialog. Direct ecommerce is demoted to a
+      secondary path.
+   2. VISUAL ENERGY. Pastel band rotation using Munchkin's own
+      -100 brand tints, with a per-band accent cascade, a claims
+      marquee, scroll reveals, a hero sticker and one giant
+      numeral. Technique set from
+      outputs/munchkin/pdp-redesign/cerebelly-patterns.md, which
+      is the approach the client already approved on the PDP.
+
+   Restraint list kept from that teardown: one text colour on
+   every band, no rotation or tilt, near zero shadows, and the
+   conversion surfaces stay the calmest sections on the page.
+   ============================================================ */
+
+@font-face{font-family:"Matter";src:url("https://cdn.shopify.com/s/files/1/0584/0257/0288/files/Matter-Regular.woff2") format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Matter";src:url("https://cdn.shopify.com/s/files/1/0584/0257/0288/files/Matter-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Matter";src:url("https://cdn.shopify.com/s/files/1/0584/0257/0288/files/Matter-Regular.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+:root{
+  /* Formula green sub-palette */
+  --green-900:#2d481f; --green-800:#325420; --green-700:#3b6922;
+  --green-600:#4c8828; --green-400:#78c144; --green-200:#c8e9ad;
+  --green-100:#e3f3d4; --green-50:#f9fdf5;
+  /* Base */
+  --bg:#fdfbf9;
+  --tile:#f7f6f3;        /* design-lint-disable cream-palette  Munchkin powder-50, a real brand token */
+  --powder-100:#eae8e1;
+  --amber-100:#fff2d3;
+  --ink:#252527;         /* THE one text colour, on every band */
+  --body:#4e4f50;
+  --muted:#58595b;
+  --rule:#d0d1d1;
+  --hairline:#ece9e3;
+  --pill-edge:rgba(10,49,71,0.3);
+  --white:#ffffff;
+  --product-ground:#f1f8ea;
+
+  /* Pastel bands, exact Munchkin -100 brand tints */
+  --peach:#ffead4;       /* orange-100 */
+  --rose:#fee5e9;        /* pink-100 */
+  --aqua:#effbfb;        /* teal-100 */
+  --aqua-deep:#d0f1f1;   /* teal-200 */
+  --butter:#fff2d3;      /* amber-100 */
+
+  /* Accent hues, one per band */
+  --teal-700:#22717c; --teal-400:#63c6ca; --teal-300:#9de0e1;
+  --pink-700:#b01c41; --pink-400:#f2697d; --pink-300:#ffb8c9;
+  --amber-800:#91310f; --amber-400:#faa31d; --amber-300:#fcc35a;
+
+  /* Fonts */
+  --font-matter:"Matter",ui-sans-serif,system-ui,sans-serif;
+  --font-baskerville:"baskerville-display-pt",Baskerville,"Baskerville Old Face",Georgia,serif;
+  --font-marselis:"Marselis","Iowan Old Style",Georgia,serif;
+
+  /* Type scale, even px only. Wider ramp than v1 for more impact. */
+  --fs-display:clamp(36px,5.4vw,64px);
+  --fs-h2:clamp(28px,3.4vw,44px);
+  --fs-h3:22px; --fs-lg:18px; --fs-base:16px; --fs-sm:14px; --fs-xs:12px;
+  --fs-stat:clamp(40px,5vw,64px);
+
+  /* Spacing, 4pt scale */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+  --band:clamp(56px,6.5vw,104px);
+
+  --r-card:16px; --r-inner:12px; --r-chip:8px;
+  --dur:.18s; --dur-reveal:.55s; --ease:cubic-bezier(.4,0,.2,1);
+  --z-sticky:100; --z-banner:200; --z-dialog:400;
+
+  /* Per band accent defaults (cream sections read green) */
+  --accent:var(--green-400);
+  --accent-deep:var(--green-800);
+  --accent-tint:var(--green-100);
+  --line:var(--hairline);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:var(--font-matter);font-size:var(--fs-base);line-height:1.55;font-weight:400;
+  color:var(--body);background:var(--bg);
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
+input,select{font-family:inherit}
+:focus-visible{outline:2px solid var(--green-900);outline-offset:2px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 var(--s5);position:relative}
+@media(max-width:640px){.wrap{padding:0 var(--s4)}}
+
+/* ---------- Type ---------- */
+.h1{font-size:var(--fs-display);font-weight:300;line-height:1.02;letter-spacing:-0.035em;color:var(--ink);text-wrap:balance}
+.h2{font-size:var(--fs-h2);font-weight:300;line-height:1.08;letter-spacing:-0.025em;color:var(--ink);text-wrap:balance}
+.h3{font-size:var(--fs-h3);font-weight:400;line-height:1.25;letter-spacing:-0.01em;color:var(--ink);text-wrap:balance}
+.accent{font-family:var(--font-baskerville);font-style:italic;font-weight:400;letter-spacing:0}
+.lead{font-size:var(--fs-lg);line-height:1.5;color:var(--body);max-width:62ch;text-wrap:pretty}
+.small{font-size:var(--fs-sm);line-height:1.5;color:var(--muted);text-wrap:pretty}
+.legal{font-size:var(--fs-xs);line-height:1.5;color:var(--muted);text-wrap:pretty}
+.center{text-align:center}
+.center .lead,.center .small{margin-inline:auto}
+/* Eyebrows: the one loud colour, rationed. 3 on the whole page. */
+.eyebrow{
+  display:block;font-size:var(--fs-xs);font-weight:500;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--accent-deep);margin-bottom:var(--s3);
+}
+
+/* ---------- Bands + per band accent cascade ---------- */
+.band{padding:var(--band) 0;position:relative;overflow:hidden}
+.band-cream{background:var(--bg)}
+.band-tile{background:var(--tile)}
+.band-peach{background:var(--peach);--accent:var(--amber-400);--accent-deep:var(--amber-800);--accent-tint:var(--amber-300);--line:rgba(145,49,15,.14)}
+.band-rose{background:var(--rose);--accent:var(--pink-400);--accent-deep:var(--pink-700);--accent-tint:var(--pink-300);--line:rgba(176,28,65,.14)}
+.band-aqua{background:var(--aqua);--accent:var(--teal-400);--accent-deep:var(--teal-700);--accent-tint:var(--teal-300);--line:rgba(34,113,124,.16)}
+.band-butter{background:var(--butter);--accent:var(--amber-400);--accent-deep:var(--amber-800);--accent-tint:var(--amber-300);--line:rgba(145,49,15,.14)}
+.band-green{background:var(--green-800);color:var(--white);--accent:var(--green-400);--accent-deep:var(--green-100);--line:rgba(255,255,255,.18)}
+.band-green .h1,.band-green .h2,.band-green .h3{color:var(--white)}
+.band-green .lead{color:rgba(255,255,255,.9)}
+.band-green .small,.band-green .legal{color:rgba(255,255,255,.8)}
+.band-tight{padding:var(--s7) 0}
+
+
+/* ---------- Scroll reveal (one style, JS gated on reduced motion) ---------- */
+.reveal-on .reveal{opacity:0;transform:translateY(18px);transition:opacity var(--dur-reveal) var(--ease),transform var(--dur-reveal) var(--ease)}
+.reveal-on .reveal.in{opacity:1;transform:none}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);
+  border-radius:9999px;font-weight:500;text-decoration:none;border:1px solid transparent;
+  transition:background-color var(--dur) var(--ease),border-color var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.btn svg{width:18px;height:18px;flex:0 0 auto}
+.btn-01{min-height:54px;padding:0 var(--s6);font-size:var(--fs-lg);background:var(--green-800);color:var(--white)}
+.btn-01:hover{background:var(--green-700)}
+.btn-02{min-height:44px;padding:0 var(--s5);font-size:var(--fs-base);background:var(--white);border-color:var(--pill-edge);color:var(--green-800)}
+.btn-02:hover{border-color:var(--green-800)}
+.btn-03{min-height:36px;padding:0 var(--s4);font-size:var(--fs-sm);background:transparent;border-color:var(--pill-edge);color:var(--ink)}
+.btn-03:hover{border-color:var(--green-800);color:var(--green-800)}
+.btn-onGreen{min-height:54px;padding:0 var(--s6);font-size:var(--fs-lg);background:var(--white);color:var(--green-800)}
+.btn-onGreen:hover{background:var(--green-100)}
+.btn-block{width:100%}
+/* Text link that reads as the secondary path */
+.link-quiet{
+  display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-base);font-weight:500;
+  color:var(--ink);text-decoration:underline;text-underline-offset:4px;
+}
+.link-quiet:hover{color:var(--accent-deep)}
+
+/* ---------- Badges / stars ---------- */
+.badge{
+  display:inline-flex;align-items:center;gap:var(--s2);border-radius:9999px;
+  background:var(--white);color:var(--accent-deep);border:1px solid var(--line);
+  font-size:var(--fs-xs);font-weight:500;padding:7px 14px;
+}
+.badge-solid{background:var(--accent-tint);color:var(--ink);border-color:transparent}
+.stars{display:inline-flex;gap:2px}
+.stars svg{width:16px;height:16px;fill:var(--amber-400)}
+
+/* ---------- DUMMY scaffolding (delete to ship) ---------- */
+.preview-bar{position:relative;z-index:var(--z-banner);background:var(--ink);color:var(--white);font-size:var(--fs-xs);line-height:1.5;padding:10px 0;text-align:center}
+.preview-bar b{font-weight:500}
+.dummy{
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:var(--s2);
+  border:1px dashed #a9a7a1;border-radius:var(--r-inner);background:rgba(242,241,238,.86);
+  color:#6b6a66;text-align:center;padding:var(--s4);min-height:64px;
+}
+.dummy-tag{font-size:var(--fs-xs);font-weight:500;letter-spacing:0.1em;text-transform:uppercase}
+.dummy-note{font-size:var(--fs-xs);line-height:1.4;max-width:34ch}
+.dummy-inline{
+  display:inline-flex;align-items:center;border:1px dashed #a9a7a1;border-radius:9999px;
+  background:rgba(242,241,238,.86);color:#6b6a66;font-size:var(--fs-xs);font-weight:500;
+  letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;white-space:nowrap;
+}
+.dummy-lines{display:flex;flex-direction:column;gap:6px;width:100%;margin-top:var(--s2)}
+.dummy-lines i{display:block;height:8px;border-radius:9999px;background:#e0dfda}
+.dummy-lines i:nth-child(2){width:88%}
+.dummy-lines i:nth-child(3){width:64%}
+
+/* ---------- Media frames ---------- */
+.frame{border-radius:var(--r-card);overflow:hidden;background:var(--white)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame-1x1{aspect-ratio:1/1}
+.frame-4x3{aspect-ratio:4/3}
+.frame-4x5{aspect-ratio:4/5}
+.frame-product{background:var(--product-ground)}
+.frame-product img{mix-blend-mode:multiply;object-fit:contain}
+
+/* ---------- Cards: flat, inset ring on hover, never a shadow ---------- */
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s6)}
+.card-hover{transition:box-shadow var(--dur) var(--ease)}
+.card-hover:hover{box-shadow:inset 0 0 0 2px var(--accent)}
+
+/* ============================================================
+   HEADER + PRESS STRIP
+   ============================================================ */
+.site-header{background:var(--bg)}
+.site-header .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:var(--s4);gap:var(--s4)}
+.site-header a.logo{display:flex;align-items:center;min-height:44px;grid-column:2}
+.site-header img{width:164px;height:auto}
+.header-cta{grid-column:3;justify-self:end}
+@media(max-width:720px){
+  .site-header .wrap{grid-template-columns:1fr auto}
+  .site-header a.logo{grid-column:1;justify-self:start}
+  .header-cta{grid-column:2}
+}
+
+.press{background:var(--bg);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);overflow:hidden}
+.press .wrap{padding-block:var(--s4)}
+.press-rail{display:flex;align-items:center;gap:var(--s7);justify-content:center;flex-wrap:wrap}
+.press-label{font-size:var(--fs-xs);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted)}
+.press-slot{
+  display:inline-flex;align-items:center;justify-content:center;min-width:118px;height:30px;
+  border:1px dashed #b9b7b1;border-radius:var(--r-chip);background:var(--white);
+  color:#6b6a66;font-size:var(--fs-xs);font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+}
+@media(max-width:720px){
+  .press .wrap{padding-inline:0}
+  .press-rail{flex-wrap:nowrap;justify-content:flex-start;gap:var(--s5);overflow-x:auto;scrollbar-width:none;padding-inline:var(--s4)}
+  .press-rail::-webkit-scrollbar{display:none}
+  .press-label,.press-slot{flex:0 0 auto}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:var(--band) 0}
+.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s9);align-items:center}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s5)}
+.hero-copy .lead{max-width:30ch;font-size:20px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center}
+.hero-media{
+  border-radius:var(--r-card);overflow:hidden;background:var(--peach);
+  aspect-ratio:5/4;position:relative;
+}
+.hero-media img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
+/* Sticker style callout on the hero image, no rotation */
+.hero-sticker{
+  position:absolute;left:var(--s5);top:var(--s5);z-index:2;
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  width:92px;height:92px;border-radius:9999px;background:var(--green-800);color:var(--white);
+  text-align:center;line-height:1.15;padding:var(--s2);
+}
+.hero-sticker b{display:block;font-size:24px;font-weight:500;letter-spacing:-0.02em}
+.hero-sticker span{font-size:12px;letter-spacing:0.02em}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:var(--s6)}
+  .hero-media{order:-1;aspect-ratio:4/3}
+  .hero-copy .lead{max-width:none}
+}
+
+/* ============================================================
+   CLAIMS MARQUEE
+   ============================================================ */
+.marquee{
+  background:var(--green-100);color:var(--green-900);overflow:hidden;position:relative;
+  padding:14px 0;border-top:1px solid rgba(45,72,31,.1);border-bottom:1px solid rgba(45,72,31,.1);
+}
+.marquee-track{display:flex;width:max-content;animation:mq-scroll 34s linear infinite}
+.marquee.paused .marquee-track,.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee ul{display:flex;align-items:center;list-style:none;white-space:nowrap}
+.marquee li{display:flex;align-items:center;font-size:var(--fs-base);font-weight:500;letter-spacing:.01em}
+.marquee li::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--green-600);display:inline-block;margin:0 24px;flex-shrink:0}
+@keyframes mq-scroll{to{transform:translateX(-50%)}}
+.mq-pause{
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);z-index:2;
+  width:30px;height:30px;border-radius:50%;border:1px solid rgba(45,72,31,.35);
+  background:var(--green-100);color:var(--green-900);display:flex;align-items:center;justify-content:center;
+}
+.mq-pause::before{content:"";position:absolute;inset:-8px;border-radius:50%}
+.mq-pause svg{width:11px;height:11px;fill:currentColor}
+.mq-pause .ic-play{display:none}
+.marquee.paused .mq-pause .ic-pause{display:none}
+.marquee.paused .mq-pause .ic-play{display:block}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* ============================================================
+   CERT ROW
+   ============================================================ */
+.cert-row{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s5);border:1px solid var(--hairline);border-radius:var(--r-card);background:var(--white);padding:var(--s6) var(--s5)}
+.cert-cell{display:flex;flex-direction:column;align-items:center;gap:var(--s3);text-align:center}
+.cert-mark{height:72px;display:flex;align-items:center;justify-content:center}
+.cert-mark img{height:100%;width:auto;object-fit:contain}
+.cert-mark svg{height:60px;width:60px;fill:none;stroke:var(--green-800);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cert-name{font-size:var(--fs-sm);line-height:1.35;color:var(--body);max-width:16ch}
+@media(max-width:860px){
+  .cert-row{grid-template-columns:repeat(2,1fr);gap:var(--s6) var(--s5)}
+  .cert-cell:last-child{grid-column:1 / -1}
+}
+
+/* ============================================================
+   FIND AT TARGET, the primary conversion band
+   ============================================================ */
+.retail-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s9);align-items:center}
+.retail-copy{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s5)}
+.retail-lockup-row{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap}
+.retail-plate{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--white);border:1px solid var(--line);border-radius:var(--r-inner);
+  padding:var(--s3) var(--s5);
+}
+.retail-lockup{font-size:24px;font-weight:500;letter-spacing:-0.02em;color:var(--ink)}
+.retail-plate{gap:var(--s2)}
+.target-mark{width:22px;height:22px;flex:0 0 auto}
+.rating-pill{
+  display:inline-flex;align-items:center;gap:var(--s2);border-radius:9999px;
+  background:var(--white);border:1px solid var(--line);padding:8px 18px;
+  font-size:var(--fs-sm);color:var(--body);
+}
+.rating-num{font-size:20px;font-weight:500;color:var(--ink);letter-spacing:-0.02em}
+.retail-steps{list-style:none;display:flex;flex-direction:column;gap:var(--s4);counter-reset:st}
+.retail-steps li{display:flex;gap:var(--s4);align-items:flex-start;font-size:var(--fs-base);color:var(--ink)}
+.step-n{
+  flex:0 0 auto;width:28px;height:28px;border-radius:9999px;background:var(--white);
+  border:1px solid var(--line);color:var(--accent-deep);
+  display:flex;align-items:center;justify-content:center;font-size:var(--fs-sm);font-weight:500;
+}
+/* Locator preview card, the visual anchor for the retail promise */
+.locator-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s4)}
+.locator-map{
+  position:relative;border-radius:var(--r-inner);overflow:hidden;
+  aspect-ratio:4/3;background:var(--tile);border:1px solid var(--line);
+}
+/* Keyless OpenStreetMap raster tiles. No API key, no WebGL, no JS. */
+.map-tiles{display:grid;grid-template-columns:repeat(4,1fr);line-height:0;filter:saturate(.7) contrast(.96)}
+.map-tiles img{width:100%;height:auto;display:block}
+.map-pin{
+  position:absolute;z-index:2;width:26px;height:26px;margin:-13px 0 0 -13px;
+  border-radius:9999px;background:var(--green-800);border:3px solid var(--white);
+  display:flex;align-items:center;justify-content:center;
+}
+.map-pin b{width:6px;height:6px;border-radius:9999px;background:var(--white);display:block}
+.map-pin--you{background:var(--teal-700);width:20px;height:20px;margin:-10px 0 0 -10px}
+.map-attr{
+  position:absolute;right:0;bottom:0;z-index:2;background:rgba(255,255,255,.86);
+  font-size:10px;line-height:1.4;padding:2px 6px;color:var(--muted);
+}
+.map-attr a{text-decoration:underline}
+.map-note{position:absolute;left:var(--s3);top:var(--s3);z-index:2}
+/* Inside the dialog the map is scaled down as a whole (not cropped) so the pin
+   positions stay true to the tiles and the store list stays above the fold. */
+#locMapMount .locator-map{max-width:400px;margin-inline:auto}
+.store-mini{display:flex;flex-direction:column;gap:var(--s3)}
+.store-mini-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding-bottom:var(--s3);border-bottom:1px solid var(--line)}
+.store-mini-row:last-child{border-bottom:0;padding-bottom:0}
+.store-mini-name{font-size:var(--fs-sm);font-weight:500;color:var(--ink)}
+.store-mini-dist{font-size:var(--fs-xs);color:var(--muted)}
+@media(max-width:900px){
+  .retail-grid{grid-template-columns:1fr;gap:var(--s6)}
+}
+
+/* ============================================================
+   STORE LOCATOR DIALOG
+   ============================================================ */
+dialog.locator{
+  border:0;padding:0;background:transparent;
+  width:min(720px,calc(100vw - 32px));max-width:none;
+  max-height:calc(100vh - 32px);
+  margin:auto;   /* centre the modal in the top layer */
+}
+dialog.locator::backdrop{background:rgba(37,37,39,.55)}
+.locator-panel{
+  background:var(--bg);border-radius:var(--r-card);overflow:hidden;
+  display:flex;flex-direction:column;max-height:calc(100vh - 32px);
+}
+.locator-head{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s4);
+  padding:var(--s6) var(--s6) var(--s5);border-bottom:1px solid var(--hairline);background:var(--white);
+}
+.locator-close{
+  flex:0 0 auto;width:36px;height:36px;border-radius:9999px;border:1px solid var(--pill-edge);
+  display:flex;align-items:center;justify-content:center;color:var(--ink);position:relative;
+}
+.locator-close::before{content:"";position:absolute;inset:-6px}
+.locator-close:hover{border-color:var(--green-800);color:var(--green-800)}
+.locator-close svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.locator-body{padding:var(--s6);overflow-y:auto;display:flex;flex-direction:column;gap:var(--s5)}
+/* Variant toggle */
+.seg{display:inline-flex;background:var(--tile);border-radius:9999px;padding:4px;gap:4px}
+.seg button{
+  min-height:40px;padding:0 var(--s5);border-radius:9999px;font-size:var(--fs-sm);font-weight:500;
+  color:var(--green-800);transition:background-color var(--dur) var(--ease),color var(--dur) var(--ease);
+}
+.seg button[aria-pressed="true"]{background:var(--green-800);color:var(--white)}
+/* ZIP form */
+.zip-form{display:flex;gap:var(--s2);flex-wrap:wrap}
+.zip-form input{
+  flex:1 1 180px;min-height:50px;padding:0 var(--s4);border:1px solid var(--rule);border-radius:9999px;
+  background:var(--white);font-size:var(--fs-base);color:var(--ink);
+}
+.zip-form input::placeholder{color:var(--muted)}
+.geo-btn{
+  display:inline-flex;align-items:center;gap:var(--s2);min-height:50px;padding:0 var(--s5);
+  border-radius:9999px;border:1px solid var(--pill-edge);font-size:var(--fs-sm);font-weight:500;color:var(--green-800);
+}
+.geo-btn:hover{border-color:var(--green-800)}
+.geo-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6}
+/* Results */
+.store-list{display:flex;flex-direction:column;gap:var(--s4);list-style:none}
+.store-card{
+  background:var(--white);border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:var(--s5);display:grid;grid-template-columns:1fr auto;gap:var(--s3) var(--s4);align-items:start;
+}
+.store-card h4{font-size:var(--fs-base);font-weight:500;color:var(--ink)}
+.store-addr{font-size:var(--fs-sm);color:var(--muted);margin-top:2px}
+.store-meta{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s3)}
+.stock-pill{
+  display:inline-flex;align-items:center;gap:6px;border-radius:9999px;padding:4px 12px;
+  font-size:var(--fs-xs);font-weight:500;background:var(--green-100);color:var(--green-900);
+}
+.stock-pill.low{background:var(--peach);color:var(--amber-800)}
+.stock-dot{width:7px;height:7px;border-radius:50%;background:var(--green-600)}
+.stock-pill.low .stock-dot{background:var(--amber-400)}
+.store-actions{grid-column:1 / -1;display:flex;gap:var(--s3);flex-wrap:wrap;padding-top:var(--s4);border-top:1px solid var(--hairline)}
+.store-dist{font-size:var(--fs-sm);font-weight:500;color:var(--ink);white-space:nowrap}
+.locator-foot{
+  padding:var(--s5) var(--s6);border-top:1px solid var(--hairline);background:var(--white);
+  display:flex;flex-direction:column;gap:var(--s3);
+}
+@media(max-width:560px){
+  .locator-head,.locator-body,.locator-foot{padding-inline:var(--s5)}
+  .store-actions .btn{width:100%}
+}
+
+/* ============================================================
+   VIDEO TESTIMONIALS
+   ============================================================ */
+.video-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5);margin-top:var(--s7)}
+.video-card{display:flex;flex-direction:column;gap:var(--s3);background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s4)}
+.video-poster{
+  position:relative;aspect-ratio:4/5;border-radius:var(--r-inner);overflow:hidden;
+  background:var(--tile);display:flex;align-items:center;justify-content:center;
+}
+.video-poster img{width:100%;height:100%;object-fit:cover}
+/* Real Munchkin photograph as the poster; the clip itself is still pending. */
+.video-play{
+  position:absolute;width:56px;height:56px;border-radius:9999px;background:rgba(255,255,255,.92);
+  display:flex;align-items:center;justify-content:center;
+}
+.video-play svg{width:20px;height:20px;fill:var(--green-800);margin-left:2px}
+.video-flag{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.92)}
+@media(max-width:900px){.video-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.video-row{grid-template-columns:1fr}}
+
+/* ============================================================
+   BENEFITS
+   ============================================================ */
+.benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s9);align-items:center}
+.benefit-list{display:flex;flex-direction:column;gap:var(--s5);list-style:none}
+.benefit-item{display:flex;align-items:flex-start;gap:var(--s4);font-size:20px;color:var(--ink)}
+.check{flex:0 0 auto;width:30px;height:30px;border-radius:9999px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;margin-top:2px}
+.check svg{width:15px;height:15px;fill:none;stroke:var(--accent-deep);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.benefit-cta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s4);margin-top:var(--s5)}
+@media(max-width:900px){.benefit-grid{grid-template-columns:1fr;gap:var(--s6)}}
+
+/* ============================================================
+   FORMULA CHOICE
+   ============================================================ */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-top:var(--s7)}
+.choice-card{display:flex;flex-direction:column;gap:var(--s4);background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s6);text-align:center;align-items:center}
+.choice-card .frame{width:100%}
+.choice-price{font-size:32px;font-weight:500;letter-spacing:-0.02em;color:var(--ink)}
+.choice-was{font-size:var(--fs-sm);color:var(--muted);text-decoration:line-through}
+.choice-card .btn{align-self:stretch}
+@media(max-width:720px){.choice-grid{grid-template-columns:1fr}}
+
+.freeof-row{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5);margin-top:var(--s5)}
+.freeof-cell{display:flex;align-items:center;gap:var(--s4);background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s5)}
+.freeof-icon{flex:0 0 auto;width:48px;height:48px;border-radius:9999px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center}
+.freeof-icon svg{width:24px;height:24px;fill:none;stroke:var(--accent-deep);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:760px){.freeof-row{grid-template-columns:1fr}}
+
+.n10-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:var(--s9);align-items:center}
+@media(max-width:900px){.n10-grid{grid-template-columns:1fr;gap:var(--s6)}}
+
+/* ============================================================
+   INGREDIENTS
+   ============================================================ */
+.ing-layout{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:var(--s6);align-items:stretch;margin-top:var(--s7)}
+.ing-col{display:grid;grid-auto-rows:1fr;gap:var(--s3)}
+.ing-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-inner);padding:var(--s4) var(--s5);display:flex;flex-direction:column;justify-content:center}
+.ing-card h4{font-size:var(--fs-base);font-weight:500;color:var(--accent-deep);letter-spacing:-0.01em}
+.ing-card p{font-size:var(--fs-sm);line-height:1.45;color:var(--body);margin-top:var(--s1)}
+.ing-center{display:flex;flex-direction:column;gap:var(--s4);align-items:center}
+.split-can{position:relative;width:100%;aspect-ratio:1/1;display:flex;overflow:hidden;border-radius:var(--r-card);background:var(--white)}
+.split-half{position:relative;width:50%;height:100%;overflow:hidden}
+.split-half img{position:absolute;top:0;height:100%;width:auto;max-width:none;aspect-ratio:1/1;mix-blend-mode:multiply}
+.split-half--left img{left:0}
+.split-half--right img{right:0}
+.split-seam{position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(37,37,39,.14);transform:translateX(-0.5px)}
+.split-key{display:flex;justify-content:space-between;width:100%;gap:var(--s4)}
+.split-key span{font-size:var(--fs-xs);font-weight:500;color:var(--muted)}
+@media(max-width:960px){
+  .ing-layout{grid-template-columns:1fr}
+  .ing-center{order:-1;max-width:420px;margin-inline:auto}
+  .ing-col{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+}
+@media(max-width:520px){.ing-col{grid-template-columns:1fr}}
+
+/* ============================================================
+   SIZE + SAVINGS
+   ============================================================ */
+.scale-strip{display:grid;grid-template-columns:1fr 1fr;gap:var(--s7);align-items:end;background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s6);margin-top:var(--s6)}
+.scale-real,.scale-dummy{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:var(--s3);width:100%}
+.scale-real .frame{width:100%;max-width:280px;aspect-ratio:1/1}
+.scale-dummy .dummy{width:100%;max-width:200px;aspect-ratio:4/5;min-height:0}
+.scale-cap{font-size:var(--fs-sm);font-weight:500;color:var(--ink);text-align:center}
+.compare-2up{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);margin-top:var(--s5)}
+.compare-col{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s6);display:flex;flex-direction:column;gap:var(--s4)}
+.compare-col--win{background:var(--green-50);border-color:rgba(50,84,32,.24)}
+.compare-col h3{font-size:var(--fs-h3);font-weight:400;color:var(--ink)}
+.compare-col ul{list-style:none;display:flex;flex-direction:column;gap:var(--s3)}
+.compare-col li{font-size:var(--fs-base);color:var(--body);display:flex;gap:var(--s3);align-items:baseline}
+.compare-col--win li{color:var(--ink)}
+.dot{flex:0 0 auto;width:6px;height:6px;border-radius:9999px;background:var(--green-800);margin-top:8px}
+.compare-col--other .dot{background:var(--rule)}
+.savings-close{margin-top:var(--s7);text-align:center;display:flex;flex-direction:column;gap:var(--s4);align-items:center}
+/* Giant numeral, the stat written large rather than boxed in a tile */
+.stat-line{display:flex;align-items:baseline;gap:var(--s4);justify-content:center;flex-wrap:wrap}
+.stat-num{font-size:var(--fs-stat);font-weight:300;letter-spacing:-0.04em;color:var(--accent-deep);line-height:1}
+@media(max-width:820px){
+  .scale-strip{gap:var(--s5);padding:var(--s5)}
+  .compare-2up{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .scale-real .frame{max-width:150px}
+  .scale-dummy .dummy{max-width:108px;padding:var(--s2)}
+  .scale-dummy .dummy-note{display:none}
+  .scale-cap{font-size:var(--fs-xs)}
+}
+
+/* ============================================================
+   COMPETITOR TABLE
+   ============================================================ */
+.table-scroll{overflow-x:auto;margin-top:var(--s7);border-radius:var(--r-card);border:1px solid var(--line);background:var(--white)}
+table.compare{width:100%;min-width:720px;border-collapse:collapse;font-size:var(--fs-sm)}
+table.compare th,table.compare td{padding:var(--s4);text-align:center;vertical-align:middle}
+table.compare thead th{border-bottom:1px solid var(--hairline)}
+table.compare tbody th{text-align:left;font-weight:400;color:var(--body);border-bottom:1px solid var(--hairline);white-space:nowrap}
+table.compare tbody td{border-bottom:1px solid var(--hairline)}
+table.compare tbody tr:last-child th,table.compare tbody tr:last-child td{border-bottom:0}
+.col-brand{background:var(--green-50)}
+.brand-logo{height:26px;width:auto;margin:0 auto;object-fit:contain}
+.heart{width:20px;height:20px;margin:0 auto;display:block}
+.heart-on{fill:var(--green-800)}
+.heart-off{fill:none;stroke:var(--rule);stroke-width:1.6}
+table.compare tbody tr.total-row th,table.compare tbody tr.total-row td{background:var(--green-800);color:var(--white);font-weight:500;font-size:var(--fs-base)}
+table.compare tbody tr.total-row td.col-brand{background:var(--green-900)}
+
+/* ============================================================
+   SOURCING / SAFETY / EXPERTS / REVIEWS
+   ============================================================ */
+.source-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s9);align-items:center}
+.photo-quad{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+.photo-quad .frame,.photo-quad .dummy{aspect-ratio:1/1}
+@media(max-width:900px){.source-grid{grid-template-columns:1fr;gap:var(--s6)}}
+
+.safety-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:var(--s9);align-items:start}
+.safety-copy{display:flex;flex-direction:column;gap:var(--s5)}
+.acc{border:1px solid var(--line);border-radius:var(--r-card);background:var(--white);overflow:hidden}
+.acc-row{border-bottom:1px solid var(--hairline)}
+.acc-row:last-child{border-bottom:0}
+.acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding:var(--s5);font-size:var(--fs-lg);font-weight:400;color:var(--ink);text-align:left;transition:color var(--dur) var(--ease)}
+.acc-btn:hover{color:var(--accent-deep)}
+.acc-ico{flex:0 0 auto;width:30px;height:30px;border-radius:9999px;border:1px solid var(--pill-edge);display:flex;align-items:center;justify-content:center;transition:transform var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.acc-ico svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.acc-btn[aria-expanded="true"] .acc-ico{transform:rotate(90deg);border-color:var(--accent-deep)}
+.acc-panel{padding:0 var(--s5) var(--s5)}
+.acc-panel p{font-size:var(--fs-base);color:var(--body);max-width:60ch}
+@media(max-width:900px){.safety-grid{grid-template-columns:1fr;gap:var(--s6)}}
+
+.expert-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5);margin-top:var(--s7)}
+.expert-col{display:flex;flex-direction:column;gap:var(--s3);align-items:center;text-align:center}
+.expert-photo{width:100%;aspect-ratio:1/1;border-radius:9999px;overflow:hidden;background:var(--white)}
+.expert-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.expert-name{font-size:var(--fs-base);font-weight:500;color:var(--ink)}
+.expert-role{font-size:var(--fs-xs);color:var(--muted);margin-top:-4px}
+@media(max-width:860px){.expert-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.expert-row{grid-template-columns:repeat(2,1fr)}}
+
+.review-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s5);margin-top:var(--s7)}
+.review-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-card);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
+.review-title{font-size:var(--fs-base);font-weight:500;color:var(--accent-deep)}
+.review-body{font-family:var(--font-marselis);font-size:var(--fs-base);line-height:1.5;color:var(--body)}
+.review-by{font-size:var(--fs-xs);color:var(--muted);margin-top:auto}
+@media(max-width:900px){.review-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.review-row{grid-template-columns:1fr}}
+
+.final-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s9);align-items:center}
+.final-copy{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s5)}
+@media(max-width:900px){.final-grid{grid-template-columns:1fr;gap:var(--s6)}.final-media{order:-1}}
+
+/* ============================================================
+   STICKY RETAIL CTA (mobile)
+   ============================================================ */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:var(--z-sticky);display:none;
+  background:var(--bg);border-top:1px solid var(--rule);
+  padding:var(--s3) var(--s4);padding-bottom:max(var(--s3),env(safe-area-inset-bottom));
+}
+.sticky-cta .btn{width:100%}
+@media(max-width:900px){
+  .sticky-cta{display:block}
+  body{padding-bottom:84px}
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{background:var(--amber-100);padding-top:var(--band);position:relative;overflow:hidden}
+.footer-top{display:grid;grid-template-columns:1.15fr 1fr;gap:var(--s9)}
+.footer-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s6)}
+.footer-cols h4{font-size:var(--fs-xs);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink);margin-bottom:var(--s4)}
+.footer-cols ul{list-style:none;display:flex;flex-direction:column;gap:var(--s3)}
+.footer-cols a{position:relative;display:inline-block;font-size:var(--fs-sm);color:var(--body);text-decoration:none}
+.footer-cols a::before{content:"";position:absolute;inset:-11px -8px}
+.footer-cols a:hover{color:var(--green-800);text-decoration:underline;text-underline-offset:3px}
+.footer-signup{display:flex;flex-direction:column;gap:var(--s5)}
+.social-row{display:flex;gap:var(--s3);align-items:center}
+.social-dot{position:relative;width:38px;height:38px;border-radius:9999px;border:1px solid rgba(37,37,39,.2);display:flex;align-items:center;justify-content:center;color:var(--ink);transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
+.social-dot::before{content:"";position:absolute;inset:-3px}
+.social-dot:hover{border-color:var(--green-800);color:var(--green-800)}
+.social-dot svg{width:18px;height:18px;fill:currentColor}
+.sms-head{font-size:var(--fs-h3);font-weight:500;letter-spacing:0.02em;color:var(--ink)}
+.signup-form{display:flex;gap:var(--s2);max-width:420px;flex-wrap:wrap}
+.signup-form input{flex:1 1 180px;min-height:48px;padding:0 var(--s4);border:1px solid rgba(37,37,39,.24);border-radius:9999px;background:var(--white);font-size:var(--fs-sm);color:var(--ink)}
+.signup-form input::placeholder{color:var(--muted)}
+.footer-mark{margin-top:var(--band);padding-bottom:var(--s7);border-top:1px solid rgba(37,37,39,.12);padding-top:var(--s7);display:flex;flex-direction:column;gap:var(--s5);align-items:center;text-align:center}
+.footer-mark img{width:min(420px,72vw);height:auto}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr;gap:var(--s7)}}
+@media(max-width:620px){.footer-cols{grid-template-columns:1fr 1fr}}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">
+  <div class="wrap">
+    Munchkin Infant Formula · YouTube landing page <b>v3</b>. Wireframe copy restored. Primary goal: Target retail. Remaining <b>DUMMY</b> slots: press logos, Nurture 10 badge, video clips, competitor can, locator store data, SMS code.
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Munchkin home">
+      <img src="https://www.munchkin.com/assets/Logo-C_WjjftE.svg" alt="Munchkin" width="164" height="34">
+    </a>
+    <div class="header-cta">
+      <button class="btn btn-03" type="button" data-open-locator>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Find a store
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     A. PRESS STRIP
+     DUMMY: 4 press logos. The wireframe labels the strip but names
+     no publications.
+     ============================================================ -->
+<section class="press" aria-label="As featured in">
+  <div class="wrap">
+    <div class="press-rail">
+      <span class="press-label">As featured in</span>
+      <span class="press-slot">[Dummy logo]</span>
+      <span class="press-slot">[Dummy logo]</span>
+      <span class="press-slot">[Dummy logo]</span>
+      <span class="press-slot">[Dummy logo]</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     B. HERO. Primary CTA drives to the store locator.
+     ============================================================ -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="h1" id="hero-h">Munchkin <span class="accent">Infant Formula</span></h1>
+        <p class="lead">730g of Complete Infant Nutrition. Minus the Tummy Troubles.</p>
+        <div class="hero-actions">
+          <button class="btn btn-01" type="button" data-open-locator>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Find it at Target
+          </button>
+          <a class="link-quiet" href="#trial">Try Now!</a>
+        </div>
+        <p class="legal">Milk based powder with iron. For babies 0 to 12 months.</p>
+      </div>
+      <div class="hero-media">
+        <span class="hero-sticker" aria-hidden="true"><b>730g</b><span>per can</span></span>
+        <img src="https://cdn.munchkin.com/uploads/2026/01/organic-original-side-by-side-2.jpg"
+             alt="Munchkin Infant Formula cans side by side: the organic milk can with a green lid and the original milk can with a teal lid"
+             width="1000" height="800" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     C. CLAIMS MARQUEE. Highest energy per unit of effort, and it
+     doubles as the divider between hero and trust hardware.
+     ============================================================ -->
+<div class="marquee" id="claimsMarquee" role="region" aria-label="Product claims ticker">
+  <div class="marquee-track">
+    <ul>
+      <li>Available at Target</li>
+      <li>730g per can</li>
+      <li>10 ingredients shared with breastmilk</li>
+      <li>USDA Organic milk</li>
+      <li>Grass fed New Zealand cows</li>
+      <li>No corn syrup</li>
+      <li>No artificial hormones</li>
+      <li>European blend</li>
+      <li>Clinically tested</li>
+    </ul>
+    <ul aria-hidden="true">
+      <li>Available at Target</li>
+      <li>730g per can</li>
+      <li>10 ingredients shared with breastmilk</li>
+      <li>USDA Organic milk</li>
+      <li>Grass fed New Zealand cows</li>
+      <li>No corn syrup</li>
+      <li>No artificial hormones</li>
+      <li>European blend</li>
+      <li>Clinically tested</li>
+    </ul>
+  </div>
+  <button class="mq-pause" id="mqPause" type="button" aria-pressed="false" aria-label="Pause claims ticker">
+    <svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>
+    <svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 21 12 7 20"/></svg>
+  </button>
+</div>
+
+<!-- ============================================================
+     D. CERT ROW. Trust hardware stays undecorated, on the calm
+     cream ground.
+     ============================================================ -->
+<section class="band-tight band-cream" aria-label="Certifications">
+  <div class="wrap">
+    <div class="cert-row reveal">
+      <div class="cert-cell">
+        <span class="cert-mark"><img src="https://cdn.munchkin.com/uploads/2026/04/certified-pesticide-free.png" alt="" loading="lazy" width="144" height="144"></span>
+        <span class="cert-name">Certified Pesticide-Free</span>
+      </div>
+      <div class="cert-cell">
+        <span class="cert-mark"><img src="https://cdn.munchkin.com/uploads/2026/04/purity-award.png" alt="" loading="lazy" width="144" height="144"></span>
+        <span class="cert-name">Clean Label Purity Award</span>
+      </div>
+      <div class="cert-cell">
+        <!-- DUMMY: no Nurture 10 badge artwork exists. Line icon stands in. -->
+        <span class="cert-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5C19 16.65 12 21 12 21Z"/><path d="M12 8V3"/><path d="M9 5h6"/></svg>
+        </span>
+        <span class="cert-name">Patented Nurture 10 Blend</span>
+      </div>
+      <div class="cert-cell">
+        <span class="cert-mark"><img src="https://cdn.munchkin.com/uploads/2026/04/first-1000-day-promise.png" alt="" loading="lazy" width="144" height="144"></span>
+        <span class="cert-name">First 1000 Day Promise</span>
+      </div>
+      <div class="cert-cell">
+        <span class="cert-mark"><img src="https://cdn.munchkin.com/uploads/2026/04/eu-blend.png" alt="" loading="lazy" width="144" height="144"></span>
+        <span class="cert-name">EU Blend</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     E. FIND IT AT TARGET. The page's primary objective, so it gets
+     the strongest band and sits directly under the trust row.
+     ============================================================ -->
+<section class="band band-aqua" id="retail" aria-labelledby="retail-h">
+  <div class="wrap">
+    <div class="retail-grid">
+      <div class="retail-copy">
+        <span class="eyebrow">In stores now</span>
+        <h2 class="h2" id="retail-h">Pick one up on <span class="accent">your next Target run.</span></h2>
+        <div class="retail-lockup-row">
+          <!-- REAL: Munchkin's own Target bullseye asset, used the way the live PDP uses it. -->
+          <span class="retail-plate"><img class="target-mark" src="https://cdn.munchkin.com/uploads/2026/04/target-logo-1.png" alt="" loading="lazy" width="22" height="22"><span class="retail-lockup">Target</span></span>
+          <span class="badge badge-solid">Both formulas stocked</span>
+        </div>
+        <ol class="retail-steps">
+          <li><span class="step-n">1</span><span>Tell us your ZIP code, or let us use your location.</span></li>
+          <li><span class="step-n">2</span><span>See the nearest Target stores carrying Munchkin formula.</span></li>
+          <li><span class="step-n">3</span><span>Get directions, or reserve it for Drive Up and Order Pickup.</span></li>
+        </ol>
+        <button class="btn btn-01" type="button" data-open-locator>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Find my nearest Target
+        </button>
+        <p class="legal">Available At Target. Find the Munchkin Infant Formula at your local Target store!</p>
+      </div>
+
+      <div class="locator-card reveal">
+        <!-- Real map from keyless OpenStreetMap raster tiles: no API key, no WebGL.
+             DUMMY: the pin positions are illustrative. Production should render the
+             locator provider's map with live Target pins and stock. -->
+        <div class="locator-map" role="img" aria-label="Map showing three nearby Target stores">
+          <div class="map-tiles" aria-hidden="true">
+            <img src="https://tile.openstreetmap.org/12/700/1634.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/701/1634.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/702/1634.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/703/1634.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/700/1635.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/701/1635.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/702/1635.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/703/1635.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/700/1636.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/701/1636.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/702/1636.png" alt="" loading="lazy" width="256" height="256">
+            <img src="https://tile.openstreetmap.org/12/703/1636.png" alt="" loading="lazy" width="256" height="256">
+          </div>
+          <span class="map-pin map-pin--you" style="left:50%;top:52%" aria-hidden="true"></span>
+          <span class="map-pin" style="left:38%;top:40%" aria-hidden="true"><b></b></span>
+          <span class="map-pin" style="left:62%;top:33%" aria-hidden="true"><b></b></span>
+          <span class="map-pin" style="left:57%;top:68%" aria-hidden="true"><b></b></span>
+          <span class="map-note dummy-inline">Sample area</span>
+          <span class="map-attr">&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</span>
+        </div>
+        <div class="store-mini">
+          <div class="store-mini-row">
+            <span class="store-mini-name">Target West Hollywood</span>
+            <span class="store-mini-dist">1.8 mi</span>
+          </div>
+          <div class="store-mini-row">
+            <span class="store-mini-name">Target Echo Park</span>
+            <span class="store-mini-dist">3.4 mi</span>
+          </div>
+          <div class="store-mini-row">
+            <span class="store-mini-name">Target Huntington Park</span>
+            <span class="store-mini-dist">5.1 mi</span>
+          </div>
+        </div>
+        <p class="legal"><span class="dummy-inline">Dummy data</span> Sample stores. Live results need a locator provider.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     F. VIDEO TESTIMONIALS
+     REAL: 4 verified parent quotes from the live PDP. DUMMY: the 4 video poster stills / clips.
+     ============================================================ -->
+<section class="band band-peach" aria-labelledby="social-h">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2" id="social-h">The New Go-To Infant Formula For <span class="accent">Parents Worldwide:</span></h2>
+    </div>
+    <div class="video-row reveal">
+      <article class="video-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <div class="video-poster"><img src="https://cdn.munchkin.com/uploads/2026/02/formula-experts-research-carousel-3-1.png" alt="A parent bottle feeding their newborn" loading="lazy" width="502" height="670"><span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dummy-inline video-flag">Clip pending</span></div>
+        <p class="small">"Finally, a formula I completely trust. I have boy and girl twins who are fully formula fed, and this is both USA based and made in the USA. My babies have done so well on it." <b>Brittany F.</b></p>
+      </article>
+      <article class="video-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <div class="video-poster"><img src="https://cdn.munchkin.com/uploads/2026/02/formula-experts-research-carousel-1.png" alt="A parent holding their baby at the open fridge" loading="lazy" width="502" height="670"><span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dummy-inline video-flag">Clip pending</span></div>
+        <p class="small">"This formula is working well for my little one. We have tried several different ones and this one agrees with his digestive system." <b>sandy L.</b></p>
+      </article>
+      <article class="video-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <div class="video-poster"><img src="https://cdn.munchkin.com/uploads/2026/02/formula-why-1-1.png" alt="A parent holding two babies in their lap" loading="lazy" width="502" height="670"><span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dummy-inline video-flag">Clip pending</span></div>
+        <p class="small">"This is about the only formula my grandson can tolerate and we've tried them all. Less gas, less crying." <b>Tresa S.</b></p>
+      </article>
+      <article class="video-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <div class="video-poster"><img src="https://cdn.munchkin.com/uploads/2026/04/Formula-Review-1.png" alt="A parent feeding their baby from a bottle beside a window" loading="lazy" width="502" height="670"><span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="dummy-inline video-flag">Clip pending</span></div>
+        <p class="small">"We love this formula! She's had an easy transition and tolerates it well with no tummy issues. So nice that the scoop is attached to the top and not buried in the powder." <b>Courtney R.</b></p>
+      </article>
+    </div>
+    <p class="legal center" style="margin-top:var(--s5)">Quotes are verified Munchkin reviews. Photographs are Munchkin lifestyle imagery standing in for the parent video clips, so the people shown are not the reviewers quoted. Swap both when the real clips land.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     G. BIG COMFORT
+     ============================================================ -->
+<section class="band band-cream" aria-labelledby="comfort-h">
+  <div class="wrap">
+    <div class="center reveal" style="margin-bottom:var(--s7)">
+      <h2 class="h2" id="comfort-h"><u>BIG</u> Comfort<br><span class="accent">For Tiny Tummies</span></h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="frame frame-4x5 reveal">
+        <img src="https://cdn.munchkin.com/uploads/2026/04/Formula-Review-2.png"
+             alt="A parent cradling a newborn and feeding them from a bottle" loading="lazy" width="640" height="800">
+      </div>
+      <div class="reveal">
+        <ul class="benefit-list">
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Immune System Support*</span></li>
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Less Fuss, More Giggles</span></li>
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Softer, Easier Stools*</span></li>
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Gentle Digestion</span></li>
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Complete Infant Nutrition</span></li>
+        </ul>
+        <div class="benefit-cta">
+          <button class="btn btn-01" type="button" data-open-locator>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Find it at Target
+          </button>
+          <a class="link-quiet" href="#trial">Try Now!</a>
+          <p class="legal">*Based on results from a 16-week clinical study. Individual experiences may vary.*</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     H. CHOOSE YOUR FORMULA. Both cards lead to Target, with the
+     direct purchase kept as the quiet secondary link.
+     ============================================================ -->
+<section class="band band-butter" id="choose" aria-labelledby="choose-h">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2" id="choose-h">Choose Your Formula:</h2>
+      <p class="lead center" style="margin-top:var(--s5)">Both are stocked at Target, and both carry the patented Nurture 10 Blend.</p>
+    </div>
+    <div class="choice-grid reveal">
+      <article class="choice-card card-hover">
+        <div class="frame frame-1x1 frame-product">
+          <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-organic-1.jpg?width=900"
+               alt="Munchkin Infant Formula made with organic milk, 25.8 oz can with a green lid" loading="lazy" width="900" height="900">
+        </div>
+        <h3 class="h3">Munchkin Organic Milk Formula</h3>
+        <p class="small">Made with <span class="strong-word">USDA Organic milk</span> from grass-fed New Zealand cows. PLUS our <span class="strong-word">Nurture 10 &reg; Blend</span>.</p>
+        <p class="choice-was">$79.98</p>
+        <p class="choice-price">$39.99</p>
+        <button class="btn btn-01 btn-block" type="button" data-open-locator data-variant="organic">Choose Organic</button>
+        <a class="link-quiet" href="https://www.munchkin.com/infant-formula-organic">Or order direct</a>
+      </article>
+      <article class="choice-card card-hover">
+        <div class="frame frame-1x1 frame-product">
+          <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-original-1.jpg?width=900"
+               alt="Munchkin Infant Formula made with original milk, 25.8 oz can with a teal lid" loading="lazy" width="900" height="900">
+        </div>
+        <h3 class="h3">Munchkin Original Milk Formula</h3>
+        <p class="small">Complete everyday infant nutrition featuring our patented <span class="strong-word">Nurture 10 &reg; blend</span>.</p>
+        <p class="choice-was">$71.98</p>
+        <p class="choice-price">$35.99</p>
+        <button class="btn btn-01 btn-block" type="button" data-open-locator data-variant="original">Choose Original</button>
+        <a class="link-quiet" href="https://www.munchkin.com/infant-formula-original">Or order direct</a>
+      </article>
+    </div>
+
+    <div class="freeof-row reveal">
+      <div class="freeof-cell">
+        <span class="freeof-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20c4-1 7-4 8-8 1-4 4-7 8-8"/><path d="M12 12c-3 0-5-2-5-5 3 0 5 2 5 5Z"/><path d="M4 4l16 16"/></svg></span>
+        <span class="small" style="color:var(--ink)">Free of corn syrup</span>
+      </div>
+      <div class="freeof-cell">
+        <span class="freeof-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 12h6"/><path d="M5 5l14 14"/></svg></span>
+        <span class="small" style="color:var(--ink)">Free of artificial hormones</span>
+      </div>
+      <div class="freeof-cell">
+        <span class="freeof-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M12 9c0-3 2-5 5-5 0 3-2 5-5 5Z"/><path d="M12 13c0-3-2-5-5-5 0 3 2 5 5 5Z"/><path d="M4 4l16 16"/></svg></span>
+        <span class="small" style="color:var(--ink)">Free of GMO*</span>
+      </div>
+    </div>
+    <p class="legal center" style="margin-top:var(--s5)">*Claims in this section refer exclusively to Munchkin Organic Milk Infant Formula</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     I. NURTURE 10 BLEND
+     ============================================================ -->
+<section class="band band-cream" aria-labelledby="n10-h">
+  <div class="wrap">
+    <div class="n10-grid">
+      <div class="reveal">
+        <h2 class="h2" id="n10-h">Both Formulas Feature Our Patented <span class="accent">Nurture 10&trade; Blend</span></h2>
+        <p class="lead" style="margin-top:var(--s5)">Complete everyday nutrition, elevated by our patented blend of 10 key ingredients also found in breastmilk.*</p>
+        <p class="legal" style="margin-top:var(--s4)">*Structure and levels differ from those in breastmilk.</p>
+      </div>
+      <div class="frame frame-4x3 frame-product reveal">
+        <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-organic-11-topopen.jpg?width=900"
+             alt="An open can of Munchkin Infant Formula showing the fine powder and the scoop resting on top" loading="lazy" width="900" height="900">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     J. SHARED WITH BREASTMILK
+     ============================================================ -->
+<section class="band band-rose" aria-labelledby="ing-h">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">The Nurture 10 Blend</span>
+      <h2 class="h2" id="ing-h">What Munchkin &amp; Breastmilk <span class="accent">Have In Common...</span></h2>
+      <p class="lead center" style="margin-top:var(--s5)">Our patented blend of 10 key ingredients, thoughtfully combined for complete nutrition from tummy to toes.*</p>
+    </div>
+    <div class="ing-layout reveal">
+      <div class="ing-col">
+        <div class="ing-card"><h4>Alpha-Lactalbumin</h4><p>Quality protein for growing little bodies.</p></div>
+        <div class="ing-card"><h4>Lactoferrin</h4><p>Helps support baby's developing immune defenses.</p></div>
+        <div class="ing-card"><h4>Beta-Palmitate</h4><p>Helps tiny tummies make softer stools.</p></div>
+        <div class="ing-card"><h4>Lutein</h4><p>Nourishes baby's developing little eyes.</p></div>
+        <div class="ing-card"><h4>DHA</h4><p>Helps build growing brains and eyes.</p></div>
+      </div>
+      <div class="ing-center">
+        <div class="split-can">
+          <span class="split-half split-half--left"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-organic-1.jpg?width=900" alt="Left half of the Munchkin organic milk formula can" loading="lazy" width="900" height="900"></span>
+          <span class="split-half split-half--right"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-original-1.jpg?width=900" alt="Right half of the Munchkin original milk formula can" loading="lazy" width="900" height="900"></span>
+          <span class="split-seam" aria-hidden="true"></span>
+        </div>
+        <div class="split-key"><span>Organic milk</span><span>Original milk</span></div>
+        <p class="legal center">*Structure and levels differ from those in breastmilk.</p>
+      </div>
+      <div class="ing-col">
+        <div class="ing-card"><h4>ARA</h4><p>Supports baby's budding brain development.</p></div>
+        <div class="ing-card"><h4>Nucleotides</h4><p>Tiny building blocks for fast growing cells.</p></div>
+        <div class="ing-card"><h4>Taurine</h4><p>Supports developing eyes and healthy fat digestion.</p></div>
+        <div class="ing-card"><h4>L-Carnitine</h4><p>Helps turn fat into growing baby energy.</p></div>
+        <div class="ing-card"><h4>Beta-Carotene</h4><p>Antioxidant support for growing little bodies.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     K. MORE FEEDINGS, MORE SAVINGS
+     DUMMY: the generic 400g can.
+     ============================================================ -->
+<section class="band band-cream" aria-labelledby="savings-h">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2" id="savings-h">More Feedings, More Savings.</h2>
+    </div>
+    <div class="scale-strip reveal">
+      <div class="scale-real">
+        <div class="frame frame-product">
+          <img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-organic-1.jpg?width=900" alt="Munchkin Infant Formula 25.8 oz can" loading="lazy" width="900" height="900">
+        </div>
+        <span class="scale-cap">Munchkin, 730g</span>
+      </div>
+      <div class="scale-dummy">
+        <div class="dummy">
+          <span class="dummy-tag">Dummy image</span>
+          <span class="dummy-note">Generic 400g formula can, shown to scale beside the Munchkin can.</span>
+        </div>
+        <span class="scale-cap">Typical can, 400g</span>
+      </div>
+    </div>
+    <div class="compare-2up reveal">
+      <div class="compare-col compare-col--win">
+        <h3>Munchkin Infant Formula</h3>
+        <ul>
+          <li><span class="dot" aria-hidden="true"></span><span>730g per can</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Up to 2 weeks of feeding per can</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>More monthly savings</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>10 ingredients shared with breastmilk*</span></li>
+        </ul>
+      </div>
+      <div class="compare-col compare-col--other">
+        <h3><span class="accent">Typical formula can:</span></h3>
+        <ul>
+          <li><span class="dot" aria-hidden="true"></span><span>400g per can</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Less than a week of feeding per can</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>More monthly costs</span></li>
+          <li><span class="dot" aria-hidden="true"></span><span>Standard baby formulas*</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="savings-close reveal">
+      <h3 class="h2">Go <u>BIG</u> <span class="accent">at home.</span></h3>
+      <p class="lead center">Start your free trial today and save <span class="strong-word">$30 or more monthly</span> with the Munchkin Infant Formula</p>
+      <div class="stat-line">
+        <span class="stat-num">330g</span>
+        <span class="lead" style="max-width:24ch;text-align:left">more formula in every can than a typical 400g tin.</span>
+      </div>
+      <button class="btn btn-01" type="button" data-open-locator>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Find the 730g can at Target
+      </button>
+      <p class="legal">*Structure and levels differ from those in breastmilk. Comparison based on a 400g competitor can.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     L. IN A LEAGUE OF ITS OWN
+     ============================================================ -->
+<section class="band band-aqua" aria-labelledby="league-h">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2" id="league-h">In A League Of Its Own</h2>
+      <p class="lead center" style="margin-top:var(--s5)"><span class="accent">See how the Munchkin Patented Nurture 10 &trade; Formula compares to its competitors:</span></p>
+    </div>
+    <div class="table-scroll reveal">
+      <table class="compare">
+        <caption class="sr-only">Ingredient comparison between Munchkin, Kendamil, Bobbie and Nara Organics infant formula</caption>
+        <thead>
+          <tr>
+            <th scope="col"><span class="sr-only">Ingredient</span></th>
+            <th scope="col" class="col-brand"><img class="brand-logo" src="https://cdn.munchkin.com/uploads/2026/03/munchkin-logo-2x.png" alt="Munchkin" loading="lazy" width="120" height="26"></th>
+            <th scope="col"><img class="brand-logo" src="https://cdn.munchkin.com/uploads/2026/03/kendamil-logo-2x.png" alt="Kendamil" loading="lazy" width="120" height="26"></th>
+            <th scope="col"><img class="brand-logo" src="https://cdn.munchkin.com/uploads/2026/03/bobbie-logo-2x.png" alt="Bobbie" loading="lazy" width="120" height="26"></th>
+            <th scope="col"><img class="brand-logo" src="https://cdn.munchkin.com/uploads/2026/03/nara-organics-logo-2x.png" alt="Nara Organics" loading="lazy" width="120" height="26"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Alpha-Lactalbumin</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">Lactoferrin</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">Beta-Palmitate</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">Lutein</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">DHA (hexane free)</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">ARA</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">Nucleotides</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">Taurine</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">L-Carnitine</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">Beta-Carotene</th>
+            <td class="col-brand"><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr><th scope="row">MFGM</th>
+            <td class="col-brand"><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-off" viewBox="0 0 24 24" role="img" aria-label="Not included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td>
+            <td><svg class="heart heart-on" viewBox="0 0 24 24" role="img" aria-label="Included"><path d="M12 21s-8-4.7-8-10.3A4.7 4.7 0 0 1 12 7a4.7 4.7 0 0 1 8 3.7C20 16.3 12 21 12 21Z"/></svg></td></tr>
+          <tr class="total-row"><th scope="row">Total</th><td class="col-brand">10</td><td>5</td><td>3</td><td>4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="legal" style="margin-top:var(--s5)">Comparison reflects labelled ingredients on each brand's published infant formula as reproduced in the client wireframe. Verify against current competitor labels before this page runs as paid media.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     M. NEW ZEALAND SOURCING
+     DUMMY: the fourth photo tile.
+     ============================================================ -->
+<section class="band band-cream" aria-labelledby="source-h">
+  <div class="wrap">
+    <div class="source-grid">
+      <div class="reveal">
+        <h2 class="h2" id="source-h">Wholesome Milk From <span class="accent">New Zealand Cows.*</span></h2>
+        <ul class="benefit-list" style="margin-top:var(--s6)">
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Grass-Fed &amp; Pasture-Raised</span></li>
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Zero-Added Hormones</span></li>
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>One Facility, Start to Finish</span></li>
+          <li class="benefit-item"><span class="check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span><span>Double-Inspected (USA &amp; Canada)</span></li>
+        </ul>
+        <p class="legal" style="margin-top:var(--s6)">*Certified USDA Organic milk from grass-fed New Zealand cows.*</p>
+      </div>
+      <div class="photo-quad reveal">
+        <div class="frame"><img src="https://cdn.munchkin.com/uploads/2026/02/formula-text-image-section-2.png" alt="A healthy brown New Zealand cow standing in an open green pasture" loading="lazy" width="516" height="516"></div>
+        <div class="frame"><img src="https://cdn.munchkin.com/uploads/2026/02/formula-image-text-section-1.jpg" alt="Cattle grazing in a New Zealand pasture with snow topped mountains behind" loading="lazy" width="759" height="506"></div>
+        <!-- REAL: Munchkin's own dairy texture plate from the nutrition tab. -->
+        <div class="frame"><img src="https://cdn.munchkin.com/uploads/2026/02/nutrient_4.jpg" alt="Close up of creamy milk powder swirls" loading="lazy" width="700" height="690"></div>
+        <div class="frame"><img src="https://cdn.munchkin.com/uploads/2026/02/formula-text-image-section-3.png" alt="A herd of New Zealand dairy cows grazing while a baby plays in the grass" loading="lazy" width="516" height="516"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     N. SAFETY AT EVERY STEP
+     ============================================================ -->
+<section class="band band-peach" aria-labelledby="safety-h">
+  <div class="wrap">
+    <div class="safety-grid">
+      <div class="safety-copy reveal">
+        <h2 class="h2" id="safety-h">Safety at <span class="accent">every step</span></h2>
+        <!-- REAL: Munchkin's own production line safety photograph. -->
+        <div class="frame frame-4x3">
+          <img src="https://cdn.munchkin.com/uploads/2026/02/Formula-Can-Safety-1.png" alt="A technician in full cleanroom gear inspecting sealed cans of Munchkin infant formula on the production line" loading="lazy" width="960" height="960">
+        </div>
+        <p class="small">From carefully sourced ingredients to the finished formula, every batch is tested against strict quality and safety standards. So you can feel confident with every bottle.</p>
+      </div>
+      <div class="acc reveal">
+        <div class="acc-row">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-1" id="acc-1-btn">Strict Safety Standards<span class="acc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+          <div class="acc-panel" id="acc-1" role="region" aria-labelledby="acc-1-btn" hidden><p>Our formula is produced to the standards required for infant nutrition in both the United States and Canada, and the facility is inspected under both regimes.</p></div>
+        </div>
+        <div class="acc-row">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-2" id="acc-2-btn">Every Batch Tested<span class="acc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+          <div class="acc-panel" id="acc-2" role="region" aria-labelledby="acc-2-btn" hidden><p>Each production batch is tested before release, and results are held on file so any can can be traced back to its run.</p></div>
+        </div>
+        <div class="acc-row">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-3" id="acc-3-btn">Made In Canada<span class="acc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+          <div class="acc-panel" id="acc-3" role="region" aria-labelledby="acc-3-btn" hidden><p>Every step of production happens under one roof in one of Canada's newest infant formula facilities, from blending through to sealing the can.</p></div>
+        </div>
+        <div class="acc-row">
+          <button class="acc-btn" type="button" aria-expanded="false" aria-controls="acc-4" id="acc-4-btn">Backed By Clinical Research<span class="acc-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></button>
+          <div class="acc-panel" id="acc-4" role="region" aria-labelledby="acc-4-btn" hidden><p>The formulation was evaluated in a 16 week clinical study. <a href="https://cdn.munchkin.com/uploads/2026/06/Formulated-For-Soft-Stools-and-Sleep.pdf" style="text-decoration:underline;text-underline-offset:3px">See the clinical sources</a> for the peer reviewed research behind specific ingredients.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     O. EXPERTS
+     REAL: 4 named Munchkin experts, portraits mapped from the live Experts and Research page.
+     ============================================================ -->
+<section class="band band-cream" aria-labelledby="expert-h">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="eyebrow">Formulated with specialists</span>
+      <h2 class="h2" id="expert-h">Expert-Backed <span class="accent">Since Birth</span></h2>
+      <p class="lead center" style="margin-top:var(--s5)">Formulated by seasoned pediatric experts and feeding specialists, ready to help you every step of the way!</p>
+    </div>
+    <div class="expert-row reveal">
+      <div class="expert-col"><span class="expert-photo"><img src="https://cdn.munchkin.com/uploads/2026/02/landry.png" alt="Portrait of Dayna Landry, Registered Dietitian Nutritionist" loading="lazy" width="440" height="440"></span><span class="expert-name">Dayna Landry, RD</span><span class="expert-role">Registered Dietitian Nutritionist</span></div>
+      <div class="expert-col"><span class="expert-photo"><img src="https://cdn.munchkin.com/uploads/2026/02/moustafa.png" alt="Portrait of Dr. Marwa Moustafa, Pediatrician" loading="lazy" width="440" height="440"></span><span class="expert-name">Dr. Marwa Moustafa</span><span class="expert-role">Pediatrician</span></div>
+      <div class="expert-col"><span class="expert-photo"><img src="https://cdn.munchkin.com/uploads/2026/02/campbell.png" alt="Portrait of Dr. Ellen Campbell, Pediatrician" loading="lazy" width="440" height="440"></span><span class="expert-name">Dr. Ellen Campbell</span><span class="expert-role">Pediatrician</span></div>
+      <div class="expert-col"><span class="expert-photo"><img src="https://cdn.munchkin.com/uploads/2026/02/berkovits.png" alt="Portrait of Dr. Alexis Berkovits, Pediatrician" loading="lazy" width="440" height="440"></span><span class="expert-name">Dr. Alexis Berkovits</span><span class="expert-role">Pediatrician</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     P. PARENT REVIEWS
+     REAL: 4 verified reviews from the live PDP.
+     ============================================================ -->
+<section class="band band-butter" aria-labelledby="reviews-h">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="h2" id="reviews-h">Approved By Parents <span class="accent">Like You:</span></h2>
+      <p class="rating-pill" style="margin-top:var(--s5)"><span class="rating-num">4.8</span><span class="stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span><span>Based on 98 reviews</span></p>
+    </div>
+    <div class="review-row reveal">
+      <article class="review-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <p class="review-title">Picky Baby Approved x3!</p>
+        <p class="review-body">"I've got pretty picky babies and they took right to this formula. No gas or colic! This is my girls new favorite formula."</p>
+        <p class="review-by">Angelica F. · February 22, 2026</p>
+      </article>
+      <article class="review-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <p class="review-title">Where has this been ?!?!</p>
+        <p class="review-body">"My son has GI problems and this is the first milk that he hasn't gotten sick from! The powder is really fine so you don't need to worry about clumps."</p>
+        <p class="review-by">Juliana T. · February 19, 2026</p>
+      </article>
+      <article class="review-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <p class="review-title">Easy on the tummy.</p>
+        <p class="review-body">"It has done everything it claims. It instantly made her stool softer. It's helped her sleep longer throughout the night and I love having peace of mind about the ingredients."</p>
+        <p class="review-by">Donna C. · February 27, 2026</p>
+      </article>
+      <article class="review-card card-hover">
+        <span class="stars" aria-label="Rated 5 out of 5 stars"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1L12 2Z"/></svg></span>
+        <p class="review-title">The only formula that doesn't</p>
+        <p class="review-body">"The only formula that doesn't cause my baby to spit up and is easy to digest. After trying multiple formulas this was the one my daughter instantly took to. It mixes smoothly and it's one of the more affordable brands."</p>
+        <p class="review-by">Cassandra V. · August 3, 2026</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Q. CLOSING CTA. Target first, free trial second.
+     ============================================================ -->
+<section class="band band-green" id="trial" aria-labelledby="trial-h">
+  <div class="wrap">
+    <div class="final-grid">
+      <div class="final-copy">
+        <h2 class="h2" id="trial-h">Try Munchkin Today <span class="accent">For FREE</span></h2>
+        <p class="lead">Start your trial today to get one full can for FREE. Just pay $9 for shipping.</p>
+        <a class="btn btn-onGreen" href="https://www.munchkin.com/infant-formula-organic">Learn More</a>
+        <button class="btn btn-02" type="button" data-open-locator>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Find my nearest Target
+        </button>
+        <p class="small" style="margin-top:var(--s3)">Or pick one up today. Both formulas are stocked at Target, ready for Drive Up and Order Pickup.</p>
+      </div>
+      <div class="final-media frame frame-4x3">
+        <img src="https://cdn.munchkin.com/uploads/2026/02/Web-Formula-Subscribe-1440.jpg" alt="A parent holding their baby while unpacking a Munchkin formula delivery box in the kitchen" loading="lazy" width="1372" height="772">
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-cols">
+        <div>
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="/shop">Shop all</a></li>
+            <li><a href="/infant-formula-organic">Formula</a></li>
+            <li><a href="/bottles">Bottles</a></li>
+            <li><a href="/infant-feeding">Nipples</a></li>
+            <li><a href="/build-a-bundle">Bundles</a></li>
+            <li><a href="/web-exclusives">Limited time</a></li>
+            <!-- DUMMY: munchkin.com has no store locator page. This opens our dialog instead. -->
+            <li><a href="#retail" data-open-locator>Find a store</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Info</h4>
+          <ul>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/contact">Contact us</a></li>
+            <li><a href="/account">My account</a></li>
+            <li><a href="/customer/orders">Order tracking</a></li>
+            <li><a href="/join">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get to know us</h4>
+          <ul>
+            <li><a href="/about">Our story</a></li>
+            <li><a href="/social-responsibility">Ethical sourcing</a></li>
+            <li><a href="/infant-formula-organic">USDA New Zealand cow milk</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-signup">
+        <div>
+          <div class="social-row">
+            <a class="social-dot" href="https://www.facebook.com/Munchkin/" aria-label="Munchkin on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.3-1.5 1.6-1.5h1.6V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.3H7.9V14h2.4v8h3.2Z"/></svg></a>
+            <a class="social-dot" href="https://www.instagram.com/MunchkinInc/" aria-label="Munchkin on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2Zm0 7.6a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm5.8-7.8a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM12 4.6c2.1 0 2.4 0 3.2.1 1.9.1 2.8 1 2.9 2.9 0 .8.1 1.1.1 3.2s0 2.4-.1 3.2c-.1 1.9-1 2.8-2.9 2.9-.8 0-1.1.1-3.2.1s-2.4 0-3.2-.1c-1.9-.1-2.8-1-2.9-2.9 0-.8-.1-1.1-.1-3.2s0-2.4.1-3.2c.1-1.9 1-2.8 2.9-2.9.8 0 1.1-.1 3.2-.1ZM12 3c-2.2 0-2.5 0-3.3.1C6.1 3.2 4.7 4.6 4.6 7.2c0 .8-.1 1.1-.1 3.3v3c0 2.2 0 2.5.1 3.3.1 2.6 1.5 4 4.1 4.1.8 0 1.1.1 3.3.1s2.5 0 3.3-.1c2.6-.1 4-1.5 4.1-4.1 0-.8.1-1.1.1-3.3v-3c0-2.2 0-2.5-.1-3.3-.1-2.6-1.5-4-4.1-4.1-.8 0-1.1-.1-3.3-.1Z"/></svg></a>
+            <a class="social-dot" href="https://www.youtube.com/munchkin/" aria-label="Munchkin on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.4 8.2s-.2-1.4-.8-2c-.7-.8-1.6-.8-2-.9C16.9 5.1 12 5.1 12 5.1h-.1s-4.9 0-6.6.2c-.4 0-1.3.1-2 .9-.6.6-.8 2-.8 2S2.3 9.8 2.3 11.4v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.7.8 1.7.8 2.1.9 1.6.1 6.6.2 6.6.2s4.9 0 6.6-.2c.4-.1 1.3-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5c0-1.6-.2-3.2-.2-3.2ZM10 14.7V9.3l5.2 2.7-5.2 2.7Z"/></svg></a>
+            <a class="social-dot" href="https://www.pinterest.com/munchkin/" aria-label="Munchkin on Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-3.3 17.4c-.1-.7-.2-1.7 0-2.4l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.4 1.8-2.4.9 0 1.3.6 1.3 1.5 0 .9-.6 2.2-.9 3.4-.2 1 .5 1.9 1.5 1.9 1.9 0 3.2-2.4 3.2-5.2 0-2.2-1.5-3.8-4.1-3.8-3 0-4.8 2.2-4.8 4.6 0 .9.3 1.5.7 2 .2.2.2.3.2.5l-.2.9c0 .3-.3.4-.5.2-1.2-.5-2-2.1-2-3.5 0-2.8 2.4-6.1 6.9-6.1 3.7 0 6.2 2.6 6.2 5.5 0 3.7-2.1 6.5-5.1 6.5-1 0-2-.5-2.3-1.2l-.6 2.4c-.2.8-.8 1.8-1.2 2.4A9 9 0 1 0 12 3Z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <!-- DUMMY: SMS short code not supplied. -->
+          <p class="sms-head">Text MUNCHKIN to <span class="dummy-inline">####</span></p>
+          <p class="legal" style="margin-top:var(--s3)">By signing up via text, you agree to receive recurring automated marketing messages, including cart reminders, at the phone number provided. Consent is not a condition of purchase. Reply STOP to unsubscribe. Reply HELP for help. Message frequency varies. Msg and data rates may apply. View our <a href="/privacy-policy" style="text-decoration:underline;text-underline-offset:3px">Privacy Policy</a> and <a href="/terms-conditions" style="text-decoration:underline;text-underline-offset:3px">Terms of Service</a>.</p>
+        </div>
+        <div>
+          <p class="small" style="color:var(--ink);margin-bottom:var(--s3);text-transform:uppercase;letter-spacing:.05em">Products, sweeps, surprises straight to your inbox.</p>
+          <form class="signup-form" action="/email-sign-up" method="post">
+            <label class="sr-only" for="footer-email">Email address</label>
+            <input type="email" id="footer-email" name="email" placeholder="Enter email" autocomplete="email" required>
+            <button class="btn btn-01" type="submit">Sign up</button>
+          </form>
+          <p class="legal" style="margin-top:var(--s3)">By signing up, you agree to our <a href="/privacy-policy" style="text-decoration:underline;text-underline-offset:3px">Privacy Policy</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-mark">
+      <img src="https://www.munchkin.com/assets/Logo-C_WjjftE.svg" alt="Munchkin" width="420" height="86" loading="lazy">
+      <p class="legal">Copyright &copy; 2026 Munchkin, a Why Brands Inc. company. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky retail CTA, mobile only -->
+<div class="sticky-cta">
+  <button class="btn btn-01" type="button" data-open-locator>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    Find it at Target
+  </button>
+</div>
+
+<!-- ============================================================
+     STORE LOCATOR DIALOG
+     Real and functional: the variant toggle drives the correct
+     Target TCIN deep link, and directions open Google Maps with a
+     keyless URL scheme that genuinely finds nearby Target stores.
+     DUMMY: store names, addresses, distances and stock status.
+     Those need a locator provider (Destini or MikMak). See
+     DUMMY-MANIFEST.md.
+     ============================================================ -->
+<dialog class="locator" id="locator" aria-labelledby="loc-h">
+  <div class="locator-panel">
+    <div class="locator-head">
+      <div>
+        <h2 class="h3" id="loc-h">Find Munchkin at Target</h2>
+        <p class="small" style="margin-top:6px">Enter your ZIP code to see the closest stores.</p>
+      </div>
+      <button class="locator-close" type="button" data-close-locator aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="locator-body">
+      <div>
+        <p class="small" style="margin-bottom:var(--s3)">Which formula are you looking for?</p>
+        <div class="seg" role="group" aria-label="Formula">
+          <button type="button" data-variant-btn="organic" aria-pressed="true">Organic milk</button>
+          <button type="button" data-variant-btn="original" aria-pressed="false">Original milk</button>
+        </div>
+      </div>
+
+      <form class="zip-form" id="zipForm" novalidate>
+        <label class="sr-only" for="zip">ZIP code</label>
+        <input type="text" id="zip" name="zip" inputmode="numeric" autocomplete="postal-code"
+               pattern="[0-9]{5}" maxlength="5" placeholder="Enter ZIP code" required>
+        <button class="btn btn-01" type="submit">Search</button>
+        <button class="geo-btn" type="button" id="geoBtn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+          Use my location
+        </button>
+      </form>
+
+      <p class="small" id="locStatus" role="status" aria-live="polite"></p>
+
+      <div id="locResults" hidden>
+        <!-- The section's tile map is cloned in here on first search, so the popup
+             carries the map without duplicating 12 tile tags in the markup. -->
+        <div id="locMapMount" style="margin-bottom:var(--s5)"></div>
+        <p class="legal" style="margin-bottom:var(--s4)">
+          <span class="dummy-inline">Dummy data</span>
+          Store names, distances and stock are samples. Wire this to a locator provider for live results.
+        </p>
+        <ul class="store-list" id="storeList"></ul>
+      </div>
+    </div>
+
+    <div class="locator-foot">
+      <a class="btn btn-02 btn-block" id="targetBrowse" href="https://www.target.com/c/formula-nursing-feeding-baby/munchkin/-/N-5xtkhZ5y3ef">
+        Shop Munchkin formula on Target.com
+      </a>
+      <p class="legal center">Prefer it delivered from us? <a href="https://www.munchkin.com/infant-formula-organic" style="text-decoration:underline;text-underline-offset:3px">Order direct from Munchkin</a></p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- 01. Scroll reveal ---------- */
+  if (!reduce && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("reveal-on");
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e, i) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        setTimeout(function () { el.classList.add("in"); }, Math.min(i, 4) * 90);
+        io.unobserve(el);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- 02. Claims marquee pause/play (WCAG 2.2.2) ---------- */
+  var mq = document.getElementById("claimsMarquee");
+  var mqBtn = document.getElementById("mqPause");
+  if (mq && mqBtn) {
+    if (reduce) { mq.classList.add("paused"); mqBtn.setAttribute("aria-pressed", "true"); }
+    mqBtn.addEventListener("click", function () {
+      var paused = mq.classList.toggle("paused");
+      mqBtn.setAttribute("aria-pressed", String(paused));
+      mqBtn.setAttribute("aria-label", paused ? "Play claims ticker" : "Pause claims ticker");
+    });
+  }
+
+  /* ---------- 03. Accordions ---------- */
+  document.querySelectorAll(".acc-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var panel = document.getElementById(btn.getAttribute("aria-controls"));
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      if (panel) panel.hidden = open;
+    });
+  });
+
+  /* ---------- 04. Store locator ---------- */
+  // Real Target deep links, verified 2026-08-20.
+  var TARGET = {
+    organic:  { name: "Organic milk",  url: "https://www.target.com/p/munchkin-infant-formula-made-with-organic-milk-25-8oz/-/A-94856713" },
+    original: { name: "Original milk", url: "https://www.target.com/p/munchkin-infant-formula-made-with-original-milk-25-8oz/-/A-94856712" }
+  };
+  var BROWSE = "https://www.target.com/c/formula-nursing-feeding-baby/munchkin/-/N-5xtkhZ5y3ef";
+
+  // DUMMY store shapes. A locator provider replaces this array with live data.
+  var SAMPLE = [
+    { suffix: "Midtown",   street: "1201 Market St",     dist: "1.4 mi", stock: "In stock" },
+    { suffix: "Northside", street: "480 Northgate Blvd", dist: "3.2 mi", stock: "In stock" },
+    { suffix: "Eastgate",  street: "77 Eastgate Center", dist: "5.6 mi", stock: "Limited stock" }
+  ];
+
+  var dlg = document.getElementById("locator");
+  var statusEl = document.getElementById("locStatus");
+  var results = document.getElementById("locResults");
+  var listEl = document.getElementById("storeList");
+  var zipForm = document.getElementById("zipForm");
+  var zipInput = document.getElementById("zip");
+  var geoBtn = document.getElementById("geoBtn");
+  var browseBtn = document.getElementById("targetBrowse");
+  var variant = "organic";
+  var lastOpener = null;
+
+  if (!dlg) return;
+
+  function setVariant(v) {
+    variant = v;
+    document.querySelectorAll("[data-variant-btn]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-variant-btn") === v));
+    });
+    if (browseBtn && TARGET[v]) {
+      browseBtn.href = TARGET[v].url;
+      browseBtn.textContent = "View " + TARGET[v].name.toLowerCase() + " on Target.com";
+    }
+  }
+  document.querySelectorAll("[data-variant-btn]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      setVariant(b.getAttribute("data-variant-btn"));
+      if (results && !results.hidden) render(zipInput.value.trim() || "your area");
+    });
+  });
+
+  function mapsSearch(q) {
+    return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+  }
+
+  var mapMount = document.getElementById("locMapMount");
+  function ensureMap() {
+    if (!mapMount || mapMount.childElementCount) return;
+    var src = document.querySelector("#retail .locator-map");
+    if (!src) return;
+    var copy = src.cloneNode(true);
+    copy.removeAttribute("id");
+    mapMount.appendChild(copy);
+  }
+
+  function render(where) {
+    if (!listEl) return;
+    ensureMap();
+    listEl.textContent = "";
+    SAMPLE.forEach(function (s) {
+      var li = document.createElement("li");
+      li.className = "store-card";
+
+      var left = document.createElement("div");
+      var h = document.createElement("h4");
+      h.textContent = "Target " + s.suffix;
+      var addr = document.createElement("p");
+      addr.className = "store-addr";
+      addr.textContent = s.street + ", " + where;
+      var meta = document.createElement("div");
+      meta.className = "store-meta";
+      var pill = document.createElement("span");
+      pill.className = "stock-pill" + (s.stock === "In stock" ? "" : " low");
+      var dot = document.createElement("span");
+      dot.className = "stock-dot";
+      pill.appendChild(dot);
+      pill.appendChild(document.createTextNode(s.stock + " · " + TARGET[variant].name));
+      meta.appendChild(pill);
+      left.appendChild(h); left.appendChild(addr); left.appendChild(meta);
+
+      var dist = document.createElement("span");
+      dist.className = "store-dist";
+      dist.textContent = s.dist;
+
+      var actions = document.createElement("div");
+      actions.className = "store-actions";
+      var a1 = document.createElement("a");
+      a1.className = "btn btn-02";
+      a1.href = mapsSearch("Target " + s.street + " " + where);
+      a1.target = "_blank"; a1.rel = "noopener";
+      a1.textContent = "Get directions";
+      var a2 = document.createElement("a");
+      a2.className = "btn btn-02";
+      a2.href = TARGET[variant].url;
+      a2.target = "_blank"; a2.rel = "noopener";
+      a2.textContent = "Check availability";
+      actions.appendChild(a1); actions.appendChild(a2);
+
+      li.appendChild(left); li.appendChild(dist); li.appendChild(actions);
+      listEl.appendChild(li);
+    });
+    results.hidden = false;
+  }
+
+  if (zipForm) {
+    zipForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var z = (zipInput.value || "").trim();
+      if (!/^[0-9]{5}$/.test(z)) {
+        statusEl.textContent = "Please enter a 5 digit ZIP code.";
+        zipInput.focus();
+        return;
+      }
+      statusEl.textContent = "Showing sample stores near " + z + ".";
+      render(z);
+    });
+  }
+
+  if (geoBtn) {
+    geoBtn.addEventListener("click", function () {
+      if (!navigator.geolocation) {
+        statusEl.textContent = "Location is not available in this browser. Enter a ZIP code instead.";
+        return;
+      }
+      statusEl.textContent = "Finding your location...";
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        var lat = pos.coords.latitude.toFixed(4), lon = pos.coords.longitude.toFixed(4);
+        statusEl.textContent = "Showing sample stores near you.";
+        render("near you");
+        // Real, keyless Google Maps URL scheme that genuinely lists nearby Target stores.
+        var a = listEl.querySelectorAll(".store-actions a:first-child");
+        for (var i = 0; i < a.length; i++) {
+          a[i].href = mapsSearch("Target near " + lat + "," + lon);
+          a[i].textContent = "Open in Maps";
+        }
+      }, function () {
+        statusEl.textContent = "We could not get your location. Enter a ZIP code instead.";
+      }, { timeout: 8000 });
+    });
+  }
+
+  function openLocator(opener, v) {
+    lastOpener = opener || null;
+    if (v && TARGET[v]) setVariant(v);
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+    var f = dlg.querySelector("#zip");
+    if (f) setTimeout(function () { f.focus(); }, 40);
+  }
+  function closeLocator() {
+    if (typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open");
+  }
+
+  document.querySelectorAll("[data-open-locator]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      openLocator(el, el.getAttribute("data-variant"));
+    });
+  });
+  document.querySelectorAll("[data-close-locator]").forEach(function (el) {
+    el.addEventListener("click", closeLocator);
+  });
+  // Click the backdrop to dismiss.
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) closeLocator(); });
+  dlg.addEventListener("close", function () { if (lastOpener) lastOpener.focus(); });
+
+  setVariant("organic");
+})();
+</script>
+
+</body>
+</html>
