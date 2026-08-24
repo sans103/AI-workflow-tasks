@@ -39,7 +39,16 @@ Also restored: "Choose Organic" and "Choose Original" as the card button labels,
 
 **One correction retained:** the wireframe footer reads "TEXT MUCHKIN TO ####". Spelled MUNCHKIN.
 
-### 2. Every sourceable image is now real
+### 2. Nurture 10 section is a radial orbit
+
+The 10 ingredients now sit on a ring around the can, which becomes a circular "sun" at the centre, replacing the three column card layout.
+
+- Node centres are precomputed cos and sin percentages on a 40% radius, so there is no CSS trig and no JS dependency.
+- Measured clearances: 46px between adjacent nodes, 88px from the nodes to the can, no text clipping, no page overflow at 1024, 1440 or 1680.
+- Below 1024px the same markup collapses to a plain grid. `position:static` makes the inline left and top values inert, so there is no duplicated copy to maintain.
+- The seam is hidden inside the circular core. Across a full circle it read as a line bisecting it, and the green and teal lids plus the key line under the ring already say there are two products.
+
+### 3. Every sourceable image is now real
 
 Your screenshots turned out to be real Munchkin assets, so I traced them to the CDN and used the full resolution originals from `munchkin.com/formula` rather than screenshots.
 
@@ -58,7 +67,7 @@ Your screenshots turned out to be real Munchkin assets, so I traced them to the 
 
 The page now has **zero local image dependencies**. Every one of the 45 images is a verified Munchkin CDN URL, so the file is portable on its own.
 
-### 3. Two paid media safety calls
+### 4. Two paid media safety calls
 
 **Dropped a review that named a competitor's recall.** Emily C.'s review says she switched "after the Nara recall". Nara Organics also appears in the comparison table on this page, so naming their recall in an ad is a legal exposure. Replaced with sandy L.'s review, which makes the same digestion point without naming anyone.
 
