@@ -48,7 +48,25 @@ The 10 ingredients now sit on a ring around the can, which becomes a circular "s
 - Below 1024px the same markup collapses to a plain grid. `position:static` makes the inline left and top values inert, so there is no duplicated copy to maintain.
 - The seam is hidden inside the circular core. Across a full circle it read as a line bisecting it, and the green and teal lids plus the key line under the ring already say there are two products.
 
-### 3. Every sourceable image is now real
+### 3. Safety accordions and the mint band
+
+**Accordion bodies are now the client's real copy**, verbatim, for all four rows: Strict Safety Standards, Every Batch Tested, Made In Canada, Backed By Clinical Research. The clinical row keeps a small "See the clinical sources" link to the Munchkin trial PDF, added because a 260 infant randomized double blind claim should carry its citation.
+
+**The Nurture 10 band is now mint, matching the Figma.** Source of truth: `figma.com/design/2MniSRK9HG2fDn2I6hfQlg` node `2280:7484`. Values were sampled from the render rather than eyeballed:
+
+| Element | Figma | Built |
+|---------|-------|-------|
+| Band | `#e3f3d4` (Munchkin green-100) | `#e3f3d4` |
+| Eyebrow | `#252527` | `#252527` |
+| Card heading | `#252527` | `#252527` |
+| Card body | `#4e4f50` | `#4e4f50` |
+| Card fill | `#ffffff` | `#ffffff` |
+
+The Figma render has a faint vertical gradient from `#e9f4dc` to `#e3f3d4`. Built flat at `#e3f3d4`, since the brand system is flat and gradients are a slop tell. Band rotation re-checked: cream, aqua, peach, cream, butter, cream, **mint**, cream, aqua, cream, peach, cream, butter, green. No two adjacent bands repeat.
+
+**Note on the Figma file:** it is an import of this build, not an independent design. Same copy, same 1440w and 390w frames, even the locator dialogs. The one addition is a detached section, `2280:7250`, showing Nurture 10 as three columns rather than the orbit. Client confirmed the orbit supersedes it, so Figma needs updating to match the live page.
+
+### 4. Every sourceable image is now real
 
 Your screenshots turned out to be real Munchkin assets, so I traced them to the CDN and used the full resolution originals from `munchkin.com/formula` rather than screenshots.
 
@@ -67,7 +85,7 @@ Your screenshots turned out to be real Munchkin assets, so I traced them to the 
 
 The page now has **zero local image dependencies**. Every one of the 45 images is a verified Munchkin CDN URL, so the file is portable on its own.
 
-### 4. Two paid media safety calls
+### 5. Two paid media safety calls
 
 **Dropped a review that named a competitor's recall.** Emily C.'s review says she switched "after the Nara recall". Nara Organics also appears in the comparison table on this page, so naming their recall in an ad is a legal exposure. Replaced with sandy L.'s review, which makes the same digestion point without naming anyone.
 
