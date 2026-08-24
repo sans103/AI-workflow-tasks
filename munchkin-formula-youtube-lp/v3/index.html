@@ -110,6 +110,7 @@ input,select{font-family:inherit}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 .wrap{max-width:1120px;margin:0 auto;padding:0 var(--s5);position:relative}
+.wrap-orbit{max-width:1240px}
 @media(max-width:640px){.wrap{padding:0 var(--s4)}}
 
 /* ---------- Type ---------- */
@@ -499,12 +500,53 @@ dialog.locator::backdrop{background:rgba(37,37,39,.55)}
 /* ============================================================
    INGREDIENTS
    ============================================================ */
-.ing-layout{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:var(--s6);align-items:stretch;margin-top:var(--s7)}
-.ing-col{display:grid;grid-auto-rows:1fr;gap:var(--s3)}
-.ing-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-inner);padding:var(--s4) var(--s5);display:flex;flex-direction:column;justify-content:center}
-.ing-card h4{font-size:var(--fs-base);font-weight:500;color:var(--accent-deep);letter-spacing:-0.01em}
-.ing-card p{font-size:var(--fs-sm);line-height:1.45;color:var(--body);margin-top:var(--s1)}
-.ing-center{display:flex;flex-direction:column;gap:var(--s4);align-items:center}
+/* ---------- Radial orbit: 10 ingredients circling the can ----------
+   Node centres are precomputed cos/sin percentages on a 40% radius so no
+   CSS trig is needed. Below 1024px the whole thing collapses to a plain
+   grid: position:static makes the inline left/top values inert, so one
+   set of markup serves both layouts. */
+.orbit{position:relative;width:min(980px,100%);aspect-ratio:1/1;margin:var(--s7) auto 0}
+.orbit-ring{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:80%;height:80%;border:1px dashed var(--line);border-radius:50%;
+}
+.orbit-core{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:42%;display:flex;flex-direction:column;gap:var(--s3);align-items:center;
+}
+.orbit-core .split-can{border-radius:50%}
+/* The green and teal lids already read as two products, so the seam is
+   dropped here: across a full circle it looked like a line bisecting it. */
+.orbit-core .split-seam{display:none}
+.orbit-core .split-half--left{border-radius:50% 0 0 50%}
+.orbit-core .split-half--right{border-radius:0 50% 50% 0}
+.orbit-node{
+  position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+  width:196px;height:196px;border-radius:9999px;
+  background:var(--white);border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:0 28px;
+  transition:box-shadow var(--dur) var(--ease);
+}
+.orbit-node:hover{box-shadow:inset 0 0 0 2px var(--accent)}
+.orbit-node h4{font-size:var(--fs-sm);font-weight:500;color:var(--accent-deep);letter-spacing:-0.01em}
+.orbit-node p{font-size:var(--fs-xs);line-height:1.35;color:var(--body);margin-top:var(--s1)}
+.orbit-foot{display:flex;flex-direction:column;gap:var(--s2);align-items:center;margin-top:var(--s6)}
+.orbit-key{display:flex;gap:var(--s5);justify-content:center}
+.orbit-key span{font-size:var(--fs-xs);font-weight:500;color:var(--muted)}
+@media(max-width:1023px){
+  .orbit{position:static;aspect-ratio:auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s6)}
+  .orbit-ring{display:none}
+  .orbit-core{position:static;transform:none;width:100%;max-width:340px;margin:0 auto var(--s3);grid-column:1 / -1;order:-1}
+  .orbit-node{
+    position:static;transform:none;width:auto;height:auto;
+    border-radius:var(--r-inner);padding:var(--s4) var(--s5);
+    text-align:left;align-items:flex-start;
+  }
+  .orbit-node h4{font-size:var(--fs-base)}
+  .orbit-node p{font-size:var(--fs-sm);line-height:1.45}
+}
+@media(max-width:520px){.orbit{grid-template-columns:1fr}}
 .split-can{position:relative;width:100%;aspect-ratio:1/1;display:flex;overflow:hidden;border-radius:var(--r-card);background:var(--white)}
 .split-half{position:relative;width:50%;height:100%;overflow:hidden}
 .split-half img{position:absolute;top:0;height:100%;width:auto;max-width:none;aspect-ratio:1/1;mix-blend-mode:multiply}
@@ -513,12 +555,6 @@ dialog.locator::backdrop{background:rgba(37,37,39,.55)}
 .split-seam{position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(37,37,39,.14);transform:translateX(-0.5px)}
 .split-key{display:flex;justify-content:space-between;width:100%;gap:var(--s4)}
 .split-key span{font-size:var(--fs-xs);font-weight:500;color:var(--muted)}
-@media(max-width:960px){
-  .ing-layout{grid-template-columns:1fr}
-  .ing-center{order:-1;max-width:420px;margin-inline:auto}
-  .ing-col{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
-}
-@media(max-width:520px){.ing-col{grid-template-columns:1fr}}
 
 /* ============================================================
    SIZE + SAVINGS
@@ -1015,36 +1051,35 @@ table.compare tbody tr.total-row td.col-brand{background:var(--green-900)}
      J. SHARED WITH BREASTMILK
      ============================================================ -->
 <section class="band band-rose" aria-labelledby="ing-h">
-  <div class="wrap">
+  <div class="wrap wrap-orbit">
     <div class="center reveal">
       <span class="eyebrow">The Nurture 10 Blend</span>
       <h2 class="h2" id="ing-h">What Munchkin &amp; Breastmilk <span class="accent">Have In Common...</span></h2>
       <p class="lead center" style="margin-top:var(--s5)">Our patented blend of 10 key ingredients, thoughtfully combined for complete nutrition from tummy to toes.*</p>
     </div>
-    <div class="ing-layout reveal">
-      <div class="ing-col">
-        <div class="ing-card"><h4>Alpha-Lactalbumin</h4><p>Quality protein for growing little bodies.</p></div>
-        <div class="ing-card"><h4>Lactoferrin</h4><p>Helps support baby's developing immune defenses.</p></div>
-        <div class="ing-card"><h4>Beta-Palmitate</h4><p>Helps tiny tummies make softer stools.</p></div>
-        <div class="ing-card"><h4>Lutein</h4><p>Nourishes baby's developing little eyes.</p></div>
-        <div class="ing-card"><h4>DHA</h4><p>Helps build growing brains and eyes.</p></div>
-      </div>
-      <div class="ing-center">
+    <div class="orbit reveal">
+      <span class="orbit-ring" aria-hidden="true"></span>
+      <div class="orbit-core">
         <div class="split-can">
           <span class="split-half split-half--left"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-organic-1.jpg?width=900" alt="Left half of the Munchkin organic milk formula can" loading="lazy" width="900" height="900"></span>
           <span class="split-half split-half--right"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-original-1.jpg?width=900" alt="Right half of the Munchkin original milk formula can" loading="lazy" width="900" height="900"></span>
           <span class="split-seam" aria-hidden="true"></span>
         </div>
-        <div class="split-key"><span>Organic milk</span><span>Original milk</span></div>
-        <p class="legal center">*Structure and levels differ from those in breastmilk.</p>
       </div>
-      <div class="ing-col">
-        <div class="ing-card"><h4>ARA</h4><p>Supports baby's budding brain development.</p></div>
-        <div class="ing-card"><h4>Nucleotides</h4><p>Tiny building blocks for fast growing cells.</p></div>
-        <div class="ing-card"><h4>Taurine</h4><p>Supports developing eyes and healthy fat digestion.</p></div>
-        <div class="ing-card"><h4>L-Carnitine</h4><p>Helps turn fat into growing baby energy.</p></div>
-        <div class="ing-card"><h4>Beta-Carotene</h4><p>Antioxidant support for growing little bodies.</p></div>
-      </div>
+        <div class="orbit-node" style="--x:50.00%;--y:10.00%"><h4>Alpha-Lactalbumin</h4><p>Quality protein for growing little bodies.</p></div>
+        <div class="orbit-node" style="--x:73.51%;--y:17.64%"><h4>Lactoferrin</h4><p>Helps support baby's developing immune defenses.</p></div>
+        <div class="orbit-node" style="--x:88.04%;--y:37.64%"><h4>Beta-Palmitate</h4><p>Helps tiny tummies make softer stools.</p></div>
+        <div class="orbit-node" style="--x:88.04%;--y:62.36%"><h4>Lutein</h4><p>Nourishes baby's developing little eyes.</p></div>
+        <div class="orbit-node" style="--x:73.51%;--y:82.36%"><h4>DHA</h4><p>Helps build growing brains and eyes.</p></div>
+        <div class="orbit-node" style="--x:50.00%;--y:90.00%"><h4>ARA</h4><p>Supports baby's budding brain development.</p></div>
+        <div class="orbit-node" style="--x:26.49%;--y:82.36%"><h4>Nucleotides</h4><p>Tiny building blocks for fast growing cells.</p></div>
+        <div class="orbit-node" style="--x:11.96%;--y:62.36%"><h4>Taurine</h4><p>Supports developing eyes and healthy fat digestion.</p></div>
+        <div class="orbit-node" style="--x:11.96%;--y:37.64%"><h4>L-Carnitine</h4><p>Helps turn fat into growing baby energy.</p></div>
+        <div class="orbit-node" style="--x:26.49%;--y:17.64%"><h4>Beta-Carotene</h4><p>Antioxidant support for growing little bodies.</p></div>
+    </div>
+    <div class="orbit-foot">
+      <p class="orbit-key"><span>Organic milk on the left. Original milk on the right.</span></p>
+      <p class="legal center">*Structure and levels differ from those in breastmilk.</p>
     </div>
   </div>
 </section>
