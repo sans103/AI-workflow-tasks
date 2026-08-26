@@ -75,7 +75,16 @@
     max-width: 1440px; margin: 0 auto; padding: 34px 40px 44px;
     display: grid; gap: 0;
   }
-  .grid-cb, .grid-rtw { grid-template-columns: 1.15fr 1fr 1fr 1.15fr; }
+  .grid-cb { grid-template-columns: 1.2fr .95fr .85fr 1fr 1.15fr; }
+  .grid-rtw { grid-template-columns: 1.2fr 1fr .9fr 1fr; }
+  .grid-cb .col, .grid-rtw .col { padding: 0 26px; }
+  .tag {
+    display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 10px;
+    font-weight: 700; letter-spacing: .5px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 3px; margin-left: 8px; vertical-align: 2px;
+  }
+  .tag-best { background: #E84040; color: #fff; }
+  .tag-ships { background: #16A34A; color: #fff; }
   .grid-2 { grid-template-columns: 1.1fr 1fr 1.6fr; }
   .grid-comm { grid-template-columns: 1fr 1fr 1fr 1fr; }
   .col { padding: 0 34px; box-shadow: inset 1px 0 0 0 var(--line); }
@@ -283,18 +292,17 @@
               <a class="feat" href="https://bisontrack.com/products/thor2-airhide-airvest-prepared-custom-suit">
                 <div class="feat-img"><img src="https://bisontrack.com/cdn/shop/files/BisonThor.2CustomMotorcycleRacingSuit_OnePiece.jpg?v=1763585070&width=800" alt="Bison Thor.2 Custom Motorcycle Racing Suit"></div>
                 <div class="feat-body">
-                  <div class="feat-name">Bison Thor.2 Custom Motorcycle Racing Suit</div>
+                  <div class="feat-name">Bison Thor.2 Custom Motorcycle Racing Suit<span class="tag tag-best">Best Seller</span></div>
                   <div class="feat-sub">Made to your measurements</div>
                   <span class="feat-cta">Shop Custom Suits <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></span>
                 </div>
               </a>
             </div>
             <div class="col">
-              <div class="col-label">Gear</div>
-              <a class="all-link" href="https://bisontrack.com/collections/bison-custom-built-gear">All Custom Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <div class="col-label">Track Gear</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-custom-built-gear">All Track Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
               <ul>
                 <li><a href="https://bisontrack.com/collections/bison-custom-built-suits">Suits</a></li>
-                <li><a href="https://bisontrack.com/collections/bison-custom-built-gear-jackets">Jackets</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-custom-built-gloves">Gloves</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-boots">Boots</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-custom-built-chest-protectors">Chest Protectors</a></li>
@@ -302,10 +310,17 @@
               </ul>
             </div>
             <div class="col">
-              <div class="col-label">Style</div>
-              <a class="all-link" href="https://bisontrack.com/collections/bison-custom-built-style">All Custom Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <div class="col-label">Street Gear</div>
+              <ul style="margin-top:-4px;">
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-gear-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-gloves">Gloves</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Lifestyle</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-custom-built-style">All Lifestyle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
               <ul>
-                <li><a href="https://bisontrack.com/collections/bison-custom-built-style-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-custom-built-style-jackets">Sublimated Jackets</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-powered-by-vnm">Bison x VnM</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-custom-built-crew-shirts-and-jerseys">Crew Shirts &amp; Jerseys</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-custom-built-hoodies">Hoodies</a></li>
@@ -347,18 +362,17 @@
               <a class="feat" href="https://bisontrack.com/collections/maverick">
                 <div class="feat-img"><img src="https://bisontrack.com/cdn/shop/files/bison-suit-thor-2-mav-main.jpg?v=1778094893&width=800" alt="Bison Maverick Colorway Thor.2 Motorcycle Racing Suit"></div>
                 <div class="feat-body">
-                  <div class="feat-name">The Maverick Collection</div>
+                  <div class="feat-name">The Maverick Collection<span class="tag tag-ships">Ships Fast</span></div>
                   <div class="feat-sub">Advanced safety tech, natural hide character</div>
                   <span class="feat-cta">Shop The Maverick Collection <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg></span>
                 </div>
               </a>
             </div>
             <div class="col">
-              <div class="col-label">Gear</div>
-              <a class="all-link" href="https://bisontrack.com/collections/bison-ready-to-wear-gear">All Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <div class="col-label">Track Gear</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-ready-to-wear-gear">All Track Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
               <ul>
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-suits">Suits</a></li>
-                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-jackets">Jackets</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-undersuits">Undersuits</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-gloves">Gloves</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-air-vests-and-armor">Air Vests &amp; Armor</a></li>
@@ -368,10 +382,17 @@
               </ul>
             </div>
             <div class="col">
-              <div class="col-label">Style</div>
-              <a class="all-link" href="https://bisontrack.com/collections/bison-ready-to-wear-style">All Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
+              <div class="col-label">Street Gear</div>
+              <ul style="margin-top:-4px;">
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-gloves">Gloves</a></li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="col-label">Lifestyle</div>
+              <a class="all-link" href="https://bisontrack.com/collections/bison-ready-to-wear-style">All Lifestyle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></a>
               <ul>
-                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-style-jackets">Jackets</a></li>
+                <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-style-jackets">Sublimated Jackets</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-t-shirts">T-Shirts</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-hoodies">Hoodies</a></li>
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-hats">Hats</a></li>
@@ -381,14 +402,6 @@
                 <li><a href="https://bisontrack.com/collections/bison-ready-to-wear-baby">Baby</a></li>
                 <li><a href="https://bisontrack.com/collections/the-herd-collection">The Herd Collection</a></li>
               </ul>
-            </div>
-            <div class="col">
-              <div class="col-label">Why Ready To Wear</div>
-              <div class="explain" style="margin-top:0;">
-                <h4>In Stock. Ships Now.</h4>
-                <p>Off-the-rack Bison gear built with the same leather and safety spec as our custom program, sized to standard fits and ready to ship.</p>
-                <p><strong>Looking for deals?</strong> Discounted in-stock gear lives in <a href="https://bisontrack.com/collections/the-pasture" style="color:var(--lime);">The Pasture</a>.</p>
-              </div>
             </div>
           </div>
         </div>
@@ -507,20 +520,24 @@
           <span class="m-feat-cta">Shop Custom Suits &rsaquo;</span>
         </div>
       </a>
-      <button class="l2" aria-expanded="false" data-acc>Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button class="l2" aria-expanded="false" data-acc>Track Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
       <div class="l2-panel">
-        <a href="https://bisontrack.com/collections/bison-custom-built-gear">All Custom Gear</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-gear">All Track Gear</a>
         <a href="https://bisontrack.com/collections/bison-custom-built-suits">Suits</a>
-        <a href="https://bisontrack.com/collections/bison-custom-built-gear-jackets">Jackets</a>
         <a href="https://bisontrack.com/collections/bison-custom-built-gloves">Gloves</a>
         <a href="https://bisontrack.com/collections/bison-boots">Boots</a>
         <a href="https://bisontrack.com/collections/bison-custom-built-chest-protectors">Chest Protectors</a>
         <a href="https://bisontrack.com/collections/bison-custom-accessories">Accessories</a>
       </div>
-      <button class="l2" aria-expanded="false" data-acc>Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button class="l2" aria-expanded="false" data-acc>Street Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
       <div class="l2-panel">
-        <a href="https://bisontrack.com/collections/bison-custom-built-style">All Custom Style</a>
-        <a href="https://bisontrack.com/collections/bison-custom-built-style-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-gear-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-gloves">Gloves</a>
+      </div>
+      <button class="l2" aria-expanded="false" data-acc>Lifestyle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/collections/bison-custom-built-style">All Lifestyle</a>
+        <a href="https://bisontrack.com/collections/bison-custom-built-style-jackets">Sublimated Jackets</a>
         <a href="https://bisontrack.com/collections/bison-powered-by-vnm">Bison x VnM</a>
         <a href="https://bisontrack.com/collections/bison-custom-built-crew-shirts-and-jerseys">Crew Shirts &amp; Jerseys</a>
         <a href="https://bisontrack.com/collections/bison-custom-built-hoodies">Hoodies</a>
@@ -552,11 +569,10 @@
           <span class="m-feat-cta">Shop Maverick &rsaquo;</span>
         </div>
       </a>
-      <button class="l2" aria-expanded="false" data-acc>Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button class="l2" aria-expanded="false" data-acc>Track Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
       <div class="l2-panel">
-        <a href="https://bisontrack.com/collections/bison-ready-to-wear-gear">All Gear</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-gear">All Track Gear</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-suits">Suits</a>
-        <a href="https://bisontrack.com/collections/bison-ready-to-wear-jackets">Jackets</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-undersuits">Undersuits</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-gloves">Gloves</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-air-vests-and-armor">Air Vests &amp; Armor</a>
@@ -564,10 +580,15 @@
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-knee-pucks">Knee Pucks &amp; Sliders</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-pit-mats">Pit Mats</a>
       </div>
-      <button class="l2" aria-expanded="false" data-acc>Style <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <button class="l2" aria-expanded="false" data-acc>Street Gear <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
       <div class="l2-panel">
-        <a href="https://bisontrack.com/collections/bison-ready-to-wear-style">All Style</a>
-        <a href="https://bisontrack.com/collections/bison-ready-to-wear-style-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-jackets">Jackets</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-gloves">Gloves</a>
+      </div>
+      <button class="l2" aria-expanded="false" data-acc>Lifestyle <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="l2-panel">
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-style">All Lifestyle</a>
+        <a href="https://bisontrack.com/collections/bison-ready-to-wear-style-jackets">Sublimated Jackets</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-t-shirts">T-Shirts</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-hoodies">Hoodies</a>
         <a href="https://bisontrack.com/collections/bison-ready-to-wear-hats">Hats</a>
@@ -643,14 +664,16 @@
 <button class="notes-toggle" onclick="document.querySelector('.notes').classList.toggle('open')">Change Notes</button>
 <div class="notes">
   <h3>Nav v3: what changed and why</h3>
-  <div class="meta">Responds to feedback in Slack, Aug 5. Core layout unchanged from the approved dark mega menu design.</div>
+  <div class="meta">Responds to Slack feedback (Aug 5) and the naming call with Tosha (Aug 27). Core layout unchanged from the approved dark mega menu design.</div>
 
-  <h4>1. Race / track / pit terminology removed</h4>
+  <h4>1. Naming: Track Gear / Street Gear / Lifestyle</h4>
   <ul>
-    <li>"Race Gear" and "Track Gear" are now "Gear". "Pit Wear &amp; Lifestyle" and "Lifestyle" are now "Style". This mirrors the live site's own "Shop Gear / Shop Style" grouping, so no collection URLs change.</li>
-    <li>"Racing Gloves" is now "Gloves". "Race Suits" is now "Custom Suits".</li>
-    <li>Product titles (e.g. "Thor.2 Custom Motorcycle Racing Suit") keep their real names.</li>
-    <li>SEO note: nav labels carry little ranking weight compared to collection page titles and URLs, which are untouched. No measurable SEO loss expected.</li>
+    <li>Per the call with Tosha: "Race" is out (alienates track day riders who don't race), and the product columns under both Custom Built and Ready To Wear are now Track Gear, Street Gear, and Lifestyle.</li>
+    <li>Track Gear: suits, gloves, boots, chest protectors, accessories (no jackets). Chest protectors and accessories stay under Track for now, may split later as the catalog grows.</li>
+    <li>Street Gear (new column): leather Jackets and street Gloves. Boots will join when street boots launch.</li>
+    <li>Lifestyle: sublimated jackets, tees, hoodies, hats and the rest of the casual range.</li>
+    <li>"Racing Gloves" is now "Gloves". Product titles keep their real names.</li>
+    <li>Dev note: street links point at the existing jacket and glove collections for now. Shopify needs street collections or tags (e.g. street gloves currently sit at the bottom of the main gloves collections) before these links can be scoped properly.</li>
   </ul>
 
   <h4>2. Product card images fixed</h4>
@@ -658,11 +681,11 @@
     <li>Featured cards now use a square image area with the full product visible (object-fit: contain on a light background). Nothing is cropped.</li>
   </ul>
 
-  <h4>3. Badges and icons stripped</h4>
+  <h4>3. Badges trimmed, not removed</h4>
   <ul>
-    <li>All colored chips removed: "High Value", "Hot", "Ships Fast", "Best Seller", "Ships Now", and the "SALE" chip next to Pasture Sale.</li>
-    <li>Column header icon chips removed. Columns are now clean uppercase labels with a hairline underline, closer to the Tavi Active reference, while keeping Bison's dark theme.</li>
-    <li>The only remaining color block is the "Start Your Build" CTA, which is functional, not promotional.</li>
+    <li>Removed: "High Value", "Hot", "Ships Now", and the "SALE" chip next to Pasture Sale.</li>
+    <li>Kept: "Best Seller" (on the Thor.2 card) and "Ships Fast" (on the Ready To Wear top pick), placed on products rather than column headers so they help users find the right item faster.</li>
+    <li>Column header icon chips removed. Columns are clean uppercase labels with a hairline underline, closer to the Tavi Active reference, while keeping Bison's dark theme.</li>
   </ul>
 
   <h4>4. Pasture confusion resolved</h4>
