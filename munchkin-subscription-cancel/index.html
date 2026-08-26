@@ -403,6 +403,14 @@ input,select{font-family:inherit}
 .offer-sep{margin-top:var(--sp-3);padding-top:var(--sp-3);border-top:1px solid var(--gray-100);width:100%}
 .back-pill{margin:0 auto var(--sp-3);display:flex;justify-content:center}
 
+/* Branch 8 second level question */
+.why-list{text-align:left;margin-top:var(--sp-4)}
+.why-resp{margin-top:var(--sp-3);text-align:left}
+.why-resp[hidden]{display:none}
+.why-resp .btn{margin-top:var(--sp-2)}
+.chip-row{display:flex;flex-wrap:wrap;gap:var(--sp-1);margin-top:var(--sp-2)}
+.chip-row .btn{margin-top:0}
+
 /* Quantity cards (branch 2) */
 .qty-grid{margin-top:var(--sp-4);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2);text-align:left}
 .qty-card{
@@ -731,7 +739,8 @@ input,select{font-family:inherit}
                 <label class="reason"><input type="radio" name="reason" value="5" data-reason="formula_switch"><span class="dot" aria-hidden="true"></span><span class="label">I&rsquo;d like to try the other formula</span></label>
                 <label class="reason"><input type="radio" name="reason" value="6" data-reason="product_fit"><span class="dot" aria-hidden="true"></span><span class="label">The formula isn&rsquo;t working for my baby</span></label>
                 <label class="reason"><input type="radio" name="reason" value="7" data-reason="no_longer_needed"><span class="dot" aria-hidden="true"></span><span class="label">I no longer need formula</span></label>
-                <label class="reason"><input type="radio" name="reason" value="8" data-reason="other"><span class="dot" aria-hidden="true"></span><span class="label">Something else</span></label>
+                <label class="reason"><input type="radio" name="reason" value="8" data-reason="brand_switch"><span class="dot" aria-hidden="true"></span><span class="label">I want to switch to a different brand</span></label>
+                <label class="reason"><input type="radio" name="reason" value="9" data-reason="other"><span class="dot" aria-hidden="true"></span><span class="label">Something else</span></label>
               </div>
             </fieldset>
 
@@ -955,8 +964,79 @@ input,select{font-family:inherit}
         </div>
       </section>
 
-      <!-- BRANCH 8 : Something else -->
+      <!-- ============================================================
+           BRANCH 8 : I want to switch to a different brand
+           Second level question. Each answer gets its own response.
+           Copy status:
+             cost        - navigation only, safe to ship
+             packaging   - follow up question, specified in the content doc
+             working     - verbatim from the content doc
+             whole_milk / recommended / ingredients - NEED APPROVED COPY.
+             These three are claim territory (milk base, clinical and
+             review credibility, ingredient comparison). Left as tagged
+             placeholders deliberately rather than drafted, given claims
+             have twice been pulled from this account for lack of
+             regulatory clearance.
+           ============================================================ -->
       <section class="offer" data-branch="8" hidden>
+        <h2 class="h-display">What&rsquo;s Making You Consider <span class="accent">Another Formula?</span></h2>
+        <p class="lead">Tell us what matters most to you so we can better understand your family&rsquo;s needs.</p>
+
+        <div class="reason-list why-list">
+          <label class="reason"><input type="radio" name="switch_why" value="cost" data-reason="brand_cost"><span class="dot" aria-hidden="true"></span><span class="label">It costs less</span></label>
+          <label class="reason"><input type="radio" name="switch_why" value="whole_milk" data-reason="brand_whole_milk"><span class="dot" aria-hidden="true"></span><span class="label">It&rsquo;s made with whole milk</span></label>
+          <label class="reason"><input type="radio" name="switch_why" value="packaging" data-reason="brand_packaging"><span class="dot" aria-hidden="true"></span><span class="label">I prefer the packaging</span></label>
+          <label class="reason"><input type="radio" name="switch_why" value="recommended" data-reason="brand_recommended"><span class="dot" aria-hidden="true"></span><span class="label">Someone I trust recommended it</span></label>
+          <label class="reason"><input type="radio" name="switch_why" value="ingredients" data-reason="brand_ingredients"><span class="dot" aria-hidden="true"></span><span class="label">I prefer its ingredients or formulation</span></label>
+          <label class="reason"><input type="radio" name="switch_why" value="working" data-reason="brand_working"><span class="dot" aria-hidden="true"></span><span class="label">My baby is responding well to it</span></label>
+        </div>
+
+        <div class="why-resp alt-offer" data-why="cost" hidden>
+          <span class="k">A smaller plan may be all you need</span>
+          <p>You can move to a smaller plan and keep your subscriber pricing, rather than leaving.</p>
+          <button class="btn btn-02" type="button" data-goto="2">See Smaller Plans</button>
+        </div>
+
+        <div class="why-resp alt-offer" data-why="whole_milk" hidden>
+          <span class="k">About our milk base</span>
+          <p><span class="ph">Needs approved copy</span> An explanation of Munchkin&rsquo;s milk base and formulation, without disparaging whole milk formulas.</p>
+        </div>
+
+        <div class="why-resp alt-offer" data-why="packaging" hidden>
+          <span class="k">What works better for you?</span>
+          <p>Tell us which part, so we can pass it to the team that makes these decisions.</p>
+          <div class="chip-row">
+            <button class="btn btn-03" type="button">Can size</button>
+            <button class="btn btn-03" type="button">Scoop storage</button>
+            <button class="btn btn-03" type="button">Opening</button>
+            <button class="btn btn-03" type="button">Portability</button>
+            <button class="btn btn-03" type="button">Something else</button>
+          </div>
+        </div>
+
+        <div class="why-resp alt-offer" data-why="recommended" hidden>
+          <span class="k">What stands behind ours</span>
+          <p><span class="ph">Needs approved copy</span> Clinical study, parent reviews, development credibility and access to support. Assets available: the 16 week trial in 260 infants, and the 4.7 star rating on the formula PDP.</p>
+        </div>
+
+        <div class="why-resp alt-offer" data-why="ingredients" hidden>
+          <span class="k">How ours compares</span>
+          <p><span class="ph">Needs approved copy</span> Nurture 10 Blend and an approved ingredient or formulation comparison.</p>
+        </div>
+
+        <div class="why-resp alt-offer" data-why="working" hidden>
+          <span class="k">We&rsquo;re glad your little one is doing well.</span>
+          <p>Thank you for giving Munchkin a try. We&rsquo;ll make canceling simple.</p>
+        </div>
+
+        <div class="offer-actions">
+          <span class="offer-sep"></span>
+          <button class="quiet" type="button" data-action="cancel">Continue With Cancellation</button>
+        </div>
+      </section>
+
+      <!-- BRANCH 9 : Something else -->
+      <section class="offer" data-branch="9" hidden>
         <span class="eyebrow">Would one of these options help?</span>
         <h2 class="h-display">Choose What Works <span class="accent">Best for You</span></h2>
         <div class="opt-list">
@@ -1091,7 +1171,7 @@ input,select{font-family:inherit}
   // reload and no popstate. Only act on hashes we own, otherwise leave in page anchors
   // like #why alone so they still just scroll.
   window.addEventListener('hashchange', function(){
-    var m = /^#reason-([1-8])$/.exec(location.hash);
+    var m = /^#reason-([1-9])$/.exec(location.hash);
     if(m){ render({view:'offer', branch:m[1]}); return; }
     if(location.hash === '#canceled'){ render({view:'done'}); }
   });
@@ -1119,10 +1199,21 @@ input,select{font-family:inherit}
 
   // Deep link support, so #reason-4 opens that panel on load
   (function restore(){
-    var m = /^#reason-([1-8])$/.exec(location.hash);
+    var m = /^#reason-([1-9])$/.exec(location.hash);
     if(m){ history.replaceState({view:'offer', branch:m[1]}, '', location.hash); openBranch(m[1]); return; }
     history.replaceState({view:'main'}, '', location.hash || '');
   })();
+
+  // Branch 8: reveal the response that matches the chosen sub reason.
+  var whyInputs = document.querySelectorAll('input[name="switch_why"]');
+  Array.prototype.forEach.call(whyInputs, function(input){
+    input.addEventListener('change', function(){
+      var panel = document.querySelector('[data-branch="8"]');
+      Array.prototype.forEach.call(panel.querySelectorAll('.why-resp'), function(r){
+        r.hidden = r.getAttribute('data-why') !== input.value;
+      });
+    });
+  });
 
   // Keep the "new shipment total" row in step with the selected quantity (branch 2).
   // Subscribers pay 10% less on every order, and that is the figure the page shows
