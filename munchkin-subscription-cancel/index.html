@@ -481,6 +481,10 @@ input,select{font-family:inherit}
 .field input:hover{border-color:var(--green-800)}
 
 /* ---------- Views ---------- */
+/* The hidden attribute must win. A class like .btn{display:inline-flex} otherwise
+   beats the UA [hidden] rule on specificity, which silently left hidden buttons
+   on screen. This bit the cancellation gate. */
+[hidden]{display:none!important}
 .view[hidden]{display:none}
 
 /* ---------- Footer ---------- */
@@ -958,7 +962,15 @@ input,select{font-family:inherit}
           <div class="offer-row"><dt>Next scheduled delivery</dt><dd data-slot="next_order_date">August 22, 2026</dd></div>
         </dl>
         <div class="offer-actions">
-          <button class="btn btn-neutral" type="button" data-action="confirm-cancel">Cancel My Subscription</button>
+          <!-- Cancellation is gated on a reason being on record. Hidden, not disabled,
+               so there is nothing to click at and no dead greyed out control. The
+               notice below takes its place when no reason has been chosen, which is
+               only reachable by deep link. -->
+          <button class="btn btn-neutral" type="button" data-action="confirm-cancel" id="confirmCancelBtn">Cancel My Subscription</button>
+          <div id="needReason" hidden>
+            <p class="lead" style="font-size:var(--fs-4);margin-top:0">Before we can cancel, please tell us why you are leaving. It takes one tap and it is the only way we learn what to fix.</p>
+            <button class="btn btn-01" type="button" data-action="pick-reason">Choose A Reason</button>
+          </div>
           <span class="offer-sep"></span>
           <button class="quiet" type="button" data-action="back">Go Back</button>
         </div>
@@ -999,7 +1011,8 @@ input,select{font-family:inherit}
 
         <div class="why-resp alt-offer" data-why="whole_milk" hidden>
           <span class="k">About our milk base</span>
-          <p><span class="ph">Needs approved copy</span> An explanation of Munchkin&rsquo;s milk base and formulation, without disparaging whole milk formulas.</p>
+          <p><span class="ph">Needs copy approval</span></p>
+          <p>Ours is a milk based formula too. Munchkin Formula Made with Organic Milk uses USDA Organic milk from grass fed New Zealand cows, built around the patented Nurture 10 Blend, which shares 10 ingredients with breastmilk.* Different milk bases suit different babies, and if a whole milk formula is working for yours, that is a good reason to stay with it.<span class="micro" style="display:block;margin-top:var(--sp-1)">*Structure and levels differ from those in breastmilk.</span></p>
         </div>
 
         <div class="why-resp alt-offer" data-why="packaging" hidden>
@@ -1016,12 +1029,14 @@ input,select{font-family:inherit}
 
         <div class="why-resp alt-offer" data-why="recommended" hidden>
           <span class="k">What stands behind ours</span>
-          <p><span class="ph">Needs approved copy</span> Clinical study, parent reviews, development credibility and access to support. Assets available: the 16 week trial in 260 infants, and the 4.7 star rating on the formula PDP.</p>
+          <p><span class="ph">Needs copy approval</span></p>
+          <p>A recommendation from someone you trust carries real weight, and we would not ask you to ignore it. If it helps to weigh things up: our formula was studied in a 16 week clinical trial with 260 infants, it holds a 4.7 star rating from parents on our product page, and our Customer Satisfaction team is here if you would like to talk it through before you decide.</p>
         </div>
 
         <div class="why-resp alt-offer" data-why="ingredients" hidden>
           <span class="k">How ours compares</span>
-          <p><span class="ph">Needs approved copy</span> Nurture 10 Blend and an approved ingredient or formulation comparison.</p>
+          <p><span class="ph">Needs copy approval</span></p>
+          <p>Formulation is the right thing to compare. Ours is the Nurture 10 Blend, a patented blend of protein, fat and carbohydrate that shares 10 ingredients with breastmilk.* The Made with Organic Milk version uses USDA Organic milk from grass fed New Zealand cows. If there is a specific ingredient you are looking for, or one you would rather avoid, our Customer Satisfaction team can check it against our full panel before you decide.<span class="micro" style="display:block;margin-top:var(--sp-1)">*Structure and levels differ from those in breastmilk.</span></p>
         </div>
 
         <div class="why-resp alt-offer" data-why="working" hidden>
@@ -1143,8 +1158,26 @@ input,select{font-family:inherit}
       if(match) active = p;
     });
     show('offer');
+    if(String(value) === '7'){ syncCancelGate(); }
     // Move focus to the panel so screen reader and keyboard users land on the new content
     if(active){ active.setAttribute('tabindex','-1'); active.focus({preventScroll:true}); }
+  }
+
+  /* ------------------------------------------------------------------
+     Cancellation gate. A reason must be on record before the final
+     cancel button is available. Reaching branch 7 without one is only
+     possible via a deep link, but the button must still not work there.
+     ------------------------------------------------------------------ */
+  var confirmBtn = document.getElementById('confirmCancelBtn');
+  var needReason = document.getElementById('needReason');
+
+  function reasonChosen(){
+    return !!form.querySelector('input[name="reason"]:checked');
+  }
+  function syncCancelGate(){
+    var ok = reasonChosen();
+    confirmBtn.hidden = !ok;
+    needReason.hidden = ok;
   }
 
   /* ------------------------------------------------------------------
@@ -1184,7 +1217,7 @@ input,select{font-family:inherit}
     go({view:'offer', branch:picked.value});
   });
 
-  form.addEventListener('change', function(){ note.classList.remove('show'); });
+  form.addEventListener('change', function(){ note.classList.remove('show'); syncCancelGate(); });
 
   document.addEventListener('click', function(e){
     var el = e.target.closest('[data-action],[data-goto]');
@@ -1194,7 +1227,17 @@ input,select{font-family:inherit}
     var action = el.getAttribute('data-action');
     if(action === 'back'){ history.back(); }           // matches the browser control
     if(action === 'cancel'){ go({view:'offer', branch:'7'}); }   // last-step confirmation panel
-    if(action === 'confirm-cancel'){ go({view:'done'}); }        // wire to the subscription API
+    if(action === 'pick-reason'){
+      show('main');
+      history.pushState({view:'main'}, '', '#why');
+      document.getElementById('why').scrollIntoView({behavior:'smooth', block:'start'});
+      return;
+    }
+    if(action === 'confirm-cancel'){
+      // Belt and braces: even if the button were somehow reachable, no reason means no cancel.
+      if(!reasonChosen()){ syncCancelGate(); return; }
+      go({view:'done'});                                         // wire to the subscription API
+    }
   });
 
   // Deep link support, so #reason-4 opens that panel on load
@@ -1203,6 +1246,8 @@ input,select{font-family:inherit}
     if(m){ history.replaceState({view:'offer', branch:m[1]}, '', location.hash); openBranch(m[1]); return; }
     history.replaceState({view:'main'}, '', location.hash || '');
   })();
+
+  syncCancelGate();
 
   // Branch 8: reveal the response that matches the chosen sub reason.
   var whyInputs = document.querySelectorAll('input[name="switch_why"]');
