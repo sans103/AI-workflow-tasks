@@ -53,6 +53,7 @@
   --body:#4e4f50;
   --muted:#58595b;
   --rule:#d0d1d1;
+  --gray-100:#f0f0ef;
   --hairline:#ece9e3;
   --pill-edge:rgba(10,49,71,0.3);
   --white:#ffffff;
@@ -135,7 +136,11 @@ input,select{font-family:inherit}
 .band-tile{background:var(--tile)}
 .band-peach{background:var(--peach);--accent:var(--amber-400);--accent-deep:var(--amber-800);--accent-tint:var(--amber-300);--line:rgba(145,49,15,.14)}
 .band-rose{background:var(--rose);--accent:var(--pink-400);--accent-deep:var(--pink-700);--accent-tint:var(--pink-300);--line:rgba(176,28,65,.14)}
-.band-mint{background:var(--green-100);--accent:var(--green-400);--accent-deep:var(--ink);--accent-tint:var(--green-200);--line:rgba(45,72,31,.14)}
+.band-mint{
+  /* Radial fill per Figma. Sampled #eaf5dd at the light centre to #e3f3d4 (green-100) at the edge. */
+  background:radial-gradient(120% 100% at 50% 0%, #eaf5dd 0%, var(--green-100) 100%);
+  --accent:var(--green-400);--accent-deep:var(--ink);--accent-tint:var(--green-200);--line:rgba(45,72,31,.14);
+}
 .band-aqua{background:var(--aqua);--accent:var(--teal-400);--accent-deep:var(--teal-700);--accent-tint:var(--teal-300);--line:rgba(34,113,124,.16)}
 .band-butter{background:var(--butter);--accent:var(--amber-400);--accent-deep:var(--amber-800);--accent-tint:var(--amber-300);--line:rgba(145,49,15,.14)}
 .band-green{background:var(--green-800);color:var(--white);--accent:var(--green-400);--accent-deep:var(--green-100);--line:rgba(255,255,255,.18)}
@@ -509,32 +514,47 @@ dialog.locator::backdrop{background:rgba(37,37,39,.55)}
 .orbit{position:relative;width:min(980px,100%);aspect-ratio:1/1;margin:var(--s7) auto 0}
 .orbit-ring{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:80%;height:80%;border:1px dashed var(--line);border-radius:50%;
+  width:80%;height:80%;border:1px dashed var(--green-400);border-radius:50%;
 }
 .orbit-core{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:42%;display:flex;flex-direction:column;gap:var(--s3);align-items:center;
+  /* Figma: 365px core inside a 980px stage, centre sitting 35px above the ring
+     centre so the disclaimer can sit in the space below the can. */
+  position:absolute;left:50%;top:46.4%;transform:translate(-50%,-50%);
+  width:37.2%;display:flex;flex-direction:column;align-items:center;
+}
+.core-label{
+  /* Figma centres these 135px from the core centre, i.e. 13% in from the
+     circle edge, so they clear the can artwork. */
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:26%;text-align:center;
+  font-size:var(--fs-xs);line-height:1.5;color:var(--muted);
+}
+.core-label--left{left:0}
+.core-label--right{right:0}
+.orbit-note{
+  position:absolute;left:50%;top:67.5%;transform:translateX(-50%);
+  width:60%;text-align:center;
+  font-size:var(--fs-xs);line-height:1.5;color:var(--muted);
 }
 .orbit-core .split-can{border-radius:50%}
-/* The green and teal lids already read as two products, so the seam is
-   dropped here: across a full circle it looked like a line bisecting it. */
-.orbit-core .split-seam{display:none}
+/* Pauline flagged the split as uneven and she was right. In both source
+   renders the can's content centre sits at x=442 of 900, so cutting at the
+   container midpoint left the organic half wider. Cut at 49.11% instead. */
+.split-half--left{width:49.11%}
+.split-half--right{width:50.89%}
 .orbit-core .split-half--left{border-radius:50% 0 0 50%}
 .orbit-core .split-half--right{border-radius:0 50% 50% 0}
 .orbit-node{
   position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
-  width:196px;height:196px;border-radius:9999px;
-  background:var(--white);border:1px solid var(--line);
+  width:190px;height:190px;border-radius:9999px;
+  background:var(--white);border:1px solid var(--green-400);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:0 28px;
+  text-align:center;padding:0 16px;
   transition:box-shadow var(--dur) var(--ease);
 }
 .orbit-node:hover{box-shadow:inset 0 0 0 2px var(--accent)}
-.orbit-node h4{font-size:var(--fs-sm);font-weight:500;color:var(--accent-deep);letter-spacing:-0.01em}
-.orbit-node p{font-size:var(--fs-xs);line-height:1.35;color:var(--body);margin-top:var(--s1)}
-.orbit-foot{display:flex;flex-direction:column;gap:var(--s2);align-items:center;margin-top:var(--s6)}
-.orbit-key{display:flex;gap:var(--s5);justify-content:center}
-.orbit-key span{font-size:var(--fs-xs);font-weight:500;color:var(--muted)}
+.orbit-node h4{font-size:var(--fs-lg);font-weight:500;color:var(--green-800);letter-spacing:-0.01em}
+.orbit-node p{font-size:var(--fs-sm);line-height:1.4;color:var(--body);margin-top:6px}
 @media(max-width:1023px){
   .orbit{position:static;aspect-ratio:auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s6)}
   .orbit-ring{display:none}
@@ -544,8 +564,10 @@ dialog.locator::backdrop{background:rgba(37,37,39,.55)}
     border-radius:var(--r-inner);padding:var(--s4) var(--s5);
     text-align:left;align-items:flex-start;
   }
-  .orbit-node h4{font-size:var(--fs-base)}
-  .orbit-node p{font-size:var(--fs-sm);line-height:1.45}
+  .orbit-node p{line-height:1.45}
+  .core-label{position:static;transform:none;width:auto;text-align:center}
+  .orbit-core{position:static;top:auto}
+  .orbit-note{position:static;transform:none;width:auto;margin-top:var(--s3);grid-column:1 / -1}
 }
 @media(max-width:520px){.orbit{grid-template-columns:1fr}}
 .split-can{position:relative;width:100%;aspect-ratio:1/1;display:flex;overflow:hidden;border-radius:var(--r-card);background:var(--white)}
@@ -553,7 +575,7 @@ dialog.locator::backdrop{background:rgba(37,37,39,.55)}
 .split-half img{position:absolute;top:0;height:100%;width:auto;max-width:none;aspect-ratio:1/1;mix-blend-mode:multiply}
 .split-half--left img{left:0}
 .split-half--right img{right:0}
-.split-seam{position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(37,37,39,.14);transform:translateX(-0.5px)}
+.split-seam{position:absolute;top:0;bottom:0;left:49.11%;width:2px;background:var(--gray-100);transform:translateX(-1px)}
 .split-key{display:flex;justify-content:space-between;width:100%;gap:var(--s4)}
 .split-key span{font-size:var(--fs-xs);font-weight:500;color:var(--muted)}
 
@@ -1055,21 +1077,23 @@ table.compare tbody tr.total-row td.col-brand{background:var(--green-900)}
   <div class="wrap wrap-orbit">
     <div class="center reveal">
       <span class="eyebrow">The Nurture 10 Blend</span>
-      <h2 class="h2" id="ing-h">What Munchkin &amp; Breastmilk <span class="accent">Have In Common...</span></h2>
-      <p class="lead center" style="margin-top:var(--s5)">Our patented blend of 10 key ingredients, thoughtfully combined for complete nutrition from tummy to toes.*</p>
+      <h2 class="h2" id="ing-h">What Munchkin &amp; Breastmilk <span class="accent">Have In Common*...</span></h2>
+      <p class="lead center" style="margin-top:var(--s5)">Our patented blend of fats, proteins, and carbohydrates, thoughtfully designed for complete nutrition from tummy to toes.</p>
     </div>
     <div class="orbit reveal">
       <span class="orbit-ring" aria-hidden="true"></span>
       <div class="orbit-core">
+        <span class="core-label core-label--left">Made with<br>Organic Milk</span>
+        <span class="core-label core-label--right">Made with<br>Original Milk</span>
         <div class="split-can">
           <span class="split-half split-half--left"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-organic-1.jpg?width=900" alt="Left half of the Munchkin organic milk formula can" loading="lazy" width="900" height="900"></span>
           <span class="split-half split-half--right"><img src="https://cdn.shopify.com/s/files/1/0790/4172/4704/files/munchkin-infant-formula-original-1.jpg?width=900" alt="Right half of the Munchkin original milk formula can" loading="lazy" width="900" height="900"></span>
           <span class="split-seam" aria-hidden="true"></span>
         </div>
       </div>
-        <div class="orbit-node" style="--x:50.00%;--y:10.00%"><h4>Alpha-Lactalbumin</h4><p>Quality protein for growing little bodies.</p></div>
-        <div class="orbit-node" style="--x:73.51%;--y:17.64%"><h4>Lactoferrin</h4><p>Helps support baby's developing immune defenses.</p></div>
-        <div class="orbit-node" style="--x:88.04%;--y:37.64%"><h4>Beta-Palmitate</h4><p>Helps tiny tummies make softer stools.</p></div>
+        <div class="orbit-node" style="--x:50.00%;--y:10.00%"><h4>Alpha-Lactalbumin</h4><p>The primary whey protein in breastmilk.</p></div>
+        <div class="orbit-node" style="--x:73.51%;--y:17.64%"><h4>Lactoferrin</h4><p>Helps support baby's natural immunity.</p></div>
+        <div class="orbit-node" style="--x:88.04%;--y:37.64%"><h4>Beta-Palmitate</h4><p>Helps tiny tummies make soft stools.</p></div>
         <div class="orbit-node" style="--x:88.04%;--y:62.36%"><h4>Lutein</h4><p>Nourishes baby's developing little eyes.</p></div>
         <div class="orbit-node" style="--x:73.51%;--y:82.36%"><h4>DHA</h4><p>Helps build growing brains and eyes.</p></div>
         <div class="orbit-node" style="--x:50.00%;--y:90.00%"><h4>ARA</h4><p>Supports baby's budding brain development.</p></div>
@@ -1077,10 +1101,7 @@ table.compare tbody tr.total-row td.col-brand{background:var(--green-900)}
         <div class="orbit-node" style="--x:11.96%;--y:62.36%"><h4>Taurine</h4><p>Supports developing eyes and healthy fat digestion.</p></div>
         <div class="orbit-node" style="--x:11.96%;--y:37.64%"><h4>L-Carnitine</h4><p>Helps turn fat into growing baby energy.</p></div>
         <div class="orbit-node" style="--x:26.49%;--y:17.64%"><h4>Beta-Carotene</h4><p>Antioxidant support for growing little bodies.</p></div>
-    </div>
-    <div class="orbit-foot">
-      <p class="orbit-key"><span>Organic milk on the left. Original milk on the right.</span></p>
-      <p class="legal center">*Structure and levels differ from those in breastmilk.</p>
+      <p class="orbit-note">*Structure and levels differ from those in breastmilk.</p>
     </div>
   </div>
 </section>
