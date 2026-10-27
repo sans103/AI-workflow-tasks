@@ -542,7 +542,7 @@ body.is-search-open .notes-toggle { display: none; }
       </div>
       <ul class="facts">
         <li>Top searches that often get no click: jeans (47), stacked jeans (27), adorni (24), black jeans (23), biker jeans (22).</li>
-        <li>Style numbers such as M1959 return nothing today. Here a typed style number matches products by handle prefix.</li>
+        <li>Today, live style numbers such as M1959 list product names without prices, and old style numbers (V460, M4246) end on a "No results found" page. Here a style number shows every colourway with image and price.</li>
         <li>Black jeans and Adorni have no collection yet, so their chips open search results. Both need a collection.</li>
         <li>Stacked jeans links to /collections/stacked-jeans. A second collection, /collections/stack-jeans, also exists and should be merged or redirected.</li>
       </ul>
@@ -761,12 +761,13 @@ body.is-search-open .notes-toggle { display: none; }
       main += '<div class="group"><div class="group-head"><h2 class="group-title">' + esc(heading) + '</h2><span class="group-count">' + esc(count) + '</span></div>' +
         (isNarrow() ? '<ul class="tiles" aria-label="Matching products, swipe for more">' + items.map(cardHtml).join('') + '</ul>' : '<ul class="cards">' + items.map(cardHtml).join('') + '</ul>') +
         '</div>';
-      if (res.style) main += noteHtml('style numbers fail in search today. Here the typed code matches the start of the product handle, so every colorway of the style shows.');
+      if (res.style) main += noteHtml('today quick search lists style matches by name only, without prices. Here the typed code matches the start of the product handle, so every colourway shows with image and price.');
     } else if (norm(q).length >= 2) {
-      main += '<p class="empty">No exact matches for <strong>“' + esc(shown) + '”</strong>. Try a popular search instead.</p>';
-      if (!terms.length) side += popularGroup('Popular right now');
+      var emptyMsg = '<p class="empty">No exact matches for <strong>“' + esc(shown) + '”</strong>. Try one of these popular searches.</p>';
+      if (!terms.length) side += emptyMsg + popularGroup('Popular right now'); else main += emptyMsg;
+      var noResults = true;
     }
-    main += '<a class="see-all" href="' + esc(searchUrl(shown)) + '" target="_blank" rel="noopener"><span>See all results for “' + esc(shown) + '”</span>' + ICON.arrow + '</a>';
+    if (!noResults) main += '<a class="see-all" href="' + esc(searchUrl(shown)) + '" target="_blank" rel="noopener"><span>See all results for “' + esc(shown) + '”</span>' + ICON.arrow + '</a>';
     if (items.length && !res.style) main += noteHtml('prices and sale badges show in the dropdown; today\u2019s predictive search shows names only. On mobile, matches sit in a swipeable row with the next tile peeking at the edge (pattern: <a href="https://ecomideas.com/mobile/search?entry=300fd34e-1c8c-40dc-ab0d-bac98296ad03" target="_blank" rel="noopener">autosuggest tile nudge</a>). Desktop keeps a grid for mouse users.');
 
     panel.innerHTML = '<div class="panel-grid">' +
