@@ -6,7 +6,7 @@
 <title>Makobi search prototype v1 (design preview)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@600;700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Register: brand surface (live Makobi storefront chrome), mobile first.
    Values from brand-guides/makobi/tokens.css. Promo red per client decision is #D63A2F. */
@@ -96,10 +96,10 @@ p { text-wrap: pretty; }
 .icon-btn:active { transform: scale(0.97); }
 
 .logo { display: block; }
-.logo img { height: 56px; width: auto; }
+.logo img { height: 75px; width: auto; }
 .nav { display: none; }
 .account-btn { display: none; }
-.cart-btn { background: var(--white); }
+.cart-btn { background: var(--surface); }
 .header-search-btn { display: inline-flex; }
 
 /* ---------- Search shell ---------- */
@@ -197,31 +197,6 @@ body.is-search-open .panel {
 .suggest a strong { color: var(--black); font-weight: 700; }
 .suggest .go { margin-left: auto; color: var(--black); }
 .suggest .kind { font-size: 14px; color: var(--subtext); }
-
-/* Product rows (mobile typing) */
-.rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
-.row {
-  display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center;
-  text-decoration: none;
-}
-.thumb {
-  width: 64px; height: 84px; object-fit: cover;
-  border-radius: var(--radius-media); background: var(--surface-gray);
-}
-.p-name {
-  font-family: var(--font-heading); font-weight: 600; font-size: 14px; line-height: 1.3;
-  text-transform: uppercase; letter-spacing: 0.02em;
-}
-.p-meta { font-size: 14px; line-height: 1.4; color: var(--subtext); }
-.price { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 4px; font-size: 16px; line-height: 1.3; }
-.price-now { font-weight: 700; }
-.price.on-sale .price-now { color: var(--promo-red); }
-.price-was { color: var(--subtext); text-decoration: line-through; font-size: 14px; }
-.badge {
-  display: inline-flex; align-items: center; height: 22px; padding: 0 8px;
-  border-radius: 40px; background: var(--promo-red); color: var(--white);
-  font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em;
-}
 
 /* Mini cards (focus state, desktop results) */
 .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px; }
@@ -495,14 +470,12 @@ body.is-search-open .notes-toggle { display: none; }
         </div>
         <div class="note" id="note-placeholder">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
-          <span><b>Design note:</b> the bar is always visible on mobile now (live site hides it behind an icon). The placeholder types the top five searches once, then settles on static text. It stops for good once the bar is tapped, and stays static when reduced motion is on.</span>
+          <span><b>Design note:</b> the bar is always visible on mobile now (the live site hides it behind an icon), so the header search icon is removed. The placeholder types the top five searches once, then settles on static text. It stops for good once the bar is tapped, and stays static when reduced motion is on.</span>
         </div>
         <div class="panel" id="panel" role="region" aria-label="Search suggestions"></div>
       </form>
 
-      <button class="icon-btn header-search-btn" type="button" id="search-icon" aria-label="Search">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
-      </button>
+      <span class="header-search-btn" aria-hidden="true"></span>
       <a class="icon-btn account-btn" href="https://makobiusa.com/account" target="_blank" rel="noopener" aria-label="Account">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
       </a>
@@ -577,7 +550,7 @@ body.is-search-open .notes-toggle { display: none; }
 
   // Top terms ranked by Shopify search volume. flag = annotation for the client.
   var TERMS = [
-    { label: 'jeans', url: '/collections/pants', kind: 'Jeans Collection' },
+    { label: 'jeans', url: '/collections/pants', kind: 'Collection' },
     { label: 'stacked jeans', url: '/collections/stacked-jeans', kind: 'Collection', flag: 'Duplicate collection: /collections/stack-jeans also exists. Using stacked-jeans.' },
     { label: 'biker jeans', url: '/collections/biker', kind: 'Collection' },
     { label: 'black jeans', url: '/search?q=black+jeans', kind: 'Search results', flag: 'Needs collection. No black jeans collection exists, so this opens search.' },
@@ -688,12 +661,6 @@ body.is-search-open .notes-toggle { display: none; }
   }
   function metaText(p) { return [p.s, p.c].filter(Boolean).join(' · '); }
 
-  function rowHtml(p) {
-    return '<li><a class="row" href="' + esc(p.url) + '" target="_blank" rel="noopener">' +
-      '<img class="thumb" src="' + esc(p.i) + '" alt="" width="64" height="84" loading="lazy">' +
-      '<div><div class="p-name">' + esc(p.n) + '</div><div class="p-meta">' + esc(metaText(p)) + '</div>' + priceHtml(p) + '</div>' +
-      '</a></li>';
-  }
   function cardHtml(p) {
     return '<li><a class="card" href="' + esc(p.url) + '" target="_blank" rel="noopener">' +
       '<div class="media"><img src="' + esc(p.i) + '" alt="" width="300" height="400" loading="lazy" onload="this.parentNode.classList.add(\'is-loaded\')"></div>' +
@@ -710,7 +677,7 @@ body.is-search-open .notes-toggle { display: none; }
   function noteHtml(html) { return '<div class="note">' + ICON.info + '<span><b>Design note:</b> ' + html + '</span></div>'; }
 
   function chipsHtml() {
-    var list = showAllChips ? TERMS : TERMS.slice(0, CHIPS_VISIBLE);
+    var list = showAllChips ? TERMS : TERMS.slice(0, isNarrow() ? 6 : CHIPS_VISIBLE);
     var out = '<ul class="chips">' + list.map(function (t) {
       var flag = t.flag ? '<span class="chip-flag" aria-hidden="true" title="' + esc(t.flag) + '">' + ICON.info.replace('<svg ', '<svg class="flag-icon" ') + '</span>' : '';
       return '<li><a class="chip" href="' + esc(STORE + t.url) + '" target="_blank" rel="noopener">' + esc(t.label) + flag + '</a></li>';
@@ -825,7 +792,6 @@ body.is-search-open .notes-toggle { display: none; }
   input.addEventListener('input', function () { open(); render(); });
   document.getElementById('cancel').addEventListener('click', function () { input.value = ''; close(); input.blur(); });
   document.getElementById('clear').addEventListener('click', function () { input.value = ''; render(); input.focus(); });
-  document.getElementById('search-icon').addEventListener('click', function () { input.focus(); });
   backdrop.addEventListener('click', function () { close(); input.blur(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && body.classList.contains('is-search-open')) {
