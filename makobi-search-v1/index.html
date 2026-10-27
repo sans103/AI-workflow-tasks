@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Makobi search prototype v1 (design preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Register: brand surface (live Makobi storefront chrome), mobile first.
+   Values from brand-guides/makobi/tokens.css. Promo red per client decision is #D63A2F. */
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --promo-red: #D63A2F;
+  --subtext: #666666;
+  --border: #E5E5E5;
+  --surface: #EDEDED;
+  --surface-gray: #F6F6F6;
+  --overlay: rgba(0, 0, 0, 0.24);
+  --font-heading: "Instrument Sans", sans-serif;
+  --font-body: "Roboto", sans-serif;
+  --radius-pill: 100px;
+  --radius-media: 8px;
+  --radius-block: 10px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --z-sticky: 20;
+  --z-backdrop: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --page-pad: 16px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.625;
+  color: var(--black);
+  background: var(--white);
+}
+body.is-search-open { overflow: hidden; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--font-heading); text-wrap: balance; margin: 0; }
+p { text-wrap: pretty; }
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+.icon { width: 24px; height: 24px; flex: none; }
+.icon-sm { width: 20px; height: 20px; flex: none; }
+
+/* ---------- Announcement bar (live: smart_top_bar) ---------- */
+.topbar {
+  background: var(--promo-red);
+  color: var(--white);
+  min-height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px var(--page-pad);
+  font-weight: 600; font-size: 14px; line-height: 1.2; text-align: center;
+  text-decoration: none;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: relative;
+  background: var(--white);
+  z-index: var(--z-sticky);
+}
+.header-inner {
+  display: grid;
+  grid-template-columns: 44px 44px 1fr 44px 44px;
+  grid-template-areas: "menu . logo find cart" "search search search search search";
+  align-items: center;
+  padding: 8px 8px 0;
+  max-width: 1600px; margin: 0 auto;
+}
+.header-left, .header-right { display: contents; }
+.menu-btn { grid-area: menu; }
+.logo { grid-area: logo; justify-self: center; }
+.header-search-btn { grid-area: find; }
+.cart-btn { grid-area: cart; }
+.search { grid-area: search; margin: 0 -8px; }
+.icon-btn {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 0; border-radius: 50%; padding: 0; cursor: pointer;
+  text-decoration: none;
+}
+.icon-btn:active { transform: scale(0.97); }
+
+.logo { display: block; }
+.logo img { height: 56px; width: auto; }
+.nav { display: none; }
+.account-btn { display: none; }
+.cart-btn { background: var(--white); }
+.header-search-btn { display: inline-flex; }
+
+/* ---------- Search shell ---------- */
+.search { padding: 4px var(--page-pad) 16px; }
+.search-row { display: flex; align-items: center; gap: 12px; }
+.search-field {
+  position: relative; flex: 1; min-width: 0;
+}
+.search-field .icon-sm {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%; height: 48px;
+  padding: 0 44px 0 48px;
+  border: 1px solid var(--surface);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-family: var(--font-body); font-size: 16px; color: var(--black);
+  -webkit-appearance: none; appearance: none;
+}
+.search-input::placeholder { color: var(--subtext); opacity: 1; }
+.search-input::-webkit-search-cancel-button { display: none; }
+.search-input:focus { outline: none; background: var(--white); border-color: var(--black); }
+.search-input:focus-visible { outline: none; }
+.search-clear {
+  position: absolute; right: 2px; top: 50%; transform: translateY(-50%);
+  display: none;
+}
+.search.has-query .search-clear { display: inline-flex; }
+.search-cancel {
+  display: none;
+  background: none; border: 0; padding: 0 4px; min-height: 44px;
+  font-weight: 700; font-size: 16px; cursor: pointer;
+}
+
+.panel { display: none; }
+.backdrop { display: none; }
+
+/* Mobile open state: full screen sheet, same input stays focused */
+body.is-search-open .search {
+  position: fixed; inset: 0; margin: 0;
+  z-index: var(--z-modal);
+  background: var(--white);
+  padding: 12px var(--page-pad) 0;
+  display: flex; flex-direction: column;
+  animation: sheet-in 220ms var(--ease-out);
+}
+body.is-search-open .search-cancel { display: inline-flex; align-items: center; }
+body.is-search-open .panel {
+  display: block;
+  flex: 1; overflow-y: auto;
+  padding: 24px 0 48px;
+  -webkit-overflow-scrolling: touch;
+}
+@keyframes sheet-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes panel-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+/* Panel content */
+.panel-grid { display: flex; flex-direction: column; gap: 32px; }
+.panel-col { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+.group { display: flex; flex-direction: column; gap: 12px; }
+.group-title {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-heading); font-weight: 700; font-size: 18px; line-height: 1.3;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  min-height: 44px; padding: 0 16px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-weight: 500; font-size: 14px; line-height: 1;
+  text-decoration: none; white-space: nowrap;
+  border: 1px solid var(--surface);
+  cursor: pointer;
+  transition: background-color 160ms var(--ease-out), transform 120ms var(--ease-out);
+}
+.chip:active { transform: scale(0.97); }
+.chip-more { background: var(--white); border-color: var(--black); }
+.chip-flag {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; margin-right: -4px;
+  border-radius: 50%; background: var(--white);
+}
+.chip-flag svg { width: 14px; height: 14px; }
+
+/* Suggestion rows while typing */
+.suggest { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.suggest a {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 48px; text-decoration: none;
+  font-size: 16px; color: var(--subtext);
+}
+.suggest a strong { color: var(--black); font-weight: 700; }
+.suggest .go { margin-left: auto; color: var(--black); }
+.suggest .kind { font-size: 14px; color: var(--subtext); }
+
+/* Product rows (mobile typing) */
+.rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+.row {
+  display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center;
+  text-decoration: none;
+}
+.thumb {
+  width: 64px; height: 84px; object-fit: cover;
+  border-radius: var(--radius-media); background: var(--surface-gray);
+}
+.p-name {
+  font-family: var(--font-heading); font-weight: 600; font-size: 14px; line-height: 1.3;
+  text-transform: uppercase; letter-spacing: 0.02em;
+}
+.p-meta { font-size: 14px; line-height: 1.4; color: var(--subtext); }
+.price { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 4px; font-size: 16px; line-height: 1.3; }
+.price-now { font-weight: 700; }
+.price.on-sale .price-now { color: var(--promo-red); }
+.price-was { color: var(--subtext); text-decoration: line-through; font-size: 14px; }
+.badge {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 8px;
+  border-radius: 40px; background: var(--promo-red); color: var(--white);
+  font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em;
+}
+
+/* Mini cards (focus state, desktop results) */
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px; }
+.card { display: flex; flex-direction: column; gap: 8px; text-decoration: none; }
+.card img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+.card .p-name { font-size: 12px; letter-spacing: 0.03em; }
+.card .price { margin-top: 0; font-size: 14px; }
+.card .price-was { font-size: 14px; }
+
+.see-all {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 0 24px;
+  background: var(--black); color: var(--white);
+  border-radius: var(--radius-pill);
+  font-weight: 700; font-size: 16px; text-decoration: none;
+  overflow: hidden;
+}
+.see-all span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.see-all:active { transform: scale(0.97); }
+.empty { font-size: 16px; margin: 0; }
+.empty strong { font-weight: 700; }
+
+
+/* Promo link row (pattern: Gucci gift guide links) */
+.promo {
+  display: grid; grid-template-columns: 24px 1fr 20px; gap: 12px; align-items: center;
+  min-height: 56px; padding: 8px 16px;
+  border-radius: var(--radius-media);
+  background: var(--promo-red); color: var(--white);
+  text-decoration: none;
+}
+.promo:active { transform: scale(0.97); }
+.promo-title { font-weight: 700; font-size: 16px; line-height: 1.3; }
+.promo-sub { font-size: 14px; line-height: 1.3; }
+
+/* Swipeable match tiles, mobile (pattern: autosuggest tile nudge) */
+.tiles {
+  list-style: none; margin: -4px calc(var(--page-pad) * -1) 0; padding: 4px var(--page-pad);
+  display: grid; grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * var(--page-pad) - 24px) / 2.6);
+  gap: 12px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-padding-inline: var(--page-pad);
+  scrollbar-width: none;
+}
+.tiles::-webkit-scrollbar { display: none; }
+.tiles > li { scroll-snap-align: start; min-width: 0; }
+.tiles .card .p-name { font-size: 12px; }
+.tiles .card img { aspect-ratio: 4 / 5; }
+.tiles .card .p-meta { font-size: 12px; }
+.tiles .card .price { font-size: 14px; }
+.group-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.group-count { font-size: 14px; color: var(--subtext); white-space: nowrap; }
+
+/* Loading effect: shimmer sits behind each image and is simply covered once it decodes */
+.media { position: relative; border-radius: var(--radius-media); overflow: hidden; background: var(--surface-gray); }
+.media::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  animation: shimmer 1200ms var(--ease-in-out) infinite;
+}
+.media img { position: relative; border-radius: 0; }
+.media.is-loaded::before { content: none; }
+@keyframes shimmer { to { transform: translateX(100%); } }
+
+/* Panel open: groups enter 50ms apart, only on open, never per keystroke */
+.panel.is-entering .panel-grid > * > * {
+  animation: group-in 260ms var(--ease-out) both;
+  animation-delay: calc(var(--stagger, 0) * 50ms);
+}
+@keyframes group-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.credit { font-size: 14px; }
+.credit a { font-weight: 700; }
+
+/* ---------- Design notes (prototype only) ---------- */
+.note {
+  display: flex; gap: 8px; align-items: flex-start;
+  padding: 12px; border-radius: var(--radius-media);
+  border: 1px dashed var(--subtext);
+  background: var(--surface-gray);
+  font-size: 14px; line-height: 1.5; color: var(--black);
+}
+.note svg { width: 20px; height: 20px; flex: none; margin-top: 1px; }
+.note b { font-weight: 700; }
+body.notes-off .note, body.notes-off .chip-flag { display: none; }
+.search > .note { margin-top: 12px; }
+body.is-search-open .search > .note { display: none; }
+
+.notes-toggle {
+  position: fixed; right: 16px; bottom: 16px; z-index: var(--z-toast);
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 44px; padding: 0 16px;
+  border-radius: var(--radius-pill); border: 1px solid var(--black);
+  background: var(--white); font-weight: 700; font-size: 14px; cursor: pointer;
+}
+.notes-toggle:active { transform: scale(0.97); }
+body.is-search-open .notes-toggle { display: none; }
+
+/* ---------- Page content behind search ---------- */
+.hero { position: relative; display: block; padding: 0 var(--page-pad); text-decoration: none; }
+.hero img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-media); }
+.hero span {
+  position: absolute; left: 0; right: 0; bottom: 16px; text-align: center;
+  font-family: var(--font-heading); font-weight: 700; font-size: 28px; line-height: 1; color: var(--white);
+}
+.brief {
+  max-width: 1600px; margin: 0 auto;
+  padding: 48px var(--page-pad) 96px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.brief h1 { font-size: 28px; line-height: 1.15; letter-spacing: -0.01em; max-width: 22ch; }
+.brief-lede { margin: 0; max-width: 60ch; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-block); overflow: hidden; }
+.stat { background: var(--white); padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.stat strong { font-family: var(--font-heading); font-weight: 700; font-size: 32px; line-height: 1; }
+.stat span { font-size: 14px; line-height: 1.4; color: var(--subtext); }
+.facts { margin: 0; padding: 0 0 0 20px; display: flex; flex-direction: column; gap: 8px; max-width: 70ch; }
+.try { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.try-label { font-weight: 700; margin-right: 4px; }
+.source { margin: 0; font-size: 14px; color: var(--subtext); max-width: 70ch; }
+
+.footer { background: var(--black); color: var(--white); padding: 48px var(--page-pad); }
+.footer-inner { max-width: 1600px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+.footer img { width: 64px; height: auto; }
+.footer form { display: flex; gap: 8px; max-width: 480px; }
+.footer input {
+  flex: 1; min-width: 0; height: 48px; padding: 0 20px; border: 0; border-radius: var(--radius-pill);
+  font: 16px var(--font-body);
+}
+.footer input::placeholder { color: var(--subtext); }
+.footer button {
+  height: 48px; padding: 0 24px; border: 0; border-radius: var(--radius-pill);
+  background: var(--white); color: #111111; font-weight: 700; font-size: 16px; cursor: pointer;
+}
+.footer small { font-size: 14px; color: #ADADAD; }
+
+/* ---------- Desktop ---------- */
+@media (min-width: 1024px) {
+  :root { --page-pad: 32px; }
+  .topbar { font-size: 14px; }
+  .header-left, .header-right { display: flex; align-items: center; }
+  .header-right { justify-content: flex-end; }
+  .menu-btn, .logo, .header-search-btn, .cart-btn, .search { grid-area: auto; }
+  .search { margin: 0; }
+  .header-inner {
+    grid-template-areas: none;
+    grid-template-columns: auto 1fr auto;
+    gap: 32px;
+    padding: 12px var(--page-pad);
+    min-height: 112px;
+  }
+  .header-left { order: 0; }
+  .menu-btn { display: none; }
+  .logo img { height: 88px; }
+  .header-search-btn { display: none; }
+  .account-btn { display: inline-flex; }
+  .cart-btn { width: 48px; height: 48px; background: var(--surface); }
+  .header-right { gap: 8px; }
+
+  /* search moves into the header row */
+  .search {
+    position: static; padding: 0;
+    width: 280px;
+  }
+  .search-row { gap: 0; }
+  .search-input { height: 44px; }
+  .search > .note { display: none; }
+
+  .panel {
+    position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--white);
+    box-shadow: inset 0 1px 0 var(--border);
+    padding: 32px var(--page-pad) 48px;
+  }
+  body.is-search-open .search {
+    position: static; inset: auto; padding: 0; display: block; animation: none; background: none;
+  }
+  body.is-search-open .search-cancel { display: none; }
+  body.is-search-open .panel {
+    display: block; padding: 32px var(--page-pad) 48px; overflow: visible;
+    animation: panel-in 200ms var(--ease-out);
+  }
+  .panel-grid {
+    max-width: 1600px; margin: 0 auto;
+    flex-direction: row; gap: 48px; align-items: flex-start;
+  }
+  .panel-col.side { width: 320px; flex: none; }
+  .panel-col.main { flex: 1; }
+  .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 16px; }
+  .card .p-name { font-size: 12px; }
+  .card .price { font-size: 16px; }
+  .see-all { align-self: flex-start; }
+  body.is-search-open .backdrop {
+    display: block; position: fixed; inset: 0; z-index: var(--z-backdrop);
+    background: var(--overlay);
+    animation: fade-in 200ms var(--ease-out);
+  }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  body.is-search-open { overflow: auto; }
+  body.is-search-open .header { z-index: var(--z-modal); }
+
+  .hero { padding: 0 var(--page-pad); }
+  .hero img { aspect-ratio: 16 / 7; border-radius: var(--radius-block); }
+  .hero span { font-size: 56px; bottom: 40px; }
+  .brief { padding: 64px var(--page-pad) 96px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; align-items: start; }
+  .brief h1 { font-size: 40px; grid-column: 1; }
+  .brief-left, .brief-right { display: flex; flex-direction: column; gap: 24px; }
+  .stats { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 1200px) {
+  .nav { display: flex; justify-content: center; }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 24px; align-items: center; }
+  .nav a {
+    display: inline-flex; align-items: center; gap: 2px; min-height: 44px;
+    font-weight: 700; font-size: 16px; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  }
+  .nav .icon-sm { width: 16px; height: 16px; }
+}
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .menu-btn { display: inline-flex; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="topbar" href="https://makobiusa.com/collections/frost-originals" target="_blank" rel="noopener">50% Off FROST ORIGINALS SHIRT | Stacks on All Deals</a>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="icon-btn menu-btn" type="button" aria-label="Open menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg>
+      </button>
+      <a class="logo" href="https://makobiusa.com/" target="_blank" rel="noopener" aria-label="Makobi home">
+        <img src="https://makobiusa.com/cdn/shop/files/LOGO-2026_f67987c1-5b47-4266-8fc0-4e6002098605.png?v=1772657869&width=200" alt="Makobi" width="82" height="88">
+      </a>
+    </div>
+
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="https://makobiusa.com/collections/sale" target="_blank" rel="noopener">Fall 26' Sale</a></li>
+        <li><a href="https://makobiusa.com/collections/new-arrival" target="_blank" rel="noopener">New Arrivals</a></li>
+        <li><a href="https://makobiusa.com/collections" target="_blank" rel="noopener">Shop <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></a></li>
+        <li><a href="https://makobiusa.com/collections/big-and-tall" target="_blank" rel="noopener">Big &amp; Tall <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></a></li>
+        <li><a href="https://makobiusa.com/collections/frost-originals" target="_blank" rel="noopener">Frost <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></a></li>
+        <li><a href="https://makobiusa.com/collections/kids" target="_blank" rel="noopener">Kids</a></li>
+        <li><a href="https://makobiusa.com/products/makobi-jeans-gift-card" target="_blank" rel="noopener">Gift Cards</a></li>
+        <li><a href="https://makobiusa.com/collections/bundle-up" target="_blank" rel="noopener">Bundle Up</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <form class="search" id="search" role="search" action="https://makobiusa.com/search" method="get" target="_blank" autocomplete="off">
+        <div class="search-row">
+          <div class="search-field">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+            <label for="q" class="visually-hidden">Search products</label>
+            <input class="search-input" id="q" name="q" type="search" placeholder="Search jeans, stacked jeans, polos…"
+              aria-controls="panel" enterkeyhint="search">
+            <button class="icon-btn search-clear" type="button" id="clear" aria-label="Clear search">
+              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+            </button>
+          </div>
+          <button class="search-cancel" type="button" id="cancel">Cancel</button>
+        </div>
+        <div class="note" id="note-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+          <span><b>Design note:</b> the bar is always visible on mobile now (live site hides it behind an icon). The placeholder types the top five searches once, then settles on static text. It stops for good once the bar is tapped, and stays static when reduced motion is on.</span>
+        </div>
+        <div class="panel" id="panel" role="region" aria-label="Search suggestions"></div>
+      </form>
+
+      <button class="icon-btn header-search-btn" type="button" id="search-icon" aria-label="Search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+      </button>
+      <a class="icon-btn account-btn" href="https://makobiusa.com/account" target="_blank" rel="noopener" aria-label="Account">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+      </a>
+      <a class="icon-btn cart-btn" href="https://makobiusa.com/cart" target="_blank" rel="noopener" aria-label="Cart">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg>
+      </a>
+    </div>
+  </div>
+</header>
+<div class="backdrop" id="backdrop"></div>
+<div class="visually-hidden" aria-live="polite" id="live"></div>
+
+<main>
+  <a class="hero" href="https://makobiusa.com/collections/new-arrival" target="_blank" rel="noopener">
+    <img src="https://makobiusa.com/cdn/shop/files/Light_and_Dark_Denim_Outfit_Flat_Lay.png?v=1792186061&width=1600" alt="Light and dark denim outfits laid flat" width="1600" height="900">
+    <span>NEW DROPS</span>
+  </a>
+
+  <section class="brief" aria-labelledby="brief-title">
+    <div class="brief-left">
+      <h1 id="brief-title">Search prototype: help the shoppers who already know what they want</h1>
+      <p class="brief-lede">People who search buy at four times the sitewide rate, yet the most common searches often end without a click. This version shows popular searches before typing, real products with prices while typing, and matches style numbers.</p>
+      <div class="try">
+        <span class="try-label">Try it:</span>
+        <button class="chip" type="button" data-try="">Tap the bar</button>
+        <button class="chip" type="button" data-try="jeans">jeans</button>
+        <button class="chip" type="button" data-try="m1959">m1959</button>
+        <button class="chip" type="button" data-try="adorni">adorni</button>
+      </div>
+    </div>
+    <div class="brief-right">
+      <div class="stats">
+        <div class="stat"><strong>3.42%</strong><span>conversion rate for searchers</span></div>
+        <div class="stat"><strong>0.82%</strong><span>conversion rate sitewide (approx.)</span></div>
+        <div class="stat"><strong>1,242</strong><span>searches with no click in 30 days</span></div>
+        <div class="stat"><strong>0</strong><span>prices in today's predictive search</span></div>
+      </div>
+      <ul class="facts">
+        <li>Top searches that often get no click: jeans (47), stacked jeans (27), adorni (24), black jeans (23), biker jeans (22).</li>
+        <li>Style numbers such as M1959 return nothing today. Here a typed style number matches products by handle prefix.</li>
+        <li>Black jeans and Adorni have no collection yet, so their chips open search results. Both need a collection.</li>
+        <li>Stacked jeans links to /collections/stacked-jeans. A second collection, /collections/stack-jeans, also exists and should be merged or redirected.</li>
+      </ul>
+      <p class="credit">Patterns from ecomideas.com, approved by Sanskriti: <a href="https://ecomideas.com/mobile/search?entry=c8c621bd-d9aa-4604-9c5c-2dfdf88db425" target="_blank" rel="noopener">Gucci gift guide links</a> (promo row), <a href="https://ecomideas.com/mobile/search?entry=300fd34e-1c8c-40dc-ab0d-bac98296ad03" target="_blank" rel="noopener">autosuggest tile nudge</a> (swipeable matches), <a href="https://ecomideas.com/mobile/search?entry=90faefa2-25d2-4dfc-8360-7c17ccd24487" target="_blank" rel="noopener">Urban Outfitters search loading effects</a> (panel open and image loading).</p>
+      <p class="source">Sources: Shopify search reports, Sep 27 to Oct 27 and Oct 20 to 27, 2026. Product data: 92 live products from makobiusa.com/products.json, pulled Oct 28, 2026. Design preview only; nothing here touches the live site.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <img src="https://makobiusa.com/cdn/shop/files/logo_white.png?v=1781223922" alt="Makobi" width="64" height="69">
+    <form onsubmit="return false">
+      <label for="footer-email" class="visually-hidden">Email</label>
+      <input id="footer-email" type="email" placeholder="Enter your email">
+      <button type="button">Sign Up</button>
+    </form>
+    <small>© 2026 Makobi Jeans USA</small>
+  </div>
+</footer>
+
+<button class="notes-toggle" type="button" id="notes-toggle" aria-pressed="true">
+  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>
+  <span>Hide notes</span>
+</button>
+
+<script id="products-data" type="application/json">[{"h":"m1959-tesoro-stacked-jeans-blue","n":"Tesoro Stacked Jeans","c":"Blue","s":"M1959","p":140.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_LT-BLU_1MODEL.jpg?v=1778263439&width=300","t":"Jeans","k":"jeans"},{"h":"m1959-tesoro-stacked-jeans-dirt","n":"Tesoro Stacked Jeans","c":"Dirt","s":"M1959","p":140.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_DIRT_1MODEL.jpg?v=1778263439&width=300","t":"Jeans","k":"jeans"},{"h":"m1959-tesoro-stacked-jeans-black","n":"Tesoro Stacked Jeans","c":"Black","s":"M1959","p":140.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1959_BLK-W_1MODEL.jpg?v=1778263439&width=300","t":"Jeans","k":""},{"h":"m1634-adorni-stacked-nylon-pants-dark-brown-1","n":"Adorni Stacked Nylon Pants","c":"Dark Brown","s":"M1634","p":98.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1634_D-BRN_MOD_1.jpg?v=1787940813&width=300","t":"Pants","k":"jeans"},{"h":"m1634-adorni-stacked-nylon-pants-dark-gray","n":"Adorni Stacked Nylon Pants","c":"Dark Gray","s":"M1634","p":98.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1634_D-GRY_MOD_1.jpg?v=1787940596&width=300","t":"Pants","k":"jeans"},{"h":"m4634-adorni-zip-up-hoodie-hunter-green","n":"Adorni Zip Up Hoodie","c":"Hunter Green","s":"M4634","p":140.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4634_H-GRN_MOD_1_11a77f5c-2b7d-4ad7-85b8-5438f730e6bd.jpg?v=1787948959&width=300","t":"Hoodies","k":"hoodies sweatshirts"},{"h":"m4634-adorni-zip-up-hoodie-dark-brown-1","n":"Adorni Zip Up Hoodie","c":"Dark Brown","s":"M4634","p":140.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4634_D.BRN_MOD_1.jpg?v=1787936690&width=300","t":"Hoodies","k":"hoodies sweatshirts"},{"h":"m119-adorni-reglan-t-shirt-dark-brown","n":"Adorni Reglan T shirt","c":"Dark Brown","s":"M119","p":59.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M119_D.BRN_1.jpg?v=1787936645&width=300","t":"Shirts & Tops","k":"t shirts tees"},{"h":"m119-adorni-reglan-t-shirt-hunter-green","n":"Adorni Reglan T shirt","c":"Hunter Green","s":"M119","p":59.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M119_H.GRN_2_ae235692-5678-4cf3-8f48-74ab945e04fd.jpg?v=1787949808&width=300","t":"Shirts & Tops","k":"t shirts tees"},{"h":"m1759-giovanni-jeans-black","n":"Giovanni Jeans","c":"Black","s":"M1759","p":130.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1759_BLK-B_MOD.jpg?v=1792691758&width=300","t":"Jeans","k":"jeans new arrivals big tall"},{"h":"m1759-giovanni-jeans-black-wash","n":"Giovanni Jeans","c":"Black Wash","s":"M1759","p":130.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1759_BLK-W_MOD_40031d01-dc04-4e73-a2a1-4329e34c8841.jpg?v=1792776453&width=300","t":"Jeans","k":"jeans new arrivals big tall"},{"h":"m1621-porada-denim-jeans-black","n":"Porada Denim Jeans","c":"Black","s":"M1621","p":130.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1621_MOD_BLK_0001.jpg?v=1792184249&width=300","t":"Jeans","k":"jeans new arrivals"},{"h":"m1609-manicini-twill-jeans-black-black","n":"Manicini Twill jeans","c":"Black Black","s":"M1609","p":110.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1609_BLK_MOD_1_d1ee93aa-3401-441d-9b06-40f077515555.jpg?v=1791572297&width=300","t":"Jeans","k":"jeans"},{"h":"m1754-never-back-down-jeans","n":"Never Back Down Jeans","c":"Black","s":"M1754","p":130.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1754_BLK_MOD.jpg?v=1786656920&width=300","t":"Jeans","k":"jeans"},{"h":"m1648-sergio-straight-cut-jeans","n":"Sergio Straight Cut Jeans","c":"Black","s":"M1648","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1648_BLK_MOD.jpg?v=1785521651&width=300","t":"Jeans","k":"jeans"},{"h":"m1621-porada-denim-jeans-light-wash","n":"Porada Denim Jeans","c":"Light Wash","s":"M1621","p":130.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1621_MOD_LT-W_0001.jpg?v=1792184212&width=300","t":"Jeans","k":"jeans"},{"h":"m1609-manicini-twill-jeans-khaki","n":"Mancini Twill Jeans","c":"Khaki","s":"M1609","p":110.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1609_KHA__MOD_01.jpg?v=1791583828&width=300","t":"Jeans","k":"jeans"},{"h":"m1647-jevanni-straight-cut-jeans-dark-wash","n":"Jevanni Straight Cut Jeans","c":"Dark Wash","s":"M1647","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1647-DK-W-1.jpg?v=1787337874&width=300","t":"Jeans","k":"jeans"},{"h":"m1647-jevanni-straight-cut-jeans-gray","n":"Jevanni Straight Cut Jeans","c":"Gray","s":"M1647","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1647-GRY-1.jpg?v=1787337874&width=300","t":"Jeans","k":"jeans"},{"h":"m1754-never-back-down-jeans-dirt","n":"Never Back Down Jeans","c":"Dirt","s":"M1754","p":130.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1754_DIRT_MOD.jpg?v=1786657254&width=300","t":"Jeans","k":"jeans"},{"h":"m1648-sergio-straight-cut-jeans-light-wash","n":"Sergio Straight Cut Jeans","c":"Light Wash","s":"M1648","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1648_LT-W_MOD.jpg?v=1785529181&width=300","t":"Jeans","k":"jeans"},{"h":"f2789-casa-de-pu-pants-green","n":"CASA DE Vegan Leather Pants","c":"Green","s":"F2789","p":79.99,"cp":140.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F2789_GRN.jpg?v=1699040602&width=300","t":"Jeans","k":"stacked jeans"},{"h":"f2789-casa-de-pu-pants-black","n":"CASA DE Vegan Leather Pants","c":"Black","s":"F2789","p":79.99,"cp":140.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F2789_BLK.jpg?v=1699040476&width=300","t":"Jeans","k":"stacked jeans"},{"h":"f1735-spider-stacked-jeans-black","n":"Spider Stacked Jeans","c":"Black","s":"F1735","p":110.0,"cp":180.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1735_BLK-B_1MODEL.jpg?v=1750458452&width=300","t":"Pants","k":"stacked jeans"},{"h":"f1735-spider-stacked-jeans","n":"Spider Stacked Jeans","c":"Light Wash","s":"F1735","p":110.0,"cp":180.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1735_LT-W_1MODEL.jpg?v=1750458309&width=300","t":"Pants","k":"stacked jeans"},{"h":"f1945-brave-heart-stacked-jeans-black","n":"Brave Heart Stacked Jeans Black","c":"","s":"F1945","p":150.0,"cp":290.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1045_BLK_1MODEL.jpg?v=1737664437&width=300","t":"Jeans","k":"stacked jeans"},{"h":"f1945-brave-heart-stacked-jeans-dirt","n":"Brave Heart Stacked Jeans Dirt","c":"","s":"F1945","p":150.0,"cp":270.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1045_DIRT_1MODEL.jpg?v=1737664438&width=300","t":"Jeans","k":"stacked jeans"},{"h":"m1967-makobi-david-jeans-light-wash","n":"Makobi David Denim Jeans","c":"Light Wash","s":"M1967","p":98.0,"cp":140.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/DSC09462.jpg?v=1702430476&width=300","t":"Jeans","k":"biker jeans"},{"h":"m1967-makobi-david-jeans-gray","n":"Makobi David Denim Jeans","c":"Gray Wash","s":"M1967","p":98.0,"cp":140.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/image_7a620538-3bf1-4ea6-b2c9-d7a5ae50aade.jpg?v=1770323743&width=300","t":"Jeans","k":"biker jeans"},{"h":"m1786-makobi-prado-biker-jeans-with-rip-repair-vintage-wash-new","n":"Makobi Prado Biker Jeans with Rip & Repair","c":"Vintage Wash","s":"M1786","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/products/M1786_VINT_1.jpg?v=1663879606&width=300","t":"Jeans","k":"biker jeans"},{"h":"m1786-makobi-prado-biker-jeans-with-rip-repair-light-wash-recut","n":"Makobi Prado Biker Jeans with Rip & Repair","c":"Light Wash","s":"M1786","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/products/m1786-lightwash_new.jpg?v=1649358883&width=300","t":"Jeans","k":"biker jeans"},{"h":"m1798-makobi-biker-jeans-w-blasting-repair-stitching","n":"Makobi Biker Jeans with Blasting & Repair Stitching","c":"Black Wash","s":"M1798","p":59.99,"cp":140.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/worn_by_a_big_and_tall_black_mod-0-_8.jpg?v=1764116857&width=300","t":"Jeans","k":"biker jeans"},{"h":"m1940-naxos-biker-jeans-light-wash","n":"Naxos Biker Jeans","c":"Light Wash","s":"M1940","p":69.99,"cp":150.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/products/M1940_9.jpg?v=1644629589&width=300","t":"Jeans","k":"biker jeans"},{"h":"m4138-prestige-mk-crewneck-natural","n":"Prestige MK Crewneck","c":"Natural","s":"M4138","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4138_x_M1609_NAT_MOD_4.jpg?v=1791573602&width=300","t":"Sweatshirt","k":"hoodies sweatshirts"},{"h":"m4138-prestige-mk-crewneck-brown","n":"Prestige MK Crewneck","c":"Brown","s":"M4138","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4138_BRN_MOD_1.jpg?v=1791562845&width=300","t":"Sweatshirt","k":"hoodies sweatshirts"},{"h":"m4112-mancini-mk-crewneck-midnight-blue","n":"Mancini MK Crewneck","c":"Midnight Blue","s":"M4112","p":110.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4112_M-BLU_MOD_001.jpg?v=1791580197&width=300","t":"Sweatshirt","k":"hoodies sweatshirts"},{"h":"m4112-mancini-mk-crewneck-natural","n":"Mancini MK Crewneck","c":"Natural","s":"M4112","p":110.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4112_Natural_2.jpg?v=1791570258&width=300","t":"Sweatshirt","k":"hoodies sweatshirts"},{"h":"3525-the-solid-fleece-pull-over-hoodie-red","n":"\"The Solid\" Fleece Pull Over hoodie","c":"Red","s":"3525","p":19.99,"cp":62.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M3525_RED_1MODEL.jpg?v=1790960297&width=300","t":"Hoodie","k":"hoodies sweatshirts"},{"h":"3525-the-solid-fleece-pull-over-hoodie-gray","n":"\"The Solid\" Fleece Pull Over hoodie","c":"Gray","s":"3525","p":19.99,"cp":39.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M3525_GRY_1MODEL.png?v=1792094743&width=300","t":"Hoodie","k":"hoodies sweatshirts"},{"h":"f178-baroque-terry-polo-green","n":"Baroque Terry Polo","c":"Green","s":"F178","p":45.0,"cp":89.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F178-GRN-1.jpg?v=1688683268&width=300","t":"T-shirt","k":"polo shirts"},{"h":"m383-makobi-luciano-polo-shirt-black","n":"Makobi Luciano Polo Shirt","c":"Black","s":"M383","p":49.99,"cp":75.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M383_2.jpg?v=1744762621&width=300","t":"Shirts & Tops","k":"polo shirts"},{"h":"m384-bellagio-knit-polo-white","n":"Bellagio Knit Polo","c":"White","s":"M384","p":39.99,"cp":79.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M384_WHT_1MODEL.jpg?v=1718669172&width=300","t":"Sets","k":"polo shirts"},{"h":"m384-bellagio-knit-polo-black","n":"Bellagio Knit Polo","c":"Black","s":"M384","p":39.99,"cp":79.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M384_BLK_1MODEL.jpg?v=1718669236&width=300","t":"Sets","k":"polo shirts"},{"h":"f178-baroque-terry-polo-white","n":"Baroque Terry Polo","c":"White","s":"F178","p":45.0,"cp":89.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F178-WHT-1.jpg?v=1688683400&width=300","t":"T-shirt","k":"polo shirts"},{"h":"m397-moradi-polo-shirt-black","n":"MORADI Polo Shirt","c":"Black","s":"M397","p":49.99,"cp":69.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M397_BLK_1MODEL.jpg?v=1717791832&width=300","t":"T-shirt","k":"polo shirts"},{"h":"m1058-gabana-26-shacket-natural","n":"Gabana 26 Wool Shacket","c":"Natural","s":"M1058","p":140.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1058_NAT_1MODEL_5eef3d3d-d039-4949-ad62-a5a01e5efb4a.png?v=1768858053&width=300","t":"Jacket","k":"varsity jackets"},{"h":"m1058-gabana-26-shacket","n":"Gabana 26 Wool Shacket","c":"Navy","s":"M1058","p":140.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1058_NVY_1MODEL.png?v=1768857935&width=300","t":"Jacket","k":"varsity jackets"},{"h":"jacket-m4208-lorenzo-vegan-leather-jacket-black","n":"Lorenzo Vegan Leather Jacket Black","c":"","s":"M4208","p":260.0,"cp":340.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4208_BLK_1MODEL.jpg?v=1767987659&width=300","t":"Jacket","k":"varsity jackets"},{"h":"jacket-m10011-mansori-wool-jacket-navy","n":"Mansori Wool Jacket","c":"Navy","s":"M10011","p":170.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1011_NVY_1MODEL_72bfcbb1-4d35-4c1b-b064-679172bd2915.jpg?v=1762547479&width=300","t":"Jacket","k":"varsity jackets"},{"h":"f1025-lotus-reversible-souvenir-jacket-royal-black","n":"Lotus Reversible Souvenir Jacket","c":"Royal/Black","s":"F1025","p":150.0,"cp":269.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1025_ROY.jpg?v=1783033424&width=300","t":"Jackets","k":"varsity jackets"},{"h":"f1025-lotus-reversible-souvenir-jacket-black-red","n":"Lotus Reversible Souvenir Jacket","c":"Black/Red","s":"F1025","p":150.0,"cp":269.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1025_RED.jpg?v=1783033438&width=300","t":"Jackets","k":"varsity jackets"},{"h":"m1000-prego-jacket-white","n":"Prego Denim Jacket","c":"White","s":"M1000","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1000_WHT_1MODEL_a6427df6-6adf-4a15-b04f-5ce396b4a695.jpg?v=1772222333&width=300","t":"Denim Sets","k":"denim jackets denim sets"},{"h":"m1000-prego-jacket-vintage","n":"Prego Denim Jacket","c":"Vintage","s":"M1000","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1000_VINT_1MODEL_79d5e8d2-ac0a-4138-addb-86e0fd32528d.jpg?v=1772222071&width=300","t":"Denim Sets","k":"denim jackets denim sets"},{"h":"m1013-positoni-denim-jacket-olive","n":"Positoni Denim","c":"Olive","s":"M1013","p":190.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1013_OLV_1MODEL_75905ae6-9dc1-4361-b5bc-9fe6ddea52ef.jpg?v=1758303246&width=300","t":"Denim Jacket","k":"denim jackets denim sets"},{"h":"m1013-positoni-denim-jacket-dirt","n":"Positoni Denim","c":"Dirt","s":"M1013","p":190.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1013_DIRT_1MODEL.jpg?v=1758302888&width=300","t":"Denim Jacket","k":"denim jackets denim sets"},{"h":"m1014-mohadi-denim-jacket-black","n":"Mohadi Denim Jacket","c":"Black","s":"M1014","p":185.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1014_BLK_1MODEL.jpg?v=1737663907&width=300","t":"Denim Sets","k":"denim jackets denim sets"},{"h":"m1079-moreli-denim-jacket-white","n":"Moreli Denim Jacket","c":"White","s":"M1079","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1079_WHT_1MODEL_5e00074e-6cf1-41ae-a5fb-06a5413e1536.jpg?v=1737663958&width=300","t":"Denim Sets","k":"denim jackets"},{"h":"mondo-short-set-black","n":"Mondo Short Set","c":"Black","s":"","p":173.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M441-M941BLACK.jpg?v=1785278209&width=300","t":"Set Up","k":"short sets"},{"h":"mondo-short-set-khaki-x-dirt","n":"Mondo Short Set","c":"Khaki x Dirt","s":"","p":173.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M441-M941DIRT.jpg?v=1785278173&width=300","t":"Set Up","k":"short sets"},{"h":"m451-amore-set-white","n":"Amore Set","c":"White","s":"M451","p":164.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/m451_wht_sedt_mod.png?v=1781914504&width=300","t":"Outfit Sets","k":"short sets"},{"h":"m451-amore-set-black","n":"Amore Set","c":"Black","s":"M451","p":164.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/amore_black_set.png?v=1781731793&width=300","t":"Sets","k":"short sets"},{"h":"m456-amato-short-set-natural","n":"Amato Short Set","c":"Natural","s":"M456","p":149.98,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M456_NAT_MODEL1_c3c923af-aa03-4147-ad43-06b9723e0c66.png?v=1781286753&width=300","t":"Outfit Sets","k":"short sets"},{"h":"m456-amato-short-set-white","n":"Amato Short Set","c":"White","s":"M456","p":149.98,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M456_WHT_MODEL1.jpg?v=1781285747&width=300","t":"Outfit Sets","k":"short sets"},{"h":"porada-denim-set-dirt","n":"Porada Denim Set","c":"Dirt","s":"","p":340.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1021_MOD_DIRT_005.jpg?v=1792183044&width=300","t":"Set Up","k":"new arrivals denim sets big tall"},{"h":"porada-denim-set-light-wash","n":"Porada Denim Set","c":"Light Wash","s":"","p":340.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1021_MOD_LT-W_05.jpg?v=1792183044&width=300","t":"Set Up","k":"new arrivals denim sets big tall"},{"h":"m1900-prego-pants-white","n":"Prego Jeans","c":"White","s":"M1900","p":84.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1900_WHT_1MODEL.jpg?v=1772224105&width=300","t":"Jeans","k":"denim sets"},{"h":"m1900-prego-pants-vintage","n":"Prego Jeans","c":"Vintage","s":"M1900","p":84.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1900_VINT_1MODEL.jpg?v=1772224052&width=300","t":"Jeans","k":"denim sets"},{"h":"m1913-positoni-pants-olive","n":"Positoni Pants","c":"Olive","s":"M1913","p":150.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1913_OLV_1MODEL.jpg?v=1758241778&width=300","t":"Jeans","k":"denim sets"},{"h":"m1913-positoni-pants-dirt","n":"Positoni Pants","c":"Dirt","s":"M1913","p":150.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1913_DIRT_1MODEL.jpg?v=1758308303&width=300","t":"Jeans","k":"denim sets"},{"h":"m415-live-life-rugby-shirt-black","n":"Live Life Rugby Shirt","c":"Black","s":"M415","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M415_MOD_BLK_01.jpg?v=1792774238&width=300","t":"Shirts & Tops","k":"t shirts tees new arrivals big tall"},{"h":"m415-live-life-rugby-shirt-olive","n":"Live Life Rugby Shirt","c":"Olive","s":"M415","p":120.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M415_MOD_OLIVE_01.jpg?v=1792774238&width=300","t":"Shirts & Tops","k":"t shirts tees new arrivals big tall"},{"h":"m421-porada-mk-tee-black","n":"Porada MK Tee","c":"Black","s":"M421","p":72.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M421_BLK_MOD_e9a58878-2938-43db-9d56-0d6f1138cfb9.jpg?v=1792171864&width=300","t":"Shirts & Tops","k":"t shirts tees new arrivals"},{"h":"m421-porada-mk-tee-white","n":"Porada MK Tee","c":"White","s":"M421","p":72.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M421_WHT_MOD_02.jpg?v=1792173992&width=300","t":"Shirts & Tops","k":"t shirts tees big tall"},{"h":"m432-sinners-prayed-boxed-tee","n":"Sinners Prayed Boxed Tee","c":"White","s":"M432","p":84.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M432_WHITE_2.png?v=1787338306&width=300","t":"Shirts & Tops","k":"t shirts tees"},{"h":"m432-sinners-prayed-boxed-tee-red-1","n":"Sinners Prayed Boxed Tee","c":"Red","s":"M432","p":84.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M432_RED.jpg?v=1787339907&width=300","t":"Shirts & Tops","k":"t shirts tees"},{"h":"f6225-desert-cargo-pants-olive","n":"Desert Cargo Pants","c":"Olive","s":"F6225","p":99.99,"cp":150.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F6225_OLV_1MODEL.jpg?v=1737762501&width=300","t":"Pants","k":"cargo pants"},{"h":"f6225-desert-cargo-pants-camo","n":"Desert Cargo Pants","c":"Desert Camo","s":"F6225","p":99.99,"cp":150.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F6226_CAMO_DESERT.jpg?v=1763154804&width=300","t":"Pants","k":"cargo pants"},{"h":"m1633-colton-34-stack-nylon-spandex-sweat-pants-dark-gray","n":"Colton 34\" Stack Nylon/Spandex Sweat Pants","c":"Dark Gray","s":"M1633","p":109.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1633_GRY_1.jpg?v=1725039342&width=300","t":"Pants","k":"cargo pants"},{"h":"m1633-colton-34-stack-nylon-spandex-sweat-pants-red","n":"Colton 34\" Stack Nylon/Spandex Sweat Pants","c":"Red","s":"M1633","p":89.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1633_RED_1.jpg?v=1725039276&width=300","t":"Pants","k":"cargo pants"},{"h":"m670-tech-fleece-cargo-shorts-royal","n":"Tech Fleece cargo Shorts","c":"Royal","s":"M670","p":39.99,"cp":89.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/products/3copy.jpg?v=1650651592&width=300","t":"Shorts","k":"cargo pants"},{"h":"m670-tech-fleece-cargo-shorts-red","n":"Tech Fleece cargo Shorts","c":"Red","s":"M670","p":39.99,"cp":79.99,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/products/5_63b11dad-8fba-4f64-87ff-d2a071cd7780.jpg?v=1650651587&width=300","t":"Shorts","k":"cargo pants"},{"h":"m018-azzuri-baseball-hat-olive","n":"Azzuri Baseball Hat","c":"Olive","s":"M018","p":59.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M018_OLV_1.jpg?v=1792095162&width=300","t":"Hats","k":"new arrivals big tall"},{"h":"m4580-azzuri-vegan-leather-set-olive","n":"Azzuri Vegan Leather Set","c":"Olive","s":"M4580","p":298.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4580_OLV_1MODEL.jpg?v=1792095208&width=300","t":"Set Up","k":"new arrivals big tall"},{"h":"m080-azzuri-bucket-hat-olive","n":"Azzuri Bucket Hat","c":"Olive","s":"M080","p":49.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M080_OLV_1.jpg?v=1792095152&width=300","t":"Hats","k":"new arrivals big tall"},{"h":"m018-azzuri-baseball-hat-midnight-blue","n":"Azzuri Baseball Hat","c":"Midnight Blue","s":"M018","p":59.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M018_M.BLU_1.jpg?v=1792095162&width=300","t":"Hats","k":"new arrivals big tall"},{"h":"m4580-azzuri-vegan-leather-set-midnight-blue","n":"Azzuri Vegan Leather Set","c":"Midnight Blue","s":"M4580","p":298.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M4580_X_M080_M.Blue_Set.jpg?v=1792095152&width=300","t":"Set Up","k":"new arrivals big tall"},{"h":"m080-azzuri-bucket-hat-midnight-blue","n":"Azzuri Bucket Hat","c":"Midnight Blue","s":"M080","p":49.99,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M080_M.BLU_1.jpg?v=1792095152&width=300","t":"Hats","k":"new arrivals big tall"},{"h":"f1737-cashay-prime-stacked-jeans-vintage-copy","n":"Cashay 2024 Stacked Jeans","c":"Black","s":"F1737","p":98.0,"cp":150.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1737_3.jpg?v=1737664058&width=300","t":"Jeans","k":"stacked jeans"},{"h":"m1107-romano-vegan-leather-vest-copy","n":"Romano Vegan Leather Stacked Pants","c":"","s":"M1927","p":110.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1927_1.jpg?v=1755213582&width=300","t":"Pants","k":"stacked jeans"},{"h":"m1951-bianchi-stacked-jeans-black","n":"Bianchi Stacked Jeans","c":"Black","s":"M1951","p":150.0,"cp":0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1951_BLK_1.jpg?v=1700253267&width=300","t":"Jeans","k":"stacked jeans"},{"h":"m1948-benini-twill-stacked-jeans-black","n":"Benini Twill Stacked Jeans","c":"Black","s":"M1948","p":98.0,"cp":120.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/M1948_BLK_1.jpg?v=1696532326&width=300","t":"JEANS","k":"stacked jeans"},{"h":"f1721-rackade-stacked-jeans-olive","n":"Rackade Stacked Jeans","c":"Olive","s":"F1721","p":110.0,"cp":160.0,"i":"https://cdn.shopify.com/s/files/1/0002/6666/6012/files/F1721_OLV.jpg?v=1695428691&width=300","t":"Jeans","k":"stacked jeans"}]</script>
+<script>
+(function () {
+  var STORE = 'https://makobiusa.com';
+  var PRODUCTS = JSON.parse(document.getElementById('products-data').textContent);
+
+  // Top terms ranked by Shopify search volume. flag = annotation for the client.
+  var TERMS = [
+    { label: 'jeans', url: '/collections/pants', kind: 'Jeans Collection' },
+    { label: 'stacked jeans', url: '/collections/stacked-jeans', kind: 'Collection', flag: 'Duplicate collection: /collections/stack-jeans also exists. Using stacked-jeans.' },
+    { label: 'biker jeans', url: '/collections/biker', kind: 'Collection' },
+    { label: 'black jeans', url: '/search?q=black+jeans', kind: 'Search results', flag: 'Needs collection. No black jeans collection exists, so this opens search.' },
+    { label: 'hoodies', url: '/collections/makobi-hoodies-and-sweatshirts', kind: 'Collection' },
+    { label: 'polo shirts', url: '/collections/polo-shirts', kind: 'Collection' },
+    { label: 'Adorni', url: '/search?q=adorni', kind: 'Search results', flag: 'Needs collection. Adorni is a product family with no collection, so this opens search.' },
+    { label: 'varsity jackets', url: '/collections/varsity-jackets', kind: 'Collection' },
+    { label: 'denim jackets', url: '/collections/denim-jackets', kind: 'Collection' },
+    { label: 'short sets', url: '/collections/short-sets', kind: 'Collection' },
+    { label: 'denim sets', url: '/collections/denim-sets', kind: 'Collection' },
+    { label: 't shirts', url: '/collections/t-shirts', kind: 'Collection' },
+    { label: 'cargo pants', url: '/collections/cargo', kind: 'Collection' },
+    { label: 'Big & Tall', url: '/collections/big-and-tall', kind: 'Collection' },
+    { label: 'New Arrivals', url: '/collections/new-arrival', kind: 'Collection' }
+  ];
+  var CHIPS_VISIBLE = 10;
+
+  // Live promo, swapped per drop or sale. Today's verified live offer is the announcement bar line.
+  // Porada drop would go here once /collections/porada exists (404 on Oct 28, 2026).
+  var PROMO = {
+    title: 'Frost Originals shirts, 50% off',
+    sub: 'Stacks on all deals',
+    url: '/collections/frost-originals'
+  };
+
+  var form = document.getElementById('search');
+  var input = document.getElementById('q');
+  var panel = document.getElementById('panel');
+  var live = document.getElementById('live');
+  var backdrop = document.getElementById('backdrop');
+  var body = document.body;
+  var showAllChips = false;
+  var engaged = false; // set on first open; the typing placeholder never restarts after that
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var ICON = {
+    trend: '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg>',
+    search: '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>',
+    arrow: '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>',
+    fill: '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10" /><path d="M16 7l-9 0l0 9" /></svg>',
+    chevron: '<svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg>',
+    tag: '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" /></svg>',
+    info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M12 9h.01" /><path d="M11 12h1v4h1" /></svg>'
+  };
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function norm(s) { return String(s).toLowerCase().replace(/&/g, ' ').replace(/[^a-z0-9]+/g, ' ').trim(); }
+  function stem(t) { return (t.length > 3 && /[^s]s$/.test(t)) ? t.slice(0, -1) : t; }
+  function money(n) { return '$' + n.toFixed(2); }
+  function searchUrl(q) { return STORE + '/search?q=' + encodeURIComponent(q).replace(/%20/g, '+'); }
+  function isNarrow() { return window.matchMedia('(max-width: 1023px)').matches; }
+
+  // Index once
+  PRODUCTS.forEach(function (p) {
+    p.title = norm([p.s, p.n, p.c].join(' '));
+    p.hay = p.title + ' ' + norm(p.t + ' ' + p.k);
+    p.url = STORE + '/products/' + p.h;
+  });
+
+  function matchProducts(raw) {
+    var q = norm(raw);
+    var compact = q.replace(/ /g, '');
+    // Style number: letter + digits, or digits only (e.g. m1959, 1959, f17)
+    if (/^[a-z]?\d{2,}[a-z]?$/.test(compact)) {
+      var bare = compact.replace(/^[a-z]/, '');
+      var hits = PRODUCTS.filter(function (p) {
+        return p.h.indexOf(compact) === 0 || (p.s && p.s.toLowerCase().replace(/^[a-z]/, '').indexOf(bare) === 0 && /^\d/.test(compact));
+      });
+      return { style: true, items: hits };
+    }
+    var tokens = q.split(' ').filter(Boolean);
+    if (tokens.length > 1) tokens = tokens.filter(function (t) { return t.length > 1; });
+    if (!tokens.length || q.length < 2) return { style: false, items: [] };
+    tokens = tokens.map(stem);
+    var scored = [];
+    PRODUCTS.forEach(function (p, i) {
+      if (!tokens.every(function (t) { return p.hay.indexOf(t) !== -1; })) return;
+      var score = 0;
+      if (tokens.every(function (t) { return p.title.indexOf(t) !== -1; })) score += 4;
+      if (p.title.indexOf(q) !== -1) score += 2;
+      scored.push({ p: p, s: score, i: i });
+    });
+    scored.sort(function (a, b) { return b.s - a.s || a.i - b.i; });
+    return { style: false, items: scored.map(function (x) { return x.p; }) };
+  }
+
+  function matchTerms(raw) {
+    var q = norm(raw);
+    if (!q) return [];
+    var tokens = q.split(' ').filter(Boolean);
+    return TERMS.filter(function (t) {
+      var l = norm(t.label);
+      return l.indexOf(q) !== -1 || tokens.every(function (k) { return l.indexOf(k) !== -1; });
+    }).slice(0, 4);
+  }
+
+  function priceHtml(p) {
+    var sale = p.cp > p.p;
+    var off = sale ? Math.round((p.cp - p.p) / p.cp * 100) : 0;
+    return '<div class="price' + (sale ? ' on-sale' : '') + '">' +
+      '<span class="price-now">' + money(p.p) + '</span>' +
+      (sale ? '<s class="price-was"><span class="visually-hidden">was </span>' + money(p.cp) + '</s><span class="badge">' + off + '% off</span>' : '') +
+      '</div>';
+  }
+  function metaText(p) { return [p.s, p.c].filter(Boolean).join(' · '); }
+
+  function rowHtml(p) {
+    return '<li><a class="row" href="' + esc(p.url) + '" target="_blank" rel="noopener">' +
+      '<img class="thumb" src="' + esc(p.i) + '" alt="" width="64" height="84" loading="lazy">' +
+      '<div><div class="p-name">' + esc(p.n) + '</div><div class="p-meta">' + esc(metaText(p)) + '</div>' + priceHtml(p) + '</div>' +
+      '</a></li>';
+  }
+  function cardHtml(p) {
+    return '<li><a class="card" href="' + esc(p.url) + '" target="_blank" rel="noopener">' +
+      '<div class="media"><img src="' + esc(p.i) + '" alt="" width="300" height="400" loading="lazy" onload="this.parentNode.classList.add(\'is-loaded\')"></div>' +
+      '<div><div class="p-name">' + esc(p.n) + '</div><div class="p-meta">' + esc(metaText(p)) + '</div></div>' + priceHtml(p) +
+      '</a></li>';
+  }
+  function promoHtml(withNote) {
+    if (!PROMO) return '';
+    return '<div class="group"><a class="promo" href="' + esc(STORE + PROMO.url) + '" target="_blank" rel="noopener">' + ICON.tag +
+      '<span><span class="promo-title">' + esc(PROMO.title) + '</span><br><span class="promo-sub">' + esc(PROMO.sub) + '</span></span>' + ICON.arrow + '</a>' +
+      (withNote ? noteHtml('one promo row for the live drop or sale, set per campaign (pattern: <a href="https://ecomideas.com/mobile/search?entry=c8c621bd-d9aa-4604-9c5c-2dfdf88db425" target="_blank" rel="noopener">Gucci gift guide links</a>). It uses today\u2019s live bar offer; swap in the Porada drop once its collection exists.') : '') +
+      '</div>';
+  }
+  function noteHtml(html) { return '<div class="note">' + ICON.info + '<span><b>Design note:</b> ' + html + '</span></div>'; }
+
+  function chipsHtml() {
+    var list = showAllChips ? TERMS : TERMS.slice(0, CHIPS_VISIBLE);
+    var out = '<ul class="chips">' + list.map(function (t) {
+      var flag = t.flag ? '<span class="chip-flag" aria-hidden="true" title="' + esc(t.flag) + '">' + ICON.info.replace('<svg ', '<svg class="flag-icon" ') + '</span>' : '';
+      return '<li><a class="chip" href="' + esc(STORE + t.url) + '" target="_blank" rel="noopener">' + esc(t.label) + flag + '</a></li>';
+    }).join('');
+    if (!showAllChips) out += '<li><button class="chip chip-more" type="button" id="more-chips">More ' + ICON.chevron + '</button></li>';
+    return out + '</ul>';
+  }
+
+  function popularGroup(title) {
+    return '<div class="group"><h2 class="group-title">' + ICON.trend + esc(title) + '</h2>' + chipsHtml() + '</div>';
+  }
+
+  function renderEmpty() {
+    var fresh = [], seen = {};
+    PRODUCTS.forEach(function (p) {
+      var st = p.h.split('-')[0];
+      if (fresh.length < 4 && p.k.indexOf('new arrivals') !== -1 && !seen[st]) { seen[st] = 1; fresh.push(p); }
+    });
+    panel.innerHTML = '<div class="panel-grid">' +
+      '<div class="panel-col side">' + promoHtml(true) + popularGroup('Popular right now') +
+        noteHtml('chips are the top searches from Shopify, ranked by volume. Each opens its collection. Chips marked with the info icon (black jeans, Adorni) have no collection yet and open search, and stacked jeans has a duplicate collection.') +
+      '</div>' +
+      '<div class="panel-col main"><div class="group"><h2 class="group-title">New this week</h2><ul class="cards">' + fresh.map(cardHtml).join('') + '</ul></div>' +
+        noteHtml('the panel slides up and its groups enter 50ms apart when the bar is tapped; image slots shimmer until photos load. Nothing animates while typing, and all of it is off with reduced motion (pattern: <a href="https://ecomideas.com/mobile/search?entry=90faefa2-25d2-4dfc-8360-7c17ccd24487" target="_blank" rel="noopener">Urban Outfitters search loading effects</a>).') +
+      '</div>' +
+      '</div>';
+    bindMore();
+  }
+
+  function renderQuery(q) {
+    var res = matchProducts(q);
+    var terms = res.style ? [] : matchTerms(q);
+    var limit = 8;
+    var items = res.items.slice(0, limit);
+    var shown = q.trim();
+    var side = promoHtml(false);
+    if (terms.length) {
+      side += '<div class="group"><h2 class="group-title">Suggestions</h2><ul class="suggest">' + terms.map(function (t) {
+        var l = t.label, i = l.toLowerCase().indexOf(shown.toLowerCase());
+        var label = i === 0 ? esc(l.slice(0, shown.length)) + '<strong>' + esc(l.slice(shown.length)) + '</strong>' : '<strong>' + esc(l) + '</strong>';
+        return '<li><a href="' + esc(STORE + t.url) + '" target="_blank" rel="noopener">' + ICON.search + '<span>' + label + ' <span class="kind">in ' + esc(t.kind) + '</span></span><span class="go">' + ICON.arrow + '</span></a></li>';
+      }).join('') + '</ul></div>';
+    }
+    var main = '';
+    if (items.length) {
+      var heading = res.style ? 'Style number ' + shown.toUpperCase() : 'Products';
+      var count = res.items.length > items.length ? items.length + ' of ' + res.items.length : res.items.length + (res.items.length === 1 ? ' match' : ' matches');
+      main += '<div class="group"><div class="group-head"><h2 class="group-title">' + esc(heading) + '</h2><span class="group-count">' + esc(count) + '</span></div>' +
+        (isNarrow() ? '<ul class="tiles" aria-label="Matching products, swipe for more">' + items.map(cardHtml).join('') + '</ul>' : '<ul class="cards">' + items.map(cardHtml).join('') + '</ul>') +
+        '</div>';
+      if (res.style) main += noteHtml('style numbers fail in search today. Here the typed code matches the start of the product handle, so every colorway of the style shows.');
+    } else if (norm(q).length >= 2) {
+      main += '<p class="empty">No exact matches for <strong>“' + esc(shown) + '”</strong>. Try a popular search instead.</p>';
+      if (!terms.length) side += popularGroup('Popular right now');
+    }
+    main += '<a class="see-all" href="' + esc(searchUrl(shown)) + '" target="_blank" rel="noopener"><span>See all results for “' + esc(shown) + '”</span>' + ICON.arrow + '</a>';
+    if (items.length && !res.style) main += noteHtml('prices and sale badges show in the dropdown; today\u2019s predictive search shows names only. On mobile, matches sit in a swipeable row with the next tile peeking at the edge (pattern: <a href="https://ecomideas.com/mobile/search?entry=300fd34e-1c8c-40dc-ab0d-bac98296ad03" target="_blank" rel="noopener">autosuggest tile nudge</a>). Desktop keeps a grid for mouse users.');
+
+    panel.innerHTML = '<div class="panel-grid">' +
+      (side ? '<div class="panel-col side">' + side + '</div>' : '') +
+      '<div class="panel-col main">' + main + '</div></div>';
+    bindMore();
+    announce(items.length ? (res.items.length + ' products match ' + shown) : 'No exact matches for ' + shown);
+  }
+
+  var announceTimer;
+  function announce(msg) {
+    clearTimeout(announceTimer);
+    announceTimer = setTimeout(function () { live.textContent = msg; }, 500);
+  }
+
+  function bindMore() {
+    var b = document.getElementById('more-chips');
+    if (b) b.addEventListener('click', function () { showAllChips = true; render(); });
+  }
+
+  function render() {
+    var q = input.value;
+    form.classList.toggle('has-query', q.length > 0);
+    if (q.trim()) renderQuery(q); else renderEmpty();
+    var n = 0;
+    panel.querySelectorAll('.panel-grid > * > *').forEach(function (el) { el.style.setProperty('--stagger', n++); });
+  }
+  var enterTimer;
+  function playEnter() {
+    if (reduceMotion.matches) return;
+    panel.classList.remove('is-entering');
+    void panel.offsetWidth;
+    panel.classList.add('is-entering');
+    clearTimeout(enterTimer);
+    enterTimer = setTimeout(function () { panel.classList.remove('is-entering'); }, 700);
+  }
+
+  var suppressOpen = false;
+  function open() {
+    if (suppressOpen || body.classList.contains('is-search-open')) return;
+    engaged = true;
+    body.classList.add('is-search-open');
+    stopTyping();
+    input.placeholder = 'Product or style number';
+    render();
+    playEnter();
+  }
+  function close() {
+    body.classList.remove('is-search-open');
+    if (!input.value) startTyping();
+  }
+
+  input.addEventListener('focus', open);
+  input.addEventListener('click', open); // reopen after Escape while the field keeps focus
+  input.addEventListener('input', function () { open(); render(); });
+  document.getElementById('cancel').addEventListener('click', function () { input.value = ''; close(); input.blur(); });
+  document.getElementById('clear').addEventListener('click', function () { input.value = ''; render(); input.focus(); });
+  document.getElementById('search-icon').addEventListener('click', function () { input.focus(); });
+  backdrop.addEventListener('click', function () { close(); input.blur(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && body.classList.contains('is-search-open')) {
+      // Close and return focus to the field without the focus handler reopening the panel
+      e.preventDefault(); // stop type=search from clearing the query and firing input (which reopens)
+      close();
+      suppressOpen = true; input.focus(); suppressOpen = false;
+    }
+  });
+  // Tabbing out of the search (into the page behind the sheet or dropdown) closes it
+  document.addEventListener('focusin', function (e) {
+    if (body.classList.contains('is-search-open') && !form.contains(e.target)) close();
+  });
+  document.addEventListener('mousedown', function (e) {
+    if (!isNarrow() && body.classList.contains('is-search-open') && !form.contains(e.target)) close();
+  });
+  window.addEventListener('resize', function () { if (body.classList.contains('is-search-open')) render(); });
+
+  // "Try it" buttons: open search, then type the example so the dropdown builds up live
+  document.querySelectorAll('[data-try]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var word = b.getAttribute('data-try');
+      input.value = '';
+      input.focus();
+      window.scrollTo(0, 0);
+      if (!word) return;
+      if (reduceMotion.matches) { input.value = word; render(); return; }
+      var i = 0;
+      (function step() {
+        i++; input.value = word.slice(0, i); render();
+        if (i < word.length) setTimeout(step, 90);
+      })();
+    });
+  });
+
+  // Notes toggle
+  var notesBtn = document.getElementById('notes-toggle');
+  notesBtn.addEventListener('click', function () {
+    var off = body.classList.toggle('notes-off');
+    notesBtn.setAttribute('aria-pressed', String(!off));
+    notesBtn.querySelector('span').textContent = off ? 'Show notes' : 'Hide notes';
+  });
+
+  // ---------- Typing placeholder ----------
+  // Purpose: explanation. It shows what can be searched. Runs only while the bar is idle and empty.
+  // One pass over the top 5 searches, then it settles on the static text (WCAG 2.2.2: stops on its own,
+  // and focusing the field stops it for good).
+  var STATIC_PH = 'Search jeans, stacked jeans, polos…';
+  var TYPE_TERMS = TERMS.slice(0, 5);
+  var typeTimer = null, ti = 0, ci = 0, deleting = false;
+  function tick() {
+    var term = TYPE_TERMS[ti].label;
+    if (!deleting) {
+      ci++;
+      input.placeholder = 'Search ' + term.slice(0, ci);
+      if (ci === term.length) { deleting = true; typeTimer = setTimeout(tick, 1600); return; }
+      typeTimer = setTimeout(tick, 90);
+    } else {
+      ci--;
+      input.placeholder = 'Search ' + term.slice(0, ci);
+      if (ci === 0) {
+        deleting = false; ti++;
+        if (ti >= TYPE_TERMS.length) { stopTyping(); return; }
+        typeTimer = setTimeout(tick, 350); return;
+      }
+      typeTimer = setTimeout(tick, 40);
+    }
+  }
+  function startTyping() {
+    stopTyping();
+    if (engaged || ti >= TYPE_TERMS.length || reduceMotion.matches || document.hidden || document.activeElement === input) { input.placeholder = body.classList.contains('is-search-open') ? 'Product or style number' : STATIC_PH; return; }
+    input.placeholder = 'Search ';
+    typeTimer = setTimeout(tick, 600);
+  }
+  function stopTyping() {
+    clearTimeout(typeTimer); typeTimer = null;
+    input.placeholder = body.classList.contains('is-search-open') ? 'Product or style number' : STATIC_PH;
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stopTyping();
+    else if (!body.classList.contains('is-search-open') && !input.value) startTyping();
+  });
+  if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', function () { if (!body.classList.contains('is-search-open')) startTyping(); });
+
+  // Prototype deep links: #q=jeans opens with a query, #open opens empty
+  var hash = decodeURIComponent(location.hash.slice(1));
+  if (hash.indexOf('q=') === 0) { input.value = hash.slice(2); open(); input.focus(); }
+  else if (hash === 'open') { open(); input.focus(); }
+  else startTyping();
+})();
+</script>
+</body>
+</html>
