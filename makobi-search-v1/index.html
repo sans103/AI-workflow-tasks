@@ -198,6 +198,22 @@ body.is-search-open .panel {
 .suggest .go { margin-left: auto; color: var(--black); }
 .suggest .kind { font-size: 14px; color: var(--subtext); }
 
+/* Product text and price (shared) */
+.p-name {
+  font-family: var(--font-heading); font-weight: 600; font-size: 14px; line-height: 1.3;
+  text-transform: uppercase; letter-spacing: 0.02em;
+}
+.p-meta { font-size: 14px; line-height: 1.4; color: var(--subtext); }
+.price { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 4px; font-size: 16px; line-height: 1.3; }
+.price-now { font-weight: 700; }
+.price.on-sale .price-now { color: var(--promo-red); }
+.price-was { color: var(--subtext); text-decoration: line-through; font-size: 14px; }
+.badge {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 8px;
+  border-radius: 40px; background: var(--promo-red); color: var(--white);
+  font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em;
+}
+
 /* Mini cards (focus state, desktop results) */
 .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px; }
 .card { display: flex; flex-direction: column; gap: 8px; text-decoration: none; }
