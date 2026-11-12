@@ -1,0 +1,258 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Makobi | Black Friday VIP signup popup | v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700&family=Instrument+Sans:wght@400;600;700&display=swap">
+<style>*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E2E2E2;font-family:"Instrument Sans",Arial,sans-serif;color:#111}
+.board{display:flex;gap:48px;padding:48px;align-items:flex-start;width:max-content}
+.main{display:flex;flex-direction:column;gap:48px}
+.title{font:700 32px/1.2 "Instrument Sans",Arial;color:#111}.subt{font:400 16px/1.5 "Instrument Sans",Arial;color:#444;margin-top:8px;max-width:1200px}
+.state{background:#F2F2F2;border:1px solid #D0D0D0;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:24px}
+.state-h{display:flex;flex-direction:column;gap:8px}.state-h h3{font:700 24px/1.2 "Instrument Sans",Arial}.state-h p{font:400 16px/1.5 "Instrument Sans",Arial;color:#333;max-width:900px}
+.state-h code{font:400 14px Menlo,monospace}
+.pill{align-self:flex-start;font:700 14px/1 "Instrument Sans",Arial;padding:8px 16px;border-radius:100px;color:#111}
+.pill.ctl{background:#CFE3F7}.pill.var{background:#EADBC4}
+.pair{display:flex;gap:40px;align-items:flex-start}.cell{display:flex;flex-direction:column;gap:12px}
+.cap{font:600 14px/1.4 "Instrument Sans",Arial;color:#333}
+.fm{position:relative;width:390px;height:844px;overflow:hidden;border-radius:16px;border:1px solid #BDBDBD;background:#fff}
+.fm .bgshot{position:absolute;inset:0;width:390px;height:844px;object-fit:cover;object-position:top}
+.fd{position:relative;width:1000px;height:720px;overflow:hidden;border-radius:12px;border:1px solid #BDBDBD;background:#fff}
+.bgshot-d{position:absolute;inset:0;background:url('control/home-desktop-viewport.png') -220px -90px/1440px 900px no-repeat}
+.bgshot-d.ctl{background-image:url('control/home-desktop-signup-popup.png')}
+.bgshot-d.pdp{background:url('control/pdp-sale-desktop-viewport.png') 0 -180px/1440px 900px no-repeat}
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.center-m,.center-d{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;background:#262626;color:#fff;display:flex;align-items:center;justify-content:center;z-index:3;cursor:pointer}
+.red{color:#D63A2F}
+/* desktop popup */
+.pop-d{position:relative;width:760px;display:grid;grid-template-columns:380px 380px;background:#0A0A0A;border-radius:10px;overflow:hidden}
+.pop-d-img{position:relative}.pop-d-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.pop-d-body{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;min-height:480px;text-align:left}
+/* mobile popup */
+.pop-m{position:relative;width:358px;background:#0A0A0A url('assets/mobile-all-steps-form-background-716x1400.jpg') center/cover;border-radius:8px;padding:16px 16px 24px;display:flex;flex-direction:column;align-items:center}
+.m-art{display:block;width:326px;max-width:100%;height:auto;aspect-ratio:326/170}.m-mark{display:block;width:120px;height:64px;margin-top:4px}
+.pop-m-body{width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:16px}
+/* native text */
+.h1,.h2{font-family:Anton,Impact,sans-serif;font-weight:400;color:#fff;text-transform:uppercase;line-height:1.05;text-wrap:balance}
+.h1.d{font-size:40px}.h1.m{font-size:36px}.h2.d{font-size:32px}.h2.m{font-size:28px}
+.sub{font:400 16px/1.5 Roboto,Arial,sans-serif;color:#D9D9D9;margin-top:12px;text-wrap:pretty}
+.foot{font:400 12px/1.5 Roboto,Arial,sans-serif;color:#A3A3A3;margin-top:12px}.foot a{color:#fff}
+.foot.left{text-align:left;margin-top:0}
+.fields{width:100%;display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.field{height:48px;border-radius:100px;background:#fff;display:flex;align-items:center;gap:12px;padding:0 20px;font:400 16px Roboto,Arial,sans-serif}
+.field .ph{color:#666}.field .val{color:#0A0A0A}.cc{color:#0A0A0A;display:flex;align-items:center;gap:4px}.sep{width:1px;height:24px;background:#E5E5E5}
+.err{font:400 12px/1.5 Roboto,Arial,sans-serif;color:#FF6B5E;text-align:left;margin-top:-8px;padding-left:20px}
+.consentwrap{display:flex;flex-direction:column;gap:12px}.consentwrap .err{margin-top:-4px;padding-left:32px}
+.btn{display:flex;align-items:center;justify-content:center;border-radius:100px;font:700 16px/1 Roboto,Arial,sans-serif;width:100%}
+.btn.primary{height:52px;background:#D63A2F;color:#fff}
+.btn.secondary{height:52px;background:#fff;color:#0A0A0A}
+.btn.tertiary{height:44px;margin-top:-8px;color:#BDBDBD;font-weight:400;font-size:14px;text-decoration:underline}
+.consent{display:flex;gap:12px;align-items:flex-start}.box{flex:none;width:20px;height:20px;border-radius:4px;background:#fff;margin-top:1px}
+/* teaser: center left */
+.teaser{position:absolute;left:16px;top:50%;transform:translateY(-50%);background:#D63A2F;color:#fff;font-family:Anton,Impact,sans-serif;border-radius:100px;display:flex;align-items:center;white-space:nowrap}
+.teaser.d{font-size:18px;padding:14px 24px;min-height:48px}
+.teaser.m{font-size:16px;padding:12px 20px;min-height:44px;left:12px}
+.tx{position:absolute;top:-8px;right:-8px;width:20px;height:20px;border-radius:50%;background:#262626;color:#fff;display:flex;align-items:center;justify-content:center}
+.tx svg{width:10px;height:10px}
+/* notes */
+.notes{width:640px;display:flex;flex-direction:column;gap:20px}
+.note{background:#fff;border:1px solid #CFCFCF;border-radius:12px;padding:24px}
+.note h4{font:700 20px/1.3 "Instrument Sans",Arial;margin-bottom:12px}
+.note ul,.note ol{padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.note li,.note .np,.note td,.note th{font:400 14px/1.5 "Instrument Sans",Arial;color:#222}
+.note .np{margin-top:12px}.note b{font-weight:700}
+.note a{color:#0B57A4}
+.note code{font:400 12px/1.4 Menlo,monospace;background:#F2F2F2;padding:2px 4px;border-radius:4px}
+.note table{width:100%;border-collapse:collapse}.note th{font-weight:700;text-align:left;background:#F2F2F2}
+.note td,.note th{border:1px solid #E0E0E0;padding:8px;vertical-align:top}.note td:first-child{width:150px;font-weight:600}
+</style></head><body>
+<div class="board"><div class="main">
+<header><h1 class="title">Black Friday VIP signup popup | Omnisend | v1 (review fixes applied)</h1>
+<p class="subt">Makobi Jeans USA · Replaces the 15% welcome popup from launch until the end of Thursday, Nov&nbsp;26, 2026 · Three steps (email, phone, success) plus teaser · Built only from what Omnisend's form builder supports, so every state can be recreated by hand</p></header>
+<section class="state" id="control"><div class="state-h"><span class="pill ctl">Control</span><h3>Current Omnisend popup (live, captured Oct 19, 2026)</h3>
+<p>One step on screen: 15% welcome offer, two maroon buttons that both submit, Omnisend fonts, product photo left on desktop and no photo on mobile. No teaser today.</p></div>
+<div class="pair"><div class="cell"><div class="cap">Mobile · 375 wide capture</div><div class="fm"><img class="bgshot" src="control/home-mobile-signup-popup.png" alt="Current mobile signup popup"></div></div>
+<div class="cell"><div class="cap">Desktop · same crop as the variant frames</div><div class="fd"><div class="bgshot-d ctl"></div></div></div></div></section>
+<section class="state" id="state-1"><div class="state-h"><span class="pill var">Variant</span><h3>Step 1 · Email capture</h3><p>The hero state. Campaign art, red 30%, one red button.</p></div>
+<div class="pair"><div class="cell"><div class="cap">Mobile · 390 x 844</div><div class="fm" style="width:390px;height:844px"><img class="bgshot" src="control/home-mobile-viewport.png" alt="" style="width:390px;height:844px"><div class="dim"></div><div class="center-m"><div class="pop-m" role="dialog" aria-label="Black Friday VIP signup"><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img class="m-art" src="assets/mobile-step1-art-652x340.png" alt="VIP Black Friday. Three Makobi outfits"><div class="pop-m-body"><h2 class="h1 m"><span class="red">30%</span> OFF SITEWIDE,<br>ONE DAY EARLY</h2>
+<p class="sub">Join the VIP list and get your code Thursday, Nov&nbsp;26. No minimum.</p>
+<div class="fields"><div class="field"><span class="ph">Email address</span></div>
+<div class="btn primary">GET EARLY ACCESS</div>
+<div class="btn tertiary">No thanks</div></div>
+<p class="foot">You agree to get Makobi marketing emails. Unsubscribe anytime.</p></div></div></div></div></div><div class="cell"><div class="cap">Desktop · popup 760 wide (frame cropped from 1440)</div><div class="fd"><div class="bgshot-d"></div><div class="dim"></div><div class="center-d"><div class="pop-d" role="dialog" aria-label="Black Friday VIP signup">
+<div class="pop-d-img"><img src="assets/desktop-all-steps-left-image-760x1240.jpg" alt="VIP Black Friday. Three Makobi outfits"></div>
+<div class="pop-d-body"><h2 class="h1 d"><span class="red">30%</span> OFF SITEWIDE,<br>ONE DAY EARLY</h2>
+<p class="sub">Join the VIP list and get your code Thursday, Nov&nbsp;26. No minimum.</p>
+<div class="fields"><div class="field"><span class="ph">Email address</span></div>
+<div class="btn primary">GET EARLY ACCESS</div>
+<div class="btn tertiary">No thanks</div></div>
+<p class="foot">You agree to get Makobi marketing emails. Unsubscribe anytime.</p></div><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div></div></div></div></section><section class="state" id="state-2"><div class="state-h"><span class="pill var">Variant</span><h3>Step 2 · Phone capture (SMS)</h3><p>Calmer: smaller white headline, no red number. TCPA consent block with its required checkbox.</p></div>
+<div class="pair"><div class="cell"><div class="cap">Mobile · 390 x 844</div><div class="fm" style="width:390px;height:844px"><img class="bgshot" src="control/home-mobile-viewport.png" alt="" style="width:390px;height:844px"><div class="dim"></div><div class="center-m"><div class="pop-m" role="dialog" aria-label="Black Friday VIP signup"><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img class="m-mark" src="assets/mobile-step2-and-success-logo-240x128.png" alt="Makobi"><div class="pop-m-body"><h2 class="h2 m">GET YOUR CODE BY TEXT</h2>
+<p class="sub">Your code comes by text on Thursday, Nov&nbsp;26, not buried in your inbox.</p>
+<div class="fields"><div class="field phone"><span class="cc">+1 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="sep" aria-hidden="true"></span><span class="ph">Mobile number</span></div>
+<div class="consentwrap"><div class="consent"><span class="box" aria-hidden="true"></span><p class="foot left">By checking this box and clicking Text Me the Code, you agree to receive recurring automated marketing text messages from Makobi Jeans USA at the number provided. Consent is not a condition of purchase. Msg frequency varies. Msg and data rates may apply. Reply HELP for help or STOP to cancel. See our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p></div></div>
+<div class="btn primary">TEXT ME THE CODE</div>
+<div class="btn tertiary">Skip, email only</div></div></div></div></div></div></div><div class="cell"><div class="cap">Desktop · popup 760 wide (frame cropped from 1440)</div><div class="fd"><div class="bgshot-d"></div><div class="dim"></div><div class="center-d"><div class="pop-d" role="dialog" aria-label="Black Friday VIP signup">
+<div class="pop-d-img"><img src="assets/desktop-all-steps-left-image-760x1240.jpg" alt="VIP Black Friday. Three Makobi outfits"></div>
+<div class="pop-d-body"><h2 class="h2 d">GET YOUR CODE BY TEXT</h2>
+<p class="sub">Your code comes by text on Thursday, Nov&nbsp;26, not buried in your inbox.</p>
+<div class="fields"><div class="field phone"><span class="cc">+1 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="sep" aria-hidden="true"></span><span class="ph">Mobile number</span></div>
+<div class="consentwrap"><div class="consent"><span class="box" aria-hidden="true"></span><p class="foot left">By checking this box and clicking Text Me the Code, you agree to receive recurring automated marketing text messages from Makobi Jeans USA at the number provided. Consent is not a condition of purchase. Msg frequency varies. Msg and data rates may apply. Reply HELP for help or STOP to cancel. See our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p></div></div>
+<div class="btn primary">TEXT ME THE CODE</div>
+<div class="btn tertiary">Skip, email only</div></div></div><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div></div></div></div></section><section class="state" id="state-3"><div class="state-h"><span class="pill var">Variant</span><h3>Step 3 · Success</h3><p>Calmest: confirmation, the date, one white button to browse.</p></div>
+<div class="pair"><div class="cell"><div class="cap">Mobile · 390 x 844</div><div class="fm" style="width:390px;height:844px"><img class="bgshot" src="control/home-mobile-viewport.png" alt="" style="width:390px;height:844px"><div class="dim"></div><div class="center-m"><div class="pop-m" role="dialog" aria-label="Black Friday VIP signup"><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img class="m-mark" src="assets/mobile-step2-and-success-logo-240x128.png" alt="Makobi"><div class="pop-m-body"><h2 class="h2 m">YOU'RE ON THE VIP LIST</h2>
+<p class="sub">Watch for your 30% off code on Thursday, Nov&nbsp;26.</p>
+<p class="sub">30% off sitewide, no minimum, a full day before the public sale.</p>
+<div class="fields gap24"><div class="btn secondary">SHOP NEW ARRIVALS</div></div></div></div></div></div></div><div class="cell"><div class="cap">Desktop · popup 760 wide (frame cropped from 1440)</div><div class="fd"><div class="bgshot-d"></div><div class="dim"></div><div class="center-d"><div class="pop-d" role="dialog" aria-label="Black Friday VIP signup">
+<div class="pop-d-img"><img src="assets/desktop-all-steps-left-image-760x1240.jpg" alt="VIP Black Friday. Three Makobi outfits"></div>
+<div class="pop-d-body"><h2 class="h2 d">YOU'RE ON THE VIP LIST</h2>
+<p class="sub">Watch for your 30% off code on Thursday, Nov&nbsp;26.</p>
+<p class="sub">30% off sitewide, no minimum, a full day before the public sale.</p>
+<div class="fields gap24"><div class="btn secondary">SHOP NEW ARRIVALS</div></div></div><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div></div></div></div></section><section class="state" id="state-4"><div class="state-h"><span class="pill var">Variant</span><h3>Closed · Teaser tab (center left)</h3><p>Shown on a product page, the tightest case: center left clears the sticky Add To Cart bar (bottom, mobile and desktop) and the Chat button (bottom left). Close button on.</p></div>
+<div class="pair"><div class="cell"><div class="cap">Mobile · product page, 390 x 844</div><div class="fm"><img class="bgshot" src="control/pdp-sale-mobile-viewport.png" alt=""><div class="teaser m">BLACK FRIDAY EARLY ACCESS<span class="tx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div></div></div><div class="cell"><div class="cap">Desktop · product page, 1000 x 720 crop of the 1440 page (left edge)</div><div class="fd"><div class="bgshot-d pdp"></div><div class="teaser d">BLACK FRIDAY EARLY ACCESS<span class="tx" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div></div></div></div></section><section class="state" id="state-5"><div class="state-h"><span class="pill var">Variant</span><h3>Error · Step 1, invalid email</h3><p>Error text <code>#FF6B5E</code> 12px directly under the field: "Enter a valid email address."</p></div>
+<div class="pair"><div class="cell"><div class="cap">Mobile · 390 x 844</div><div class="fm" style="width:390px;height:844px"><img class="bgshot" src="control/home-mobile-viewport.png" alt="" style="width:390px;height:844px"><div class="dim"></div><div class="center-m"><div class="pop-m" role="dialog" aria-label="Black Friday VIP signup"><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img class="m-art" src="assets/mobile-step1-art-652x340.png" alt="VIP Black Friday. Three Makobi outfits"><div class="pop-m-body"><h2 class="h1 m"><span class="red">30%</span> OFF SITEWIDE,<br>ONE DAY EARLY</h2>
+<p class="sub">Join the VIP list and get your code Thursday, Nov&nbsp;26. No minimum.</p>
+<div class="fields"><div class="field invalid"><span class="val">jay@gmail</span></div><p class="err" role="alert">Enter a valid email address.</p>
+<div class="btn primary">GET EARLY ACCESS</div>
+<div class="btn tertiary">No thanks</div></div>
+<p class="foot">You agree to get Makobi marketing emails. Unsubscribe anytime.</p></div></div></div></div></div><div class="cell"><div class="cap">Desktop · popup 760 wide</div><div class="fd"><div class="bgshot-d"></div><div class="dim"></div><div class="center-d"><div class="pop-d" role="dialog" aria-label="Black Friday VIP signup">
+<div class="pop-d-img"><img src="assets/desktop-all-steps-left-image-760x1240.jpg" alt="VIP Black Friday. Three Makobi outfits"></div>
+<div class="pop-d-body"><h2 class="h1 d"><span class="red">30%</span> OFF SITEWIDE,<br>ONE DAY EARLY</h2>
+<p class="sub">Join the VIP list and get your code Thursday, Nov&nbsp;26. No minimum.</p>
+<div class="fields"><div class="field invalid"><span class="val">jay@gmail</span></div><p class="err" role="alert">Enter a valid email address.</p>
+<div class="btn primary">GET EARLY ACCESS</div>
+<div class="btn tertiary">No thanks</div></div>
+<p class="foot">You agree to get Makobi marketing emails. Unsubscribe anytime.</p></div><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div></div></div></div></section><section class="state" id="state-6"><div class="state-h"><span class="pill var">Variant</span><h3>Error · Step 2, box not checked</h3><p>Error text <code>#FF6B5E</code> 12px directly under the box: "Check the box to get your code by text."</p></div>
+<div class="pair"><div class="cell"><div class="cap">Mobile · 390 x 844</div><div class="fm" style="width:390px;height:844px"><img class="bgshot" src="control/home-mobile-viewport.png" alt="" style="width:390px;height:844px"><div class="dim"></div><div class="center-m"><div class="pop-m" role="dialog" aria-label="Black Friday VIP signup"><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img class="m-mark" src="assets/mobile-step2-and-success-logo-240x128.png" alt="Makobi"><div class="pop-m-body"><h2 class="h2 m">GET YOUR CODE BY TEXT</h2>
+<p class="sub">Your code comes by text on Thursday, Nov&nbsp;26, not buried in your inbox.</p>
+<div class="fields"><div class="field phone"><span class="cc">+1 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="sep" aria-hidden="true"></span><span class="val">404 555 0187</span></div>
+<div class="consentwrap"><div class="consent"><span class="box invalid" aria-hidden="true"></span><p class="foot left">By checking this box and clicking Text Me the Code, you agree to receive recurring automated marketing text messages from Makobi Jeans USA at the number provided. Consent is not a condition of purchase. Msg frequency varies. Msg and data rates may apply. Reply HELP for help or STOP to cancel. See our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p></div><p class="err" role="alert">Check the box to get your code by text.</p></div>
+<div class="btn primary">TEXT ME THE CODE</div>
+<div class="btn tertiary">Skip, email only</div></div></div></div></div></div></div><div class="cell"><div class="cap">Desktop · popup 760 wide</div><div class="fd"><div class="bgshot-d"></div><div class="dim"></div><div class="center-d"><div class="pop-d" role="dialog" aria-label="Black Friday VIP signup">
+<div class="pop-d-img"><img src="assets/desktop-all-steps-left-image-760x1240.jpg" alt="VIP Black Friday. Three Makobi outfits"></div>
+<div class="pop-d-body"><h2 class="h2 d">GET YOUR CODE BY TEXT</h2>
+<p class="sub">Your code comes by text on Thursday, Nov&nbsp;26, not buried in your inbox.</p>
+<div class="fields"><div class="field phone"><span class="cc">+1 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span><span class="sep" aria-hidden="true"></span><span class="val">404 555 0187</span></div>
+<div class="consentwrap"><div class="consent"><span class="box invalid" aria-hidden="true"></span><p class="foot left">By checking this box and clicking Text Me the Code, you agree to receive recurring automated marketing text messages from Makobi Jeans USA at the number provided. Consent is not a condition of purchase. Msg frequency varies. Msg and data rates may apply. Reply HELP for help or STOP to cancel. See our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p></div><p class="err" role="alert">Check the box to get your code by text.</p></div>
+<div class="btn primary">TEXT ME THE CODE</div>
+<div class="btn tertiary">Skip, email only</div></div></div><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div></div></div></div></section><section class="state" id="state-7"><div class="state-h"><span class="pill var">Variant</span><h3>Check · Step 1 on small phones</h3><p>The primary button must sit above the fold. The popup is centered in the viewport as Omnisend does.</p></div>
+<div class="pair"><div class="cell"><div class="cap">iPhone SE size · 375 x 667</div><div class="fm" style="width:375px;height:667px"><img class="bgshot" src="control/home-mobile-viewport.png" alt="" style="width:375px;height:667px"><div class="dim"></div><div class="center-m"><div class="pop-m" style="width:359px" role="dialog" aria-label="Black Friday VIP signup"><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img class="m-art" src="assets/mobile-step1-art-652x340.png" alt="VIP Black Friday. Three Makobi outfits"><div class="pop-m-body"><h2 class="h1 m"><span class="red">30%</span> OFF SITEWIDE,<br>ONE DAY EARLY</h2>
+<p class="sub">Join the VIP list and get your code Thursday, Nov&nbsp;26. No minimum.</p>
+<div class="fields"><div class="field"><span class="ph">Email address</span></div>
+<div class="btn primary">GET EARLY ACCESS</div>
+<div class="btn tertiary">No thanks</div></div>
+<p class="foot">You agree to get Makobi marketing emails. Unsubscribe anytime.</p></div></div></div></div></div><div class="cell"><div class="cap">Small Android · 360 x 640</div><div class="fm" style="width:360px;height:640px"><img class="bgshot" src="control/home-mobile-viewport.png" alt="" style="width:360px;height:640px"><div class="dim"></div><div class="center-m"><div class="pop-m" style="width:344px" role="dialog" aria-label="Black Friday VIP signup"><button class="x" type="button" aria-label="Close"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+<img class="m-art" src="assets/mobile-step1-art-652x340.png" alt="VIP Black Friday. Three Makobi outfits"><div class="pop-m-body"><h2 class="h1 m"><span class="red">30%</span> OFF SITEWIDE,<br>ONE DAY EARLY</h2>
+<p class="sub">Join the VIP list and get your code Thursday, Nov&nbsp;26. No minimum.</p>
+<div class="fields"><div class="field"><span class="ph">Email address</span></div>
+<div class="btn primary">GET EARLY ACCESS</div>
+<div class="btn tertiary">No thanks</div></div>
+<p class="foot">You agree to get Makobi marketing emails. Unsubscribe anytime.</p></div></div></div></div></div></div></section>
+</div><aside class="notes">
+<div class="note"><h4>What changed and why</h4><ul>
+<li><b>Offer:</b> the 15% welcome offer becomes VIP early access to Black Friday (30% off sitewide on Thursday, Nov&nbsp;26, one day before the public sale). Signups get a VIP tag so the client can send to them alone.</li>
+<li><b>Look:</b> black, red and Anton, built from the homepage Black Friday banner (same lineup, the red Cashay set in front, faded BLACK FRIDAY behind, red stars, white logo). Banner, bar and popup read as one sale.</li>
+<li><b>One action per step:</b> the control has two equal maroon buttons. Each new step has one red or white pill button, and the decline or skip is quiet underlined text. The baked VIP BLACK FRIDAY label is an outline pill so it never reads as a second button.</li>
+<li><b>Brand fonts and shapes:</b> the control uses Omnisend's Rubik and Fira Sans with maroon <code>#A00619</code>, which are not Makobi. The variant uses Anton for headlines, Roboto (the site's body font) for everything else, and the site's pill buttons and pill inputs.</li>
+<li><b>Calmer later steps:</b> step 2 and success drop the red number and shrink the headline, so the first screen does the selling and the next ones just finish the job.</li>
+<li><b>SMS in its own step:</b> email first, phone second. Omnisend requires that order, and a short first step converts better than asking for both at once.</li>
+<li><b>Teaser:</b> new. After a close, a red pill waits at the center of the left edge so people can come back to it.</li></ul></div>
+
+<div class="note"><h4>What Omnisend's builder can do (checked Nov 12, 2026)</h4><ul>
+<li><b>Layout:</b> form width 300 to 1000px. One background image per form, placed left, right, top or full background, set to fill or fit. No custom CSS. <a href="https://support.omnisend.com/en/articles/10516472-signup-forms-theme-settings">Theme settings</a></li>
+<li><b>Mobile:</b> no separate mobile layout inside one form. Omnisend's advice is a second copy of the form set to Mobile only, with the original set to Desktop only. <a href="https://support.omnisend.com/en/articles/1061870-set-up-mobile-friendly-popup-forms">Mobile friendly popups</a></li>
+<li><b>Steps:</b> up to 4 steps. Email must come before SMS. Step 1 "Go to next step" saves the email right away; "Close form" keeps data from earlier steps. Success shows only after the last step is submitted. <a href="https://support.omnisend.com/en/articles/7325323-create-multi-step-signup-forms">Multistep forms</a>, <a href="https://support.omnisend.com/en/articles/4147827-customize-signup-form-success-subscribed-messages">Success messages</a></li>
+<li><b>Items:</b> Email, Phone Number (default country), Legal Consent (TCPA template, checkbox unchecked by default and must be ticked to submit), Text (Heading Large, Medium, Small, Paragraph, Footnote), Button (Submit form, Go to next step, Link to, Close form), Image (JPG, PNG or GIF up to 2000px), Line or Space. <a href="https://support.omnisend.com/en/articles/6777481-signup-forms-items-you-can-add-to-your-form">Form items</a></li>
+<li><b>Styling:</b> text blocks take font, size, line height and color (<a href="https://support.omnisend.com/en/articles/6305857-create-a-popup-signup-form">Create a popup</a>). Primary, Secondary and Tertiary button styles with colors, border, custom corner radius, font, size, bold, padding and hover. Fields boxed or underlined with custom radius and their own colors. Close button can be shown or hidden and colored, always top right. <a href="https://support.omnisend.com/en/articles/10516472-signup-forms-theme-settings">Theme settings</a></li>
+<li><b>Fonts:</b> custom fonts can be uploaded in Brand Assets (WOFF, WOFF2, TTF, OTF, EOT) and used in forms. Anton and Roboto appear in Omnisend's font list. <a href="https://support.omnisend.com/en/articles/6099524-manage-your-brand-assets">Brand assets</a>, <a href="https://support.omnisend.com/en/articles/1061830-email-safe-fonts">Fonts</a>, <a href="https://support.omnisend.com/en/articles/11882802-what-s-new-august-2025">August 2025 update</a></li>
+<li><b>Teaser:</b> text only, shape square (custom radius), circle or triangle, colors, border, font and size. Positions named in the doc: bottom left, bottom right, center left (given as examples, so the builder may offer more). Timing "Show after form is closed". Follows the form's device setting and stops once the visitor subscribes. <a href="https://support.omnisend.com/en/articles/6576180-add-teaser-to-your-signup-forms">Teaser</a></li>
+<li><b>Rules:</b> Time on Page, Scroll Depth, Exit Intent, Page Visits (any one fires the form), "Limit form appearance" frequency, scheduling with start and end date and time in the store's timezone, auto tag on submit, include or exclude segments. After someone subscribes through a form, a browser cookie stops it from showing again. <a href="https://support.omnisend.com/en/articles/13684739-signup-forms-behavior-settings">Behavior</a>, <a href="https://support.omnisend.com/en/articles/17781957-signup-forms-display-settings">Display</a>, <a href="https://support.omnisend.com/en/articles/6768577-schedule-signup-form-display-times">Scheduling</a>, <a href="https://support.omnisend.com/en/articles/9844081-signup-forms-set-up-targeting-settings">Targeting</a></li></ul>
+<p class="np"><b>How this shaped the design:</b> everything decorative (lineup, faded lettering, texture, stars, VIP pill, logo) is baked into uploaded images. Headlines, copy, fields, buttons and consent are native, so they stay editable, readable and accessible. Desktop and mobile are two forms.</p></div>
+
+<div class="note"><h4>Build sheet: shared theme settings (both forms)</h4>
+<table><tr><th>Setting</th><th>Value</th></tr>
+<tr><td>Fonts</td><td>Upload Anton (Google Fonts, free license) in Brand Assets if it is not already in the list. Roboto for everything else. Fallback: Arial.</td></tr>
+<tr><td>Form background color</td><td><code>#0A0A0A</code>. Not named in the help docs. <b>Desktop needs this color</b>: its one image slot is the left image, so there is no image fallback. If the builder truly has no form color, raise it with Omnisend support before launch. <b>Mobile</b> does not depend on it, because its full background image is the texture JPG.</td></tr>
+<tr><td>Form corners and border</td><td>Custom radius 10px desktop, 8px mobile. Border width 0.</td></tr>
+<tr><td>Page overlay</td><td><code>#000000</code> at 60% if offered.</td></tr>
+<tr><td>Close button</td><td>On. Icon <code>#FFFFFF</code>, background <code>#262626</code>. "Close by clicking outside the form" on.</td></tr>
+<tr><td>Fields</td><td>Boxed. Custom radius 100px. Background <code>#FFFFFF</code>, text <code>#0A0A0A</code>, placeholder <code>#666666</code>, border 0. Roboto 16px (stops iPhone zoom). Padding 14px 20px (48px tall). Error color <code>#FF6B5E</code> (a lighter tint of the promo red so 12px error text passes contrast on black, 7.1 to 1).</td></tr>
+<tr><td>Checkbox</td><td>Pick the largest checkbox size Omnisend offers, white box. The mock draws 20px.</td></tr>
+<tr><td>Primary button</td><td>Background <code>#D63A2F</code>, text <code>#FFFFFF</code>, Roboto 16px bold, custom radius 100px, border 0, padding 16px 24px (52px tall), alignment Full. Hover background <code>#C4301C</code>.</td></tr>
+<tr><td>Secondary button</td><td>Background <code>#FFFFFF</code>, text <code>#0A0A0A</code>, Roboto 16px bold, radius 100px, padding 16px 24px, Full. Hover <code>#EDEDED</code>.</td></tr>
+<tr><td>Tertiary button</td><td>Background <code>#0A0A0A</code> (same as form), border 0, text <code>#BDBDBD</code>, Roboto 14px, underlined, padding 12px (44px tall), Center.</td></tr>
+<tr><td>Text types</td><td>Headlines: Heading Large. Support lines: Paragraph. Consent lines: Footnote. Set the font, size and color below on each.</td></tr>
+<tr><td>Dates</td><td>Type "Nov&nbsp;26" with a non breaking space (Option + Space on Mac) so the date never splits across lines.</td></tr></table></div>
+
+<div class="note"><h4>Build sheet: desktop form (Desktop only)</h4>
+<table><tr><th>Item</th><th>Spec</th></tr>
+<tr><td>Layout</td><td>Popup, width 760px, center. Background image Left, Fill: <code>desktop-all-steps-left-image-760x1240.jpg</code> (760 x 1240, made to show at 380 x 620). Alt text "VIP Black Friday. Three Makobi outfits". Crop safe only if the image panel is 410px wide or less; wider crops the shoes, then the logo. Its right 40px already fades into <code>#0A0A0A</code>, so there is no seam.</td></tr>
+<tr><td>Step 1 headline</td><td>Heading Large, Anton 40px, line height 1.05, <code>#FFFFFF</code>, left. "30%" colored <code>#D63A2F</code>. Line break after "SITEWIDE,".</td></tr>
+<tr><td>Step 1 support</td><td>Paragraph, Roboto 16px regular, line height 1.5, <code>#D9D9D9</code>.</td></tr>
+<tr><td>Step 1 controls</td><td>Email (placeholder "Email address", required, error "Enter a valid email address."). Primary button "GET EARLY ACCESS", action Go to next step. Tertiary button "No thanks", action Close form.</td></tr>
+<tr><td>Step 1 consent</td><td>Footnote, Roboto 12px, line height 1.5, <code>#A3A3A3</code>.</td></tr>
+<tr><td>Step 1 spacing</td><td>12px headline to support, 24px support to field, 12px field to button, 4px button to No thanks, 12px to consent.</td></tr>
+<tr><td>Step 2</td><td>Heading Large, Anton 32px <code>#FFFFFF</code> (no red). Support as step 1. Phone Number: default country United States, show United States only, placeholder "Mobile number". The field shows whatever Omnisend renders for a single country; the mock draws a +1 selector. Legal Consent: TCPA template, text below, Footnote Roboto 12px <code>#A3A3A3</code>, links <code>#FFFFFF</code>, required error "Check the box to get your code by text.". Primary "TEXT ME THE CODE", Submit form. Tertiary "Skip, email only", Close form.</td></tr>
+<tr><td>Step 2 order and spacing</td><td>Headline, 12, support, 24, phone field, 12, consent, 12, button, 4, skip.</td></tr>
+<tr><td>Success</td><td>Heading Large, Anton 32px <code>#FFFFFF</code>. Two Paragraphs, Roboto 16px <code>#D9D9D9</code>, 12px between them, 24px before the button. Secondary button "SHOP NEW ARRIVALS", Link to <code>/collections/new-arrival</code>. Delete the Subscribed tab so returning contacts see this too.</td></tr>
+<tr><td>Padding</td><td>Content padding 40px top and bottom, 36px sides.</td></tr>
+<tr><td>Teaser</td><td>Text "BLACK FRIDAY EARLY ACCESS". Square shape, custom radius 100px. Background <code>#D63A2F</code>, text <code>#FFFFFF</code>, border 0, Anton 18px, padding 14px 24px (at least 48px tall). Position center left. Timing "Show after form is closed". Close button on.</td></tr></table></div>
+
+<div class="note"><h4>Build sheet: mobile form (Mobile only)</h4>
+<table><tr><th>Item</th><th>Spec</th></tr>
+<tr><td>Layout</td><td>Duplicate the desktop form, set width 358px. Background image Full background, Fill: <code>mobile-all-steps-form-background-716x1400.jpg</code> (716 x 1400). Corners 8px.</td></tr>
+<tr><td>Step 1 image</td><td>Image item first: <code>mobile-step1-art-652x340.png</code> (transparent PNG, shows at 326 x 170, full content width). Alt text "VIP Black Friday. Three Makobi outfits". 16px from the image to the headline.</td></tr>
+<tr><td>Step 1 text</td><td>Heading Large, Anton 36px, line height 1.05, centered, break after "SITEWIDE,". Paragraph Roboto 16px <code>#D9D9D9</code>, centered. Same controls, errors, consent (Footnote 12px) and spacing as desktop.</td></tr>
+<tr><td>Step 2 and success image</td><td>Image item first: <code>mobile-step2-and-success-logo-240x128.png</code>, width 120px, centered (shows at 120 x 64). Alt text "Makobi". 16px from the image to the headline.</td></tr>
+<tr><td>Step 2 and success text</td><td>Heading Large, Anton 28px centered. Everything else, including order and spacing, as desktop; centered except the consent text (left).</td></tr>
+<tr><td>Padding</td><td>Content padding 16px sides, 16px top, 24px bottom.</td></tr>
+<tr><td>Teaser</td><td>As desktop but Anton 16px, padding 12px 20px (at least 44px tall). Position center left. Close button on.</td></tr></table></div>
+
+<div class="note"><h4>Display rules to set</h4><ul>
+<li><b>Schedule:</b> start when the form is published; end Thursday, Nov&nbsp;26 at 11:59 PM (store timezone). Then the form switches itself off.</li>
+<li><b>Late signups:</b> anyone who signs up on Nov&nbsp;26 after the one time VIP send would never get the code. Recommended: an Omnisend automation triggered when a contact gets the tag "VIP Black Friday 2026" that sends the code to anyone tagged after the send goes out. The alternative is ending the form at the send time.</li>
+<li><b>Old popup:</b> switch it off at launch. Give it a scheduled start of Friday, Nov&nbsp;27 at 12:00 AM and keep it enabled so it returns on its own. Omnisend's docs do not cover two forms overlapping, so the gap avoids it.</li>
+<li><b>Trigger:</b> Time on Page 6 seconds, or Scroll Depth 40%, or Exit Intent (whichever comes first).</li>
+<li><b>Frequency:</b> Limit form appearance, once every 2 days after a close. The teaser covers the time in between.</li>
+<li><b>Stop after signup:</b> Omnisend's targeting doc says a cookie stops a form from showing again in that browser once the visitor subscribes through it (<a href="https://support.omnisend.com/en/articles/9844081-signup-forms-set-up-targeting-settings">Targeting</a>). To also cover other devices, build a segment "tag is VIP Black Friday 2026" and exclude it in Visitor targeting; exclusion wins over inclusion.</li>
+<li><b>Who:</b> turn OFF "Don't show to existing contacts". Current subscribers are the best VIP prospects; they get tagged when they submit.</li>
+<li><b>Tag:</b> auto tag every submit "VIP Black Friday 2026". Omnisend tags contacts, it does not add them to a list, so the "dedicated list" is a segment on that tag.</li>
+<li><b>Devices:</b> desktop form Desktop only, mobile form Mobile only, with the same schedule, rules and tag on both.</li></ul></div>
+
+<div class="note"><h4>Not possible natively, and what we did</h4><ul>
+<li>Lineup, faded lettering, texture, stars, logo and the VIP pill: no layered art in the builder, so they are baked into images.</li>
+<li>Letter spacing and font weights other than regular and bold are not offered, so native text uses default spacing and Roboto regular or bold only.</li>
+<li>Line height: the popup doc lists it as adjustable. If the builder will not go down to 1.05, drop the step 1 headline to 34px on mobile and 38px on desktop so it stays two lines.</li>
+<li>Red "30%" inside a white headline: the docs do not say if one word can take its own color. If not, set the whole headline white; red stays in the button and the art.</li>
+<li>Close button size and position are fixed by Omnisend (top right). We can only color it, so the 44px tap target cannot be guaranteed. Test on a phone.</li>
+<li>Teaser close button size is also fixed by Omnisend. The mock draws it at 20px; that is fine on desktop with a mouse, and on mobile it is a test item.</li>
+<li>Checkbox style is Omnisend's default; the mock draws a plain white box.</li>
+<li>The left image width on desktop is set by Omnisend. The mock assumes half the form (380px); the art is crop safe only if the image panel is 410px wide or less (wider crops the shoes, then the logo).</li>
+<li>Teaser position: center left is the only documented spot that clears the sticky Add To Cart bar (bottom of every product page, on mobile and desktop) and Chat (bottom left). It floats over page content mid screen, which is the trade off.</li>
+<li>Anyone who taps "Skip, email only" closes the form without seeing the success step. Their email is still saved and tagged.</li></ul></div>
+
+<div class="note"><h4>Test before publishing</h4><ul>
+<li>On a 375 x 667 phone, the step 1 GET EARLY ACCESS button sits above the fold (the board's last row renders 375 x 667 and 360 x 640).</li>
+<li>Tapping the consent text toggles the checkbox, not only tapping the box itself.</li>
+<li>Both error messages show, in <code>#FF6B5E</code>, right under the field or box.</li>
+<li>"Nov&nbsp;26" stays on one line in every step (Omnisend keeps the non breaking space).</li>
+<li>Skip, email only: the contact is saved and tagged.</li>
+<li>After a signup, the form and teaser stop showing in that browser, and on a second device once the segment exclusion is set.</li>
+<li>Close buttons on the popup and the mobile teaser are easy to tap.</li></ul></div>
+
+<div class="note"><h4>Open questions for the client</h4><ol>
+<li><b>SMS consent wording (legal):</b> Omnisend's TCPA block always has a checkbox that must be ticked. The approved text starts "By clicking Text Me the Code". The mock shows it as "By checking this box and clicking Text Me the Code". Please confirm that change, the Terms and Privacy Policy URLs, and that a separate SMS terms page exists (Omnisend asks for one).</li>
+<li><b>Welcome 15%:</b> keep or drop during the VIP campaign? It is not in any state of this design. If kept, which code, and note the MAKOBI15 cart script overwrites other codes.</li>
+<li><b>VIP tag name:</b> is "VIP Black Friday 2026" fine, and will the Nov&nbsp;26 email and SMS go to that segment only?</li>
+<li><b>Send time on Nov&nbsp;26:</b> who schedules the VIP email and SMS, and at what hour? The popup never states it.</li>
+<li><b>Late signups:</b> set up the tag triggered automation so people who join after the send still get the code, or end the form at the send time?</li>
+<li><b>Sitewide:</b> please confirm in Shopify that the VIP code has no product exclusions.</li>
+<li><b>After Nov&nbsp;26:</b> should the old 15% popup really return during the public Black Friday sale, or stay off until the weekend sale ends?</li>
+<li><b>Store timezone in Omnisend:</b> confirm it matches the client's sale timezone, since the schedule uses it.</li></ol></div>
+</aside></div></body></html>
