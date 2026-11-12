@@ -216,7 +216,7 @@ body{background:#E2E2E2;font-family:"Instrument Sans",Arial,sans-serif;color:#11
 
 <div class="note"><h4>Display rules to set</h4><ul>
 <li><b>Schedule:</b> start when the form is published; end Thursday, Nov&nbsp;26 at 11:59 PM (store timezone). Then the form switches itself off.</li>
-<li><b>Late signups:</b> anyone who signs up on Nov&nbsp;26 after the one time VIP send would never get the code. Recommended: an Omnisend automation triggered when a contact gets the tag "VIP Black Friday 2026" that sends the code to anyone tagged after the send goes out. The alternative is ending the form at the send time.</li>
+<li><b>Late signups:</b> anyone who signs up on Nov&nbsp;26 after the one time VIP send would never get the code. The client runs that send, so this is a recommendation to pass to them: an Omnisend automation triggered when a contact gets the tag "VIP Black Friday 2026" that sends the code to anyone tagged after the send goes out. The alternative is ending the form at the send time.</li>
 <li><b>Old popup:</b> switch it off at launch. Give it a scheduled start of Friday, Nov&nbsp;27 at 12:00 AM and keep it enabled so it returns on its own. Omnisend's docs do not cover two forms overlapping, so the gap avoids it.</li>
 <li><b>Trigger:</b> Time on Page 6 seconds, or Scroll Depth 40%, or Exit Intent (whichever comes first).</li>
 <li><b>Frequency:</b> Limit form appearance, once every 2 days after a close. The teaser covers the time in between.</li>
@@ -246,13 +246,13 @@ body{background:#E2E2E2;font-family:"Instrument Sans",Arial,sans-serif;color:#11
 <li>After a signup, the form and teaser stop showing in that browser, and on a second device once the segment exclusion is set.</li>
 <li>Close buttons on the popup and the mobile teaser are easy to tap.</li></ul></div>
 
-<div class="note"><h4>Open questions for the client</h4><ol>
-<li><b>SMS consent wording (legal):</b> Omnisend's TCPA block always has a checkbox that must be ticked. The approved text starts "By clicking Text Me the Code". The mock shows it as "By checking this box and clicking Text Me the Code". Please confirm that change, the Terms and Privacy Policy URLs, and that a separate SMS terms page exists (Omnisend asks for one).</li>
-<li><b>Welcome 15%:</b> keep or drop during the VIP campaign? It is not in any state of this design. If kept, which code, and note the MAKOBI15 cart script overwrites other codes.</li>
-<li><b>VIP tag name:</b> is "VIP Black Friday 2026" fine, and will the Nov&nbsp;26 email and SMS go to that segment only?</li>
-<li><b>Send time on Nov&nbsp;26:</b> who schedules the VIP email and SMS, and at what hour? The popup never states it.</li>
-<li><b>Late signups:</b> set up the tag triggered automation so people who join after the send still get the code, or end the form at the send time?</li>
-<li><b>Sitewide:</b> please confirm in Shopify that the VIP code has no product exclusions.</li>
-<li><b>After Nov&nbsp;26:</b> should the old 15% popup really return during the public Black Friday sale, or stay off until the weekend sale ends?</li>
-<li><b>Store timezone in Omnisend:</b> confirm it matches the client's sale timezone, since the schedule uses it.</li></ol></div>
+<div class="note"><h4>Decisions (confirmed Nov 13, 2026)</h4><ol>
+<li><b>SMS consent wording:</b> approved as shown in the mock ("By checking this box and clicking Text Me the Code"). The two links go to the store's Terms of Service and Privacy Policy pages, which are both live.</li>
+<li><b>Welcome 15%:</b> paused while this popup runs. It is not in any state of this design.</li>
+<li><b>Tag and segment:</b> the tag is "VIP Black Friday 2026". If Omnisend has no VIP segment yet, we create one with the same name, filtered on that tag.</li>
+<li><b>Sitewide:</b> confirmed from the client's discount schedule (Nov 10). The VIP code has no product exclusions and no minimum.</li>
+<li><b>After Nov&nbsp;26:</b> the 15% popup returns on Friday, Nov&nbsp;27.</li>
+<li><b>Scope:</b> Yamu sets up the popup, the tag and the segment. The client runs their own email and SMS, so the Nov&nbsp;26 send and its timing are theirs. We can help if they ask.</li></ol>
+<p class="np"><b>Tell the client at handover:</b> anyone who joins after their Nov&nbsp;26 send goes out will not get the code unless they add an automation on the tag or send again. The form closes Thursday, Nov&nbsp;26 at 11:59 PM.</p>
+<p class="np"><b>Check while building:</b> the store timezone in Omnisend (the schedule uses it), and whether Omnisend asks for a separate SMS terms page.</p></div>
 </aside></div></body></html>
